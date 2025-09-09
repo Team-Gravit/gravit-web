@@ -1,3 +1,5 @@
+# .github/ISSUE_TEMPLATE/feature.yml
+
 name: '✨ feature'
 description: '새로운 기능 추가'
 labels: ['✨ feature']
