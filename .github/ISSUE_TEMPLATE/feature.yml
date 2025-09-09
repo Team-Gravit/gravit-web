@@ -1,0 +1,24 @@
+name: '✨ feature'
+description: '새로운 기능 추가'
+labels: ['✨ feature']
+body:
+    - type: textarea
+      attributes:
+          label: 📄 설명
+          description: 작업할 Feature에 대한 설명을 적어주세요.
+          placeholder: ex. 타이머 기능 구현하기 - 자세히 적을수록 좋습니다!
+      validations:
+          required: true
+    - type: textarea
+      attributes:
+          label: ✅ 작업할 내용
+          description: 할 일을 체크박스 형태로 작성해주세요.
+          placeholder: 최대한 세분화 해서 적어주세요!
+      validations:
+          required: true
+    - type: textarea
+      attributes:
+          label: 🙋🏻 참고 자료
+          description: 피그마 화면 번호/참고 자료 링크를 작성 작성해 주세요.
+          validations:
+              required: false

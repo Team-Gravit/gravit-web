@@ -1,0 +1,23 @@
+# .github/ISSUE_TEMPLATE/enhancement.yml
+name: '🛠 enhancement'
+description: '기존 기능 개선'
+labels: ['🛠 enhancement']
+body:
+    - type: textarea
+      attributes:
+          label: 🎯 개선할 기능
+          description: 어떤 기능을 개선하고 싶나요?
+      validations:
+          required: true
+    - type: textarea
+      attributes:
+          label: 💡 개선 아이디어
+          description: 어떻게 개선하고 싶은지 설명해주세요.
+      validations:
+          required: true
+    - type: textarea
+      attributes:
+          label: 🔄 현재 상황
+          description: 현재 어떤 문제가 있나요?
+      validations:
+          required: true

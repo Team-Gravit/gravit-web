@@ -1,0 +1,50 @@
+# .github/ISSUE_TEMPLATE/chore.yml
+name: '⚙ chore'
+description: '빌드, 설정, 라이브러리 업데이트 등의 작업'
+labels: ['⚙ chore']
+body:
+    - type: dropdown
+      attributes:
+          label: 🎯 작업 유형
+          description: 어떤 종류의 chore 작업인가요?
+          options:
+              - 의존성 업데이트
+              - 빌드 설정 변경
+              - 개발 환경 설정
+              - CI/CD 설정
+              - 문서 정리
+              - 코드 정리/리팩토링
+              - 기타
+      validations:
+          required: true
+    - type: textarea
+      attributes:
+          label: 📄 작업 설명
+          description: 수행할 chore 작업에 대해 설명해주세요.
+          placeholder: |
+              예시:
+              - React 18로 업데이트
+              - ESLint 규칙 추가
+              - 불필요한 파일 정리
+              - CI 워크플로우 수정
+      validations:
+          required: true
+    - type: textarea
+      attributes:
+          label: ✅ 작업할 내용
+          description: 구체적인 할 일을 체크박스 형태로 작성해주세요.
+          placeholder: |
+              - [ ] package.json에서 React 버전 업데이트
+              - [ ] 의존성 충돌 해결
+              - [ ] 테스트 실행하여 정상 동작 확인
+              - [ ] 문서 업데이트
+      validations:
+          required: true
+    - type: textarea
+      attributes:
+          label: 📋 주의사항
+          description: 작업 시 주의해야 할 사항이나 고려사항이 있나요?
+          placeholder: |
+              - 프로덕션 환경에 영향을 줄 수 있음
+              - 다른 브랜치와의 충돌 가능성
+              - 특정 버전 호환성 확인 필요
