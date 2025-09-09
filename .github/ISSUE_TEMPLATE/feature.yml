@@ -21,6 +21,6 @@ body:
     - type: textarea
       attributes:
           label: 🙋🏻 참고 자료
-          description: 피그마 화면 번호/참고 자료 링크를 작성 작성해 주세요.
-          validations:
-              required: false
+          description: 피그마 화면 번호/참고 자료 링크를 작성해 주세요.
+      validations:
+          required: false
