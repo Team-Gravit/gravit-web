@@ -1,8 +1,14 @@
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import useCountStore from "./store";
+import { createFileRoute } from "@tanstack/react-router";
+import useCountStore from "./../store.tsx";
 
-function App() {
+export const Route = createFileRoute("/")({
+	component: Index,
+});
+
+function Index() {
 	const { count, increment, decrement } = useCountStore();
+
 	return (
 		<>
 			<ReactQueryDevtools initialIsOpen={false} />
@@ -33,5 +39,3 @@ function App() {
 		</>
 	);
 }
-
-export default App;
