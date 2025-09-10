@@ -10,11 +10,15 @@
         "preinstall": "npx only-allow pnpm",
         "format": "biome check --write .",
         "format:check": "biome check .",
-        "lint": "biome lint .",
-        "lint:fix": "biome lint --write .",
-        "ci": "biome ci ."
+        "lint": "biome lint . eslint 'src/**/*.{ts,tsx}' --config .eslintrc.query.js",
+        "lint:fix": "biome lint --write . && eslint 'src/**/*.{ts,tsx}' --config .eslintrc.query.js --fix",
+        "lint:biome": "biome lint .",
+        "lint:query": "eslint 'src/**/*.{ts,tsx}' --config .eslintrc.query.js",
+        "ci": "biome ci . && eslint 'src/**/*.{ts,tsx}' --config .eslintrc.query.js"
     },
     "dependencies": {
+        "@tanstack/react-query": "^5.87.4",
+        "@tanstack/react-query-devtools": "^5.87.4",
         "react": "^19.1.1",
         "react-dom": "^19.1.1",
         "zustand": "^5.0.8"
@@ -23,6 +27,7 @@
         "@biomejs/biome": "2.2.4",
         "@eslint/js": "^9.33.0",
         "@tailwindcss/vite": "^4.1.13",
+        "@tanstack/eslint-plugin-query": "^5.86.0",
         "@types/react": "^19.1.10",
         "@types/react-dom": "^19.1.7",
         "@vitejs/plugin-react": "^5.0.0",

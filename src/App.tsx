@@ -1,9 +1,11 @@
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import useCountStore from "./store";
 
 function App() {
 	const { count, increment, decrement } = useCountStore();
 	return (
 		<>
+			<ReactQueryDevtools initialIsOpen={false} />
 			<div className="bg-bronze font-pretendard">브론즈</div>
 			<div className="bg-silver font-pretendard">실버</div>
 			<div className="bg-gold font-mbc">골드</div>
