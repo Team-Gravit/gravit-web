@@ -8,13 +8,11 @@
         "build": "tsc -b && vite build",
         "preview": "vite preview",
         "preinstall": "npx only-allow pnpm",
-        "format": "biome check --write .",
-        "format:check": "biome check .",
-        "lint": "biome lint . eslint 'src/**/*.{ts,tsx}' --config .eslintrc.query.js",
-        "lint:fix": "biome lint --write . && eslint 'src/**/*.{ts,tsx}' --config .eslintrc.query.js --fix",
-        "lint:biome": "biome lint .",
-        "lint:query": "eslint 'src/**/*.{ts,tsx}' --config .eslintrc.query.js",
-        "ci": "biome ci . && eslint 'src/**/*.{ts,tsx}' --config .eslintrc.query.js"
+        "format": "biome format --write",
+        "check": "biome check --write",
+        "lint": "pnpm lint:biome",
+        "lint:biome": "biome lint --write",
+        "ci": "biome ci ."
     },
     "dependencies": {
         "@tanstack/react-query": "^5.87.4",
