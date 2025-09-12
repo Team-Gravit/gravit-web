@@ -29,6 +29,7 @@
         "@tailwindcss/vite": "^4.1.13",
         "@tanstack/eslint-plugin-query": "^5.86.0",
         "@tanstack/router-plugin": "^1.131.36",
+        "@types/node": "^24.3.1",
         "@types/react": "^19.1.10",
         "@types/react-dom": "^19.1.7",
         "@vitejs/plugin-react": "^5.0.0",
