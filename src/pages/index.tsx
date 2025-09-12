@@ -1,6 +1,6 @@
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { createFileRoute } from "@tanstack/react-router";
-import useCountStore from "./../store.tsx";
+import useCountStore from "./../store";
 
 export const Route = createFileRoute("/")({
 	component: Index,
