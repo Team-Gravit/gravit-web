@@ -4,7 +4,6 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 
-
 export default defineConfig({
     plugins: [tanstackRouter({
       routesDirectory: "./src/pages",
@@ -17,4 +16,5 @@ export default defineConfig({
             '@': path.resolve(__dirname, './src')
         }
     }
+
 });
