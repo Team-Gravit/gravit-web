@@ -1,0 +1,46 @@
+{
+    "name": "gravit-web-v2",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc -b && vite build",
+        "preview": "vite preview",
+        "preinstall": "npx only-allow pnpm",
+        "format": "biome format --write",
+        "check": "biome check --write",
+        "lint": "pnpm lint:biome",
+        "lint:biome": "biome lint --write",
+        "ci": "biome ci ."
+    },
+    "dependencies": {
+        "@tanstack/react-query": "^5.87.4",
+        "@tanstack/react-query-devtools": "^5.87.4",
+        "@tanstack/react-router": "^1.131.36",
+        "@tanstack/react-router-devtools": "^1.131.36",
+        "react": "^19.1.1",
+        "react-dom": "^19.1.1",
+        "zustand": "^5.0.8"
+    },
+    "devDependencies": {
+        "@biomejs/biome": "2.2.4",
+        "@eslint/js": "^9.33.0",
+        "@tailwindcss/vite": "^4.1.13",
+        "@tanstack/eslint-plugin-query": "^5.86.0",
+        "@tanstack/router-plugin": "^1.131.36",
+        "@types/node": "^24.3.1",
+        "@types/react": "^19.1.10",
+        "@types/react-dom": "^19.1.7",
+        "@vitejs/plugin-react": "^5.0.0",
+        "eslint": "^9.33.0",
+        "eslint-plugin-react-hooks": "^5.2.0",
+        "eslint-plugin-react-refresh": "^0.4.20",
+        "globals": "^16.3.0",
+        "only-allow": "^1.2.1",
+        "tailwindcss": "^4.1.13",
+        "typescript": "~5.8.3",
+        "typescript-eslint": "^8.39.1",
+        "vite": "^7.1.2"
+    }
+}
