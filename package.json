@@ -19,6 +19,7 @@
         "@tanstack/react-query-devtools": "^5.87.4",
         "@tanstack/react-router": "^1.131.36",
         "@tanstack/react-router-devtools": "^1.131.36",
+        "axios": "^1.12.1",
         "react": "^19.1.1",
         "react-dom": "^19.1.1",
         "zustand": "^5.0.8"
