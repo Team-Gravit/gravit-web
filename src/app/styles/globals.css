@@ -10,6 +10,10 @@
     /*버튼*/
     --color-kakao-btn: #ffe240;
 
+
+    /*black*/
+    --color-black: #222124;
+    
     /*gray*/
     --color-gray-100: #f8f8f8;
     --color-gray-200: #f2f2f2;
@@ -69,11 +73,12 @@
     --font-mbc: 'MBC1961GulimM', sans-serif;
 }
 
+
 @font-face {
     font-family: 'Pretendard';
-    src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/woff2/PretendardVariable.woff2')
-        format('woff2-variations');
-    font-weight: 45 920; /* 모든 weight를 하나의 파일로 */
+    src: url('/src/shared/assets/fonts/PretendardVariable.woff2')
+        format('woff2');
+    font-weight: 100 900; /* 모든 weight를 하나의 파일로 */
     font-display: swap;
 }
 
@@ -85,8 +90,8 @@
 }
 
 @layer base {
-    * {
-        @apply font-pretendard;
+    body {
+        @apply font-pretendard text-black leading-normal
     }
 }
 
