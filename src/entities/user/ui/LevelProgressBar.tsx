@@ -11,7 +11,7 @@ const LevelProgressBar = ({ percent, level }: LevelProgressBarProps) => {
 			<ProgressBar
 				percent={percent}
 				barStyle={{
-					background: `linear-gradient(0deg, rgba(255,255,255,0.2) 0%, rgba(255, 255, 255, 0.2) 100%)), linear-gradient(45deg, var(--color-main-2), var(--color-main-end))`,
+					background: `linear-gradient(0deg, rgba(255,255,255,0.2) 0%, rgba(255, 255, 255, 0.2) 100%), linear-gradient(45deg, var(--color-main-2), var(--color-main-end))`,
 				}}
 				containerClassName="bg-white"
 			/>
