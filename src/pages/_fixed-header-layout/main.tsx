@@ -2,11 +2,11 @@ import Banner from "@/shared/ui/banner/Banner";
 import { StatCard } from "@/shared/ui/card/StatCard";
 import Footer from "@/widgets/footer/ui/Footer";
 import MissionCard from "@/widgets/misson-widget/MissionCard";
-import UserInfo from "@/widgets/user/ui/UserInfo";
 import { createFileRoute } from "@tanstack/react-router";
 import rocket from "@/shared/assets/images/rocket.png";
 import fire from "@/shared/assets/images/fire.png";
 import RecentLearningCard from "@/widgets/learning-widget/RecentLearningCard";
+import UserLeagueInfo from "@/widgets/user/ui/UserLeagueInfo";
 
 const data = {
 	nickname: "땅콩",
@@ -32,7 +32,7 @@ function MainPage() {
 				<Banner />
 				<div className="w-full max-w-[1700px] flex-grow p-20 bg-[#f2f2f2] flex flex-col lg:flex-row gap-6">
 					<section className="w-full lg:w-1/2 flex flex-col">
-						<UserInfo
+						<UserLeagueInfo
 							nickname={data.nickname}
 							league={data.league}
 							xp={5}
