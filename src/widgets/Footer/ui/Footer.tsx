@@ -5,8 +5,8 @@ export default function Footer() {
 	return (
 		<footer className="bg-gray-700 py-[38px]">
 			<div className="flex items-center gap-[29px] h-[66px] justify-start pl-[51px] ">
-				<GravitLogo className="h-8 text-white" />
-				<img src={appcenterLogo} className="h-full" />
+				<GravitLogo className="h-8 brightness-0 invert" />
+				<img src={appcenterLogo} className="h-full" alt={"앱센터 로고"} />
 			</div>
 			<hr className="border-white/45 mt-[15px] mb-[29px]" />
 			<div className="pl-[51px]">

@@ -4,7 +4,7 @@ import { cn } from "@/shared/lib/cn";
 
 const HEADER_NAV_LIST: HeaderNavProps[] = [
 	{ to: "/main", text: "홈" },
-	{ to: "/study", text: "학습" },
+	{ to: "/learn", text: "학습" },
 	{ to: "/league", text: "리그" },
 	{ to: "/user", text: "사용자" },
 ];
@@ -13,7 +13,8 @@ export default function Header({ className }: { className?: string }) {
 	return (
 		<header
 			className={cn(
-				"flex items-center px-8 py-4 justify-start h-[var(--header-height)] w-full bg-white",
+				"flex items-center px-8 py-4 justify-start h-[var(--header-height)] w-full bg-white z-50",
+
 				className,
 			)}
 		>
