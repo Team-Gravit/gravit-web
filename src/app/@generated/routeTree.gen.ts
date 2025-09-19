@@ -9,65 +9,123 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './../../pages/__root'
-import { Route as UserRouteImport } from './../../pages/user'
 import { Route as AboutRouteImport } from './../../pages/about'
-import { Route as IndexRouteImport } from './../../pages/index'
+import { Route as FixedHeaderLayoutRouteRouteImport } from './../../pages/_fixed-header-layout/route'
+import { Route as BlankLayoutRouteRouteImport } from './../../pages/_blank-layout/route'
+import { Route as FixedHeaderLayoutIndexRouteImport } from './../../pages/_fixed-header-layout/index'
+import { Route as FixedHeaderLayoutUserRouteImport } from './../../pages/_fixed-header-layout/user'
+import { Route as FixedHeaderLayoutStudyRouteImport } from './../../pages/_fixed-header-layout/study'
+import { Route as FixedHeaderLayoutMainRouteImport } from './../../pages/_fixed-header-layout/main'
+import { Route as FixedHeaderLayoutLeagueRouteImport } from './../../pages/_fixed-header-layout/league'
+import { Route as BlankLayoutLessonRouteImport } from './../../pages/_blank-layout/lesson'
 
-const UserRoute = UserRouteImport.update({
-  id: '/user',
-  path: '/user',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
+const FixedHeaderLayoutRouteRoute = FixedHeaderLayoutRouteRouteImport.update({
+  id: '/_fixed-header-layout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlankLayoutRouteRoute = BlankLayoutRouteRouteImport.update({
+  id: '/_blank-layout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FixedHeaderLayoutIndexRoute = FixedHeaderLayoutIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => FixedHeaderLayoutRouteRoute,
+} as any)
+const FixedHeaderLayoutUserRoute = FixedHeaderLayoutUserRouteImport.update({
+  id: '/user',
+  path: '/user',
+  getParentRoute: () => FixedHeaderLayoutRouteRoute,
+} as any)
+const FixedHeaderLayoutStudyRoute = FixedHeaderLayoutStudyRouteImport.update({
+  id: '/study',
+  path: '/study',
+  getParentRoute: () => FixedHeaderLayoutRouteRoute,
+} as any)
+const FixedHeaderLayoutMainRoute = FixedHeaderLayoutMainRouteImport.update({
+  id: '/main',
+  path: '/main',
+  getParentRoute: () => FixedHeaderLayoutRouteRoute,
+} as any)
+const FixedHeaderLayoutLeagueRoute = FixedHeaderLayoutLeagueRouteImport.update({
+  id: '/league',
+  path: '/league',
+  getParentRoute: () => FixedHeaderLayoutRouteRoute,
+} as any)
+const BlankLayoutLessonRoute = BlankLayoutLessonRouteImport.update({
+  id: '/lesson',
+  path: '/lesson',
+  getParentRoute: () => BlankLayoutRouteRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/user': typeof UserRoute
+  '/lesson': typeof BlankLayoutLessonRoute
+  '/league': typeof FixedHeaderLayoutLeagueRoute
+  '/main': typeof FixedHeaderLayoutMainRoute
+  '/study': typeof FixedHeaderLayoutStudyRoute
+  '/user': typeof FixedHeaderLayoutUserRoute
+  '/': typeof FixedHeaderLayoutIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/user': typeof UserRoute
+  '/lesson': typeof BlankLayoutLessonRoute
+  '/league': typeof FixedHeaderLayoutLeagueRoute
+  '/main': typeof FixedHeaderLayoutMainRoute
+  '/study': typeof FixedHeaderLayoutStudyRoute
+  '/user': typeof FixedHeaderLayoutUserRoute
+  '/': typeof FixedHeaderLayoutIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
+  '/_blank-layout': typeof BlankLayoutRouteRouteWithChildren
+  '/_fixed-header-layout': typeof FixedHeaderLayoutRouteRouteWithChildren
   '/about': typeof AboutRoute
-  '/user': typeof UserRoute
+  '/_blank-layout/lesson': typeof BlankLayoutLessonRoute
+  '/_fixed-header-layout/league': typeof FixedHeaderLayoutLeagueRoute
+  '/_fixed-header-layout/main': typeof FixedHeaderLayoutMainRoute
+  '/_fixed-header-layout/study': typeof FixedHeaderLayoutStudyRoute
+  '/_fixed-header-layout/user': typeof FixedHeaderLayoutUserRoute
+  '/_fixed-header-layout/': typeof FixedHeaderLayoutIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/user'
+  fullPaths:
+    | '/about'
+    | '/lesson'
+    | '/league'
+    | '/main'
+    | '/study'
+    | '/user'
+    | '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/user'
-  id: '__root__' | '/' | '/about' | '/user'
+  to: '/about' | '/lesson' | '/league' | '/main' | '/study' | '/user' | '/'
+  id:
+    | '__root__'
+    | '/_blank-layout'
+    | '/_fixed-header-layout'
+    | '/about'
+    | '/_blank-layout/lesson'
+    | '/_fixed-header-layout/league'
+    | '/_fixed-header-layout/main'
+    | '/_fixed-header-layout/study'
+    | '/_fixed-header-layout/user'
+    | '/_fixed-header-layout/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
+  BlankLayoutRouteRoute: typeof BlankLayoutRouteRouteWithChildren
+  FixedHeaderLayoutRouteRoute: typeof FixedHeaderLayoutRouteRouteWithChildren
   AboutRoute: typeof AboutRoute
-  UserRoute: typeof UserRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/user': {
-      id: '/user'
-      path: '/user'
-      fullPath: '/user'
-      preLoaderRoute: typeof UserRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -75,20 +133,102 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
+    '/_fixed-header-layout': {
+      id: '/_fixed-header-layout'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof FixedHeaderLayoutRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_blank-layout': {
+      id: '/_blank-layout'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof BlankLayoutRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_fixed-header-layout/': {
+      id: '/_fixed-header-layout/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof FixedHeaderLayoutIndexRouteImport
+      parentRoute: typeof FixedHeaderLayoutRouteRoute
+    }
+    '/_fixed-header-layout/user': {
+      id: '/_fixed-header-layout/user'
+      path: '/user'
+      fullPath: '/user'
+      preLoaderRoute: typeof FixedHeaderLayoutUserRouteImport
+      parentRoute: typeof FixedHeaderLayoutRouteRoute
+    }
+    '/_fixed-header-layout/study': {
+      id: '/_fixed-header-layout/study'
+      path: '/study'
+      fullPath: '/study'
+      preLoaderRoute: typeof FixedHeaderLayoutStudyRouteImport
+      parentRoute: typeof FixedHeaderLayoutRouteRoute
+    }
+    '/_fixed-header-layout/main': {
+      id: '/_fixed-header-layout/main'
+      path: '/main'
+      fullPath: '/main'
+      preLoaderRoute: typeof FixedHeaderLayoutMainRouteImport
+      parentRoute: typeof FixedHeaderLayoutRouteRoute
+    }
+    '/_fixed-header-layout/league': {
+      id: '/_fixed-header-layout/league'
+      path: '/league'
+      fullPath: '/league'
+      preLoaderRoute: typeof FixedHeaderLayoutLeagueRouteImport
+      parentRoute: typeof FixedHeaderLayoutRouteRoute
+    }
+    '/_blank-layout/lesson': {
+      id: '/_blank-layout/lesson'
+      path: '/lesson'
+      fullPath: '/lesson'
+      preLoaderRoute: typeof BlankLayoutLessonRouteImport
+      parentRoute: typeof BlankLayoutRouteRoute
     }
   }
 }
 
+interface BlankLayoutRouteRouteChildren {
+  BlankLayoutLessonRoute: typeof BlankLayoutLessonRoute
+}
+
+const BlankLayoutRouteRouteChildren: BlankLayoutRouteRouteChildren = {
+  BlankLayoutLessonRoute: BlankLayoutLessonRoute,
+}
+
+const BlankLayoutRouteRouteWithChildren =
+  BlankLayoutRouteRoute._addFileChildren(BlankLayoutRouteRouteChildren)
+
+interface FixedHeaderLayoutRouteRouteChildren {
+  FixedHeaderLayoutLeagueRoute: typeof FixedHeaderLayoutLeagueRoute
+  FixedHeaderLayoutMainRoute: typeof FixedHeaderLayoutMainRoute
+  FixedHeaderLayoutStudyRoute: typeof FixedHeaderLayoutStudyRoute
+  FixedHeaderLayoutUserRoute: typeof FixedHeaderLayoutUserRoute
+  FixedHeaderLayoutIndexRoute: typeof FixedHeaderLayoutIndexRoute
+}
+
+const FixedHeaderLayoutRouteRouteChildren: FixedHeaderLayoutRouteRouteChildren =
+  {
+    FixedHeaderLayoutLeagueRoute: FixedHeaderLayoutLeagueRoute,
+    FixedHeaderLayoutMainRoute: FixedHeaderLayoutMainRoute,
+    FixedHeaderLayoutStudyRoute: FixedHeaderLayoutStudyRoute,
+    FixedHeaderLayoutUserRoute: FixedHeaderLayoutUserRoute,
+    FixedHeaderLayoutIndexRoute: FixedHeaderLayoutIndexRoute,
+  }
+
+const FixedHeaderLayoutRouteRouteWithChildren =
+  FixedHeaderLayoutRouteRoute._addFileChildren(
+    FixedHeaderLayoutRouteRouteChildren,
+  )
+
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
+  BlankLayoutRouteRoute: BlankLayoutRouteRouteWithChildren,
+  FixedHeaderLayoutRouteRoute: FixedHeaderLayoutRouteRouteWithChildren,
   AboutRoute: AboutRoute,
-  UserRoute: UserRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

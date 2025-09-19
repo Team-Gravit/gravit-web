@@ -10,6 +10,9 @@
     /*버튼*/
     --color-kakao-btn: #ffe240;
 
+    /*텍스트 검정색*/
+    --color-text-black: #222124;
+    
     /*gray*/
     --color-gray-100: #f8f8f8;
     --color-gray-200: #f2f2f2;
@@ -67,6 +70,9 @@
     /*폰트*/
     --font-pretendard: 'Pretendard', sans-serif;
     --font-mbc: 'MBC1961GulimM', sans-serif;
+
+    /*헤더*/
+    --header-height: 74px;
 }
 
 @font-face {
