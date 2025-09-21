@@ -17,7 +17,7 @@ export default function UserLeagueInfo({
 	return (
 		<>
 			<h2 className="font-semibold text-[32px] mb-4">
-				현재 <span className="font-bold">{nickname}</span>님의 티어는{" "}
+				현재 <span className="font-bold">{nickname}</span>님의 리그는{" "}
 				<span className="font-semibold text-[#ff9500]">
 					{league || "브론즈"}
 				</span>
