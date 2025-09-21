@@ -108,4 +108,18 @@
         background-clip: text;
         -webkit-text-fill-color: transparent;
     }
+
+    .primary-btn {
+        border-radius: 10px;
+        background: #8100B3;
+    }
+
+    .gray-btn {
+        border-radius: 10px;
+        background: var(--text-gray-500, #A8A8A8)
+    }
+
+    .bg-space-gradient {
+        background: linear-gradient(293deg, #4721CA 3.59%, #17034E 95.08%);
+    }
 }
