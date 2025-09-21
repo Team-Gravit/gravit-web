@@ -1,4 +1,5 @@
-import { useState, type ReactNode } from "react";
+import { useState, useRef, useEffect, type ReactNode } from "react";
+import { createPortal } from "react-dom";
 
 export default function Tooltip({
 	positionX = "RIGHT",
@@ -10,18 +11,29 @@ export default function Tooltip({
 	button: ReactNode;
 }) {
 	const [isVisible, setIsVisible] = useState(false);
+	const [position, setPosition] = useState({ top: 0, left: 0 });
+	const buttonRef = useRef<HTMLButtonElement>(null);
 
-	// positionX에 따른 툴팁 몸통 위치 설정
-	const getTooltipPosition = () => {
+	useEffect(() => {
+		if (isVisible && buttonRef.current) {
+			const rect = buttonRef.current.getBoundingClientRect();
+			const tooltipTop = rect.bottom + 8;
+			const buttonCenterX = rect.left + rect.width / 2;
+
+			setPosition({ top: tooltipTop, left: buttonCenterX });
+		}
+	}, [isVisible, positionX]);
+
+	const getTooltipTransform = () => {
 		switch (positionX) {
 			case "LEFT":
-				return "left-0 translate-x-0";
+				return "translate-x-0";
 			case "CENTER":
-				return "left-1/2 -translate-x-1/2";
+				return "-translate-x-1/2";
 			case "RIGHT":
-				return "right-0 translate-x-0";
+				return "-translate-x-8/9";
 			default:
-				return "right-0 translate-x-0";
+				return "-translate-x-full";
 		}
 	};
 
@@ -40,28 +52,38 @@ export default function Tooltip({
 	};
 
 	return (
-		<div className="relative group inline-block z-30">
+		<>
 			<button
+				ref={buttonRef}
 				type="button"
+				className="cursor-pointer"
 				onMouseEnter={onHandleMouseHover}
 				onMouseLeave={onHandleMouseLeave}
 			>
 				{button}
 			</button>
 
-			{isVisible && (
-				<>
-					{/* 꼬리(화살표) - 버튼 중앙 아래에 고정 */}
-					<div className="absolute left-1/2 -translate-x-1/2 top-full translate-y-1 hidden group-hover:block w-0 h-0 border-l-[12px] border-r-[12px] border-b-[12px] border-l-transparent border-r-transparent border-b-black pointer-events-none z-10"></div>
-
-					{/* 툴팁 몸통 - positionX에 따라 위치 변경 */}
+			{isVisible &&
+				createPortal(
 					<div
-						className={`absolute ${getTooltipPosition()} top-full translate-x-1.5 translate-y-3.5 mb-2 hidden group-hover:block w-max bg-black text-white rounded-lg p-2.5 pointer-events-none`}
+						className="fixed z-[9999] pointer-events-none"
+						style={{
+							top: position.top,
+							left: position.left,
+						}}
 					>
-						{children}
-					</div>
-				</>
-			)}
-		</div>
+						{/* 꼬리(화살표) - 버튼 중앙 아래에 위치 */}
+						<div className="absolute -translate-x-1/2 -translate-y-[10px] w-0 h-0 border-l-[10px] border-r-[10px] border-b-[10px] border-l-transparent border-r-transparent border-b-black"></div>
+
+						{/* 툴팁 몸통 */}
+						<div
+							className={`${getTooltipTransform()} w-max bg-black text-white rounded-lg p-2.5`}
+						>
+							{children}
+						</div>
+					</div>,
+					document.body,
+				)}
+		</>
 	);
 }
