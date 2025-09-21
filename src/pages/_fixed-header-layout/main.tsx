@@ -1,6 +1,6 @@
 import Banner from "@/shared/ui/banner/Banner";
 import { StatCard } from "@/shared/ui/card/StatCard";
-import Footer from "@/widgets/footer/ui/Footer";
+import Footer from "@/widgets/footer/Footer";
 import MissionCard from "@/widgets/misson-widget/MissionCard";
 import { createFileRoute } from "@tanstack/react-router";
 import rocket from "@/shared/assets/images/rocket.png";

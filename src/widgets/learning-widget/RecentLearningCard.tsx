@@ -3,7 +3,7 @@ import Card from "@/shared/ui/card/Card";
 import backgroundImg from "./assets/learning-card-bg.webp";
 import { Link } from "@tanstack/react-router";
 import ArrowButton from "./assets/arrow-left.svg?react";
-import InfoIcon from "./assets/info-circle.svg?react";
+import InfoIcon from "@/shared/assets/icons/info-circle.svg?react";
 import Tooltip from "@/shared/ui/tooltip/Tooltip";
 import { getPlanetImage } from "@/shared/lib/planet/utils";
 
@@ -67,9 +67,6 @@ export default function RecentLearningCard({
 						{chapterSummary.chapterName}
 					</h3>
 					<LessonProgressBar
-						percent={
-							(chapterSummary.completedUnits / chapterSummary.totalUnits) * 100
-						}
 						totalUnits={chapterSummary.totalUnits}
 						completedUnits={chapterSummary.completedUnits}
 					/>
