@@ -9,12 +9,14 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './../../pages/__root'
-import { Route as UserRouteImport } from './../../pages/user'
 import { Route as AboutRouteImport } from './../../pages/about'
 import { Route as FixedHeaderLayoutRouteRouteImport } from './../../pages/_fixed-header-layout/route'
 import { Route as BlankLayoutRouteRouteImport } from './../../pages/_blank-layout/route'
 import { Route as FixedHeaderLayoutIndexRouteImport } from './../../pages/_fixed-header-layout/index'
 import { Route as FixedHeaderLayoutUserRouteImport } from './../../pages/_fixed-header-layout/user'
+import { Route as FixedHeaderLayoutSuccessRouteImport } from './../../pages/_fixed-header-layout/success'
+import { Route as FixedHeaderLayoutStudyRouteImport } from './../../pages/_fixed-header-layout/study'
+import { Route as FixedHeaderLayoutOnboardingRouteImport } from './../../pages/_fixed-header-layout/onboarding'
 import { Route as FixedHeaderLayoutMainRouteImport } from './../../pages/_fixed-header-layout/main'
 import { Route as FixedHeaderLayoutLeagueRouteImport } from './../../pages/_fixed-header-layout/league'
 import { Route as BlankLayoutLessonRouteImport } from './../../pages/_blank-layout/lesson'
@@ -22,13 +24,22 @@ import { Route as FixedHeaderLayoutLearnIndexRouteImport } from './../../pages/_
 import { Route as FixedHeaderLayoutLearnChapterIdIndexRouteImport } from './../../pages/_fixed-header-layout/learn/$chapterId/index'
 import { Route as FixedHeaderLayoutLearnChapterIdUnitIdIndexRouteImport } from './../../pages/_fixed-header-layout/learn/$chapterId/$unitId/index'
 import { Route as FixedHeaderLayoutLearnChapterIdUnitIdQuizRouteImport } from './../../pages/_fixed-header-layout/learn/$chapterId/$unitId/quiz'
+import { Route as BlankLayoutLoginOauth2CodeProviderIndexRouteImport } from './../../pages/_blank-layout/login/oauth2/code/$provider/index'
 
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
+const FixedHeaderLayoutRouteRoute = FixedHeaderLayoutRouteRouteImport.update({
+  id: '/_fixed-header-layout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlankLayoutRouteRoute = BlankLayoutRouteRouteImport.update({
+  id: '/_blank-layout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FixedHeaderLayoutIndexRoute = FixedHeaderLayoutIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => FixedHeaderLayoutRouteRoute,
@@ -38,6 +49,23 @@ const FixedHeaderLayoutUserRoute = FixedHeaderLayoutUserRouteImport.update({
   path: '/user',
   getParentRoute: () => FixedHeaderLayoutRouteRoute,
 } as any)
+const FixedHeaderLayoutSuccessRoute =
+  FixedHeaderLayoutSuccessRouteImport.update({
+    id: '/success',
+    path: '/success',
+    getParentRoute: () => FixedHeaderLayoutRouteRoute,
+  } as any)
+const FixedHeaderLayoutStudyRoute = FixedHeaderLayoutStudyRouteImport.update({
+  id: '/study',
+  path: '/study',
+  getParentRoute: () => FixedHeaderLayoutRouteRoute,
+} as any)
+const FixedHeaderLayoutOnboardingRoute =
+  FixedHeaderLayoutOnboardingRouteImport.update({
+    id: '/onboarding',
+    path: '/onboarding',
+    getParentRoute: () => FixedHeaderLayoutRouteRoute,
+  } as any)
 const FixedHeaderLayoutMainRoute = FixedHeaderLayoutMainRouteImport.update({
   id: '/main',
   path: '/main',
@@ -77,46 +105,63 @@ const FixedHeaderLayoutLearnChapterIdUnitIdQuizRoute =
     path: '/learn/$chapterId/$unitId/quiz',
     getParentRoute: () => FixedHeaderLayoutRouteRoute,
   } as any)
+const BlankLayoutLoginOauth2CodeProviderIndexRoute =
+  BlankLayoutLoginOauth2CodeProviderIndexRouteImport.update({
+    id: '/login/oauth2/code/$provider/',
+    path: '/login/oauth2/code/$provider/',
+    getParentRoute: () => BlankLayoutRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/lesson': typeof BlankLayoutLessonRoute
   '/league': typeof FixedHeaderLayoutLeagueRoute
   '/main': typeof FixedHeaderLayoutMainRoute
+  '/onboarding': typeof FixedHeaderLayoutOnboardingRoute
+  '/study': typeof FixedHeaderLayoutStudyRoute
+  '/success': typeof FixedHeaderLayoutSuccessRoute
   '/user': typeof FixedHeaderLayoutUserRoute
   '/': typeof FixedHeaderLayoutIndexRoute
   '/learn': typeof FixedHeaderLayoutLearnIndexRoute
   '/learn/$chapterId': typeof FixedHeaderLayoutLearnChapterIdIndexRoute
   '/learn/$chapterId/$unitId/quiz': typeof FixedHeaderLayoutLearnChapterIdUnitIdQuizRoute
   '/learn/$chapterId/$unitId': typeof FixedHeaderLayoutLearnChapterIdUnitIdIndexRoute
+  '/login/oauth2/code/$provider': typeof BlankLayoutLoginOauth2CodeProviderIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/lesson': typeof BlankLayoutLessonRoute
   '/league': typeof FixedHeaderLayoutLeagueRoute
   '/main': typeof FixedHeaderLayoutMainRoute
+  '/onboarding': typeof FixedHeaderLayoutOnboardingRoute
+  '/study': typeof FixedHeaderLayoutStudyRoute
+  '/success': typeof FixedHeaderLayoutSuccessRoute
   '/user': typeof FixedHeaderLayoutUserRoute
   '/': typeof FixedHeaderLayoutIndexRoute
   '/learn': typeof FixedHeaderLayoutLearnIndexRoute
   '/learn/$chapterId': typeof FixedHeaderLayoutLearnChapterIdIndexRoute
   '/learn/$chapterId/$unitId/quiz': typeof FixedHeaderLayoutLearnChapterIdUnitIdQuizRoute
   '/learn/$chapterId/$unitId': typeof FixedHeaderLayoutLearnChapterIdUnitIdIndexRoute
+  '/login/oauth2/code/$provider': typeof BlankLayoutLoginOauth2CodeProviderIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
+  '/_blank-layout': typeof BlankLayoutRouteRouteWithChildren
+  '/_fixed-header-layout': typeof FixedHeaderLayoutRouteRouteWithChildren
   '/about': typeof AboutRoute
   '/_blank-layout/lesson': typeof BlankLayoutLessonRoute
   '/_fixed-header-layout/league': typeof FixedHeaderLayoutLeagueRoute
   '/_fixed-header-layout/main': typeof FixedHeaderLayoutMainRoute
+  '/_fixed-header-layout/onboarding': typeof FixedHeaderLayoutOnboardingRoute
+  '/_fixed-header-layout/study': typeof FixedHeaderLayoutStudyRoute
+  '/_fixed-header-layout/success': typeof FixedHeaderLayoutSuccessRoute
   '/_fixed-header-layout/user': typeof FixedHeaderLayoutUserRoute
   '/_fixed-header-layout/': typeof FixedHeaderLayoutIndexRoute
   '/_fixed-header-layout/learn/': typeof FixedHeaderLayoutLearnIndexRoute
   '/_fixed-header-layout/learn/$chapterId/': typeof FixedHeaderLayoutLearnChapterIdIndexRoute
   '/_fixed-header-layout/learn/$chapterId/$unitId/quiz': typeof FixedHeaderLayoutLearnChapterIdUnitIdQuizRoute
   '/_fixed-header-layout/learn/$chapterId/$unitId/': typeof FixedHeaderLayoutLearnChapterIdUnitIdIndexRoute
+  '/_blank-layout/login/oauth2/code/$provider/': typeof BlankLayoutLoginOauth2CodeProviderIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -125,24 +170,32 @@ export interface FileRouteTypes {
     | '/lesson'
     | '/league'
     | '/main'
+    | '/onboarding'
+    | '/study'
+    | '/success'
     | '/user'
     | '/'
     | '/learn'
     | '/learn/$chapterId'
     | '/learn/$chapterId/$unitId/quiz'
     | '/learn/$chapterId/$unitId'
+    | '/login/oauth2/code/$provider'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/about'
     | '/lesson'
     | '/league'
     | '/main'
+    | '/onboarding'
+    | '/study'
+    | '/success'
     | '/user'
     | '/'
     | '/learn'
     | '/learn/$chapterId'
     | '/learn/$chapterId/$unitId/quiz'
     | '/learn/$chapterId/$unitId'
+    | '/login/oauth2/code/$provider'
   id:
     | '__root__'
     | '/_blank-layout'
@@ -151,29 +204,26 @@ export interface FileRouteTypes {
     | '/_blank-layout/lesson'
     | '/_fixed-header-layout/league'
     | '/_fixed-header-layout/main'
+    | '/_fixed-header-layout/onboarding'
+    | '/_fixed-header-layout/study'
+    | '/_fixed-header-layout/success'
     | '/_fixed-header-layout/user'
     | '/_fixed-header-layout/'
     | '/_fixed-header-layout/learn/'
     | '/_fixed-header-layout/learn/$chapterId/'
     | '/_fixed-header-layout/learn/$chapterId/$unitId/quiz'
     | '/_fixed-header-layout/learn/$chapterId/$unitId/'
+    | '/_blank-layout/login/oauth2/code/$provider/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
+  BlankLayoutRouteRoute: typeof BlankLayoutRouteRouteWithChildren
+  FixedHeaderLayoutRouteRoute: typeof FixedHeaderLayoutRouteRouteWithChildren
   AboutRoute: typeof AboutRoute
-  UserRoute: typeof UserRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/user': {
-      id: '/user'
-      path: '/user'
-      fullPath: '/user'
-      preLoaderRoute: typeof UserRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -181,8 +231,22 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
+    '/_fixed-header-layout': {
+      id: '/_fixed-header-layout'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof FixedHeaderLayoutRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_blank-layout': {
+      id: '/_blank-layout'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof BlankLayoutRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_fixed-header-layout/': {
+      id: '/_fixed-header-layout/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof FixedHeaderLayoutIndexRouteImport
@@ -193,6 +257,27 @@ declare module '@tanstack/react-router' {
       path: '/user'
       fullPath: '/user'
       preLoaderRoute: typeof FixedHeaderLayoutUserRouteImport
+      parentRoute: typeof FixedHeaderLayoutRouteRoute
+    }
+    '/_fixed-header-layout/success': {
+      id: '/_fixed-header-layout/success'
+      path: '/success'
+      fullPath: '/success'
+      preLoaderRoute: typeof FixedHeaderLayoutSuccessRouteImport
+      parentRoute: typeof FixedHeaderLayoutRouteRoute
+    }
+    '/_fixed-header-layout/study': {
+      id: '/_fixed-header-layout/study'
+      path: '/study'
+      fullPath: '/study'
+      preLoaderRoute: typeof FixedHeaderLayoutStudyRouteImport
+      parentRoute: typeof FixedHeaderLayoutRouteRoute
+    }
+    '/_fixed-header-layout/onboarding': {
+      id: '/_fixed-header-layout/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof FixedHeaderLayoutOnboardingRouteImport
       parentRoute: typeof FixedHeaderLayoutRouteRoute
     }
     '/_fixed-header-layout/main': {
@@ -244,15 +329,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FixedHeaderLayoutLearnChapterIdUnitIdQuizRouteImport
       parentRoute: typeof FixedHeaderLayoutRouteRoute
     }
+    '/_blank-layout/login/oauth2/code/$provider/': {
+      id: '/_blank-layout/login/oauth2/code/$provider/'
+      path: '/login/oauth2/code/$provider'
+      fullPath: '/login/oauth2/code/$provider'
+      preLoaderRoute: typeof BlankLayoutLoginOauth2CodeProviderIndexRouteImport
+      parentRoute: typeof BlankLayoutRouteRoute
+    }
   }
 }
 
 interface BlankLayoutRouteRouteChildren {
   BlankLayoutLessonRoute: typeof BlankLayoutLessonRoute
+  BlankLayoutLoginOauth2CodeProviderIndexRoute: typeof BlankLayoutLoginOauth2CodeProviderIndexRoute
 }
 
 const BlankLayoutRouteRouteChildren: BlankLayoutRouteRouteChildren = {
   BlankLayoutLessonRoute: BlankLayoutLessonRoute,
+  BlankLayoutLoginOauth2CodeProviderIndexRoute:
+    BlankLayoutLoginOauth2CodeProviderIndexRoute,
 }
 
 const BlankLayoutRouteRouteWithChildren =
@@ -261,6 +356,9 @@ const BlankLayoutRouteRouteWithChildren =
 interface FixedHeaderLayoutRouteRouteChildren {
   FixedHeaderLayoutLeagueRoute: typeof FixedHeaderLayoutLeagueRoute
   FixedHeaderLayoutMainRoute: typeof FixedHeaderLayoutMainRoute
+  FixedHeaderLayoutOnboardingRoute: typeof FixedHeaderLayoutOnboardingRoute
+  FixedHeaderLayoutStudyRoute: typeof FixedHeaderLayoutStudyRoute
+  FixedHeaderLayoutSuccessRoute: typeof FixedHeaderLayoutSuccessRoute
   FixedHeaderLayoutUserRoute: typeof FixedHeaderLayoutUserRoute
   FixedHeaderLayoutIndexRoute: typeof FixedHeaderLayoutIndexRoute
   FixedHeaderLayoutLearnIndexRoute: typeof FixedHeaderLayoutLearnIndexRoute
@@ -273,6 +371,9 @@ const FixedHeaderLayoutRouteRouteChildren: FixedHeaderLayoutRouteRouteChildren =
   {
     FixedHeaderLayoutLeagueRoute: FixedHeaderLayoutLeagueRoute,
     FixedHeaderLayoutMainRoute: FixedHeaderLayoutMainRoute,
+    FixedHeaderLayoutOnboardingRoute: FixedHeaderLayoutOnboardingRoute,
+    FixedHeaderLayoutStudyRoute: FixedHeaderLayoutStudyRoute,
+    FixedHeaderLayoutSuccessRoute: FixedHeaderLayoutSuccessRoute,
     FixedHeaderLayoutUserRoute: FixedHeaderLayoutUserRoute,
     FixedHeaderLayoutIndexRoute: FixedHeaderLayoutIndexRoute,
     FixedHeaderLayoutLearnIndexRoute: FixedHeaderLayoutLearnIndexRoute,
@@ -290,9 +391,9 @@ const FixedHeaderLayoutRouteRouteWithChildren =
   )
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
+  BlankLayoutRouteRoute: BlankLayoutRouteRouteWithChildren,
+  FixedHeaderLayoutRouteRoute: FixedHeaderLayoutRouteRouteWithChildren,
   AboutRoute: AboutRoute,
-  UserRoute: UserRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
