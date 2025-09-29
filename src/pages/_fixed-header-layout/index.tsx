@@ -2,21 +2,25 @@ import Footer from "@/widgets/Footer/Footer";
 import { createFileRoute } from "@tanstack/react-router";
 import backgroundImage from "@/shared/assets/images/background.webp";
 import GravitLogo from "@/shared/assets/icons/logo.svg?react";
-import naverLogo from "@/shared/assets/images/naver.png";
-import googleLogo from "@/shared/assets/images/google.png";
-import kakaoLogo from "@/shared/assets/images/kakao.png";
 import roundedPlanetsImg from "@/shared/assets/images/planet-group.png";
 import phoneImg from "@/shared/assets/images/phone.png";
 import leagueBadgeImg from "@/shared/assets/images/league-badge.png";
 import leaguePhoneImg from "@/shared/assets/images/league-phone.png";
 import leagueItem from "@/shared/assets/images/league-item.png";
 import leagueGroup from "@/shared/assets/images/league-group.png";
+import SocialButton from "@/features/login/ui/SocialButton";
+import google from "@/shared/assets/icons/buttons/google.svg";
+import kakao from "@/shared/assets/icons/buttons/kakao.svg";
+import naver from "@/shared/assets/icons/buttons/naver.svg";
+import { useOauthLogin } from "@/entities/login/model/useOauthLogin";
 
 export const Route = createFileRoute("/_fixed-header-layout/")({
 	component: Index,
 });
 
 function Index() {
+	const oauthLogin = useOauthLogin();
+
 	return (
 		<div className="flex-grow flex flex-col items-center justify-center w-full">
 			<div
@@ -29,51 +33,27 @@ function Index() {
 				}}
 			>
 				<section className="w-full h-[1044px]">
-					<p className="absolute top-[200px] left-1/2 -translate-x-1/2 lg:-translate-x-0 lg:top-[259px] lg:right-[328px] flex flex-col gap-[30px] w-[465px]">
+					<div className="absolute top-[200px] left-1/2 -translate-x-1/2 lg:-translate-x-0 lg:top-[259px] lg:right-[328px] flex flex-col gap-[30px] w-[465px]">
 						<GravitLogo className="text-white w-[371px]" />
 						<h3 className="text-white font-semibold text-3xl">
 							재미있고 효과적인 CS 교육 그래빗
 						</h3>
-						<button
-							type="button"
-							className="w-full h-[58px] bg-white rounded-lg p-2.5 flex items-center justify-center"
-						>
-							<img
-								src={googleLogo}
-								alt="구글 로고"
-								className="w-5 absolute left-2.5"
-							/>
-							<span className="text-text2 text-2xl font-normal">
-								Google로 시작하기
-							</span>
-						</button>
-						<button
-							type="button"
-							className="w-full h-[58px] bg-kakao-btn rounded-lg p-2.5 flex items-center justify-center"
-						>
-							<img
-								src={kakaoLogo}
-								alt="카카오 로고"
-								className="w-5 absolute left-2.5"
-							/>
-							<span className="text-text2 text-2xl font-normal">
-								카카오로 시작하기
-							</span>
-						</button>
-						<button
-							type="button"
-							className="w-full h-[58px] bg-[#00B116] rounded-lg p-2.5 flex items-center justify-center"
-						>
-							<img
-								src={naverLogo}
-								alt="네이버 로고"
-								className="w-[17px] absolute left-2.5"
-							/>
-							<span className="text-text2 text-2xl font-normal">
-								네이버로 시작하기
-							</span>
-						</button>
-					</p>
+						<SocialButton
+							provider="google"
+							imgSrc={google}
+							onClick={() => oauthLogin.mutate("google")}
+						/>
+						<SocialButton
+							provider="kakao"
+							imgSrc={kakao}
+							onClick={() => oauthLogin.mutate("kakao")}
+						/>
+						<SocialButton
+							provider="naver"
+							imgSrc={naver}
+							onClick={() => oauthLogin.mutate("naver")}
+						/>
+					</div>
 				</section>
 				<section className="relative w-full h-[1044px] overflow-x-hidden">
 					<img
@@ -173,14 +153,12 @@ function Index() {
 			</section>
 			<section className="w-full h-[1212px] flex items-center justify-center">
 				<div className="relative flex gap-[158px]">
-					{/* 스마트폰 이미지 */}
 					<img
 						src={leaguePhoneImg}
 						alt="앱 리그 예시 화면"
 						className="w-[327px] h-fit mt-30 flex-shrink-0"
 					/>
 
-					{/* 연결선들 */}
 					<div className="absolute left-[303px] top-[180px] flex items-center">
 						<div className="relative w-[192px] h-1 bg-[#FFB608]">
 							<div className="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-[#FFB608] rounded-full"></div>
@@ -195,7 +173,6 @@ function Index() {
 						</div>
 					</div>
 
-					{/* 리그 정보 박스들 */}
 					<div className="flex flex-col gap-[60px]">
 						<div className="flex flex-col gap-[21px]">
 							<dl>
