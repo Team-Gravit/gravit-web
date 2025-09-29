@@ -1,31 +1,22 @@
-// src/features/onboarding/api/postOnBoarding.ts
 import { apiClient } from "@/shared/api/config";
 import type { AxiosError } from "axios";
+import type { UserProfile } from "@/entities/user/model/types";
 
-export interface OnBoardingResponse {
-	id: string;
-	nickname: string;
-	profilePhotoUrl: string;
-	createdAt: string;
-	updatedAt: string;
-}
-
-export const PostOnBoarding = async (
+export const postOnBoarding = async (
 	nickname: string,
 	profilePhotoNumber: number,
-): Promise<OnBoardingResponse> => {
+): Promise<UserProfile> => {
 	try {
-		// 토큰을 로컬스토리지에서 직접 가져옴
 		const accessToken = localStorage.getItem("accessToken");
 
-		const { data } = await apiClient.post<OnBoardingResponse>(
-			"/users/me/onboarding",
+		const { data } = await apiClient.post<UserProfile>(
+			"/users/onboarding",
 			{ nickname, profilePhotoNumber },
 			{
 				headers: {
 					Authorization: `Bearer ${accessToken}`,
 				},
-				withCredentials: true, // PatchOnBoarding과 동일
+				withCredentials: true,
 			},
 		);
 
