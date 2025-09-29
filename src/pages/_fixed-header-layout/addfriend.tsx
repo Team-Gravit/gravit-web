@@ -1,9 +1,9 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute('/_fixed-header-layout/addfriend')({
-  component: RouteComponent,
-})
+export const Route = createFileRoute("/_fixed-header-layout/addfriend")({
+	component: RouteComponent,
+});
 
 function RouteComponent() {
-  return <div>Hello "/_fixed-header-layout/friend"!</div>
+	return <div>Hello "/_fixed-header-layout/friend"!</div>;
 }
