@@ -1,10 +1,10 @@
 import type { ApiResponse } from "@/shared/api/types";
 import { apiClient } from "@/shared/api/config";
 import type { Chapter } from "../model/types";
-import type { ChapterDetailResponseDTO } from "./dto";
+import type { ProblemListResponseDTO, ChapterDetailResponseDTO } from "./dto";
 
 export const learningApi = {
-	/** 전체 챕터 리스트 정보 */
+	/** 전체 챕터 정보 */
 	getChapterList: async (): Promise<Chapter[]> => {
 		const response =
 			await apiClient.get<ApiResponse<Chapter[]>>(`/learning/chapters`);
@@ -25,6 +25,20 @@ export const learningApi = {
 			throw new Error(response.data.message);
 		}
 
+		return response.data;
+	},
+
+	getProblems: async (lessonId: number): Promise<ProblemListResponseDTO> => {
+		const response = await apiClient.get<ApiResponse<ProblemListResponseDTO>>(
+			`/learning/${lessonId}`,
+		);
+
+		console.log("Full response:", response);
+		console.log("Response status:", response.status);
+
+		if ("error" in response.data) {
+			throw new Error(response.data.message);
+		}
 		return response.data;
 	},
 };
