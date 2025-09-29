@@ -1,4 +1,4 @@
-import LessonProgressBar from "@/entities/lesson/ui/LessonProgressBar";
+import LessonProgressBar from "@/entities/learning/ui/LessonProgressBar";
 import Card from "@/shared/ui/card/Card";
 import backgroundImg from "./assets/learning-card-bg.webp";
 import { Link } from "@tanstack/react-router";
@@ -12,12 +12,13 @@ type ChapterSummary = {
 	chapterName: string;
 	totalUnits: number;
 	completedUnits: number;
+	chapterDescription: string;
 };
 
 export default function RecentLearningCard({
 	chapterSummary,
 }: {
-	chapterSummary?: ChapterSummary;
+	chapterSummary: ChapterSummary;
 }) {
 	let linkUrl = "/learn";
 	let content = (
@@ -37,7 +38,7 @@ export default function RecentLearningCard({
 		</div>
 	);
 
-	if (chapterSummary) {
+	if (chapterSummary.chapterId !== 0) {
 		linkUrl = `/learn/${chapterSummary.chapterId}`;
 		content = (
 			<>
@@ -57,8 +58,7 @@ export default function RecentLearningCard({
 							<div className="flex items-center justify-center gap-2.5 w-[300px]">
 								<InfoIcon className="w-[24px] h-[24px] shrink-0" />
 								<p className="text-white text-[16px] font-normal flex-wrap">
-									상처를 치료해줄 사람어디 없나 가만히 나뒀다간 끊임없이 덧나
-									사랑도 사람도 너무나도 겁나
+									{chapterSummary.chapterDescription}
 								</p>
 							</div>
 						</Tooltip>
