@@ -7,11 +7,13 @@ import { PROFILE_COLORS } from "@/shared/lib/ProfileColor";
 interface ProfileSelectorProps {
 	selectedColorIndex?: number;
 	onChange?: (index: number) => void;
+	gap?: number;
 }
 
 export default function ProfileSelector({
 	selectedColorIndex = 0,
 	onChange,
+	gap = 10,
 }: ProfileSelectorProps) {
 	const [colorIndex, setColorIndex] = useState(selectedColorIndex);
 
@@ -32,7 +34,10 @@ export default function ProfileSelector({
 	};
 
 	return (
-		<div className="flex flex-row items-center justify-center gap-10">
+		<div
+			className="flex flex-row items-center justify-center"
+			style={{ gap: `${gap * 0.25}rem` }}
+		>
 			<button type="button" onClick={handlePrev}>
 				<LeftArrow className="mt-0.5 cursor-pointer" />
 			</button>

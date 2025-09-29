@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import type { ReactNode } from "react"; // 타입 전용 import
+import type { ReactNode } from "react";
 
 interface NicknameFormProps {
 	nickname: string;
@@ -9,6 +9,9 @@ interface NicknameFormProps {
 	checking: boolean;
 	setChecking: (value: boolean) => void;
 	helperText?: ReactNode;
+	labelTextSize?: string;
+	inputTextSize?: string;
+	helperTextSize?: string;
 }
 
 export default function NicknameForm({
@@ -19,6 +22,9 @@ export default function NicknameForm({
 	checking,
 	setChecking,
 	helperText,
+	labelTextSize = "text-lg",
+	inputTextSize = "text-lg",
+	helperTextSize = "text-sm",
 }: NicknameFormProps) {
 	useEffect(() => {
 		const trimmed = nickname.trim();
@@ -34,36 +40,42 @@ export default function NicknameForm({
 		const handler = setTimeout(() => {
 			setIsLimit(!nicknameRegex.test(trimmed));
 			setChecking(false);
-		}, 300);
+		}, 200);
 
 		return () => clearTimeout(handler);
 	}, [nickname, setIsLimit, setChecking]);
 
 	return (
-		<div className="flex flex-col w-[335px] gap-2 mt-7 mb-8">
-			<label className="text-lg font-semibold">
-				<span className="mb-2 block">닉네임 설정</span>
+		<div className="flex flex-col gap-2 mt-7 mb-8 w-full">
+			<label
+				className={`mb-2 font-semibold flex flex-col gap-3 ${labelTextSize}`}
+			>
+				<span className={labelTextSize}>닉네임 설정</span>
 				<input
 					type="text"
 					value={nickname}
 					onChange={(e) => setNickname(e.target.value)}
 					placeholder="닉네임"
-					className={`w-full px-4 py-2 rounded-lg text-[#4C4C4C] text-lg font-normal border ${
+					className={`w-full px-4 py-2 rounded-lg text-[#4C4C4C] border ${
 						isLimit
 							? "border-[#FF0000]"
 							: nickname.trim()
 								? "border-[#0033FF]"
 								: "border-[#C3C3C3]"
-					} focus:outline-none`}
+					} focus:outline-none ${inputTextSize}`}
 				/>
 			</label>
 
-			<div className="min-h-[30px]">
+			<div className="min-h-[20px]">
 				{!checking && nickname.trim() && !isLimit && (
-					<p className="text-sm text-[#868686]">사용 가능한 닉네임이에요.</p>
+					<p className={helperTextSize + " text-[#868686]"}>
+						사용 가능한 닉네임이에요.
+					</p>
 				)}
 				{!checking && isLimit && (
-					<p className="text-sm text-[#FF0000]">사용 불가능한 닉네임이에요.</p>
+					<p className={helperTextSize + " text-[#FF0000]"}>
+						사용 불가능한 닉네임이에요.
+					</p>
 				)}
 				{!checking && !nickname.trim() && !isLimit && helperText}
 			</div>
