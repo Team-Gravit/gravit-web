@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { requestLoginUrl } from "@/entities/login/api/requestLoginUrl";
+import { getLoginUrl } from "@/entities/login/api/getLoginUrl";
 
 /*
  OAuth 로그인 훅
@@ -9,7 +9,7 @@ import { requestLoginUrl } from "@/entities/login/api/requestLoginUrl";
 
 export function useOauthLogin() {
 	return useMutation({
-		mutationFn: requestLoginUrl,
+		mutationFn: getLoginUrl,
 		onSuccess: (loginUrl: string) => {
 			localStorage.setItem("returnTo", window.location.pathname);
 
