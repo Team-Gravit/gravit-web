@@ -8,7 +8,7 @@ interface FormProps {
 export default function Form({ children, className }: FormProps) {
 	return (
 		<section
-			className={`flex flex-col rounded-xl bg-white items-center ${className ?? ""}`}
+			className={`flex flex-col rounded-2xl bg-white items-center ${className ?? ""}`}
 		>
 			{children}
 		</section>

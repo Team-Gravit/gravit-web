@@ -15,7 +15,7 @@ export default function Background({
 			}}
 		>
 			<div
-				className="w-full flex flex-col items-center  py-10 gap-4"
+				className="w-full flex flex-col items-center py-10 gap-4"
 				style={{
 					height: "calc(100% - var(--header-height))",
 					marginTop: "var(--header-height)",
