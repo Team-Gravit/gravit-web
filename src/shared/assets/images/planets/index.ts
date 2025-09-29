@@ -6,7 +6,8 @@ import jupiterImg from "./Jupiter.png";
 import saturnImg from "./Saturn.png";
 import uranusImg from "./Uranus.png";
 import neptuneImg from "./Neptune.png";
-import asteroidImg from "./asteroid.png";
+import inactiveAsteroidImg from "./inactive-asteroid.png";
+import activeAsteroidImg from "./active-asteroid.png";
 
 export const PLANET_IMAGES = {
 	1: mercuryImg,
@@ -17,5 +18,9 @@ export const PLANET_IMAGES = {
 	6: saturnImg,
 	7: uranusImg,
 	8: neptuneImg,
-	9: asteroidImg,
 } as const;
+
+export const ASTEROID_IMAGES = {
+	unlocked: activeAsteroidImg,
+	locked: inactiveAsteroidImg,
+};
