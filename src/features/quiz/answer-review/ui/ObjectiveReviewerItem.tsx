@@ -1,0 +1,67 @@
+import type { Option } from "@/entities/learning/model/types";
+import { cn } from "@/shared/lib/cn";
+import XIcon from "./assets/x-light.svg?react";
+import CheckIcon from "./assets/check-light.svg?react";
+
+export default function ObjectiveReviewerItem({
+	option,
+	optionNumber,
+	isSelected,
+}: {
+	option: Option;
+	optionNumber: number;
+	isSelected: boolean;
+}) {
+	const isAnswer = option.isAnswer;
+
+	const checkState = (): "WRONG" | "CORRECT" | "NORMAL" => {
+		if (isSelected && !isAnswer) {
+			return "WRONG";
+		} else if (isAnswer) {
+			return "CORRECT";
+		}
+		return "NORMAL";
+	};
+
+	const optionState = checkState();
+
+	return (
+		<div
+			className={cn(
+				"flex justify-between w-full px-5 py-4 gap-4",
+				optionState === "WRONG" && "bg-gray-300",
+			)}
+		>
+			<span
+				className={cn(
+					"inline-flex items-center justify-center rounded-full bg-white border border-[#6D6D6D] text-[#6D6D6D] w-10 h-10 font-bold",
+					optionState === "CORRECT" && "bg-correct",
+					optionState === "WRONG" && "bg-error",
+				)}
+			>
+				{optionState === "NORMAL" && optionNumber}
+				{optionState === "WRONG" && <XIcon />}
+				{optionState === "CORRECT" && <CheckIcon />}
+			</span>
+			<dl
+				className={cn(
+					"flex flex-col flex-1 ",
+					optionState === "WRONG" && "gap-2",
+				)}
+			>
+				<dt
+					className={cn(
+						" text-2xl font-medium text-[#6D6D6D] h-full flex items-center",
+						optionState === "CORRECT" && "text-correct",
+						optionState === "WRONG" && "text-error-info",
+					)}
+				>
+					{option.content}
+				</dt>
+				<dd className={cn("text-error-info text-[20px] font-normal ")}>
+					{optionState === "WRONG" && option.explanation}
+				</dd>
+			</dl>
+		</div>
+	);
+}

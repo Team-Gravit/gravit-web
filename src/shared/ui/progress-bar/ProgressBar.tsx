@@ -32,7 +32,7 @@ export default function ProgressBar(props: ProgressBarProps) {
 					barClassName,
 				)}
 				style={{
-					width: `${Math.min(Math.max(percent, 0), 100)}%`,
+					width: `${Math.min(Math.max(percent, 2), 100)}%`,
 					...barStyle,
 				}}
 			/>

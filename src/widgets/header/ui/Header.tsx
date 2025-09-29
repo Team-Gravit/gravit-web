@@ -13,7 +13,7 @@ export default function Header({ className }: { className?: string }) {
 	return (
 		<header
 			className={cn(
-				"flex items-center px-8 py-4 justify-start h-[var(--header-height)] w-full bg-white z-50",
+				" flex items-center px-8 py-4 justify-start h-[var(--header-height)] w-full bg-white z-[110] ",
 
 				className,
 			)}
