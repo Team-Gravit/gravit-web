@@ -1,10 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import backgroundImg from "@/shared/assets/images/background.jpg";
-import { getPlanetImage } from "@/shared/lib/planet/utils";
-import asteroidImg from "@/shared/assets/images/planets/asteroid.png";
+import { getAsteroidImg, getPlanetImage } from "@/shared/lib/planet/utils";
 import { cn } from "@/shared/lib/cn";
 import Popover from "@/shared/ui/popover/Popover";
 import UnitPopover from "@/widgets/learning-widget/UnitPopover";
+import { useFetchUnits } from "@/entities/learning/model/hooks";
+import CircularSegmentIndicator from "@/entities/learning/ui/CircularSegmentIndicator";
 
 export const Route = createFileRoute("/_fixed-header-layout/learn/$chapterId/")(
 	{
@@ -12,136 +13,22 @@ export const Route = createFileRoute("/_fixed-header-layout/learn/$chapterId/")(
 	},
 );
 
-const mockData = [
-	// Chapter 1: 자료구조
-	[
-		{
-			unitProgressDetailResponse: {
-				unitId: 1,
-				name: "배열",
-				totalLesson: 1,
-				completedLesson: 0,
-			},
-			lessonProgressSummaryResponses: [
-				{
-					lessonId: 1,
-					name: "배열",
-					isCompleted: false,
-				},
-			],
-		},
-		{
-			unitProgressDetailResponse: {
-				unitId: 2,
-				name: "연결리스트",
-				totalLesson: 2,
-				completedLesson: 0,
-			},
-			lessonProgressSummaryResponses: [
-				{
-					lessonId: 2,
-					name: "연결리스트 1",
-					isCompleted: false,
-				},
-				{
-					lessonId: 3,
-					name: "연결리스트 2",
-					isCompleted: false,
-				},
-			],
-		},
-		{
-			unitProgressDetailResponse: {
-				unitId: 3,
-				name: "스택",
-				totalLesson: 1,
-				completedLesson: 0,
-			},
-			lessonProgressSummaryResponses: [
-				{
-					lessonId: 4,
-					name: "스택",
-					isCompleted: false,
-				},
-			],
-		},
-		{
-			unitProgressDetailResponse: {
-				unitId: 4,
-				name: "큐",
-				totalLesson: 1,
-				completedLesson: 0,
-			},
-			lessonProgressSummaryResponses: [
-				{
-					lessonId: 5,
-					name: "큐",
-					isCompleted: false,
-				},
-			],
-		},
-		{
-			unitProgressDetailResponse: {
-				unitId: 5,
-				name: "힙",
-				totalLesson: 1,
-				completedLesson: 0,
-			},
-			lessonProgressSummaryResponses: [
-				{
-					lessonId: 6,
-					name: "힙",
-					isCompleted: false,
-				},
-			],
-		},
-		{
-			unitProgressDetailResponse: {
-				unitId: 6,
-				name: "해시",
-				totalLesson: 1,
-				completedLesson: 0,
-			},
-			lessonProgressSummaryResponses: [
-				{
-					lessonId: 7,
-					name: "해시",
-					isCompleted: false,
-				},
-			],
-		},
-		{
-			unitProgressDetailResponse: {
-				unitId: 7,
-				name: "트리",
-				totalLesson: 3,
-				completedLesson: 0,
-			},
-			lessonProgressSummaryResponses: [
-				{
-					lessonId: 8,
-					name: "트리 1",
-					isCompleted: false,
-				},
-				{
-					lessonId: 9,
-					name: "트리 2",
-					isCompleted: false,
-				},
-				{
-					lessonId: 10,
-					name: "트리 3",
-					isCompleted: false,
-				},
-			],
-		},
-	],
-];
-
 function RouteComponent() {
 	const { chapterId } = Route.useParams();
+	const { units, chapterInfo } = useFetchUnits(Number(chapterId));
+
+	if (!units) {
+		return <div>유닛이 없습니다.</div>;
+	} else {
+		console.log(units);
+	}
+
 	const chapterPlanetImg = getPlanetImage(Number(chapterId));
 
+	const unitsUnlockStatus = units.map((_, index) => {
+		if (index === 0) return true;
+		return units[index - 1].completedLesson === units[index - 1].totalLesson;
+	});
 	const getAsteroidPosition = (idx: number) => {
 		const baseTop = 120;
 		const verticalGap = 120;
@@ -156,13 +43,15 @@ function RouteComponent() {
 			"right-[40%]",
 			"right-[20%]",
 		];
-		const horizontalClass = positions[idx % 7];
+		const horizontalClass = positions[idx % 6];
 
 		return {
 			className: `absolute cursor-pointer ${horizontalClass}`,
 			style: { top: `${currentTop}px` },
 		};
 	};
+
+	const { className, style } = getAsteroidPosition(units.length);
 
 	return (
 		<main
@@ -173,13 +62,30 @@ function RouteComponent() {
 				backgroundPosition: "center, top-left",
 				backgroundRepeat: "no-repeat, no-repeat",
 				minHeight: "calc(100vh - var(--header-height))",
-				height: `${Math.min(5148, 120 + mockData[Number(chapterId) - 1].length * 120 + 300)}px`,
+				height: `${Math.min(5148, 120 + units.length * 120 + 300)}px`,
 			}}
 		>
+			<div className="absolute w-full h-[330px] bg-linear-to-b from-black to-transparent opacity-100">
+				<section className="relative left-[100px] top-[70px] lg:left-[126px] lg:top-[100px] max-w-[300px] lg:max-w-[400px]">
+					<h2 className="text-white font-semibold text-3xl lg:text-4xl mb-4">
+						{chapterInfo?.name}
+					</h2>
+					<p className="text-white font-semibold text-xl lg:text-2xl">
+						{chapterInfo?.description}
+					</p>
+				</section>
+			</div>
 			<div className="relative w-full">
-				{mockData[Number(chapterId) - 1].map((unit, idx) => {
-					const { unitId, name } = unit.unitProgressDetailResponse;
+				{units.map((unit, idx) => {
+					const { unitId, name: unitName } = unit;
+					const lessons = unit.lessons;
+					// const lessonId = lessons[0].lessonId;
+					const lessonId =
+						lessons.find((lesson) => !lesson.isCompleted)?.lessonId ??
+						lessons[0]?.lessonId;
+
 					const { className, style } = getAsteroidPosition(idx);
+					const isUnLocked = unitsUnlockStatus[idx];
 
 					return (
 						<div className={cn(className)} style={style} key={unitId}>
@@ -187,20 +93,41 @@ function RouteComponent() {
 								content={
 									<UnitPopover
 										unitId={unitId.toString()}
-										name={name}
-										chapterId={chapterId}
+										lessonId={lessonId.toString()}
+										lessonName={unitName}
+										isActive={isUnLocked}
 									/>
 								}
 							>
-								<img
-									src={idx === 0 ? chapterPlanetImg : asteroidImg}
-									className="w-[80px] lg:w-[110px] z-10"
-									alt={`${name} 행성 ${unitId}-${idx + 1}`}
-								/>
+								{isUnLocked && (
+									<CircularSegmentIndicator
+										totalLessonsCount={unit.totalLesson}
+										completedLessonsCount={unit.completedLesson}
+									>
+										<img
+											src={getAsteroidImg(isUnLocked)}
+											className="w-[80px] lg:w-[110px] z-10"
+											alt={`${unitName} 행성`}
+										/>
+									</CircularSegmentIndicator>
+								)}
+								{!isUnLocked && (
+									<img
+										src={getAsteroidImg(isUnLocked)}
+										className="w-[80px] lg:w-[110px] z-10"
+										alt={`${unitName} 행성`}
+									/>
+								)}
 							</Popover>
 						</div>
 					);
 				})}
+				<img
+					alt="행성"
+					src={chapterPlanetImg}
+					className={cn("w-[80px] lg:w-[110px] z-10", className)}
+					style={style}
+				/>
 			</div>
 		</main>
 	);
