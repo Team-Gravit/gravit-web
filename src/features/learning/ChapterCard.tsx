@@ -1,6 +1,6 @@
 import cardBackground from "@/shared/assets/images/card-bg.webp";
 import InfoCircle from "@/shared/assets/icons/info-circle.svg?react";
-import LessonProgressBar from "@/entities/lesson/ui/LessonProgressBar";
+import LessonProgressBar from "@/entities/learning/ui/LessonProgressBar";
 import type { Chapter } from "@/shared/api/types";
 import { getPlanetImage } from "@/shared/lib/planet/utils";
 import Tooltip from "@/shared/ui/tooltip/Tooltip";

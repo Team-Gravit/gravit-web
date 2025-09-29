@@ -22,7 +22,7 @@ export default function Tooltip({
 
 			setPosition({ top: tooltipTop, left: buttonCenterX });
 		}
-	}, [isVisible, positionX]);
+	}, [isVisible]);
 
 	const getTooltipTransform = () => {
 		switch (positionX) {
