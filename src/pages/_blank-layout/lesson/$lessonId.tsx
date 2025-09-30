@@ -6,7 +6,7 @@ import QuizAnswer from "@/widgets/learning-widget/QuizAnswer";
 import QuizHeader from "@/widgets/learning-widget/QuizHeader";
 import QuizReview from "@/widgets/learning-widget/QuizReview";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import QuestionContent from "@/entities/learning/ui/QuestionContent";
 import ReportButton from "@/features/quiz/submit-report/ui/ReportButton";
@@ -20,6 +20,7 @@ import {
 } from "@/features/quiz/submit-report/ui/ReportModal";
 import { quizApi } from "@/features/quiz/api/api";
 import QuizResultWidget from "@/widgets/learning-widget/QuizResultWidget";
+import { useMinimumLoadingTime } from "@/widgets/learning-widget/lib/useMinimumLoadingTime";
 
 export const Route = createFileRoute("/_blank-layout/lesson/$lessonId")({
 	component: RouteComponent,
@@ -57,13 +58,19 @@ function RouteComponent() {
 
 	const isSubmitted = userAnswers.length !== currentProblemIndex;
 
-	if (isPending) {
+	const shouldShowLoading = useMinimumLoadingTime({
+		isLoading: isPending,
+		minimumTime: 2000,
+	});
+
+	if (shouldShowLoading) {
 		return (
 			<main className="flex-grow flex flex-col items-center">
 				<LoadingWidget />
 			</main>
 		);
 	}
+
 	if (isError) {
 		return <div>{error.message}</div>;
 	}
