@@ -1,5 +1,16 @@
 import SettingButton from "@/features/button/SettingButton";
+import RightArrow from "@/shared/assets/icons/buttons/right-arrow.svg?react";
 import type { Item } from "@/features/button/SettingButton";
+import {
+	ConfirmModal,
+	type ConfirmModalRef,
+} from "@/shared/ui/modal/ConfirmModal";
+import { useRef } from "react";
+import { useSendWithdrawEmail } from "@/features/user/delete-user/api/useWithdraw";
+import {
+	SuccessNotificationModal,
+	type SuccessModalRef,
+} from "@/shared/ui/modal/SuccessNotificationModal";
 
 interface Section {
 	title?: string;
@@ -7,6 +18,10 @@ interface Section {
 }
 
 export default function UserSettingsBox() {
+	const withdrawModalRef = useRef<ConfirmModalRef>(null);
+	const sendWithdrawEmail = useSendWithdrawEmail();
+	const successModalRef = useRef<SuccessModalRef>(null);
+
 	const sections: Section[] = [
 		{
 			title: "계정 정보",
@@ -23,7 +38,9 @@ export default function UserSettingsBox() {
 		{
 			items: [
 				{ label: "로그아웃", to: "/user/logout" },
-				{ label: "탈퇴하기", to: "/user/delete" },
+				{
+					label: "탈퇴하기",
+				},
 			],
 		},
 	];
@@ -42,9 +59,25 @@ export default function UserSettingsBox() {
 							</h3>
 						)}
 						<div className="flex flex-col p-3 justify-between gap-8">
-							{section.items.map((item) => (
-								<SettingButton key={item.label} item={item} />
-							))}
+							{section.items.map((item) => {
+								if (item.label === "탈퇴하기") {
+									return (
+										<button
+											type="button"
+											key={item.label}
+											className="flex flex-row items-center justify-between text-[#222124] text-xl font-medium"
+											onClick={() => {
+												withdrawModalRef.current?.open();
+											}}
+										>
+											{item.label}
+											<RightArrow className="text-[#222222]" />
+										</button>
+									);
+								}
+
+								return <SettingButton key={item.label} item={item} />;
+							})}
 						</div>
 						{section.title && section !== sections[sections.length - 1] && (
 							<p className="w-full h-[1.5px] bg-[#0000001A] mb-3.5" />
@@ -52,6 +85,34 @@ export default function UserSettingsBox() {
 					</div>
 				))}
 			</section>
+			<ConfirmModal
+				ref={withdrawModalRef}
+				title={["정말로", "탈퇴하실건가요?"]}
+				description={[
+					"계정을 삭제하면 저장된 모든 데이터가 사라져요.",
+					"정말로 계정을 삭제하실건가요?",
+				]}
+				confirmText="탈퇴하기"
+				cancelText="돌아가기"
+				onConfirm={() => {
+					/** 메일 보내기 */
+					sendWithdrawEmail.mutate();
+					successModalRef.current?.open();
+				}}
+				onCancel={() => {
+					console.log("취소");
+				}}
+			/>
+			<SuccessNotificationModal
+				title={["탈퇴하신다니 정말 아쉬워요."]}
+				description={[
+					"가입하신 이메일로 메일을",
+					"전송해드렸으니 메일을 확인해 주시고",
+					"절차를 따라주세요.",
+				]}
+				ref={successModalRef}
+				onSubmit={() => {}}
+			/>
 		</div>
 	);
 }

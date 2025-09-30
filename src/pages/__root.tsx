@@ -1,10 +1,23 @@
 import {
-	createRootRoute,
 	Outlet,
 	useLayoutEffect,
 	useLocation,
+	createRootRouteWithContext,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
+
+interface RouteContext {
+	auth: AuthState;
+}
+
+interface AuthState {
+	isAuthenticated: boolean;
+	user?: {
+		id: string;
+		email: string;
+		name: string;
+	};
+}
 
 const RootLayout = () => {
 	const location = useLocation();
@@ -20,4 +33,6 @@ const RootLayout = () => {
 		</>
 	);
 };
-export const Route = createRootRoute({ component: RootLayout });
+export const Route = createRootRouteWithContext<RouteContext>()({
+	component: () => <RootLayout />,
+});

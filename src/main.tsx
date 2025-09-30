@@ -4,9 +4,17 @@ import { createRoot } from "react-dom/client";
 import "@/app/styles/globals.css";
 import { createRouter, RouterProvider } from "@tanstack/react-router";
 import { routeTree } from "@/app/@generated/routeTree.gen";
+import { tokenManager } from "@/shared/api/config";
 
 // Create a new router instance
-const router = createRouter({ routeTree });
+const router = createRouter({
+	routeTree,
+	context: {
+		auth: {
+			isAuthenticated: !!tokenManager.getAccessToken(),
+		},
+	},
+});
 
 // Register the router instance for type safety
 declare module "@tanstack/react-router" {

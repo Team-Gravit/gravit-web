@@ -2,6 +2,7 @@ import LevelProgressBar from "@/entities/user/ui/LevelProgressBar";
 import StatusBadge from "@/entities/user/ui/StatusBadge";
 import Cup from "@/shared/assets/icons/cup.svg?react";
 import Xp from "@/shared/assets/icons/xp.svg?react";
+import { getLevelProgress } from "@/shared/lib/getXpRangeByLevel";
 
 export default function LearningProgressInfo({
 	league,
@@ -29,7 +30,7 @@ export default function LearningProgressInfo({
 				textColor="var(--color-main-2)"
 			/>
 
-			<LevelProgressBar percent={74} level={level} />
+			<LevelProgressBar percent={getLevelProgress(level, xp)} level={level} />
 		</section>
 	);
 }

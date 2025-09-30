@@ -3,7 +3,7 @@ import appcenterLogo from "@/shared/assets/images/logo-appcenter.png";
 
 export default function Footer() {
 	return (
-		<footer className="bg-gray-700 py-[38px]">
+		<footer className="bg-gray-700 py-[38px] w-full">
 			<div className="flex items-center gap-[29px] h-[66px] justify-start pl-[51px] ">
 				<GravitLogo className="h-8 brightness-0 invert" />
 				<img src={appcenterLogo} className="h-full" alt={"앱센터 로고"} />
