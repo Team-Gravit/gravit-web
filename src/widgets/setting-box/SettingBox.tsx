@@ -11,6 +11,7 @@ import {
 	SuccessNotificationModal,
 	type SuccessModalRef,
 } from "@/shared/ui/modal/SuccessNotificationModal";
+import { tokenManager } from "@/shared/api/config";
 
 interface Section {
 	title?: string;
@@ -37,7 +38,7 @@ export default function UserSettingsBox() {
 		},
 		{
 			items: [
-				{ label: "로그아웃", to: "/user/logout" },
+				{ label: "로그아웃" },
 				{
 					label: "탈퇴하기",
 				},
@@ -68,6 +69,22 @@ export default function UserSettingsBox() {
 											className="flex flex-row items-center justify-between text-[#222124] text-xl font-medium"
 											onClick={() => {
 												withdrawModalRef.current?.open();
+											}}
+										>
+											{item.label}
+											<RightArrow className="text-[#222222]" />
+										</button>
+									);
+								} else if (item.label === "로그아웃") {
+									return (
+										<button
+											type="button"
+											key={item.label}
+											className="flex flex-row items-center justify-between text-[#222124] text-xl font-medium"
+											onClick={() => {
+												tokenManager.clearTokens();
+												/** TODO 나중에 수정 */
+												window.location.href = "/";
 											}}
 										>
 											{item.label}
