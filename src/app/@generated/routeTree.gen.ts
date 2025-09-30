@@ -9,223 +9,237 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './../../pages/__root'
-import { Route as AboutRouteImport } from './../../pages/about'
-import { Route as FixedHeaderLayoutRouteRouteImport } from './../../pages/_fixed-header-layout/route'
-import { Route as BlankLayoutRouteRouteImport } from './../../pages/_blank-layout/route'
-import { Route as FixedHeaderLayoutIndexRouteImport } from './../../pages/_fixed-header-layout/index'
-import { Route as FixedHeaderLayoutSuccessRouteImport } from './../../pages/_fixed-header-layout/success'
-import { Route as FixedHeaderLayoutOnboardingRouteImport } from './../../pages/_fixed-header-layout/onboarding'
-import { Route as FixedHeaderLayoutMainRouteImport } from './../../pages/_fixed-header-layout/main'
-import { Route as FixedHeaderLayoutAddfriendRouteImport } from './../../pages/_fixed-header-layout/addfriend'
-import { Route as FixedHeaderLayoutFixedSidebarLayoutRouteRouteImport } from './../../pages/_fixed-header-layout/_fixed-sidebar-layout/route'
-import { Route as FixedHeaderLayoutLearnIndexRouteImport } from './../../pages/_fixed-header-layout/learn/index'
-import { Route as BlankLayoutLessonLessonIdRouteImport } from './../../pages/_blank-layout/lesson/$lessonId'
-import { Route as FixedHeaderLayoutLearnChapterIdIndexRouteImport } from './../../pages/_fixed-header-layout/learn/$chapterId/index'
-import { Route as FixedHeaderLayoutFixedSidebarLayoutUserIndexRouteImport } from './../../pages/_fixed-header-layout/_fixed-sidebar-layout/user/index'
-import { Route as FixedHeaderLayoutFixedSidebarLayoutUserPrivacyRouteImport } from './../../pages/_fixed-header-layout/_fixed-sidebar-layout/user/privacy'
-import { Route as FixedHeaderLayoutFixedSidebarLayoutUserEditRouteImport } from './../../pages/_fixed-header-layout/_fixed-sidebar-layout/user/edit'
-import { Route as FixedHeaderLayoutFixedSidebarLayoutUserAddfriendRouteImport } from './../../pages/_fixed-header-layout/_fixed-sidebar-layout/user/addfriend'
-import { Route as FixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRouteImport } from './../../pages/_fixed-header-layout/_fixed-sidebar-layout/user/notice/index'
-import { Route as FixedHeaderLayoutUserMeDeletePageRouteImport } from './../../pages/_fixed-header-layout/user.me.delete.page'
-import { Route as FixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRouteImport } from './../../pages/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/index'
-import { Route as BlankLayoutLoginOauth2CodeProviderIndexRouteImport } from './../../pages/_blank-layout/login/oauth2/code/$provider/index'
-import { Route as FixedHeaderLayoutFixedSidebarLayoutUserNoticePageNoticeIdIndexRouteImport } from './../../pages/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/$noticeId/index'
+import { Route as AuthenticatedRouteRouteImport } from './../../pages/_authenticated/route'
+import { Route as IndexRouteImport } from './../../pages/index'
+import { Route as AuthenticatedFixedHeaderLayoutRouteRouteImport } from './../../pages/_authenticated/_fixed-header-layout/route'
+import { Route as AuthenticatedBlankLayoutRouteRouteImport } from './../../pages/_authenticated/_blank-layout/route'
+import { Route as AuthenticatedFixedHeaderLayoutSuccessRouteImport } from './../../pages/_authenticated/_fixed-header-layout/success'
+import { Route as AuthenticatedFixedHeaderLayoutOnboardingRouteImport } from './../../pages/_authenticated/_fixed-header-layout/onboarding'
+import { Route as AuthenticatedFixedHeaderLayoutMainRouteImport } from './../../pages/_authenticated/_fixed-header-layout/main'
+import { Route as AuthenticatedFixedHeaderLayoutAddfriendRouteImport } from './../../pages/_authenticated/_fixed-header-layout/addfriend'
+import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/route'
+import { Route as AuthenticatedFixedHeaderLayoutLearnIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/learn/index'
+import { Route as LoginOauth2CodeProviderRouteImport } from './../../pages/login/oauth2/code/$provider'
+import { Route as AuthenticatedBlankLayoutLessonLessonIdRouteImport } from './../../pages/_authenticated/_blank-layout/lesson/$lessonId'
+import { Route as AuthenticatedFixedHeaderLayoutLearnChapterIdIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/learn/$chapterId/index'
+import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/index'
+import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserPrivacyRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/privacy'
+import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserEditRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/edit'
+import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserAddfriendRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/addfriend'
+import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/index'
+import { Route as AuthenticatedFixedHeaderLayoutUserMeDeletePageRouteImport } from './../../pages/_authenticated/_fixed-header-layout/user.me.delete.page'
+import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/index'
+import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageNoticeIdIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/$noticeId/index'
 
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
-const FixedHeaderLayoutRouteRoute = FixedHeaderLayoutRouteRouteImport.update({
-  id: '/_fixed-header-layout',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BlankLayoutRouteRoute = BlankLayoutRouteRouteImport.update({
-  id: '/_blank-layout',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FixedHeaderLayoutIndexRoute = FixedHeaderLayoutIndexRouteImport.update({
+const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => FixedHeaderLayoutRouteRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-const FixedHeaderLayoutSuccessRoute =
-  FixedHeaderLayoutSuccessRouteImport.update({
+const AuthenticatedFixedHeaderLayoutRouteRoute =
+  AuthenticatedFixedHeaderLayoutRouteRouteImport.update({
+    id: '/_fixed-header-layout',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedBlankLayoutRouteRoute =
+  AuthenticatedBlankLayoutRouteRouteImport.update({
+    id: '/_blank-layout',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedFixedHeaderLayoutSuccessRoute =
+  AuthenticatedFixedHeaderLayoutSuccessRouteImport.update({
     id: '/success',
     path: '/success',
-    getParentRoute: () => FixedHeaderLayoutRouteRoute,
+    getParentRoute: () => AuthenticatedFixedHeaderLayoutRouteRoute,
   } as any)
-const FixedHeaderLayoutOnboardingRoute =
-  FixedHeaderLayoutOnboardingRouteImport.update({
+const AuthenticatedFixedHeaderLayoutOnboardingRoute =
+  AuthenticatedFixedHeaderLayoutOnboardingRouteImport.update({
     id: '/onboarding',
     path: '/onboarding',
-    getParentRoute: () => FixedHeaderLayoutRouteRoute,
+    getParentRoute: () => AuthenticatedFixedHeaderLayoutRouteRoute,
   } as any)
-const FixedHeaderLayoutMainRoute = FixedHeaderLayoutMainRouteImport.update({
-  id: '/main',
-  path: '/main',
-  getParentRoute: () => FixedHeaderLayoutRouteRoute,
-} as any)
-const FixedHeaderLayoutAddfriendRoute =
-  FixedHeaderLayoutAddfriendRouteImport.update({
+const AuthenticatedFixedHeaderLayoutMainRoute =
+  AuthenticatedFixedHeaderLayoutMainRouteImport.update({
+    id: '/main',
+    path: '/main',
+    getParentRoute: () => AuthenticatedFixedHeaderLayoutRouteRoute,
+  } as any)
+const AuthenticatedFixedHeaderLayoutAddfriendRoute =
+  AuthenticatedFixedHeaderLayoutAddfriendRouteImport.update({
     id: '/addfriend',
     path: '/addfriend',
-    getParentRoute: () => FixedHeaderLayoutRouteRoute,
+    getParentRoute: () => AuthenticatedFixedHeaderLayoutRouteRoute,
   } as any)
-const FixedHeaderLayoutFixedSidebarLayoutRouteRoute =
-  FixedHeaderLayoutFixedSidebarLayoutRouteRouteImport.update({
+const AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRoute =
+  AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRouteImport.update({
     id: '/_fixed-sidebar-layout',
-    getParentRoute: () => FixedHeaderLayoutRouteRoute,
+    getParentRoute: () => AuthenticatedFixedHeaderLayoutRouteRoute,
   } as any)
-const FixedHeaderLayoutLearnIndexRoute =
-  FixedHeaderLayoutLearnIndexRouteImport.update({
+const AuthenticatedFixedHeaderLayoutLearnIndexRoute =
+  AuthenticatedFixedHeaderLayoutLearnIndexRouteImport.update({
     id: '/learn/',
     path: '/learn/',
-    getParentRoute: () => FixedHeaderLayoutRouteRoute,
+    getParentRoute: () => AuthenticatedFixedHeaderLayoutRouteRoute,
   } as any)
-const BlankLayoutLessonLessonIdRoute =
-  BlankLayoutLessonLessonIdRouteImport.update({
+const LoginOauth2CodeProviderRoute = LoginOauth2CodeProviderRouteImport.update({
+  id: '/login/oauth2/code/$provider',
+  path: '/login/oauth2/code/$provider',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedBlankLayoutLessonLessonIdRoute =
+  AuthenticatedBlankLayoutLessonLessonIdRouteImport.update({
     id: '/lesson/$lessonId',
     path: '/lesson/$lessonId',
-    getParentRoute: () => BlankLayoutRouteRoute,
+    getParentRoute: () => AuthenticatedBlankLayoutRouteRoute,
   } as any)
-const FixedHeaderLayoutLearnChapterIdIndexRoute =
-  FixedHeaderLayoutLearnChapterIdIndexRouteImport.update({
+const AuthenticatedFixedHeaderLayoutLearnChapterIdIndexRoute =
+  AuthenticatedFixedHeaderLayoutLearnChapterIdIndexRouteImport.update({
     id: '/learn/$chapterId/',
     path: '/learn/$chapterId/',
-    getParentRoute: () => FixedHeaderLayoutRouteRoute,
+    getParentRoute: () => AuthenticatedFixedHeaderLayoutRouteRoute,
   } as any)
-const FixedHeaderLayoutFixedSidebarLayoutUserIndexRoute =
-  FixedHeaderLayoutFixedSidebarLayoutUserIndexRouteImport.update({
+const AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserIndexRoute =
+  AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserIndexRouteImport.update({
     id: '/user/',
     path: '/user/',
-    getParentRoute: () => FixedHeaderLayoutFixedSidebarLayoutRouteRoute,
+    getParentRoute: () =>
+      AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRoute,
   } as any)
-const FixedHeaderLayoutFixedSidebarLayoutUserPrivacyRoute =
-  FixedHeaderLayoutFixedSidebarLayoutUserPrivacyRouteImport.update({
-    id: '/user/privacy',
-    path: '/user/privacy',
-    getParentRoute: () => FixedHeaderLayoutFixedSidebarLayoutRouteRoute,
-  } as any)
-const FixedHeaderLayoutFixedSidebarLayoutUserEditRoute =
-  FixedHeaderLayoutFixedSidebarLayoutUserEditRouteImport.update({
+const AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserPrivacyRoute =
+  AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserPrivacyRouteImport.update(
+    {
+      id: '/user/privacy',
+      path: '/user/privacy',
+      getParentRoute: () =>
+        AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRoute,
+    } as any,
+  )
+const AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserEditRoute =
+  AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserEditRouteImport.update({
     id: '/user/edit',
     path: '/user/edit',
-    getParentRoute: () => FixedHeaderLayoutFixedSidebarLayoutRouteRoute,
+    getParentRoute: () =>
+      AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRoute,
   } as any)
-const FixedHeaderLayoutFixedSidebarLayoutUserAddfriendRoute =
-  FixedHeaderLayoutFixedSidebarLayoutUserAddfriendRouteImport.update({
-    id: '/user/addfriend',
-    path: '/user/addfriend',
-    getParentRoute: () => FixedHeaderLayoutFixedSidebarLayoutRouteRoute,
-  } as any)
-const FixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRoute =
-  FixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRouteImport.update({
-    id: '/user/notice/',
-    path: '/user/notice/',
-    getParentRoute: () => FixedHeaderLayoutFixedSidebarLayoutRouteRoute,
-  } as any)
-const FixedHeaderLayoutUserMeDeletePageRoute =
-  FixedHeaderLayoutUserMeDeletePageRouteImport.update({
+const AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserAddfriendRoute =
+  AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserAddfriendRouteImport.update(
+    {
+      id: '/user/addfriend',
+      path: '/user/addfriend',
+      getParentRoute: () =>
+        AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRoute,
+    } as any,
+  )
+const AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRoute =
+  AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRouteImport.update(
+    {
+      id: '/user/notice/',
+      path: '/user/notice/',
+      getParentRoute: () =>
+        AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRoute,
+    } as any,
+  )
+const AuthenticatedFixedHeaderLayoutUserMeDeletePageRoute =
+  AuthenticatedFixedHeaderLayoutUserMeDeletePageRouteImport.update({
     id: '/user/me/delete/page',
     path: '/user/me/delete/page',
-    getParentRoute: () => FixedHeaderLayoutRouteRoute,
+    getParentRoute: () => AuthenticatedFixedHeaderLayoutRouteRoute,
   } as any)
-const FixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRoute =
-  FixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRouteImport.update({
-    id: '/user/notice/$page/',
-    path: '/user/notice/$page/',
-    getParentRoute: () => FixedHeaderLayoutFixedSidebarLayoutRouteRoute,
-  } as any)
-const BlankLayoutLoginOauth2CodeProviderIndexRoute =
-  BlankLayoutLoginOauth2CodeProviderIndexRouteImport.update({
-    id: '/login/oauth2/code/$provider/',
-    path: '/login/oauth2/code/$provider/',
-    getParentRoute: () => BlankLayoutRouteRoute,
-  } as any)
-const FixedHeaderLayoutFixedSidebarLayoutUserNoticePageNoticeIdIndexRoute =
-  FixedHeaderLayoutFixedSidebarLayoutUserNoticePageNoticeIdIndexRouteImport.update(
+const AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRoute =
+  AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRouteImport.update(
+    {
+      id: '/user/notice/$page/',
+      path: '/user/notice/$page/',
+      getParentRoute: () =>
+        AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRoute,
+    } as any,
+  )
+const AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageNoticeIdIndexRoute =
+  AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageNoticeIdIndexRouteImport.update(
     {
       id: '/user/notice/$page/$noticeId/',
       path: '/user/notice/$page/$noticeId/',
-      getParentRoute: () => FixedHeaderLayoutFixedSidebarLayoutRouteRoute,
+      getParentRoute: () =>
+        AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRoute,
     } as any,
   )
 
 export interface FileRoutesByFullPath {
-  '/about': typeof AboutRoute
-  '/addfriend': typeof FixedHeaderLayoutAddfriendRoute
-  '/main': typeof FixedHeaderLayoutMainRoute
-  '/onboarding': typeof FixedHeaderLayoutOnboardingRoute
-  '/success': typeof FixedHeaderLayoutSuccessRoute
-  '/': typeof FixedHeaderLayoutIndexRoute
-  '/lesson/$lessonId': typeof BlankLayoutLessonLessonIdRoute
-  '/learn': typeof FixedHeaderLayoutLearnIndexRoute
-  '/user/addfriend': typeof FixedHeaderLayoutFixedSidebarLayoutUserAddfriendRoute
-  '/user/edit': typeof FixedHeaderLayoutFixedSidebarLayoutUserEditRoute
-  '/user/privacy': typeof FixedHeaderLayoutFixedSidebarLayoutUserPrivacyRoute
-  '/user': typeof FixedHeaderLayoutFixedSidebarLayoutUserIndexRoute
-  '/learn/$chapterId': typeof FixedHeaderLayoutLearnChapterIdIndexRoute
-  '/user/me/delete/page': typeof FixedHeaderLayoutUserMeDeletePageRoute
-  '/user/notice': typeof FixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRoute
-  '/login/oauth2/code/$provider': typeof BlankLayoutLoginOauth2CodeProviderIndexRoute
-  '/user/notice/$page': typeof FixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRoute
-  '/user/notice/$page/$noticeId': typeof FixedHeaderLayoutFixedSidebarLayoutUserNoticePageNoticeIdIndexRoute
+  '/': typeof IndexRoute
+  '/addfriend': typeof AuthenticatedFixedHeaderLayoutAddfriendRoute
+  '/main': typeof AuthenticatedFixedHeaderLayoutMainRoute
+  '/onboarding': typeof AuthenticatedFixedHeaderLayoutOnboardingRoute
+  '/success': typeof AuthenticatedFixedHeaderLayoutSuccessRoute
+  '/lesson/$lessonId': typeof AuthenticatedBlankLayoutLessonLessonIdRoute
+  '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
+  '/learn': typeof AuthenticatedFixedHeaderLayoutLearnIndexRoute
+  '/user/addfriend': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserAddfriendRoute
+  '/user/edit': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserEditRoute
+  '/user/privacy': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserPrivacyRoute
+  '/user': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserIndexRoute
+  '/learn/$chapterId': typeof AuthenticatedFixedHeaderLayoutLearnChapterIdIndexRoute
+  '/user/me/delete/page': typeof AuthenticatedFixedHeaderLayoutUserMeDeletePageRoute
+  '/user/notice': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRoute
+  '/user/notice/$page': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRoute
+  '/user/notice/$page/$noticeId': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageNoticeIdIndexRoute
 }
 export interface FileRoutesByTo {
-  '/about': typeof AboutRoute
-  '/addfriend': typeof FixedHeaderLayoutAddfriendRoute
-  '/main': typeof FixedHeaderLayoutMainRoute
-  '/onboarding': typeof FixedHeaderLayoutOnboardingRoute
-  '/success': typeof FixedHeaderLayoutSuccessRoute
-  '/': typeof FixedHeaderLayoutIndexRoute
-  '/lesson/$lessonId': typeof BlankLayoutLessonLessonIdRoute
-  '/learn': typeof FixedHeaderLayoutLearnIndexRoute
-  '/user/addfriend': typeof FixedHeaderLayoutFixedSidebarLayoutUserAddfriendRoute
-  '/user/edit': typeof FixedHeaderLayoutFixedSidebarLayoutUserEditRoute
-  '/user/privacy': typeof FixedHeaderLayoutFixedSidebarLayoutUserPrivacyRoute
-  '/user': typeof FixedHeaderLayoutFixedSidebarLayoutUserIndexRoute
-  '/learn/$chapterId': typeof FixedHeaderLayoutLearnChapterIdIndexRoute
-  '/user/me/delete/page': typeof FixedHeaderLayoutUserMeDeletePageRoute
-  '/user/notice': typeof FixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRoute
-  '/login/oauth2/code/$provider': typeof BlankLayoutLoginOauth2CodeProviderIndexRoute
-  '/user/notice/$page': typeof FixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRoute
-  '/user/notice/$page/$noticeId': typeof FixedHeaderLayoutFixedSidebarLayoutUserNoticePageNoticeIdIndexRoute
+  '/': typeof IndexRoute
+  '/addfriend': typeof AuthenticatedFixedHeaderLayoutAddfriendRoute
+  '/main': typeof AuthenticatedFixedHeaderLayoutMainRoute
+  '/onboarding': typeof AuthenticatedFixedHeaderLayoutOnboardingRoute
+  '/success': typeof AuthenticatedFixedHeaderLayoutSuccessRoute
+  '/lesson/$lessonId': typeof AuthenticatedBlankLayoutLessonLessonIdRoute
+  '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
+  '/learn': typeof AuthenticatedFixedHeaderLayoutLearnIndexRoute
+  '/user/addfriend': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserAddfriendRoute
+  '/user/edit': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserEditRoute
+  '/user/privacy': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserPrivacyRoute
+  '/user': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserIndexRoute
+  '/learn/$chapterId': typeof AuthenticatedFixedHeaderLayoutLearnChapterIdIndexRoute
+  '/user/me/delete/page': typeof AuthenticatedFixedHeaderLayoutUserMeDeletePageRoute
+  '/user/notice': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRoute
+  '/user/notice/$page': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRoute
+  '/user/notice/$page/$noticeId': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageNoticeIdIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/_blank-layout': typeof BlankLayoutRouteRouteWithChildren
-  '/_fixed-header-layout': typeof FixedHeaderLayoutRouteRouteWithChildren
-  '/about': typeof AboutRoute
-  '/_fixed-header-layout/_fixed-sidebar-layout': typeof FixedHeaderLayoutFixedSidebarLayoutRouteRouteWithChildren
-  '/_fixed-header-layout/addfriend': typeof FixedHeaderLayoutAddfriendRoute
-  '/_fixed-header-layout/main': typeof FixedHeaderLayoutMainRoute
-  '/_fixed-header-layout/onboarding': typeof FixedHeaderLayoutOnboardingRoute
-  '/_fixed-header-layout/success': typeof FixedHeaderLayoutSuccessRoute
-  '/_fixed-header-layout/': typeof FixedHeaderLayoutIndexRoute
-  '/_blank-layout/lesson/$lessonId': typeof BlankLayoutLessonLessonIdRoute
-  '/_fixed-header-layout/learn/': typeof FixedHeaderLayoutLearnIndexRoute
-  '/_fixed-header-layout/_fixed-sidebar-layout/user/addfriend': typeof FixedHeaderLayoutFixedSidebarLayoutUserAddfriendRoute
-  '/_fixed-header-layout/_fixed-sidebar-layout/user/edit': typeof FixedHeaderLayoutFixedSidebarLayoutUserEditRoute
-  '/_fixed-header-layout/_fixed-sidebar-layout/user/privacy': typeof FixedHeaderLayoutFixedSidebarLayoutUserPrivacyRoute
-  '/_fixed-header-layout/_fixed-sidebar-layout/user/': typeof FixedHeaderLayoutFixedSidebarLayoutUserIndexRoute
-  '/_fixed-header-layout/learn/$chapterId/': typeof FixedHeaderLayoutLearnChapterIdIndexRoute
-  '/_fixed-header-layout/user/me/delete/page': typeof FixedHeaderLayoutUserMeDeletePageRoute
-  '/_fixed-header-layout/_fixed-sidebar-layout/user/notice/': typeof FixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRoute
-  '/_blank-layout/login/oauth2/code/$provider/': typeof BlankLayoutLoginOauth2CodeProviderIndexRoute
-  '/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/': typeof FixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRoute
-  '/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/$noticeId/': typeof FixedHeaderLayoutFixedSidebarLayoutUserNoticePageNoticeIdIndexRoute
+  '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/_authenticated/_blank-layout': typeof AuthenticatedBlankLayoutRouteRouteWithChildren
+  '/_authenticated/_fixed-header-layout': typeof AuthenticatedFixedHeaderLayoutRouteRouteWithChildren
+  '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRouteWithChildren
+  '/_authenticated/_fixed-header-layout/addfriend': typeof AuthenticatedFixedHeaderLayoutAddfriendRoute
+  '/_authenticated/_fixed-header-layout/main': typeof AuthenticatedFixedHeaderLayoutMainRoute
+  '/_authenticated/_fixed-header-layout/onboarding': typeof AuthenticatedFixedHeaderLayoutOnboardingRoute
+  '/_authenticated/_fixed-header-layout/success': typeof AuthenticatedFixedHeaderLayoutSuccessRoute
+  '/_authenticated/_blank-layout/lesson/$lessonId': typeof AuthenticatedBlankLayoutLessonLessonIdRoute
+  '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
+  '/_authenticated/_fixed-header-layout/learn/': typeof AuthenticatedFixedHeaderLayoutLearnIndexRoute
+  '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/addfriend': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserAddfriendRoute
+  '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/edit': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserEditRoute
+  '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/privacy': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserPrivacyRoute
+  '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserIndexRoute
+  '/_authenticated/_fixed-header-layout/learn/$chapterId/': typeof AuthenticatedFixedHeaderLayoutLearnChapterIdIndexRoute
+  '/_authenticated/_fixed-header-layout/user/me/delete/page': typeof AuthenticatedFixedHeaderLayoutUserMeDeletePageRoute
+  '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRoute
+  '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRoute
+  '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/$noticeId/': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageNoticeIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/about'
+    | '/'
     | '/addfriend'
     | '/main'
     | '/onboarding'
     | '/success'
-    | '/'
     | '/lesson/$lessonId'
+    | '/login/oauth2/code/$provider'
     | '/learn'
     | '/user/addfriend'
     | '/user/edit'
@@ -234,18 +248,17 @@ export interface FileRouteTypes {
     | '/learn/$chapterId'
     | '/user/me/delete/page'
     | '/user/notice'
-    | '/login/oauth2/code/$provider'
     | '/user/notice/$page'
     | '/user/notice/$page/$noticeId'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/about'
+    | '/'
     | '/addfriend'
     | '/main'
     | '/onboarding'
     | '/success'
-    | '/'
     | '/lesson/$lessonId'
+    | '/login/oauth2/code/$provider'
     | '/learn'
     | '/user/addfriend'
     | '/user/edit'
@@ -254,276 +267,294 @@ export interface FileRouteTypes {
     | '/learn/$chapterId'
     | '/user/me/delete/page'
     | '/user/notice'
-    | '/login/oauth2/code/$provider'
     | '/user/notice/$page'
     | '/user/notice/$page/$noticeId'
   id:
     | '__root__'
-    | '/_blank-layout'
-    | '/_fixed-header-layout'
-    | '/about'
-    | '/_fixed-header-layout/_fixed-sidebar-layout'
-    | '/_fixed-header-layout/addfriend'
-    | '/_fixed-header-layout/main'
-    | '/_fixed-header-layout/onboarding'
-    | '/_fixed-header-layout/success'
-    | '/_fixed-header-layout/'
-    | '/_blank-layout/lesson/$lessonId'
-    | '/_fixed-header-layout/learn/'
-    | '/_fixed-header-layout/_fixed-sidebar-layout/user/addfriend'
-    | '/_fixed-header-layout/_fixed-sidebar-layout/user/edit'
-    | '/_fixed-header-layout/_fixed-sidebar-layout/user/privacy'
-    | '/_fixed-header-layout/_fixed-sidebar-layout/user/'
-    | '/_fixed-header-layout/learn/$chapterId/'
-    | '/_fixed-header-layout/user/me/delete/page'
-    | '/_fixed-header-layout/_fixed-sidebar-layout/user/notice/'
-    | '/_blank-layout/login/oauth2/code/$provider/'
-    | '/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/'
-    | '/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/$noticeId/'
+    | '/'
+    | '/_authenticated'
+    | '/_authenticated/_blank-layout'
+    | '/_authenticated/_fixed-header-layout'
+    | '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout'
+    | '/_authenticated/_fixed-header-layout/addfriend'
+    | '/_authenticated/_fixed-header-layout/main'
+    | '/_authenticated/_fixed-header-layout/onboarding'
+    | '/_authenticated/_fixed-header-layout/success'
+    | '/_authenticated/_blank-layout/lesson/$lessonId'
+    | '/login/oauth2/code/$provider'
+    | '/_authenticated/_fixed-header-layout/learn/'
+    | '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/addfriend'
+    | '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/edit'
+    | '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/privacy'
+    | '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/'
+    | '/_authenticated/_fixed-header-layout/learn/$chapterId/'
+    | '/_authenticated/_fixed-header-layout/user/me/delete/page'
+    | '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/'
+    | '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/'
+    | '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/$noticeId/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  BlankLayoutRouteRoute: typeof BlankLayoutRouteRouteWithChildren
-  FixedHeaderLayoutRouteRoute: typeof FixedHeaderLayoutRouteRouteWithChildren
-  AboutRoute: typeof AboutRoute
+  IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  LoginOauth2CodeProviderRoute: typeof LoginOauth2CodeProviderRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_fixed-header-layout': {
-      id: '/_fixed-header-layout'
+    '/_authenticated': {
+      id: '/_authenticated'
       path: ''
       fullPath: ''
-      preLoaderRoute: typeof FixedHeaderLayoutRouteRouteImport
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_blank-layout': {
-      id: '/_blank-layout'
-      path: ''
-      fullPath: ''
-      preLoaderRoute: typeof BlankLayoutRouteRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_fixed-header-layout/': {
-      id: '/_fixed-header-layout/'
+    '/': {
+      id: '/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof FixedHeaderLayoutIndexRouteImport
-      parentRoute: typeof FixedHeaderLayoutRouteRoute
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/_fixed-header-layout/success': {
-      id: '/_fixed-header-layout/success'
-      path: '/success'
-      fullPath: '/success'
-      preLoaderRoute: typeof FixedHeaderLayoutSuccessRouteImport
-      parentRoute: typeof FixedHeaderLayoutRouteRoute
-    }
-    '/_fixed-header-layout/onboarding': {
-      id: '/_fixed-header-layout/onboarding'
-      path: '/onboarding'
-      fullPath: '/onboarding'
-      preLoaderRoute: typeof FixedHeaderLayoutOnboardingRouteImport
-      parentRoute: typeof FixedHeaderLayoutRouteRoute
-    }
-    '/_fixed-header-layout/main': {
-      id: '/_fixed-header-layout/main'
-      path: '/main'
-      fullPath: '/main'
-      preLoaderRoute: typeof FixedHeaderLayoutMainRouteImport
-      parentRoute: typeof FixedHeaderLayoutRouteRoute
-    }
-    '/_fixed-header-layout/addfriend': {
-      id: '/_fixed-header-layout/addfriend'
-      path: '/addfriend'
-      fullPath: '/addfriend'
-      preLoaderRoute: typeof FixedHeaderLayoutAddfriendRouteImport
-      parentRoute: typeof FixedHeaderLayoutRouteRoute
-    }
-    '/_fixed-header-layout/_fixed-sidebar-layout': {
-      id: '/_fixed-header-layout/_fixed-sidebar-layout'
+    '/_authenticated/_fixed-header-layout': {
+      id: '/_authenticated/_fixed-header-layout'
       path: ''
       fullPath: ''
-      preLoaderRoute: typeof FixedHeaderLayoutFixedSidebarLayoutRouteRouteImport
-      parentRoute: typeof FixedHeaderLayoutRouteRoute
+      preLoaderRoute: typeof AuthenticatedFixedHeaderLayoutRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_fixed-header-layout/learn/': {
-      id: '/_fixed-header-layout/learn/'
+    '/_authenticated/_blank-layout': {
+      id: '/_authenticated/_blank-layout'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof AuthenticatedBlankLayoutRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/_fixed-header-layout/success': {
+      id: '/_authenticated/_fixed-header-layout/success'
+      path: '/success'
+      fullPath: '/success'
+      preLoaderRoute: typeof AuthenticatedFixedHeaderLayoutSuccessRouteImport
+      parentRoute: typeof AuthenticatedFixedHeaderLayoutRouteRoute
+    }
+    '/_authenticated/_fixed-header-layout/onboarding': {
+      id: '/_authenticated/_fixed-header-layout/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof AuthenticatedFixedHeaderLayoutOnboardingRouteImport
+      parentRoute: typeof AuthenticatedFixedHeaderLayoutRouteRoute
+    }
+    '/_authenticated/_fixed-header-layout/main': {
+      id: '/_authenticated/_fixed-header-layout/main'
+      path: '/main'
+      fullPath: '/main'
+      preLoaderRoute: typeof AuthenticatedFixedHeaderLayoutMainRouteImport
+      parentRoute: typeof AuthenticatedFixedHeaderLayoutRouteRoute
+    }
+    '/_authenticated/_fixed-header-layout/addfriend': {
+      id: '/_authenticated/_fixed-header-layout/addfriend'
+      path: '/addfriend'
+      fullPath: '/addfriend'
+      preLoaderRoute: typeof AuthenticatedFixedHeaderLayoutAddfriendRouteImport
+      parentRoute: typeof AuthenticatedFixedHeaderLayoutRouteRoute
+    }
+    '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout': {
+      id: '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRouteImport
+      parentRoute: typeof AuthenticatedFixedHeaderLayoutRouteRoute
+    }
+    '/_authenticated/_fixed-header-layout/learn/': {
+      id: '/_authenticated/_fixed-header-layout/learn/'
       path: '/learn'
       fullPath: '/learn'
-      preLoaderRoute: typeof FixedHeaderLayoutLearnIndexRouteImport
-      parentRoute: typeof FixedHeaderLayoutRouteRoute
+      preLoaderRoute: typeof AuthenticatedFixedHeaderLayoutLearnIndexRouteImport
+      parentRoute: typeof AuthenticatedFixedHeaderLayoutRouteRoute
     }
-    '/_blank-layout/lesson/$lessonId': {
-      id: '/_blank-layout/lesson/$lessonId'
-      path: '/lesson/$lessonId'
-      fullPath: '/lesson/$lessonId'
-      preLoaderRoute: typeof BlankLayoutLessonLessonIdRouteImport
-      parentRoute: typeof BlankLayoutRouteRoute
-    }
-    '/_fixed-header-layout/learn/$chapterId/': {
-      id: '/_fixed-header-layout/learn/$chapterId/'
-      path: '/learn/$chapterId'
-      fullPath: '/learn/$chapterId'
-      preLoaderRoute: typeof FixedHeaderLayoutLearnChapterIdIndexRouteImport
-      parentRoute: typeof FixedHeaderLayoutRouteRoute
-    }
-    '/_fixed-header-layout/_fixed-sidebar-layout/user/': {
-      id: '/_fixed-header-layout/_fixed-sidebar-layout/user/'
-      path: '/user'
-      fullPath: '/user'
-      preLoaderRoute: typeof FixedHeaderLayoutFixedSidebarLayoutUserIndexRouteImport
-      parentRoute: typeof FixedHeaderLayoutFixedSidebarLayoutRouteRoute
-    }
-    '/_fixed-header-layout/_fixed-sidebar-layout/user/privacy': {
-      id: '/_fixed-header-layout/_fixed-sidebar-layout/user/privacy'
-      path: '/user/privacy'
-      fullPath: '/user/privacy'
-      preLoaderRoute: typeof FixedHeaderLayoutFixedSidebarLayoutUserPrivacyRouteImport
-      parentRoute: typeof FixedHeaderLayoutFixedSidebarLayoutRouteRoute
-    }
-    '/_fixed-header-layout/_fixed-sidebar-layout/user/edit': {
-      id: '/_fixed-header-layout/_fixed-sidebar-layout/user/edit'
-      path: '/user/edit'
-      fullPath: '/user/edit'
-      preLoaderRoute: typeof FixedHeaderLayoutFixedSidebarLayoutUserEditRouteImport
-      parentRoute: typeof FixedHeaderLayoutFixedSidebarLayoutRouteRoute
-    }
-    '/_fixed-header-layout/_fixed-sidebar-layout/user/addfriend': {
-      id: '/_fixed-header-layout/_fixed-sidebar-layout/user/addfriend'
-      path: '/user/addfriend'
-      fullPath: '/user/addfriend'
-      preLoaderRoute: typeof FixedHeaderLayoutFixedSidebarLayoutUserAddfriendRouteImport
-      parentRoute: typeof FixedHeaderLayoutFixedSidebarLayoutRouteRoute
-    }
-    '/_fixed-header-layout/_fixed-sidebar-layout/user/notice/': {
-      id: '/_fixed-header-layout/_fixed-sidebar-layout/user/notice/'
-      path: '/user/notice'
-      fullPath: '/user/notice'
-      preLoaderRoute: typeof FixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRouteImport
-      parentRoute: typeof FixedHeaderLayoutFixedSidebarLayoutRouteRoute
-    }
-    '/_fixed-header-layout/user/me/delete/page': {
-      id: '/_fixed-header-layout/user/me/delete/page'
-      path: '/user/me/delete/page'
-      fullPath: '/user/me/delete/page'
-      preLoaderRoute: typeof FixedHeaderLayoutUserMeDeletePageRouteImport
-      parentRoute: typeof FixedHeaderLayoutRouteRoute
-    }
-    '/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/': {
-      id: '/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/'
-      path: '/user/notice/$page'
-      fullPath: '/user/notice/$page'
-      preLoaderRoute: typeof FixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRouteImport
-      parentRoute: typeof FixedHeaderLayoutFixedSidebarLayoutRouteRoute
-    }
-    '/_blank-layout/login/oauth2/code/$provider/': {
-      id: '/_blank-layout/login/oauth2/code/$provider/'
+    '/login/oauth2/code/$provider': {
+      id: '/login/oauth2/code/$provider'
       path: '/login/oauth2/code/$provider'
       fullPath: '/login/oauth2/code/$provider'
-      preLoaderRoute: typeof BlankLayoutLoginOauth2CodeProviderIndexRouteImport
-      parentRoute: typeof BlankLayoutRouteRoute
+      preLoaderRoute: typeof LoginOauth2CodeProviderRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/$noticeId/': {
-      id: '/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/$noticeId/'
+    '/_authenticated/_blank-layout/lesson/$lessonId': {
+      id: '/_authenticated/_blank-layout/lesson/$lessonId'
+      path: '/lesson/$lessonId'
+      fullPath: '/lesson/$lessonId'
+      preLoaderRoute: typeof AuthenticatedBlankLayoutLessonLessonIdRouteImport
+      parentRoute: typeof AuthenticatedBlankLayoutRouteRoute
+    }
+    '/_authenticated/_fixed-header-layout/learn/$chapterId/': {
+      id: '/_authenticated/_fixed-header-layout/learn/$chapterId/'
+      path: '/learn/$chapterId'
+      fullPath: '/learn/$chapterId'
+      preLoaderRoute: typeof AuthenticatedFixedHeaderLayoutLearnChapterIdIndexRouteImport
+      parentRoute: typeof AuthenticatedFixedHeaderLayoutRouteRoute
+    }
+    '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/': {
+      id: '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/'
+      path: '/user'
+      fullPath: '/user'
+      preLoaderRoute: typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserIndexRouteImport
+      parentRoute: typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRoute
+    }
+    '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/privacy': {
+      id: '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/privacy'
+      path: '/user/privacy'
+      fullPath: '/user/privacy'
+      preLoaderRoute: typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserPrivacyRouteImport
+      parentRoute: typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRoute
+    }
+    '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/edit': {
+      id: '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/edit'
+      path: '/user/edit'
+      fullPath: '/user/edit'
+      preLoaderRoute: typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserEditRouteImport
+      parentRoute: typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRoute
+    }
+    '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/addfriend': {
+      id: '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/addfriend'
+      path: '/user/addfriend'
+      fullPath: '/user/addfriend'
+      preLoaderRoute: typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserAddfriendRouteImport
+      parentRoute: typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRoute
+    }
+    '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/': {
+      id: '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/'
+      path: '/user/notice'
+      fullPath: '/user/notice'
+      preLoaderRoute: typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRouteImport
+      parentRoute: typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRoute
+    }
+    '/_authenticated/_fixed-header-layout/user/me/delete/page': {
+      id: '/_authenticated/_fixed-header-layout/user/me/delete/page'
+      path: '/user/me/delete/page'
+      fullPath: '/user/me/delete/page'
+      preLoaderRoute: typeof AuthenticatedFixedHeaderLayoutUserMeDeletePageRouteImport
+      parentRoute: typeof AuthenticatedFixedHeaderLayoutRouteRoute
+    }
+    '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/': {
+      id: '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/'
+      path: '/user/notice/$page'
+      fullPath: '/user/notice/$page'
+      preLoaderRoute: typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRouteImport
+      parentRoute: typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRoute
+    }
+    '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/$noticeId/': {
+      id: '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/$noticeId/'
       path: '/user/notice/$page/$noticeId'
       fullPath: '/user/notice/$page/$noticeId'
-      preLoaderRoute: typeof FixedHeaderLayoutFixedSidebarLayoutUserNoticePageNoticeIdIndexRouteImport
-      parentRoute: typeof FixedHeaderLayoutFixedSidebarLayoutRouteRoute
+      preLoaderRoute: typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageNoticeIdIndexRouteImport
+      parentRoute: typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRoute
     }
   }
 }
 
-interface BlankLayoutRouteRouteChildren {
-  BlankLayoutLessonLessonIdRoute: typeof BlankLayoutLessonLessonIdRoute
-  BlankLayoutLoginOauth2CodeProviderIndexRoute: typeof BlankLayoutLoginOauth2CodeProviderIndexRoute
+interface AuthenticatedBlankLayoutRouteRouteChildren {
+  AuthenticatedBlankLayoutLessonLessonIdRoute: typeof AuthenticatedBlankLayoutLessonLessonIdRoute
 }
 
-const BlankLayoutRouteRouteChildren: BlankLayoutRouteRouteChildren = {
-  BlankLayoutLessonLessonIdRoute: BlankLayoutLessonLessonIdRoute,
-  BlankLayoutLoginOauth2CodeProviderIndexRoute:
-    BlankLayoutLoginOauth2CodeProviderIndexRoute,
-}
-
-const BlankLayoutRouteRouteWithChildren =
-  BlankLayoutRouteRoute._addFileChildren(BlankLayoutRouteRouteChildren)
-
-interface FixedHeaderLayoutFixedSidebarLayoutRouteRouteChildren {
-  FixedHeaderLayoutFixedSidebarLayoutUserAddfriendRoute: typeof FixedHeaderLayoutFixedSidebarLayoutUserAddfriendRoute
-  FixedHeaderLayoutFixedSidebarLayoutUserEditRoute: typeof FixedHeaderLayoutFixedSidebarLayoutUserEditRoute
-  FixedHeaderLayoutFixedSidebarLayoutUserPrivacyRoute: typeof FixedHeaderLayoutFixedSidebarLayoutUserPrivacyRoute
-  FixedHeaderLayoutFixedSidebarLayoutUserIndexRoute: typeof FixedHeaderLayoutFixedSidebarLayoutUserIndexRoute
-  FixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRoute: typeof FixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRoute
-  FixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRoute: typeof FixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRoute
-  FixedHeaderLayoutFixedSidebarLayoutUserNoticePageNoticeIdIndexRoute: typeof FixedHeaderLayoutFixedSidebarLayoutUserNoticePageNoticeIdIndexRoute
-}
-
-const FixedHeaderLayoutFixedSidebarLayoutRouteRouteChildren: FixedHeaderLayoutFixedSidebarLayoutRouteRouteChildren =
+const AuthenticatedBlankLayoutRouteRouteChildren: AuthenticatedBlankLayoutRouteRouteChildren =
   {
-    FixedHeaderLayoutFixedSidebarLayoutUserAddfriendRoute:
-      FixedHeaderLayoutFixedSidebarLayoutUserAddfriendRoute,
-    FixedHeaderLayoutFixedSidebarLayoutUserEditRoute:
-      FixedHeaderLayoutFixedSidebarLayoutUserEditRoute,
-    FixedHeaderLayoutFixedSidebarLayoutUserPrivacyRoute:
-      FixedHeaderLayoutFixedSidebarLayoutUserPrivacyRoute,
-    FixedHeaderLayoutFixedSidebarLayoutUserIndexRoute:
-      FixedHeaderLayoutFixedSidebarLayoutUserIndexRoute,
-    FixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRoute:
-      FixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRoute,
-    FixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRoute:
-      FixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRoute,
-    FixedHeaderLayoutFixedSidebarLayoutUserNoticePageNoticeIdIndexRoute:
-      FixedHeaderLayoutFixedSidebarLayoutUserNoticePageNoticeIdIndexRoute,
+    AuthenticatedBlankLayoutLessonLessonIdRoute:
+      AuthenticatedBlankLayoutLessonLessonIdRoute,
   }
 
-const FixedHeaderLayoutFixedSidebarLayoutRouteRouteWithChildren =
-  FixedHeaderLayoutFixedSidebarLayoutRouteRoute._addFileChildren(
-    FixedHeaderLayoutFixedSidebarLayoutRouteRouteChildren,
+const AuthenticatedBlankLayoutRouteRouteWithChildren =
+  AuthenticatedBlankLayoutRouteRoute._addFileChildren(
+    AuthenticatedBlankLayoutRouteRouteChildren,
   )
 
-interface FixedHeaderLayoutRouteRouteChildren {
-  FixedHeaderLayoutFixedSidebarLayoutRouteRoute: typeof FixedHeaderLayoutFixedSidebarLayoutRouteRouteWithChildren
-  FixedHeaderLayoutAddfriendRoute: typeof FixedHeaderLayoutAddfriendRoute
-  FixedHeaderLayoutMainRoute: typeof FixedHeaderLayoutMainRoute
-  FixedHeaderLayoutOnboardingRoute: typeof FixedHeaderLayoutOnboardingRoute
-  FixedHeaderLayoutSuccessRoute: typeof FixedHeaderLayoutSuccessRoute
-  FixedHeaderLayoutIndexRoute: typeof FixedHeaderLayoutIndexRoute
-  FixedHeaderLayoutLearnIndexRoute: typeof FixedHeaderLayoutLearnIndexRoute
-  FixedHeaderLayoutLearnChapterIdIndexRoute: typeof FixedHeaderLayoutLearnChapterIdIndexRoute
-  FixedHeaderLayoutUserMeDeletePageRoute: typeof FixedHeaderLayoutUserMeDeletePageRoute
+interface AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRouteChildren {
+  AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserAddfriendRoute: typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserAddfriendRoute
+  AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserEditRoute: typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserEditRoute
+  AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserPrivacyRoute: typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserPrivacyRoute
+  AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserIndexRoute: typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserIndexRoute
+  AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRoute: typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRoute
+  AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRoute: typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRoute
+  AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageNoticeIdIndexRoute: typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageNoticeIdIndexRoute
 }
 
-const FixedHeaderLayoutRouteRouteChildren: FixedHeaderLayoutRouteRouteChildren =
+const AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRouteChildren: AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRouteChildren =
   {
-    FixedHeaderLayoutFixedSidebarLayoutRouteRoute:
-      FixedHeaderLayoutFixedSidebarLayoutRouteRouteWithChildren,
-    FixedHeaderLayoutAddfriendRoute: FixedHeaderLayoutAddfriendRoute,
-    FixedHeaderLayoutMainRoute: FixedHeaderLayoutMainRoute,
-    FixedHeaderLayoutOnboardingRoute: FixedHeaderLayoutOnboardingRoute,
-    FixedHeaderLayoutSuccessRoute: FixedHeaderLayoutSuccessRoute,
-    FixedHeaderLayoutIndexRoute: FixedHeaderLayoutIndexRoute,
-    FixedHeaderLayoutLearnIndexRoute: FixedHeaderLayoutLearnIndexRoute,
-    FixedHeaderLayoutLearnChapterIdIndexRoute:
-      FixedHeaderLayoutLearnChapterIdIndexRoute,
-    FixedHeaderLayoutUserMeDeletePageRoute:
-      FixedHeaderLayoutUserMeDeletePageRoute,
+    AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserAddfriendRoute:
+      AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserAddfriendRoute,
+    AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserEditRoute:
+      AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserEditRoute,
+    AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserPrivacyRoute:
+      AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserPrivacyRoute,
+    AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserIndexRoute:
+      AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserIndexRoute,
+    AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRoute:
+      AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRoute,
+    AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRoute:
+      AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRoute,
+    AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageNoticeIdIndexRoute:
+      AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageNoticeIdIndexRoute,
   }
 
-const FixedHeaderLayoutRouteRouteWithChildren =
-  FixedHeaderLayoutRouteRoute._addFileChildren(
-    FixedHeaderLayoutRouteRouteChildren,
+const AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRouteWithChildren =
+  AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRoute._addFileChildren(
+    AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRouteChildren,
   )
+
+interface AuthenticatedFixedHeaderLayoutRouteRouteChildren {
+  AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRoute: typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRouteWithChildren
+  AuthenticatedFixedHeaderLayoutAddfriendRoute: typeof AuthenticatedFixedHeaderLayoutAddfriendRoute
+  AuthenticatedFixedHeaderLayoutMainRoute: typeof AuthenticatedFixedHeaderLayoutMainRoute
+  AuthenticatedFixedHeaderLayoutOnboardingRoute: typeof AuthenticatedFixedHeaderLayoutOnboardingRoute
+  AuthenticatedFixedHeaderLayoutSuccessRoute: typeof AuthenticatedFixedHeaderLayoutSuccessRoute
+  AuthenticatedFixedHeaderLayoutLearnIndexRoute: typeof AuthenticatedFixedHeaderLayoutLearnIndexRoute
+  AuthenticatedFixedHeaderLayoutLearnChapterIdIndexRoute: typeof AuthenticatedFixedHeaderLayoutLearnChapterIdIndexRoute
+  AuthenticatedFixedHeaderLayoutUserMeDeletePageRoute: typeof AuthenticatedFixedHeaderLayoutUserMeDeletePageRoute
+}
+
+const AuthenticatedFixedHeaderLayoutRouteRouteChildren: AuthenticatedFixedHeaderLayoutRouteRouteChildren =
+  {
+    AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRoute:
+      AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRouteWithChildren,
+    AuthenticatedFixedHeaderLayoutAddfriendRoute:
+      AuthenticatedFixedHeaderLayoutAddfriendRoute,
+    AuthenticatedFixedHeaderLayoutMainRoute:
+      AuthenticatedFixedHeaderLayoutMainRoute,
+    AuthenticatedFixedHeaderLayoutOnboardingRoute:
+      AuthenticatedFixedHeaderLayoutOnboardingRoute,
+    AuthenticatedFixedHeaderLayoutSuccessRoute:
+      AuthenticatedFixedHeaderLayoutSuccessRoute,
+    AuthenticatedFixedHeaderLayoutLearnIndexRoute:
+      AuthenticatedFixedHeaderLayoutLearnIndexRoute,
+    AuthenticatedFixedHeaderLayoutLearnChapterIdIndexRoute:
+      AuthenticatedFixedHeaderLayoutLearnChapterIdIndexRoute,
+    AuthenticatedFixedHeaderLayoutUserMeDeletePageRoute:
+      AuthenticatedFixedHeaderLayoutUserMeDeletePageRoute,
+  }
+
+const AuthenticatedFixedHeaderLayoutRouteRouteWithChildren =
+  AuthenticatedFixedHeaderLayoutRouteRoute._addFileChildren(
+    AuthenticatedFixedHeaderLayoutRouteRouteChildren,
+  )
+
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedBlankLayoutRouteRoute: typeof AuthenticatedBlankLayoutRouteRouteWithChildren
+  AuthenticatedFixedHeaderLayoutRouteRoute: typeof AuthenticatedFixedHeaderLayoutRouteRouteWithChildren
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedBlankLayoutRouteRoute:
+    AuthenticatedBlankLayoutRouteRouteWithChildren,
+  AuthenticatedFixedHeaderLayoutRouteRoute:
+    AuthenticatedFixedHeaderLayoutRouteRouteWithChildren,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
-  BlankLayoutRouteRoute: BlankLayoutRouteRouteWithChildren,
-  FixedHeaderLayoutRouteRoute: FixedHeaderLayoutRouteRouteWithChildren,
-  AboutRoute: AboutRoute,
+  IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  LoginOauth2CodeProviderRoute: LoginOauth2CodeProviderRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

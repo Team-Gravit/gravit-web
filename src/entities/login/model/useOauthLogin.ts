@@ -12,7 +12,6 @@ export function useOauthLogin() {
 		mutationFn: getLoginUrl,
 		onSuccess: (loginUrl: string) => {
 			localStorage.setItem("returnTo", window.location.pathname);
-
 			window.location.href = loginUrl;
 		},
 		onError: (error: unknown) => {

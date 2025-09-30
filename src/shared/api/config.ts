@@ -9,7 +9,7 @@ import axios, {
 let accessToken: string | null = null;
 
 export const tokenManager = {
-	getAccessToken: () => accessToken,
+	getAccessToken: () => localStorage.getItem("accessToken"),
 	getRefreshToken: () =>
 		typeof window !== "undefined" ? localStorage.getItem("refreshToken") : null,
 	setTokens: (newAccessToken: string, newRefreshToken?: string) => {
