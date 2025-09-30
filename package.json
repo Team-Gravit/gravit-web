@@ -12,7 +12,8 @@
         "check": "biome check --write",
         "lint": "pnpm lint:biome",
         "lint:biome": "biome lint --write",
-        "ci": "biome ci ."
+        "ci": "biome ci .",
+        "router:generate": "tanstack-router-generate"
     },
     "dependencies": {
         "@tanstack/react-query": "^5.87.4",
