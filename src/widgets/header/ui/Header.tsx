@@ -1,6 +1,10 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import Logo from "@/shared/assets/icons/logo-gr.svg?react";
 import { cn } from "@/shared/lib/cn";
+import Profile from "@/shared/assets/icons/profile2.svg?react";
+import { useUserInfo } from "@/entities/sidebar/api/getUserInfo";
+import { PROFILE_COLORS } from "@/shared/lib/ProfileColor";
+import { tokenManager } from "@/shared/api/config";
 
 const HEADER_NAV_LIST: HeaderNavProps[] = [
 	{ to: "/main", text: "홈" },
@@ -10,6 +14,38 @@ const HEADER_NAV_LIST: HeaderNavProps[] = [
 ];
 
 export default function Header({ className }: { className?: string }) {
+	const { data, isPending, isError, erro } = useUserInfo();
+
+	let loginState = <div></div>;
+
+	if (data) {
+		const profileBgColor =
+			PROFILE_COLORS[data.profileImgNumber as keyof typeof PROFILE_COLORS];
+
+		loginState = (
+			<p className="h-full flex gap-4 items-center flex-1 justify-end">
+				<Profile
+					style={{ color: profileBgColor }}
+					className="w-[40px] h-[40px]"
+				/>
+				<span className="text-black font-bold text-xl leading-normal">
+					어서오세요, {data.nickname}님
+				</span>
+				<button
+					type="button"
+					onClick={() => {
+						tokenManager.clearTokens();
+						/** TODO 나중에 수정 */
+						window.location.href = "/";
+					}}
+					className="text-gray-500 text-xl font-bold cursor-pointer"
+				>
+					로그아웃
+				</button>
+			</p>
+		);
+	}
+
 	return (
 		<header
 			className={cn(
@@ -26,6 +62,7 @@ export default function Header({ className }: { className?: string }) {
 					return <HeaderNav {...nav} key={nav.text} />;
 				})}
 			</nav>
+			{loginState}
 		</header>
 	);
 }
