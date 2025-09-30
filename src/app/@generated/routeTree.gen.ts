@@ -14,10 +14,8 @@ import { Route as FixedHeaderLayoutRouteRouteImport } from './../../pages/_fixed
 import { Route as BlankLayoutRouteRouteImport } from './../../pages/_blank-layout/route'
 import { Route as FixedHeaderLayoutIndexRouteImport } from './../../pages/_fixed-header-layout/index'
 import { Route as FixedHeaderLayoutSuccessRouteImport } from './../../pages/_fixed-header-layout/success'
-import { Route as FixedHeaderLayoutStudyRouteImport } from './../../pages/_fixed-header-layout/study'
 import { Route as FixedHeaderLayoutOnboardingRouteImport } from './../../pages/_fixed-header-layout/onboarding'
 import { Route as FixedHeaderLayoutMainRouteImport } from './../../pages/_fixed-header-layout/main'
-import { Route as FixedHeaderLayoutLeagueRouteImport } from './../../pages/_fixed-header-layout/league'
 import { Route as FixedHeaderLayoutAddfriendRouteImport } from './../../pages/_fixed-header-layout/addfriend'
 import { Route as FixedHeaderLayoutFixedSidebarLayoutRouteRouteImport } from './../../pages/_fixed-header-layout/_fixed-sidebar-layout/route'
 import { Route as FixedHeaderLayoutLearnIndexRouteImport } from './../../pages/_fixed-header-layout/learn/index'
@@ -28,6 +26,7 @@ import { Route as FixedHeaderLayoutFixedSidebarLayoutUserPrivacyRouteImport } fr
 import { Route as FixedHeaderLayoutFixedSidebarLayoutUserEditRouteImport } from './../../pages/_fixed-header-layout/_fixed-sidebar-layout/user/edit'
 import { Route as FixedHeaderLayoutFixedSidebarLayoutUserAddfriendRouteImport } from './../../pages/_fixed-header-layout/_fixed-sidebar-layout/user/addfriend'
 import { Route as FixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRouteImport } from './../../pages/_fixed-header-layout/_fixed-sidebar-layout/user/notice/index'
+import { Route as FixedHeaderLayoutUserMeDeletePageRouteImport } from './../../pages/_fixed-header-layout/user.me.delete.page'
 import { Route as FixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRouteImport } from './../../pages/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/index'
 import { Route as BlankLayoutLoginOauth2CodeProviderIndexRouteImport } from './../../pages/_blank-layout/login/oauth2/code/$provider/index'
 import { Route as FixedHeaderLayoutFixedSidebarLayoutUserNoticePageNoticeIdIndexRouteImport } from './../../pages/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/$noticeId/index'
@@ -56,11 +55,6 @@ const FixedHeaderLayoutSuccessRoute =
     path: '/success',
     getParentRoute: () => FixedHeaderLayoutRouteRoute,
   } as any)
-const FixedHeaderLayoutStudyRoute = FixedHeaderLayoutStudyRouteImport.update({
-  id: '/study',
-  path: '/study',
-  getParentRoute: () => FixedHeaderLayoutRouteRoute,
-} as any)
 const FixedHeaderLayoutOnboardingRoute =
   FixedHeaderLayoutOnboardingRouteImport.update({
     id: '/onboarding',
@@ -70,11 +64,6 @@ const FixedHeaderLayoutOnboardingRoute =
 const FixedHeaderLayoutMainRoute = FixedHeaderLayoutMainRouteImport.update({
   id: '/main',
   path: '/main',
-  getParentRoute: () => FixedHeaderLayoutRouteRoute,
-} as any)
-const FixedHeaderLayoutLeagueRoute = FixedHeaderLayoutLeagueRouteImport.update({
-  id: '/league',
-  path: '/league',
   getParentRoute: () => FixedHeaderLayoutRouteRoute,
 } as any)
 const FixedHeaderLayoutAddfriendRoute =
@@ -136,6 +125,12 @@ const FixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRoute =
     path: '/user/notice/',
     getParentRoute: () => FixedHeaderLayoutFixedSidebarLayoutRouteRoute,
   } as any)
+const FixedHeaderLayoutUserMeDeletePageRoute =
+  FixedHeaderLayoutUserMeDeletePageRouteImport.update({
+    id: '/user/me/delete/page',
+    path: '/user/me/delete/page',
+    getParentRoute: () => FixedHeaderLayoutRouteRoute,
+  } as any)
 const FixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRoute =
   FixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRouteImport.update({
     id: '/user/notice/$page/',
@@ -160,10 +155,8 @@ const FixedHeaderLayoutFixedSidebarLayoutUserNoticePageNoticeIdIndexRoute =
 export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/addfriend': typeof FixedHeaderLayoutAddfriendRoute
-  '/league': typeof FixedHeaderLayoutLeagueRoute
   '/main': typeof FixedHeaderLayoutMainRoute
   '/onboarding': typeof FixedHeaderLayoutOnboardingRoute
-  '/study': typeof FixedHeaderLayoutStudyRoute
   '/success': typeof FixedHeaderLayoutSuccessRoute
   '/': typeof FixedHeaderLayoutIndexRoute
   '/lesson/$lessonId': typeof BlankLayoutLessonLessonIdRoute
@@ -173,6 +166,7 @@ export interface FileRoutesByFullPath {
   '/user/privacy': typeof FixedHeaderLayoutFixedSidebarLayoutUserPrivacyRoute
   '/user': typeof FixedHeaderLayoutFixedSidebarLayoutUserIndexRoute
   '/learn/$chapterId': typeof FixedHeaderLayoutLearnChapterIdIndexRoute
+  '/user/me/delete/page': typeof FixedHeaderLayoutUserMeDeletePageRoute
   '/user/notice': typeof FixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRoute
   '/login/oauth2/code/$provider': typeof BlankLayoutLoginOauth2CodeProviderIndexRoute
   '/user/notice/$page': typeof FixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRoute
@@ -181,10 +175,8 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/addfriend': typeof FixedHeaderLayoutAddfriendRoute
-  '/league': typeof FixedHeaderLayoutLeagueRoute
   '/main': typeof FixedHeaderLayoutMainRoute
   '/onboarding': typeof FixedHeaderLayoutOnboardingRoute
-  '/study': typeof FixedHeaderLayoutStudyRoute
   '/success': typeof FixedHeaderLayoutSuccessRoute
   '/': typeof FixedHeaderLayoutIndexRoute
   '/lesson/$lessonId': typeof BlankLayoutLessonLessonIdRoute
@@ -194,6 +186,7 @@ export interface FileRoutesByTo {
   '/user/privacy': typeof FixedHeaderLayoutFixedSidebarLayoutUserPrivacyRoute
   '/user': typeof FixedHeaderLayoutFixedSidebarLayoutUserIndexRoute
   '/learn/$chapterId': typeof FixedHeaderLayoutLearnChapterIdIndexRoute
+  '/user/me/delete/page': typeof FixedHeaderLayoutUserMeDeletePageRoute
   '/user/notice': typeof FixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRoute
   '/login/oauth2/code/$provider': typeof BlankLayoutLoginOauth2CodeProviderIndexRoute
   '/user/notice/$page': typeof FixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRoute
@@ -206,10 +199,8 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/_fixed-header-layout/_fixed-sidebar-layout': typeof FixedHeaderLayoutFixedSidebarLayoutRouteRouteWithChildren
   '/_fixed-header-layout/addfriend': typeof FixedHeaderLayoutAddfriendRoute
-  '/_fixed-header-layout/league': typeof FixedHeaderLayoutLeagueRoute
   '/_fixed-header-layout/main': typeof FixedHeaderLayoutMainRoute
   '/_fixed-header-layout/onboarding': typeof FixedHeaderLayoutOnboardingRoute
-  '/_fixed-header-layout/study': typeof FixedHeaderLayoutStudyRoute
   '/_fixed-header-layout/success': typeof FixedHeaderLayoutSuccessRoute
   '/_fixed-header-layout/': typeof FixedHeaderLayoutIndexRoute
   '/_blank-layout/lesson/$lessonId': typeof BlankLayoutLessonLessonIdRoute
@@ -219,6 +210,7 @@ export interface FileRoutesById {
   '/_fixed-header-layout/_fixed-sidebar-layout/user/privacy': typeof FixedHeaderLayoutFixedSidebarLayoutUserPrivacyRoute
   '/_fixed-header-layout/_fixed-sidebar-layout/user/': typeof FixedHeaderLayoutFixedSidebarLayoutUserIndexRoute
   '/_fixed-header-layout/learn/$chapterId/': typeof FixedHeaderLayoutLearnChapterIdIndexRoute
+  '/_fixed-header-layout/user/me/delete/page': typeof FixedHeaderLayoutUserMeDeletePageRoute
   '/_fixed-header-layout/_fixed-sidebar-layout/user/notice/': typeof FixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRoute
   '/_blank-layout/login/oauth2/code/$provider/': typeof BlankLayoutLoginOauth2CodeProviderIndexRoute
   '/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/': typeof FixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRoute
@@ -229,10 +221,8 @@ export interface FileRouteTypes {
   fullPaths:
     | '/about'
     | '/addfriend'
-    | '/league'
     | '/main'
     | '/onboarding'
-    | '/study'
     | '/success'
     | '/'
     | '/lesson/$lessonId'
@@ -242,6 +232,7 @@ export interface FileRouteTypes {
     | '/user/privacy'
     | '/user'
     | '/learn/$chapterId'
+    | '/user/me/delete/page'
     | '/user/notice'
     | '/login/oauth2/code/$provider'
     | '/user/notice/$page'
@@ -250,10 +241,8 @@ export interface FileRouteTypes {
   to:
     | '/about'
     | '/addfriend'
-    | '/league'
     | '/main'
     | '/onboarding'
-    | '/study'
     | '/success'
     | '/'
     | '/lesson/$lessonId'
@@ -263,6 +252,7 @@ export interface FileRouteTypes {
     | '/user/privacy'
     | '/user'
     | '/learn/$chapterId'
+    | '/user/me/delete/page'
     | '/user/notice'
     | '/login/oauth2/code/$provider'
     | '/user/notice/$page'
@@ -274,10 +264,8 @@ export interface FileRouteTypes {
     | '/about'
     | '/_fixed-header-layout/_fixed-sidebar-layout'
     | '/_fixed-header-layout/addfriend'
-    | '/_fixed-header-layout/league'
     | '/_fixed-header-layout/main'
     | '/_fixed-header-layout/onboarding'
-    | '/_fixed-header-layout/study'
     | '/_fixed-header-layout/success'
     | '/_fixed-header-layout/'
     | '/_blank-layout/lesson/$lessonId'
@@ -287,6 +275,7 @@ export interface FileRouteTypes {
     | '/_fixed-header-layout/_fixed-sidebar-layout/user/privacy'
     | '/_fixed-header-layout/_fixed-sidebar-layout/user/'
     | '/_fixed-header-layout/learn/$chapterId/'
+    | '/_fixed-header-layout/user/me/delete/page'
     | '/_fixed-header-layout/_fixed-sidebar-layout/user/notice/'
     | '/_blank-layout/login/oauth2/code/$provider/'
     | '/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/'
@@ -336,13 +325,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FixedHeaderLayoutSuccessRouteImport
       parentRoute: typeof FixedHeaderLayoutRouteRoute
     }
-    '/_fixed-header-layout/study': {
-      id: '/_fixed-header-layout/study'
-      path: '/study'
-      fullPath: '/study'
-      preLoaderRoute: typeof FixedHeaderLayoutStudyRouteImport
-      parentRoute: typeof FixedHeaderLayoutRouteRoute
-    }
     '/_fixed-header-layout/onboarding': {
       id: '/_fixed-header-layout/onboarding'
       path: '/onboarding'
@@ -355,13 +337,6 @@ declare module '@tanstack/react-router' {
       path: '/main'
       fullPath: '/main'
       preLoaderRoute: typeof FixedHeaderLayoutMainRouteImport
-      parentRoute: typeof FixedHeaderLayoutRouteRoute
-    }
-    '/_fixed-header-layout/league': {
-      id: '/_fixed-header-layout/league'
-      path: '/league'
-      fullPath: '/league'
-      preLoaderRoute: typeof FixedHeaderLayoutLeagueRouteImport
       parentRoute: typeof FixedHeaderLayoutRouteRoute
     }
     '/_fixed-header-layout/addfriend': {
@@ -433,6 +408,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/user/notice'
       preLoaderRoute: typeof FixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRouteImport
       parentRoute: typeof FixedHeaderLayoutFixedSidebarLayoutRouteRoute
+    }
+    '/_fixed-header-layout/user/me/delete/page': {
+      id: '/_fixed-header-layout/user/me/delete/page'
+      path: '/user/me/delete/page'
+      fullPath: '/user/me/delete/page'
+      preLoaderRoute: typeof FixedHeaderLayoutUserMeDeletePageRouteImport
+      parentRoute: typeof FixedHeaderLayoutRouteRoute
     }
     '/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/': {
       id: '/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/'
@@ -508,14 +490,13 @@ const FixedHeaderLayoutFixedSidebarLayoutRouteRouteWithChildren =
 interface FixedHeaderLayoutRouteRouteChildren {
   FixedHeaderLayoutFixedSidebarLayoutRouteRoute: typeof FixedHeaderLayoutFixedSidebarLayoutRouteRouteWithChildren
   FixedHeaderLayoutAddfriendRoute: typeof FixedHeaderLayoutAddfriendRoute
-  FixedHeaderLayoutLeagueRoute: typeof FixedHeaderLayoutLeagueRoute
   FixedHeaderLayoutMainRoute: typeof FixedHeaderLayoutMainRoute
   FixedHeaderLayoutOnboardingRoute: typeof FixedHeaderLayoutOnboardingRoute
-  FixedHeaderLayoutStudyRoute: typeof FixedHeaderLayoutStudyRoute
   FixedHeaderLayoutSuccessRoute: typeof FixedHeaderLayoutSuccessRoute
   FixedHeaderLayoutIndexRoute: typeof FixedHeaderLayoutIndexRoute
   FixedHeaderLayoutLearnIndexRoute: typeof FixedHeaderLayoutLearnIndexRoute
   FixedHeaderLayoutLearnChapterIdIndexRoute: typeof FixedHeaderLayoutLearnChapterIdIndexRoute
+  FixedHeaderLayoutUserMeDeletePageRoute: typeof FixedHeaderLayoutUserMeDeletePageRoute
 }
 
 const FixedHeaderLayoutRouteRouteChildren: FixedHeaderLayoutRouteRouteChildren =
@@ -523,15 +504,15 @@ const FixedHeaderLayoutRouteRouteChildren: FixedHeaderLayoutRouteRouteChildren =
     FixedHeaderLayoutFixedSidebarLayoutRouteRoute:
       FixedHeaderLayoutFixedSidebarLayoutRouteRouteWithChildren,
     FixedHeaderLayoutAddfriendRoute: FixedHeaderLayoutAddfriendRoute,
-    FixedHeaderLayoutLeagueRoute: FixedHeaderLayoutLeagueRoute,
     FixedHeaderLayoutMainRoute: FixedHeaderLayoutMainRoute,
     FixedHeaderLayoutOnboardingRoute: FixedHeaderLayoutOnboardingRoute,
-    FixedHeaderLayoutStudyRoute: FixedHeaderLayoutStudyRoute,
     FixedHeaderLayoutSuccessRoute: FixedHeaderLayoutSuccessRoute,
     FixedHeaderLayoutIndexRoute: FixedHeaderLayoutIndexRoute,
     FixedHeaderLayoutLearnIndexRoute: FixedHeaderLayoutLearnIndexRoute,
     FixedHeaderLayoutLearnChapterIdIndexRoute:
       FixedHeaderLayoutLearnChapterIdIndexRoute,
+    FixedHeaderLayoutUserMeDeletePageRoute:
+      FixedHeaderLayoutUserMeDeletePageRoute,
   }
 
 const FixedHeaderLayoutRouteRouteWithChildren =
