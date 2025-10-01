@@ -5,7 +5,8 @@ export type LoginProvider = "google" | "kakao" | "naver";
 export async function requestLoginUrl(
 	provider: LoginProvider,
 ): Promise<string> {
-	const dest = process.env.VITE_ENVIRONMENT === "production" ? "prod" : "local";
+	const dest =
+		import.meta.env.VITE_ENVIRONMENT === "production" ? "prod" : "local";
 	const { data } = await apiClient.get<{ loginUrl: string }>(
 		`oauth/login-url/${provider}?dest=${dest}`,
 	);
