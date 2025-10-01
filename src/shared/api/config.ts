@@ -6,14 +6,14 @@ import axios, {
 } from "axios";
 
 // 토큰 관리
-let accessToken: string | null = null;
+// let accessToken: string | null = null;
 
 export const tokenManager = {
 	getAccessToken: () => localStorage.getItem("accessToken"),
 	getRefreshToken: () =>
 		typeof window !== "undefined" ? localStorage.getItem("refreshToken") : null,
 	setTokens: (newAccessToken: string, newRefreshToken?: string) => {
-		accessToken = newAccessToken;
+		// accessToken = newAccessToken;
 		if (typeof window !== "undefined") {
 			localStorage.setItem("accessToken", newAccessToken);
 			if (newRefreshToken)
@@ -21,7 +21,7 @@ export const tokenManager = {
 		}
 	},
 	clearTokens: () => {
-		accessToken = null;
+		// accessToken = null;
 		if (typeof window !== "undefined") {
 			localStorage.removeItem("accessToken");
 			// localStorage.removeItem("refreshToken");

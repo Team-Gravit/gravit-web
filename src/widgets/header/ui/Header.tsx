@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import Logo from "@/shared/assets/icons/logo-gr.svg?react";
 import { cn } from "@/shared/lib/cn";
 import Profile from "@/shared/assets/icons/profile2.svg?react";
@@ -14,7 +14,7 @@ const HEADER_NAV_LIST: HeaderNavProps[] = [
 ];
 
 export default function Header({ className }: { className?: string }) {
-	const { data, isPending, isError, erro } = useUserInfo();
+	const { data } = useUserInfo();
 
 	let loginState = <div></div>;
 

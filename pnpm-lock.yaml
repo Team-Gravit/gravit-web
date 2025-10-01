@@ -3754,7 +3754,6 @@ snapshots:
 
   zod@3.25.76: {}
 
-  zod@4.1.11: {}
   zustand@5.0.8(@types/react@19.1.12)(react@19.1.1)(use-sync-external-store@1.5.0(react@19.1.1)):
     optionalDependencies:
       '@types/react': 19.1.12

@@ -5,6 +5,7 @@ import "@/app/styles/globals.css";
 import { createRouter, RouterProvider } from "@tanstack/react-router";
 import { routeTree } from "@/app/@generated/routeTree.gen";
 import { tokenManager } from "@/shared/api/config";
+import type { AuthState } from "./pages/__root";
 
 // Create a new router instance
 const router = createRouter({
@@ -12,7 +13,7 @@ const router = createRouter({
 	context: {
 		auth: {
 			isAuthenticated: !!tokenManager.getAccessToken(),
-		},
+		} as AuthState,
 	},
 });
 

@@ -13,6 +13,7 @@ import { Route as AuthenticatedRouteRouteImport } from './../../pages/_authentic
 import { Route as IndexRouteImport } from './../../pages/index'
 import { Route as AuthenticatedFixedHeaderLayoutRouteRouteImport } from './../../pages/_authenticated/_fixed-header-layout/route'
 import { Route as AuthenticatedBlankLayoutRouteRouteImport } from './../../pages/_authenticated/_blank-layout/route'
+import { Route as AuthenticatedFixedHeaderLayoutTestRouteImport } from './../../pages/_authenticated/_fixed-header-layout/test'
 import { Route as AuthenticatedFixedHeaderLayoutSuccessRouteImport } from './../../pages/_authenticated/_fixed-header-layout/success'
 import { Route as AuthenticatedFixedHeaderLayoutOnboardingRouteImport } from './../../pages/_authenticated/_fixed-header-layout/onboarding'
 import { Route as AuthenticatedFixedHeaderLayoutMainRouteImport } from './../../pages/_authenticated/_fixed-header-layout/main'
@@ -50,6 +51,12 @@ const AuthenticatedBlankLayoutRouteRoute =
   AuthenticatedBlankLayoutRouteRouteImport.update({
     id: '/_blank-layout',
     getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedFixedHeaderLayoutTestRoute =
+  AuthenticatedFixedHeaderLayoutTestRouteImport.update({
+    id: '/test',
+    path: '/test',
+    getParentRoute: () => AuthenticatedFixedHeaderLayoutRouteRoute,
   } as any)
 const AuthenticatedFixedHeaderLayoutSuccessRoute =
   AuthenticatedFixedHeaderLayoutSuccessRouteImport.update({
@@ -182,6 +189,7 @@ export interface FileRoutesByFullPath {
   '/main': typeof AuthenticatedFixedHeaderLayoutMainRoute
   '/onboarding': typeof AuthenticatedFixedHeaderLayoutOnboardingRoute
   '/success': typeof AuthenticatedFixedHeaderLayoutSuccessRoute
+  '/test': typeof AuthenticatedFixedHeaderLayoutTestRoute
   '/lesson/$lessonId': typeof AuthenticatedBlankLayoutLessonLessonIdRoute
   '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
   '/learn': typeof AuthenticatedFixedHeaderLayoutLearnIndexRoute
@@ -202,6 +210,7 @@ export interface FileRoutesByTo {
   '/main': typeof AuthenticatedFixedHeaderLayoutMainRoute
   '/onboarding': typeof AuthenticatedFixedHeaderLayoutOnboardingRoute
   '/success': typeof AuthenticatedFixedHeaderLayoutSuccessRoute
+  '/test': typeof AuthenticatedFixedHeaderLayoutTestRoute
   '/lesson/$lessonId': typeof AuthenticatedBlankLayoutLessonLessonIdRoute
   '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
   '/learn': typeof AuthenticatedFixedHeaderLayoutLearnIndexRoute
@@ -227,6 +236,7 @@ export interface FileRoutesById {
   '/_authenticated/_fixed-header-layout/main': typeof AuthenticatedFixedHeaderLayoutMainRoute
   '/_authenticated/_fixed-header-layout/onboarding': typeof AuthenticatedFixedHeaderLayoutOnboardingRoute
   '/_authenticated/_fixed-header-layout/success': typeof AuthenticatedFixedHeaderLayoutSuccessRoute
+  '/_authenticated/_fixed-header-layout/test': typeof AuthenticatedFixedHeaderLayoutTestRoute
   '/_authenticated/_blank-layout/lesson/$lessonId': typeof AuthenticatedBlankLayoutLessonLessonIdRoute
   '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
   '/_authenticated/_fixed-header-layout/learn/': typeof AuthenticatedFixedHeaderLayoutLearnIndexRoute
@@ -249,6 +259,7 @@ export interface FileRouteTypes {
     | '/main'
     | '/onboarding'
     | '/success'
+    | '/test'
     | '/lesson/$lessonId'
     | '/login/oauth2/code/$provider'
     | '/learn'
@@ -269,6 +280,7 @@ export interface FileRouteTypes {
     | '/main'
     | '/onboarding'
     | '/success'
+    | '/test'
     | '/lesson/$lessonId'
     | '/login/oauth2/code/$provider'
     | '/learn'
@@ -293,6 +305,7 @@ export interface FileRouteTypes {
     | '/_authenticated/_fixed-header-layout/main'
     | '/_authenticated/_fixed-header-layout/onboarding'
     | '/_authenticated/_fixed-header-layout/success'
+    | '/_authenticated/_fixed-header-layout/test'
     | '/_authenticated/_blank-layout/lesson/$lessonId'
     | '/login/oauth2/code/$provider'
     | '/_authenticated/_fixed-header-layout/learn/'
@@ -342,6 +355,13 @@ declare module '@tanstack/react-router' {
       fullPath: ''
       preLoaderRoute: typeof AuthenticatedBlankLayoutRouteRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/_fixed-header-layout/test': {
+      id: '/_authenticated/_fixed-header-layout/test'
+      path: '/test'
+      fullPath: '/test'
+      preLoaderRoute: typeof AuthenticatedFixedHeaderLayoutTestRouteImport
+      parentRoute: typeof AuthenticatedFixedHeaderLayoutRouteRoute
     }
     '/_authenticated/_fixed-header-layout/success': {
       id: '/_authenticated/_fixed-header-layout/success'
@@ -527,6 +547,7 @@ interface AuthenticatedFixedHeaderLayoutRouteRouteChildren {
   AuthenticatedFixedHeaderLayoutMainRoute: typeof AuthenticatedFixedHeaderLayoutMainRoute
   AuthenticatedFixedHeaderLayoutOnboardingRoute: typeof AuthenticatedFixedHeaderLayoutOnboardingRoute
   AuthenticatedFixedHeaderLayoutSuccessRoute: typeof AuthenticatedFixedHeaderLayoutSuccessRoute
+  AuthenticatedFixedHeaderLayoutTestRoute: typeof AuthenticatedFixedHeaderLayoutTestRoute
   AuthenticatedFixedHeaderLayoutLearnIndexRoute: typeof AuthenticatedFixedHeaderLayoutLearnIndexRoute
   AuthenticatedFixedHeaderLayoutLearnChapterIdIndexRoute: typeof AuthenticatedFixedHeaderLayoutLearnChapterIdIndexRoute
   AuthenticatedFixedHeaderLayoutUserMeDeletePageRoute: typeof AuthenticatedFixedHeaderLayoutUserMeDeletePageRoute
@@ -546,6 +567,8 @@ const AuthenticatedFixedHeaderLayoutRouteRouteChildren: AuthenticatedFixedHeader
       AuthenticatedFixedHeaderLayoutOnboardingRoute,
     AuthenticatedFixedHeaderLayoutSuccessRoute:
       AuthenticatedFixedHeaderLayoutSuccessRoute,
+    AuthenticatedFixedHeaderLayoutTestRoute:
+      AuthenticatedFixedHeaderLayoutTestRoute,
     AuthenticatedFixedHeaderLayoutLearnIndexRoute:
       AuthenticatedFixedHeaderLayoutLearnIndexRoute,
     AuthenticatedFixedHeaderLayoutLearnChapterIdIndexRoute:
