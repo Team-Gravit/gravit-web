@@ -6,17 +6,12 @@ import {
 } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 
-interface RouteContext {
+export interface RouteContext {
 	auth: AuthState;
 }
 
-interface AuthState {
+export interface AuthState {
 	isAuthenticated: boolean;
-	user?: {
-		id: string;
-		email: string;
-		name: string;
-	};
 }
 
 const RootLayout = () => {

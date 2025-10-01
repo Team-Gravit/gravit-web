@@ -1,4 +1,3 @@
-import React from "react";
 import type { Friend } from "@/entities/friends/model/types";
 
 interface FollowButtonProps {
