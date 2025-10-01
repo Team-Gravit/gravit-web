@@ -5,7 +5,8 @@ export const useSendWithdrawEmail = () => {
 	return useMutation({
 		mutationFn: () => {
 			const dest =
-				import.meta.env.VITE_ENVIRONMENT === "prod" ? "prod" : "local";
+				import.meta.env.VITE_ENVIRONMENT === "local" ? "local" : "prod";
+
 			return userDeleteApi.requestAccountDeletion(dest);
 		},
 		onSuccess: (data) => {

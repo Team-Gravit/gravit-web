@@ -9,8 +9,7 @@ export async function PostOAuth(
 	provider: string,
 	code: string,
 ): Promise<PostOAuthResponse> {
-	const dest =
-		import.meta.env.VITE_ENVIRONMENT === "production" ? "prod" : "local";
+	const dest = import.meta.env.VITE_ENVIRONMENT === "local" ? "local" : "prod";
 	const { data } = await apiClient.post<PostOAuthResponse>(
 		`/oauth/${provider}?dest=${dest}`,
 		{ code },
