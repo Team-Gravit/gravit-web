@@ -37,8 +37,7 @@ if (typeof window !== "undefined") {
 
 // API 기본 URL
 export const API_BASE_URL =
-	import.meta.env.PUBLIC_API_BASE_URL ||
-	"https://grav-it.inuappcenter.kr/api/v1";
+	import.meta.env.VITE_API_BASE_URL || "https://grav-it.inuappcenter.kr/api/v1";
 
 // axios 인스턴스
 export const apiClient: AxiosInstance = axios.create({
