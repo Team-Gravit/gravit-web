@@ -9,7 +9,9 @@ import UserLeagueInfo from "@/widgets/user/ui/UserLeagueInfo";
 import Footer from "@/widgets/Footer/Footer";
 import { useFetchMainInfo } from "@/widgets/main/model/hooks";
 
-export const Route = createFileRoute("/_authenticated/_fixed-header-layout/main")({
+export const Route = createFileRoute(
+	"/_authenticated/_fixed-header-layout/main",
+)({
 	component: MainPage,
 });
 
@@ -65,7 +67,7 @@ function MainPage() {
 									<StatCard
 										icon={fire}
 										label={"연속 학습일"}
-										value={"${consecutiveDays}일"}
+										value={`${consecutiveDays}일`}
 									/>
 								</dl>
 							</aside>
@@ -79,5 +81,5 @@ function MainPage() {
 			</main>
 			<Footer />
 		</>
-	)
+	);
 }

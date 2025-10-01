@@ -1,7 +1,7 @@
 import Footer from "@/widgets/Footer/Footer";
 import Logo from "@/shared/assets/icons/logo-gr.svg?react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import backgroundImage from "@/shared/assets/images/background.webp";
+import backgroundImage from "@/shared/assets/images/landing-background.png";
 import GravitLogo from "@/shared/assets/icons/logo.svg?react";
 import roundedPlanetsImg from "@/shared/assets/images/planet-group.png";
 import phoneImg from "@/shared/assets/images/phone.png";
