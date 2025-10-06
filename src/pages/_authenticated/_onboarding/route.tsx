@@ -8,7 +8,7 @@ export const Route = createFileRoute("/_authenticated/_onboarding")({
 
 function RouteComponent() {
 	return (
-		<div className="w-screen h-min-screen">
+		<div className="w-screen min-h-screen">
 			<header className=" flex items-center px-8 py-4 justify-start h-[var(--header-height)] w-full bg-white z-[110]">
 				<Link to="/" className="mr-3">
 					<HeaderLogo className={`h-6`} />
