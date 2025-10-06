@@ -2,10 +2,10 @@ import { useState } from "react";
 import type { Follow } from "@/entities/follow/model/types";
 import Profile from "@/shared/assets/icons/profile2.svg?react";
 import { PROFILE_COLORS } from "@/shared/lib/ProfileColor";
-import {
-	followFriend,
-	unfollowFriend,
-} from "@/entities/friends/api/postFollowButton";
+import X from "@/shared/assets/icons/buttons/x.svg?react";
+import type { UserInfo } from "@/entities/sidebar/model/types";
+import { useToggleFollowModal } from "@/entities/follow/api/postFollowButton";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface Props {
 	item: Follow;
@@ -13,23 +13,31 @@ interface Props {
 }
 
 export default function FollowListItem({ item, type }: Props) {
-	const [isFollowing, setIsFollowing] = useState(type === "following");
+	const [isFollowing, setIsFollowing] = useState(true);
 	const [isLoading, setIsLoading] = useState(false);
+	const mutation = useToggleFollowModal(type);
+	const queryClient = useQueryClient();
 
-	const handleToggle = async () => {
+	const handleToggle = () => {
 		if (isLoading) return;
+
 		setIsFollowing((prev) => !prev);
 		setIsLoading(true);
 
-		try {
-			if (isFollowing) await unfollowFriend(item.id);
-			else await followFriend(item.id);
-		} catch (err) {
-			console.error("API 호출 실패:", err);
-			setIsFollowing((prev) => !prev);
-		} finally {
-			setIsLoading(false);
-		}
+		mutation.mutate(item.id, {
+			onError: () => {
+				setIsFollowing((prev) => !prev);
+			},
+			onSettled: () => setIsLoading(false),
+		});
+
+		queryClient.setQueryData<UserInfo>(["userinfo"], (oldData) => {
+			if (!oldData) return oldData;
+			return {
+				...oldData,
+				following: isFollowing ? oldData.following - 1 : oldData.following + 1,
+			};
+		});
 	};
 
 	return (
@@ -52,19 +60,23 @@ export default function FollowListItem({ item, type }: Props) {
 				</div>
 			</div>
 
-			<button
-				type="button"
-				disabled={isLoading}
-				className={`flex justify-center items-center px-6 py-3 gap-4 rounded-[10px] w-[151px] h-[51px] text-xl font-normal transition
-          ${
-						isFollowing
-							? "bg-white border border-black/10 text-black hover:bg-gray-50"
-							: "bg-purple-800 text-white hover:bg-purple-700"
-					}`}
-				onClick={handleToggle}
-			>
-				{isFollowing ? "팔로우 취소" : "팔로우"}
-			</button>
+			{type === "following" ? (
+				<button
+					type="button"
+					disabled={isLoading}
+					className={`flex justify-center items-center px-6 py-3 gap-4 rounded-[10px] w-[151px] h-[51px] text-xl font-normal transition
+						${
+							isFollowing
+								? "bg-white border border-black/10 text-black hover:bg-gray-50"
+								: "bg-purple-800 text-white hover:bg-purple-700"
+						}`}
+					onClick={handleToggle}
+				>
+					{isFollowing ? "팔로우 취소" : "팔로우"}
+				</button>
+			) : (
+				<X className="w-5 h-5" />
+			)}
 		</li>
 	);
 }

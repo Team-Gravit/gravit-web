@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import Background from "@/shared/ui/background/Background";
 import Form from "@/shared/ui/form/Form";
@@ -21,8 +21,11 @@ function OnboardingPage() {
 	const [isLimit, setIsLimit] = useState(false);
 	const [checking, setChecking] = useState(false);
 	const [loading, setLoading] = useState(false);
-	const handleSubmit = () => {
-		if (loading) return;
+
+	const isSubmitting = useRef(false);
+
+	const handleSubmit = async () => {
+		if (loading || isSubmitting.current) return;
 
 		if (!nickname.trim()) {
 			alert("닉네임을 입력해주세요.");
@@ -36,24 +39,22 @@ function OnboardingPage() {
 			return;
 		}
 
-		// 클릭 즉시 버튼 비활성화 및 로딩 표시
 		setLoading(true);
+		isSubmitting.current = true;
 
-		// 다음 이벤트 루프에서 async 실행
-		setTimeout(async () => {
-			try {
-				await Promise.all([
-					postOnBoarding(nickname.trim(), colorIndex + 1),
-					new Promise((resolve) => setTimeout(resolve, 2000)),
-				]);
-
-				navigate({ to: "/success" });
-			} catch (error) {
-				console.error(error);
-				alert("온보딩 처리 중 오류가 발생했습니다. 다시 시도해주세요.");
-				setLoading(false);
-			}
-		}, 0);
+		try {
+			await Promise.all([
+				postOnBoarding(nickname.trim(), colorIndex + 1),
+				new Promise((resolve) => setTimeout(resolve, 1000)),
+			]);
+			navigate({ to: "/success" });
+		} catch (error) {
+			console.error(error);
+			alert("온보딩 처리 중 오류가 발생했습니다. 다시 시도해주세요.");
+		} finally {
+			setLoading(false);
+			isSubmitting.current = false;
+		}
 	};
 
 	return (

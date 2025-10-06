@@ -1,9 +1,11 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import type { Follow } from "@/entities/follow/model/types";
 import FollowListWrapper from "@/entities/follow/ui/FollowListWrapper";
 import FollowTab from "@/features/follow/FollowTab";
 import { useFollowerList } from "@/entities/follow/api/getFollowerList";
 import { useFollowingList } from "@/entities/follow/api/getFollowingList";
+import X from "@/shared/assets/icons/buttons/x.svg?react";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface Props {
 	isOpen: boolean;
@@ -23,8 +25,27 @@ export default function FollowModal({
 	const scrollRef = useRef<HTMLDivElement>(null);
 	const [activeTab, setActiveTab] = useState(initialTab);
 
+	const queryClient = useQueryClient();
+
 	const followerQuery = useFollowerList();
 	const followingQuery = useFollowingList();
+
+	useEffect(() => {
+		if (isOpen) {
+			queryClient.invalidateQueries({ queryKey: ["followerlist"] });
+			queryClient.invalidateQueries({ queryKey: ["followinglist"] });
+		}
+	}, [isOpen, queryClient]);
+
+	useEffect(() => {
+		if (!isOpen) return;
+
+		if (activeTab === "followers") {
+			queryClient.invalidateQueries({ queryKey: ["followerlist"] });
+		} else {
+			queryClient.invalidateQueries({ queryKey: ["followinglist"] });
+		}
+	}, [activeTab, isOpen, queryClient]);
 
 	if (!isOpen) return null;
 
@@ -54,17 +75,11 @@ export default function FollowModal({
 			: followingQuery.isLoading;
 
 	return (
-		<div className="fixed inset-0 bg-black/30 flex justify-center items-center z-50">
+		<div className="fixed inset-0 bg-black/60 flex justify-center items-center z-50">
 			<div className="bg-white w-[500px] max-h-[80vh] rounded-2xl flex flex-col">
 				<div className="flex flex-row items-center justify-between px-6 py-7">
 					<h2 className="text-[28px] font-semibold">팔로우</h2>
-					<button
-						type="button"
-						onClick={onClose}
-						className="text-2xl font-bold"
-					>
-						×
-					</button>
+					<X className="w-[22px] h-[22px]" onClick={onClose} />
 				</div>
 
 				<FollowTab

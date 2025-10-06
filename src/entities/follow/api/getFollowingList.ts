@@ -9,7 +9,6 @@ const getFollowingList = async (page: number): Promise<FollowList> => {
 			page,
 		},
 	});
-	console.log("following API response:", response.data);
 	return response.data;
 };
 
@@ -23,5 +22,7 @@ export const useFollowingList = () => {
 		getNextPageParam: (lastPage, allPages) =>
 			lastPage.hasNextPage ? allPages.length : undefined,
 		initialPageParam: 0,
+		staleTime: 0,
+		refetchOnMount: true,
 	});
 };

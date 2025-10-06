@@ -1,4 +1,3 @@
-// FollowListWrapper.tsx
 import { type RefObject } from "react";
 import type { Follow } from "@/entities/follow/model/types";
 import FollowListItem from "@/features/follow/FollowListItem";
@@ -35,8 +34,6 @@ export default function FollowListWrapper({
 		}
 	};
 
-	console.log("FollowListWrapper follow 배열:", follow); // 👈 map 전에 전체 배열 확인
-
 	return (
 		<div
 			ref={scrollRef}
@@ -54,7 +51,6 @@ export default function FollowListWrapper({
 			) : (
 				<ul className="flex flex-col px-6 py-4 gap-4">
 					{follow.map((item) => {
-						console.log("FollowListWrapper map item:", item); // 👈 map 안에서 아이템 확인
 						return <FollowListItem key={item.id} item={item} type={type} />;
 					})}
 				</ul>
