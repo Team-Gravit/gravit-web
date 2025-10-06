@@ -1,0 +1,127 @@
+@import 'tailwindcss';
+
+@theme {
+    /*기본 색상 비활성화*/
+    --color-gray-*: initial;
+
+    /*배경*/
+    --color-bg-gray: #f8f8f9;
+
+    /*버튼*/
+    --color-kakao-btn: #ffe240;
+
+    /*black*/
+    --color-black: #222124;
+
+    
+    /*gray*/
+    --color-gray-100: #f8f8f8;
+    --color-gray-200: #f2f2f2;
+    --color-gray-300: #dcdcdc;
+    --color-gray-500: #a8a8a8;
+    --color-gray-600: #6d6d6d;
+    --color-gray-700: #5a5a5a;
+    --color-gray-800: #494949;
+    --color-gray-900: #383838;
+
+    /*텍스트*/
+    --color-text1: #000;
+    --color-text2: #4c4c4c;
+
+    /*티어 색상*/
+    --color-bronze: #8d5200;
+    --color-silver: #b3b3b3;
+    --color-gold: #ffd900;
+    --color-platinum: #00ffda;
+    --color-diamond: #00e5ff;
+
+    /*메인 색상*/
+    --color-main-1: #ba00ff;
+    --color-main-2: #8100b3;
+    --color-main-end: #dd00ff;
+
+    /*학습 페이지 - 헤더*/
+    --color-neutral-20: #9747ff;
+    --color-neutral-60: #4d4d4d;
+    --color-neutral-100: #030303;
+
+    /*학습 페이지 - 문제 영역*/
+    --color-correct: #00a80b;
+    --color-error: #ff3b2f;
+    --color-error-info: #d00000;
+
+    /*프로필 색상*/
+    --color-profile-1: #eb1d64;
+    --color-profile-2: #f44334;
+    --color-profile-3: #ffea3f;
+    --color-profile-4: #4cae51;
+    --color-profile-5: #53a8eb;
+    --color-profile-6: #3f50b5;
+    --color-profile-7: #9d27b0;
+    --color-profile-8: #673ab7;
+    --color-profile-9: #808081;
+    --color-profile-10: #000;
+
+    /* 반응형 브레이크포인트 */
+    --breakpoint-sm: 640px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1024px;
+    --breakpoint-xl: 1280px;
+
+    /*폰트*/
+    --font-pretendard: 'Pretendard', sans-serif;
+    --font-mbc: 'MBC1961GulimM', sans-serif;
+
+    /*헤더*/
+    --header-height: 74px;
+}
+
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('/src/shared/assets/fonts/PretendardVariable.woff2')
+        format('woff2');
+    font-weight: 100 900; /* 모든 weight를 하나의 파일로 */
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'MBC1961GulimM';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961GulimM.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@layer base {
+    body {
+        @apply font-pretendard text-black leading-normal
+    }
+}
+
+@layer utilities {
+    .bg-main-gradient {
+        background: linear-gradient(45deg, var(--color-main-2) 0%, var(--color-main-end) 100%);
+    }
+
+    .text-main-gradient {
+        background: linear-gradient(45deg, var(--color-main-2) 0%, var(--color-main-end) 100%);
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .primary-btn {
+        border-radius: 10px;
+        background: #8100B3;
+        color: #fff;
+    }
+
+    .gray-btn {
+        border-radius: 10px;
+        background: var(--text-gray-500, #A8A8A8);
+        color: #fff;
+    }
+
+    .bg-space-gradient {
+        background: linear-gradient(293deg, #4721CA 3.59%, #17034E 95.08%);
+    }
+}
