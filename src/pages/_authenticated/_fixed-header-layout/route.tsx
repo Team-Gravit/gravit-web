@@ -11,5 +11,5 @@ function FixedHeaderLayoutComponent() {
 			<Header className="fixed" />
 			<Outlet />
 		</div>
-	)
+	);
 }

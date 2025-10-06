@@ -15,5 +15,5 @@ function FixedSidebarLayoutComponent() {
 				<Outlet />
 			</div>
 		</div>
-	)
+	);
 }

@@ -4,9 +4,7 @@ import Logo from "@/shared/ui/logo/Logo";
 import { useNavigate } from "@tanstack/react-router";
 import Greeting from "@/shared/assets/icons/greeting.svg?react";
 
-export const Route = createFileRoute(
-	"/_authenticated/_onboarding/success",
-)({
+export const Route = createFileRoute("/_authenticated/_onboarding/success")({
 	component: SuccessPage,
 });
 
@@ -31,5 +29,5 @@ function SuccessPage() {
 				</button>
 			</Form>
 		</>
-	)
+	);
 }
