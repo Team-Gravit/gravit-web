@@ -11,9 +11,8 @@ export const Route = createFileRoute("/login/oauth2/code/$provider")({
 });
 
 function OAuthCallback() {
-	const params = useParams({ from: Route.id }); // Route.id로 opts 지정
-	const provider = params.provider as string; // 타입 캐스팅
-
+	const params = useParams({ from: Route.id });
+	const provider = params.provider as string;
 	const location = useLocation();
 	const postOAuth = usePostOAuth();
 

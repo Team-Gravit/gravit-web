@@ -1,5 +1,5 @@
 import ProfileCard from "@/entities/user/ui/ProfileCard";
-import FollowModalButton from "@/features/follow/ModalButton";
+import FollowModalButton from "@/features/follow/FollowModalButton";
 import Badges from "@/entities/badge/Badges";
 import AddFriendButton from "@/features/friends/AddFriendButton";
 import { useUserInfo } from "@/entities/sidebar/api/getUserInfo";

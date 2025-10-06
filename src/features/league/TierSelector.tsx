@@ -29,7 +29,7 @@ export default function TierSelector({
 	};
 
 	return (
-		<div className="flex flex-row lg:w-full md:px-3 sm:pl-0 pl-36 py-8 items-center lg:justify-start justify-center gap-6 scroll-smooth overflow-x-auto">
+		<div className="flex flex-row lg:w-full md:px-3 sm:pl-0 pl-36 py-8 items-center lg:justify-start justify-center gap-6 scroll-smooth overflow-x-auto scrollbar-hide">
 			<div className="flex-shrink-0 w-[calc(50%+360px)] lg:w-[calc(50%-140px)]" />
 			{tiers.map((tier, index) => {
 				const isSelected = tier.id === selectedTierId;

@@ -9,6 +9,7 @@ const getFollowingList = async (page: number): Promise<FollowList> => {
 			page,
 		},
 	});
+	console.log("following API response:", response.data);
 	return response.data;
 };
 

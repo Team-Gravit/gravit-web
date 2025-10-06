@@ -1,9 +1,9 @@
-import { useState, useRef } from "react";
+import { useRef, useState } from "react";
+import type { Follow } from "@/entities/follow/model/types";
+import FollowListWrapper from "@/entities/follow/ui/FollowListWrapper";
+import FollowTab from "@/features/follow/FollowTab";
 import { useFollowerList } from "@/entities/follow/api/getFollowerList";
 import { useFollowingList } from "@/entities/follow/api/getFollowingList";
-import FollowListWrapper from "@/entities/follow/ui/FollowListWrapper";
-import type { Follow } from "@/entities/follow/model/types";
-import X from "@/shared/assets/icons/buttons/x.svg?react";
 
 interface Props {
 	isOpen: boolean;
@@ -20,10 +20,8 @@ export default function FollowModal({
 	followerCount,
 	followingCount,
 }: Props) {
-	const [activeTab, setActiveTab] = useState<"followers" | "following">(
-		initialTab,
-	);
 	const scrollRef = useRef<HTMLDivElement>(null);
+	const [activeTab, setActiveTab] = useState(initialTab);
 
 	const followerQuery = useFollowerList();
 	const followingQuery = useFollowingList();
@@ -60,33 +58,21 @@ export default function FollowModal({
 			<div className="bg-white w-[500px] max-h-[80vh] rounded-2xl flex flex-col">
 				<div className="flex flex-row items-center justify-between px-6 py-7">
 					<h2 className="text-[28px] font-semibold">팔로우</h2>
-					<X onClick={onClose} />
+					<button
+						type="button"
+						onClick={onClose}
+						className="text-2xl font-bold"
+					>
+						×
+					</button>
 				</div>
 
-				<div className="flex w-full">
-					<button
-						type="button"
-						className={`flex-1 flex items-center justify-center h-12 font-semibold text-2xl border-b-2 ${
-							activeTab === "followers"
-								? "border-black text-black"
-								: "border-[#CCC] text-[#CCC]"
-						}`}
-						onClick={() => setActiveTab("followers")}
-					>
-						팔로워 {followerCount}
-					</button>
-					<button
-						type="button"
-						className={`flex-1 flex items-center justify-center h-12 font-semibold text-2xl border-b-2 ${
-							activeTab === "following"
-								? "border-black text-black"
-								: "border-[#CCC] text-[#CCC]"
-						}`}
-						onClick={() => setActiveTab("following")}
-					>
-						팔로잉 {followingCount}
-					</button>
-				</div>
+				<FollowTab
+					activeTab={activeTab}
+					setActiveTab={setActiveTab}
+					followerCount={followerCount}
+					followingCount={followingCount}
+				/>
 
 				<FollowListWrapper
 					follow={displayedList}

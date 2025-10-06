@@ -19,16 +19,19 @@ export default function FollowModalButton({ userInfo }: Props) {
 					type="button"
 					className="w-[146.5px] h-12 flex flex-row items-center justify-center border border-[#000000]/10 rounded-lg gap-2"
 					onClick={() => {
+						console.log("팔로워 버튼 클릭!", userInfo);
 						setActiveTab("followers");
 						setModalOpen(true);
 					}}
 				>
 					팔로워 <span className="font-medium">{userInfo.follower}</span>
 				</button>
+
 				<button
 					type="button"
 					className="w-[146.5px] h-12 flex flex-row items-center justify-center border border-[#000000]/10 rounded-lg gap-2"
 					onClick={() => {
+						console.log("팔로잉 버튼 클릭!", userInfo);
 						setActiveTab("following");
 						setModalOpen(true);
 					}}

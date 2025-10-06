@@ -27,18 +27,22 @@ export default function NicknameForm({
 	helperTextSize = "text-sm",
 }: NicknameFormProps) {
 	useEffect(() => {
-		const trimmed = nickname.trim();
-		const nicknameRegex = /^[가-힣a-zA-Z0-9]{2,8}$/;
+		const nicknameRegex = /^[가-힣a-zA-Z0-9]{2,8}$/; // 2~8자, 공백/특수문자 금지
 
-		if (!trimmed) {
-			setIsLimit(false);
+		if (!nickname) {
+			setIsLimit(true);
 			setChecking(false);
 			return;
 		}
 
 		setChecking(true);
 		const handler = setTimeout(() => {
-			setIsLimit(!nicknameRegex.test(trimmed));
+			// 앞/뒤 공백 또는 중간 공백이 있으면 제한
+			if (nickname !== nickname.trim() || nickname.includes(" ")) {
+				setIsLimit(true);
+			} else {
+				setIsLimit(!nicknameRegex.test(nickname));
+			}
 			setChecking(false);
 		}, 200);
 
@@ -59,7 +63,7 @@ export default function NicknameForm({
 					className={`w-full px-4 py-2 rounded-lg text-[#4C4C4C] border ${
 						isLimit
 							? "border-[#FF0000]"
-							: nickname.trim()
+							: nickname
 								? "border-[#0033FF]"
 								: "border-[#C3C3C3]"
 					} focus:outline-none ${inputTextSize}`}
@@ -67,7 +71,7 @@ export default function NicknameForm({
 			</label>
 
 			<div className="min-h-[20px]">
-				{!checking && nickname.trim() && !isLimit && (
+				{!checking && nickname && !isLimit && (
 					<p className={helperTextSize + " text-[#868686]"}>
 						사용 가능한 닉네임이에요.
 					</p>
@@ -77,7 +81,7 @@ export default function NicknameForm({
 						사용 불가능한 닉네임이에요.
 					</p>
 				)}
-				{!checking && !nickname.trim() && !isLimit && helperText}
+				{!checking && !nickname && !isLimit && helperText}
 			</div>
 		</div>
 	);
