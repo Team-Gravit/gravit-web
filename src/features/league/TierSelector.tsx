@@ -44,11 +44,13 @@ export default function TierSelector({
 						}}
 						onClick={() => handleClick(tier.id, index)}
 						className={`flex flex-col items-center cursor-pointer transition-all duration-300 justify-center ${
-							isSelected ? "scale-110 px-4" : ""
+							isSelected ? "scale-110 px-4" : "brightness-75"
 						} min-h-[140px]`}
 					>
 						<div className="flex items-center justify-center">
-							<TierIcon className={isSelected ? "w-52 h-52" : "w-48 h-48"} />
+							<TierIcon
+								className={isSelected ? "w-[216px] h-[216px]" : "w-48 h-48 "}
+							/>
 						</div>
 						<div
 							className="flex flex-col items-center justify-center pt-4 min-h-[60px]"
