@@ -1,9 +1,11 @@
-import { useState, useRef } from "react";
+import { useRef, useState, useEffect } from "react";
+import type { Follow } from "@/entities/follow/model/types";
+import FollowListWrapper from "@/entities/follow/ui/FollowListWrapper";
+import FollowTab from "@/features/follow/FollowTab";
 import { useFollowerList } from "@/entities/follow/api/getFollowerList";
 import { useFollowingList } from "@/entities/follow/api/getFollowingList";
-import FollowListWrapper from "@/entities/follow/ui/FollowListWrapper";
-import type { Follow } from "@/entities/follow/model/types";
 import X from "@/shared/assets/icons/buttons/x.svg?react";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface Props {
 	isOpen: boolean;
@@ -20,13 +22,30 @@ export default function FollowModal({
 	followerCount,
 	followingCount,
 }: Props) {
-	const [activeTab, setActiveTab] = useState<"followers" | "following">(
-		initialTab,
-	);
 	const scrollRef = useRef<HTMLDivElement>(null);
+	const [activeTab, setActiveTab] = useState(initialTab);
+
+	const queryClient = useQueryClient();
 
 	const followerQuery = useFollowerList();
 	const followingQuery = useFollowingList();
+
+	useEffect(() => {
+		if (isOpen) {
+			queryClient.invalidateQueries({ queryKey: ["followerlist"] });
+			queryClient.invalidateQueries({ queryKey: ["followinglist"] });
+		}
+	}, [isOpen, queryClient]);
+
+	useEffect(() => {
+		if (!isOpen) return;
+
+		if (activeTab === "followers") {
+			queryClient.invalidateQueries({ queryKey: ["followerlist"] });
+		} else {
+			queryClient.invalidateQueries({ queryKey: ["followinglist"] });
+		}
+	}, [activeTab, isOpen, queryClient]);
 
 	if (!isOpen) return null;
 
@@ -56,37 +75,19 @@ export default function FollowModal({
 			: followingQuery.isLoading;
 
 	return (
-		<div className="fixed inset-0 bg-black/30 flex justify-center items-center z-50">
+		<div className="fixed inset-0 bg-black/60 flex justify-center items-center z-50">
 			<div className="bg-white w-[500px] max-h-[80vh] rounded-2xl flex flex-col">
 				<div className="flex flex-row items-center justify-between px-6 py-7">
 					<h2 className="text-[28px] font-semibold">팔로우</h2>
-					<X onClick={onClose} />
+					<X className="w-[22px] h-[22px]" onClick={onClose} />
 				</div>
 
-				<div className="flex w-full">
-					<button
-						type="button"
-						className={`flex-1 flex items-center justify-center h-12 font-semibold text-2xl border-b-2 ${
-							activeTab === "followers"
-								? "border-black text-black"
-								: "border-[#CCC] text-[#CCC]"
-						}`}
-						onClick={() => setActiveTab("followers")}
-					>
-						팔로워 {followerCount}
-					</button>
-					<button
-						type="button"
-						className={`flex-1 flex items-center justify-center h-12 font-semibold text-2xl border-b-2 ${
-							activeTab === "following"
-								? "border-black text-black"
-								: "border-[#CCC] text-[#CCC]"
-						}`}
-						onClick={() => setActiveTab("following")}
-					>
-						팔로잉 {followingCount}
-					</button>
-				</div>
+				<FollowTab
+					activeTab={activeTab}
+					setActiveTab={setActiveTab}
+					followerCount={followerCount}
+					followingCount={followingCount}
+				/>
 
 				<FollowListWrapper
 					follow={displayedList}

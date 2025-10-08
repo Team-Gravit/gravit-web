@@ -19,7 +19,6 @@ import { Route as AuthenticatedOnboardingOnboardingRouteImport } from './../../p
 import { Route as AuthenticatedFixedHeaderLayoutTestRouteImport } from './../../pages/_authenticated/_fixed-header-layout/test'
 import { Route as AuthenticatedFixedHeaderLayoutMainRouteImport } from './../../pages/_authenticated/_fixed-header-layout/main'
 import { Route as AuthenticatedFixedHeaderLayoutLeagueRouteImport } from './../../pages/_authenticated/_fixed-header-layout/league'
-import { Route as AuthenticatedFixedHeaderLayoutAddfriendRouteImport } from './../../pages/_authenticated/_fixed-header-layout/addfriend'
 import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/route'
 import { Route as AuthenticatedFixedHeaderLayoutLearnIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/learn/index'
 import { Route as LoginOauth2CodeProviderRouteImport } from './../../pages/login/oauth2/code/$provider'
@@ -86,12 +85,6 @@ const AuthenticatedFixedHeaderLayoutLeagueRoute =
   AuthenticatedFixedHeaderLayoutLeagueRouteImport.update({
     id: '/league',
     path: '/league',
-    getParentRoute: () => AuthenticatedFixedHeaderLayoutRouteRoute,
-  } as any)
-const AuthenticatedFixedHeaderLayoutAddfriendRoute =
-  AuthenticatedFixedHeaderLayoutAddfriendRouteImport.update({
-    id: '/addfriend',
-    path: '/addfriend',
     getParentRoute: () => AuthenticatedFixedHeaderLayoutRouteRoute,
   } as any)
 const AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRoute =
@@ -190,7 +183,6 @@ const AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageNoticeIdInde
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/addfriend': typeof AuthenticatedFixedHeaderLayoutAddfriendRoute
   '/league': typeof AuthenticatedFixedHeaderLayoutLeagueRoute
   '/main': typeof AuthenticatedFixedHeaderLayoutMainRoute
   '/test': typeof AuthenticatedFixedHeaderLayoutTestRoute
@@ -211,7 +203,6 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/addfriend': typeof AuthenticatedFixedHeaderLayoutAddfriendRoute
   '/league': typeof AuthenticatedFixedHeaderLayoutLeagueRoute
   '/main': typeof AuthenticatedFixedHeaderLayoutMainRoute
   '/test': typeof AuthenticatedFixedHeaderLayoutTestRoute
@@ -238,7 +229,6 @@ export interface FileRoutesById {
   '/_authenticated/_fixed-header-layout': typeof AuthenticatedFixedHeaderLayoutRouteRouteWithChildren
   '/_authenticated/_onboarding': typeof AuthenticatedOnboardingRouteRouteWithChildren
   '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRouteWithChildren
-  '/_authenticated/_fixed-header-layout/addfriend': typeof AuthenticatedFixedHeaderLayoutAddfriendRoute
   '/_authenticated/_fixed-header-layout/league': typeof AuthenticatedFixedHeaderLayoutLeagueRoute
   '/_authenticated/_fixed-header-layout/main': typeof AuthenticatedFixedHeaderLayoutMainRoute
   '/_authenticated/_fixed-header-layout/test': typeof AuthenticatedFixedHeaderLayoutTestRoute
@@ -261,7 +251,6 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/addfriend'
     | '/league'
     | '/main'
     | '/test'
@@ -282,7 +271,6 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/addfriend'
     | '/league'
     | '/main'
     | '/test'
@@ -308,7 +296,6 @@ export interface FileRouteTypes {
     | '/_authenticated/_fixed-header-layout'
     | '/_authenticated/_onboarding'
     | '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout'
-    | '/_authenticated/_fixed-header-layout/addfriend'
     | '/_authenticated/_fixed-header-layout/league'
     | '/_authenticated/_fixed-header-layout/main'
     | '/_authenticated/_fixed-header-layout/test'
@@ -404,13 +391,6 @@ declare module '@tanstack/react-router' {
       path: '/league'
       fullPath: '/league'
       preLoaderRoute: typeof AuthenticatedFixedHeaderLayoutLeagueRouteImport
-      parentRoute: typeof AuthenticatedFixedHeaderLayoutRouteRoute
-    }
-    '/_authenticated/_fixed-header-layout/addfriend': {
-      id: '/_authenticated/_fixed-header-layout/addfriend'
-      path: '/addfriend'
-      fullPath: '/addfriend'
-      preLoaderRoute: typeof AuthenticatedFixedHeaderLayoutAddfriendRouteImport
       parentRoute: typeof AuthenticatedFixedHeaderLayoutRouteRoute
     }
     '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout': {
@@ -557,7 +537,6 @@ const AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRouteWithChildren =
 
 interface AuthenticatedFixedHeaderLayoutRouteRouteChildren {
   AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRoute: typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRouteWithChildren
-  AuthenticatedFixedHeaderLayoutAddfriendRoute: typeof AuthenticatedFixedHeaderLayoutAddfriendRoute
   AuthenticatedFixedHeaderLayoutLeagueRoute: typeof AuthenticatedFixedHeaderLayoutLeagueRoute
   AuthenticatedFixedHeaderLayoutMainRoute: typeof AuthenticatedFixedHeaderLayoutMainRoute
   AuthenticatedFixedHeaderLayoutTestRoute: typeof AuthenticatedFixedHeaderLayoutTestRoute
@@ -570,8 +549,6 @@ const AuthenticatedFixedHeaderLayoutRouteRouteChildren: AuthenticatedFixedHeader
   {
     AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRoute:
       AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRouteWithChildren,
-    AuthenticatedFixedHeaderLayoutAddfriendRoute:
-      AuthenticatedFixedHeaderLayoutAddfriendRoute,
     AuthenticatedFixedHeaderLayoutLeagueRoute:
       AuthenticatedFixedHeaderLayoutLeagueRoute,
     AuthenticatedFixedHeaderLayoutMainRoute:

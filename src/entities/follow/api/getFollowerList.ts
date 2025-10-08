@@ -22,5 +22,7 @@ export const useFollowerList = () => {
 		getNextPageParam: (lastPage, allPages) =>
 			lastPage.hasNextPage ? allPages.length : undefined,
 		initialPageParam: 0,
+		staleTime: 0,
+		refetchOnMount: true,
 	});
 };

@@ -124,4 +124,10 @@
     .bg-space-gradient {
         background: linear-gradient(293deg, #4721CA 3.59%, #17034E 95.08%);
     }
+    .scrollbar-hide {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    scrollbar-width: none;
+  }
 }

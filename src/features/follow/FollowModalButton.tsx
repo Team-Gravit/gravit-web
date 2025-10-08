@@ -25,6 +25,7 @@ export default function FollowModalButton({ userInfo }: Props) {
 				>
 					팔로워 <span className="font-medium">{userInfo.follower}</span>
 				</button>
+
 				<button
 					type="button"
 					className="w-[146.5px] h-12 flex flex-row items-center justify-center border border-[#000000]/10 rounded-lg gap-2"

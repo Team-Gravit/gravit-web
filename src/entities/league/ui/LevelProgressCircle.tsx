@@ -1,23 +1,24 @@
 import { useId } from "react";
+import { getLevelInfo } from "@/shared/lib/levelTable";
 
 interface LevelProgressCircleProps {
-	level: number;
-	maxLevel?: number;
+	xp: number;
 	children?: React.ReactNode;
 }
 
 export default function LevelProgressCircle({
-	level,
-	maxLevel = 10,
+	xp,
 	children,
 }: LevelProgressCircleProps) {
 	const size = 46;
 	const strokeWidth = 4;
 	const radius = (size - strokeWidth) / 2;
 	const circumference = 2 * Math.PI * radius;
-	const progress = Math.min(level / maxLevel, 1);
-	const dashOffset = circumference * (1 - progress);
 
+	// ✅ 헬퍼 함수 사용
+	const { level, progress } = getLevelInfo(xp);
+
+	const dashOffset = circumference * (1 - progress);
 	const uniqueId = useId();
 	const gradientId = `levelGradient-${uniqueId}`;
 	const titleId = `levelProgressTitle-${uniqueId}`;
@@ -44,6 +45,8 @@ export default function LevelProgressCircle({
 					r={radius}
 					strokeWidth={strokeWidth}
 					fill="none"
+					className="text-gray-200"
+					stroke="currentColor"
 				/>
 				<circle
 					cx={size / 2}

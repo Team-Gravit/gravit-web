@@ -27,10 +27,9 @@ export default function NicknameForm({
 	helperTextSize = "text-sm",
 }: NicknameFormProps) {
 	useEffect(() => {
-		const trimmed = nickname.trim();
 		const nicknameRegex = /^[가-힣a-zA-Z0-9]{2,8}$/;
 
-		if (!trimmed) {
+		if (!nickname) {
 			setIsLimit(false);
 			setChecking(false);
 			return;
@@ -38,7 +37,11 @@ export default function NicknameForm({
 
 		setChecking(true);
 		const handler = setTimeout(() => {
-			setIsLimit(!nicknameRegex.test(trimmed));
+			if (nickname[0] === " ") {
+				setIsLimit(true);
+			} else {
+				setIsLimit(!nicknameRegex.test(nickname));
+			}
 			setChecking(false);
 		}, 200);
 
@@ -68,12 +71,12 @@ export default function NicknameForm({
 
 			<div className="min-h-[20px]">
 				{!checking && nickname.trim() && !isLimit && (
-					<p className={helperTextSize + " text-[#868686]"}>
+					<p className={`${helperTextSize} text-[#868686]`}>
 						사용 가능한 닉네임이에요.
 					</p>
 				)}
 				{!checking && isLimit && (
-					<p className={helperTextSize + " text-[#FF0000]"}>
+					<p className={`${helperTextSize} text-[#FF0000]`}>
 						사용 불가능한 닉네임이에요.
 					</p>
 				)}

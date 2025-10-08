@@ -29,7 +29,7 @@ export default function TierSelector({
 	};
 
 	return (
-		<div className="flex flex-row lg:w-full md:px-3 sm:pl-0 pl-36 py-8 items-center lg:justify-start justify-center gap-6 scroll-smooth overflow-x-auto">
+		<div className="flex flex-row lg:w-full md:px-3 sm:pl-0 pl-36 py-8 items-center lg:justify-start justify-center gap-6 scroll-smooth overflow-x-auto scrollbar-hide">
 			<div className="flex-shrink-0 w-[calc(50%+360px)] lg:w-[calc(50%-140px)]" />
 			{tiers.map((tier, index) => {
 				const isSelected = tier.id === selectedTierId;
@@ -44,11 +44,13 @@ export default function TierSelector({
 						}}
 						onClick={() => handleClick(tier.id, index)}
 						className={`flex flex-col items-center cursor-pointer transition-all duration-300 justify-center ${
-							isSelected ? "scale-110 px-4" : ""
+							isSelected ? "scale-110 px-4" : "brightness-75"
 						} min-h-[140px]`}
 					>
 						<div className="flex items-center justify-center">
-							<TierIcon className={isSelected ? "w-52 h-52" : "w-48 h-48"} />
+							<TierIcon
+								className={isSelected ? "w-[216px] h-[216px]" : "w-48 h-48 "}
+							/>
 						</div>
 						<div
 							className="flex flex-col items-center justify-center pt-4 min-h-[60px]"

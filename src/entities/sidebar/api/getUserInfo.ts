@@ -12,7 +12,7 @@ export const useUserInfo = () => {
 	return useQuery<UserInfo, AxiosError>({
 		queryKey: ["userinfo"],
 		queryFn: getUserInfo,
-		staleTime: 1000 * 60,
+		staleTime: 0,
 		retry: 1,
 	});
 };

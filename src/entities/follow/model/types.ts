@@ -1,5 +1,5 @@
 export interface Follow {
-	Id: number;
+	id: number;
 	profileImgNumber: number;
 	nickname: string;
 	handle: string;
