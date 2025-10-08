@@ -12,5 +12,5 @@ export default function Index() {
 		<div className="w-full min-h-screen">
 			<SettingsBox />
 		</div>
-	)
+	);
 }

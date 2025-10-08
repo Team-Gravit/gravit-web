@@ -7,11 +7,11 @@ import UnitPopover from "@/widgets/learning-widget/UnitPopover";
 import { useFetchUnits } from "@/entities/learning/model/hooks";
 import CircularSegmentIndicator from "@/entities/learning/ui/CircularSegmentIndicator";
 
-export const Route = createFileRoute("/_authenticated/_fixed-header-layout/learn/$chapterId/")(
-	{
-		component: RouteComponent,
-	},
-);
+export const Route = createFileRoute(
+	"/_authenticated/_fixed-header-layout/learn/$chapterId/",
+)({
+	component: RouteComponent,
+});
 
 function RouteComponent() {
 	const { chapterId } = Route.useParams();
@@ -42,14 +42,14 @@ function RouteComponent() {
 			"right-[60%]",
 			"right-[40%]",
 			"right-[20%]",
-		]
+		];
 		const horizontalClass = positions[idx % 6];
 
 		return {
 			className: `absolute cursor-pointer ${horizontalClass}`,
 			style: { top: `${currentTop}px` },
-		}
-	}
+		};
+	};
 
 	const { className, style } = getAsteroidPosition(units.length);
 
@@ -120,7 +120,7 @@ function RouteComponent() {
 								)}
 							</Popover>
 						</div>
-					)
+					);
 				})}
 				<img
 					alt="행성"
@@ -130,5 +130,5 @@ function RouteComponent() {
 				/>
 			</div>
 		</main>
-	)
+	);
 }

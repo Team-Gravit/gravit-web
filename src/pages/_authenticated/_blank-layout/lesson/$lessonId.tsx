@@ -22,7 +22,9 @@ import { quizApi } from "@/features/quiz/api/api";
 import QuizResultWidget from "@/widgets/learning-widget/QuizResultWidget";
 import { useMinimumLoadingTime } from "@/widgets/learning-widget/lib/useMinimumLoadingTime";
 
-export const Route = createFileRoute("/_authenticated/_blank-layout/lesson/$lessonId")({
+export const Route = createFileRoute(
+	"/_authenticated/_blank-layout/lesson/$lessonId",
+)({
 	component: RouteComponent,
 });
 
@@ -35,7 +37,7 @@ function RouteComponent() {
 	const userAnswers = useQuizStateStore((state) => state.userAnswers);
 	const currentProblemIndex = useQuizStateStore(
 		(state) => state.currentProblemIndex,
-	)
+	);
 	const resetQuiz = useQuizStateStore((state) => state.resetQuiz);
 	const isQuizCompleted = useQuizStateStore((state) => state.isQuizCompleted);
 	const pauseTime = useQuizStateStore((state) => state.pauseTime);
@@ -68,7 +70,7 @@ function RouteComponent() {
 			<main className="flex-grow flex flex-col items-center">
 				<LoadingWidget />
 			</main>
-		)
+		);
 	}
 
 	if (isError) {
@@ -92,14 +94,14 @@ function RouteComponent() {
 			quitModalRef.current?.open();
 			pauseTime();
 		}
-	}
+	};
 
 	const handleClickReport = () => {
 		if (reportModalRef) {
 			reportModalRef.current?.open();
 			pauseTime();
 		}
-	}
+	};
 
 	return (
 		<>
@@ -118,16 +120,16 @@ function RouteComponent() {
 							confirmText="그만두기"
 							cancelText="계속하기"
 							onConfirm={() => {
-								resetQuiz()
-								resetTime()
+								resetQuiz();
+								resetTime();
 								navigate({
 									to: "/learn/$chapterId",
 									params: { chapterId: chapterId.toString() },
-								})
+								});
 							}}
 							onCancel={() => {
-								resumeTime()
-								console.log("닫힘!")
+								resumeTime();
+								console.log("닫힘!");
 							}}
 						/>
 						<ReportModal
@@ -139,7 +141,7 @@ function RouteComponent() {
 									reportType,
 									content: trimmedContent,
 									problemId: problems[currentProblemIndex].problemId,
-								})
+								});
 							}}
 							onCancel={() => resumeTime()}
 						/>
@@ -189,5 +191,5 @@ function RouteComponent() {
 				<QuizResultWidget lessonId={lessonId} chapterId={String(chapterId)} />
 			)}
 		</>
-	)
+	);
 }

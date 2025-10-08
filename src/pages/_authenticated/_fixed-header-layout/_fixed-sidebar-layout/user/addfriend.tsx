@@ -37,7 +37,7 @@ export default function RouteComponent() {
 			) {
 				fetchNextPage();
 			}
-		}
+		};
 		window.addEventListener("scroll", handleScroll);
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, [fetchNextPage, hasNextPage, isFetchingNextPage]);
@@ -64,5 +64,5 @@ export default function RouteComponent() {
 				)}
 			</div>
 		</div>
-	)
+	);
 }
