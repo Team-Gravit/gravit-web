@@ -6,6 +6,7 @@ interface User {
 	userId: number;
 	nickname: string;
 	level: number;
+	xp: number;
 	lp: number;
 	rank: number;
 	profileImgNumber: number;
@@ -38,7 +39,7 @@ export default function UserRankList({ users, loading }: UserListProps) {
 								{String(user.rank).padStart(3, "0")}
 							</span>
 							<div className="flex w-14 h-14 h- items-center justify-center">
-								<LevelProgressCircle level={user.level} maxLevel={10}>
+								<LevelProgressCircle xp={user.xp}>
 									<Profile2
 										className="w-10 h-10"
 										style={{ color: profileBgColor }}
