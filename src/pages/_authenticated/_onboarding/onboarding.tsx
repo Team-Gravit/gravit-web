@@ -1,16 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useRef } from "react";
 import { useNavigate } from "@tanstack/react-router";
-import Background from "@/shared/ui/background/Background";
 import Form from "@/shared/ui/form/Form";
+
 import Logo from "@/shared/ui/logo/Logo";
 import ProfileSelector from "@/features/onboarding/ui/ProfileSelecter";
 import NicknameForm from "@/features/onboarding/ui/NicknameForm";
 import { postOnBoarding } from "@/features/onboarding/api/postOnboarding";
 
-export const Route = createFileRoute(
-	"/_authenticated/_fixed-header-layout/onboarding",
-)({
+export const Route = createFileRoute("/_authenticated/_onboarding/onboarding")({
 	component: OnboardingPage,
 });
 
@@ -58,7 +56,7 @@ function OnboardingPage() {
 	};
 
 	return (
-		<Background>
+		<>
 			<Logo />
 			<Form className="w-[549px] h-[460px] py-8 px-28">
 				<ProfileSelector onChange={setColorIndex} />
@@ -93,6 +91,6 @@ function OnboardingPage() {
 					)}
 				</button>
 			</Form>
-		</Background>
+		</>
 	);
 }

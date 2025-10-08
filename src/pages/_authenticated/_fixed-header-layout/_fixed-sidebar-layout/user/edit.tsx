@@ -26,7 +26,7 @@ function RouteComponent() {
 		if (isLimit)
 			return alert(
 				"닉네임은 2자 이상 8자 이하이며, 공백 및 특수문자는 사용할 수 없어요.",
-			)
+			);
 
 		mutate(
 			{ nickname: nickname.trim(), profilePhotoNumber: colorIndex + 1 },
@@ -35,8 +35,8 @@ function RouteComponent() {
 				onError: () =>
 					alert("프로필 수정 중 오류가 발생했습니다. 다시 시도해주세요."),
 			},
-		)
-	}
+		);
+	};
 
 	return (
 		<div className="w-full h-full flex flex-col items-center bg-[#f2f2f2] p-8">
@@ -87,5 +87,5 @@ function RouteComponent() {
 				</div>
 			</Form>
 		</div>
-	)
+	);
 }
