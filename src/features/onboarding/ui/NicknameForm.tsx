@@ -12,6 +12,7 @@ interface NicknameFormProps {
 	labelTextSize?: string;
 	inputTextSize?: string;
 	helperTextSize?: string;
+	helperFontColor?: string;
 }
 
 export default function NicknameForm({
@@ -25,6 +26,7 @@ export default function NicknameForm({
 	labelTextSize = "text-lg",
 	inputTextSize = "text-lg",
 	helperTextSize = "text-sm",
+	helperFontColor,
 }: NicknameFormProps) {
 	useEffect(() => {
 		const nicknameRegex = /^[가-힣a-zA-Z0-9]{2,8}$/;
@@ -48,10 +50,13 @@ export default function NicknameForm({
 		return () => clearTimeout(handler);
 	}, [nickname, setIsLimit, setChecking]);
 
+	const availableColor = helperFontColor ?? "#868686";
+	const unavailableColor = helperFontColor ?? "#FF0000";
+
 	return (
-		<div className="flex flex-col gap-2 mt-7 mb-8 w-full">
+		<div className="flex flex-col gap-2 mt-7 mb-6 w-full">
 			<label
-				className={`mb-2 font-semibold flex flex-col gap-3 ${labelTextSize}`}
+				className={`mb-2 font-semibold flex flex-col gap-3 text-white ${labelTextSize}`}
 			>
 				<span className={labelTextSize}>닉네임 설정</span>
 				<input
@@ -59,11 +64,11 @@ export default function NicknameForm({
 					value={nickname}
 					onChange={(e) => setNickname(e.target.value)}
 					placeholder="닉네임"
-					className={`w-full px-4 py-2 rounded-lg text-[#4C4C4C] border ${
+					className={`w-full px-4 py-2 rounded-lg text-[#4C4C4C] font-normal border-2 bg-white ${
 						isLimit
-							? "border-[#FF0000]"
+							? "border-[#FF3B2F]"
 							: nickname.trim()
-								? "border-[#0033FF]"
+								? "border-[#55BE24]"
 								: "border-[#C3C3C3]"
 					} focus:outline-none ${inputTextSize}`}
 				/>
@@ -71,16 +76,18 @@ export default function NicknameForm({
 
 			<div className="min-h-[20px]">
 				{!checking && nickname.trim() && !isLimit && (
-					<p className={`${helperTextSize} text-[#868686]`}>
+					<p className={helperTextSize} style={{ color: availableColor }}>
 						사용 가능한 닉네임이에요.
 					</p>
 				)}
 				{!checking && isLimit && (
-					<p className={`${helperTextSize} text-[#FF0000]`}>
+					<p className={helperTextSize} style={{ color: unavailableColor }}>
 						사용 불가능한 닉네임이에요.
 					</p>
 				)}
-				{!checking && !nickname.trim() && !isLimit && helperText}
+				{!checking && !nickname.trim() && !isLimit && helperText && (
+					<p className={helperTextSize}>{helperText}</p>
+				)}
 			</div>
 		</div>
 	);

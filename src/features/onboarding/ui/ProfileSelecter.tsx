@@ -39,7 +39,7 @@ export default function ProfileSelector({
 			style={{ gap: `${gap * 0.25}rem` }}
 		>
 			<button type="button" onClick={handlePrev}>
-				<LeftArrow className="mt-0.5 cursor-pointer" />
+				<LeftArrow className="mt-0.5 cursor-pointer text-[#f8f8f8]" />
 			</button>
 
 			<Profile
@@ -48,7 +48,7 @@ export default function ProfileSelector({
 			/>
 
 			<button type="button" onClick={handleNext}>
-				<RightArrow className="cursor-pointer" />
+				<RightArrow className="cursor-pointer text-[#f8f8f8]" />
 			</button>
 		</div>
 	);
