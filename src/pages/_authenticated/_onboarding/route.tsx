@@ -15,7 +15,7 @@ function RouteComponent() {
 				</Link>
 			</header>
 			<div
-				className="w-full flex flex-col items-center py-10 gap-4 bg-no-repeat bg-top bg-cover"
+				className="w-full h-screen flex flex-col items-center py-10 gap-4 bg-no-repeat bg-top bg-cover"
 				style={{
 					backgroundImage: `url(${BackgroundImage})`,
 				}}
