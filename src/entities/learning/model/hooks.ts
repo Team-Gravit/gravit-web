@@ -25,7 +25,7 @@ export const useFetchProblems = (lessonId: number) => {
 
 export const useFetchChapters = () => {
 	const query = useQuery({
-		queryKey: ["chapters"],
+		queryKey: ["learning", "chapters"],
 		queryFn: () => learningApi.getChapterList(),
 		select: (data) => ({
 			chapters: data,
@@ -40,7 +40,7 @@ export const useFetchChapters = () => {
 
 export const useFetchUnits = (chapterId: number) => {
 	const query = useQuery({
-		queryKey: ["units", chapterId],
+		queryKey: ["learning", "units", chapterId],
 		queryFn: () => learningApi.getUnitList(chapterId),
 	});
 
