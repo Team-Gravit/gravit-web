@@ -94,7 +94,8 @@ function RouteComponent() {
 									<UnitPopover
 										unitId={unitId.toString()}
 										lessonId={lessonId.toString()}
-										lessonName={unitName}
+										unitName={unitName}
+										lessonName={lessons[0].name}
 										isActive={isUnLocked}
 									/>
 								}
