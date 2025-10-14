@@ -44,7 +44,7 @@ export default function RecentLearningCard({
 			<>
 				<div className="relative z-10">
 					<div className="flex justify-between items-center mb-2">
-						<p className="text-white font-mbc text-lg font-normal  text-center">
+						<p className="text-white font-mbc text-lg font-normal text-center">
 							이어서 학습하기
 						</p>
 						<Tooltip
@@ -83,7 +83,7 @@ export default function RecentLearningCard({
 	return (
 		<Link to={linkUrl} className="h-full">
 			<Card
-				className="min-h-[350px] overflow-hidden group relative p-8 flex-grow bg-cover bg-center bg-no-repeat h-full cursor-pointer"
+				className="min-h-[350px] overflow-hidden group relative p-8 flex-grow bg-cover bg-center bg-no-repeat h-full cursor-pointer "
 				style={{ backgroundImage: `url(${backgroundImg})` }}
 			>
 				<div className="absolute inset-0 bg-black/20 group-hover:opacity-0 transition-all ease-out duration-500 z-5" />
