@@ -93,6 +93,13 @@ function Index() {
 								학습할 수 있어요.
 							</p>
 						</div>
+						<div
+							className="w-full absolute h-[460px] left-0 bottom-0"
+							style={{
+								background:
+									"linear-gradient(180deg, rgba(255, 255, 255, 0) 3.96%, #FFF 98%)",
+							}}
+						/>
 					</section>
 				</div>
 				<section className="w-full h-[867px] flex items-center px-[136px] justify-between">
