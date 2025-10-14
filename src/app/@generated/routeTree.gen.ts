@@ -23,6 +23,7 @@ import { Route as AuthenticatedFixedHeaderLayoutAddfriendRouteImport } from './.
 import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/route'
 import { Route as AuthenticatedFixedHeaderLayoutLearnIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/learn/index'
 import { Route as LoginOauth2CodeProviderRouteImport } from './../../pages/login/oauth2/code/$provider'
+import { Route as AuthenticatedBlankLayoutLessonResultRouteImport } from './../../pages/_authenticated/_blank-layout/lesson/result'
 import { Route as AuthenticatedBlankLayoutLessonLessonIdRouteImport } from './../../pages/_authenticated/_blank-layout/lesson/$lessonId'
 import { Route as AuthenticatedFixedHeaderLayoutLearnChapterIdIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/learn/$chapterId/index'
 import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/index'
@@ -110,6 +111,12 @@ const LoginOauth2CodeProviderRoute = LoginOauth2CodeProviderRouteImport.update({
   path: '/login/oauth2/code/$provider',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedBlankLayoutLessonResultRoute =
+  AuthenticatedBlankLayoutLessonResultRouteImport.update({
+    id: '/lesson/result',
+    path: '/lesson/result',
+    getParentRoute: () => AuthenticatedBlankLayoutRouteRoute,
+  } as any)
 const AuthenticatedBlankLayoutLessonLessonIdRoute =
   AuthenticatedBlankLayoutLessonLessonIdRouteImport.update({
     id: '/lesson/$lessonId',
@@ -197,6 +204,7 @@ export interface FileRoutesByFullPath {
   '/onboarding': typeof AuthenticatedOnboardingOnboardingRoute
   '/success': typeof AuthenticatedOnboardingSuccessRoute
   '/lesson/$lessonId': typeof AuthenticatedBlankLayoutLessonLessonIdRoute
+  '/lesson/result': typeof AuthenticatedBlankLayoutLessonResultRoute
   '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
   '/learn': typeof AuthenticatedFixedHeaderLayoutLearnIndexRoute
   '/user/addfriend': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserAddfriendRoute
@@ -218,6 +226,7 @@ export interface FileRoutesByTo {
   '/onboarding': typeof AuthenticatedOnboardingOnboardingRoute
   '/success': typeof AuthenticatedOnboardingSuccessRoute
   '/lesson/$lessonId': typeof AuthenticatedBlankLayoutLessonLessonIdRoute
+  '/lesson/result': typeof AuthenticatedBlankLayoutLessonResultRoute
   '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
   '/learn': typeof AuthenticatedFixedHeaderLayoutLearnIndexRoute
   '/user/addfriend': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserAddfriendRoute
@@ -245,6 +254,7 @@ export interface FileRoutesById {
   '/_authenticated/_onboarding/onboarding': typeof AuthenticatedOnboardingOnboardingRoute
   '/_authenticated/_onboarding/success': typeof AuthenticatedOnboardingSuccessRoute
   '/_authenticated/_blank-layout/lesson/$lessonId': typeof AuthenticatedBlankLayoutLessonLessonIdRoute
+  '/_authenticated/_blank-layout/lesson/result': typeof AuthenticatedBlankLayoutLessonResultRoute
   '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
   '/_authenticated/_fixed-header-layout/learn/': typeof AuthenticatedFixedHeaderLayoutLearnIndexRoute
   '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/addfriend': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserAddfriendRoute
@@ -268,6 +278,7 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/success'
     | '/lesson/$lessonId'
+    | '/lesson/result'
     | '/login/oauth2/code/$provider'
     | '/learn'
     | '/user/addfriend'
@@ -289,6 +300,7 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/success'
     | '/lesson/$lessonId'
+    | '/lesson/result'
     | '/login/oauth2/code/$provider'
     | '/learn'
     | '/user/addfriend'
@@ -315,6 +327,7 @@ export interface FileRouteTypes {
     | '/_authenticated/_onboarding/onboarding'
     | '/_authenticated/_onboarding/success'
     | '/_authenticated/_blank-layout/lesson/$lessonId'
+    | '/_authenticated/_blank-layout/lesson/result'
     | '/login/oauth2/code/$provider'
     | '/_authenticated/_fixed-header-layout/learn/'
     | '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/addfriend'
@@ -434,6 +447,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginOauth2CodeProviderRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/_blank-layout/lesson/result': {
+      id: '/_authenticated/_blank-layout/lesson/result'
+      path: '/lesson/result'
+      fullPath: '/lesson/result'
+      preLoaderRoute: typeof AuthenticatedBlankLayoutLessonResultRouteImport
+      parentRoute: typeof AuthenticatedBlankLayoutRouteRoute
+    }
     '/_authenticated/_blank-layout/lesson/$lessonId': {
       id: '/_authenticated/_blank-layout/lesson/$lessonId'
       path: '/lesson/$lessonId'
@@ -509,12 +529,15 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedBlankLayoutRouteRouteChildren {
   AuthenticatedBlankLayoutLessonLessonIdRoute: typeof AuthenticatedBlankLayoutLessonLessonIdRoute
+  AuthenticatedBlankLayoutLessonResultRoute: typeof AuthenticatedBlankLayoutLessonResultRoute
 }
 
 const AuthenticatedBlankLayoutRouteRouteChildren: AuthenticatedBlankLayoutRouteRouteChildren =
   {
     AuthenticatedBlankLayoutLessonLessonIdRoute:
       AuthenticatedBlankLayoutLessonLessonIdRoute,
+    AuthenticatedBlankLayoutLessonResultRoute:
+      AuthenticatedBlankLayoutLessonResultRoute,
   }
 
 const AuthenticatedBlankLayoutRouteRouteWithChildren =

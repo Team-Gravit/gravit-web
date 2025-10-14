@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import type { UserAnswer } from "./types";
+import type { SubmitResultResponseDTO } from "../api/dto";
 
 interface QuizState {
 	currentProblemIndex: number;
@@ -7,6 +8,9 @@ interface QuizState {
 	timeElapsed: number;
 	isQuizCompleted: boolean;
 	isPaused: boolean;
+	latestQuizResult:
+		| (SubmitResultResponseDTO & { timeElapsed: number; accuracy: number })
+		| undefined;
 
 	submitAnswer: (
 		answer: string | number,
@@ -16,6 +20,9 @@ interface QuizState {
 	) => void;
 	goToNextProblem: () => void;
 	completeQuiz: () => void;
+	saveQuizResult: (
+		result: SubmitResultResponseDTO & { accuracy: number },
+	) => void;
 	incrementTime: () => void;
 	resetQuiz: () => void;
 	pauseTime: () => void;
@@ -29,6 +36,7 @@ export const useQuizStateStore = create<QuizState>((set) => ({
 	userAnswers: [],
 	timeElapsed: 0,
 	isQuizCompleted: false,
+	latestQuizResult: undefined,
 
 	/** 액션 */
 	submitAnswer: (
@@ -66,6 +74,16 @@ export const useQuizStateStore = create<QuizState>((set) => ({
 			...state,
 			isQuizCompleted: true,
 			isPaused: true,
+		}));
+	},
+
+	saveQuizResult: (result: SubmitResultResponseDTO & { accuracy: number }) => {
+		set((state) => ({
+			...state,
+			latestQuizResult: {
+				...result,
+				timeElapsed: state.timeElapsed,
+			},
 		}));
 	},
 

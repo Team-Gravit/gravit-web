@@ -10,7 +10,7 @@ export const useSubmitQuizResult = () => {
 		onSuccess: (data) => {
 			console.log("퀴즈 결과 제출 성공:", data);
 			queryClient.invalidateQueries({
-				queryKey: ["units"],
+				queryKey: ["learning"],
 			});
 		},
 		onError: (error) => {
