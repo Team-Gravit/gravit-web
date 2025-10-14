@@ -39,6 +39,7 @@ function MainPage() {
 		level,
 		missionName,
 		awardXp,
+		isCompleted,
 		...recentLearningSummary
 	} = data;
 
@@ -56,7 +57,10 @@ function MainPage() {
 						/>
 
 						<div className="flex flex-row gap-4 mt-8">
-							<MissionCard missionInfo={{ missionName, awardXp }} />
+							<MissionCard
+								missionInfo={{ missionName, awardXp }}
+								isCompleted={isCompleted}
+							/>
 							<aside className="flex flex-col w-1/3 min-h-[334px] gap-8">
 								<dl className="flex flex-col gap-4 flex-grow">
 									<StatCard
