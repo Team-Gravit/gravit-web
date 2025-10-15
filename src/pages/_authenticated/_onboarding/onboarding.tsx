@@ -58,7 +58,7 @@ function OnboardingPage() {
 	return (
 		<>
 			<Logo />
-			<Form className="w-[549px] h-[460px] py-8 px-28">
+			<Form darkMode className="w-[549px] h-[460px] py-8 px-28">
 				<ProfileSelector onChange={setColorIndex} />
 				<NicknameForm
 					nickname={nickname}
