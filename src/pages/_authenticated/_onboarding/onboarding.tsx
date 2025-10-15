@@ -58,7 +58,7 @@ function OnboardingPage() {
 	return (
 		<>
 			<Logo />
-			<Form className="w-[549px] h-[460px] py-8 px-28">
+			<Form darkMode className="w-[549px] h-[460px] py-8 px-28">
 				<ProfileSelector onChange={setColorIndex} />
 				<NicknameForm
 					nickname={nickname}
@@ -68,10 +68,11 @@ function OnboardingPage() {
 					checking={checking}
 					setChecking={setChecking}
 					helperText={
-						<p className="text-sm text-[#868686]">
+						<p className="text-sm text-[#F2F2F2]">
 							* 글자수 2~8자 / 공백, 특수문자 제외
 						</p>
 					}
+					helperFontColor="#F2F2F2"
 				/>
 
 				<button
@@ -79,7 +80,7 @@ function OnboardingPage() {
 					onClick={handleSubmit}
 					disabled={!nickname.trim() || isLimit || checking || loading}
 					className={`w-full h-14 text-white py-2 rounded-xl text-lg font-semibold transition flex items-center justify-center gap-2
-            ${!nickname.trim() || isLimit || checking || loading ? "bg-[#8100B3] opacity-50" : "bg-[#8100B3]"}`}
+            ${!nickname.trim() || isLimit || checking || loading ? "bg-[#BA00FF] opacity-50" : "bg-[#BA00FF]"}`}
 				>
 					{loading ? (
 						<>
