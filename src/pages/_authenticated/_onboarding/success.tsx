@@ -14,7 +14,7 @@ function SuccessPage() {
 	return (
 		<>
 			<Logo />
-			<Form className="w-[549px] h-[460px] py-8 px-28">
+			<Form darkMode className="w-[549px] h-[460px] py-8 px-28">
 				<h3 className="text-2xl font-semibold text-white">계정 생성 완료!</h3>
 				<span className="text-[16px] text-[#DCDCDC] mt-4 mb-4">
 					그래빗의 일원이 된 걸 환영해요!
