@@ -3,7 +3,7 @@ import { mainPageApi } from "../api/api";
 
 export const useFetchMainInfo = () => {
 	const query = useQuery({
-		queryKey: ["main-info"],
+		queryKey: ["learning", "main-info"],
 		queryFn: () => mainPageApi.getMainInfo(),
 	});
 

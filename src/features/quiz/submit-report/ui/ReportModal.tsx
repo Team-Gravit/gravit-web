@@ -71,6 +71,7 @@ export const ReportModal = forwardRef<ReportModalRef, ReportModalProps>(
 							e.preventDefault();
 							if (formData.reportType) {
 								onSubmit(formData.reportType, formData.content);
+								setFormData({ ...initialReportState });
 								dialogRef.current?.close();
 								successModalRef.current?.open();
 							}
@@ -120,7 +121,7 @@ export const ReportModal = forwardRef<ReportModalRef, ReportModalProps>(
 							})}
 						</ul>
 						<textarea
-							className="w-full h-[102px] p-3 border border-gray-500 rounded-[10px] placeholder-text-[20px] font-medium"
+							className="w-full h-[102px] p-3 border border-gray-500 rounded-[10px] placeholder-text-[20px] font-medium resize-none"
 							placeholder="신고 사유"
 							value={formData.content}
 							onChange={(e) => {

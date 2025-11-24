@@ -27,7 +27,7 @@ function RouteComponent() {
 				alert(error.message || "계정 삭제에 실패했습니다.");
 				navigate({ to: "/" });
 			},
-		})
+		});
 	}, []);
 
 	return <div></div>;

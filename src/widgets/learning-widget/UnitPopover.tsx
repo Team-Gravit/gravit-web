@@ -5,10 +5,12 @@ import LockIcon from "@/shared/assets/icons/lock.svg?react";
 export default function UnitPopover({
 	unitId,
 	lessonName,
+	unitName,
 	lessonId,
 	isActive,
 }: {
 	unitId: string;
+	unitName: string;
 	lessonName: string;
 	lessonId: string;
 	isActive: boolean;
@@ -34,7 +36,7 @@ export default function UnitPopover({
 					isActive ? "bg-[#FFB608]" : "bg-gray-500",
 				)}
 			>
-				<h2 className="text-2xl font-bold text-white text-start">{`${lessonName}: ${unitId}유닛`}</h2>
+				<h2 className="text-2xl font-bold text-white text-start">{`${lessonName}`}</h2>
 				{isActive ? (
 					<Link
 						to={"/lesson/$lessonId"}
