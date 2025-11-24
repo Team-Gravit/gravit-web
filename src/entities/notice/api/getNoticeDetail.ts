@@ -5,7 +5,6 @@ import type { NoticeDetail } from "@/entities/notice/model/types";
 
 const getNoticeDetail = async (noticeId: number): Promise<NoticeDetail> => {
 	const response = await apiClient.get<NoticeDetail>(`/notice/${noticeId}`);
-	console.log(response.data);
 	return response.data;
 };
 
