@@ -5,7 +5,6 @@ import type { NoticeList } from "@/entities/notice/model/types";
 
 const getNoticeList = async (page: number): Promise<NoticeList> => {
 	const response = await apiClient.get<NoticeList>(`/notice/summaries/${page}`);
-	console.log(response.data);
 	return response.data;
 };
 

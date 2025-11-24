@@ -8,7 +8,7 @@ export const getUserLeagueInfo = async (): Promise<UserLeagueInfo> => {
 	return response.data;
 };
 
-export const useLeagueInfo = () => {
+export const useUserLeagueInfo = () => {
 	return useQuery<UserLeagueInfo, AxiosError>({
 		queryKey: ["league-info"],
 		queryFn: getUserLeagueInfo,

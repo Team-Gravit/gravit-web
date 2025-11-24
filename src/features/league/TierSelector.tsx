@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import type { LeagueInfo } from "@/entities/league/model/types";
 
 type Tier = {
 	id: number;
@@ -10,12 +11,14 @@ interface TierSelectorProps {
 	tiers: Tier[];
 	selectedTierId: number | null;
 	onSelectTier: (tierId: number) => void;
+	selectedTierInfo?: LeagueInfo;
 }
 
 export default function TierSelector({
 	tiers,
 	selectedTierId,
 	onSelectTier,
+	selectedTierInfo,
 }: TierSelectorProps) {
 	const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
@@ -29,8 +32,8 @@ export default function TierSelector({
 	};
 
 	return (
-		<div className="flex flex-row lg:w-full md:px-3 sm:pl-0 pl-36 py-8 items-center lg:justify-start justify-center gap-6 scroll-smooth overflow-x-auto scrollbar-hide">
-			<div className="flex-shrink-0 w-[calc(50%+360px)] lg:w-[calc(50%-140px)]" />
+		<div className="flex flex-row lg:w-full pl-36 py-10 items-center justify-start scroll-smooth overflow-x-auto scrollbar-hide gap-16">
+			<div className="flex-shrink-0 w-[calc(50%-200px)] lg:w-[calc(50%-250px)]" />
 			{tiers.map((tier, index) => {
 				const isSelected = tier.id === selectedTierId;
 				const TierIcon = tier.icon;
@@ -43,25 +46,42 @@ export default function TierSelector({
 							itemRefs.current[index] = el;
 						}}
 						onClick={() => handleClick(tier.id, index)}
-						className={`flex flex-col items-center cursor-pointer transition-all duration-300 justify-center ${
-							isSelected ? "scale-110 px-4" : "brightness-75"
-						} min-h-[140px]`}
+						className="relative flex flex-col items-center justify-start cursor-pointer transition-all duration-300 w-full min-h-[300px] mt-10"
 					>
-						<div className="flex items-center justify-center">
+						<div className="relative w-[240px] h-[305px] flex items-center justify-center">
 							<TierIcon
-								className={isSelected ? "w-[216px] h-[216px]" : "w-48 h-48 "}
+								className="absolute top-1/2 left-1/2 transition-transform duration-300"
+								style={{
+									width: "100%",
+									height: "100%",
+									transform: `translate(-50%, -50%) scale(${isSelected ? 1.35 : 1})`,
+									filter:
+										!isSelected &&
+										index < tiers.findIndex((t) => t.id === selectedTierId)
+											? "brightness(40%)"
+											: "brightness(100%)",
+								}}
 							/>
 						</div>
-						<div
-							className="flex flex-col items-center justify-center pt-4 min-h-[60px]"
-							style={{ visibility: isSelected ? "visible" : "hidden" }}
-						>
-							<span className="mb-1 text-3xl font-semibold">{tier.name}</span>
+
+						<div className="w-full h-40 flex flex-col items-center justify-center mt-14">
+							<span
+								className={`text-[71px] text-white font-semibold transition-opacity duration-300 ${
+									isSelected ? "opacity-100" : "opacity-0"
+								} whitespace-nowrap overflow-hidden`}
+							>
+								{tier.name}
+							</span>
+							{isSelected && selectedTierInfo && (
+								<span className="text-[36px] text-white font-semibold mt-5 whitespace-nowrap">
+									LP {selectedTierInfo.minLp} - {selectedTierInfo.maxLp}
+								</span>
+							)}
 						</div>
 					</button>
 				);
 			})}
-			<div className="flex-shrink-0 w-[calc(50%-96px)] lg:w-[calc(50%-208px)]" />
+			<div className="flex-shrink-0  lg:w-[calc(50%-150px)]" />
 		</div>
 	);
 }

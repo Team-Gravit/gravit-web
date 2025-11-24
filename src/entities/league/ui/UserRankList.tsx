@@ -19,7 +19,7 @@ interface UserListProps {
 
 export default function UserRankList({ users, loading }: UserListProps) {
 	return (
-		<div className="flex flex-col w-[80%] lg:w-full gap-2">
+		<div className="flex flex-col w-full gap-2">
 			{users.map((user) => {
 				const profileBgColor =
 					PROFILE_COLORS[user.profileImgNumber as keyof typeof PROFILE_COLORS];
@@ -27,37 +27,32 @@ export default function UserRankList({ users, loading }: UserListProps) {
 				return (
 					<div
 						key={user.userId}
-						className="flex flex-row w-full h-16 items-stretch justify-between border border-[#DCDCDC] rounded-xl overflow-hidden"
+						className="flex flex-row w-full h-20 items-stretch justify-between border border-[#FFC1FC1A] backdrop-blur-[20px] rounded-xl overflow-hidden"
 					>
-						<div className="flex flex-row items-center gap-4 lg:px-3 px-6 bg-white w-3/4">
-							<span
-								className="font-mbc text-2xl font-medium w-12 text-left"
-								style={{
-									color: user.rank <= 3 ? "#BA00FF" : "#FFB608",
-								}}
-							>
+						<div className="flex flex-row items-center gap-9 lg:px-5 px-6 bg-[#FFFFFF33] w-3/4">
+							<span className="font-mbc text-[35.58px] font-medium w-12 text-left text-[#FFC1FC]">
 								{String(user.rank).padStart(3, "0")}
 							</span>
-							<div className="flex w-14 h-14 h- items-center justify-center">
+							<div className="flex w-14 h-14 items-center justify-center">
 								<LevelProgressCircle xp={user.xp}>
 									<Profile2
-										className="w-10 h-10"
+										className="w-[56px] h-[56px]"
 										style={{ color: profileBgColor }}
 									/>
 								</LevelProgressCircle>
 							</div>
-							<span className="text-2xl font-medium font-mbc">
+							<span className="text-[35.58px] font-medium font-mbc text-white">
 								{user.nickname}
 							</span>
 						</div>
-						<div className="flex flex-col justify-center bg-[#FEF2FF] w-1/4 min-w-[110px] px-4 py-2 text-[20px] -space-y-1 font-medium">
-							<div className="flex flex-row items-center justify-start gap-1.5 pl-2">
-								<span className="text-[#4C4C4C] w-6">LV</span>
-								<span className="text-[#FF9500]">{user.level}</span>
+						<div className="flex flex-col justify-center bg-[#FEF1FF40] w-1/4 min-w-[110px] px-4 py-2 text-[29.65px] -space-y-1 font-medium">
+							<div className="flex flex-row items-center justify-start gap-4 pl-2">
+								<span className="text-white w-6">LV</span>
+								<span className="text-[#FFC1FC]">{user.level}</span>
 							</div>
-							<div className="flex flex-row items-center justify-start gap-1.5 pl-2">
-								<span className="text-[#4C4C4C] w-6">LP</span>
-								<span className="text-[#FF9500]">{user.lp}</span>
+							<div className="flex flex-row items-center justify-start gap-4 pl-2">
+								<span className="text-white w-6">LP</span>
+								<span className="text-[#FFC1FC]">{user.lp}</span>
 							</div>
 						</div>
 					</div>

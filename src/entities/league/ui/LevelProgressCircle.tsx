@@ -10,12 +10,11 @@ export default function LevelProgressCircle({
 	xp,
 	children,
 }: LevelProgressCircleProps) {
-	const size = 46;
+	const size = 60;
 	const strokeWidth = 4;
 	const radius = (size - strokeWidth) / 2;
 	const circumference = 2 * Math.PI * radius;
 
-	// ✅ 헬퍼 함수 사용
 	const { level, progress } = getLevelInfo(xp);
 
 	const dashOffset = circumference * (1 - progress);
@@ -24,7 +23,7 @@ export default function LevelProgressCircle({
 	const titleId = `levelProgressTitle-${uniqueId}`;
 
 	return (
-		<div className="relative w-[46px] h-[46px] flex items-center justify-center">
+		<div className="relative w-[60px] h-[60px] flex items-center justify-center">
 			<div className="absolute inset-0 flex items-center justify-center z-0">
 				{children}
 			</div>
@@ -45,8 +44,6 @@ export default function LevelProgressCircle({
 					r={radius}
 					strokeWidth={strokeWidth}
 					fill="none"
-					className="text-gray-200"
-					stroke="currentColor"
 				/>
 				<circle
 					cx={size / 2}
