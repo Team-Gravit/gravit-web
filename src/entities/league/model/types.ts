@@ -47,3 +47,10 @@ export type SeasonInfo =
 			currentSeason: CurrentSeason;
 			lastSeasonPopupDto: null;
 	  };
+
+export interface LeagueInfo {
+	leagueId: number;
+	name: string;
+	minLp: number;
+	maxLp: number;
+}
