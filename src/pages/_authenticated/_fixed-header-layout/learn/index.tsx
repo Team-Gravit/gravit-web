@@ -3,9 +3,7 @@ import Banner from "@/shared/ui/banner/Banner";
 import ChapterCard from "@/features/learning/ChapterCard";
 import { useFetchChapters } from "@/entities/learning/model/hooks";
 
-export const Route = createFileRoute(
-	"/_authenticated/_fixed-header-layout/learn/",
-)({
+export const Route = createFileRoute("/_authenticated/_fixed-header-layout/learn/")({
 	component: RouteComponent,
 });
 
@@ -42,11 +40,11 @@ function RouteComponent() {
 								>
 									<ChapterCard chapter={chapter} />
 								</Link>
-							);
+							)
 						})}
 					</div>
 				</div>
 			</div>
 		</main>
-	);
+	)
 }

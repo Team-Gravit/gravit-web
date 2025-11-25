@@ -124,8 +124,4 @@
     .bg-space-gradient {
         background: linear-gradient(293deg, #4721CA 3.59%, #17034E 95.08%);
     }
-
-    .custom-shadow{
-        box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.25)
-    }
 }

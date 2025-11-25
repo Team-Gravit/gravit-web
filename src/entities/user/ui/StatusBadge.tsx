@@ -16,7 +16,7 @@ function StatusBadge({
 }: StatusBadgeProps) {
 	return (
 		<div
-			className={`flex flex-row items-center justify-center gap-0.5 text-xl font-bold px-1.5 py-[3px] bg-white rounded-full ${className} custom-shadow`}
+			className={`flex flex-row items-center justify-center gap-0.5 text-xl font-bold px-1.5 py-[3px] bg-white rounded-full ${className}`}
 			{...props}
 		>
 			<div

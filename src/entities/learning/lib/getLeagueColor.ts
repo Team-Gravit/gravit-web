@@ -1,9 +1,9 @@
 const LEAGUE_COLORS = {
 	브론즈: "text-bronze",
-	실버: "text-silver",
-	골드: "text-gold",
-	플래티넘: "text-platinum",
-	다이아몬드: "text-diamond",
+	실버: "text-gray",
+	골드: "text-yellow",
+	플래티넘: "text-slate",
+	다이아몬드: "text-blue",
 } as const;
 
 export const getLeagueColorClass = (league: string): string => {

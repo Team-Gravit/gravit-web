@@ -14,9 +14,7 @@ import WaitingTab from "@/entities/league/ui/WaitingTab";
 import { getNextMonday, getRemainingTime } from "@/shared/lib/date";
 import Timer from "@/shared/assets/icons/timer.svg?react";
 
-export const Route = createFileRoute(
-	"/_authenticated/_fixed-header-layout/league",
-)({
+export const Route = createFileRoute("/_authenticated/_fixed-header-layout/league")({
 	component: RouteComponent,
 });
 
@@ -55,7 +53,7 @@ export default function RouteComponent() {
 			) {
 				usersData.fetchNextPage();
 			}
-		};
+		}
 
 		container.addEventListener("scroll", handleScroll);
 		return () => container.removeEventListener("scroll", handleScroll);
@@ -85,7 +83,7 @@ export default function RouteComponent() {
 		return () => {
 			clearInterval(interval);
 			if (timeout) clearTimeout(timeout);
-		};
+		}
 	}, [seasonInfoQuery.data]);
 
 	if (leagueInfoQuery.isFetching || seasonInfoQuery.isLoading)
@@ -105,7 +103,7 @@ export default function RouteComponent() {
 		const seasonEnd = getNextMonday().getTime();
 		const TEN_MINUTES = 10 * 60 * 1000;
 		setShowWaitingTab(Date.now() < seasonEnd + TEN_MINUTES);
-	};
+	}
 
 	return (
 		<div className="w-full h-full flex flex-col relative">
@@ -189,5 +187,5 @@ export default function RouteComponent() {
 				</div>
 			)}
 		</div>
-	);
+	)
 }

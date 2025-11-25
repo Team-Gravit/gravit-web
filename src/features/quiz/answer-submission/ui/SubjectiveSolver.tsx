@@ -48,7 +48,7 @@ export default function SubjectiveSolver({
 				onHandleClick={() =>
 					submitAnswer(
 						enteredAnswer,
-						answer.includes(enteredAnswer.toLowerCase().trim()),
+						answer.includes(enteredAnswer.trim()),
 						problemId,
 						"SUBJECTIVE",
 					)

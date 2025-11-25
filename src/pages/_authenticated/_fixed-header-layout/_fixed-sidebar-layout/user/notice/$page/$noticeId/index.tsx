@@ -28,5 +28,5 @@ function RouteComponent() {
 				<p className="text-xl font-normal">{notice.content}</p>
 			</div>
 		</div>
-	);
+	)
 }

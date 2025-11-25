@@ -38,8 +38,6 @@ export interface SubmitResultRequestDTO {
 }
 
 export interface SubmitResultResponseDTO {
-	chapterId: number;
-	lessonName: string;
 	leagueName: string;
 	currentLevel: number;
 	xp: number;

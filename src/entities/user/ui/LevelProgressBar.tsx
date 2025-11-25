@@ -7,7 +7,7 @@ type LevelProgressBarProps = {
 
 const LevelProgressBar = ({ percent, level }: LevelProgressBarProps) => {
 	return (
-		<div className="relative flex-grow flex-1 h-full rounded-full overflow-hidden min-h-[30px] custom-shadow">
+		<div className="relative flex-grow flex-1 h-full rounded-full overflow-hidden min-h-[30px]">
 			<ProgressBar
 				percent={percent}
 				barStyle={{

@@ -10,7 +10,7 @@ function ChapterCard({ chapter }: { chapter: Chapter }) {
 	return (
 		<article
 			key={chapterId}
-			className="cursor-pointer relative flex flex-col justify-between lg:justify-start w-full h-64 lg:h-[283px] bg-cover bg-center rounded-[10px] overflow-hidden p-4 group shadow-[4px_4px_4px_0px_rgba(0,0,0,0.1)]"
+			className="cursor-pointer relative flex flex-col justify-between lg:justify-start w-full h-64 lg:h-[283px] bg-cover bg-center rounded-[10px] overflow-hidden p-4 group"
 			style={{ backgroundImage: `url(${cardBackground})` }}
 		>
 			<div className="flex flex-row justify-between lg:mb-3 z-10">
