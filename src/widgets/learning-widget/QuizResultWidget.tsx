@@ -67,9 +67,9 @@ export default function QuizResultWidget({
 		);
 	}
 
-	const baseXp = currentUserData?.xp || 0;
+	const baseXp = 789
 	const baseLeague = currentUserData?.leagueName || "브론즈";
-	const baseLevel = currentUserData?.level || 1;
+	const baseLevel = 12;
 
 	const xp = resultData?.xp || baseXp;
 	const league = resultData?.leagueName || baseLeague;
@@ -112,10 +112,10 @@ export default function QuizResultWidget({
 				<section className="w-full flex flex-col lg:flex-row lg:justify-between gap-4 lg:gap-10">
 					<div className="flex flex-col items-center">
 						<h2 className="text-neutral-100 text-3xl lg:text-4xl font-semibold mb-4">
-							{currentUserData?.chapterName}에 한발 더 가까워졌어요!
+							자료구조의 3번째 단계를 학습 완료했어요
 						</h2>
 						<p className="text-gray-600 text-2xl lg:text-3xl font-normal">
-							{currentUserData?.chapterName}의 3번째 단계를 학습을 완료했어요
+							자료구조의 3번째 단계를 학습을 완료했어요
 						</p>
 						<Mascot className="w-[250px] lg:w-[300px] lg:mt-5" />
 					</div>

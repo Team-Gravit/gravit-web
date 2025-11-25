@@ -32,14 +32,17 @@ function MainPage() {
 
 	const {
 		nickname,
-		xp,
 		leagueName,
-		planetConquestRate,
-		consecutiveDays,
-		level,
-		missionName,
-		awardXp,
-		...recentLearningSummary
+		userLevelDetail: { level, xp },
+		learningDetail: {
+			consecutiveSolvedDays,
+			planetConquestRate,
+			recentSolvedChapterId,
+			recentSolvedChapterTitle,
+			recentSolvedChapterDescription,
+			recentSolvedChapterProgressRate,
+		},
+		missionDetail: { missionDescription, awardXp, isCompleted },
 	} = data;
 
 	return (
@@ -56,7 +59,10 @@ function MainPage() {
 						/>
 
 						<div className="flex flex-row gap-4 mt-8">
-							<MissionCard missionInfo={{ missionName, awardXp }} />
+							<MissionCard
+								missionInfo={{ missionDescription, awardXp }}
+								isCompleted={isCompleted}
+							/>
 							<aside className="flex flex-col w-1/3 min-h-[334px] gap-8">
 								<dl className="flex flex-col gap-4 flex-grow">
 									<StatCard
@@ -67,15 +73,22 @@ function MainPage() {
 									<StatCard
 										icon={fire}
 										label={"연속 학습일"}
-										value={`${consecutiveDays}일`}
+										value={`${consecutiveSolvedDays}일`}
 									/>
 								</dl>
 							</aside>
 						</div>
 					</section>
 					<section className="w-full lg:w-1/2 flex flex-col">
-						<h2 className="font-semibold text-[32px] mb-4">최근 진행한 학습</h2>
-						<RecentLearningCard chapterSummary={recentLearningSummary} />
+						<h2 className="font-semibold text-[40px] mb-5">최근 진행한 학습</h2>
+						<RecentLearningCard
+							learningSummary={{
+								recentSolvedChapterId,
+								recentSolvedChapterTitle,
+								recentSolvedChapterDescription,
+								recentSolvedChapterProgressRate,
+							}}
+						/>
 					</section>
 				</div>
 			</main>

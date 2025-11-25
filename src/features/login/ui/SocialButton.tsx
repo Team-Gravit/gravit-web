@@ -11,7 +11,7 @@ export default function SocialButton({
 		<button
 			type="button"
 			id={provider}
-			className="flex w-full"
+			className="flex w-full cursor-pointer"
 			onClick={onClick}
 		>
 			<img className="flex w-full h-full" src={imgSrc} alt={provider} />

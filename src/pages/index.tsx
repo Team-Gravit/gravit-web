@@ -14,6 +14,7 @@ import google from "@/shared/assets/icons/buttons/google.svg";
 import kakao from "@/shared/assets/icons/buttons/kakao.svg";
 import naver from "@/shared/assets/icons/buttons/naver.svg";
 import { useOauthLogin } from "@/entities/login/model/useOauthLogin";
+import { BackgroundLayout } from "@/shared/ui/background/background";
 
 export const Route = createFileRoute("/")({
 	component: Index,
@@ -23,79 +24,83 @@ function Index() {
 	const oauthLogin = useOauthLogin();
 
 	return (
-		<>
-			<header className=" flex items-center px-8 py-4 justify-start h-[var(--header-height)] w-full bg-white z-[110]">
+		<div className="w-full h-full relative">
+			<header className="fixed flex items-center px-8 py-4 justify-start h-[var(--header-height)] w-full bg-white z-[110]">
 				<Link to="/" className="mr-3">
 					<Logo className={`h-6`} />
 				</Link>
 			</header>
 			<main className="flex-grow flex flex-col items-center justify-center w-full">
-				<div
-					className="w-full h-[2088px] bg-group"
-					style={{
-						backgroundImage: `url(${backgroundImage})`,
-						backgroundSize: "cover",
-						backgroundPosition: "center",
-						backgroundRepeat: "no-repeat",
-					}}
-				>
-					<section className="w-full h-[1044px]">
-						<div className="absolute top-[200px] left-1/2 -translate-x-1/2 lg:-translate-x-0 lg:top-[259px] lg:right-[328px] flex flex-col gap-[30px] w-[465px]">
-							<GravitLogo className="text-white w-[371px]" />
-							<h3 className="text-white font-semibold text-3xl">
-								재미있고 효과적인 CS 교육 그래빗
-							</h3>
-							<SocialButton
-								provider="google"
-								imgSrc={google}
-								onClick={() => oauthLogin.mutate("google")}
+				<div className="w-full h-[2000px] ">
+					<BackgroundLayout backgroundImage={backgroundImage}>
+						<section className="w-full h-[50%] pt-52">
+							<div className="flex flex-col gap-[30px] w-[475px] ml-[50vw]">
+								<GravitLogo className="text-white w-[371px]" />
+								<h3 className="text-white font-semibold text-3xl">
+									재미있고 효과적인 CS 교육 그래빗
+								</h3>
+								<SocialButton
+									provider="google"
+									imgSrc={google}
+									onClick={() => oauthLogin.mutate("google")}
+								/>
+								<SocialButton
+									provider="kakao"
+									imgSrc={kakao}
+									onClick={() => oauthLogin.mutate("kakao")}
+								/>
+								<SocialButton
+									provider="naver"
+									imgSrc={naver}
+									onClick={() => oauthLogin.mutate("naver")}
+								/>
+							</div>
+						</section>
+						<section className="relative h-[50%] pr-[50vw]">
+							<img
+								src={roundedPlanetsImg}
+								alt="행성 이미지"
+								className="absolute w-[600px] lg:w-[1020px] left-[60%]"
 							/>
-							<SocialButton
-								provider="kakao"
-								imgSrc={kakao}
-								onClick={() => oauthLogin.mutate("kakao")}
+							<div
+								className="w-full absolute h-[460px] left-0 bottom-0"
+								style={{
+									background:
+										"linear-gradient(180deg, rgba(255, 255, 255, 0) 3.96%, #FFF 98%)",
+								}}
 							/>
-							<SocialButton
-								provider="naver"
-								imgSrc={naver}
-								onClick={() => oauthLogin.mutate("naver")}
-							/>
-						</div>
-					</section>
-					<section className="relative w-full h-[1044px] overflow-x-hidden">
-						<img
-							src={roundedPlanetsImg}
-							alt="행성 이미지"
-							className="absolute w-[600px] lg:w-[1000px] left-full -translate-x-4/6"
-						/>
-						<div className="absolute flex flex-col gap-[20px] top-[100px] left-[30px] lg:gap-[30px] lg:top-[200px] lg:left-[158px]">
-							<h3 className="text-white font-extrabold text-5xl lg:text-[70px]">
-								CS 지식을 게임처럼
-								<br />
-								재밌게 학습하세요!
-							</h3>
-							<p className="text-gray-300 font-medium text-xl lg:text-[28px] leading-normal">
-								그래빗과 함께 행성을 탐험하며 CS 지식을 쌓아보세요!
-								<br />
-								지루한 이론서적은 이제 그만.
-								<br />
-								<span
-									className="bg-[#ffde25] px-2 inline-block text-gray-900"
-									style={{
-										clipPath:
-											"polygon(3px 0, 100% 0, calc(100% - 3px) 100%, 0 100%)",
-									}}
-								>
-									자료구조부터 소프트웨어 엔지니어링까지
-								</span>
-								<br />각 행성에서 펼쳐지는 모험을 통해 자연스럽게
-								<br />
-								학습할 수 있어요.
-							</p>
-						</div>
-					</section>
+
+							<div className="flex flex-col w-full h-full items-end justify-center">
+								<div className="flex flex-col gap-[20px] lg:gap-[30px]">
+									<h3 className="text-white font-extrabold text-5xl lg:text-[70px] leading-[150%]">
+										CS 지식을 게임처럼
+										<br />
+										재밌게 학습하세요!
+									</h3>
+									<p className="text-gray-300 font-medium text-5xl lg:text-[28px] leading-normal">
+										그래빗과 함께 행성을 탐험하며 CS 지식을 쌓아보세요!
+										<br />
+										지루한 이론서적은 이제 그만.
+										<br />
+										<span
+											className="bg-[#ffde25] px-2 inline-block text-gray-900 font-bold"
+											style={{
+												clipPath:
+													"polygon(3px 0, 100% 0, calc(100% - 3px) 100%, 0 100%)",
+											}}
+										>
+											자료구조부터 소프트웨어 엔지니어링까지
+										</span>
+										<br />각 행성에서 펼쳐지는 모험을 통해 자연스럽게
+										<br />
+										학습할 수 있어요.
+									</p>
+								</div>
+							</div>
+						</section>
+					</BackgroundLayout>
 				</div>
-				<section className="w-full h-[867px] flex items-center px-[136px] justify-between">
+				<section className="w-full h-[100vh] flex items-center px-[136px] justify-center gap-52">
 					<article className="flex flex-col gap-8 ">
 						<h3 className="text-main-2 text-5xl font-extrabold leading-normal">
 							체계적인{" "}
@@ -110,7 +115,7 @@ function Index() {
 							확실한 실력 향상
 						</h3>
 
-						<p className="w-[626px] text-gray-800 font-medium text-[28px]">
+						<p className="w-[632px] text-gray-800 font-medium text-[28px] break-keep">
 							<span
 								className="bg-[#ffd36b] px-2 inline-block text-gray-900 font-bold"
 								style={{
@@ -127,24 +132,24 @@ function Index() {
 					</article>
 					<img src={phoneImg} alt="앱 예시 이미지" />
 				</section>
-				<section className="w-full h-[747px]">
-					<article className="flex flex-col gap-8 items-center relative">
+				<section className="w-full h-[100vh] flex items-center justify-center">
+					<article className="w-full h-full flex flex-col gap-8 items-center justify-center relative">
 						<img
 							src={leagueBadgeImg}
 							alt="리그 뱃지 사진"
-							className="absolute bottom-0 translate-y-1/2 opacity-60 w-full"
+							className="absolute bottom-0 -translate-y-1/3 opacity-60 w-full"
 						/>
 
-						<h3 className="text-main-2 text-5xl font-extrabold leading-normal text-center z-10">
+						<h3 className="text-main-2 text-5xl font-semibold leading-normal text-center z-10">
 							혼자가 아닌 함께,
 							<br />
-							리그 시스템
+							<span className="font-extrabold">리그 시스템</span>
 						</h3>
 
-						<p className="w-[626px] text-gray-800 font-medium text-[28px] text-center z-10">
+						<p className="w-[626px] text-gray-600 font-medium text-[28px] text-center z-10">
 							브론즈부터 다이아몬드까지,
 							<span
-								className="bg-[#ffd36b] px-2 inline-block text-gray-900 font-bold"
+								className="bg-[#ffd36b] px-2 inline-block text-gray-800 font-bold"
 								style={{
 									clipPath:
 										"polygon(3px 0, 100% 0, calc(100% - 3px) 100%, 0 100%)",
@@ -154,7 +159,7 @@ function Index() {
 							</span>
 							<br />
 							경쟁하며 성장하세요! LP를 모아 상위 리그로 승급하고
-							<br /> 친구들보다 먼저 목표를 달성하는 짜릿함을 경험해보세요
+							<br /> 친구들보다 먼저 목표를 달성하는 짜릿함을 경험해보세요.
 						</p>
 					</article>
 				</section>
@@ -163,18 +168,18 @@ function Index() {
 						<img
 							src={leaguePhoneImg}
 							alt="앱 리그 예시 화면"
-							className="w-[327px] h-fit mt-30 flex-shrink-0"
+							className="w-[415px] h-fit mt-20 flex-shrink-0"
 						/>
 
-						<div className="absolute left-[303px] top-[180px] flex items-center">
-							<div className="relative w-[192px] h-1 bg-[#FFB608]">
+						<div className="absolute left-[350px] top-[180px] flex items-center">
+							<div className="relative w-[234px] h-1 bg-[#FFB608]">
 								<div className="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-[#FFB608] rounded-full"></div>
 								<div className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-[#FFB608] rounded-full"></div>
 							</div>
 						</div>
 
-						<div className="absolute left-[303px] top-[600px] flex items-center">
-							<div className="relative w-[192px] h-1 bg-[#FFB608]">
+						<div className="absolute left-[350px] top-[613px] flex items-center">
+							<div className="relative w-[234px] h-1 bg-[#FFB608]">
 								<div className="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-[#FFB608] rounded-full"></div>
 								<div className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-[#FFB608] rounded-full"></div>
 							</div>
@@ -183,7 +188,7 @@ function Index() {
 						<div className="flex flex-col gap-[60px]">
 							<div className="flex flex-col gap-[21px]">
 								<dl>
-									<dt className="text-gray-800 font-bold text-3xl">
+									<dt className="text-gray-800 font-extrabold text-3xl">
 										나의 리그
 									</dt>
 									<dd className="text-gray-500 font-medium text-[28px]">
@@ -191,7 +196,7 @@ function Index() {
 									</dd>
 								</dl>
 
-								<div className="inline-block p-4 rounded-lg border-4 border-dashed border-[#FFB608]">
+								<div className="inline-block p-4 rounded-[44px] border-8 border-dashed border-[#FFB608]">
 									<img
 										src={leagueItem}
 										alt="리그 아이템 예시"
@@ -210,7 +215,7 @@ function Index() {
 									</dd>
 								</dl>
 
-								<div className="inline-block p-4 rounded-lg border-4 border-dashed border-[#FFB608] w-fit">
+								<div className="inline-block p-4 rounded-[44px] border-8 border-dashed border-[#FFB608] w-fit">
 									<div className="relative w-[327px] flex-shrink-0">
 										<img
 											src={leagueGroup}
@@ -226,6 +231,6 @@ function Index() {
 				</section>
 				<Footer />
 			</main>
-		</>
+		</div>
 	);
 }
