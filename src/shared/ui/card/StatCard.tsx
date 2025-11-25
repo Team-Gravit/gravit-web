@@ -15,7 +15,7 @@ export const StatCard = ({
 }: StatCardProps) => {
 	const sizeClasses = {
 		sm: "w-[40px] text-sm text-lg",
-		md: "w-[50px] text-base text-2xl",
+		md: "w-[66px] text-xl text-3xl",
 		lg: "w-[150px] text-3xl text-5xl",
 	};
 

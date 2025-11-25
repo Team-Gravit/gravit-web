@@ -1,3 +1,4 @@
+import { cn } from "@/shared/lib/cn";
 import ProgressBar from "@/shared/ui/progress-bar/ProgressBar";
 
 type LevelProgressBarProps = {
@@ -16,9 +17,15 @@ const LevelProgressBar = ({ percent, level }: LevelProgressBarProps) => {
 				containerClassName="bg-white"
 			/>
 
-			<span className="absolute inset-y-0 left-5 text-white font-bold inline-flex items-center h-full">
-				LV{level}
-			</span>
+			<p
+				className={cn(
+					"absolute inset-y-0 left-5 text-3xl font-bold inline-flex items-center h-full text-white",
+					percent < 20 && "text-stroke-gradient",
+				)}
+			>
+				<span className="font-medium">LV </span>
+				{level ?? 12}
+			</p>
 		</div>
 	);
 };

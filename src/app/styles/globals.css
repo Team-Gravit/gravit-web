@@ -130,4 +130,15 @@
     }
     scrollbar-width: none;
   }
+  
+  .custom-shadow{
+        box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.25)
+    }
+
+    .text-stroke-gradient {
+        color: white;
+        -webkit-text-stroke: 5px #8100B3;
+        text-stroke: 5px #8100B3;
+        paint-order: stroke fill;
+    }
 }

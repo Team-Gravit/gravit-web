@@ -7,44 +7,43 @@ import InfoIcon from "@/shared/assets/icons/info-circle.svg?react";
 import Tooltip from "@/shared/ui/tooltip/Tooltip";
 import { getPlanetImage } from "@/shared/lib/planet/utils";
 
-type ChapterSummary = {
-	chapterId: number;
-	chapterName: string;
-	totalUnits: number;
-	completedUnits: number;
-	chapterDescription: string;
+type RecentLearningSummary = {
+	recentSolvedChapterId: number;
+	recentSolvedChapterTitle: string;
+	recentSolvedChapterDescription: string;
+	recentSolvedChapterProgressRate: number;
 };
 
 export default function RecentLearningCard({
-	chapterSummary,
+	learningSummary,
 }: {
-	chapterSummary: ChapterSummary;
+	learningSummary: RecentLearningSummary;
 }) {
 	let linkUrl = "/learn";
 	let content = (
 		<div className="relative flex flex-col text-white z-10 gap-2">
 			<div className="flex justify-between items-center">
-				<h3 className="text-[32px] font-mbc font-normal">
-					새로운 학습을 시작하기
-				</h3>
+				<p className="text-3xl font-semibold">
+					최근에 진행한 학습 정보가 없습니다.
+				</p>
 				<button type="button" className="cursor-pointer">
 					<ArrowButton />
 				</button>
 			</div>
 
-			<p className="text-2xl font-medium">
-				최근에 진행한 학습 정보가 없습니다.
-			</p>
+			<h3 className="text-[40px] font-mbc font-normal">
+				새로운 학습을 시작하기
+			</h3>
 		</div>
 	);
 
-	if (chapterSummary.chapterId !== 0) {
-		linkUrl = `/learn/${chapterSummary.chapterId}`;
+	if (learningSummary.recentSolvedChapterId !== 0) {
+		linkUrl = `/learn/${learningSummary.recentSolvedChapterId}`;
 		content = (
 			<>
 				<div className="relative z-10">
 					<div className="flex justify-between items-center mb-2">
-						<p className="text-white font-mbc text-lg font-normal  text-center">
+						<p className="text-white text-3xl font-semibold text-center">
 							이어서 학습하기
 						</p>
 						<Tooltip
@@ -58,23 +57,22 @@ export default function RecentLearningCard({
 							<div className="flex items-center justify-center gap-2.5 w-[300px]">
 								<InfoIcon className="w-[24px] h-[24px] shrink-0" />
 								<p className="text-white text-[16px] font-normal flex-wrap">
-									{chapterSummary.chapterDescription}
+									{learningSummary.recentSolvedChapterDescription}
 								</p>
 							</div>
 						</Tooltip>
 					</div>
-					<h3 className="text-[32px] font-mbc text-white font-normal mb-3">
-						{chapterSummary.chapterName}
+					<h3 className="text-[40px] font-mbc text-white font-normal mb-4">
+						{learningSummary.recentSolvedChapterTitle || "자료구조"}
 					</h3>
 					<LessonProgressBar
-						totalUnits={chapterSummary.totalUnits}
-						completedUnits={chapterSummary.completedUnits}
+						progressRate={learningSummary.recentSolvedChapterProgressRate}
 					/>
 				</div>
 
 				<img
-					src={getPlanetImage(chapterSummary.chapterId)}
-					alt={`${chapterSummary.chapterName} 행성`}
+					src={getPlanetImage(learningSummary.recentSolvedChapterId)}
+					alt={`${learningSummary.recentSolvedChapterTitle} 행성`}
 					className="absolute w-3/5 top-1/3 transform right-0 translate-x-3 group-hover:-rotate-20 group-hover:scale-110 transition-all ease-out duration-500 z-0"
 				></img>
 			</>
@@ -83,7 +81,7 @@ export default function RecentLearningCard({
 	return (
 		<Link to={linkUrl} className="h-full">
 			<Card
-				className="min-h-[350px] overflow-hidden group relative p-8 flex-grow bg-cover bg-center bg-no-repeat h-full cursor-pointer"
+				className="min-h-[350px] overflow-hidden group relative p-10 flex-grow bg-cover bg-center bg-no-repeat h-full cursor-pointer"
 				style={{ backgroundImage: `url(${backgroundImg})` }}
 			>
 				<div className="absolute inset-0 bg-black/20 group-hover:opacity-0 transition-all ease-out duration-500 z-5" />

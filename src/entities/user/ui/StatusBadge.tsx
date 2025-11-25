@@ -16,17 +16,17 @@ function StatusBadge({
 }: StatusBadgeProps) {
 	return (
 		<div
-			className={`flex flex-row items-center justify-center gap-0.5 text-xl font-bold px-1.5 py-[3px] bg-white rounded-full ${className}`}
+			className={`flex flex-row items-center justify-center gap-1.5 text-xl font-bold px-1.5 py-[3px] bg-white rounded-full ${className}`}
 			{...props}
 		>
 			<div
-				className="rounded-full relative w-6 h-6"
+				className="rounded-full relative w-7 h-7"
 				style={{ backgroundColor: badgeBackground }}
 			>
-				<Icon className="absolute w-[17px] h-[17px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+				<Icon className="absolute w-[23px] h-[23px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
 			</div>
 
-			<span className={`text-xl font-bold `} style={{ color: textColor }}>
+			<span className={`text-2xl font-bold `} style={{ color: textColor }}>
 				{label}
 			</span>
 		</div>

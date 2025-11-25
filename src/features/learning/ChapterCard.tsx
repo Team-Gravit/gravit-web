@@ -10,13 +10,11 @@ function ChapterCard({ chapter }: { chapter: Chapter }) {
 	return (
 		<article
 			key={chapterId}
-			className="cursor-pointer relative flex flex-col justify-between lg:justify-start w-full h-64 lg:h-[283px] bg-cover bg-center rounded-[10px] overflow-hidden p-4 group"
+			className="cursor-pointer relative flex flex-col justify-between lg:justify-start w-full h-64 lg:h-fit lg:aspect-square bg-cover bg-center rounded-[10px] overflow-hidden p-4 group shadow-[4px_4px_4px_0px_rgba(0,0,0,0.1)]"
 			style={{ backgroundImage: `url(${cardBackground})` }}
 		>
 			<div className="flex flex-row justify-between lg:mb-3 z-10">
-				<h3 className="text-3xl xl:text-4xl font-extrabold text-white">
-					{name}
-				</h3>
+				<h3 className="text-3xl xl:text-4xl font-mbc text-white">{name}</h3>
 				<Tooltip
 					button={
 						<div>
@@ -40,7 +38,7 @@ function ChapterCard({ chapter }: { chapter: Chapter }) {
 			/>
 			<img
 				src={getPlanetImage(chapterId)}
-				className="absolute w-[60%] h-auto lg:w-45 top-1/3 transform right-0 translate-x-3 lg:top-1/2 lg:translate-x-7 group-hover:-rotate-20 group-hover:scale-110 transition-all ease-out duration-500"
+				className="absolute w-[60%] h-auto lg:w-[65%] top-1/3 transform right-0 translate-x-3 lg:top-1/2 lg:translate-x-7 group-hover:-rotate-20 group-hover:scale-110 transition-all ease-out duration-500"
 				alt={`${chapter.name} 행성`}
 			/>
 			<div className="absolute inset-0 bg-black/20 group-hover:opacity-0 transition-all ease-out duration-500 z-0"></div>

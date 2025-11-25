@@ -14,7 +14,7 @@ export default function LearningProgressInfo({
 	level: number;
 }) {
 	return (
-		<section className="w-full flex flex-row items-center gap-2 h-[30px]">
+		<section className="w-full flex flex-row items-center gap-2 h-[40px]">
 			<StatusBadge
 				icon={Cup}
 				label={league}
