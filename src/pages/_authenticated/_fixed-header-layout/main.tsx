@@ -33,7 +33,7 @@ function MainPage() {
 	const {
 		nickname,
 		leagueName,
-		userLevelDetail: { level, xp, _levelRate },
+		userLevelDetail: { level, xp },
 		learningDetail: {
 			consecutiveSolvedDays,
 			planetConquestRate,
