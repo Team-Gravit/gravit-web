@@ -15,6 +15,6 @@
 
 
 export interface CurrentSeasonDto {
-    'nowSeason'?: string;
+    'nowSeason': string;
 }
 

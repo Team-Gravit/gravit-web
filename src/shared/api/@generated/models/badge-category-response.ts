@@ -19,9 +19,9 @@ import type { BadgeResponse } from './badge-response';
 
 export interface BadgeCategoryResponse {
     'categoryId'?: number;
-    'categoryName'?: string;
+    'categoryName': string;
     'order'?: number;
-    'categoryDescription'?: string;
-    'badgeResponses'?: Array<BadgeResponse>;
+    'categoryDescription': string;
+    'badgeResponses': Array<BadgeResponse>;
 }
 

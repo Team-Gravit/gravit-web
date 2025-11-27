@@ -27,7 +27,7 @@ export interface LessonDetailResponse {
     /**
      * 챕터 요약 정보
      */
-    'chapterSummary'?: ChapterSummary;
+    'chapterSummary': ChapterSummary;
     /**
      * 유닛 아이디
      */
@@ -35,6 +35,6 @@ export interface LessonDetailResponse {
     /**
      * 레슨 요약 정보 목록
      */
-    'lessonSummaries'?: Array<LessonSummary>;
+    'lessonSummaries': Array<LessonSummary>;
 }
 

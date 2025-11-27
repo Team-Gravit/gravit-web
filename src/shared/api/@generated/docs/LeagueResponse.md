@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **leagueId** | **number** |  | [optional] [default to undefined]
-**name** | **string** |  | [optional] [default to undefined]
+**name** | **string** |  | [default to undefined]
 **minLp** | **number** |  | [optional] [default to undefined]
 **maxLp** | **number** |  | [optional] [default to undefined]
 

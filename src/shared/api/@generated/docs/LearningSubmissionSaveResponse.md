@@ -6,9 +6,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**leagueName** | **string** | 리그 이름 | [optional] [default to undefined]
-**userLevelResponse** | [**UserLevelResponse**](UserLevelResponse.md) | 유저 레벨 정보 | [optional] [default to undefined]
-**unitSummary** | [**UnitSummary**](UnitSummary.md) | 유닛 요약 정보 | [optional] [default to undefined]
+**leagueName** | **string** | 리그 이름 | [default to undefined]
+**userLevelResponse** | [**UserLevelResponse**](UserLevelResponse.md) | 유저 레벨 정보 | [default to undefined]
+**unitSummary** | [**UnitSummary**](UnitSummary.md) | 유닛 요약 정보 | [default to undefined]
 
 ## Example
 

@@ -27,10 +27,10 @@ export interface UnitDetailResponse {
     /**
      * 챕터 요약 정보
      */
-    'chapterSummary'?: ChapterSummary;
+    'chapterSummary': ChapterSummary;
     /**
      * 유닛 상세 정보 목록
      */
-    'unitDetails'?: Array<UnitDetail>;
+    'unitDetails': Array<UnitDetail>;
 }
 

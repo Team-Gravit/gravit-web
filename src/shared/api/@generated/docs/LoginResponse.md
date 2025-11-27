@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**accessToken** | **string** |  | [optional] [default to undefined]
-**refreshToken** | **string** |  | [optional] [default to undefined]
+**accessToken** | **string** |  | [default to undefined]
+**refreshToken** | **string** |  | [default to undefined]
 **isOnboarded** | **boolean** |  | [optional] [default to undefined]
 
 ## Example

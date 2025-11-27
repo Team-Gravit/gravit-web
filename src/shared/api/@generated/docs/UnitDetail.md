@@ -6,7 +6,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**unitSummaries** | [**UnitSummary**](UnitSummary.md) | 유닛 요약 정보 | [optional] [default to undefined]
+**unitSummaries** | [**UnitSummary**](UnitSummary.md) | 유닛 요약 정보 | [default to undefined]
 **progressRate** | **number** | 진행도(퍼센트) | [optional] [default to undefined]
 
 ## Example

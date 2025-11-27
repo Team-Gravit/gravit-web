@@ -16,13 +16,13 @@
 
 export interface AdminNoticeDetailResponse {
     'noticeId'?: number;
-    'title'?: string;
-    'contents'?: string;
-    'authorName'?: string;
-    'createdAt'?: string;
-    'updatedAt'?: string;
-    'publishedAt'?: string;
-    'noticeType'?: string;
+    'title': string;
+    'contents': string;
+    'authorName': string;
+    'createdAt': string;
+    'updatedAt': string;
+    'noticeType': string;
     'pinned'?: boolean;
+    'publishedAt'?: string;
 }
 

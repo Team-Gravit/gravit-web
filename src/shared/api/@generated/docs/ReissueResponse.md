@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**accessToken** | **string** |  | [optional] [default to undefined]
+**accessToken** | **string** |  | [default to undefined]
 
 ## Example
 

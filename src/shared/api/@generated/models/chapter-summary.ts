@@ -22,10 +22,10 @@ export interface ChapterSummary {
     /**
      * 챕터명
      */
-    'title'?: string;
+    'title': string;
     /**
      * 챕터 설명
      */
-    'description'?: string;
+    'description': string;
 }
 

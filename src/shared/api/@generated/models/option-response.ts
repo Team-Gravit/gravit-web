@@ -25,11 +25,11 @@ export interface OptionResponse {
     /**
      * 내용
      */
-    'content'?: string;
+    'content': string;
     /**
      * 설명
      */
-    'explanation'?: string;
+    'explanation': string;
     /**
      * 정답 여부
      */

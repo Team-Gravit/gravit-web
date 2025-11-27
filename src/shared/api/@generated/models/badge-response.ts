@@ -16,9 +16,9 @@
 
 export interface BadgeResponse {
     'badgeId'?: number;
-    'code'?: string;
-    'name'?: string;
-    'description'?: string;
+    'code': string;
+    'name': string;
+    'description': string;
     'order'?: number;
     'iconId'?: number;
     'earned'?: boolean;

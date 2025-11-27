@@ -31,15 +31,15 @@ export interface ProblemResponse {
     /**
      * 문제 타입
      */
-    'problemType'?: ProblemResponseProblemType;
+    'problemType': ProblemResponseProblemType;
     /**
      * 발문
      */
-    'instruction'?: string;
+    'instruction': string;
     /**
      * 본문
      */
-    'content'?: string;
+    'content': string;
     /**
      * 주관식 정답
      */

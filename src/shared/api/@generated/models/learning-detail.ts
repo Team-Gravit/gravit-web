@@ -30,11 +30,11 @@ export interface LearningDetail {
     /**
      * 챕터 이름
      */
-    'recentSolvedChapterTitle'?: string;
+    'recentSolvedChapterTitle': string;
     /**
      * 챕터 설명
      */
-    'recentSolvedChapterDescription'?: string;
+    'recentSolvedChapterDescription': string;
     /**
      * 최근 학습 챕터 진행률 (%)
      */

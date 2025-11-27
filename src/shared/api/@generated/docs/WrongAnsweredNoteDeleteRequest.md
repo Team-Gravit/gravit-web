@@ -6,7 +6,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**problemId** | **number** | 문제 아이디 | [default to undefined]
+**problemId** | **number** | 문제 아이디 | [optional] [default to undefined]
 
 ## Example
 

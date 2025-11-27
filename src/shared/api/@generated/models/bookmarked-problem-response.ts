@@ -24,11 +24,11 @@ export interface BookmarkedProblemResponse {
     /**
      * 유닛 요약 정보
      */
-    'unitSummary'?: UnitSummary;
+    'unitSummary': UnitSummary;
     /**
      * 문제 목록
      */
-    'problems'?: Array<ProblemResponse>;
+    'problems': Array<ProblemResponse>;
     /**
      * 전체 문제 수
      */

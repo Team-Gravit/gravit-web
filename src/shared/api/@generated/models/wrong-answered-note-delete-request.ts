@@ -21,6 +21,6 @@ export interface WrongAnsweredNoteDeleteRequest {
     /**
      * 문제 아이디
      */
-    'problemId': number;
+    'problemId'?: number;
 }
 

@@ -7,8 +7,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **optionId** | **number** | 선지 아이디 | [optional] [default to undefined]
-**content** | **string** | 내용 | [optional] [default to undefined]
-**explanation** | **string** | 설명 | [optional] [default to undefined]
+**content** | **string** | 내용 | [default to undefined]
+**explanation** | **string** | 설명 | [default to undefined]
 **isAnswer** | **boolean** | 정답 여부 | [optional] [default to undefined]
 **problemId** | **number** | 문제 아이디 | [optional] [default to undefined]
 

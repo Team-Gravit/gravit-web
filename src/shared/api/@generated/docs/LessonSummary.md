@@ -7,7 +7,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **lessonId** | **number** | 레슨 아이디 | [optional] [default to undefined]
-**title** | **string** | 레슨 제목 | [optional] [default to undefined]
+**title** | **string** | 레슨 제목 | [default to undefined]
 **totalProblem** | **number** | 전체 문제 수 | [optional] [default to undefined]
 **isSolved** | **boolean** | 해결 여부 | [optional] [default to undefined]
 

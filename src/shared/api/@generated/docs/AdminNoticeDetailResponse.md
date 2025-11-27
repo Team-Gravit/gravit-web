@@ -6,14 +6,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **noticeId** | **number** |  | [optional] [default to undefined]
-**title** | **string** |  | [optional] [default to undefined]
-**contents** | **string** |  | [optional] [default to undefined]
-**authorName** | **string** |  | [optional] [default to undefined]
-**createdAt** | **string** |  | [optional] [default to undefined]
-**updatedAt** | **string** |  | [optional] [default to undefined]
-**publishedAt** | **string** |  | [optional] [default to undefined]
-**noticeType** | **string** |  | [optional] [default to undefined]
+**title** | **string** |  | [default to undefined]
+**contents** | **string** |  | [default to undefined]
+**authorName** | **string** |  | [default to undefined]
+**createdAt** | **string** |  | [default to undefined]
+**updatedAt** | **string** |  | [default to undefined]
+**noticeType** | **string** |  | [default to undefined]
 **pinned** | **boolean** |  | [optional] [default to undefined]
+**publishedAt** | **string** |  | [optional] [default to undefined]
 
 ## Example
 
@@ -27,9 +27,9 @@ const instance: AdminNoticeDetailResponse = {
     authorName,
     createdAt,
     updatedAt,
-    publishedAt,
     noticeType,
     pinned,
+    publishedAt,
 };
 ```
 

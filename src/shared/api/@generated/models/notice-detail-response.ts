@@ -16,13 +16,13 @@
 
 export interface NoticeDetailResponse {
     'id'?: number;
-    'title'?: string;
-    'content'?: string;
-    'authorName'?: string;
-    'publishedAt'?: string;
-    'createdAt'?: string;
-    'updatedAt'?: string;
-    'status'?: string;
+    'title': string;
+    'content': string;
+    'authorName': string;
+    'createdAt': string;
+    'updatedAt': string;
+    'status': string;
     'pinned'?: boolean;
+    'publishedAt': string;
 }
 

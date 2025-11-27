@@ -6,8 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **chapterId** | **number** | 챕터 아이디 | [optional] [default to undefined]
-**title** | **string** | 챕터명 | [optional] [default to undefined]
-**description** | **string** | 챕터 설명 | [optional] [default to undefined]
+**title** | **string** | 챕터명 | [default to undefined]
+**description** | **string** | 챕터 설명 | [default to undefined]
 
 ## Example
 

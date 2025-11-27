@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **earnedCount** | **number** |  | [optional] [default to undefined]
 **totalCount** | **number** |  | [optional] [default to undefined]
-**badgeCategoryResponses** | [**Array&lt;BadgeCategoryResponse&gt;**](BadgeCategoryResponse.md) |  | [optional] [default to undefined]
+**badgeCategoryResponses** | [**Array&lt;BadgeCategoryResponse&gt;**](BadgeCategoryResponse.md) |  | [default to undefined]
 
 ## Example
 

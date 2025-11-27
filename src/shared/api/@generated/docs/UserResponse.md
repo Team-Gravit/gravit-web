@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **userId** | **number** |  | [optional] [default to undefined]
 **profileImgNumber** | **number** |  | [optional] [default to undefined]
-**nickname** | **string** |  | [optional] [default to undefined]
-**providerId** | **string** |  | [optional] [default to undefined]
+**nickname** | **string** |  | [default to undefined]
+**providerId** | **string** |  | [default to undefined]
 
 ## Example
 

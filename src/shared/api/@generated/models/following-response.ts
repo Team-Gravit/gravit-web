@@ -16,8 +16,8 @@
 
 export interface FollowingResponse {
     'id'?: number;
-    'nickname'?: string;
+    'nickname': string;
     'profileImgNumber'?: number;
-    'handle'?: string;
+    'handle': string;
 }
 

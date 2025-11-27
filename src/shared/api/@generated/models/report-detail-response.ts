@@ -25,7 +25,7 @@ export interface ReportDetailResponse {
     /**
      * 신고 유형
      */
-    'reportType'?: ReportDetailResponseReportType;
+    'reportType': ReportDetailResponseReportType;
     /**
      * 문제 ID
      */
@@ -33,7 +33,7 @@ export interface ReportDetailResponse {
     /**
      * 신고 내용
      */
-    'content'?: string;
+    'content': string;
     /**
      * 해결 여부
      */
@@ -41,7 +41,7 @@ export interface ReportDetailResponse {
     /**
      * 신고 접수 시간
      */
-    'submittedAt'?: string;
+    'submittedAt': string;
 }
 
 export const ReportDetailResponseReportType = {

@@ -6,14 +6,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **number** |  | [optional] [default to undefined]
-**title** | **string** |  | [optional] [default to undefined]
-**content** | **string** |  | [optional] [default to undefined]
-**authorName** | **string** |  | [optional] [default to undefined]
-**publishedAt** | **string** |  | [optional] [default to undefined]
-**createdAt** | **string** |  | [optional] [default to undefined]
-**updatedAt** | **string** |  | [optional] [default to undefined]
-**status** | **string** |  | [optional] [default to undefined]
+**title** | **string** |  | [default to undefined]
+**content** | **string** |  | [default to undefined]
+**authorName** | **string** |  | [default to undefined]
+**createdAt** | **string** |  | [default to undefined]
+**updatedAt** | **string** |  | [default to undefined]
+**status** | **string** |  | [default to undefined]
 **pinned** | **boolean** |  | [optional] [default to undefined]
+**publishedAt** | **string** |  | [default to undefined]
 
 ## Example
 
@@ -25,11 +25,11 @@ const instance: NoticeDetailResponse = {
     title,
     content,
     authorName,
-    publishedAt,
     createdAt,
     updatedAt,
     status,
     pinned,
+    publishedAt,
 };
 ```
 

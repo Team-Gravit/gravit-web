@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **containsPopup** | **boolean** |  | [optional] [default to undefined]
-**currentSeason** | [**CurrentSeasonDto**](CurrentSeasonDto.md) |  | [optional] [default to undefined]
+**currentSeason** | [**CurrentSeasonDto**](CurrentSeasonDto.md) |  | [default to undefined]
 **lastSeasonPopupDto** | [**LastSeasonPopupDto**](LastSeasonPopupDto.md) |  | [optional] [default to undefined]
 
 ## Example

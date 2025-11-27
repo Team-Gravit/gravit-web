@@ -24,7 +24,7 @@ export interface UnitDetail {
     /**
      * 유닛 요약 정보
      */
-    'unitSummaries'?: UnitSummary;
+    'unitSummaries': UnitSummary;
     /**
      * 진행도(퍼센트)
      */

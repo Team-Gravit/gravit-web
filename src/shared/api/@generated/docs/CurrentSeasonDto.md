@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**nowSeason** | **string** |  | [optional] [default to undefined]
+**nowSeason** | **string** |  | [default to undefined]
 
 ## Example
 

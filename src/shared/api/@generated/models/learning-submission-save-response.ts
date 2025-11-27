@@ -27,14 +27,14 @@ export interface LearningSubmissionSaveResponse {
     /**
      * 리그 이름
      */
-    'leagueName'?: string;
+    'leagueName': string;
     /**
      * 유저 레벨 정보
      */
-    'userLevelResponse'?: UserLevelResponse;
+    'userLevelResponse': UserLevelResponse;
     /**
      * 유닛 요약 정보
      */
-    'unitSummary'?: UnitSummary;
+    'unitSummary': UnitSummary;
 }
 

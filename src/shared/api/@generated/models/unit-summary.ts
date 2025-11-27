@@ -22,10 +22,10 @@ export interface UnitSummary {
     /**
      * 유닛명
      */
-    'title'?: string;
+    'title': string;
     /**
      * 유닛 설명
      */
-    'description'?: string;
+    'description': string;
 }
 

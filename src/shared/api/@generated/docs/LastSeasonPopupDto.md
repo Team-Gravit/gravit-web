@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **rank** | **number** |  | [optional] [default to undefined]
-**leagueName** | **string** |  | [optional] [default to undefined]
+**leagueName** | **string** |  | [default to undefined]
 **profileImgNumber** | **number** |  | [optional] [default to undefined]
 
 ## Example

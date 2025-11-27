@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**followeeId** | **number** |  | [optional] [default to undefined]
-**followerId** | **number** |  | [optional] [default to undefined]
+**followeeId** | **number** |  | [default to undefined]
+**followerId** | **number** |  | [default to undefined]
 
 ## Example
 

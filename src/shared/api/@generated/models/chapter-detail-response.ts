@@ -24,7 +24,7 @@ export interface ChapterDetailResponse {
     /**
      * 챕터 요약 정보
      */
-    'chapterSummary'?: ChapterSummary;
+    'chapterSummary': ChapterSummary;
     /**
      * 진행도(퍼센트)
      */

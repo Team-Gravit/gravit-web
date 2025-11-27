@@ -16,7 +16,7 @@
 
 export interface LeagueResponse {
     'leagueId'?: number;
-    'name'?: string;
+    'name': string;
     'minLp'?: number;
     'maxLp'?: number;
 }

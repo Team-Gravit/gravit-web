@@ -7,7 +7,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **reportType** | **string** | 신고 유형 | [default to undefined]
-**content** | **string** | 신고 사유 | [optional] [default to undefined]
+**content** | **string** | 신고 사유 | [default to undefined]
 **problemId** | **number** | 문제 아이디 | [default to undefined]
 
 ## Example

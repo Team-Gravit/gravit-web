@@ -6,8 +6,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**chapterSummary** | [**ChapterSummary**](ChapterSummary.md) | 챕터 요약 정보 | [optional] [default to undefined]
-**unitDetails** | [**Array&lt;UnitDetail&gt;**](UnitDetail.md) | 유닛 상세 정보 목록 | [optional] [default to undefined]
+**chapterSummary** | [**ChapterSummary**](ChapterSummary.md) | 챕터 요약 정보 | [default to undefined]
+**unitDetails** | [**Array&lt;UnitDetail&gt;**](UnitDetail.md) | 유닛 상세 정보 목록 | [default to undefined]
 
 ## Example
 

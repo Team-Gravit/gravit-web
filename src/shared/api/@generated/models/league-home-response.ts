@@ -22,7 +22,7 @@ import type { LastSeasonPopupDto } from './last-season-popup-dto';
 
 export interface LeagueHomeResponse {
     'containsPopup'?: boolean;
-    'currentSeason'?: CurrentSeasonDto;
+    'currentSeason': CurrentSeasonDto;
     'lastSeasonPopupDto'?: LastSeasonPopupDto;
 }
 

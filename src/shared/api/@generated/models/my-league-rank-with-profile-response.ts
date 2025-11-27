@@ -16,12 +16,12 @@
 
 export interface MyLeagueRankWithProfileResponse {
     'leagueId'?: number;
-    'leagueName'?: string;
+    'leagueName': string;
     'rank'?: number;
     'userId'?: number;
     'lp'?: number;
     'maxLp'?: number;
-    'nickname'?: string;
+    'nickname': string;
     'profileImgNumber'?: number;
     'xp'?: number;
     'level'?: number;

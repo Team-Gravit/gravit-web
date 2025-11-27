@@ -25,7 +25,7 @@ export interface LessonSummary {
     /**
      * 레슨 제목
      */
-    'title'?: string;
+    'title': string;
     /**
      * 전체 문제 수
      */

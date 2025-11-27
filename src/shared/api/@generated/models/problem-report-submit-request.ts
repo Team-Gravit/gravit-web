@@ -25,7 +25,7 @@ export interface ProblemReportSubmitRequest {
     /**
      * 신고 사유
      */
-    'content'?: string;
+    'content': string;
     /**
      * 문제 아이디
      */

@@ -15,6 +15,6 @@
 
 
 export interface ReissueResponse {
-    'accessToken'?: string;
+    'accessToken': string;
 }
 

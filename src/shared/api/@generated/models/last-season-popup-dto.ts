@@ -16,7 +16,7 @@
 
 export interface LastSeasonPopupDto {
     'rank'?: number;
-    'leagueName'?: string;
+    'leagueName': string;
     'profileImgNumber'?: number;
 }
 

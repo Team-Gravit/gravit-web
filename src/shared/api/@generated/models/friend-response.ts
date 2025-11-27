@@ -15,7 +15,7 @@
 
 
 export interface FriendResponse {
-    'followeeId'?: number;
-    'followerId'?: number;
+    'followeeId': number;
+    'followerId': number;
 }
 

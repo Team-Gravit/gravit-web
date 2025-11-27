@@ -20,6 +20,6 @@ import type { BadgeCategoryResponse } from './badge-category-response';
 export interface AllBadgesResponse {
     'earnedCount'?: number;
     'totalCount'?: number;
-    'badgeCategoryResponses'?: Array<BadgeCategoryResponse>;
+    'badgeCategoryResponses': Array<BadgeCategoryResponse>;
 }
 
