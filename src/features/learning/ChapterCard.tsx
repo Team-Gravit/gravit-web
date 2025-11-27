@@ -32,7 +32,7 @@ function ChapterCard({ chapter }: { chapter: Chapter }) {
 				</Tooltip>
 			</div>
 			<LessonProgressBar
-				progressRate={Math.floor(completedUnits/totalUnits)}
+				progressRate={Math.floor(completedUnits / totalUnits)}
 				className="w-full"
 			/>
 			<img
