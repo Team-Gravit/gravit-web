@@ -1,12 +1,10 @@
-import { apiClient } from "@/shared/api/config";
+import { api } from "@/shared/api";
 
 export type LoginProvider = "google" | "kakao" | "naver";
 
 export async function getLoginUrl(provider: LoginProvider): Promise<string> {
-	const dest = process.env.NODE_ENV === "development" ? "local" : "prod";
+	const dest = import.meta.env.MODE === "development" ? "local" : "prod";
 
-	const { data } = await apiClient.get<{ loginUrl: string }>(
-		`oauth/login-url/${provider}?dest=${dest}`,
-	);
+	const { data } = await api.auth.oAuth.authorizeUrl(provider, dest);
 	return data.loginUrl;
 }

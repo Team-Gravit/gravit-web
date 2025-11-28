@@ -1,21 +1,19 @@
 import { useMutation } from "@tanstack/react-query";
-import type { UseMutationResult } from "@tanstack/react-query";
-import { PostOAuth } from "@/features/login/api/postOauth";
-import type { PostOAuthResponse } from "@/features/login/api/postOauth";
+import { api } from "@/shared/api";
+import type { AuthCodeRequest } from "@/shared/api/@generated";
 
-interface PostOAuthVariables {
-	provider: string;
-	code: string;
-}
-
-export function usePostOAuth(): UseMutationResult<
-	PostOAuthResponse,
-	unknown,
-	PostOAuthVariables
-> {
-	return useMutation<PostOAuthResponse, unknown, PostOAuthVariables>({
-		mutationFn: ({ provider, code }: PostOAuthVariables) =>
-			PostOAuth(provider, code),
+export function usePostOAuth() {
+	return useMutation({
+		mutationFn: async ({
+			provider,
+			dest,
+			code,
+		}: AuthCodeRequest & { dest: string; provider: string }) => {
+			const response = await api.auth.oAuth.oauthLogin(provider, dest, {
+				code,
+			});
+			return response.data;
+		},
 		onSuccess: (data) => {
 			localStorage.setItem("accessToken", data.accessToken);
 

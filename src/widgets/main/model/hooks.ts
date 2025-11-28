@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { mainPageApi } from "../api/api";
+import { api } from "@/shared/api";
 
 export const useFetchMainInfo = () => {
 	const query = useQuery({
 		queryKey: ["main-info"],
-		queryFn: () => mainPageApi.getMainInfo(),
+		queryFn: () => api.user.manage.getMainPage(),
 	});
 
-	return query;
+	return { ...query, data: query.data?.data };
 };

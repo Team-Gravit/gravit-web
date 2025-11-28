@@ -1,9 +1,9 @@
-// src/shared/api/config.ts
 import axios, {
-	type AxiosInstance,
 	type AxiosError,
+	type AxiosInstance,
 	type InternalAxiosRequestConfig,
 } from "axios";
+import { Configuration } from "./@generated";
 
 // 토큰 관리
 // let accessToken: string | null = null;
@@ -37,10 +37,16 @@ if (typeof window !== "undefined") {
 
 // API 기본 URL
 export const API_BASE_URL =
-	import.meta.env.VITE_API_BASE_URL || "https://grav-it.inuappcenter.kr/api/v1";
+	import.meta.env.VITE_API_BASE_URL || "https://grav-it.inuappcenter.kr";
 
 // axios 인스턴스
 export const apiClient: AxiosInstance = axios.create({
+	baseURL: API_BASE_URL,
+	timeout: 30000,
+	headers: { "Content-Type": "application/json" },
+});
+
+export const authClient = axios.create({
 	baseURL: API_BASE_URL,
 	timeout: 30000,
 	headers: { "Content-Type": "application/json" },
@@ -62,6 +68,15 @@ apiClient.interceptors.request.use(
 interface RetryableRequest extends InternalAxiosRequestConfig {
 	retry?: boolean;
 }
+
+// OpenAPI Configuration
+export const privateApiConfiguration = new Configuration({
+	basePath: API_BASE_URL,
+	accessToken: () => {
+		const token = tokenManager.getAccessToken();
+		return token || "";
+	},
+});
 
 apiClient.interceptors.response.use(
 	(response) => response,

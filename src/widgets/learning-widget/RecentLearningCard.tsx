@@ -7,12 +7,14 @@ import InfoIcon from "@/shared/assets/icons/info-circle.svg?react";
 import Tooltip from "@/shared/ui/tooltip/Tooltip";
 import { getPlanetImage } from "@/shared/lib/planet/utils";
 
-type RecentLearningSummary = {
-	recentSolvedChapterId: number;
-	recentSolvedChapterTitle: string;
-	recentSolvedChapterDescription: string;
-	recentSolvedChapterProgressRate: number;
-};
+type RecentLearningSummary =
+	| {
+			recentSolvedChapterId: number;
+			recentSolvedChapterTitle: string;
+			recentSolvedChapterDescription: string;
+			recentSolvedChapterProgressRate: number;
+	  }
+	| undefined;
 
 export default function RecentLearningCard({
 	learningSummary,
@@ -37,7 +39,7 @@ export default function RecentLearningCard({
 		</div>
 	);
 
-	if (learningSummary.recentSolvedChapterId !== 0) {
+	if (learningSummary) {
 		linkUrl = `/learn/${learningSummary.recentSolvedChapterId}`;
 		content = (
 			<>

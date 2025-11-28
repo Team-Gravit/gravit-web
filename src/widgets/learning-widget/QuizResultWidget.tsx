@@ -67,7 +67,7 @@ export default function QuizResultWidget({
 		);
 	}
 
-	const baseXp = 789
+	const baseXp = 789;
 	const baseLeague = currentUserData?.leagueName || "브론즈";
 	const baseLevel = 12;
 

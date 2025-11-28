@@ -54,14 +54,14 @@ function MainPage() {
 						<UserLeagueInfo
 							nickname={nickname}
 							league={leagueName}
-							xp={xp}
-							level={level}
+							xp={xp || 0}
+							level={level || 1}
 						/>
 
 						<div className="flex flex-row gap-4 mt-8">
 							<MissionCard
-								missionInfo={{ missionDescription, awardXp }}
-								isCompleted={isCompleted}
+								missionInfo={{ missionDescription, awardXp: awardXp || 0 }}
+								isCompleted={isCompleted || false}
 							/>
 							<aside className="flex flex-col w-1/3 min-h-[334px] gap-8">
 								<dl className="flex flex-col gap-4 flex-grow">
@@ -82,12 +82,16 @@ function MainPage() {
 					<section className="w-full lg:w-1/2 flex flex-col">
 						<h2 className="font-semibold text-[40px] mb-5">최근 진행한 학습</h2>
 						<RecentLearningCard
-							learningSummary={{
-								recentSolvedChapterId,
-								recentSolvedChapterTitle,
-								recentSolvedChapterDescription,
-								recentSolvedChapterProgressRate,
-							}}
+							learningSummary={
+								recentSolvedChapterId && recentSolvedChapterProgressRate
+									? {
+											recentSolvedChapterId,
+											recentSolvedChapterTitle,
+											recentSolvedChapterDescription,
+											recentSolvedChapterProgressRate,
+										}
+									: undefined
+							}
 						/>
 					</section>
 				</div>
