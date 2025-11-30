@@ -1,22 +1,22 @@
 export interface Chapter {
 	chapterId: number;
-	name: string;
+	title: string;
 	description: string;
-	totalUnits: number;
-	completedUnits: number;
+	progressRate: number;
 }
+
+export type ChapterSummary = Omit<Chapter, "progressRate">;
 
 export interface Unit {
 	unitId: number;
-	name: string;
-	totalLesson: number;
-	completedLesson: number;
-	lessons: Lesson[];
+	title: string;
+	description: string;
+	progressRate: number;
 }
 
 export interface UnitDetail {
-	unitProgressDetailResponse: UnitProgressDetail;
-	lessonProgressSummaryResponses: LessonProgressSummary[];
+	chapterSummary: ChapterSummary;
+	unit: Unit;
 }
 
 export interface LessonProgressSummary {
@@ -25,11 +25,21 @@ export interface LessonProgressSummary {
 	isCompleted: boolean;
 }
 
-interface UnitProgressDetail {
-	unitId: number;
-	name: string;
-	totalLesson: number;
-	completedLesson: number;
+export interface ChapterWithUnits {
+	chapterInfo: ChapterInfo;
+	units: Unit[];
+}
+
+export interface Lesson {
+	lessonId: number;
+	title: string;
+	totalProblem: number;
+	isSolved: boolean;
+}
+
+export interface ChapterWithLessons {
+	chapterInfo: ChapterInfo;
+	lessons: Lesson[];
 }
 
 export interface UnitInfo {
@@ -41,12 +51,6 @@ export interface ChapterInfo {
 	chapterId: number;
 	chapterName: string;
 	chapterDescription: string;
-}
-
-export interface Lesson {
-	lessonId: number;
-	name: string;
-	isCompleted: boolean;
 }
 
 export interface Problem {

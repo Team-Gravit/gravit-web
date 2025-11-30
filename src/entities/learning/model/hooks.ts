@@ -1,5 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { learningApi } from "../api/api";
+import { api } from "@/shared/api";
+import {
+	mapToChapters,
+	mapToChapterWithLessons,
+	mapToChapterWithUnits,
+} from "./mappers";
 
 export const useFetchProblems = (lessonId: number) => {
 	const query = useQuery({
@@ -23,10 +29,14 @@ export const useFetchProblems = (lessonId: number) => {
 	};
 };
 
+/** 마이그레이션 완료 */
 export const useFetchChapters = () => {
 	const query = useQuery({
 		queryKey: ["chapters"],
-		queryFn: () => learningApi.getChapterList(),
+		queryFn: async () => {
+			const response = await api.learning.getAllChapters();
+			return mapToChapters(response.data);
+		},
 		select: (data) => ({
 			chapters: data,
 		}),
@@ -38,29 +48,40 @@ export const useFetchChapters = () => {
 	};
 };
 
-export const useFetchUnits = (chapterId: number) => {
+export const useFetchChapterWithUnits = (chapterId: number) => {
 	const query = useQuery({
-		queryKey: ["units", chapterId],
-		queryFn: () => learningApi.getUnitList(chapterId),
+		queryKey: ["chapterWithUnits", chapterId],
+		queryFn: async () => {
+			const response = await api.learning.getAllUnitsInChapter(chapterId);
+			// API 응답을 프론트엔드 타입으로 변환
+			return mapToChapterWithUnits(response.data);
+		},
 	});
 
-	const chapterInfo = query.data
-		? {
-				id: query.data.chapterId,
-				name: query.data.chapterName,
-				description: query.data.chapterDescription,
-			}
-		: undefined;
+	return {
+		isPending: query.isPending,
+		isError: query.isError,
+		error: query.error,
+		chapterInfo: query.data?.chapterInfo,
+		units: query.data?.units,
+	};
+};
 
-	const units =
-		query.data?.unitDetails.map((detail) => ({
-			...detail.unitProgressDetailResponse,
-			lessons: detail.lessonProgressSummaryResponses,
-		})) || [];
+export const useFetchLessons = (unitId: number) => {
+	const query = useQuery({
+		queryKey: ["unitId", unitId],
+		queryFn: async () => {
+			const response = await api.learning.getAllLessonsInUnit(unitId);
+			// API 응답을 프론트엔드 타입으로 변환
+			return mapToChapterWithLessons(response.data);
+		},
+	});
 
 	return {
-		...query,
-		chapterInfo,
-		units,
+		isPending: query.isPending,
+		isError: query.isError,
+		error: query.error,
+		chapterInfo: query.data?.chapterInfo,
+		lessons: query.data?.lessons,
 	};
 };
