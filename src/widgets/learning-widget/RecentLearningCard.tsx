@@ -21,7 +21,7 @@ export default function RecentLearningCard({
 }: {
 	learningSummary: RecentLearningSummary;
 }) {
-	let linkUrl = "/learn";
+	let linkUrl = "/learning";
 	let content = (
 		<div className="relative flex flex-col text-white z-10 gap-2">
 			<div className="flex justify-between items-center">
@@ -40,7 +40,7 @@ export default function RecentLearningCard({
 	);
 
 	if (learningSummary) {
-		linkUrl = `/learn/${learningSummary.recentSolvedChapterId}`;
+		linkUrl = `/learning/${learningSummary.recentSolvedChapterId}`;
 		content = (
 			<>
 				<div className="relative z-10">
@@ -65,7 +65,7 @@ export default function RecentLearningCard({
 						</Tooltip>
 					</div>
 					<h3 className="text-[40px] font-mbc text-white font-normal mb-4">
-						{learningSummary.recentSolvedChapterTitle || "자료구조"}
+						{learningSummary.recentSolvedChapterTitle}
 					</h3>
 					<LessonProgressBar
 						progressRate={learningSummary.recentSolvedChapterProgressRate}

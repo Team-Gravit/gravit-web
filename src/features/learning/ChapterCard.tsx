@@ -1,12 +1,12 @@
 import cardBackground from "@/shared/assets/images/card-bg.webp";
 import InfoCircle from "@/shared/assets/icons/info-circle.svg?react";
 import LessonProgressBar from "@/entities/learning/ui/LessonProgressBar";
-import type { Chapter } from "@/shared/api/types";
 import { getPlanetImage } from "@/shared/lib/planet/utils";
 import Tooltip from "@/shared/ui/tooltip/Tooltip";
+import type { Chapter } from "@/entities/learning/model/types";
 
 function ChapterCard({ chapter }: { chapter: Chapter }) {
-	const { chapterId, totalUnits, completedUnits, name, description } = chapter;
+	const { chapterId, title, description, progressRate } = chapter;
 	return (
 		<article
 			key={chapterId}
@@ -14,7 +14,7 @@ function ChapterCard({ chapter }: { chapter: Chapter }) {
 			style={{ backgroundImage: `url(${cardBackground})` }}
 		>
 			<div className="flex flex-row justify-between lg:mb-3 z-10">
-				<h3 className="text-3xl xl:text-4xl font-mbc text-white">{name}</h3>
+				<h3 className="text-3xl xl:text-4xl font-mbc text-white">{title}</h3>
 				<Tooltip
 					button={
 						<div>
@@ -31,14 +31,11 @@ function ChapterCard({ chapter }: { chapter: Chapter }) {
 					</div>
 				</Tooltip>
 			</div>
-			<LessonProgressBar
-				progressRate={Math.floor(completedUnits / totalUnits)}
-				className="w-full"
-			/>
+			<LessonProgressBar progressRate={progressRate} className="w-full" />
 			<img
 				src={getPlanetImage(chapterId)}
 				className="absolute w-[60%] h-auto lg:w-[65%] top-1/3 transform right-0 translate-x-3 lg:top-1/2 lg:translate-x-7 group-hover:-rotate-20 group-hover:scale-110 transition-all ease-out duration-500"
-				alt={`${chapter.name} 행성`}
+				alt={`${title} 행성`}
 			/>
 			<div className="absolute inset-0 bg-black/20 group-hover:opacity-0 transition-all ease-out duration-500 z-0"></div>
 		</article>

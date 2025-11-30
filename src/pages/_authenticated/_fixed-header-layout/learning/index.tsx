@@ -4,7 +4,7 @@ import ChapterCard from "@/features/learning/ChapterCard";
 import { useFetchChapters } from "@/entities/learning/model/hooks";
 
 export const Route = createFileRoute(
-	"/_authenticated/_fixed-header-layout/chapters/",
+	"/_authenticated/_fixed-header-layout/learning/",
 )({
 	component: RouteComponent,
 });
@@ -23,6 +23,7 @@ function RouteComponent() {
 	if (!chapters) {
 		return <div>챕터가 없습니다.</div>;
 	}
+
 	return (
 		<main className="flex-grow flex flex-col justify-start bg-gray-200">
 			<Banner />
@@ -32,18 +33,13 @@ function RouteComponent() {
 						<button type="button" className="text-black  leading-normal">
 							개념 학습
 						</button>
-						<span className="text-4xl"> / </span>
-						<button type="button" className="text-[#B7B7B7] leading-normal">
-							면접 대비
-						</button>
 					</nav>
 					<section className="w-full grid grid-cols-1 lg:grid-cols-3 2xl:grid-cols-4 gap-8 lg:gap-10 mb-10">
 						{chapters.map((chapter) => {
-							const { chapterId } = chapter;
 							return (
 								<Link
-									to={"/chapters/$chapterId/units"}
-									params={{ chapterId: String(chapterId) }}
+									to={"/learning/$chapterId"}
+									params={{ chapterId: String(chapter.chapterId) }}
 									key={chapter.chapterId}
 									className="w-full"
 								>
