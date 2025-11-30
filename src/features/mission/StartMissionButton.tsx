@@ -9,7 +9,7 @@ export default function StartMissionButton({
 	return (
 		<Link
 			disabled={isCompleted}
-			to="/learn"
+			to="/learning"
 			className={cn(
 				"w-full rounded-xl px-2.5 py-6 font-semibold text-3xl text-center",
 				isCompleted

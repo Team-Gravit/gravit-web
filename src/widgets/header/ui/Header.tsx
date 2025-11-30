@@ -8,7 +8,7 @@ import { tokenManager } from "@/shared/api/config";
 
 const HEADER_NAV_LIST: HeaderNavProps[] = [
 	{ to: "/main", text: "홈" },
-	{ to: "/chapters", text: "학습" },
+	{ to: "/learning", text: "학습" },
 	{ to: "/league", text: "리그" },
 	{ to: "/user", text: "사용자" },
 ];
