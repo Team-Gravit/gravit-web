@@ -1,4 +1,4 @@
-import { createFileRoute, Link, useParams } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import backgroundImg from "@/shared/assets/images/background.jpg";
 import RightArrowIcon from "@/shared/assets/icons/ic-right-arrow.svg?react";
 import { BackgroundLayout } from "@/shared/ui/background/background";
@@ -13,9 +13,7 @@ export const Route = createFileRoute(
 });
 
 function RouteComponent() {
-	const { chapterId } = useParams({
-		from: "/_authenticated/_fixed-header-layout/learning/$chapterId/",
-	});
+	const { chapterId } = Route.useParams();
 
 	const { chapterInfo, units } = useFetchChapterWithUnits(Number(chapterId));
 
