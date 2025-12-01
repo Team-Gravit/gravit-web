@@ -68,6 +68,9 @@
     --breakpoint-lg: 1024px;
     --breakpoint-xl: 1280px;
 
+    /* 번호 색상 */
+    --color-3: #FFB608;
+
     /*폰트*/
     --font-pretendard: 'Pretendard', sans-serif;
     --font-mbc: 'MBC1961GulimM', sans-serif;
@@ -98,7 +101,22 @@
     }
 }
 
+@layer base {
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+}
+
 @layer utilities {
+    .animate-fadeIn {
+        animation: fadeIn 0.2s ease-in;
+    }
+
     .bg-main-gradient {
         background: linear-gradient(45deg, var(--color-main-2) 0%, var(--color-main-end) 100%);
     }

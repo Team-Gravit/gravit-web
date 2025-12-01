@@ -1,17 +1,17 @@
-import type { Problem, ProblemResult } from "@/entities/learning/model/types";
+import type { Problem } from "@/entities/learning/model/types";
 
 export interface ProblemListResponseDTO {
 	problems: Problem[];
 }
 
-export interface LearningResultRequestDTO {
-	chapterId: number;
-	unitId: number;
-	lessonId: number;
-	learningTime: number;
-	accuracy: number;
-	problemResults: ProblemResult[];
-}
+// export interface LearningResultRequestDTO {
+// 	chapterId: number;
+// 	unitId: number;
+// 	lessonId: number;
+// 	learningTime: number;
+// 	accuracy: number;
+// 	problemResults: ProblemResult[];
+// }
 
 export interface LearningResultResponseDTO {
 	success: boolean;

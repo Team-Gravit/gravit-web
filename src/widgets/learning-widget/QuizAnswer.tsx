@@ -6,22 +6,17 @@ export default function QuizAnswer({
 	problemId,
 	problemType,
 	options,
-	answer,
+	answers,
 }: {
 	problemId: number;
 	problemType: "SUBJECTIVE" | "OBJECTIVE";
 	options: Option[];
-	answer: string;
+	answers: string[];
 }) {
 	if (problemType === "SUBJECTIVE") {
 		console.log("주관식", problemType);
 
-		return (
-			<SubjectiveSolver
-				problemId={problemId}
-				answer={answer.split(",").map((s) => s.trim())}
-			/>
-		);
+		return <SubjectiveSolver problemId={problemId} answers={answers} />;
 	}
 
 	if (problemType === "OBJECTIVE") {

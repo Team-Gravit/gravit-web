@@ -33,7 +33,7 @@ const StudyNote: FC<StudyNoteProps> = ({
 
 				<button
 					type="button"
-					onClick={() => navigate({ to: "/learn" })}
+					onClick={() => navigate({ to: "/learning" })}
 					className="flex justify-center items-center px-8 py-4 w-[173px] h-[56px] bg-[#8100B3] rounded-[16px]"
 				>
 					<span className="text-[20px] font-semibold text-white">

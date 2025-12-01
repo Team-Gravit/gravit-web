@@ -6,7 +6,7 @@ export const Route = createFileRoute("/_authenticated/_blank-layout")({
 
 function BlankLayoutComponent() {
 	return (
-		<div className="flex flex-col min-h-screen">
+		<div className="flex flex-col min-h-screen min-w-screen">
 			<Outlet />
 		</div>
 	);

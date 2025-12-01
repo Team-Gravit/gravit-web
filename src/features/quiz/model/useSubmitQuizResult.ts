@@ -1,20 +1,23 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { quizApi } from "../api/api";
-import type { SubmitResultRequestDTO } from "../api/dto";
+import { learningKeys } from "@/entities/learning/api/query-keys";
+import { api } from "@/shared/api";
+import type { LearningSubmissionSaveRequest } from "@/shared/api/@generated";
 
 export const useSubmitQuizResult = () => {
 	const queryClient = useQueryClient();
 	return useMutation({
-		mutationFn: (request: SubmitResultRequestDTO) =>
-			quizApi.submitResult(request),
-		onSuccess: (data) => {
-			console.log("퀴즈 결과 제출 성공:", data);
+		mutationFn: async (request: LearningSubmissionSaveRequest) => {
+			const response = await api.learning.saveLearningSubmission(request);
+			return response.data;
+		},
+		onSuccess: () => {
+			alert("퀴즈 결과 제출 성공:");
 			queryClient.invalidateQueries({
-				queryKey: ["units"],
+				queryKey: learningKeys.all,
 			});
 		},
-		onError: (error) => {
-			console.error("퀴즈 결과 제출 실패:", error);
+		onError: () => {
+			alert("퀴즈 결과 제출 실패:");
 		},
 	});
 };

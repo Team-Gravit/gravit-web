@@ -3,24 +3,20 @@ import Mascot from "@/shared/assets/icons/end-mascot.svg?react";
 import { StatCard } from "@/shared/ui/card/StatCard";
 import bookImg from "@/shared/assets/images/books.png";
 import playImg from "@/shared/assets/images/play.png";
-import { Link } from "@tanstack/react-router";
+import { Link, useRouter } from "@tanstack/react-router";
 import { useSubmitQuizResult } from "@/features/quiz/model/useSubmitQuizResult";
 import { useEffect } from "react";
-import type { SubmitResultRequestDTO } from "@/features/quiz/api/dto";
 import { useQuizStateStore } from "@/features/quiz/model/store";
 import formatTime from "./lib/formatTime";
 import { useFetchMainInfo } from "../main/model/hooks";
 import { useMinimumLoadingTime } from "./lib/useMinimumLoadingTime";
+import type { LearningSubmissionSaveRequest } from "@/shared/api/@generated";
 
-export default function QuizResultWidget({
-	lessonId,
-	chapterId,
-}: {
-	lessonId: string;
-	chapterId: string;
-}) {
+export default function QuizResultWidget({ lessonId }: { lessonId: string }) {
 	const { data: currentUserData, isLoading: isLoadingUserData } =
 		useFetchMainInfo();
+
+	const router = useRouter();
 
 	const {
 		mutate: submitResult,
@@ -45,14 +41,16 @@ export default function QuizResultWidget({
 	);
 
 	useEffect(() => {
-		const submitData: SubmitResultRequestDTO = {
-			lessonId: Number(lessonId),
-			learningTime: timeElapsed,
-			accuracy: accuracy,
-			problemResults: userAnswers.map((answer) => ({
+		const submitData: LearningSubmissionSaveRequest = {
+			lessonSubmissionSaveRequest: {
+				lessonId: Number(lessonId),
+				learningTime: timeElapsed,
+				accuracy: accuracy,
+			},
+
+			problemSubmissionRequests: userAnswers.map((answer) => ({
 				problemId: answer.problemId,
 				isCorrect: answer.isCorrect,
-				incorrectCounts: 1,
 			})),
 		};
 
@@ -71,9 +69,9 @@ export default function QuizResultWidget({
 	const baseLeague = currentUserData?.leagueName || "브론즈";
 	const baseLevel = 12;
 
-	const xp = resultData?.xp || baseXp;
+	const xp = resultData?.userLevelResponse.xp || baseXp;
 	const league = resultData?.leagueName || baseLeague;
-	const level = resultData?.currentLevel || baseLevel;
+	const level = resultData?.userLevelResponse.currentLevel || baseLevel;
 
 	const correctRate = accuracy || 0;
 
@@ -141,13 +139,15 @@ export default function QuizResultWidget({
 					>
 						메인으로 가기
 					</Link>
-					<Link
-						to={"/learn/$chapterId"}
-						params={{ chapterId: chapterId }}
+					<button
+						type="button"
+						onClick={() => {
+							router.history.back();
+						}}
 						className="primary-btn cursor-pointer text-2xl lg:text-3xl font-semibold flex items-center justify-center"
 					>
 						계속하기
-					</Link>
+					</button>
 				</section>
 			</div>
 		</main>

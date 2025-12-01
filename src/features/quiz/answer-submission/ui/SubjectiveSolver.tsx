@@ -5,10 +5,10 @@ import SubjectiveInput from "./SubjectiveInput";
 import CheckIcon from "./assets/floating-check.svg?react";
 
 export default function SubjectiveSolver({
-	answer,
+	answers,
 	problemId,
 }: {
-	answer: string[];
+	answers: string[];
 	problemId: number;
 }) {
 	const { submitAnswer } = useQuizStateStore();
@@ -48,7 +48,7 @@ export default function SubjectiveSolver({
 				onHandleClick={() =>
 					submitAnswer(
 						enteredAnswer,
-						answer.includes(enteredAnswer.trim()),
+						answers.includes(enteredAnswer.trim()),
 						problemId,
 						"SUBJECTIVE",
 					)

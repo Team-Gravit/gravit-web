@@ -1,4 +1,4 @@
-import { createFileRoute, Link, useParams } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { BackgroundLayout } from "@/shared/ui/background/background";
 import backgroundImg from "@/shared/assets/images/background.jpg";
 import ChapterInfo from "@/entities/chapter/ChapterInfo";
@@ -13,10 +13,8 @@ export const Route = createFileRoute(
 });
 
 function RouteComponent() {
-	const { unitId } = useParams(
-		"/_authenticated/_fixed-header-layout/learning/$chapterId/$unitId/",
-	);
-	const { lessons, chapterInfo, isPending } = useFetchLessons(unitId);
+	const { chapterId, unitId } = Route.useParams();
+	const { lessons, chapterInfo, isPending } = useFetchLessons(Number(unitId));
 
 	if (isPending) {
 		return <div>로딩중</div>;
@@ -49,7 +47,7 @@ function RouteComponent() {
 							</p>
 							<button
 								type="button"
-								className="font-medium text-xl text-gray-700 flex items-center cursor-pointer"
+								className="hover:text-gray-500 font-medium text-xl text-gray-700 flex items-center cursor-pointer"
 							>
 								문제 풀러 가기
 								<NextIcon className="w-5" />
@@ -72,7 +70,7 @@ function RouteComponent() {
 							</p>
 							<button
 								type="button"
-								className="font-medium text-xl text-gray-700 flex items-center cursor-pointer"
+								className="font-medium text-xl text-gray-700 flex items-center cursor-pointer hover:text-gray-500"
 							>
 								문제 풀러 가기
 								<NextIcon className="w-5" />
@@ -86,15 +84,23 @@ function RouteComponent() {
 						<NextIcon className="w-6 text-white" />
 					</div>
 					<ol className="w-full grid grid-cols-2 gap-4">
-						{lessons.map((lesson) => (
+						{lessons.map((lesson, idx) => (
 							<li
 								key={lesson.lessonId}
 								className="w-full p-5 border rounded-lg ease-in-out transition-all duration-400 cursor-pointer hover:border-[#8B69FF] hover:bg-[linear-gradient(109deg,rgba(255,255,255,0.40)_0%,rgba(255,255,255,0.10)_100%)] hover:shadow-[0_0_4px_-25px_rgba(0,0,0,0.25)] hover:backdrop-blur-[5px] border-[#531FAD] bg-[linear-gradient(109deg,rgba(36,0,49,0.80)_0%,rgba(36,0,49,0.20)_100%)] shadow-md backdrop-blur-sm"
 							>
-								<Link className="flex flex-col gap-6" to="/">
+								<Link
+									className="flex flex-col gap-6"
+									to="/learning/$chapterId/$unitId/$lessonId"
+									params={{
+										chapterId,
+										unitId,
+										lessonId: lesson.lessonId.toString(),
+									}}
+								>
 									<div className="flex items-center">
 										<h4 className="inline-block text-white font-bold text-2xl">
-											Lesson{lesson.lessonId}
+											Lesson{(idx + 1).toString().padStart(2, "0")}
 										</h4>
 
 										<div className="h-4.5 border-l-2  border-white mx-3" />
