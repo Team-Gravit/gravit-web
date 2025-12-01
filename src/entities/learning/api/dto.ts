@@ -1,7 +1,4 @@
-import type { Chapter } from "@/shared/api/types";
 import type { Problem, UnitDetail } from "../model/types";
-
-export type ChapterListResponseDTO = Chapter[];
 
 export type ChapterDetailResponseDTO = {
 	chapterId: number;
