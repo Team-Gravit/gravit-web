@@ -13,11 +13,14 @@
     /*black*/
     --color-black: #222124;
 
+    --background-image-main-gr: var(--main-gr, linear-gradient(45deg, #8100B3 0%, #D0F 100%));
+
     
     /*gray*/
     --color-gray-100: #f8f8f8;
     --color-gray-200: #f2f2f2;
     --color-gray-300: #dcdcdc;
+    --color-gray-400: #c2c2c2;
     --color-gray-500: #a8a8a8;
     --color-gray-600: #6d6d6d;
     --color-gray-700: #5a5a5a;

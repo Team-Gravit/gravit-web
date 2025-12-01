@@ -12,7 +12,6 @@ export default function ObjectiveSolver({ options }: { options: Option[] }) {
 	);
 
 	const onHandleSelectOption = (optionIdx: number) => {
-		// setSelectedOptionIdx(optionIdx);
 		submitAnswer(
 			optionIdx,
 			options[optionIdx].isAnswer,
@@ -22,7 +21,7 @@ export default function ObjectiveSolver({ options }: { options: Option[] }) {
 	};
 
 	return (
-		<section className="flex flex-col max-w-[1188px] w-full">
+		<section className="flex flex-col w-full">
 			<ol className="flex flex-col">
 				{options.map((option, idx) => (
 					<li key={option.optionId}>

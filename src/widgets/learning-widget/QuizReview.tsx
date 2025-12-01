@@ -56,7 +56,7 @@ export default function QuizReview({
 				ref={buttonRef}
 				onHandleClick={isLastQuestion ? completeQuiz : goToNextProblem}
 			>
-				<NextIcon className="w-[20px]" />
+				<NextIcon className="w-[20px] mobile:w-[64px]" />
 			</FloatingButton>
 		</>
 	);

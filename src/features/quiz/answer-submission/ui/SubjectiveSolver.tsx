@@ -37,7 +37,7 @@ export default function SubjectiveSolver({
 	}, []);
 
 	return (
-		<section className="flex flex-col max-w-[1188px] w-full">
+		<section className="flex flex-col w-full">
 			<SubjectiveInput
 				enteredAnswer={enteredAnswer}
 				onChange={handleChangeAnswer}
@@ -54,7 +54,7 @@ export default function SubjectiveSolver({
 					)
 				}
 			>
-				<CheckIcon className="w-[45px]" />
+				<CheckIcon className="w-[45px] lg:w-[74px]" />
 			</FloatingButton>
 		</section>
 	);

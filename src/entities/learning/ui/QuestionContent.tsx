@@ -31,7 +31,7 @@ export default function QuestionContent({
 					<ClipBoardIcon />
 					{currentProblemIndex + 1}/{totalProblemsCount}
 				</h2>
-				<p>
+				<p className="break-keep">
 					<button
 						type="button"
 						className={cn(
@@ -58,7 +58,7 @@ export default function QuestionContent({
 
 			<p className="text-gray-900 font-semibold text-2xl">{question}</p>
 
-			<article className="p-4 bg-white rounded-2xl border border-gray-300">
+			<article className="p-6 bg-white rounded-2xl text-2xl border font-medium border-gray-300">
 				{content}
 			</article>
 		</div>

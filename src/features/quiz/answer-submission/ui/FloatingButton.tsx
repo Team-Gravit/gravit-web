@@ -15,7 +15,7 @@ export default function FloatingButton({
 			type="button"
 			onClick={onHandleClick}
 			className={
-				"flex items-center justify-center cursor-pointer w-[80px] h-[80px] lg:w-[100px] lg:h-[100px] bg-[#009FFF] rounded-full fixed bottom-15 right-15 lg:bottom-15 lg:right-30"
+				"flex items-center justify-center cursor-pointer w-[80px] h-[80px] lg:w-[100px] lg:h-[100px] bg-main-gr rounded-full fixed bottom-15 right-15 lg:bottom-15 lg:right-30"
 			}
 		>
 			{children}
