@@ -5,12 +5,10 @@ import LockIcon from "@/shared/assets/icons/lock.svg?react";
 export default function UnitPopover({
 	unitId,
 	lessonName,
-	lessonId,
 	isActive,
 }: {
 	unitId: string;
 	lessonName: string;
-	lessonId: string;
 	isActive: boolean;
 }) {
 	return (
@@ -37,8 +35,7 @@ export default function UnitPopover({
 				<h2 className="text-2xl font-bold text-white text-start">{`${lessonName}: ${unitId}유닛`}</h2>
 				{isActive ? (
 					<Link
-						to={"/lesson/$lessonId"}
-						params={{ lessonId }}
+						to={"/learning"}
 						className="h-[54px] bg-white text-xl font-semibold text-[#222124] rounded-2xl flex items-center justify-center"
 					>
 						학습 시작하기 (+20xp)
