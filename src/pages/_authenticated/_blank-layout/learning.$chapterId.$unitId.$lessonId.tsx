@@ -1,8 +1,29 @@
-// import QuizHeader from "@/widgets/learning-widget/QuizHeader";
-// import LessonProgressBar from "@/widgets/learning-widget/LessonProgressBar";
+import {
+	createFileRoute,
+	useNavigate,
+	useParams,
+} from "@tanstack/react-router";
+import { useFetchProblems } from "@/entities/learning/model/hooks";
 import LoadingWidget from "@/widgets/learning-widget/LoadingWidget";
-import { createFileRoute } from "@tanstack/react-router";
-// import { ConfirmModal } from "@/shared/ui/modal/ConfirmModal";
+import { useMinimumLoadingTime } from "@/widgets/learning-widget/lib/useMinimumLoadingTime";
+import { useEffect, useRef } from "react";
+import {
+	ConfirmModal,
+	type ConfirmModalRef,
+} from "@/shared/ui/modal/ConfirmModal";
+import { useQuizStateStore } from "@/features/quiz/model/store";
+import QuizHeader from "@/widgets/learning-widget/QuizHeader";
+import LessonProgressBar from "@/widgets/learning-widget/LessonProgressBar";
+import {
+	ReportModal,
+	type ReportType,
+} from "@/features/quiz/submit-report/ui/ReportModal";
+import QuestionContent from "@/entities/learning/ui/QuestionContent";
+import QuizAnswer from "@/widgets/learning-widget/QuizAnswer";
+import QuizReview from "@/widgets/learning-widget/QuizReview";
+import QuizResultWidget from "@/widgets/learning-widget/QuizResultWidget";
+import ReportButton from "@/features/quiz/submit-report/ui/ReportButton";
+import { useSubmitReport } from "@/features/learning/api/use-submit-report";
 
 export const Route = createFileRoute(
 	"/_authenticated/_blank-layout/learning/$chapterId/$unitId/$lessonId",
@@ -11,21 +32,76 @@ export const Route = createFileRoute(
 });
 
 function RouteComponent() {
-	const isPending = true;
+	const { lessonId, chapterId, unitId } = useParams({
+		from: "/_authenticated/_blank-layout/learning/$chapterId/$unitId/$lessonId",
+	});
+	const { data, isPending } = useFetchProblems(Number(lessonId));
 
-	if (isPending) {
+	const quitModalRef = useRef<ConfirmModalRef>(null);
+	const reportModalRef = useRef<ConfirmModalRef>(null);
+	const navigate = useNavigate();
+
+	const userAnswers = useQuizStateStore((state) => state.userAnswers);
+	const currentProblemIndex = useQuizStateStore(
+		(state) => state.currentProblemIndex,
+	);
+	const resetQuiz = useQuizStateStore((state) => state.resetQuiz);
+	const isQuizCompleted = useQuizStateStore((state) => state.isQuizCompleted);
+	const pauseTime = useQuizStateStore((state) => state.pauseTime);
+	const resumeTime = useQuizStateStore((state) => state.resumeTime);
+	const resetTime = useQuizStateStore((state) => state.resetTime);
+
+	const { mutate } = useSubmitReport();
+
+	useEffect(() => {
+		resetQuiz();
+	}, [resetQuiz]);
+
+	const shouldShowLoading = useMinimumLoadingTime({
+		isLoading: isPending,
+		minimumTime: 2000,
+	});
+
+	if (shouldShowLoading) {
 		return (
 			<main className="flex-grow w-full h-full flex flex-col items-center justify-start mt-10">
 				<LoadingWidget />
 			</main>
 		);
 	}
+
+	if (!data) {
+		return <div>문제가 발생했습니다.</div>;
+	}
+
+	const { problems, totalProblems } = data;
+	const isSubmitted = userAnswers.length !== currentProblemIndex;
+	const activeQuestionIndex = userAnswers.length;
+	const percent = (userAnswers.length / problems.length) * 100;
+
+	const handleClickQuit = () => {
+		if (quitModalRef) {
+			quitModalRef.current?.open();
+			pauseTime();
+		}
+	};
+
+	const handleClickReport = () => {
+		if (reportModalRef) {
+			reportModalRef.current?.open();
+			pauseTime();
+		}
+	};
+
 	return (
 		<>
-			{/* {!isQuizCompleted && (
+			{!isQuizCompleted && (
 				<>
-					<QuizHeader lessonName={"임시 이름"} onHandleQuit={handleClickQuit} />
-					<LessonProgressBar progress={`${10}%`} />
+					<QuizHeader
+						lessonName={data.unitSummary.title}
+						onHandleQuit={handleClickQuit}
+					/>
+					<LessonProgressBar progress={`${percent}%`} />
 					<main className="flex-grow bg-gray-200 pt-6 px-10 lg:px-[126px] flex justify-center">
 						<ConfirmModal
 							ref={quitModalRef}
@@ -40,8 +116,8 @@ function RouteComponent() {
 								resetQuiz();
 								resetTime();
 								navigate({
-									to: "/learn/$chapterId",
-									params: { chapterId: chapterId.toString() },
+									to: "/learning/$chapterId/$unitId",
+									params: { chapterId, unitId },
 								});
 							}}
 							onCancel={() => {
@@ -53,8 +129,7 @@ function RouteComponent() {
 							ref={reportModalRef}
 							onSubmit={async (reportType: ReportType, content: string) => {
 								const trimmedContent = content.trim() === "" ? "-" : content;
-
-								await quizApi.submitReport({
+								mutate({
 									reportType,
 									content: trimmedContent,
 									problemId: problems[currentProblemIndex].problemId,
@@ -73,7 +148,9 @@ function RouteComponent() {
 							/>
 							<div className="w-full">
 								<QuestionContent
-									totalProblemsCount={totalCount}
+									problemId={problems[currentProblemIndex].problemId}
+									isBookmarked={problems[currentProblemIndex].isBookmarked}
+									totalProblemsCount={totalProblems}
 									content={problems[currentProblemIndex].content}
 									question={problems[currentProblemIndex].question}
 								/>
@@ -87,15 +164,13 @@ function RouteComponent() {
 											| "OBJECTIVE"
 									}
 									options={problems[currentProblemIndex].options}
-									answer={problems[currentProblemIndex].answer}
+									answers={problems[currentProblemIndex].answer.content}
 								/>
 							)}
 							{isSubmitted && (
 								<QuizReview
 									isLastQuestion={activeQuestionIndex === problems.length}
-									answer={problems[currentProblemIndex].answer
-										.split(",")
-										.map((s) => s.trim())}
+									answer={problems[currentProblemIndex].answer.content}
 									options={problems[currentProblemIndex].options}
 									userAnswer={userAnswers[userAnswers.length - 1]}
 								/>
@@ -104,9 +179,7 @@ function RouteComponent() {
 					</main>
 				</>
 			)}
-			{isQuizCompleted && (
-				<QuizResultWidget lessonId={lessonId} chapterId={String(chapterId)} />
-			)} */}
+			{isQuizCompleted && <QuizResultWidget lessonId={lessonId} />}
 		</>
 	);
 }

@@ -1,35 +1,32 @@
 import { useQuery } from "@tanstack/react-query";
-import { learningApi } from "../api/api";
 import { api } from "@/shared/api";
 import {
 	mapToChapters,
 	mapToChapterWithLessons,
 	mapToChapterWithUnits,
+	mapToProblemsWithUnitSummary,
 } from "./mappers";
+import { learningKeys } from "../api/query-keys";
 
 export const useFetchProblems = (lessonId: number) => {
 	const query = useQuery({
-		queryKey: ["problems", lessonId],
-		queryFn: () => learningApi.getProblems(lessonId),
-		select: (data) => ({
-			chapterId: data.chapterId,
-			problems: data.problems,
-			totalCount: data.problems.length,
-			lessonName: data.lessonName,
-		}),
+		queryKey: learningKeys.lessonProblems(lessonId),
+		queryFn: async () => {
+			const response = await api.learning.getAllProblemsInLesson(lessonId);
+
+			return mapToProblemsWithUnitSummary(response.data);
+		},
 		enabled: !!lessonId,
 	});
 
 	return {
 		...query,
 		problems: query.data?.problems || [],
-		totalCount: query.data?.totalCount || 0,
-		lessonName: query.data?.lessonName,
-		chapterId: query.data?.chapterId,
+		totalProblems: query.data?.totalProblems || 0,
+		unitSummary: query.data?.unitSummary,
 	};
 };
 
-/** 마이그레이션 완료 */
 export const useFetchChapters = () => {
 	const query = useQuery({
 		queryKey: ["chapters"],
@@ -53,7 +50,6 @@ export const useFetchChapterWithUnits = (chapterId: number) => {
 		queryKey: ["chapterWithUnits", chapterId],
 		queryFn: async () => {
 			const response = await api.learning.getAllUnitsInChapter(chapterId);
-			// API 응답을 프론트엔드 타입으로 변환
 			return mapToChapterWithUnits(response.data);
 		},
 	});
@@ -72,7 +68,6 @@ export const useFetchLessons = (unitId: number) => {
 		queryKey: ["unitId", unitId],
 		queryFn: async () => {
 			const response = await api.learning.getAllLessonsInUnit(unitId);
-			// API 응답을 프론트엔드 타입으로 변환
 			return mapToChapterWithLessons(response.data);
 		},
 	});
