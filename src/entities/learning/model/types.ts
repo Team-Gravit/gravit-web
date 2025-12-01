@@ -53,13 +53,10 @@ export interface ChapterInfo {
 	chapterDescription: string;
 }
 
-export interface Problem {
-	problemId: number;
-	problemType: "SUBJECTIVE" | "OBJECTIVE";
-	question: string;
-	content: string;
-	answer: string;
-	options: Option[];
+export interface UnitSummaryInfo {
+	unitId: number;
+	title: string;
+	description: string;
 }
 
 export interface Option {
@@ -70,8 +67,23 @@ export interface Option {
 	problemId: number;
 }
 
-export interface ProblemResult {
+export interface Answer {
+	content: string[];
+	explanation: string;
+}
+
+export interface Problem {
 	problemId: number;
-	isCorrect: boolean;
-	incorrectCounts: number;
+	problemType: "SUBJECTIVE" | "OBJECTIVE";
+	question: string;
+	content: string;
+	answer: Answer;
+	options: Option[];
+	isBookmarked: boolean;
+}
+
+export interface ProblemsWithUnitSummary {
+	unitSummary: UnitSummaryInfo;
+	problems: Problem[];
+	totalProblems: number; // 필수!
 }
