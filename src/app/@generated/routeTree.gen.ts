@@ -23,7 +23,6 @@ import { Route as AuthenticatedFixedHeaderLayoutLeagueRouteImport } from './../.
 import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/route'
 import { Route as AuthenticatedFixedHeaderLayoutLearningIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/learning/index'
 import { Route as LoginOauth2CodeProviderRouteImport } from './../../pages/login/oauth2/code/$provider'
-import { Route as AuthenticatedBlankLayoutLessonLessonIdRouteImport } from './../../pages/_authenticated/_blank-layout/lesson/$lessonId'
 import { Route as AuthenticatedFixedHeaderLayoutLearningChapterIdIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/learning/$chapterId/index'
 import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/index'
 import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserPrivacyRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/privacy'
@@ -32,6 +31,7 @@ import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserAddfriendR
 import { Route as AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/learning/$chapterId/$unitId/index'
 import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/index'
 import { Route as AuthenticatedFixedHeaderLayoutUserMeDeletePageRouteImport } from './../../pages/_authenticated/_fixed-header-layout/user.me.delete.page'
+import { Route as AuthenticatedBlankLayoutLearningChapterIdUnitIdLessonIdRouteImport } from './../../pages/_authenticated/_blank-layout/learning.$chapterId.$unitId.$lessonId'
 import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/index'
 import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageNoticeIdIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/$noticeId/index'
 
@@ -111,12 +111,6 @@ const LoginOauth2CodeProviderRoute = LoginOauth2CodeProviderRouteImport.update({
   path: '/login/oauth2/code/$provider',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthenticatedBlankLayoutLessonLessonIdRoute =
-  AuthenticatedBlankLayoutLessonLessonIdRouteImport.update({
-    id: '/lesson/$lessonId',
-    path: '/lesson/$lessonId',
-    getParentRoute: () => AuthenticatedBlankLayoutRouteRoute,
-  } as any)
 const AuthenticatedFixedHeaderLayoutLearningChapterIdIndexRoute =
   AuthenticatedFixedHeaderLayoutLearningChapterIdIndexRouteImport.update({
     id: '/learning/$chapterId/',
@@ -176,6 +170,12 @@ const AuthenticatedFixedHeaderLayoutUserMeDeletePageRoute =
     path: '/user/me/delete/page',
     getParentRoute: () => AuthenticatedFixedHeaderLayoutRouteRoute,
   } as any)
+const AuthenticatedBlankLayoutLearningChapterIdUnitIdLessonIdRoute =
+  AuthenticatedBlankLayoutLearningChapterIdUnitIdLessonIdRouteImport.update({
+    id: '/learning/$chapterId/$unitId/$lessonId',
+    path: '/learning/$chapterId/$unitId/$lessonId',
+    getParentRoute: () => AuthenticatedBlankLayoutRouteRoute,
+  } as any)
 const AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRoute =
   AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRouteImport.update(
     {
@@ -203,7 +203,6 @@ export interface FileRoutesByFullPath {
   '/test': typeof AuthenticatedFixedHeaderLayoutTestRoute
   '/onboarding': typeof AuthenticatedOnboardingOnboardingRoute
   '/success': typeof AuthenticatedOnboardingSuccessRoute
-  '/lesson/$lessonId': typeof AuthenticatedBlankLayoutLessonLessonIdRoute
   '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
   '/learning': typeof AuthenticatedFixedHeaderLayoutLearningIndexRoute
   '/user/addfriend': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserAddfriendRoute
@@ -211,6 +210,7 @@ export interface FileRoutesByFullPath {
   '/user/privacy': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserPrivacyRoute
   '/user': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserIndexRoute
   '/learning/$chapterId': typeof AuthenticatedFixedHeaderLayoutLearningChapterIdIndexRoute
+  '/learning/$chapterId/$unitId/$lessonId': typeof AuthenticatedBlankLayoutLearningChapterIdUnitIdLessonIdRoute
   '/user/me/delete/page': typeof AuthenticatedFixedHeaderLayoutUserMeDeletePageRoute
   '/user/notice': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRoute
   '/learning/$chapterId/$unitId': typeof AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdIndexRoute
@@ -225,7 +225,6 @@ export interface FileRoutesByTo {
   '/test': typeof AuthenticatedFixedHeaderLayoutTestRoute
   '/onboarding': typeof AuthenticatedOnboardingOnboardingRoute
   '/success': typeof AuthenticatedOnboardingSuccessRoute
-  '/lesson/$lessonId': typeof AuthenticatedBlankLayoutLessonLessonIdRoute
   '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
   '/learning': typeof AuthenticatedFixedHeaderLayoutLearningIndexRoute
   '/user/addfriend': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserAddfriendRoute
@@ -233,6 +232,7 @@ export interface FileRoutesByTo {
   '/user/privacy': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserPrivacyRoute
   '/user': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserIndexRoute
   '/learning/$chapterId': typeof AuthenticatedFixedHeaderLayoutLearningChapterIdIndexRoute
+  '/learning/$chapterId/$unitId/$lessonId': typeof AuthenticatedBlankLayoutLearningChapterIdUnitIdLessonIdRoute
   '/user/me/delete/page': typeof AuthenticatedFixedHeaderLayoutUserMeDeletePageRoute
   '/user/notice': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRoute
   '/learning/$chapterId/$unitId': typeof AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdIndexRoute
@@ -253,7 +253,6 @@ export interface FileRoutesById {
   '/_authenticated/_fixed-header-layout/test': typeof AuthenticatedFixedHeaderLayoutTestRoute
   '/_authenticated/_onboarding/onboarding': typeof AuthenticatedOnboardingOnboardingRoute
   '/_authenticated/_onboarding/success': typeof AuthenticatedOnboardingSuccessRoute
-  '/_authenticated/_blank-layout/lesson/$lessonId': typeof AuthenticatedBlankLayoutLessonLessonIdRoute
   '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
   '/_authenticated/_fixed-header-layout/learning/': typeof AuthenticatedFixedHeaderLayoutLearningIndexRoute
   '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/addfriend': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserAddfriendRoute
@@ -261,6 +260,7 @@ export interface FileRoutesById {
   '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/privacy': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserPrivacyRoute
   '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserIndexRoute
   '/_authenticated/_fixed-header-layout/learning/$chapterId/': typeof AuthenticatedFixedHeaderLayoutLearningChapterIdIndexRoute
+  '/_authenticated/_blank-layout/learning/$chapterId/$unitId/$lessonId': typeof AuthenticatedBlankLayoutLearningChapterIdUnitIdLessonIdRoute
   '/_authenticated/_fixed-header-layout/user/me/delete/page': typeof AuthenticatedFixedHeaderLayoutUserMeDeletePageRoute
   '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRoute
   '/_authenticated/_fixed-header-layout/learning/$chapterId/$unitId/': typeof AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdIndexRoute
@@ -277,7 +277,6 @@ export interface FileRouteTypes {
     | '/test'
     | '/onboarding'
     | '/success'
-    | '/lesson/$lessonId'
     | '/login/oauth2/code/$provider'
     | '/learning'
     | '/user/addfriend'
@@ -285,6 +284,7 @@ export interface FileRouteTypes {
     | '/user/privacy'
     | '/user'
     | '/learning/$chapterId'
+    | '/learning/$chapterId/$unitId/$lessonId'
     | '/user/me/delete/page'
     | '/user/notice'
     | '/learning/$chapterId/$unitId'
@@ -299,7 +299,6 @@ export interface FileRouteTypes {
     | '/test'
     | '/onboarding'
     | '/success'
-    | '/lesson/$lessonId'
     | '/login/oauth2/code/$provider'
     | '/learning'
     | '/user/addfriend'
@@ -307,6 +306,7 @@ export interface FileRouteTypes {
     | '/user/privacy'
     | '/user'
     | '/learning/$chapterId'
+    | '/learning/$chapterId/$unitId/$lessonId'
     | '/user/me/delete/page'
     | '/user/notice'
     | '/learning/$chapterId/$unitId'
@@ -326,7 +326,6 @@ export interface FileRouteTypes {
     | '/_authenticated/_fixed-header-layout/test'
     | '/_authenticated/_onboarding/onboarding'
     | '/_authenticated/_onboarding/success'
-    | '/_authenticated/_blank-layout/lesson/$lessonId'
     | '/login/oauth2/code/$provider'
     | '/_authenticated/_fixed-header-layout/learning/'
     | '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/addfriend'
@@ -334,6 +333,7 @@ export interface FileRouteTypes {
     | '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/privacy'
     | '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/'
     | '/_authenticated/_fixed-header-layout/learning/$chapterId/'
+    | '/_authenticated/_blank-layout/learning/$chapterId/$unitId/$lessonId'
     | '/_authenticated/_fixed-header-layout/user/me/delete/page'
     | '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/'
     | '/_authenticated/_fixed-header-layout/learning/$chapterId/$unitId/'
@@ -447,13 +447,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginOauth2CodeProviderRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_authenticated/_blank-layout/lesson/$lessonId': {
-      id: '/_authenticated/_blank-layout/lesson/$lessonId'
-      path: '/lesson/$lessonId'
-      fullPath: '/lesson/$lessonId'
-      preLoaderRoute: typeof AuthenticatedBlankLayoutLessonLessonIdRouteImport
-      parentRoute: typeof AuthenticatedBlankLayoutRouteRoute
-    }
     '/_authenticated/_fixed-header-layout/learning/$chapterId/': {
       id: '/_authenticated/_fixed-header-layout/learning/$chapterId/'
       path: '/learning/$chapterId'
@@ -510,6 +503,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedFixedHeaderLayoutUserMeDeletePageRouteImport
       parentRoute: typeof AuthenticatedFixedHeaderLayoutRouteRoute
     }
+    '/_authenticated/_blank-layout/learning/$chapterId/$unitId/$lessonId': {
+      id: '/_authenticated/_blank-layout/learning/$chapterId/$unitId/$lessonId'
+      path: '/learning/$chapterId/$unitId/$lessonId'
+      fullPath: '/learning/$chapterId/$unitId/$lessonId'
+      preLoaderRoute: typeof AuthenticatedBlankLayoutLearningChapterIdUnitIdLessonIdRouteImport
+      parentRoute: typeof AuthenticatedBlankLayoutRouteRoute
+    }
     '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/': {
       id: '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/'
       path: '/user/notice/$page'
@@ -528,13 +528,13 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedBlankLayoutRouteRouteChildren {
-  AuthenticatedBlankLayoutLessonLessonIdRoute: typeof AuthenticatedBlankLayoutLessonLessonIdRoute
+  AuthenticatedBlankLayoutLearningChapterIdUnitIdLessonIdRoute: typeof AuthenticatedBlankLayoutLearningChapterIdUnitIdLessonIdRoute
 }
 
 const AuthenticatedBlankLayoutRouteRouteChildren: AuthenticatedBlankLayoutRouteRouteChildren =
   {
-    AuthenticatedBlankLayoutLessonLessonIdRoute:
-      AuthenticatedBlankLayoutLessonLessonIdRoute,
+    AuthenticatedBlankLayoutLearningChapterIdUnitIdLessonIdRoute:
+      AuthenticatedBlankLayoutLearningChapterIdUnitIdLessonIdRoute,
   }
 
 const AuthenticatedBlankLayoutRouteRouteWithChildren =
