@@ -10,9 +10,8 @@ export const Route = createFileRoute(
 });
 
 function StudyNotePage() {
-	// ✅ 단순 호출
-	const { unitId } = Route.useParams(); // URL 동적 세그먼트
-	const { chapterName } = Route.useSearch(); // search param
+	const { unitId } = Route.useParams();
+	const { chapterName } = Route.useSearch();
 
 	const bannerData = {
 		subject: chapterName,
