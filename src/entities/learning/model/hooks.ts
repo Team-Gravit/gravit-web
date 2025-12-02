@@ -73,6 +73,7 @@ export const useFetchLessons = (unitId: number) => {
 	});
 
 	return {
+		...query,
 		isPending: query.isPending,
 		isError: query.isError,
 		error: query.error,
