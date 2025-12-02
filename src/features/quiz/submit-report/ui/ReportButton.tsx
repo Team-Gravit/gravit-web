@@ -9,7 +9,7 @@ export default function ReportButton({
 }) {
 	return (
 		<button type="button" onClick={onHandleClickReport} className={className}>
-			<ReportIcon className="w-[37px]" />
+			<ReportIcon className="w-10 h-10" />
 		</button>
 	);
 }

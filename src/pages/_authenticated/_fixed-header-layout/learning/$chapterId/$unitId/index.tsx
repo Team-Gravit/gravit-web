@@ -45,13 +45,14 @@ function RouteComponent() {
 							<p className="text-gray-800 text-xl mb-11">
 								북마크한 문제를 풀어요.
 							</p>
-							<button
-								type="button"
+							<Link
+								to={"/learning/$chapterId/$unitId/bookmarked-problems"}
+								params={{ chapterId, unitId }}
 								className="hover:text-gray-500 font-medium text-xl text-gray-700 flex items-center cursor-pointer"
 							>
 								문제 풀러 가기
 								<NextIcon className="w-5" />
-							</button>
+							</Link>
 						</div>
 					</section>
 					<section className="flex flex-col gap-4">
@@ -68,13 +69,14 @@ function RouteComponent() {
 							<p className="text-gray-800 text-xl mb-11">
 								틀린 문제를 복습해요.
 							</p>
-							<button
-								type="button"
+							<Link
+								to={"/learning/$chapterId/$unitId/incorrect-problems"}
+								params={{ chapterId, unitId }}
 								className="font-medium text-xl text-gray-700 flex items-center cursor-pointer hover:text-gray-500"
 							>
 								문제 풀러 가기
 								<NextIcon className="w-5" />
-							</button>
+							</Link>
 						</div>
 					</section>
 				</div>

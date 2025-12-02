@@ -1,34 +1,49 @@
-import { useEffect, useRef, useState, type ChangeEvent } from "react";
-import { useQuizStateStore } from "../../model/store";
-import FloatingButton from "./FloatingButton";
 import SubjectiveInput from "./SubjectiveInput";
-import CheckIcon from "./assets/floating-check.svg?react";
+import {
+	useEffect,
+	useRef,
+	useState,
+	type ChangeEvent,
+	forwardRef,
+	useImperativeHandle,
+} from "react";
 
-export default function SubjectiveSolver({
-	answers,
-	problemId,
-}: {
-	answers: string[];
-	problemId: number;
-}) {
-	const { submitAnswer } = useQuizStateStore();
+export interface SubjectiveSolverHandle {
+	getAnswer: () => {
+		answer: string;
+		isCorrect: boolean;
+	};
+}
+
+export default forwardRef<
+	SubjectiveSolverHandle,
+	{
+		answers: string[];
+	}
+>(function SubjectiveSolver({ answers }, ref) {
 	const [enteredAnswer, setEnteredAnswer] = useState("");
-	const buttonRef = useRef<HTMLButtonElement>(null);
 	const inputRef = useRef<HTMLInputElement>(null);
 
 	const handleChangeAnswer = (e: ChangeEvent<HTMLInputElement>) => {
 		setEnteredAnswer(e.target.value);
 	};
 
+	// 부모 컴포넌트에서 답을 꺼낼 수 있도록 노출
+	useImperativeHandle(ref, () => ({
+		getAnswer: () => ({
+			answer: enteredAnswer,
+			isCorrect: answers.includes(enteredAnswer.trim()),
+		}),
+	}));
+
 	useEffect(() => {
 		const handleGlobalKeyDown = (e: globalThis.KeyboardEvent) => {
 			if (e.key === "Enter") {
-				buttonRef.current?.click();
+				// 여기서는 버튼 트리거 없음 - 부모에서 직접 호출
 			}
 		};
 
 		document.addEventListener("keydown", handleGlobalKeyDown);
-
 		inputRef.current?.focus();
 
 		return () => {
@@ -37,25 +52,12 @@ export default function SubjectiveSolver({
 	}, []);
 
 	return (
-		<section className="flex flex-col max-w-[1188px] w-full">
+		<section className="flex flex-col w-full">
 			<SubjectiveInput
 				enteredAnswer={enteredAnswer}
 				onChange={handleChangeAnswer}
 				ref={inputRef}
 			/>
-			<FloatingButton
-				ref={buttonRef}
-				onHandleClick={() =>
-					submitAnswer(
-						enteredAnswer,
-						answers.includes(enteredAnswer.trim()),
-						problemId,
-						"SUBJECTIVE",
-					)
-				}
-			>
-				<CheckIcon className="w-[45px]" />
-			</FloatingButton>
 		</section>
 	);
-}
+});

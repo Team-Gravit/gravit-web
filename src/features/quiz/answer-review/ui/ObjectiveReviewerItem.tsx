@@ -51,14 +51,14 @@ export default function ObjectiveReviewerItem({
 			>
 				<dt
 					className={cn(
-						" text-2xl font-medium text-[#6D6D6D] h-full flex items-center",
+						" text-2xl font-medium text-[#6D6D6D] h-full min-h-10 flex items-center",
 						optionState === "CORRECT" && "text-correct",
 						optionState === "WRONG" && "text-error-info",
 					)}
 				>
 					{option.content}
 				</dt>
-				<dd className={cn("text-error-info text-[20px] font-normal ")}>
+				<dd className={"text-error-info text-[20px] font-normal break-keep"}>
 					{optionState === "WRONG" && option.explanation}
 				</dd>
 			</dl>
