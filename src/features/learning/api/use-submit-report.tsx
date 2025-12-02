@@ -1,9 +1,9 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import type { ReportType } from "@/features/quiz/submit-report/ui/ReportModal";
 import { api } from "@/shared/api";
 
 export const useSubmitReport = () => {
-	const queryClient = useQueryClient();
+	// const queryClient = useQueryClient();
 
 	return useMutation({
 		mutationFn: async ({
@@ -25,11 +25,6 @@ export const useSubmitReport = () => {
 		onSuccess: () => {
 			/** TODO - 토스트메세지로 바꿔야 할 부분 */
 			alert("문제 오류를 전송했습니다.!");
-
-			// 쿼리 무효 - query key 추후에 수정
-			return queryClient.invalidateQueries({
-				queryKey: ["data"],
-			});
 		},
 	});
 };

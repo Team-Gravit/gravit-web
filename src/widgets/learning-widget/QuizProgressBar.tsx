@@ -1,4 +1,4 @@
-export default function LessonProgressBar({ progress }: { progress: string }) {
+export default function QuizProgressBar({ progress }: { progress: string }) {
 	return (
 		<div className="relative w-full h-1 bg-main-1/20 z-20 shrink-0">
 			<div

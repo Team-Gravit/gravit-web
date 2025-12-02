@@ -1,10 +1,10 @@
 import { useState } from "react";
 import ObjectiveOptionItem from "./ObjectiveOptionItem";
-import { useQuizStateStore } from "../../model/store";
 import type { Option } from "@/entities/learning/model/types";
+import { useQuizSessionState } from "../../model/quiz-session-store";
 
 export default function ObjectiveSolver({ options }: { options: Option[] }) {
-	const { submitAnswer } = useQuizStateStore();
+	const saveUserAnswer = useQuizSessionState((state) => state.saveUserAnswer);
 
 	// 옵션 활성화 여부를 저장하는 상태
 	const [optionActiveStates, setOptionActiveStates] = useState<boolean[]>(
@@ -12,7 +12,7 @@ export default function ObjectiveSolver({ options }: { options: Option[] }) {
 	);
 
 	const onHandleSelectOption = (optionIdx: number) => {
-		submitAnswer(
+		saveUserAnswer(
 			optionIdx,
 			options[optionIdx].isAnswer,
 			options[optionIdx].problemId,

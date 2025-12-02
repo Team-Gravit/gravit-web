@@ -31,7 +31,9 @@ import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserAddfriendR
 import { Route as AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/learning/$chapterId/$unitId/index'
 import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/index'
 import { Route as AuthenticatedFixedHeaderLayoutUserMeDeletePageRouteImport } from './../../pages/_authenticated/_fixed-header-layout/user.me.delete.page'
-import { Route as AuthenticatedBlankLayoutLearningChapterIdUnitIdLessonIdRouteImport } from './../../pages/_authenticated/_blank-layout/learning.$chapterId.$unitId.$lessonId'
+import { Route as AuthenticatedBlankLayoutLearningChapterIdUnitIdIncorrectProblemsRouteImport } from './../../pages/_authenticated/_blank-layout/learning.$chapterId.$unitId/incorrect-problems'
+import { Route as AuthenticatedBlankLayoutLearningChapterIdUnitIdBookmarkedProblemsRouteImport } from './../../pages/_authenticated/_blank-layout/learning.$chapterId.$unitId/bookmarked-problems'
+import { Route as AuthenticatedBlankLayoutLearningChapterIdUnitIdLessonIdRouteImport } from './../../pages/_authenticated/_blank-layout/learning.$chapterId.$unitId/$lessonId'
 import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/index'
 import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageNoticeIdIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/$noticeId/index'
 
@@ -170,6 +172,22 @@ const AuthenticatedFixedHeaderLayoutUserMeDeletePageRoute =
     path: '/user/me/delete/page',
     getParentRoute: () => AuthenticatedFixedHeaderLayoutRouteRoute,
   } as any)
+const AuthenticatedBlankLayoutLearningChapterIdUnitIdIncorrectProblemsRoute =
+  AuthenticatedBlankLayoutLearningChapterIdUnitIdIncorrectProblemsRouteImport.update(
+    {
+      id: '/learning/$chapterId/$unitId/incorrect-problems',
+      path: '/learning/$chapterId/$unitId/incorrect-problems',
+      getParentRoute: () => AuthenticatedBlankLayoutRouteRoute,
+    } as any,
+  )
+const AuthenticatedBlankLayoutLearningChapterIdUnitIdBookmarkedProblemsRoute =
+  AuthenticatedBlankLayoutLearningChapterIdUnitIdBookmarkedProblemsRouteImport.update(
+    {
+      id: '/learning/$chapterId/$unitId/bookmarked-problems',
+      path: '/learning/$chapterId/$unitId/bookmarked-problems',
+      getParentRoute: () => AuthenticatedBlankLayoutRouteRoute,
+    } as any,
+  )
 const AuthenticatedBlankLayoutLearningChapterIdUnitIdLessonIdRoute =
   AuthenticatedBlankLayoutLearningChapterIdUnitIdLessonIdRouteImport.update({
     id: '/learning/$chapterId/$unitId/$lessonId',
@@ -211,6 +229,8 @@ export interface FileRoutesByFullPath {
   '/user': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserIndexRoute
   '/learning/$chapterId': typeof AuthenticatedFixedHeaderLayoutLearningChapterIdIndexRoute
   '/learning/$chapterId/$unitId/$lessonId': typeof AuthenticatedBlankLayoutLearningChapterIdUnitIdLessonIdRoute
+  '/learning/$chapterId/$unitId/bookmarked-problems': typeof AuthenticatedBlankLayoutLearningChapterIdUnitIdBookmarkedProblemsRoute
+  '/learning/$chapterId/$unitId/incorrect-problems': typeof AuthenticatedBlankLayoutLearningChapterIdUnitIdIncorrectProblemsRoute
   '/user/me/delete/page': typeof AuthenticatedFixedHeaderLayoutUserMeDeletePageRoute
   '/user/notice': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRoute
   '/learning/$chapterId/$unitId': typeof AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdIndexRoute
@@ -233,6 +253,8 @@ export interface FileRoutesByTo {
   '/user': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserIndexRoute
   '/learning/$chapterId': typeof AuthenticatedFixedHeaderLayoutLearningChapterIdIndexRoute
   '/learning/$chapterId/$unitId/$lessonId': typeof AuthenticatedBlankLayoutLearningChapterIdUnitIdLessonIdRoute
+  '/learning/$chapterId/$unitId/bookmarked-problems': typeof AuthenticatedBlankLayoutLearningChapterIdUnitIdBookmarkedProblemsRoute
+  '/learning/$chapterId/$unitId/incorrect-problems': typeof AuthenticatedBlankLayoutLearningChapterIdUnitIdIncorrectProblemsRoute
   '/user/me/delete/page': typeof AuthenticatedFixedHeaderLayoutUserMeDeletePageRoute
   '/user/notice': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRoute
   '/learning/$chapterId/$unitId': typeof AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdIndexRoute
@@ -261,6 +283,8 @@ export interface FileRoutesById {
   '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserIndexRoute
   '/_authenticated/_fixed-header-layout/learning/$chapterId/': typeof AuthenticatedFixedHeaderLayoutLearningChapterIdIndexRoute
   '/_authenticated/_blank-layout/learning/$chapterId/$unitId/$lessonId': typeof AuthenticatedBlankLayoutLearningChapterIdUnitIdLessonIdRoute
+  '/_authenticated/_blank-layout/learning/$chapterId/$unitId/bookmarked-problems': typeof AuthenticatedBlankLayoutLearningChapterIdUnitIdBookmarkedProblemsRoute
+  '/_authenticated/_blank-layout/learning/$chapterId/$unitId/incorrect-problems': typeof AuthenticatedBlankLayoutLearningChapterIdUnitIdIncorrectProblemsRoute
   '/_authenticated/_fixed-header-layout/user/me/delete/page': typeof AuthenticatedFixedHeaderLayoutUserMeDeletePageRoute
   '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRoute
   '/_authenticated/_fixed-header-layout/learning/$chapterId/$unitId/': typeof AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdIndexRoute
@@ -285,6 +309,8 @@ export interface FileRouteTypes {
     | '/user'
     | '/learning/$chapterId'
     | '/learning/$chapterId/$unitId/$lessonId'
+    | '/learning/$chapterId/$unitId/bookmarked-problems'
+    | '/learning/$chapterId/$unitId/incorrect-problems'
     | '/user/me/delete/page'
     | '/user/notice'
     | '/learning/$chapterId/$unitId'
@@ -307,6 +333,8 @@ export interface FileRouteTypes {
     | '/user'
     | '/learning/$chapterId'
     | '/learning/$chapterId/$unitId/$lessonId'
+    | '/learning/$chapterId/$unitId/bookmarked-problems'
+    | '/learning/$chapterId/$unitId/incorrect-problems'
     | '/user/me/delete/page'
     | '/user/notice'
     | '/learning/$chapterId/$unitId'
@@ -334,6 +362,8 @@ export interface FileRouteTypes {
     | '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/'
     | '/_authenticated/_fixed-header-layout/learning/$chapterId/'
     | '/_authenticated/_blank-layout/learning/$chapterId/$unitId/$lessonId'
+    | '/_authenticated/_blank-layout/learning/$chapterId/$unitId/bookmarked-problems'
+    | '/_authenticated/_blank-layout/learning/$chapterId/$unitId/incorrect-problems'
     | '/_authenticated/_fixed-header-layout/user/me/delete/page'
     | '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/'
     | '/_authenticated/_fixed-header-layout/learning/$chapterId/$unitId/'
@@ -503,6 +533,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedFixedHeaderLayoutUserMeDeletePageRouteImport
       parentRoute: typeof AuthenticatedFixedHeaderLayoutRouteRoute
     }
+    '/_authenticated/_blank-layout/learning/$chapterId/$unitId/incorrect-problems': {
+      id: '/_authenticated/_blank-layout/learning/$chapterId/$unitId/incorrect-problems'
+      path: '/learning/$chapterId/$unitId/incorrect-problems'
+      fullPath: '/learning/$chapterId/$unitId/incorrect-problems'
+      preLoaderRoute: typeof AuthenticatedBlankLayoutLearningChapterIdUnitIdIncorrectProblemsRouteImport
+      parentRoute: typeof AuthenticatedBlankLayoutRouteRoute
+    }
+    '/_authenticated/_blank-layout/learning/$chapterId/$unitId/bookmarked-problems': {
+      id: '/_authenticated/_blank-layout/learning/$chapterId/$unitId/bookmarked-problems'
+      path: '/learning/$chapterId/$unitId/bookmarked-problems'
+      fullPath: '/learning/$chapterId/$unitId/bookmarked-problems'
+      preLoaderRoute: typeof AuthenticatedBlankLayoutLearningChapterIdUnitIdBookmarkedProblemsRouteImport
+      parentRoute: typeof AuthenticatedBlankLayoutRouteRoute
+    }
     '/_authenticated/_blank-layout/learning/$chapterId/$unitId/$lessonId': {
       id: '/_authenticated/_blank-layout/learning/$chapterId/$unitId/$lessonId'
       path: '/learning/$chapterId/$unitId/$lessonId'
@@ -529,12 +573,18 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedBlankLayoutRouteRouteChildren {
   AuthenticatedBlankLayoutLearningChapterIdUnitIdLessonIdRoute: typeof AuthenticatedBlankLayoutLearningChapterIdUnitIdLessonIdRoute
+  AuthenticatedBlankLayoutLearningChapterIdUnitIdBookmarkedProblemsRoute: typeof AuthenticatedBlankLayoutLearningChapterIdUnitIdBookmarkedProblemsRoute
+  AuthenticatedBlankLayoutLearningChapterIdUnitIdIncorrectProblemsRoute: typeof AuthenticatedBlankLayoutLearningChapterIdUnitIdIncorrectProblemsRoute
 }
 
 const AuthenticatedBlankLayoutRouteRouteChildren: AuthenticatedBlankLayoutRouteRouteChildren =
   {
     AuthenticatedBlankLayoutLearningChapterIdUnitIdLessonIdRoute:
       AuthenticatedBlankLayoutLearningChapterIdUnitIdLessonIdRoute,
+    AuthenticatedBlankLayoutLearningChapterIdUnitIdBookmarkedProblemsRoute:
+      AuthenticatedBlankLayoutLearningChapterIdUnitIdBookmarkedProblemsRoute,
+    AuthenticatedBlankLayoutLearningChapterIdUnitIdIncorrectProblemsRoute:
+      AuthenticatedBlankLayoutLearningChapterIdUnitIdIncorrectProblemsRoute,
   }
 
 const AuthenticatedBlankLayoutRouteRouteWithChildren =

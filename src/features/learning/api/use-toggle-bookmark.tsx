@@ -1,12 +1,11 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { learningKeys } from "@/entities/learning/api/query-keys";
 import { api } from "@/shared/api";
 import type { LessonResponse } from "@/shared/api/@generated";
 
 interface UseToggleBookmarkParams {
-	lessonId: number;
 	problemId: number;
 	currentIsBookmarked: boolean;
+	queryKey: readonly (string | number)[];
 }
 
 export default function useToggleBookmark() {
@@ -26,52 +25,41 @@ export default function useToggleBookmark() {
 			}
 		},
 
-		onMutate: async ({ lessonId, problemId, currentIsBookmarked }) => {
-			await queryClient.cancelQueries({
-				queryKey: learningKeys.lessonProblems(lessonId),
-			});
+		onMutate: async ({ problemId, currentIsBookmarked, queryKey }) => {
+			await queryClient.cancelQueries({ queryKey });
 
 			// 이전 데이터 백업
-			const previousData = queryClient.getQueryData<LessonResponse>(
-				learningKeys.lessonProblems(lessonId),
-			);
+			const previousData = queryClient.getQueryData<LessonResponse>(queryKey);
 
 			// 낙관적 업데이트
-			queryClient.setQueryData<LessonResponse>(
-				learningKeys.lessonProblems(lessonId),
-				(old) => {
-					if (!old) return old;
+			queryClient.setQueryData<LessonResponse>(queryKey, (old) => {
+				if (!old) return old;
 
-					return {
-						...old,
-						problems: old.problems.map((problem) =>
-							problem.problemId === problemId
-								? { ...problem, isBookmarked: !currentIsBookmarked }
-								: problem,
-						),
-					};
-				},
-			);
+				return {
+					...old,
+					problems: old.problems.map((problem) =>
+						problem.problemId === problemId
+							? { ...problem, isBookmarked: !currentIsBookmarked }
+							: problem,
+					),
+				};
+			});
 
 			// 롤백용 컨텍스트 반환
-			return { previousData };
+			return { previousData, queryKey };
 		},
 
 		// 에러 시 롤백
-		onError: (err, { currentIsBookmarked }, context) => {
+		onError: (err, _params, context) => {
 			console.error("북마크 토글 실패:", err);
 
 			// 이전 데이터로 복구
-			if (context?.previousData?.unitSummary.unitId) {
-				queryClient.setQueryData(
-					learningKeys.lessonProblems(context.previousData.unitSummary.unitId),
-					context.previousData,
-				);
+			if (context?.previousData && context?.queryKey) {
+				queryClient.setQueryData(context.queryKey, context.previousData);
 			}
 
 			// TODO: 토스트 메시지
-			const action = currentIsBookmarked ? "제거" : "추가";
-			alert(`북마크 ${action}에 실패했습니다.`);
+			alert("북마크 수정에 실패했습니다.");
 		},
 
 		// 성공 시
@@ -83,11 +71,5 @@ export default function useToggleBookmark() {
 					: "북마크에서 제거되었어요.";
 			alert(message);
 		},
-
-		// onSettled: (_, __, { lessonId }) => {
-		// 	queryClient.invalidateQueries({
-		// 		queryKey: learningKeys.lessonProblems(lessonId),
-		// 	});
-		// },
 	});
 }

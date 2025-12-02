@@ -10,19 +10,9 @@ export default function SubjectiveReviewer({
 }) {
 	return (
 		<div className="w-full flex flex-col items-center gap-8">
-			{/* <input
-				disabled={true}
-				value={userAnswer.userInput}
-				className={cn(
-					"w-full px-8 py-4 bg-white rounded-lg border border-gray-200 text-gray-600 text-2xl font-medium focus:outline-none focus:border-gray-400",
-					userAnswer.isCorrect && "border-[#00A80B] text-[#00A80B]",
-					!userAnswer.isCorrect && "border-error text-error",
-				)}
-			/> */}
-
 			<div
 				className={cn(
-					"w-full px-8 py-4 bg-white rounded-lg border  text-2xl font-medium focus:outline-none focus:border-gray-400",
+					"w-full min-h-[68px] px-8 py-4 bg-white rounded-lg border text-2xl font-medium focus:outline-none focus:border-gray-400",
 					userAnswer.isCorrect
 						? "border-[#00A80B] text-[#00A80B]"
 						: "border-error text-error",

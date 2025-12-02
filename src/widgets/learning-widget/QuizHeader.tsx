@@ -1,18 +1,18 @@
 import AbortIcon from "./assets/x.svg?react";
 import TimerIcon from "./assets/timer.svg?react";
-import { useQuizStateStore } from "@/features/quiz/model/store";
 import { useEffect, useRef } from "react";
 import formatTime from "./lib/formatTime";
+import { useQuizSessionState } from "@/features/quiz/model/quiz-session-store";
 
 export default function QuizHeader({
-	lessonName,
+	learningTitle,
 	onHandleQuit,
 }: {
-	lessonName: string;
+	learningTitle: string;
 	onHandleQuit: () => void;
 }) {
-	const timeElapsed = useQuizStateStore((state) => state.timeElapsed);
-	const incrementTime = useQuizStateStore((state) => state.incrementTime);
+	const timeElapsed = useQuizSessionState((state) => state.timeElapsed);
+	const incrementTime = useQuizSessionState((state) => state.incrementTime);
 
 	const timerRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -31,7 +31,7 @@ export default function QuizHeader({
 				<AbortIcon className="w-6 h-6" />
 			</button>
 			<h2 className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-2xl font-semibold text-neutral-100">
-				{lessonName}
+				{learningTitle}
 			</h2>
 			<div className="flex flex-row items-center justify-between gap-2 w-[100px]">
 				<TimerIcon className="w-5 h-5" />

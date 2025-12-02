@@ -42,7 +42,7 @@ export default function ObjectiveOptionItem({
 					isActive && "cursor-pointer",
 				)}
 			>
-				<span className="inline-flex items-center justify-center rounded-full bg-white border border-gray-600 text-gray-600 w-10 h-10 font-medium">
+				<span className="inline-flex items-center justify-center rounded-full bg-white border border-gray-600 text-gray-600 w-10 h-10 font-medium shrink-0">
 					{optionNumber}
 				</span>
 				<span className="text-2xl font-medium text-gray-600">
@@ -53,7 +53,7 @@ export default function ObjectiveOptionItem({
 			<button
 				type="button"
 				onClick={onToggleOption}
-				className="cursor-pointer ml-4 mr-4 p-1"
+				className="cursor-pointer ml-4 mr-4 p-1 shrink-0"
 				aria-label={isActive ? "선지 숨기기" : "선지 보이기"}
 			>
 				{isActive ? <OpenEyeIcon /> : <ClosedEyeIcon />}

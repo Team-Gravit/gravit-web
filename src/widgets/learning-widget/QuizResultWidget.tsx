@@ -4,104 +4,36 @@ import { StatCard } from "@/shared/ui/card/StatCard";
 import bookImg from "@/shared/assets/images/books.png";
 import playImg from "@/shared/assets/images/play.png";
 import { Link, useRouter } from "@tanstack/react-router";
-import { useSubmitQuizResult } from "@/features/quiz/model/useSubmitQuizResult";
-import { useEffect } from "react";
-import { useQuizStateStore } from "@/features/quiz/model/store";
 import formatTime from "./lib/formatTime";
-import { useFetchMainInfo } from "../main/model/hooks";
-import { useMinimumLoadingTime } from "./lib/useMinimumLoadingTime";
-import type { LearningSubmissionSaveRequest } from "@/shared/api/@generated";
+import { useQuizSessionState } from "@/features/quiz/model/quiz-session-store";
 
-export default function QuizResultWidget({ lessonId }: { lessonId: string }) {
-	const { data: currentUserData, isLoading: isLoadingUserData } =
-		useFetchMainInfo();
-
+export default function QuizResultWidget() {
 	const router = useRouter();
 
-	const {
-		mutate: submitResult,
-		data: resultData,
-		isPending: isSubmitting,
-		isError,
-	} = useSubmitQuizResult();
+	// Store에서 필요한 데이터 추출
+	const userAnswers = useQuizSessionState((state) => state.userAnswers);
+	const timeElapsed = useQuizSessionState((state) => state.timeElapsed);
 
-	const userAnswers = useQuizStateStore((state) => state.userAnswers);
-	const timeElapsed = useQuizStateStore((state) => state.timeElapsed);
+	// 정답률 계산
+	const correctCount = userAnswers.filter((answer) => answer.isCorrect).length;
+	const accuracy = Math.round((correctCount / userAnswers.length) * 100);
 
-	const isLoading = isSubmitting || isLoadingUserData;
-	const shouldShowLoading = useMinimumLoadingTime({
-		isLoading,
-		minimumTime: 1500,
-	});
-
-	const accuracy = Math.round(
-		(userAnswers.filter((answer) => answer.isCorrect).length /
-			userAnswers.length) *
-			100,
-	);
-
-	useEffect(() => {
-		const submitData: LearningSubmissionSaveRequest = {
-			lessonSubmissionSaveRequest: {
-				lessonId: Number(lessonId),
-				learningTime: timeElapsed,
-				accuracy: accuracy,
-			},
-
-			problemSubmissionRequests: userAnswers.map((answer) => ({
-				problemId: answer.problemId,
-				isCorrect: answer.isCorrect,
-			})),
-		};
-
-		submitResult(submitData);
-	}, [submitResult, lessonId, userAnswers, timeElapsed, accuracy]);
-
-	if (isError) {
-		return (
-			<main className="flex-grow flex flex-col items-center">
-				<div>결과 제출에 실패했습니다. 다시 시도해주세요.</div>
-			</main>
-		);
-	}
-
+	// 임시 데이터 (나중에 서버 응답으로 교체)
 	const baseXp = 789;
-	const baseLeague = currentUserData?.leagueName || "브론즈";
+	const baseLeague = "브론즈";
 	const baseLevel = 12;
 
-	const xp = resultData?.userLevelResponse.xp || baseXp;
-	const league = resultData?.leagueName || baseLeague;
-	const level = resultData?.userLevelResponse.currentLevel || baseLevel;
+	// 서버 응답 데이터를 추가하려면 Store에 submitResponse 상태 추가 필요
+	// const submitResponse = useQuizSessionState((state) => state.submitResponse);
+	// const xp = submitResponse?.userLevelResponse.xp || baseXp;
+	// const league = submitResponse?.leagueName || baseLeague;
+	// const level = submitResponse?.userLevelResponse.currentLevel || baseLevel;
 
-	const correctRate = accuracy || 0;
-
-	if (shouldShowLoading) {
-		return (
-			<main className="flex-grow flex flex-col items-center bg-gray-200 px-[146px] pt-[65px] pb-[88px]">
-				<div className="max-w-[1148px] w-full h-full flex flex-col gap-10">
-					<div className="animate-pulse">
-						{/* 헤더 영역 */}
-						<div className="h-32 bg-gray-300 rounded-lg mb-10" />
-
-						<div className="flex flex-col lg:flex-row lg:justify-between gap-4 lg:gap-10">
-							{/* 프로필 영역 */}
-							<div className="flex flex-col items-center">
-								<div className="h-10 bg-gray-300 rounded w-96 mb-4" />
-								<div className="h-8 bg-gray-300 rounded w-80 mb-6" />
-								<div className="w-[250px] h-[250px] bg-gray-300 rounded-full" />
-							</div>
-
-							{/* 정보 카드 영역 */}
-							<div className="flex flex-col gap-4 flex-grow lg:max-w-[470px]">
-								<div className="h-20 bg-gray-300 rounded-lg" />
-								<div className="h-20 bg-gray-300 rounded-lg" />
-							</div>
-						</div>
-					</div>
-				</div>
-			</main>
-		);
-	}
+	// 일단 기본값 사용
+	const xp = baseXp;
+	const league = baseLeague;
+	const level = baseLevel;
+	const correctRate = accuracy;
 
 	return (
 		<main className="flex-grow flex flex-col items-center bg-gray-200 px-[146px] pt-[65px] pb-[88px]">
@@ -110,10 +42,10 @@ export default function QuizResultWidget({ lessonId }: { lessonId: string }) {
 				<section className="w-full flex flex-col lg:flex-row lg:justify-between gap-4 lg:gap-10">
 					<div className="flex flex-col items-center">
 						<h2 className="text-neutral-100 text-3xl lg:text-4xl font-semibold mb-4">
-							자료구조의 3번째 단계를 학습 완료했어요
+							학습을 완료했어요
 						</h2>
 						<p className="text-gray-600 text-2xl lg:text-3xl font-normal">
-							자료구조의 3번째 단계를 학습을 완료했어요
+							수고하셨습니다!
 						</p>
 						<Mascot className="w-[250px] lg:w-[300px] lg:mt-5" />
 					</div>
