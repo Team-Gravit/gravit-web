@@ -39,7 +39,6 @@ function RouteComponent() {
 									<Link
 										to={"/learning/$chapterId/$unitId"}
 										params={{ chapterId, unitId: unit.unitId.toString() }}
-										search={{ chapterName: chapterInfo.chapterName }}
 										className="flex flex-col gap-5 w-full h-full"
 									>
 										<h3 className="text-black text-3xl xl:text-4xl font-semibold leading-none flex items-center justify-between">

@@ -4,19 +4,27 @@ import StudyNote from "@/shared/ui/studynote/studynote";
 
 export const Route = createFileRoute(
 	"/_authenticated/_fixed-header-layout/learning/$chapterId/$unitId/concept-note",
-)({ component: StudyNotePage });
+)({
+	validateSearch: (search: { chapterName?: string }) => search,
+	component: StudyNotePage,
+});
 
-const mockbannerData = {
-	subject: "자료구조",
-	title: "유닛 1 개념노트",
-	description: "여기에 뭐 쓸게 있을까요? 있는게 예쁜 것 같아요.",
-};
+function StudyNotePage() {
+	// ✅ 단순 호출
+	const { unitId } = Route.useParams(); // URL 동적 세그먼트
+	const { chapterName } = Route.useSearch(); // search param
 
-const mockStudyNoteData = {
-	title: "제목",
-	subtitle: "배열(Array)",
-	buttonLabel: "학습하러 가기",
-	content: `
+	const bannerData = {
+		subject: chapterName,
+		title: `유닛 ${unitId} 개념노트`,
+		description: "여기에 뭐 쓸게 있을까요? 있는게 예쁜 것 같아요.",
+	};
+
+	const studyNoteData = {
+		title: "제목",
+		subtitle: "배열(Array)",
+		buttonLabel: "학습하러 가기",
+		content: `
 ## 배열(Array)
 
 **논리적 저장 순서**와 **물리적 저장 순서**가 일치하는 기본 자료구조. **인덱스**를 통한 **O(1)** 접근이 가능하지만, 삽입/삭제 시 원소 이동으로 인해 **O(n)** 의 비용이 발생한다.
@@ -39,25 +47,24 @@ const mockStudyNoteData = {
 
 <br>
 `,
-};
+	};
 
-function StudyNotePage() {
 	return (
 		<div className="w-screen min-h-screen flex-col">
 			<Banner2
-				subject={mockbannerData.subject}
-				title={mockbannerData.title}
-				description={mockbannerData.description}
+				subject={bannerData.subject}
+				title={bannerData.title}
+				description={bannerData.description}
 			/>
 
 			<div className="flex py-14 justify-center">
 				<StudyNote
-					title={mockStudyNoteData.title}
-					subtitle={mockStudyNoteData.subtitle}
-					buttonLabel={mockStudyNoteData.buttonLabel}
-					content={mockStudyNoteData.content}
+					title={studyNoteData.title}
+					subtitle={studyNoteData.subtitle}
+					buttonLabel={studyNoteData.buttonLabel}
+					content={studyNoteData.content}
 				/>
 			</div>
 		</div>
-	)
+	);
 }
