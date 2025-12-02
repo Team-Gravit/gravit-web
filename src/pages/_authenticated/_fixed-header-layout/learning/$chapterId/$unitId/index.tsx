@@ -14,7 +14,9 @@ export const Route = createFileRoute(
 
 function RouteComponent() {
 	const { chapterId, unitId } = Route.useParams();
-	const { lessons, chapterInfo, isPending } = useFetchLessons(Number(unitId));
+	const { lessons, chapterInfo, isPending, data } = useFetchLessons(
+		Number(unitId),
+	);
 
 	if (isPending) {
 		return <div>로딩중</div>;
@@ -23,6 +25,10 @@ function RouteComponent() {
 	if (!lessons || !chapterInfo) {
 		return <div>레슨 정보가 없습니다.</div>;
 	}
+
+	const canAccessBookmark = data?.hasBookmarkedProblems ?? false;
+	const canAccessWrongNote = data?.hasIncorrectProblems ?? false;
+
 	return (
 		<BackgroundLayout backgroundImage={backgroundImg} gradientOverlay="partial">
 			<main className="w-full max-w-[1580px] px-16 lg:px-20 xl:px-24 pt-10 lg:pt-24 pb-44 mx-auto">
@@ -49,6 +55,12 @@ function RouteComponent() {
 								to={"/learning/$chapterId/$unitId/bookmarked-problems"}
 								params={{ chapterId, unitId }}
 								className="hover:text-gray-500 font-medium text-xl text-gray-700 flex items-center cursor-pointer"
+								onClick={(e) => {
+									if (!canAccessBookmark) {
+										e.preventDefault();
+										alert("북마크가 없습니다.");
+									}
+								}}
 							>
 								문제 풀러 가기
 								<NextIcon className="w-5" />
@@ -73,6 +85,12 @@ function RouteComponent() {
 								to={"/learning/$chapterId/$unitId/incorrect-problems"}
 								params={{ chapterId, unitId }}
 								className="font-medium text-xl text-gray-700 flex items-center cursor-pointer hover:text-gray-500"
+								onClick={(e) => {
+									if (!canAccessWrongNote) {
+										e.preventDefault();
+										alert("오답 문제가 없습니다.");
+									}
+								}}
 							>
 								문제 풀러 가기
 								<NextIcon className="w-5" />

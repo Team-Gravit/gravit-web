@@ -102,7 +102,12 @@ export function mapToChapterWithUnits(
 export function mapToChapterWithLessons(
 	raw: LessonDetailResponse,
 ): ChapterWithLessons {
-	const { chapterSummary, lessonSummaries } = raw;
+	const {
+		chapterSummary,
+		lessonSummaries,
+		bookmarkAccessible,
+		wrongAnsweredNoteAccessible,
+	} = raw;
 
 	// 필수 필드 검증
 	if (
@@ -138,7 +143,15 @@ export function mapToChapterWithLessons(
 		};
 	});
 
-	return { chapterInfo, lessons };
+	const hasBookmarkedProblems = bookmarkAccessible;
+	const hasIncorrectProblems = wrongAnsweredNoteAccessible;
+
+	return {
+		chapterInfo,
+		hasBookmarkedProblems,
+		hasIncorrectProblems,
+		lessons,
+	};
 }
 
 function mapToAnswer(raw: AnswerResponse | undefined): Answer {

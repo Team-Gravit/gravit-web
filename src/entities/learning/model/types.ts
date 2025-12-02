@@ -39,6 +39,8 @@ export interface Lesson {
 
 export interface ChapterWithLessons {
 	chapterInfo: ChapterInfo;
+	hasBookmarkedProblems: boolean;
+	hasIncorrectProblems: boolean;
 	lessons: Lesson[];
 }
 
