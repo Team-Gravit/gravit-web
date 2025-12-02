@@ -14,7 +14,8 @@
 
 
 
-export interface AuthCodeRequest {
-    'code': string;
+export interface ConsecutiveSolvedEvent {
+    'userId'?: number;
+    'streakCount'?: number;
 }
 

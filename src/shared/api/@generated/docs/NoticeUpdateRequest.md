@@ -5,11 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**noticeId** | **number** |  | [optional] [default to undefined]
-**title** | **string** |  | [optional] [default to undefined]
-**content** | **string** |  | [optional] [default to undefined]
-**status** | **string** |  | [optional] [default to undefined]
-**pinned** | **boolean** |  | [optional] [default to undefined]
+**noticeId** | **number** |  | [default to undefined]
+**title** | **string** |  | [default to undefined]
+**content** | **string** |  | [default to undefined]
+**status** | **string** |  | [default to undefined]
+**pinned** | **boolean** |  | [default to undefined]
 
 ## Example
 

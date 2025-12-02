@@ -15,11 +15,11 @@
 
 
 export interface NoticeUpdateRequest {
-    'noticeId'?: number;
-    'title'?: string;
-    'content'?: string;
-    'status'?: NoticeUpdateRequestStatus;
-    'pinned'?: boolean;
+    'noticeId': number;
+    'title': string;
+    'content': string;
+    'status': NoticeUpdateRequestStatus;
+    'pinned': boolean;
 }
 
 export const NoticeUpdateRequestStatus = {

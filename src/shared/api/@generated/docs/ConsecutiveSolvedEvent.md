@@ -1,19 +1,21 @@
-# AuthCodeRequest
+# ConsecutiveSolvedEvent
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**code** | **string** |  | [default to undefined]
+**userId** | **number** |  | [optional] [default to undefined]
+**streakCount** | **number** |  | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import { AuthCodeRequest } from './api';
+import { ConsecutiveSolvedEvent } from './api';
 
-const instance: AuthCodeRequest = {
-    code,
+const instance: ConsecutiveSolvedEvent = {
+    userId,
+    streakCount,
 };
 ```
 

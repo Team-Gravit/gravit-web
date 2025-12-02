@@ -7,6 +7,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **chapterSummary** | [**ChapterSummary**](ChapterSummary.md) | 챕터 요약 정보 | [default to undefined]
+**bookmarkAccessible** | **boolean** | 북마크 풀이 가능 여부 | [default to undefined]
+**wrongAnsweredNoteAccessible** | **boolean** | 오답노트 풀이 가능 여부 | [default to undefined]
 **unitId** | **number** | 유닛 아이디 | [optional] [default to undefined]
 **lessonSummaries** | [**Array&lt;LessonSummary&gt;**](LessonSummary.md) | 레슨 요약 정보 목록 | [default to undefined]
 
@@ -17,6 +19,8 @@ import { LessonDetailResponse } from './api';
 
 const instance: LessonDetailResponse = {
     chapterSummary,
+    bookmarkAccessible,
+    wrongAnsweredNoteAccessible,
     unitId,
     lessonSummaries,
 };
