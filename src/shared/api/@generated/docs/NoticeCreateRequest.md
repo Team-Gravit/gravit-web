@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**title** | **string** |  | [optional] [default to undefined]
-**content** | **string** |  | [optional] [default to undefined]
-**status** | **string** |  | [optional] [default to undefined]
-**pinned** | **boolean** |  | [optional] [default to undefined]
+**title** | **string** |  | [default to undefined]
+**content** | **string** |  | [default to undefined]
+**status** | **string** |  | [default to undefined]
+**pinned** | **boolean** |  | [default to undefined]
 
 ## Example
 

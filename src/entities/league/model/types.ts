@@ -30,7 +30,7 @@ export interface CurrentSeason {
 	nowSeason: string;
 }
 
-export interface LastSeasonPopupDto {
+export interface LastSeasonPopup {
 	rank: number;
 	leagueName: string;
 	profileImgNumber: number;
@@ -40,7 +40,7 @@ export type SeasonInfo =
 	| {
 			containsPopup: true;
 			currentSeason: CurrentSeason;
-			lastSeasonPopupDto: LastSeasonPopupDto;
+			lastSeasonPopupDto: LastSeasonPopup;
 	  }
 	| {
 			containsPopup: false;

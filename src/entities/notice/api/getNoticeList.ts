@@ -1,17 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
-import { apiClient } from "@/shared/api/config";
+import { api } from "@/shared/api";
 import type { AxiosError } from "axios";
 import type { NoticeList } from "@/entities/notice/model/types";
-
-const getNoticeList = async (page: number): Promise<NoticeList> => {
-	const response = await apiClient.get<NoticeList>(`/notice/summaries/${page}`);
-	return response.data;
-};
-
+import { mapToNoticeList } from "@/entities/notice/model/mappers";
+import type { SliceResponse } from "@/shared/api/@generated";
 export const useNoticeList = (page: number) => {
 	return useQuery<NoticeList, AxiosError>({
-		queryKey: ["noticelist", page],
-		queryFn: () => getNoticeList(page),
+		queryKey: ["notice-list", page],
+		queryFn: async () => {
+			const res = await api.notice.getNoticeSummaries(page);
+			const data = res.data as SliceResponse;
+
+			const totalPages = 1;
+
+			return mapToNoticeList(data, page, totalPages);
+		},
 		staleTime: 1000 * 60,
 		retry: 1,
 	});

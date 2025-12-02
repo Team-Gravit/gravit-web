@@ -61,7 +61,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **planetCompleted**
-> planetCompleted(planetCompletedEvent)
+> planetCompleted(lessonCompletedEvent)
 
 
 ### Example
@@ -70,16 +70,16 @@ void (empty response body)
 import {
     TestEventControllerApi,
     Configuration,
-    PlanetCompletedEvent
+    LessonCompletedEvent
 } from './api';
 
 const configuration = new Configuration();
 const apiInstance = new TestEventControllerApi(configuration);
 
-let planetCompletedEvent: PlanetCompletedEvent; //
+let lessonCompletedEvent: LessonCompletedEvent; //
 
 const { status, data } = await apiInstance.planetCompleted(
-    planetCompletedEvent
+    lessonCompletedEvent
 );
 ```
 
@@ -87,7 +87,7 @@ const { status, data } = await apiInstance.planetCompleted(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **planetCompletedEvent** | **PlanetCompletedEvent**|  | |
+| **lessonCompletedEvent** | **LessonCompletedEvent**|  | |
 
 
 ### Return type
@@ -163,7 +163,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **streak**
-> streak(streakUpdatedEvent)
+> streak(consecutiveSolvedEvent)
 
 
 ### Example
@@ -172,16 +172,16 @@ void (empty response body)
 import {
     TestEventControllerApi,
     Configuration,
-    StreakUpdatedEvent
+    ConsecutiveSolvedEvent
 } from './api';
 
 const configuration = new Configuration();
 const apiInstance = new TestEventControllerApi(configuration);
 
-let streakUpdatedEvent: StreakUpdatedEvent; //
+let consecutiveSolvedEvent: ConsecutiveSolvedEvent; //
 
 const { status, data } = await apiInstance.streak(
-    streakUpdatedEvent
+    consecutiveSolvedEvent
 );
 ```
 
@@ -189,7 +189,7 @@ const { status, data } = await apiInstance.streak(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **streakUpdatedEvent** | **StreakUpdatedEvent**|  | |
+| **consecutiveSolvedEvent** | **ConsecutiveSolvedEvent**|  | |
 
 
 ### Return type

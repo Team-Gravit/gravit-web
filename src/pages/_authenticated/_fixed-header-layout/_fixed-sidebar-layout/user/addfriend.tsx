@@ -4,7 +4,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import SectionHeader from "@/widgets/header/ui/SectionHeader";
 import FriendList from "@/entities/friends/ui/FriendList";
 import SearchFriend from "@/features/friends/SearchFriend";
-import { useFriendList } from "@/entities/friends/api/getFriendList";
+import { useFriendList } from "@/entities/friends/api/useFriendList";
 import { useToggleFollow } from "@/entities/friends/api/postFollowButton";
 
 export const Route = createFileRoute(
@@ -23,7 +23,7 @@ export default function RouteComponent() {
 	const friends = data?.pages.flatMap((p) => p.contents) ?? [];
 
 	useEffect(() => {
-		queryClient.removeQueries({ queryKey: ["friendlist"], exact: true });
+		queryClient.removeQueries({ queryKey: ["friend-list"], exact: true });
 		if (searchValue.trim()) refetch();
 	}, [searchValue, refetch, queryClient]);
 

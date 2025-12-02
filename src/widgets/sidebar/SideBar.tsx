@@ -2,8 +2,8 @@ import ProfileCard from "@/entities/user/ui/ProfileCard";
 import FollowModalButton from "@/features/follow/FollowModalButton";
 import Badges from "@/entities/badge/Badges";
 import AddFriendButton from "@/features/friends/AddFriendButton";
-import { useUserInfo } from "@/entities/sidebar/api/getUserInfo";
-import { useBadges } from "@/entities/sidebar/api/getBadges";
+import { useUserInfo } from "@/entities/sidebar/api/useUserInfo";
+import { useBadges } from "@/entities/sidebar/api/useBadges";
 
 export default function UserSidebar() {
 	const {

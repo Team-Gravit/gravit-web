@@ -29,6 +29,14 @@ export interface LessonDetailResponse {
      */
     'chapterSummary': ChapterSummary;
     /**
+     * 북마크 풀이 가능 여부
+     */
+    'bookmarkAccessible': boolean;
+    /**
+     * 오답노트 풀이 가능 여부
+     */
+    'wrongAnsweredNoteAccessible': boolean;
+    /**
      * 유닛 아이디
      */
     'unitId'?: number;

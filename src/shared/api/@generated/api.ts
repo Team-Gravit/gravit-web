@@ -33,7 +33,9 @@ export * from './api/oauth20-apiapi';
 export * from './api/oauth20-android-apiapi';
 export * from './api/season-clean-controller-api';
 export * from './api/test-event-controller-api';
+export * from './api/test-scenario-controller-api';
 export * from './api/user-apiapi';
+export * from './api/user-cheat-create-controller-api';
 export * from './api/user-data-clean-controller-api';
 export * from './api/user-deletion-apiapi';
 

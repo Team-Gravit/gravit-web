@@ -1,4 +1,4 @@
-import type { LastSeasonPopupDto } from "@/entities/league/model/types";
+import type { LastSeasonPopupDto } from "@/shared/api/@generated";
 import SeasonEnd from "@/shared/assets/icons/season-end.svg?react";
 import { PROFILE_COLORS } from "@/shared/lib/ProfileColor";
 import Profile from "@/shared/assets/icons/profile2.svg?react";

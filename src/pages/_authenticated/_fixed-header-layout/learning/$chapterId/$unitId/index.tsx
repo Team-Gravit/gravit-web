@@ -5,6 +5,7 @@ import ChapterInfo from "@/entities/chapter/ChapterInfo";
 import NextIcon from "@/shared/assets/icons/ic-right-arrow.svg?react";
 import BookmarkIcon from "@/shared/assets/icons/ic-bookmark.svg?react";
 import { useFetchLessons } from "@/entities/learning/model/hooks";
+import { useNavigate } from "@tanstack/react-router";
 
 export const Route = createFileRoute(
 	"/_authenticated/_fixed-header-layout/learning/$chapterId/$unitId/",
@@ -13,6 +14,7 @@ export const Route = createFileRoute(
 });
 
 function RouteComponent() {
+	const navigate = useNavigate();
 	const { chapterId, unitId } = Route.useParams();
 	const { lessons, chapterInfo, isPending } = useFetchLessons(Number(unitId));
 
@@ -26,10 +28,31 @@ function RouteComponent() {
 	return (
 		<BackgroundLayout backgroundImage={backgroundImg} gradientOverlay="partial">
 			<main className="w-full max-w-[1580px] px-16 lg:px-20 xl:px-24 pt-10 lg:pt-24 pb-44 mx-auto">
-				<ChapterInfo
-					chapterName={chapterInfo.chapterName}
-					chapterInfoText={chapterInfo.chapterDescription}
-				/>
+				{/* 개념노트 버튼 */}
+				<div className="flex flex-row justify-between">
+					<ChapterInfo
+						chapterName={chapterInfo.chapterName}
+						chapterInfoText={chapterInfo.chapterDescription}
+					/>
+					<button
+						type="button"
+						className="
+								flex justify-center items-center
+								w-[180px] h-[76px]
+								bg-[#BA00FF] rounded-[16px]
+								shadow-[0_0_16px_0_#C52AFF]
+								border-2 border-white
+								text-white font-bold text-[30px] leading-[36px]
+								hover:brightness-110 transition
+								"
+						onClick={() => {
+							// 개념노트 페이지로 이동
+							navigate({ to: `/learning/${chapterId}/${unitId}/concept-note` });
+						}}
+					>
+						개념노트
+					</button>
+				</div>
 				<div className="w-full grid grid-rows-[auto_auto] grid-cols-[1fr_1fr] gap-x-8 gap-y-7 lg:gap-x-16 lg:gap-y-14">
 					<section className="flex flex-col gap-4">
 						<div className="flex items-center gap-6">

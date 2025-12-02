@@ -3,7 +3,7 @@ import Banner2 from "@/shared/ui/banner/Banner2";
 import StudyNote from "@/shared/ui/studynote/studynote";
 
 export const Route = createFileRoute(
-	"/_authenticated/_fixed-header-layout/studynote",
+	"/_authenticated/_fixed-header-layout/learning/$chapterId/$unitId/concept-note",
 )({ component: StudyNotePage });
 
 const mockbannerData = {
@@ -59,5 +59,5 @@ function StudyNotePage() {
 				/>
 			</div>
 		</div>
-	);
+	)
 }

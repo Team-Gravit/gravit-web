@@ -6,7 +6,7 @@ import Form from "@/shared/ui/form/Form";
 import Logo from "@/shared/ui/logo/Logo";
 import ProfileSelector from "@/features/onboarding/ui/ProfileSelecter";
 import NicknameForm from "@/features/onboarding/ui/NicknameForm";
-import { postOnBoarding } from "@/features/onboarding/api/postOnboarding";
+import { usePostOnboarding } from "@/features/onboarding/api/usePostOnboarding";
 
 export const Route = createFileRoute("/_authenticated/_onboarding/onboarding")({
 	component: OnboardingPage,
@@ -21,8 +21,9 @@ function OnboardingPage() {
 	const [loading, setLoading] = useState(false);
 
 	const isSubmitting = useRef(false);
+	const { mutate } = usePostOnboarding();
 
-	const handleSubmit = async () => {
+	const handleSubmit = () => {
 		if (loading || isSubmitting.current) return;
 
 		if (!nickname.trim()) {
@@ -40,19 +41,22 @@ function OnboardingPage() {
 		setLoading(true);
 		isSubmitting.current = true;
 
-		try {
-			await Promise.all([
-				postOnBoarding(nickname.trim(), colorIndex + 1),
-				new Promise((resolve) => setTimeout(resolve, 1000)),
-			]);
-			navigate({ to: "/success" });
-		} catch (error) {
-			console.error(error);
-			alert("온보딩 처리 중 오류가 발생했습니다. 다시 시도해주세요.");
-		} finally {
-			setLoading(false);
-			isSubmitting.current = false;
-		}
+		mutate(
+			{ nickname: nickname.trim(), profilePhotoNumber: colorIndex + 1 },
+			{
+				onSuccess: () => {
+					navigate({ to: "/success" });
+				},
+				onError: (error) => {
+					console.error(error);
+					alert("온보딩 처리 중 오류가 발생했습니다. 다시 시도해주세요.");
+				},
+				onSettled: () => {
+					setLoading(false);
+					isSubmitting.current = false;
+				},
+			},
+		);
 	};
 
 	return (

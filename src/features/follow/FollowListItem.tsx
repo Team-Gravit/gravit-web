@@ -31,7 +31,7 @@ export default function FollowListItem({ item, type }: Props) {
 			onSettled: () => setIsLoading(false),
 		});
 
-		queryClient.setQueryData<UserInfo>(["userinfo"], (oldData) => {
+		queryClient.setQueryData<UserInfo>(["user-info"], (oldData) => {
 			if (!oldData) return oldData;
 			return {
 				...oldData,

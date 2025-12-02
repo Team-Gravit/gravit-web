@@ -1,12 +1,15 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { apiClient } from "@/shared/api/config";
 import type { Friend } from "@/entities/friends/model/types";
 import type { UserInfo } from "@/entities/sidebar/model/types";
+import { api } from "@/shared/api";
 
-export const followFriend = (id: number) =>
-	apiClient.post(`/friends/following/${id}`);
-export const unfollowFriend = (id: number) =>
-	apiClient.post(`/friends/unfollowing/${id}`);
+const followFriend = async (id: number): Promise<void> => {
+	await api.friend.following(id);
+};
+
+const unfollowFriend = async (id: number): Promise<void> => {
+	await api.friend.unFollowing(id);
+};
 
 export const useToggleFollow = (searchValue: string) => {
 	const queryClient = useQueryClient();
@@ -25,7 +28,7 @@ export const useToggleFollow = (searchValue: string) => {
 		onMutate: (friend) => {
 			queryClient.setQueryData<{
 				pages: { contents: Friend[]; hasNextPage: boolean }[];
-			}>(["friendlist", searchValue], (oldData) => {
+			}>(["friend-list", searchValue], (oldData) => {
 				if (!oldData) return oldData;
 				return {
 					...oldData,
@@ -40,7 +43,7 @@ export const useToggleFollow = (searchValue: string) => {
 				};
 			});
 
-			queryClient.setQueryData<UserInfo>(["userinfo"], (oldData) => {
+			queryClient.setQueryData<UserInfo>(["user-info"], (oldData) => {
 				if (!oldData) return oldData;
 				return {
 					...oldData,
@@ -54,8 +57,8 @@ export const useToggleFollow = (searchValue: string) => {
 		onError: (err: unknown) => {
 			console.error("❌ API 호출 실패:", err);
 
-			queryClient.invalidateQueries({ queryKey: ["friendlist", searchValue] });
-			queryClient.invalidateQueries({ queryKey: ["userinfo"] });
+			queryClient.invalidateQueries({ queryKey: ["friend-list", searchValue] });
+			queryClient.invalidateQueries({ queryKey: ["user-info"] });
 		},
 	});
 };

@@ -1,37 +1,33 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { apiClient } from "@/shared/api/config";
+import { api } from "@/shared/api";
 import type { AxiosError } from "axios";
 import type { UserProfile } from "@/entities/user/model/types";
-
-export const patchUserProfile = async (
-	nickname: string,
-	profilePhotoNumber: number,
-): Promise<UserProfile> => {
-	const { data } = await apiClient.patch<UserProfile>("/users", {
-		nickname,
-		profilePhotoNumber,
-	});
-	return data;
-};
+import { mapToUserProfile } from "@/entities/user/model/mappers";
+import type {
+	UserProfileUpdateRequest,
+	UserResponse,
+} from "@/shared/api/@generated";
 
 export const usePatchUserProfile = () => {
 	const queryClient = useQueryClient();
 
-	return useMutation({
-		mutationFn: (variables: { nickname: string; profilePhotoNumber: number }) =>
-			patchUserProfile(variables.nickname, variables.profilePhotoNumber),
+	return useMutation<UserProfile, AxiosError, UserProfileUpdateRequest>({
+		mutationKey: ["patch-user-profile"],
+
+		mutationFn: async (updateRequest) => {
+			const res = await api.user.manage.updateProfile(updateRequest);
+
+			return mapToUserProfile(res.data as UserResponse);
+		},
 
 		onSuccess: (data) => {
-			queryClient.setQueryData(
-				["userinfo"],
-				(oldData: UserProfile | undefined) => {
-					if (!oldData) return data;
-					return {
-						...oldData,
-						...data,
-					};
-				},
-			);
+			queryClient.setQueryData<UserProfile>(["user-info"], (oldData) => {
+				if (!oldData) return data;
+				return {
+					...oldData,
+					...data,
+				};
+			});
 		},
 
 		onError: (error: AxiosError) => {

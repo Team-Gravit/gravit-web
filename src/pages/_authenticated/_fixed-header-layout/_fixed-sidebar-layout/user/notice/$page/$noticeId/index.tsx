@@ -1,6 +1,6 @@
 import { createFileRoute, useParams } from "@tanstack/react-router";
 import SectionHeader from "@/widgets/header/ui/SectionHeader";
-import { useNoticeDetail } from "@/entities/notice/api/getNoticeDetail";
+import { useNoticeDetail } from "@/entities/notice/api/useNoticeDetail";
 
 export const Route = createFileRoute(
 	"/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/$noticeId/",

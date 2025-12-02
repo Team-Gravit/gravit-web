@@ -14,7 +14,10 @@
 
 
 
-export interface AuthCodeRequest {
-    'code': string;
+export interface LessonCompletedEvent {
+    'userId'?: number;
+    'chapterId'?: number;
+    'points'?: number;
+    'accuracy'?: number;
 }
 

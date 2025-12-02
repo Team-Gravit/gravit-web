@@ -20,7 +20,9 @@ api/oauth20-android-apiapi.ts
 api/oauth20-apiapi.ts
 api/season-clean-controller-api.ts
 api/test-event-controller-api.ts
+api/test-scenario-controller-api.ts
 api/user-apiapi.ts
+api/user-cheat-create-controller-api.ts
 api/user-data-clean-controller-api.ts
 api/user-deletion-apiapi.ts
 base.ts
@@ -45,6 +47,7 @@ docs/BookmarkedProblemResponse.md
 docs/CSNoteAPIApi.md
 docs/ChapterDetailResponse.md
 docs/ChapterSummary.md
+docs/ConsecutiveSolvedEvent.md
 docs/CurrentSeasonDto.md
 docs/ErrorResponse.md
 docs/FollowCountsResponse.md
@@ -64,6 +67,7 @@ docs/LearningAPIApi.md
 docs/LearningDetail.md
 docs/LearningSubmissionSaveRequest.md
 docs/LearningSubmissionSaveResponse.md
+docs/LessonCompletedEvent.md
 docs/LessonDetailResponse.md
 docs/LessonResponse.md
 docs/LessonSubmissionSaveRequest.md
@@ -86,7 +90,6 @@ docs/OptionCreateRequest.md
 docs/OptionResponse.md
 docs/OptionUpdateRequest.md
 docs/PageResponse.md
-docs/PlanetCompletedEvent.md
 docs/ProblemCreateRequest.md
 docs/ProblemReportSubmitRequest.md
 docs/ProblemResponse.md
@@ -102,12 +105,13 @@ docs/SliceResponse.md
 docs/SliceResponseFollowerResponse.md
 docs/SliceResponseFollowingResponse.md
 docs/SliceResponseLeagueRankRow.md
-docs/StreakUpdatedEvent.md
 docs/TestEventControllerApi.md
+docs/TestScenarioControllerApi.md
 docs/UnitDetail.md
 docs/UnitDetailResponse.md
 docs/UnitSummary.md
 docs/UserAPIApi.md
+docs/UserCheatCreateControllerApi.md
 docs/UserDataCleanControllerApi.md
 docs/UserDeletionAPIApi.md
 docs/UserLevelDetail.md
@@ -129,6 +133,7 @@ models/bookmark-save-request.ts
 models/bookmarked-problem-response.ts
 models/chapter-detail-response.ts
 models/chapter-summary.ts
+models/consecutive-solved-event.ts
 models/current-season-dto.ts
 models/error-response.ts
 models/follow-counts-response.ts
@@ -144,6 +149,7 @@ models/league-response.ts
 models/learning-detail.ts
 models/learning-submission-save-request.ts
 models/learning-submission-save-response.ts
+models/lesson-completed-event.ts
 models/lesson-detail-response.ts
 models/lesson-response.ts
 models/lesson-submission-save-request.ts
@@ -162,7 +168,6 @@ models/option-create-request.ts
 models/option-response.ts
 models/option-update-request.ts
 models/page-response.ts
-models/planet-completed-event.ts
 models/problem-create-request.ts
 models/problem-report-submit-request.ts
 models/problem-response.ts
@@ -177,7 +182,6 @@ models/slice-response-follower-response.ts
 models/slice-response-following-response.ts
 models/slice-response-league-rank-row.ts
 models/slice-response.ts
-models/streak-updated-event.ts
 models/unit-detail-response.ts
 models/unit-detail.ts
 models/unit-summary.ts

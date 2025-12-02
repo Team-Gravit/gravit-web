@@ -15,10 +15,10 @@
 
 
 export interface NoticeCreateRequest {
-    'title'?: string;
-    'content'?: string;
-    'status'?: NoticeCreateRequestStatus;
-    'pinned'?: boolean;
+    'title': string;
+    'content': string;
+    'status': NoticeCreateRequestStatus;
+    'pinned': boolean;
 }
 
 export const NoticeCreateRequestStatus = {
