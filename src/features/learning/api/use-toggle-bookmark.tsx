@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { api } from "@/shared/api";
 import type { LessonResponse } from "@/shared/api/@generated";
+import { toast } from "@/shared/lib/toast";
 
 interface UseToggleBookmarkParams {
 	problemId: number;
@@ -58,18 +59,16 @@ export default function useToggleBookmark() {
 				queryClient.setQueryData(context.queryKey, context.previousData);
 			}
 
-			// TODO: 토스트 메시지
-			alert("북마크 수정에 실패했습니다.");
+			toast.error("북마크 수정에 실패했습니다.");
 		},
 
 		// 성공 시
 		onSuccess: (result) => {
-			// TODO: 토스트 메시지
 			const message =
 				result.action === "save"
 					? "북마크에 추가되었어요."
 					: "북마크에서 제거되었어요.";
-			alert(message);
+			toast.confirm(message);
 		},
 	});
 }
