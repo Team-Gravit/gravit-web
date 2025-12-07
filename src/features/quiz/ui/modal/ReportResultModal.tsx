@@ -1,14 +1,14 @@
 import Modal from "@/widgets/modal/modal";
 import CheckIcon from "@/shared/assets/icons/check.svg?react";
 import { renderWithBr } from "@/shared/lib/renderWithBr";
-import { useReportModalStore } from "../../model/use-report-modal-store";
+import { useLessonModalStore } from "../../model/use-lesson-modal-store";
 
 export default function ReportResultModal({
 	type,
 }: {
 	type: "confirm" | "error";
 }) {
-	const { isResultOpen, closeResultModal } = useReportModalStore();
+	const { isResultOpen, closeResultModal } = useLessonModalStore();
 	const title =
 		type === "confirm"
 			? "회원님의 신고가 접수되었어요."

@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-interface ReportModalState {
+interface LessonModalState {
 	isReportOpen: boolean;
 	openReportModal: () => void;
 	closeReportModal: () => void;
@@ -8,9 +8,13 @@ interface ReportModalState {
 	isResultOpen: boolean;
 	openResultModal: () => void;
 	closeResultModal: () => void;
+
+	isQuitOpen: boolean;
+	openQuitModal: () => void;
+	closeQuitModal: () => void;
 }
 
-export const useReportModalStore = create<ReportModalState>((set) => ({
+export const useLessonModalStore = create<LessonModalState>((set) => ({
 	isReportOpen: false,
 	openReportModal: () => set({ isReportOpen: true }),
 	closeReportModal: () => set({ isReportOpen: false }),
@@ -18,4 +22,8 @@ export const useReportModalStore = create<ReportModalState>((set) => ({
 	isResultOpen: false,
 	openResultModal: () => set({ isResultOpen: true }),
 	closeResultModal: () => set({ isResultOpen: false }),
+
+	isQuitOpen: false,
+	openQuitModal: () => set({ isQuitOpen: true }),
+	closeQuitModal: () => set({ isQuitOpen: false }),
 }));

@@ -2,11 +2,11 @@ import useToggleBookmark from "@/features/learning/api/use-toggle-bookmark";
 import BookmarkIcon from "@/shared/assets/icons/ic-bookmark-empty.svg?react";
 import ClipBoardIcon from "./clipboard.svg?react";
 import { cn } from "@/shared/lib/cn";
-import ReportButton from "@/features/quiz/submit-report/ui/ReportButton";
+import ReportButton from "@/features/quiz/ui/modal/ReportButton";
 import type { Problem } from "../model/types";
 import { useQuizSessionState } from "@/features/quiz/model/quiz-session-store";
 import { learningKeys } from "../api/query-keys";
-import { useReportModalStore } from "@/features/quiz/model/use-report-modal-store";
+import { useLessonModalStore } from "@/features/quiz/model/use-lesson-modal-store";
 
 export default function ProblemHeader({
 	totalProblemsCount,
@@ -15,7 +15,7 @@ export default function ProblemHeader({
 	totalProblemsCount: number;
 	problem: Problem;
 }) {
-	const { openReportModal } = useReportModalStore();
+	const { openReportModal } = useLessonModalStore();
 
 	const { mutate: onToggleBookmark } = useToggleBookmark();
 	const currentProblemIndex = useQuizSessionState((s) => s.currentProblemIndex);

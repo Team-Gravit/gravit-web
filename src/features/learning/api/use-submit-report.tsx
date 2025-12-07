@@ -1,10 +1,10 @@
 import { useMutation } from "@tanstack/react-query";
-import type { ReportType } from "@/features/quiz/submit-report/ui/ReportModal";
+import type { ReportType } from "@/features/quiz/ui/modal/ReportModal";
 import { api } from "@/shared/api";
-import { useReportModalStore } from "@/features/quiz/model/use-report-modal-store";
+import { useLessonModalStore } from "@/features/quiz/model/use-lesson-modal-store";
 
 export const useSubmitReport = () => {
-	const { closeReportModal, openResultModal } = useReportModalStore();
+	const { closeReportModal, openResultModal } = useLessonModalStore();
 	return useMutation({
 		mutationFn: async ({
 			reportType,
