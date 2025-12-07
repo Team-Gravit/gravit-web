@@ -30,33 +30,37 @@ function RouteComponent() {
 
 				<section className="w-full">
 					<ol className="w-full flex flex-col gap-8">
-						{units.map((unit: Unit) => {
+						{units.map((unit: Unit, idx) => {
 							return (
 								<li
 									key={unit.unitId}
-									className="w-full px-10 py-9 bg-white rounded-[1.25rem] flex justify-between cursor-pointer hover:scale-105 ease-in-out duration-300 shadow-[0px_4px_4px_0_rgba(0,0,0,0.25)] hover:shadow-[0_0_33px_0_#7B4AE9]"
+									className="w-full px-6 py-[18px] bg-white rounded-[1.25rem] flex justify-between cursor-pointer hover:scale-105 ease-in-out duration-300 shadow-[0px_4px_4px_0_rgba(0,0,0,0.25)] hover:shadow-[0_0_33px_0_#7B4AE9]"
 								>
 									<Link
 										to={"/learning/$chapterId/$unitId"}
 										params={{ chapterId, unitId: unit.unitId.toString() }}
-										className="flex flex-col gap-5 w-full h-full"
+										search={{ chapterName: chapterInfo.chapterName }}
+										className="flex flex-col gap-3 w-full h-full"
+
 									>
-										<h3 className="text-black text-3xl xl:text-4xl font-semibold leading-none flex items-center justify-between">
-											Unit{unit.unitId} - {unit.title}
-											<RightArrowIcon />
+										<h3 className="text-black text-xl xl:text-2xl font-semibold leading-none flex items-center justify-between">
+											Unit{(idx + 1).toString().padStart(2, "0")} - {unit.title}
+											<RightArrowIcon className="w-6" />
 										</h3>
-										<p className="font-medium text-2xl xl:text-3xl">
+										<p className="font-medium text-lg xl:text-xl">
 											{unit.description}
 										</p>
 										<div className="flex items-center gap-2.5">
-											<span className="text-gray-500 text-2xl xl:text-3xl">
+											<span className="text-gray-500 text-xl xl:text-2xl">
 												{unit.progressRate}%
 											</span>
-											<div className="relative w-[500px] h-6 rounded-full border-2 border-gray-500">
+
+											<div className="w-[500px] h-5 rounded-full border-2 border-gray-500 px-[2px] flex items-center">
 												<div
-													className="absolute left-0 inset-y-0 my-auto translate-x-[2px] h-4 bg-main-gradient rounded-full"
+													className="h-3 bg-main-gradient rounded-full"
 													style={{
 														width: `${Math.min(Math.max(unit.progressRate, 3), 100)}%`,
+														transition: "width 0.3s ease",
 													}}
 												/>
 											</div>
