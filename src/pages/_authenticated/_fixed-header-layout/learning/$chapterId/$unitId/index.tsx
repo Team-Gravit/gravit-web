@@ -5,6 +5,8 @@ import ChapterInfo from "@/entities/chapter/ChapterInfo";
 import NextIcon from "@/shared/assets/icons/ic-right-arrow.svg?react";
 import BookmarkIcon from "@/shared/assets/icons/ic-bookmark.svg?react";
 import { useFetchLessons } from "@/entities/learning/model/hooks";
+// import { useNavigate } from "@tanstack/react-router";
+import { toast } from "@/shared/lib/toast";
 
 export const Route = createFileRoute(
 	"/_authenticated/_fixed-header-layout/learning/$chapterId/$unitId/",
@@ -77,7 +79,7 @@ function RouteComponent() {
 								onClick={(e) => {
 									if (!canAccessBookmark) {
 										e.preventDefault();
-										alert("북마크가 없습니다.");
+										toast.confirm("북마크가 없습니다.");
 									}
 								}}
 							>
@@ -107,7 +109,7 @@ function RouteComponent() {
 								onClick={(e) => {
 									if (!canAccessWrongNote) {
 										e.preventDefault();
-										alert("오답 문제가 없습니다.");
+										toast.confirm("오답 문제가 없습니다.");
 									}
 								}}
 							>

@@ -80,6 +80,58 @@
 
     /*헤더*/
     --header-height: 74px;
+
+    /*스켈레톤 애니메이션*/
+    --animate-skeleton-pulse: skeletonPulse 1.5s infinite;
+    --animate-skeleton-wave: skeletonWave 1.6s infinite;
+
+    /*토스트 애니메이션*/
+    --animate-fade-in-y: fadeInWithTransformY 0.5s forwards;
+    --animate-fade-out-y: fadeOutWithTransformY 0.5s forwards;
+
+    @keyframes skeletonPulse {
+        0%,
+        100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.4;
+        }
+    }
+
+    @keyframes skeletonWave {
+        0% {
+            left: -150%;
+        }
+        50% {
+            left: 0%;
+        }
+        100% {
+            left: 150%;
+        }
+    }
+
+    @keyframes fadeInWithTransformY {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeOutWithTransformY {
+        from {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        to {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+    }
 }
 
 
