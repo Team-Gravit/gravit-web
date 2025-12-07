@@ -18,16 +18,14 @@ export default function ChapterInfo({
 
 	return (
 		<section className="w-full mb-16">
-			<div className="flex items-center gap-6 mb-4">
-				{showActionButtons && (
-					<button
-						type="button"
-						className="cursor-pointer w-10"
-						onClick={handleGoBack}
-					>
-						<BackIcon />
-					</button>
-				)}
+			<div className="flex items-center gap-5 mb-4">
+				<button
+					type="button"
+					className="cursor-pointer w-10"
+					onClick={handleGoBack}
+				>
+					<BackIcon />
+				</button>
 				<h2 className="inline-block text-white font-semibold text-3xl lg:text-4xl ">
 					{chapterName}
 				</h2>
