@@ -27,3 +27,9 @@ export const useLessonModalStore = create<LessonModalState>((set) => ({
 	openQuitModal: () => set({ isQuitOpen: true }),
 	closeQuitModal: () => set({ isQuitOpen: false }),
 }));
+
+export const useIsAnyModalOpen = () => {
+	return useLessonModalStore(
+		(state) => state.isReportOpen || state.isResultOpen || state.isQuitOpen,
+	);
+};

@@ -3,7 +3,7 @@ import TimerIcon from "./assets/timer.svg?react";
 import { useEffect, useRef } from "react";
 import formatTime from "./lib/formatTime";
 import { useQuizSessionState } from "@/features/quiz/model/quiz-session-store";
-import { useLessonModalStore } from "@/features/quiz/model/use-lesson-modal-store";
+import { useLessonModalStore, useIsAnyModalOpen } from "@/features/quiz/model/use-lesson-modal-store";
 
 export default function QuizHeader({
 	learningTitle,
@@ -14,19 +14,31 @@ export default function QuizHeader({
 }) {
 	const timeElapsed = useQuizSessionState((state) => state.timeElapsed);
 	const incrementTime = useQuizSessionState((state) => state.incrementTime);
+	const isPaused = useQuizSessionState((state) => state.isPaused);
 
 	const { openQuitModal } = useLessonModalStore();
+	const isAnyModalOpen = useIsAnyModalOpen();
 
 	const timerRef = useRef<NodeJS.Timeout | null>(null);
 
 	useEffect(() => {
+		// 모달이 열려있거나 퀴즈가 일시정지된 경우 타이머 중지
+		if (isPaused || isAnyModalOpen) {
+			if (timerRef.current !== null) {
+				clearInterval(timerRef.current);
+				timerRef.current = null;
+			}
+			return;
+		}
+
+		// 타이머 시작
 		timerRef.current = setInterval(incrementTime, 1000);
 		return () => {
 			if (timerRef.current !== null) {
 				clearInterval(timerRef.current);
 			}
 		};
-	}, [incrementTime]);
+	}, [incrementTime, isPaused, isAnyModalOpen]);
 
 	return (
 		<header className="relative flex flex-row items-center bg-white justify-between px-5 py-7">
