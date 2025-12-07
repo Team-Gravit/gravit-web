@@ -6,6 +6,7 @@ import ReportButton from "@/features/quiz/submit-report/ui/ReportButton";
 import type { Problem } from "../model/types";
 import { useQuizSessionState } from "@/features/quiz/model/quiz-session-store";
 import { learningKeys } from "../api/query-keys";
+import { useReportModalStore } from "@/features/quiz/model/use-report-modal-store";
 
 export default function ProblemHeader({
 	totalProblemsCount,
@@ -14,6 +15,8 @@ export default function ProblemHeader({
 	totalProblemsCount: number;
 	problem: Problem;
 }) {
+	const { openReportModal } = useReportModalStore();
+
 	const { mutate: onToggleBookmark } = useToggleBookmark();
 	const currentProblemIndex = useQuizSessionState((s) => s.currentProblemIndex);
 	const mode = useQuizSessionState((s) => s.mode);
@@ -64,7 +67,7 @@ export default function ProblemHeader({
 				</button>
 				<ReportButton
 					className={"cursor-pointer shrink-0"}
-					onHandleClickReport={() => {}}
+					onHandleClickReport={openReportModal}
 				/>
 			</div>
 		</header>

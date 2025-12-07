@@ -9,7 +9,8 @@ import ProblemStatement from "@/entities/learning/ui/ProblemStatement";
 import AnswerInteraction from "@/widgets/learning-widget/AnswerInteraction";
 import { useQuizSessionState } from "@/features/quiz/model/quiz-session-store";
 import QuizResultWidget from "../QuizResultWidget";
-// import QuizResultWidget from "../QuizResultWidget";
+import ReportModal from "@/features/quiz/submit-report/ui/ReportModal";
+import ReportResultModal from "@/features/quiz/submit-report/ui/ReportResultModal";
 
 export default function LessonQuizComponent({
 	lessonId,
@@ -70,6 +71,8 @@ export default function LessonQuizComponent({
 
 	return (
 		<>
+			<ReportModal problemId={currentProblem.problemId} />
+			<ReportResultModal type="confirm" />
 			{!isQuizCompleted && (
 				<div className="w-full h-screen flex flex-col">
 					<QuizHeader
