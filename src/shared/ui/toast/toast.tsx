@@ -6,6 +6,13 @@ import { cn } from "@/shared/lib/cn";
 
 const ANIMATION_TIME = 500;
 
+/**
+ * 사용자에게 메시지를 전달하는 토스트 UI 컴포넌트입니다.
+ * 애니메이션과 함께 나타나고 사라지며, 자동 닫기 및 클릭하여 닫기 기능을 지원합니다.
+ * @param type 토스트의 종류 ('error', 'confirm', 'none'). 스타일에 영향을 줄 수 있습니다.
+ * @param message 표시할 메시지 내용.
+ * @param onClose 토스트가 닫힐 때 호출되는 콜백 함수.
+ */
 export function Toast({
 	type = "confirm",
 	top = "6rem",
