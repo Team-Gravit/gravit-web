@@ -6,7 +6,7 @@ import {
 import SectionHeader from "@/widgets/header/ui/SectionHeader";
 import NoticeList from "@/features/notice/NoticeList";
 import PaginationButton from "@/features/button/PaginationButton";
-import { useNoticeList } from "@/entities/notice/api/getNoticeList";
+import { useNoticeList } from "@/entities/notice/api/useNoticeList";
 import type { NoticeItem } from "@/entities/notice/model/types";
 
 export const Route = createFileRoute(

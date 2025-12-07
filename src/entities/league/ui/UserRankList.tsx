@@ -27,7 +27,7 @@ export default function UserRankList({ users, loading }: UserListProps) {
 				return (
 					<div
 						key={user.userId}
-						className="flex flex-row w-full h-20 items-stretch justify-between border border-[#FFC1FC1A] backdrop-blur-[20px] rounded-xl overflow-hidden"
+						className="flex flex-row w-full h-[103.77px] items-stretch justify-between border border-[#FFC1FC1A] backdrop-blur-[20px] rounded-xl overflow-hidden"
 					>
 						<div className="flex flex-row items-center gap-9 lg:px-5 px-6 bg-[#FFFFFF33] w-3/4">
 							<span className="font-mbc text-[35.58px] font-medium w-12 text-left text-[#FFC1FC]">

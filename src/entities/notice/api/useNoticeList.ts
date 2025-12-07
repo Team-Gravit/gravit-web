@@ -4,6 +4,7 @@ import type { AxiosError } from "axios";
 import type { NoticeList } from "@/entities/notice/model/types";
 import { mapToNoticeList } from "@/entities/notice/model/mappers";
 import type { SliceResponse } from "@/shared/api/@generated";
+
 export const useNoticeList = (page: number) => {
 	return useQuery<NoticeList, AxiosError>({
 		queryKey: ["notice-list", page],
