@@ -1,7 +1,6 @@
 import LoadingWidget from "@/widgets/learning-widget/LoadingWidget";
 import { useMinimumLoadingTime } from "@/widgets/learning-widget/lib/useMinimumLoadingTime";
-import { useEffect, useRef } from "react";
-import { type ConfirmModalRef } from "@/shared/ui/modal/ConfirmModal";
+import { useEffect } from "react";
 import QuizHeader from "@/widgets/learning-widget/QuizHeader";
 import QuizProgressBar from "@/widgets/learning-widget/QuizProgressBar";
 import ProblemStatement from "@/entities/learning/ui/ProblemStatement";
@@ -14,8 +13,6 @@ import { useFetchBookmarkedProblems } from "@/entities/learning/model/use-fetch-
 export default function BookmarkQuizComponent({ unitId }: { unitId: string }) {
 	const { data, isPending } = useFetchBookmarkedProblems(Number(unitId));
 
-	const quitModalRef = useRef<ConfirmModalRef>(null);
-
 	const userAnswers = useQuizSessionState((state) => state.userAnswers);
 	const currentProblemIndex = useQuizSessionState(
 		(state) => state.currentProblemIndex,
@@ -23,7 +20,6 @@ export default function BookmarkQuizComponent({ unitId }: { unitId: string }) {
 	const resetQuiz = useQuizSessionState((state) => state.resetQuiz);
 	const resetTime = useQuizSessionState((state) => state.resetTime);
 	const isQuizCompleted = useQuizSessionState((state) => state.isQuizCompleted);
-	const pauseTime = useQuizSessionState((state) => state.pauseTime);
 
 	//학습 결과 제출 상태
 	const isSubmittingResult = useQuizSessionState(
@@ -57,12 +53,12 @@ export default function BookmarkQuizComponent({ unitId }: { unitId: string }) {
 
 	const currentProblem = problems[currentProblemIndex];
 
-	const handleClickQuit = () => {
-		if (quitModalRef) {
-			quitModalRef.current?.open();
-			pauseTime();
-		}
-	};
+	// const handleClickQuit = () => {
+	// 	if (quitModalRef) {
+	// 		quitModalRef.current?.open();
+	// 		pauseTime();
+	// 	}
+	// };
 
 	return (
 		<>
@@ -70,7 +66,7 @@ export default function BookmarkQuizComponent({ unitId }: { unitId: string }) {
 				<div className="w-full h-screen flex flex-col">
 					<QuizHeader
 						learningTitle={data.unitSummary.title}
-						onHandleQuit={handleClickQuit}
+						// onHandleQuit={handleClickQuit}
 					/>
 					<QuizProgressBar progress={`${percent}%`} />
 					<main className=" bg-gray-200 flex flex-col items-center h-full">

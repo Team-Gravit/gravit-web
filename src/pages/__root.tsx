@@ -1,3 +1,4 @@
+import Page404Component from "@/widgets/error-widget/Page404Component";
 import {
 	Outlet,
 	useLayoutEffect,
@@ -30,4 +31,5 @@ const RootLayout = () => {
 };
 export const Route = createRootRouteWithContext<RouteContext>()({
 	component: () => <RootLayout />,
+	notFoundComponent: () => <Page404Component />,
 });

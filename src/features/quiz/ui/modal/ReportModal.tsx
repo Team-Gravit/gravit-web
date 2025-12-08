@@ -10,17 +10,12 @@ export interface ReportModalRef {
 	open: () => void;
 	close: () => void;
 }
-const REPORT_TYPES = [
-	"TYPO_ERROR",
-	"CONTENT_ERROR",
-	"ANSWER_ERROR",
-	"OTHER_ERROR",
-] as const;
-export type ReportType = (typeof REPORT_TYPES)[number]; // Union Type 자동 생성
 
-const isReportType = (value: string): value is ReportType => {
-	return REPORT_TYPES.includes(value as ReportType);
-};
+export type ReportType =
+	| "TYPO_ERROR"
+	| "CONTENT_ERROR"
+	| "ANSWER_ERROR"
+	| "OTHER_ERROR";
 
 const OPTIONS = [
 	{ reportType: "TYPO_ERROR", text: "문제/선지에 오탈자가 있습니다." },
