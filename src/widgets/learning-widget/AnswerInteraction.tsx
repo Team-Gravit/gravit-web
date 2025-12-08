@@ -8,6 +8,7 @@ import ReviewPhase from "./ReviewPhase";
 import { useQuizSessionState } from "@/features/quiz/model/quiz-session-store";
 import { api } from "@/shared/api";
 import type { LearningSubmissionSaveRequest } from "@/shared/api/@generated";
+import { useRouter } from "@tanstack/react-router";
 
 interface AnswerInteractionProps {
 	problem: Problem;
@@ -34,6 +35,7 @@ export default function AnswerInteraction({
 	const { strategy } = useQuizContext();
 	const answerPhaseRef = useRef<AnswerPhaseHandle>(null);
 	const buttonRef = useRef<HTMLButtonElement>(null);
+	const router = useRouter();
 
 	const isSubmitted = userAnswers.length !== currentProblemIndex;
 	const activeQuestionIndex = userAnswers.length;
@@ -72,7 +74,6 @@ export default function AnswerInteraction({
 					});
 				}
 			}
-			// 객관식은 이미 자동 제출됨 (여기 도달 X)
 			return;
 		}
 
@@ -109,13 +110,15 @@ export default function AnswerInteraction({
 			}
 
 			completeQuiz();
+
+			if (strategy === "STREAM") {
+				router.history.back();
+			}
 		} else {
-			// 다음 문제로
 			goToNextProblem();
 		}
 	};
 
-	// Enter 키 처리
 	useEffect(() => {
 		const handleGlobalKeyDown = (e: globalThis.KeyboardEvent) => {
 			if (e.key === "Enter" && buttonRef.current) {

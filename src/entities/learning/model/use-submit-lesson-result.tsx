@@ -11,9 +11,6 @@ export const useSubmitLessonResult = () => {
 			return response.data;
 		},
 		onSuccess: () => {
-			/** TODO - 토스트메세지로 바꿔야 할 부분 */
-			alert("문제 오류를 전송했습니다.!");
-
 			// TODO 쿼리 무효 - query key 빠짐없이 넣기
 			return queryClient.invalidateQueries({
 				queryKey: learningKeys.all,

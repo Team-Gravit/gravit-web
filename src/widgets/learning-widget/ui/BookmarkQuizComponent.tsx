@@ -6,7 +6,6 @@ import QuizProgressBar from "@/widgets/learning-widget/QuizProgressBar";
 import ProblemStatement from "@/entities/learning/ui/ProblemStatement";
 import AnswerInteraction from "@/widgets/learning-widget/AnswerInteraction";
 import { useQuizSessionState } from "@/features/quiz/model/quiz-session-store";
-import QuizResultWidget from "../QuizResultWidget";
 import { useFetchBookmarkedProblems } from "@/entities/learning/model/use-fetch-bookmarked-problems";
 // import QuizResultWidget from "../QuizResultWidget";
 
@@ -20,16 +19,10 @@ export default function BookmarkQuizComponent({ unitId }: { unitId: string }) {
 	const resetQuiz = useQuizSessionState((state) => state.resetQuiz);
 	const resetTime = useQuizSessionState((state) => state.resetTime);
 	const isQuizCompleted = useQuizSessionState((state) => state.isQuizCompleted);
-
-	//학습 결과 제출 상태
-	const isSubmittingResult = useQuizSessionState(
-		(state) => state.isSubmittingResult,
-	);
-
 	useEffect(() => {
 		resetQuiz();
 		resetTime();
-	}, [resetQuiz, resetTime, unitId]);
+	}, [resetQuiz, resetTime]);
 
 	const shouldShowLoading = useMinimumLoadingTime({
 		isLoading: isPending,
@@ -83,12 +76,6 @@ export default function BookmarkQuizComponent({ unitId }: { unitId: string }) {
 					</main>
 				</div>
 			)}
-
-			{isSubmittingResult && (
-				<h2 className="text-3xl">결과를 제출중입니다...</h2>
-			)}
-
-			{!isSubmittingResult && isQuizCompleted && <QuizResultWidget />}
 		</>
 	);
 }

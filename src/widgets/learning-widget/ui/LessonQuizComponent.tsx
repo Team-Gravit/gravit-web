@@ -35,7 +35,7 @@ export default function LessonQuizComponent({
 	useEffect(() => {
 		resetQuiz();
 		resetTime();
-	}, [resetQuiz, resetTime, lessonId]);
+	}, [resetQuiz, resetTime]);
 
 	const shouldShowLoading = useMinimumLoadingTime({
 		isLoading: isPending,
@@ -83,11 +83,6 @@ export default function LessonQuizComponent({
 					</main>
 				</div>
 			)}
-
-			{isSubmittingResult && (
-				<h2 className="text-3xl">결과를 제출중입니다...</h2>
-			)}
-
 			{!isSubmittingResult && isQuizCompleted && <QuizResultWidget />}
 		</>
 	);
