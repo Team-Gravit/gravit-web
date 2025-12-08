@@ -105,11 +105,11 @@ apiClient.interceptors.response.use(
 				} catch (err) {
 					console.error("Refresh token failed", err);
 					tokenManager.clearTokens();
-					if (typeof window !== "undefined") window.location.href = "/login";
+					if (typeof window !== "undefined") window.location.href = "/";
 				}
 			} else {
 				tokenManager.clearTokens();
-				if (typeof window !== "undefined") window.location.href = "/login";
+				if (typeof window !== "undefined") window.location.href = "/";
 			}
 		}
 
