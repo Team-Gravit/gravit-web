@@ -35,16 +35,23 @@ function RouteComponent() {
 						</button>
 					</nav>
 					<section className="w-full grid grid-cols-1 lg:grid-cols-3 2xl:grid-cols-4 gap-8 lg:gap-10 mb-10">
-						{chapters.map((chapter) => {
+						{chapters.map((chapter, idx) => {
+							const isActive = idx <= 2;
 							return (
-								<Link
-									to={"/learning/$chapterId"}
-									params={{ chapterId: String(chapter.chapterId) }}
-									key={chapter.chapterId}
-									className="w-full"
-								>
-									<ChapterCard chapter={chapter} />
-								</Link>
+								<>
+									{isActive ? (
+										<Link
+											to={"/learning/$chapterId"}
+											params={{ chapterId: String(chapter.chapterId) }}
+											key={chapter.chapterId}
+											className="w-full"
+										>
+											<ChapterCard chapter={chapter} isActive={isActive} />
+										</Link>
+									) : (
+										<ChapterCard chapter={chapter} isActive={isActive} />
+									)}
+								</>
 							);
 						})}
 					</section>
