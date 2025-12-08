@@ -41,7 +41,7 @@ export const LessonQuitModal = () => {
 						계속하기
 					</button>
 					<button
-						type="submit"
+						type="button"
 						onClick={onHandleQuit}
 						className="text-gray-600 text-xl font-semibold hover:text-gray-800 hover:underline transition-all duration-200 focus:outline-none px-2 py-1 cursor-pointer"
 					>
