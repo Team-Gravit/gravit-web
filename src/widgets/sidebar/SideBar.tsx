@@ -19,7 +19,7 @@ export default function UserSidebar() {
 
 	if (isUserLoading || isBadgesLoading) {
 		return (
-			<div className="hidden w-1/3 lg:flex flex-col bg-white shadow-[0_4px_8px_rgba(0,0,0,0.25)] z-10 p-4">
+			<div className="hidden w-1/4 lg:flex flex-col bg-white shadow-[0_4px_8px_rgba(0,0,0,0.25)] z-10 p-4">
 				Loading...
 			</div>
 		);
@@ -27,14 +27,14 @@ export default function UserSidebar() {
 
 	if (isUserError || !userInfo || isBadgesError || !userBadges) {
 		return (
-			<div className="hidden w-1/3 lg:flex flex-col bg-white shadow-[0_4px_8px_rgba(0,0,0,0.25)] z-10 p-4">
+			<div className="hidden w-1/4 lg:flex flex-col bg-white shadow-[0_4px_8px_rgba(0,0,0,0.25)] z-10 p-4">
 				사용자 정보를 불러오지 못했습니다.
 			</div>
 		);
 	}
 
 	return (
-		<div className="hidden w-1/3 lg:flex flex-col bg-white shadow-[0_4px_8px_rgba(0,0,0,0.25)] z-10">
+		<div className="absolte hidden w-1/4 lg:flex flex-col bg-white shadow-[0_4px_8px_rgba(0,0,0,0.25)] z-10">
 			<ProfileCard userInfo={userInfo} />
 			<FollowModalButton userInfo={userInfo} />
 			<AddFriendButton />

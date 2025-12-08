@@ -47,7 +47,6 @@ docs/BookmarkedProblemResponse.md
 docs/CSNoteAPIApi.md
 docs/ChapterDetailResponse.md
 docs/ChapterSummary.md
-docs/ConsecutiveSolvedEvent.md
 docs/CurrentSeasonDto.md
 docs/ErrorResponse.md
 docs/FollowCountsResponse.md
@@ -95,7 +94,6 @@ docs/ProblemReportSubmitRequest.md
 docs/ProblemResponse.md
 docs/ProblemSubmissionRequest.md
 docs/ProblemUpdateRequest.md
-docs/QualifiedSolvedEvent.md
 docs/RefreshTokenRequest.md
 docs/ReissueResponse.md
 docs/ReportDetailResponse.md
@@ -133,7 +131,6 @@ models/bookmark-save-request.ts
 models/bookmarked-problem-response.ts
 models/chapter-detail-response.ts
 models/chapter-summary.ts
-models/consecutive-solved-event.ts
 models/current-season-dto.ts
 models/error-response.ts
 models/follow-counts-response.ts
@@ -173,7 +170,6 @@ models/problem-report-submit-request.ts
 models/problem-response.ts
 models/problem-submission-request.ts
 models/problem-update-request.ts
-models/qualified-solved-event.ts
 models/refresh-token-request.ts
 models/reissue-response.ts
 models/report-detail-response.ts

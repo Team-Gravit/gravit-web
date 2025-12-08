@@ -29,21 +29,17 @@ import type { ErrorResponse } from '../models';
 export const CSNoteAPIApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * 챕터와 유닛 정보로 Markdown 형식의 개념 노트를 조회합니다. <br>응답 본문은 Markdown 텍스트 데이터입니다. <br><br>**파일 구조**: static/notes/{chapter}/{unit}.md <br>**예시**: /api/v1/notes/algorithm/unit01 → static/notes/algorithm/unit01.md <br>**챕터 리스트** : [algorithm, data-structure, network] <br>**알고리즘 유닛 리스트** : unit01 ~ unit17 <br>**자료구조 유닛 리스트** : unit01 ~ unit10 <br>**네트워크 유닛 리스트** : unit01 ~ unit14
+         * 챕터와 유닛 정보로 Markdown 형식의 개념 노트를 조회합니다. <br>응답 본문은 Markdown 텍스트 데이터입니다. <br><br>unitId 를 입력하면 unit에 해당하는 개념노트를 응답합니다.
          * @summary 개념 노트 조회
-         * @param {string} chapter 
-         * @param {string} unit 
+         * @param {number} unitId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getNote: async (chapter: string, unit: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'chapter' is not null or undefined
-            assertParamExists('getNote', 'chapter', chapter)
-            // verify required parameter 'unit' is not null or undefined
-            assertParamExists('getNote', 'unit', unit)
-            const localVarPath = `/api/v1/cs-notes/{chapter}/{unit}`
-                .replace(`{${"chapter"}}`, encodeURIComponent(String(chapter)))
-                .replace(`{${"unit"}}`, encodeURIComponent(String(unit)));
+        getNote: async (unitId: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'unitId' is not null or undefined
+            assertParamExists('getNote', 'unitId', unitId)
+            const localVarPath = `/api/v1/cs-notes/{unitId}`
+                .replace(`{${"unitId"}}`, encodeURIComponent(String(unitId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -80,15 +76,14 @@ export const CSNoteAPIApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = CSNoteAPIApiAxiosParamCreator(configuration)
     return {
         /**
-         * 챕터와 유닛 정보로 Markdown 형식의 개념 노트를 조회합니다. <br>응답 본문은 Markdown 텍스트 데이터입니다. <br><br>**파일 구조**: static/notes/{chapter}/{unit}.md <br>**예시**: /api/v1/notes/algorithm/unit01 → static/notes/algorithm/unit01.md <br>**챕터 리스트** : [algorithm, data-structure, network] <br>**알고리즘 유닛 리스트** : unit01 ~ unit17 <br>**자료구조 유닛 리스트** : unit01 ~ unit10 <br>**네트워크 유닛 리스트** : unit01 ~ unit14
+         * 챕터와 유닛 정보로 Markdown 형식의 개념 노트를 조회합니다. <br>응답 본문은 Markdown 텍스트 데이터입니다. <br><br>unitId 를 입력하면 unit에 해당하는 개념노트를 응답합니다.
          * @summary 개념 노트 조회
-         * @param {string} chapter 
-         * @param {string} unit 
+         * @param {number} unitId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getNote(chapter: string, unit: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<File>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getNote(chapter, unit, options);
+        async getNote(unitId: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<File>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getNote(unitId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CSNoteAPIApi.getNote']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -103,15 +98,14 @@ export const CSNoteAPIApiFactory = function (configuration?: Configuration, base
     const localVarFp = CSNoteAPIApiFp(configuration)
     return {
         /**
-         * 챕터와 유닛 정보로 Markdown 형식의 개념 노트를 조회합니다. <br>응답 본문은 Markdown 텍스트 데이터입니다. <br><br>**파일 구조**: static/notes/{chapter}/{unit}.md <br>**예시**: /api/v1/notes/algorithm/unit01 → static/notes/algorithm/unit01.md <br>**챕터 리스트** : [algorithm, data-structure, network] <br>**알고리즘 유닛 리스트** : unit01 ~ unit17 <br>**자료구조 유닛 리스트** : unit01 ~ unit10 <br>**네트워크 유닛 리스트** : unit01 ~ unit14
+         * 챕터와 유닛 정보로 Markdown 형식의 개념 노트를 조회합니다. <br>응답 본문은 Markdown 텍스트 데이터입니다. <br><br>unitId 를 입력하면 unit에 해당하는 개념노트를 응답합니다.
          * @summary 개념 노트 조회
-         * @param {string} chapter 
-         * @param {string} unit 
+         * @param {number} unitId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getNote(chapter: string, unit: string, options?: RawAxiosRequestConfig): AxiosPromise<File> {
-            return localVarFp.getNote(chapter, unit, options).then((request) => request(axios, basePath));
+        getNote(unitId: number, options?: RawAxiosRequestConfig): AxiosPromise<File> {
+            return localVarFp.getNote(unitId, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -121,15 +115,14 @@ export const CSNoteAPIApiFactory = function (configuration?: Configuration, base
  */
 export class CSNoteAPIApi extends BaseAPI {
     /**
-     * 챕터와 유닛 정보로 Markdown 형식의 개념 노트를 조회합니다. <br>응답 본문은 Markdown 텍스트 데이터입니다. <br><br>**파일 구조**: static/notes/{chapter}/{unit}.md <br>**예시**: /api/v1/notes/algorithm/unit01 → static/notes/algorithm/unit01.md <br>**챕터 리스트** : [algorithm, data-structure, network] <br>**알고리즘 유닛 리스트** : unit01 ~ unit17 <br>**자료구조 유닛 리스트** : unit01 ~ unit10 <br>**네트워크 유닛 리스트** : unit01 ~ unit14
+     * 챕터와 유닛 정보로 Markdown 형식의 개념 노트를 조회합니다. <br>응답 본문은 Markdown 텍스트 데이터입니다. <br><br>unitId 를 입력하면 unit에 해당하는 개념노트를 응답합니다.
      * @summary 개념 노트 조회
-     * @param {string} chapter 
-     * @param {string} unit 
+     * @param {number} unitId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public getNote(chapter: string, unit: string, options?: RawAxiosRequestConfig) {
-        return CSNoteAPIApiFp(this.configuration).getNote(chapter, unit, options).then((request) => request(this.axios, this.basePath));
+    public getNote(unitId: number, options?: RawAxiosRequestConfig) {
+        return CSNoteAPIApiFp(this.configuration).getNote(unitId, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

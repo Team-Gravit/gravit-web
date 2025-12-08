@@ -1,5 +1,4 @@
 import SettingButton from "@/features/button/SettingButton";
-import RightArrow from "@/shared/assets/icons/buttons/right-arrow.svg?react";
 import type { Item } from "@/features/button/SettingButton";
 import {
 	ConfirmModal,
@@ -72,7 +71,6 @@ export default function UserSettingsBox() {
 											}}
 										>
 											{item.label}
-											<RightArrow className="text-[#222222]" />
 										</button>
 									);
 								} else if (item.label === "로그아웃") {
@@ -88,7 +86,6 @@ export default function UserSettingsBox() {
 											}}
 										>
 											{item.label}
-											<RightArrow className="text-[#222222]" />
 										</button>
 									);
 								}

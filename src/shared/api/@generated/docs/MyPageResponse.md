@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**nickname** | **string** |  | [default to undefined]
+**nickname** | **string** |  | [optional] [default to undefined]
 **profileImgNumber** | **number** |  | [optional] [default to undefined]
-**handle** | **string** |  | [default to undefined]
+**handle** | **string** |  | [optional] [default to undefined]
 **follower** | **number** |  | [optional] [default to undefined]
 **following** | **number** |  | [optional] [default to undefined]
 

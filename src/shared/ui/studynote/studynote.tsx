@@ -1,21 +1,17 @@
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
+import rehypeSanitize from "rehype-sanitize";
+import { defaultSchema } from "hast-util-sanitize";
 import type { FC } from "react";
 
 type StudyNoteProps = {
 	title: string;
 	subtitle: string;
-	buttonLabel: string;
 	content: string;
 };
 
-const StudyNote: FC<StudyNoteProps> = ({
-	title,
-	subtitle,
-
-	content,
-}) => {
+const StudyNote: FC<StudyNoteProps> = ({ title, subtitle, content }) => {
 	return (
 		<div className="max-w-[1571px] w-[82vw] h-full flex flex-col gap-8 border border-[#F2F2F2] shadow-[0_0_16px_rgba(0,0,0,0.24)] rounded-[24px] bg-white">
 			{/* 헤더 */}
@@ -32,7 +28,40 @@ const StudyNote: FC<StudyNoteProps> = ({
 
 			{/* 마크다운 콘텐츠 */}
 			<div className="w-full px-8 prose prose-stone">
-				<ReactMarkdown rehypePlugins={[rehypeRaw]} remarkPlugins={[remarkGfm]}>
+				<ReactMarkdown
+					remarkPlugins={[remarkGfm]}
+					rehypePlugins={[
+						rehypeRaw,
+						[
+							rehypeSanitize,
+							{
+								...defaultSchema,
+								attributes: {
+									...defaultSchema.attributes,
+									img: [
+										...(defaultSchema.attributes?.img || []),
+										"src",
+										"alt",
+										"width",
+										"height",
+									],
+									a: [
+										...(defaultSchema.attributes?.a || []),
+										"href",
+										"title",
+										"target",
+										"rel",
+									],
+								},
+							},
+						],
+					]}
+					components={{
+						a: ({ ...props }) => (
+							<a {...props} target="_blank" rel="noopener noreferrer" />
+						),
+					}}
+				>
 					{content}
 				</ReactMarkdown>
 			</div>

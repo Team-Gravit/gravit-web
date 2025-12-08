@@ -8,11 +8,14 @@ interface NicknameFormProps {
 	setIsLimit: (value: boolean) => void;
 	checking: boolean;
 	setChecking: (value: boolean) => void;
+	dirty: boolean;
+	setDirty: (value: boolean) => void;
 	helperText?: ReactNode;
 	labelTextSize?: string;
 	inputTextSize?: string;
 	helperTextSize?: string;
 	helperFontColor?: string;
+	placeholder?: string;
 }
 
 export default function NicknameForm({
@@ -22,11 +25,14 @@ export default function NicknameForm({
 	setIsLimit,
 	checking,
 	setChecking,
+	dirty,
+	setDirty,
 	helperText,
 	labelTextSize = "text-lg",
 	inputTextSize = "text-lg",
 	helperTextSize = "text-sm",
 	helperFontColor,
+	placeholder = "닉네임",
 }: NicknameFormProps) {
 	useEffect(() => {
 		const nicknameRegex = /^[가-힣a-zA-Z0-9]{2,8}$/;
@@ -62,31 +68,38 @@ export default function NicknameForm({
 				<input
 					type="text"
 					value={nickname}
-					onChange={(e) => setNickname(e.target.value)}
-					placeholder="닉네임"
+					onChange={(e) => {
+						if (!dirty) setDirty(true);
+						setNickname(e.target.value);
+					}}
+					placeholder={placeholder}
 					className={`w-full px-4 py-2 rounded-lg text-[#4C4C4C] font-normal border-2 bg-white ${
-						isLimit
-							? "border-[#FF3B2F]"
-							: nickname.trim()
-								? "border-[#55BE24]"
-								: "border-[#C3C3C3]"
+						!dirty
+							? "border-[#C3C3C3]"
+							: isLimit
+								? "border-[#FF3B2F]"
+								: nickname.trim()
+									? "border-[#55BE24]"
+									: "border-[#C3C3C3]"
 					} focus:outline-none ${inputTextSize}`}
 				/>
 			</label>
 
 			<div className="min-h-[20px]">
-				{!checking && nickname.trim() && !isLimit && (
-					<p className={helperTextSize} style={{ color: availableColor }}>
+				{dirty && !checking && nickname.trim() && !isLimit && (
+					<div className={helperTextSize} style={{ color: availableColor }}>
 						사용 가능한 닉네임이에요.
-					</p>
+					</div>
 				)}
-				{!checking && isLimit && (
-					<p className={helperTextSize} style={{ color: unavailableColor }}>
+
+				{dirty && !checking && isLimit && (
+					<div className={helperTextSize} style={{ color: unavailableColor }}>
 						사용 불가능한 닉네임이에요.
-					</p>
+					</div>
 				)}
-				{!checking && !nickname.trim() && !isLimit && helperText && (
-					<p className={helperTextSize}>{helperText}</p>
+
+				{!dirty && helperText && (
+					<div className={helperTextSize}>{helperText}</div>
 				)}
 			</div>
 		</div>

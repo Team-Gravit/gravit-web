@@ -1,5 +1,6 @@
-import { useRef, useEffect, useCallback } from "react";
+import { useEffect, useMemo } from "react";
 import type { LeagueInfo } from "@/entities/league/model/types";
+import React from "react";
 
 type Tier = {
 	id: number;
@@ -20,38 +21,44 @@ export default function TierSelector({
 	onSelectTier,
 	selectedTierInfo,
 }: TierSelectorProps) {
-	const containerRef = useRef<HTMLDivElement | null>(null);
-	const itemRefs = useRef<Map<number, HTMLButtonElement>>(new Map());
+	const containerRef = React.useRef<HTMLDivElement | null>(null);
+	const hasScrolledRef = React.useRef(false); // 초기 한 번만 스크롤
 
-	/** 선택된 버튼을 중앙 정렬 */
-	const centerItem = useCallback((tierId: number) => {
-		const container = containerRef.current;
-		const target = itemRefs.current.get(tierId);
-		if (!container || !target) return;
+	// createRef 배열 생성
+	const buttonRefs = useMemo(
+		() => tiers.map(() => React.createRef<HTMLButtonElement>()),
+		[tiers],
+	);
 
-		const itemCenter = target.offsetLeft + target.offsetWidth / 2;
-		const containerCenter = container.clientWidth / 2;
-
-		const scrollLeft = itemCenter - containerCenter;
-
-		container.scrollTo({
-			left: scrollLeft,
-			behavior: "smooth",
-		});
-	}, []);
-
-	/** 클릭 핸들러 */
 	const handleClick = (tierId: number) => {
 		onSelectTier(tierId);
-		// LP 텍스트와 이름은 항상 존재하므로 바로 smooth scroll 가능
-		centerItem(tierId);
 	};
 
-	/** 초기 중앙 정렬 */
+	// 선택된 버튼 인덱스 계산
+	const selectedIndex = useMemo(() => {
+		if (selectedTierId == null) return -1;
+		return tiers.findIndex((t) => t.id === selectedTierId);
+	}, [tiers, selectedTierId]);
+
 	useEffect(() => {
-		if (!selectedTierId) return;
-		centerItem(selectedTierId);
-	}, [selectedTierId, centerItem]);
+		if (selectedIndex === -1) return;
+
+		const target = buttonRefs[selectedIndex]?.current;
+		const container = containerRef.current;
+		if (!target || !container) return;
+
+		const raf = requestAnimationFrame(() => {
+			const itemCenter = target.offsetLeft + target.offsetWidth / 2;
+			const containerCenter = container.clientWidth / 2;
+			container.scrollTo({
+				left: itemCenter - containerCenter,
+				behavior: "smooth",
+			});
+			hasScrolledRef.current = true;
+		});
+
+		return () => cancelAnimationFrame(raf);
+	}, [selectedIndex, buttonRefs]);
 
 	return (
 		<div
@@ -60,35 +67,31 @@ export default function TierSelector({
 		>
 			<div className="flex-shrink-0 w-[calc(50%-120px)] lg:w-[calc(50%-150px)]" />
 
-			{tiers.map((tier) => {
-				const isSelected = tier.id === selectedTierId;
+			{tiers.map((tier, idx) => {
+				const isSelected = idx === selectedIndex;
 				const TierIcon = tier.icon;
 
 				return (
 					<button
 						type="button"
 						key={tier.id}
-						ref={(el) => {
-							if (el) itemRefs.current.set(tier.id, el);
-							else itemRefs.current.delete(tier.id);
-						}}
+						ref={buttonRefs[idx]}
 						onClick={() => handleClick(tier.id)}
 						className="relative flex-shrink-0 flex flex-col items-center justify-start cursor-pointer transition-all duration-300 w-[240px] min-h-[300px]"
 					>
 						<div className="relative w-full h-[305px] flex items-center justify-center">
-							<TierIcon
-								className="absolute top-1/2 left-1/2 transition-transform duration-300"
-								style={{
-									width: "100%",
-									height: "100%",
-									transform: `translate(-50%, -50%) scale(${isSelected ? 1.35 : 1})`,
-									filter: `brightness(${isSelected ? 100 : 40}%)`,
-								}}
-							/>
+							<div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+								<TierIcon
+									className="transition-transform duration-300 w-[224px] h-[290px]"
+									style={{
+										transform: `scale(${isSelected ? 1.35 : 1})`,
+										filter: `brightness(${isSelected ? 100 : 40}%)`,
+									}}
+								/>
+							</div>
 						</div>
 
 						<div className="w-full h-40 flex flex-col items-center justify-center mt-14">
-							{/* 이름은 항상 존재, opacity로 토글 */}
 							<span
 								className={`text-[71px] text-white font-semibold transition-opacity duration-300 ${
 									isSelected ? "opacity-100" : "opacity-0"
@@ -98,7 +101,6 @@ export default function TierSelector({
 								{tier.name}
 							</span>
 
-							{/* LP 정보도 항상 존재, 선택 여부에 따라 opacity만 변경 */}
 							<span
 								className={`text-[36px] text-white font-semibold mt-5 whitespace-nowrap transition-opacity duration-300 ${
 									isSelected && selectedTierInfo ? "opacity-100" : "opacity-0"

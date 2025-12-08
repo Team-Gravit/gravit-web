@@ -1,10 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import Form from "@/shared/ui/form/Form";
 import ProfileSelector from "@/features/onboarding/ui/ProfileSelecter";
 import NicknameForm from "@/features/onboarding/ui/NicknameForm";
 import { usePatchUserProfile } from "@/features/user/update-user/api/patchUserProfile";
+import { useUserInfo } from "@/entities/sidebar/api/useUserInfo";
 
 export const Route = createFileRoute(
 	"/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/edit",
@@ -14,12 +15,23 @@ export const Route = createFileRoute(
 
 function RouteComponent() {
 	const navigate = useNavigate();
+
+	const { data: user, isLoading } = useUserInfo();
+
 	const [colorIndex, setColorIndex] = useState(0);
 	const [nickname, setNickname] = useState("");
 	const [isLimit, setIsLimit] = useState(false);
 	const [checking, setChecking] = useState(false);
+	const [dirty, setDirty] = useState(false);
 
 	const { mutate } = usePatchUserProfile();
+
+	useEffect(() => {
+		if (!user) return;
+
+		setNickname(user.nickname);
+		setColorIndex(user.profileImgNumber - 1);
+	}, [user]);
 
 	const handleSubmit = () => {
 		if (!nickname.trim()) return alert("닉네임을 입력해주세요.");
@@ -38,10 +50,18 @@ function RouteComponent() {
 		);
 	};
 
+	if (isLoading || !user) {
+		return (
+			<div className="w-full h-full flex items-center justify-center">
+				로딩중...
+			</div>
+		);
+	}
+
 	return (
 		<div className="w-full h-full flex flex-col items-center bg-[#f2f2f2] p-8">
 			<Form className="w-full h-[640px] px-48 py-32 flex flex-col relative">
-				<ProfileSelector gap={32} onChange={setColorIndex} />
+				<ProfileSelector gap={32} value={colorIndex} onChange={setColorIndex} />
 
 				<div className="flex-1 w-full min-h-[150px] mt-6 px-6">
 					<NicknameForm
@@ -51,10 +71,13 @@ function RouteComponent() {
 						setIsLimit={setIsLimit}
 						checking={checking}
 						setChecking={setChecking}
+						placeholder={user.nickname}
+						dirty={dirty}
+						setDirty={setDirty}
 						helperText={
-							<p className="text-xl text-[#868686] font-normal">
+							<div className="text-xl text-[#868686] font-normal">
 								* 글자수 2~8자 <br /> * 공백, 특수문자 제외
-							</p>
+							</div>
 						}
 						inputTextSize="text-2xl w-[300px] font-normal"
 						labelTextSize="text-2xl"

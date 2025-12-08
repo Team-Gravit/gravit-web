@@ -15,9 +15,9 @@
 
 
 export interface MyPageResponse {
-    'nickname': string;
+    'nickname'?: string;
     'profileImgNumber'?: number;
-    'handle': string;
+    'handle'?: string;
     'follower'?: number;
     'following'?: number;
 }
