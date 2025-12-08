@@ -70,6 +70,7 @@ export const useFetchLessons = (unitId: number) => {
 			const response = await api.learning.getAllLessonsInUnit(unitId);
 			return mapToChapterWithLessons(response.data);
 		},
+		refetchOnMount: "always",
 	});
 
 	return {

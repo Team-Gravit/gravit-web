@@ -12,6 +12,7 @@ export const useFetchIncorrectProblems = (unitId: number) => {
 
 			return mapToProblemsWithUnitSummary(response.data);
 		},
+		refetchOnMount: "always",
 		enabled: !!unitId,
 	});
 
