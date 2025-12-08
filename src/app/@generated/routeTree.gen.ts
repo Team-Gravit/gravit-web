@@ -21,6 +21,7 @@ import { Route as AuthenticatedFixedHeaderLayoutMainRouteImport } from './../../
 import { Route as AuthenticatedFixedHeaderLayoutLeagueRouteImport } from './../../pages/_authenticated/_fixed-header-layout/league'
 import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/route'
 import { Route as AuthenticatedFixedHeaderLayoutLearningIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/learning/index'
+import { Route as UserMeDeletePageRouteImport } from './../../pages/user.me.delete.page'
 import { Route as LoginOauth2CodeProviderRouteImport } from './../../pages/login/oauth2/code/$provider'
 import { Route as AuthenticatedFixedHeaderLayoutLearningChapterIdIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/learning/$chapterId/index'
 import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/index'
@@ -29,7 +30,6 @@ import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserEditRouteI
 import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserAddfriendRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/addfriend'
 import { Route as AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/learning/$chapterId/$unitId/index'
 import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/index'
-import { Route as AuthenticatedFixedHeaderLayoutUserMeDeletePageRouteImport } from './../../pages/_authenticated/_fixed-header-layout/user.me.delete.page'
 import { Route as AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdConceptNoteRouteImport } from './../../pages/_authenticated/_fixed-header-layout/learning/$chapterId/$unitId/concept-note'
 import { Route as AuthenticatedBlankLayoutLearningChapterIdUnitIdIncorrectProblemsRouteImport } from './../../pages/_authenticated/_blank-layout/learning.$chapterId.$unitId/incorrect-problems'
 import { Route as AuthenticatedBlankLayoutLearningChapterIdUnitIdBookmarkedProblemsRouteImport } from './../../pages/_authenticated/_blank-layout/learning.$chapterId.$unitId/bookmarked-problems'
@@ -102,6 +102,11 @@ const AuthenticatedFixedHeaderLayoutLearningIndexRoute =
     path: '/learning/',
     getParentRoute: () => AuthenticatedFixedHeaderLayoutRouteRoute,
   } as any)
+const UserMeDeletePageRoute = UserMeDeletePageRouteImport.update({
+  id: '/user/me/delete/page',
+  path: '/user/me/delete/page',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LoginOauth2CodeProviderRoute = LoginOauth2CodeProviderRouteImport.update({
   id: '/login/oauth2/code/$provider',
   path: '/login/oauth2/code/$provider',
@@ -160,12 +165,6 @@ const AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRoute =
         AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRoute,
     } as any,
   )
-const AuthenticatedFixedHeaderLayoutUserMeDeletePageRoute =
-  AuthenticatedFixedHeaderLayoutUserMeDeletePageRouteImport.update({
-    id: '/user/me/delete/page',
-    path: '/user/me/delete/page',
-    getParentRoute: () => AuthenticatedFixedHeaderLayoutRouteRoute,
-  } as any)
 const AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdConceptNoteRoute =
   AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdConceptNoteRouteImport.update(
     {
@@ -223,6 +222,7 @@ export interface FileRoutesByFullPath {
   '/onboarding': typeof AuthenticatedOnboardingOnboardingRoute
   '/success': typeof AuthenticatedOnboardingSuccessRoute
   '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
+  '/user/me/delete/page': typeof UserMeDeletePageRoute
   '/learning': typeof AuthenticatedFixedHeaderLayoutLearningIndexRoute
   '/user/addfriend': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserAddfriendRoute
   '/user/edit': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserEditRoute
@@ -233,7 +233,6 @@ export interface FileRoutesByFullPath {
   '/learning/$chapterId/$unitId/bookmarked-problems': typeof AuthenticatedBlankLayoutLearningChapterIdUnitIdBookmarkedProblemsRoute
   '/learning/$chapterId/$unitId/incorrect-problems': typeof AuthenticatedBlankLayoutLearningChapterIdUnitIdIncorrectProblemsRoute
   '/learning/$chapterId/$unitId/concept-note': typeof AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdConceptNoteRoute
-  '/user/me/delete/page': typeof AuthenticatedFixedHeaderLayoutUserMeDeletePageRoute
   '/user/notice': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRoute
   '/learning/$chapterId/$unitId': typeof AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdIndexRoute
   '/user/notice/$page': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRoute
@@ -247,6 +246,7 @@ export interface FileRoutesByTo {
   '/onboarding': typeof AuthenticatedOnboardingOnboardingRoute
   '/success': typeof AuthenticatedOnboardingSuccessRoute
   '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
+  '/user/me/delete/page': typeof UserMeDeletePageRoute
   '/learning': typeof AuthenticatedFixedHeaderLayoutLearningIndexRoute
   '/user/addfriend': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserAddfriendRoute
   '/user/edit': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserEditRoute
@@ -257,7 +257,6 @@ export interface FileRoutesByTo {
   '/learning/$chapterId/$unitId/bookmarked-problems': typeof AuthenticatedBlankLayoutLearningChapterIdUnitIdBookmarkedProblemsRoute
   '/learning/$chapterId/$unitId/incorrect-problems': typeof AuthenticatedBlankLayoutLearningChapterIdUnitIdIncorrectProblemsRoute
   '/learning/$chapterId/$unitId/concept-note': typeof AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdConceptNoteRoute
-  '/user/me/delete/page': typeof AuthenticatedFixedHeaderLayoutUserMeDeletePageRoute
   '/user/notice': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRoute
   '/learning/$chapterId/$unitId': typeof AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdIndexRoute
   '/user/notice/$page': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRoute
@@ -277,6 +276,7 @@ export interface FileRoutesById {
   '/_authenticated/_onboarding/onboarding': typeof AuthenticatedOnboardingOnboardingRoute
   '/_authenticated/_onboarding/success': typeof AuthenticatedOnboardingSuccessRoute
   '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
+  '/user/me/delete/page': typeof UserMeDeletePageRoute
   '/_authenticated/_fixed-header-layout/learning/': typeof AuthenticatedFixedHeaderLayoutLearningIndexRoute
   '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/addfriend': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserAddfriendRoute
   '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/edit': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserEditRoute
@@ -287,7 +287,6 @@ export interface FileRoutesById {
   '/_authenticated/_blank-layout/learning/$chapterId/$unitId/bookmarked-problems': typeof AuthenticatedBlankLayoutLearningChapterIdUnitIdBookmarkedProblemsRoute
   '/_authenticated/_blank-layout/learning/$chapterId/$unitId/incorrect-problems': typeof AuthenticatedBlankLayoutLearningChapterIdUnitIdIncorrectProblemsRoute
   '/_authenticated/_fixed-header-layout/learning/$chapterId/$unitId/concept-note': typeof AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdConceptNoteRoute
-  '/_authenticated/_fixed-header-layout/user/me/delete/page': typeof AuthenticatedFixedHeaderLayoutUserMeDeletePageRoute
   '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRoute
   '/_authenticated/_fixed-header-layout/learning/$chapterId/$unitId/': typeof AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdIndexRoute
   '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRoute
@@ -303,6 +302,7 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/success'
     | '/login/oauth2/code/$provider'
+    | '/user/me/delete/page'
     | '/learning'
     | '/user/addfriend'
     | '/user/edit'
@@ -313,7 +313,6 @@ export interface FileRouteTypes {
     | '/learning/$chapterId/$unitId/bookmarked-problems'
     | '/learning/$chapterId/$unitId/incorrect-problems'
     | '/learning/$chapterId/$unitId/concept-note'
-    | '/user/me/delete/page'
     | '/user/notice'
     | '/learning/$chapterId/$unitId'
     | '/user/notice/$page'
@@ -327,6 +326,7 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/success'
     | '/login/oauth2/code/$provider'
+    | '/user/me/delete/page'
     | '/learning'
     | '/user/addfriend'
     | '/user/edit'
@@ -337,7 +337,6 @@ export interface FileRouteTypes {
     | '/learning/$chapterId/$unitId/bookmarked-problems'
     | '/learning/$chapterId/$unitId/incorrect-problems'
     | '/learning/$chapterId/$unitId/concept-note'
-    | '/user/me/delete/page'
     | '/user/notice'
     | '/learning/$chapterId/$unitId'
     | '/user/notice/$page'
@@ -356,6 +355,7 @@ export interface FileRouteTypes {
     | '/_authenticated/_onboarding/onboarding'
     | '/_authenticated/_onboarding/success'
     | '/login/oauth2/code/$provider'
+    | '/user/me/delete/page'
     | '/_authenticated/_fixed-header-layout/learning/'
     | '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/addfriend'
     | '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/edit'
@@ -366,7 +366,6 @@ export interface FileRouteTypes {
     | '/_authenticated/_blank-layout/learning/$chapterId/$unitId/bookmarked-problems'
     | '/_authenticated/_blank-layout/learning/$chapterId/$unitId/incorrect-problems'
     | '/_authenticated/_fixed-header-layout/learning/$chapterId/$unitId/concept-note'
-    | '/_authenticated/_fixed-header-layout/user/me/delete/page'
     | '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/'
     | '/_authenticated/_fixed-header-layout/learning/$chapterId/$unitId/'
     | '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/'
@@ -377,6 +376,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   LoginOauth2CodeProviderRoute: typeof LoginOauth2CodeProviderRoute
+  UserMeDeletePageRoute: typeof UserMeDeletePageRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -465,6 +465,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedFixedHeaderLayoutLearningIndexRouteImport
       parentRoute: typeof AuthenticatedFixedHeaderLayoutRouteRoute
     }
+    '/user/me/delete/page': {
+      id: '/user/me/delete/page'
+      path: '/user/me/delete/page'
+      fullPath: '/user/me/delete/page'
+      preLoaderRoute: typeof UserMeDeletePageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/login/oauth2/code/$provider': {
       id: '/login/oauth2/code/$provider'
       path: '/login/oauth2/code/$provider'
@@ -520,13 +527,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/user/notice'
       preLoaderRoute: typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRouteImport
       parentRoute: typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRoute
-    }
-    '/_authenticated/_fixed-header-layout/user/me/delete/page': {
-      id: '/_authenticated/_fixed-header-layout/user/me/delete/page'
-      path: '/user/me/delete/page'
-      fullPath: '/user/me/delete/page'
-      preLoaderRoute: typeof AuthenticatedFixedHeaderLayoutUserMeDeletePageRouteImport
-      parentRoute: typeof AuthenticatedFixedHeaderLayoutRouteRoute
     }
     '/_authenticated/_fixed-header-layout/learning/$chapterId/$unitId/concept-note': {
       id: '/_authenticated/_fixed-header-layout/learning/$chapterId/$unitId/concept-note'
@@ -635,7 +635,6 @@ interface AuthenticatedFixedHeaderLayoutRouteRouteChildren {
   AuthenticatedFixedHeaderLayoutLearningIndexRoute: typeof AuthenticatedFixedHeaderLayoutLearningIndexRoute
   AuthenticatedFixedHeaderLayoutLearningChapterIdIndexRoute: typeof AuthenticatedFixedHeaderLayoutLearningChapterIdIndexRoute
   AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdConceptNoteRoute: typeof AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdConceptNoteRoute
-  AuthenticatedFixedHeaderLayoutUserMeDeletePageRoute: typeof AuthenticatedFixedHeaderLayoutUserMeDeletePageRoute
   AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdIndexRoute: typeof AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdIndexRoute
 }
 
@@ -655,8 +654,6 @@ const AuthenticatedFixedHeaderLayoutRouteRouteChildren: AuthenticatedFixedHeader
       AuthenticatedFixedHeaderLayoutLearningChapterIdIndexRoute,
     AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdConceptNoteRoute:
       AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdConceptNoteRoute,
-    AuthenticatedFixedHeaderLayoutUserMeDeletePageRoute:
-      AuthenticatedFixedHeaderLayoutUserMeDeletePageRoute,
     AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdIndexRoute:
       AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdIndexRoute,
   }
@@ -705,6 +702,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   LoginOauth2CodeProviderRoute: LoginOauth2CodeProviderRoute,
+  UserMeDeletePageRoute: UserMeDeletePageRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
