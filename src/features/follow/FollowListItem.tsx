@@ -6,6 +6,7 @@ import X from "@/shared/assets/icons/buttons/x.svg?react";
 import type { UserInfo } from "@/entities/sidebar/model/types";
 import { useToggleFollowModal } from "@/entities/follow/api/postFollowButton";
 import { useQueryClient } from "@tanstack/react-query";
+import { useRejectFollow } from "@/entities/follow/api/rejectFollowButton";
 
 interface Props {
 	item: Follow;
@@ -17,6 +18,7 @@ export default function FollowListItem({ item, type }: Props) {
 	const [isLoading, setIsLoading] = useState(false);
 	const mutation = useToggleFollowModal(type);
 	const queryClient = useQueryClient();
+	const rejectMutation = useRejectFollow();
 
 	const handleToggle = () => {
 		if (isLoading) return;
@@ -65,17 +67,36 @@ export default function FollowListItem({ item, type }: Props) {
 					type="button"
 					disabled={isLoading}
 					className={`flex justify-center items-center px-6 py-3 gap-4 rounded-[10px] w-[151px] h-[51px] text-xl font-normal transition
-						${
-							isFollowing
-								? "bg-white border border-black/10 text-black hover:bg-gray-50"
-								: "bg-purple-800 text-white hover:bg-purple-700"
-						}`}
+			${
+				isFollowing
+					? "bg-white border border-black/10 text-black hover:bg-gray-50"
+					: "bg-purple-800 text-white hover:bg-purple-700"
+			}`}
 					onClick={handleToggle}
 				>
 					{isFollowing ? "팔로우 취소" : "팔로우"}
 				</button>
 			) : (
-				<X className="w-5 h-5" />
+				<X
+					className="w-5 h-5 cursor-pointer"
+					onClick={() => {
+						if (isLoading) return;
+						setIsLoading(true);
+
+						rejectMutation.mutate(item.id, {
+							onSettled: () => setIsLoading(false),
+							onSuccess: () => {
+								queryClient.setQueryData<UserInfo>(["user-info"], (oldData) => {
+									if (!oldData) return oldData;
+									return {
+										...oldData,
+										follower: oldData.follower - 1,
+									};
+								});
+							},
+						});
+					}}
+				/>
 			)}
 		</li>
 	);
