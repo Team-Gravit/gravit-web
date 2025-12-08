@@ -42,6 +42,13 @@ export const api = {
 			authClient,
 		),
 	},
+	withdraw: {
+		delete: createApiInstance(
+			UserDeletionAPIApi,
+			privateApiConfiguration,
+			authClient,
+		),
+	},
 	note: createApiInstance(CSNoteAPIApi, privateApiConfiguration, apiClient),
 	league: createApiInstance(LeagueAPIApi, privateApiConfiguration, apiClient),
 	ranking: {

@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { userDeleteApi } from "./api";
+import { api } from "@/shared/api";
 
 export const useSendWithdrawEmail = () => {
 	return useMutation({
@@ -7,7 +7,7 @@ export const useSendWithdrawEmail = () => {
 			const dest =
 				import.meta.env.VITE_ENVIRONMENT === "local" ? "local" : "prod";
 
-			return userDeleteApi.requestAccountDeletion(dest);
+			return api.user.delete.request(dest);
 		},
 		onSuccess: (data) => {
 			console.log("계정 삭제 확인 메일이 전송됨", data);
@@ -21,7 +21,7 @@ export const useSendWithdrawEmail = () => {
 export const useConfirmWithdraw = () => {
 	return useMutation({
 		mutationFn: (mailAuthCode: string) => {
-			return userDeleteApi.confirmAccountDeletion(mailAuthCode);
+			return api.withdraw.delete.confirm(mailAuthCode);
 		},
 		onSuccess: (data) => {
 			console.log("탈퇴되었습니다.", data);
