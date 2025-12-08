@@ -11,7 +11,6 @@ export const useSubmitLessonResult = () => {
 			return response.data;
 		},
 		onSuccess: () => {
-			// TODO 쿼리 무효 - query key 빠짐없이 넣기
 			return queryClient.invalidateQueries({
 				queryKey: learningKeys.all,
 			});

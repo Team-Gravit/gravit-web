@@ -61,10 +61,11 @@ export default function LessonQuizComponent({
 		return <div>문제가 발생했습니다.</div>;
 	}
 
-	const { problems, totalProblems } = data;
+	const { problems, totalProblems, unitSummary } = data;
 	const percent = (userAnswers.length / problems.length) * 100;
 
 	const currentProblem = problems[currentProblemIndex];
+	const unitId = unitSummary.unitId;
 
 	return (
 		<>
@@ -88,6 +89,7 @@ export default function LessonQuizComponent({
 							<AnswerInteraction
 								problem={currentProblem}
 								totalProblemsCount={totalProblems}
+								unitId={unitId}
 							/>
 						</div>
 					</main>

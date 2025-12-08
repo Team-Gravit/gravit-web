@@ -14,14 +14,11 @@ export const useSubmitQuizResult = () => {
 			return response.data;
 		},
 		onSuccess: () => {
-			alert("퀴즈 결과 제출 성공:");
 			queryClient.invalidateQueries({
 				queryKey: learningKeys.all,
 			});
 		},
-		onError: () => {
-			alert("퀴즈 결과 제출 실패:");
-		},
+		onError: () => {},
 	});
 };
 

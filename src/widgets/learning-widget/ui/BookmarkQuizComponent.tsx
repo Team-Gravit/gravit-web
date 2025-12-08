@@ -47,10 +47,11 @@ export default function BookmarkQuizComponent({ unitId }: { unitId: string }) {
 		return <div>문제가 발생했습니다.</div>;
 	}
 
-	const { problems, totalProblems } = data;
+	const { problems, totalProblems, unitSummary } = data;
 	const percent = (userAnswers.length / problems.length) * 100;
 
 	const currentProblem = problems[currentProblemIndex];
+	const unitIdNum = unitSummary.unitId;
 
 	const handleClickQuit = () => {
 		router.history.back();
@@ -76,6 +77,7 @@ export default function BookmarkQuizComponent({ unitId }: { unitId: string }) {
 							<AnswerInteraction
 								problem={currentProblem}
 								totalProblemsCount={totalProblems}
+								unitId={unitIdNum}
 							/>
 						</div>
 					</main>
