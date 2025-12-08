@@ -1,8 +1,7 @@
 import { useFetchProblems } from "@/entities/learning/model/hooks";
 import LoadingWidget from "@/widgets/learning-widget/LoadingWidget";
 import { useMinimumLoadingTime } from "@/widgets/learning-widget/lib/useMinimumLoadingTime";
-import { useEffect, useRef } from "react";
-import { type ConfirmModalRef } from "@/shared/ui/modal/ConfirmModal";
+import { useEffect } from "react";
 import QuizHeader from "@/widgets/learning-widget/QuizHeader";
 import QuizProgressBar from "@/widgets/learning-widget/QuizProgressBar";
 import ProblemStatement from "@/entities/learning/ui/ProblemStatement";
@@ -20,8 +19,6 @@ export default function LessonQuizComponent({
 }) {
 	const { data, isPending } = useFetchProblems(Number(lessonId));
 
-	const quitModalRef = useRef<ConfirmModalRef>(null);
-
 	const userAnswers = useQuizSessionState((state) => state.userAnswers);
 	const currentProblemIndex = useQuizSessionState(
 		(state) => state.currentProblemIndex,
@@ -29,7 +26,6 @@ export default function LessonQuizComponent({
 	const resetQuiz = useQuizSessionState((state) => state.resetQuiz);
 	const resetTime = useQuizSessionState((state) => state.resetTime);
 	const isQuizCompleted = useQuizSessionState((state) => state.isQuizCompleted);
-	const pauseTime = useQuizSessionState((state) => state.pauseTime);
 
 	//학습 결과 제출 상태
 	const isSubmittingResult = useQuizSessionState(
@@ -63,13 +59,6 @@ export default function LessonQuizComponent({
 
 	const currentProblem = problems[currentProblemIndex];
 
-	const handleClickQuit = () => {
-		if (quitModalRef) {
-			quitModalRef.current?.open();
-			pauseTime();
-		}
-	};
-
 	return (
 		<>
 			<ReportModal problemId={currentProblem.problemId} />
@@ -78,10 +67,7 @@ export default function LessonQuizComponent({
 
 			{!isQuizCompleted && (
 				<div className="w-full h-screen flex flex-col">
-					<QuizHeader
-						learningTitle={data.unitSummary.title}
-						onHandleQuit={handleClickQuit}
-					/>
+					<QuizHeader learningTitle={data.unitSummary.title} />
 					<QuizProgressBar progress={`${percent}%`} />
 					<main className=" bg-gray-200 flex flex-col items-center h-full">
 						<div className="flex flex-col gap-15 w-full h-full max-w-[1500px] 3xl:w-[80%] pt-15 px-10 lg:px-20">

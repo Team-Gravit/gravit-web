@@ -3,14 +3,15 @@ import TimerIcon from "./assets/timer.svg?react";
 import { useEffect, useRef } from "react";
 import formatTime from "./lib/formatTime";
 import { useQuizSessionState } from "@/features/quiz/model/quiz-session-store";
-import { useLessonModalStore, useIsAnyModalOpen } from "@/features/quiz/model/use-lesson-modal-store";
+import {
+	useLessonModalStore,
+	useIsAnyModalOpen,
+} from "@/features/quiz/model/use-lesson-modal-store";
 
 export default function QuizHeader({
 	learningTitle,
-	onHandleQuit,
 }: {
 	learningTitle: string;
-	onHandleQuit: () => void;
 }) {
 	const timeElapsed = useQuizSessionState((state) => state.timeElapsed);
 	const incrementTime = useQuizSessionState((state) => state.incrementTime);
