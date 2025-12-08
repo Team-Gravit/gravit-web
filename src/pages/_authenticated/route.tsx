@@ -1,10 +1,7 @@
 import { createFileRoute, Outlet } from "@tanstack/react-router";
 import Page401Component from "@/widgets/error-widget/Page401Component";
 import { tokenManager } from "@/shared/api/config";
-import { AuthTokenAPIApi } from "@/shared/api/@generated/api/auth-token-apiapi";
-import { authClient } from "@/shared/api/config";
-
-const authTokenApi = new AuthTokenAPIApi(undefined, undefined, authClient);
+import { api } from "@/shared/api";
 
 export const Route = createFileRoute("/_authenticated")({
 	beforeLoad: async () => {
@@ -17,7 +14,7 @@ export const Route = createFileRoute("/_authenticated")({
 
 		if (refreshToken) {
 			try {
-				const response = await authTokenApi.reissueToken({ refreshToken });
+				const response = await api.auth.refresh.reissueToken({ refreshToken });
 				if (response.data.accessToken) {
 					tokenManager.setTokens(response.data.accessToken);
 					return;
