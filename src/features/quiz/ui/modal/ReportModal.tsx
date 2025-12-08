@@ -58,7 +58,7 @@ export default function ReportModal({ problemId }: { problemId: number }) {
 				onSubmit={(e) => {
 					e.preventDefault();
 					const reportType = formData.reportType;
-					if (reportType && isReportType(reportType)) {
+					if (reportType) {
 						onSubmit({ reportType, content: formData.content, problemId });
 					}
 					setFormData(initialReportState);
