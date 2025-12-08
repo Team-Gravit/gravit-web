@@ -5,11 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**nickname** | **string** | 닉네임 | [default to undefined]
-**leagueName** | **string** | 리그 이름(티어) | [default to undefined]
-**userLevelDetail** | [**UserLevelDetail**](UserLevelDetail.md) | 유저 레벨 관련 정보 | [default to undefined]
-**learningDetail** | [**LearningDetail**](LearningDetail.md) | 유저 학습 관련 정보 | [default to undefined]
-**missionDetail** | [**MissionDetail**](MissionDetail.md) | 미션 관련 정보 | [default to undefined]
+**nickname** | **string** | 닉네임 | [optional] [default to undefined]
+**leagueName** | **string** | 리그 이름(티어) | [optional] [default to undefined]
+**userLevelDetail** | [**UserLevelDetail**](UserLevelDetail.md) | 유저 레벨 관련 정보 | [optional] [default to undefined]
+**learningDetail** | [**LearningDetail**](LearningDetail.md) | 유저 학습 관련 정보 | [optional] [default to undefined]
+**missionDetail** | [**MissionDetail**](MissionDetail.md) | 미션 관련 정보 | [optional] [default to undefined]
 
 ## Example
 

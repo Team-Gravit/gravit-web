@@ -27,22 +27,22 @@ export interface MainPageResponse {
     /**
      * 닉네임
      */
-    'nickname': string;
+    'nickname'?: string;
     /**
      * 리그 이름(티어)
      */
-    'leagueName': string;
+    'leagueName'?: string;
     /**
      * 유저 레벨 관련 정보
      */
-    'userLevelDetail': UserLevelDetail;
+    'userLevelDetail'?: UserLevelDetail;
     /**
      * 유저 학습 관련 정보
      */
-    'learningDetail': LearningDetail;
+    'learningDetail'?: LearningDetail;
     /**
      * 미션 관련 정보
      */
-    'missionDetail': MissionDetail;
+    'missionDetail'?: MissionDetail;
 }
 

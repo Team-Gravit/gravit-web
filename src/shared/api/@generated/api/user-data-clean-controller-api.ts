@@ -81,7 +81,7 @@ export const UserDataCleanControllerApiFp = function(configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async clean(email: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async clean(email: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.clean(email, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UserDataCleanControllerApi.clean']?.[localVarOperationServerIndex]?.url;
@@ -102,7 +102,7 @@ export const UserDataCleanControllerApiFactory = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        clean(email: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+        clean(email: string, options?: RawAxiosRequestConfig): AxiosPromise<string> {
             return localVarFp.clean(email, options).then((request) => request(axios, basePath));
         },
     };

@@ -16,8 +16,12 @@
 
 export interface LessonCompletedEvent {
     'userId'?: number;
+    'lessonId'?: number;
     'chapterId'?: number;
     'points'?: number;
     'accuracy'?: number;
+    'learningTime'?: number;
+    'beforeConsecutiveSolved'?: number;
+    'afterConsecutiveSolved'?: number;
 }
 

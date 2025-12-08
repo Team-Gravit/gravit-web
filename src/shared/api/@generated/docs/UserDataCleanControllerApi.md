@@ -7,7 +7,7 @@ All URIs are relative to *https://grav-it.inuappcenter.kr*
 |[**clean**](#clean) | **POST** /api/v1/test/users/clean | |
 
 # **clean**
-> clean()
+> string clean()
 
 
 ### Example
@@ -37,7 +37,7 @@ const { status, data } = await apiInstance.clean(
 
 ### Return type
 
-void (empty response body)
+**string**
 
 ### Authorization
 
@@ -46,7 +46,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: */*
 
 
 ### HTTP response details

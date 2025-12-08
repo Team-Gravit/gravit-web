@@ -1,4 +1,3 @@
-import RightArrow from "@/shared/assets/icons/buttons/right-arrow.svg?react";
 import { Link } from "@tanstack/react-router";
 
 export interface Item {
@@ -39,7 +38,6 @@ export default function SettingButton({ item }: Props) {
 			className="flex flex-row items-center justify-between text-[#222124] text-xl font-medium"
 		>
 			{item.label}
-			<RightArrow className="text-[#222222]" />
 		</Link>
 	);
 }

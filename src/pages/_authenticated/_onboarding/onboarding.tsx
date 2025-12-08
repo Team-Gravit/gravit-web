@@ -19,7 +19,7 @@ function OnboardingPage() {
 	const [isLimit, setIsLimit] = useState(false);
 	const [checking, setChecking] = useState(false);
 	const [loading, setLoading] = useState(false);
-
+	const [dirty, setDirty] = useState(false);
 	const isSubmitting = useRef(false);
 	const { mutate } = usePostOnboarding();
 
@@ -71,6 +71,8 @@ function OnboardingPage() {
 					setIsLimit={setIsLimit}
 					checking={checking}
 					setChecking={setChecking}
+					dirty={dirty}
+					setDirty={setDirty}
 					helperText={
 						<p className="text-sm text-[#F2F2F2]">
 							* 글자수 2~8자 / 공백, 특수문자 제외
