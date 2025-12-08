@@ -1,15 +1,40 @@
-import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
+import { createFileRoute, Outlet } from "@tanstack/react-router";
+import Page401Component from "@/widgets/error-widget/Page401Component";
+import { tokenManager } from "@/shared/api/config";
+import { AuthTokenAPIApi } from "@/shared/api/@generated/api/auth-token-apiapi";
+import { authClient } from "@/shared/api/config";
+
+const authTokenApi = new AuthTokenAPIApi(undefined, undefined, authClient);
 
 export const Route = createFileRoute("/_authenticated")({
-	beforeLoad: ({ context, location }) => {
-		if (!context.auth.isAuthenticated) {
-			throw redirect({
-				to: "/",
-				search: {
-					redirect: location.href,
-				},
-			});
+	beforeLoad: async () => {
+		const accessToken = tokenManager.getAccessToken();
+		const refreshToken = tokenManager.getRefreshToken();
+
+		if (accessToken) {
+			return;
 		}
+
+		if (refreshToken) {
+			try {
+				const response = await authTokenApi.reissueToken({ refreshToken });
+				if (response.data.accessToken) {
+					tokenManager.setTokens(response.data.accessToken);
+					return;
+				}
+			} catch (error) {
+				console.error("Token refresh failed:", error);
+				tokenManager.clearTokens();
+			}
+		}
+
+		throw new Error("Unauthorized");
+	},
+	errorComponent: ({ error }) => {
+		if (error.message === "Unauthorized") {
+			return <Page401Component />;
+		}
+		return <div>에러가 발생했습니다: {error.message}</div>;
 	},
 	component: () => <Outlet />,
 });

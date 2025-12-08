@@ -1,7 +1,14 @@
 import Mascot404Icon from "@/shared/assets/icons/ic-mascot-404.svg?react";
 import ErrorPageTemplate from "./ErrorPageTemplate"; // 위에서 만든 컴포넌트 import
+import { Link, useRouter } from "@tanstack/react-router";
 
 export default function Page404Component() {
+	const router = useRouter();
+
+	const handleGoBack = () => {
+		router.history.back();
+	};
+
 	return (
 		<ErrorPageTemplate
 			icon={<Mascot404Icon className="w-[300px] h-fit" />}
@@ -17,6 +24,21 @@ export default function Page404Component() {
 					홈으로 돌아가 서비스를 다시 이용해 주세요.
 				</>
 			}
-		/>
+		>
+			<button
+				type="button"
+				onClick={handleGoBack}
+				className="gray-btn py-5 px-16 text-2xl font-medium"
+			>
+				돌아가기
+			</button>
+
+			<Link
+				to={"/main"}
+				className="primary-btn py-5 px-16 text-2xl font-medium"
+			>
+				메인으로
+			</Link>
+		</ErrorPageTemplate>
 	);
 }
