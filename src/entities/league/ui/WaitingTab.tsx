@@ -1,4 +1,3 @@
-import React from "react";
 import Mascot from "@/shared/assets/icons/league-mascot.svg?react";
 
 export default function WaitingTab() {

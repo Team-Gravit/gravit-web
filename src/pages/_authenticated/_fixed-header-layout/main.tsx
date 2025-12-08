@@ -43,7 +43,7 @@ function MainPage() {
 			recentSolvedChapterProgressRate,
 		},
 		missionDetail: { missionDescription, awardXp, isCompleted },
-	} = data;
+	} = data as Required<typeof data>;
 
 	return (
 		<>
@@ -52,8 +52,8 @@ function MainPage() {
 				<div className="w-full max-w-[1700px] flex-grow p-20 bg-[#f2f2f2] flex flex-col lg:flex-row gap-6">
 					<section className="w-full lg:w-1/2 flex flex-col">
 						<UserLeagueInfo
-							nickname={nickname}
-							league={leagueName}
+							nickname={nickname || ""}
+							league={leagueName || ""}
 							xp={xp || 0}
 							level={level || 1}
 						/>

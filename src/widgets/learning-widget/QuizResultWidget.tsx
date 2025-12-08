@@ -36,16 +36,18 @@ export default function QuizResultWidget() {
 	const correctRate = accuracy;
 
 	return (
-		<main className="flex-grow flex flex-col items-center bg-gray-200 px-[146px] pt-[65px] pb-[88px]">
-			<div className="max-w-[1148px] w-full h-full flex flex-col gap-10 transition-all duration-500 ease-in-out">
-				<LearningProgressInfo xp={xp} league={league} level={level} />
-				<section className="w-full flex flex-col lg:flex-row lg:justify-between gap-4 lg:gap-10">
-					<div className="flex flex-col items-center">
-						<h2 className="text-neutral-100 text-3xl lg:text-4xl font-semibold mb-4">
-							학습을 완료했어요
+		<div className="flex-grow flex flex-col items-center bg-gray-200 gap-10">
+			<header className="w-full flex flex-row items-center bg-white justify-center px-5 py-7 text-[#030303] font-semibold text-2xl">
+				자료구조
+			</header>
+			<main className="max-w-[1148px] w-full h-full flex flex-col gap-10 transition-all duration-500 ease-in-out">
+				<section className="w-full flex flex-col lg:flex-row lg:justify-between gap-10">
+					<div className="flex flex-col items-center gap-4">
+						<h2 className="text-neutral-100 text-3xl lg:text-4xl font-semibold">
+							{"연결 리스트"} 학습을 완료했어요!
 						</h2>
 						<p className="text-gray-600 text-2xl lg:text-3xl font-normal">
-							수고하셨습니다!
+							다음 레슨을 풀러 가볼까요?
 						</p>
 						<Mascot className="w-[250px] lg:w-[300px] lg:mt-5" />
 					</div>
@@ -64,6 +66,7 @@ export default function QuizResultWidget() {
 						/>
 					</div>
 				</section>
+				<LearningProgressInfo xp={xp} league={league} level={level} />
 				<section className="w-full h-[60px] lg:h-[80px] grid grid-cols-2 gap-6">
 					<Link
 						to={"/main"}
@@ -81,7 +84,7 @@ export default function QuizResultWidget() {
 						계속하기
 					</button>
 				</section>
-			</div>
-		</main>
+			</main>
+		</div>
 	);
 }
