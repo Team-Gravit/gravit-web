@@ -1,10 +1,10 @@
 import { useMutation } from "@tanstack/react-query";
-import type { ReportType } from "@/features/quiz/submit-report/ui/ReportModal";
+import type { ReportType } from "@/features/quiz/ui/modal/ReportModal";
 import { api } from "@/shared/api";
+import { useLessonModalStore } from "@/features/quiz/model/use-lesson-modal-store";
 
 export const useSubmitReport = () => {
-	// const queryClient = useQueryClient();
-
+	const { closeReportModal, openResultModal } = useLessonModalStore();
 	return useMutation({
 		mutationFn: async ({
 			reportType,
@@ -23,8 +23,11 @@ export const useSubmitReport = () => {
 			return response.data;
 		},
 		onSuccess: () => {
-			/** TODO - 토스트메세지로 바꿔야 할 부분 */
-			alert("문제 오류를 전송했습니다.!");
+			/** 신고 모달 닫기 */
+			closeReportModal();
+
+			/** 신고 제출 확인 모달 열기 */
+			openResultModal();
 		},
 	});
 };
