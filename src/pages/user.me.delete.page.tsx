@@ -16,7 +16,7 @@ export const Route = createFileRoute("/user/me/delete/page")({
 });
 
 function RouteComponent() {
-	const { mailAuthCode } = Route.useSearch() as { mailAuthCode: string };
+const { mailAuthCode } = Route.useSearch();
 	const confirmWithdraw = useConfirmWithdraw();
 	const [isConfirmed, setIsConfirmed] = useState(false);
 
