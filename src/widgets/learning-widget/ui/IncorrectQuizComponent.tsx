@@ -6,8 +6,10 @@ import QuizProgressBar from "@/widgets/learning-widget/QuizProgressBar";
 import ProblemStatement from "@/entities/learning/ui/ProblemStatement";
 import AnswerInteraction from "@/widgets/learning-widget/AnswerInteraction";
 import { useQuizSessionState } from "@/features/quiz/model/quiz-session-store";
-import QuizResultWidget from "../QuizResultWidget";
 import { useFetchIncorrectProblems } from "@/entities/learning/model/use-fetch-incorrect-problems";
+import { useRouter } from "@tanstack/react-router";
+import ReportModal from "@/features/quiz/ui/modal/ReportModal";
+import ReportResultModal from "@/features/quiz/ui/modal/ReportResultModal";
 
 export default function IncorrectQuizComponent({ unitId }: { unitId: string }) {
 	const { data, isPending } = useFetchIncorrectProblems(Number(unitId));
@@ -19,16 +21,12 @@ export default function IncorrectQuizComponent({ unitId }: { unitId: string }) {
 	const resetQuiz = useQuizSessionState((state) => state.resetQuiz);
 	const resetTime = useQuizSessionState((state) => state.resetTime);
 	const isQuizCompleted = useQuizSessionState((state) => state.isQuizCompleted);
-
-	//학습 결과 제출 상태
-	const isSubmittingResult = useQuizSessionState(
-		(state) => state.isSubmittingResult,
-	);
+	const router = useRouter();
 
 	useEffect(() => {
 		resetQuiz();
 		resetTime();
-	}, [resetQuiz, resetTime, unitId]);
+	}, [resetQuiz, resetTime]);
 
 	const shouldShowLoading = useMinimumLoadingTime({
 		isLoading: isPending,
@@ -47,25 +45,25 @@ export default function IncorrectQuizComponent({ unitId }: { unitId: string }) {
 		return <div>문제가 발생했습니다.</div>;
 	}
 
-	const { problems, totalProblems } = data;
+	const { problems, totalProblems, unitSummary } = data;
 	const percent = (userAnswers.length / problems.length) * 100;
 
 	const currentProblem = problems[currentProblemIndex];
+	const unitIdNum = unitSummary.unitId;
 
-	// const handleClickQuit = () => {
-	// 	if (quitModalRef) {
-	// 		quitModalRef.current?.open();
-	// 		pauseTime();
-	// 	}
-	// };
+	const handleClickQuit = () => {
+		router.history.back();
+	};
 
 	return (
 		<>
+			<ReportModal problemId={currentProblem.problemId} />
+			<ReportResultModal type="confirm" />
 			{!isQuizCompleted && (
 				<div className="w-full h-screen flex flex-col">
 					<QuizHeader
+						onHandleQuit={handleClickQuit}
 						learningTitle={data.unitSummary.title}
-						// onHandleQuit={handleClickQuit}
 					/>
 					<QuizProgressBar progress={`${percent}%`} />
 					<main className=" bg-gray-200 flex flex-col items-center h-full">
@@ -77,17 +75,12 @@ export default function IncorrectQuizComponent({ unitId }: { unitId: string }) {
 							<AnswerInteraction
 								problem={currentProblem}
 								totalProblemsCount={totalProblems}
+								unitId={unitIdNum}
 							/>
 						</div>
 					</main>
 				</div>
 			)}
-
-			{isSubmittingResult && (
-				<h2 className="text-3xl">결과를 제출중입니다...</h2>
-			)}
-
-			{!isSubmittingResult && isQuizCompleted && <QuizResultWidget />}
 		</>
 	);
 }

@@ -1,5 +1,7 @@
 import { cn } from "@/shared/lib/cn";
 import type { UserAnswer } from "../../model/types";
+import { useQuizSessionState } from "../../model/quiz-session-store";
+import RemoveFromIncorrectListBtn from "./RemoveFromMistakeListBtn";
 
 export default function SubjectiveReviewer({
 	userAnswer,
@@ -8,6 +10,7 @@ export default function SubjectiveReviewer({
 	userAnswer: UserAnswer;
 	answer: string[];
 }) {
+	const mode = useQuizSessionState((state) => state.mode);
 	return (
 		<div className="w-full flex flex-col items-center gap-8">
 			<div
@@ -34,9 +37,14 @@ export default function SubjectiveReviewer({
 				</p>
 			) : null}
 			{userAnswer.isCorrect ? (
-				<small className="self-start text-[#00A80B] font-semibold text-2xl">
-					정답입니다!
-				</small>
+				<div className="w-full flex items-center justify-between">
+					<small className="self-start text-[#00A80B] font-semibold text-2xl">
+						정답입니다!
+					</small>
+					{mode === "INCORRECT" && (
+						<RemoveFromIncorrectListBtn problemId={userAnswer.problemId} />
+					)}
+				</div>
 			) : null}
 		</div>
 	);

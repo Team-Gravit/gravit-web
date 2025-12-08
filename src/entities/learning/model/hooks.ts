@@ -65,11 +65,12 @@ export const useFetchChapterWithUnits = (chapterId: number) => {
 
 export const useFetchLessons = (unitId: number) => {
 	const query = useQuery({
-		queryKey: ["unitId", unitId],
+		queryKey: learningKeys.unitLessons(unitId),
 		queryFn: async () => {
 			const response = await api.learning.getAllLessonsInUnit(unitId);
 			return mapToChapterWithLessons(response.data);
 		},
+		refetchOnMount: "always",
 	});
 
 	return {

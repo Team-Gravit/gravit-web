@@ -11,6 +11,7 @@ import QuizResultWidget from "../QuizResultWidget";
 import ReportModal from "@/features/quiz/ui/modal/ReportModal";
 import ReportResultModal from "@/features/quiz/ui/modal/ReportResultModal";
 import { LessonQuitModal } from "@/features/quiz/ui/modal/LessonQuitModal";
+import { useLessonModalStore } from "@/features/quiz/model/use-lesson-modal-store";
 
 export default function LessonQuizComponent({
 	lessonId,
@@ -23,6 +24,8 @@ export default function LessonQuizComponent({
 	const currentProblemIndex = useQuizSessionState(
 		(state) => state.currentProblemIndex,
 	);
+
+	const { openQuitModal } = useLessonModalStore();
 	const resetQuiz = useQuizSessionState((state) => state.resetQuiz);
 	const resetTime = useQuizSessionState((state) => state.resetTime);
 	const isQuizCompleted = useQuizSessionState((state) => state.isQuizCompleted);
@@ -32,10 +35,14 @@ export default function LessonQuizComponent({
 		(state) => state.isSubmittingResult,
 	);
 
+	const handleClickQuit = () => {
+		openQuitModal();
+	};
+
 	useEffect(() => {
 		resetQuiz();
 		resetTime();
-	}, [resetQuiz, resetTime, lessonId]);
+	}, [resetQuiz, resetTime]);
 
 	const shouldShowLoading = useMinimumLoadingTime({
 		isLoading: isPending,
@@ -54,10 +61,11 @@ export default function LessonQuizComponent({
 		return <div>문제가 발생했습니다.</div>;
 	}
 
-	const { problems, totalProblems } = data;
+	const { problems, totalProblems, unitSummary } = data;
 	const percent = (userAnswers.length / problems.length) * 100;
 
 	const currentProblem = problems[currentProblemIndex];
+	const unitId = unitSummary.unitId;
 
 	return (
 		<>
@@ -67,7 +75,10 @@ export default function LessonQuizComponent({
 
 			{!isQuizCompleted && (
 				<div className="w-full h-screen flex flex-col">
-					<QuizHeader learningTitle={data.unitSummary.title} />
+					<QuizHeader
+						learningTitle={data.unitSummary.title}
+						onHandleQuit={handleClickQuit}
+					/>
 					<QuizProgressBar progress={`${percent}%`} />
 					<main className=" bg-gray-200 flex flex-col items-center h-full">
 						<div className="flex flex-col gap-15 w-full h-full max-w-[1500px] 3xl:w-[80%] pt-15 px-10 lg:px-20">
@@ -78,16 +89,12 @@ export default function LessonQuizComponent({
 							<AnswerInteraction
 								problem={currentProblem}
 								totalProblemsCount={totalProblems}
+								unitId={unitId}
 							/>
 						</div>
 					</main>
 				</div>
 			)}
-
-			{isSubmittingResult && (
-				<h2 className="text-3xl">결과를 제출중입니다...</h2>
-			)}
-
 			{!isSubmittingResult && isQuizCompleted && <QuizResultWidget />}
 		</>
 	);

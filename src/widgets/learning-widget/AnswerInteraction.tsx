@@ -8,15 +8,20 @@ import ReviewPhase from "./ReviewPhase";
 import { useQuizSessionState } from "@/features/quiz/model/quiz-session-store";
 import { api } from "@/shared/api";
 import type { LearningSubmissionSaveRequest } from "@/shared/api/@generated";
+import { useRouter } from "@tanstack/react-router";
+import { learningKeys } from "@/entities/learning/api/query-keys";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface AnswerInteractionProps {
 	problem: Problem;
 	totalProblemsCount: number;
+	unitId: number;
 }
 
 export default function AnswerInteraction({
 	problem,
 	totalProblemsCount,
+	unitId,
 }: AnswerInteractionProps) {
 	const userAnswers = useQuizSessionState((state) => state.userAnswers); // 사용자가 응답한 내용들
 	const saveUserAnswer = useQuizSessionState((state) => state.saveUserAnswer); // 응답을 프론트 상태에 저장하는 함수
@@ -31,9 +36,11 @@ export default function AnswerInteraction({
 		(state) => state.currentProblemIndex,
 	);
 
-	const { strategy } = useQuizContext();
+	const { strategy, mode } = useQuizContext();
 	const answerPhaseRef = useRef<AnswerPhaseHandle>(null);
 	const buttonRef = useRef<HTMLButtonElement>(null);
+	const router = useRouter();
+	const queryClient = useQueryClient();
 
 	const isSubmitted = userAnswers.length !== currentProblemIndex;
 	const activeQuestionIndex = userAnswers.length;
@@ -72,7 +79,6 @@ export default function AnswerInteraction({
 					});
 				}
 			}
-			// 객관식은 이미 자동 제출됨 (여기 도달 X)
 			return;
 		}
 
@@ -83,7 +89,6 @@ export default function AnswerInteraction({
 
 			// BATCH 모드면 여기서 전체 결과 제출
 			if (strategy === "BATCH") {
-				// TODO: useSubmitQuizResult 호출
 				submitResults(async () => {
 					const correctCount = userAnswers.filter(
 						(answer) => answer.isCorrect,
@@ -106,16 +111,47 @@ export default function AnswerInteraction({
 
 					await api.learning.saveLearningSubmission(submitData);
 				});
+
+				// 레슨 완료 시 전체 학습 데이터 무효화
+				await queryClient.invalidateQueries({
+					queryKey: learningKeys.unitLessons(unitId),
+				});
+
+				await queryClient.invalidateQueries({
+					queryKey: learningKeys.all,
+					refetchType: "active",
+				});
+
+				// 메인 페이지 데이터 무효화
+				await queryClient.invalidateQueries({
+					queryKey: ["users", "main-page"],
+				});
 			}
 
 			completeQuiz();
+
+			if (strategy === "STREAM") {
+				await queryClient.invalidateQueries({
+					queryKey: learningKeys.unitLessons(unitId),
+				});
+
+				if (mode === "BOOKMARK") {
+					await queryClient.invalidateQueries({
+						queryKey: learningKeys.unitBookmarks(unitId),
+					});
+				} else if (mode === "INCORRECT") {
+					await queryClient.invalidateQueries({
+						queryKey: learningKeys.unitWrongAnswers(unitId),
+					});
+				}
+
+				router.history.back();
+			}
 		} else {
-			// 다음 문제로
 			goToNextProblem();
 		}
 	};
 
-	// Enter 키 처리
 	useEffect(() => {
 		const handleGlobalKeyDown = (e: globalThis.KeyboardEvent) => {
 			if (e.key === "Enter" && buttonRef.current) {
