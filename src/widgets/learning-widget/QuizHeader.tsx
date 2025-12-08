@@ -3,21 +3,19 @@ import TimerIcon from "./assets/timer.svg?react";
 import { useEffect, useRef } from "react";
 import formatTime from "./lib/formatTime";
 import { useQuizSessionState } from "@/features/quiz/model/quiz-session-store";
-import {
-	useLessonModalStore,
-	useIsAnyModalOpen,
-} from "@/features/quiz/model/use-lesson-modal-store";
+import { useIsAnyModalOpen } from "@/features/quiz/model/use-lesson-modal-store";
 
 export default function QuizHeader({
+	onHandleQuit,
 	learningTitle,
 }: {
+	onHandleQuit: () => void;
 	learningTitle: string;
 }) {
 	const timeElapsed = useQuizSessionState((state) => state.timeElapsed);
 	const incrementTime = useQuizSessionState((state) => state.incrementTime);
 	const isPaused = useQuizSessionState((state) => state.isPaused);
 
-	const { openQuitModal } = useLessonModalStore();
 	const isAnyModalOpen = useIsAnyModalOpen();
 
 	const timerRef = useRef<NodeJS.Timeout | null>(null);
@@ -43,7 +41,7 @@ export default function QuizHeader({
 
 	return (
 		<header className="relative flex flex-row items-center bg-white justify-between px-5 py-7">
-			<button type="button" className="cursor-pointer" onClick={openQuitModal}>
+			<button type="button" className="cursor-pointer" onClick={onHandleQuit}>
 				<AbortIcon className="w-6 h-6" />
 			</button>
 			<h2 className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-2xl font-semibold text-neutral-100">

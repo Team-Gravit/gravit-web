@@ -7,10 +7,15 @@ import ProblemStatement from "@/entities/learning/ui/ProblemStatement";
 import AnswerInteraction from "@/widgets/learning-widget/AnswerInteraction";
 import { useQuizSessionState } from "@/features/quiz/model/quiz-session-store";
 import { useFetchBookmarkedProblems } from "@/entities/learning/model/use-fetch-bookmarked-problems";
+import { useRouter } from "@tanstack/react-router";
+import ReportModal from "@/features/quiz/ui/modal/ReportModal";
+import ReportResultModal from "@/features/quiz/ui/modal/ReportResultModal";
 // import QuizResultWidget from "../QuizResultWidget";
 
 export default function BookmarkQuizComponent({ unitId }: { unitId: string }) {
 	const { data, isPending } = useFetchBookmarkedProblems(Number(unitId));
+
+	const router = useRouter();
 
 	const userAnswers = useQuizSessionState((state) => state.userAnswers);
 	const currentProblemIndex = useQuizSessionState(
@@ -18,6 +23,7 @@ export default function BookmarkQuizComponent({ unitId }: { unitId: string }) {
 	);
 	const resetQuiz = useQuizSessionState((state) => state.resetQuiz);
 	const resetTime = useQuizSessionState((state) => state.resetTime);
+
 	const isQuizCompleted = useQuizSessionState((state) => state.isQuizCompleted);
 	useEffect(() => {
 		resetQuiz();
@@ -46,20 +52,19 @@ export default function BookmarkQuizComponent({ unitId }: { unitId: string }) {
 
 	const currentProblem = problems[currentProblemIndex];
 
-	// const handleClickQuit = () => {
-	// 	if (quitModalRef) {
-	// 		quitModalRef.current?.open();
-	// 		pauseTime();
-	// 	}
-	// };
+	const handleClickQuit = () => {
+		router.history.back();
+	};
 
 	return (
 		<>
+			<ReportModal problemId={currentProblem.problemId} />
+			<ReportResultModal type="confirm" />
 			{!isQuizCompleted && (
 				<div className="w-full h-screen flex flex-col">
 					<QuizHeader
 						learningTitle={data.unitSummary.title}
-						// onHandleQuit={handleClickQuit}
+						onHandleQuit={handleClickQuit}
 					/>
 					<QuizProgressBar progress={`${percent}%`} />
 					<main className=" bg-gray-200 flex flex-col items-center h-full">

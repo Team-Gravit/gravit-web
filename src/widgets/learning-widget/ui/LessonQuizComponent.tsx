@@ -11,6 +11,7 @@ import QuizResultWidget from "../QuizResultWidget";
 import ReportModal from "@/features/quiz/ui/modal/ReportModal";
 import ReportResultModal from "@/features/quiz/ui/modal/ReportResultModal";
 import { LessonQuitModal } from "@/features/quiz/ui/modal/LessonQuitModal";
+import { useLessonModalStore } from "@/features/quiz/model/use-lesson-modal-store";
 
 export default function LessonQuizComponent({
 	lessonId,
@@ -23,6 +24,8 @@ export default function LessonQuizComponent({
 	const currentProblemIndex = useQuizSessionState(
 		(state) => state.currentProblemIndex,
 	);
+
+	const { openQuitModal } = useLessonModalStore();
 	const resetQuiz = useQuizSessionState((state) => state.resetQuiz);
 	const resetTime = useQuizSessionState((state) => state.resetTime);
 	const isQuizCompleted = useQuizSessionState((state) => state.isQuizCompleted);
@@ -31,6 +34,10 @@ export default function LessonQuizComponent({
 	const isSubmittingResult = useQuizSessionState(
 		(state) => state.isSubmittingResult,
 	);
+
+	const handleClickQuit = () => {
+		openQuitModal();
+	};
 
 	useEffect(() => {
 		resetQuiz();
@@ -67,7 +74,10 @@ export default function LessonQuizComponent({
 
 			{!isQuizCompleted && (
 				<div className="w-full h-screen flex flex-col">
-					<QuizHeader learningTitle={data.unitSummary.title} />
+					<QuizHeader
+						learningTitle={data.unitSummary.title}
+						onHandleQuit={handleClickQuit}
+					/>
 					<QuizProgressBar progress={`${percent}%`} />
 					<main className=" bg-gray-200 flex flex-col items-center h-full">
 						<div className="flex flex-col gap-15 w-full h-full max-w-[1500px] 3xl:w-[80%] pt-15 px-10 lg:px-20">
