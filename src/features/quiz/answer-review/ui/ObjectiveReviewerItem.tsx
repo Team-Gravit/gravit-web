@@ -2,6 +2,8 @@ import type { Option } from "@/entities/learning/model/types";
 import { cn } from "@/shared/lib/cn";
 import XIcon from "./assets/x-light.svg?react";
 import CheckIcon from "./assets/check-light.svg?react";
+import RemoveFromIncorrectListBtn from "./RemoveFromMistakeListBtn";
+import { useQuizSessionState } from "../../model/quiz-session-store";
 
 export default function ObjectiveReviewerItem({
 	option,
@@ -13,6 +15,7 @@ export default function ObjectiveReviewerItem({
 	isSelected: boolean;
 }) {
 	const isAnswer = option.isAnswer;
+	const mode = useQuizSessionState((state) => state.mode);
 
 	const checkState = (): "WRONG" | "CORRECT" | "NORMAL" => {
 		if (isSelected && !isAnswer) {
@@ -43,25 +46,39 @@ export default function ObjectiveReviewerItem({
 				{optionState === "WRONG" && <XIcon />}
 				{optionState === "CORRECT" && <CheckIcon />}
 			</span>
-			<dl
-				className={cn(
-					"flex flex-col flex-1 ",
-					optionState === "WRONG" && "gap-2",
-				)}
-			>
-				<dt
+
+			{isSelected && isAnswer && mode === "INCORRECT" ? (
+				<div className="flex items-center flex-1 justify-between">
+					<p
+						className={cn(
+							" text-2xl font-medium text-correct h-full min-h-10 flex items-center",
+						)}
+					>
+						{option.content}
+					</p>
+					<RemoveFromIncorrectListBtn problemId={option.problemId} />
+				</div>
+			) : (
+				<dl
 					className={cn(
-						" text-2xl font-medium text-[#6D6D6D] h-full min-h-10 flex items-center",
-						optionState === "CORRECT" && "text-correct",
-						optionState === "WRONG" && "text-error-info",
+						"flex flex-col flex-1 ",
+						optionState === "WRONG" && "gap-2",
 					)}
 				>
-					{option.content}
-				</dt>
-				<dd className={"text-error-info text-[20px] font-normal break-keep"}>
-					{optionState === "WRONG" && option.explanation}
-				</dd>
-			</dl>
+					<dt
+						className={cn(
+							" text-2xl font-medium text-[#6D6D6D] h-full min-h-10 flex items-center",
+							optionState === "CORRECT" && "text-correct",
+							optionState === "WRONG" && "text-error-info",
+						)}
+					>
+						{option.content}
+					</dt>
+					<dd className={"text-error-info text-[20px] font-normal break-keep"}>
+						{optionState === "WRONG" && option.explanation}
+					</dd>
+				</dl>
+			)}
 		</div>
 	);
 }

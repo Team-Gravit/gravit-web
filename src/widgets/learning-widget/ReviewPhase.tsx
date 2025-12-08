@@ -4,8 +4,8 @@ import SubjectiveReviewer from "@/features/quiz/answer-review/ui/SubjectiveRevie
 import type { UserAnswer } from "@/features/quiz/model/types";
 
 interface ReviewPhaseProps {
-	problem: Problem; // 정답, 보기, 문제 유형 등 모든 문제 정보 포함
-	userAnswer: UserAnswer; // 사용자가 고른 답안 정보
+	problem: Problem;
+	userAnswer: UserAnswer;
 }
 
 export default function ReviewPhase({ problem, userAnswer }: ReviewPhaseProps) {
