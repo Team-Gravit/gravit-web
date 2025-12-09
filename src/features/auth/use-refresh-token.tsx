@@ -10,7 +10,7 @@ import { api } from "@/shared/api";
 export const useRefreshToken = () => {
 	return useMutation({
 		mutationFn: async (refreshToken: string) => {
-			const response = await api.auth.refresh.reissueToken({
+			const response = await api.public.refresh.reissueToken({
 				refreshToken,
 			});
 

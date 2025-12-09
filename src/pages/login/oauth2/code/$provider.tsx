@@ -25,7 +25,7 @@ function OAuthCallback() {
 
 			postOAuth.mutate({ provider, dest, code });
 		}
-	}, [postOAuth, provider, code, postOAuth.mutate]);
+	}, []);
 
 	return;
 }
