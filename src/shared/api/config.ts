@@ -78,6 +78,10 @@ export const privateApiConfiguration = new Configuration({
 	},
 });
 
+export const publicApiConfiguration = new Configuration({
+	basePath: API_BASE_URL,
+});
+
 apiClient.interceptors.response.use(
 	(response) => response,
 	async (error: AxiosError) => {

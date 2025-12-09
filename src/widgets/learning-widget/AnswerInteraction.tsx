@@ -29,6 +29,9 @@ export default function AnswerInteraction({
 	const completeQuiz = useQuizSessionState((state) => state.completeQuiz);
 	const pauseTime = useQuizSessionState((state) => state.pauseTime);
 	const submitResults = useQuizSessionState((state) => state.submitResults);
+	const saveSubmitResponse = useQuizSessionState(
+		(state) => state.saveSubmitResponse,
+	);
 	const lessonId = useQuizSessionState((state) => state.lessonId);
 	const timeElapsed = useQuizSessionState((state) => state.timeElapsed);
 
@@ -109,7 +112,11 @@ export default function AnswerInteraction({
 						})),
 					};
 
-					await api.learning.saveLearningSubmission(submitData);
+					const response =
+						await api.learning.saveLearningSubmission(submitData);
+
+					// API 응답을 store에 저장
+					saveSubmitResponse(response.data);
 				});
 
 				// 레슨 완료 시 전체 학습 데이터 무효화

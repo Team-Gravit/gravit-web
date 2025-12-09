@@ -1,19 +1,25 @@
 import { useMutation } from "@tanstack/react-query";
 import { api } from "@/shared/api";
 import type { AuthCodeRequest } from "@/shared/api/@generated";
+import { toast } from "@/shared/lib/toast";
+import type { AxiosError } from "axios";
+import { useRouter } from "@tanstack/react-router";
 
 export function usePostOAuth() {
+	const router = useRouter();
+
 	return useMutation({
 		mutationFn: async ({
 			provider,
 			dest,
 			code,
 		}: AuthCodeRequest & { dest: string; provider: string }) => {
-			const response = await api.auth.oAuth.oauthLogin(provider, dest, {
+			const response = await api.public.oAuth.oauthLogin(provider, dest, {
 				code,
 			});
 			return response.data;
 		},
+		retry: false,
 		onSuccess: (data) => {
 			localStorage.setItem("accessToken", data.accessToken);
 
@@ -23,10 +29,23 @@ export function usePostOAuth() {
 				window.location.href = "/onboarding";
 			}
 		},
-		onError: (error) => {
-			console.error("OAuth 로그인 실패:", error);
-			alert("로그인 중 오류가 발생했습니다.");
-			window.location.href = "/";
+		onError: (error: AxiosError) => {
+			if (error.response?.data) {
+				const { error: errorCode, message } = error.response.data as {
+					error: string;
+					message: string;
+				};
+				if (errorCode === "USER_423") {
+					router.navigate({
+						to: "/restore",
+						search: {
+							providerId: message,
+						},
+					});
+				} else {
+					toast.error(message);
+				}
+			}
 		},
 	});
 }

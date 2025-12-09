@@ -15,7 +15,12 @@ import {
 	UserAPIApi,
 	UserDeletionAPIApi,
 } from "./@generated";
-import { apiClient, authClient, privateApiConfiguration } from "./config";
+import {
+	apiClient,
+	authClient,
+	privateApiConfiguration,
+	publicApiConfiguration,
+} from "./config";
 
 function createApiInstance<T>(
 	ApiClass: new (
@@ -30,17 +35,15 @@ function createApiInstance<T>(
 }
 
 export const api = {
-	auth: {
-		oAuth: createApiInstance(
-			OAuth20APIApi,
-			privateApiConfiguration,
-			authClient,
-		),
+	public: {
+		oAuth: createApiInstance(OAuth20APIApi, publicApiConfiguration, authClient),
 		refresh: createApiInstance(
 			AuthTokenAPIApi,
-			privateApiConfiguration,
+			publicApiConfiguration,
 			authClient,
 		),
+
+		restore: createApiInstance(UserAPIApi, publicApiConfiguration, authClient),
 	},
 	withdraw: {
 		delete: createApiInstance(
