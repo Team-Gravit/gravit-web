@@ -13,38 +13,29 @@ export default function QuizResultWidget() {
 	// Store에서 필요한 데이터 추출
 	const userAnswers = useQuizSessionState((state) => state.userAnswers);
 	const timeElapsed = useQuizSessionState((state) => state.timeElapsed);
+	const submitResponse = useQuizSessionState((state) => state.submitResponse);
 
 	// 정답률 계산
 	const correctCount = userAnswers.filter((answer) => answer.isCorrect).length;
 	const accuracy = Math.round((correctCount / userAnswers.length) * 100);
 
-	// 임시 데이터 (나중에 서버 응답으로 교체)
-	const baseXp = 789;
-	const baseLeague = "브론즈";
-	const baseLevel = 12;
-
-	// 서버 응답 데이터를 추가하려면 Store에 submitResponse 상태 추가 필요
-	// const submitResponse = useQuizSessionState((state) => state.submitResponse);
-	// const xp = submitResponse?.userLevelResponse.xp || baseXp;
-	// const league = submitResponse?.leagueName || baseLeague;
-	// const level = submitResponse?.userLevelResponse.currentLevel || baseLevel;
-
-	// 일단 기본값 사용
-	const xp = baseXp;
-	const league = baseLeague;
-	const level = baseLevel;
+	// 서버 응답 데이터 사용
+	const xp = submitResponse?.userLevelResponse?.xp ?? 0;
+	const league = submitResponse?.leagueName ?? "브론즈";
+	const level = submitResponse?.userLevelResponse?.currentLevel ?? 1;
+	const unitTitle = submitResponse?.unitSummary?.title ?? "자료구조";
 	const correctRate = accuracy;
 
 	return (
 		<div className="flex-grow flex flex-col items-center bg-gray-200 gap-10">
 			<header className="w-full flex flex-row items-center bg-white justify-center px-5 py-7 text-[#030303] font-semibold text-2xl">
-				자료구조
+				{unitTitle}
 			</header>
 			<main className="max-w-[1148px] w-full h-full flex flex-col gap-10 transition-all duration-500 ease-in-out">
 				<section className="w-full flex flex-col lg:flex-row lg:justify-between gap-10">
 					<div className="flex flex-col items-center gap-4">
 						<h2 className="text-neutral-100 text-3xl lg:text-4xl font-semibold">
-							{"연결 리스트"} 학습을 완료했어요!
+							{unitTitle} 학습을 완료했어요!
 						</h2>
 						<p className="text-gray-600 text-2xl lg:text-3xl font-normal">
 							다음 레슨을 풀러 가볼까요?

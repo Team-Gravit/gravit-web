@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import type { UserAnswer } from "./types";
 import { useQuizContext } from "./use-quiz-context";
+import type { LearningSubmissionSaveResponse } from "@/shared/api/@generated";
 
 export type QuizMode = "LESSON" | "BOOKMARK" | "INCORRECT";
 export type SubmitStrategy = "BATCH" | "STREAM";
@@ -14,6 +15,7 @@ interface QuizSession {
 	isQuizCompleted: boolean;
 	isPaused: boolean;
 	isSubmittingResult: boolean;
+	submitResponse: LearningSubmissionSaveResponse | null;
 
 	lessonId?: number;
 	unitId?: number;
@@ -27,6 +29,7 @@ interface QuizSession {
 	goToNextProblem: () => void;
 	completeQuiz: () => void;
 	resetQuiz: () => void;
+	saveSubmitResponse: (response: LearningSubmissionSaveResponse) => void;
 
 	incrementTime: () => void;
 	pauseTime: () => void;
@@ -50,6 +53,7 @@ export function createQuizSessionState(
 		timeElapsed: 0,
 		isQuizCompleted: false,
 		isSubmittingResult: false,
+		submitResponse: null,
 
 		/** 퀴즈의 레슨 / 유닛 아이디 */
 		lessonId: lessonId ? Number(lessonId) : undefined,
@@ -94,6 +98,10 @@ export function createQuizSessionState(
 			}));
 		},
 
+		saveSubmitResponse: (response: LearningSubmissionSaveResponse) => {
+			set((state) => ({ ...state, submitResponse: response }));
+		},
+
 		incrementTime: () => {
 			set((state) => {
 				if (state.isPaused) return state;
@@ -107,6 +115,7 @@ export function createQuizSessionState(
 				timeElapsed: 0,
 				isQuizCompleted: false,
 				isPaused: false,
+				submitResponse: null,
 			}),
 		pauseTime: () => {
 			set((state) => {
