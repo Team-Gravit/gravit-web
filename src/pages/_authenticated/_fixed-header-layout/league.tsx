@@ -73,22 +73,20 @@ export default function LeaguePage() {
 
 	return (
 		<div
-			className="w-screen min-h-screen flex flex-col bg-no-repeat bg-top bg-cover relative"
+			className="w-screen min-h-screen flex flex-col bg-no-repeat bg-top bg-cover mt-[var(--header-height)] "
 			style={{ backgroundImage: `url(${BackgroundImage})` }}
 		>
 			{/* WaitingTab */}
 			{showWaitingTab && (
-				<div className="absolute inset-0 flex justify-center items-start pt-28 z-40">
-					<div className="relative">
-						<WaitingTab />
-						<button
-							type="button"
-							className="absolute top-2 right-2 text-white bg-black/50 rounded-full w-8 h-8 flex items-center justify-center"
-							onClick={() => setShowWaitingTab(false)}
-						>
-							✕
-						</button>
-					</div>
+				<div className="flex flex-row w-full h-full items-center justify-center py-17">
+					<WaitingTab />
+					<button
+						type="button"
+						className="text-white bg-black/50 rounded-full w-8 h-8 flex items-center justify-center"
+						onClick={() => setShowWaitingTab(false)}
+					>
+						✕
+					</button>
 				</div>
 			)}
 

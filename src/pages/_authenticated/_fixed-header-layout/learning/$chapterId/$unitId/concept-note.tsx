@@ -2,23 +2,33 @@ import { createFileRoute } from "@tanstack/react-router";
 import Banner2 from "@/shared/ui/banner/Banner2";
 import StudyNote from "@/shared/ui/studynote/studynote";
 import { useNote } from "@/entities/cs-notes/api/useNote";
+import { useFetchChapterWithUnits } from "@/entities/learning/model/hooks";
 
 export const Route = createFileRoute(
 	"/_authenticated/_fixed-header-layout/learning/$chapterId/$unitId/concept-note",
 )({
-	validateSearch: (search: { chapterName?: string }) => search,
-	component: StudyNotePage,
+	component: ConceptNotePage,
 });
 
-function StudyNotePage() {
-	const { unitId } = Route.useParams();
-	const { chapterName } = Route.useSearch();
-
+export default function ConceptNotePage() {
+	const { chapterId, unitId } = Route.useParams();
 	const noteQuery = useNote(Number(unitId));
 
+	const { chapterInfo, units } = useFetchChapterWithUnits(Number(chapterId));
+
+	if (!chapterInfo || !units) {
+		return <div>정보를 불러오지 못했습니다.</div>;
+	}
+
+	const currentUnitIndex = units.findIndex(
+		(u) => u.unitId.toString() === unitId,
+	);
+
+	const unitNumber = (currentUnitIndex + 1).toString().padStart(2, "0");
+
 	const bannerData = {
-		subject: chapterName,
-		title: `유닛 ${unitId} 개념노트`,
+		subject: chapterInfo.chapterName,
+		title: `Unit${unitNumber} 개념노트`,
 	};
 
 	if (noteQuery.isLoading) {
@@ -35,18 +45,12 @@ function StudyNotePage() {
 
 	const noteContent = noteQuery.data ?? "";
 
-	console.log("🔥 API RAW CONTENT ===>", noteContent);
-
 	return (
 		<div className="w-screen min-h-screen flex-col">
 			<Banner2 subject={bannerData.subject} title={bannerData.title} />
 
 			<div className="flex py-14 justify-center">
-				<StudyNote
-					title="개념노트"
-					subtitle={`유닛 ${unitId}`}
-					content={noteContent}
-				/>
+				<StudyNote content={noteContent} />
 			</div>
 		</div>
 	);

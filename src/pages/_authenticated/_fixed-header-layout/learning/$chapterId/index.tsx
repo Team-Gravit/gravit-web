@@ -39,9 +39,7 @@ function RouteComponent() {
 									<Link
 										to={"/learning/$chapterId/$unitId"}
 										params={{ chapterId, unitId: unit.unitId.toString() }}
-										search={{ chapterName: chapterInfo.chapterName }}
 										className="flex flex-col gap-3 w-full h-full"
-
 									>
 										<h3 className="text-black text-xl xl:text-2xl font-semibold leading-none flex items-center justify-between">
 											Unit{(idx + 1).toString().padStart(2, "0")} - {unit.title}

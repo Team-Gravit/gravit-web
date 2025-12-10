@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState, useRef } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import Form from "@/shared/ui/form/Form";
-
 import Logo from "@/shared/ui/logo/Logo";
 import ProfileSelector from "@/features/onboarding/ui/ProfileSelecter";
 import NicknameForm from "@/features/onboarding/ui/NicknameForm";
