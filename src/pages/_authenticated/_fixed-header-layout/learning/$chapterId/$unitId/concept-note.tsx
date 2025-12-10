@@ -7,10 +7,10 @@ export const Route = createFileRoute(
 	"/_authenticated/_fixed-header-layout/learning/$chapterId/$unitId/concept-note",
 )({
 	validateSearch: (search: { chapterName?: string }) => search,
-	component: StudyNotePage,
+	component: ConceptNotePage,
 });
 
-function StudyNotePage() {
+function ConceptNotePage() {
 	const { unitId } = Route.useParams();
 	const { chapterName } = Route.useSearch();
 
@@ -35,8 +35,6 @@ function StudyNotePage() {
 
 	const noteContent = noteQuery.data ?? "";
 
-	console.log("🔥 API RAW CONTENT ===>", noteContent);
-
 	return (
 		<div className="w-screen min-h-screen flex-col">
 			<Banner2 subject={bannerData.subject} title={bannerData.title} />
@@ -44,7 +42,7 @@ function StudyNotePage() {
 			<div className="flex py-14 justify-center">
 				<StudyNote
 					title="개념노트"
-					subtitle={`유닛 ${unitId}`}
+					subtitle={`Unit ${unitId}`}
 					content={noteContent}
 				/>
 			</div>
