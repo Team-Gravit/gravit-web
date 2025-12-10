@@ -43,7 +43,6 @@ function RouteComponent() {
 					<Link
 						to={"/learning/$chapterId/$unitId/concept-note"}
 						params={{ chapterId, unitId }}
-						search={{ chapterName: chapterInfo.chapterName }}
 						className="
 								flex justify-center items-center
 								w-[180px] h-[76px]
