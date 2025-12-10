@@ -24,7 +24,7 @@ export const Route = createFileRoute(
 export default function LeaguePage() {
 	const scrollContainerRef = useRef<HTMLDivElement | null>(null);
 	const [selectedTierId, setSelectedTierId] = useState<number>(1);
-	const [showWaitingTab, setShowWaitingTab] = useState(true); // 항상 표시
+	const [showWaitingTab, setShowWaitingTab] = useState(true);
 	const [modalChecked, setModalChecked] = useState(false);
 	const [remainingTime, setRemainingTime] = useState("00:00:00");
 
@@ -50,6 +50,21 @@ export default function LeaguePage() {
 	const handleModalConfirm = () => {
 		setModalChecked(true);
 	};
+
+	useEffect(() => {
+		const checkWaitingTab = () => {
+			const now = new Date();
+			if (now.getDay() === 1 && now.getHours() === 0 && now.getMinutes() < 5) {
+				setShowWaitingTab(true);
+			} else {
+				setShowWaitingTab(false);
+			}
+		};
+
+		checkWaitingTab();
+		const interval = setInterval(checkWaitingTab, 1000);
+		return () => clearInterval(interval);
+	}, []);
 
 	if (leagueInfoQuery.isFetching || seasonInfoQuery.isLoading)
 		return <div>로딩중</div>;
@@ -80,13 +95,6 @@ export default function LeaguePage() {
 			{showWaitingTab && (
 				<div className="flex flex-row w-full h-full items-center justify-center py-17">
 					<WaitingTab />
-					<button
-						type="button"
-						className="text-white bg-black/50 rounded-full w-8 h-8 flex items-center justify-center"
-						onClick={() => setShowWaitingTab(false)}
-					>
-						✕
-					</button>
 				</div>
 			)}
 
