@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+ @plugin "@tailwindcss/typography";
 
 @theme {
     /*기본 색상 비활성화*/
@@ -217,3 +218,103 @@
         paint-order: stroke fill;
     }
 }
+
+@layer base {
+  .prose {
+    font-style: normal !important;
+    color: #1F2328 !important;
+    line-height: 1.6;
+    font-family: 'Pretendard';
+  }
+
+
+  .prose blockquote {
+    quotes: none !important;
+    padding: 0.5em 1em;
+    border-left: 4px solid #dfe2e5;
+    margin: 1em 0;
+  }
+
+  .prose blockquote::before,
+  .prose blockquote::after {
+    content: none !important;
+  }
+
+
+  .prose pre {
+    background-color: #f6f8fa !important;
+    border-radius: 6px !important;
+    padding: 1em !important;
+  }
+
+  .prose pre code {
+    background: transparent !important;
+    color: #1F2328 !important;
+    font-family: 'Source Code Pro', monospace;
+    font-weight: 400;
+  }
+
+  .prose code {
+    background-color: #f6f8fa;
+    border-radius: 4px;
+    padding: 0.2em 0.4em;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.875em;
+  }
+
+  .prose table {
+    border-collapse: collapse;
+    table-layout: auto !important;
+    width: auto !important;      
+  }
+
+  .prose th,
+  .prose td {
+    border: 1px solid #dfe2e5;
+    padding: 0.5em 1em!important;
+  }
+
+  .prose th:first-child,
+  .prose td:first-child {
+    padding-left: 1em !important;
+  }
+
+  .prose th:last-child,
+  .prose td:last-child {
+    padding-right: 1em !important;
+  }
+
+  .prose th {
+    font-weight: 600;
+    text-align: center !important;
+  }
+
+
+  .prose tr:nth-child(even) td {
+    background-color: #f6f8fa;
+  }
+
+
+  .prose blockquote p,
+  .prose li,
+  .prose strong {
+    font-style: normal !important;
+  }
+
+  .prose li::marker {
+  color: #1F2328 !important; 
+}
+
+  .prose blockquote {
+    quotes: none !important;
+    color: #59636E !important;
+  }
+
+  .prose blockquote::before,
+  .prose blockquote::after {
+    content: none !important;
+  }
+}
+
+
+
