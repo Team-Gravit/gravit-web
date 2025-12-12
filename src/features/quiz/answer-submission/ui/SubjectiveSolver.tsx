@@ -32,7 +32,9 @@ export default forwardRef<
 	useImperativeHandle(ref, () => ({
 		getAnswer: () => ({
 			answer: enteredAnswer,
-			isCorrect: answers.includes(enteredAnswer.trim()),
+			isCorrect: answers
+				.map((answer) => answer.toLowerCase())
+				.includes(enteredAnswer.trim().toLowerCase()),
 		}),
 	}));
 
