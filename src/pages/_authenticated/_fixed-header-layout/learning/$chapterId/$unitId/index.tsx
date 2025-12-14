@@ -7,6 +7,7 @@ import BookmarkIcon from "@/shared/assets/icons/ic-bookmark.svg?react";
 import { useFetchLessons } from "@/entities/learning/model/hooks";
 // import { useNavigate } from "@tanstack/react-router";
 import { toast } from "@/shared/lib/toast";
+import { cn } from "@/shared/lib/cn";
 
 export const Route = createFileRoute(
 	"/_authenticated/_fixed-header-layout/learning/$chapterId/$unitId/",
@@ -145,7 +146,12 @@ function RouteComponent() {
 
 										<div className="h-4.5 border-l-2  border-white mx-3" />
 
-										<span className="text-white font-medium text-xl">
+										<span
+											className={cn(
+												" font-medium text-xl",
+												lesson.isSolved ? "text-white" : "text-white/60",
+											)}
+										>
 											{lesson.isSolved ? "학습 완료" : "학습 전"}
 										</span>
 									</div>
