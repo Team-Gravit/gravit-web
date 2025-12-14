@@ -12,10 +12,7 @@ export default function ReviewPhase({ problem, userAnswer }: ReviewPhaseProps) {
 	return (
 		<div className="w-full">
 			{userAnswer.problemType === "SUBJECTIVE" && (
-				<SubjectiveReviewer
-					userAnswer={userAnswer}
-					answer={problem.answer.content}
-				/>
+				<SubjectiveReviewer userAnswer={userAnswer} answer={problem.answer} />
 			)}
 			{userAnswer.problemType === "OBJECTIVE" && (
 				<ObjectiveReviewer userAnswer={userAnswer} options={problem.options} />

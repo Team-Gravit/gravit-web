@@ -2,13 +2,14 @@ import { cn } from "@/shared/lib/cn";
 import type { UserAnswer } from "../../model/types";
 import { useQuizSessionState } from "../../model/quiz-session-store";
 import RemoveFromIncorrectListBtn from "./RemoveFromMistakeListBtn";
+import type { Answer } from "@/entities/learning/model/types";
 
 export default function SubjectiveReviewer({
 	userAnswer,
 	answer,
 }: {
 	userAnswer: UserAnswer;
-	answer: string[];
+	answer: Answer;
 }) {
 	const mode = useQuizSessionState((state) => state.mode);
 	return (
@@ -28,12 +29,9 @@ export default function SubjectiveReviewer({
 			{!userAnswer.isCorrect ? (
 				<p className="w-full flex flex-col gap-4">
 					<small className=" text-error-info text-2xl font-semibold">
-						정답: {answer.join(", ")}
+						정답: {answer.content.join(", ")}
 					</small>
-					<span className="text-error-info text-2xl">
-						FIFO는 First In, First Out, 즉 먼저 들어간 것이 먼저 나간다는 의미의
-						구조입니다. 이는 큐(Queue) 라는 자료구조의 기본 동작 방식이에요.
-					</span>
+					<span className="text-error-info text-2xl">{answer.explanation}</span>
 				</p>
 			) : null}
 			{userAnswer.isCorrect ? (
