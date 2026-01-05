@@ -33,7 +33,6 @@ export default function ObjectiveOptionItem({
 			<button
 				type="button"
 				onClick={() => {
-					console.log(optionNumber, "클릭됨", isActive);
 					return isActive && onHandleSubmit(optionNumber - 1);
 				}}
 				disabled={!isActive}

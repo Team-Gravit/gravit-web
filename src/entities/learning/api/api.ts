@@ -33,9 +33,6 @@ export const learningApi = {
 			`/learning/${lessonId}`,
 		);
 
-		console.log("Full response:", response);
-		console.log("Response status:", response.status);
-
 		if ("error" in response.data) {
 			throw new Error(response.data.message);
 		}

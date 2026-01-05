@@ -67,13 +67,6 @@ export default function AnswerInteraction({
 
 				// STREAM 모드면 즉시 서버 전송
 				if (strategy === "STREAM") {
-					// TODO: useSubmitAnswerStream 호출
-					console.log(
-						"[STREAM] 주관식 답 제출:",
-						answer.answer,
-						answer.isCorrect,
-					);
-
 					submitResults(async () => {
 						await api.learning.saveProblemSubmission({
 							problemId: problem.problemId,

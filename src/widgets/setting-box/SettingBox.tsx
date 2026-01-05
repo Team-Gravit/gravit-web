@@ -113,9 +113,7 @@ export default function UserSettingsBox() {
 					sendWithdrawEmail.mutate();
 					successModalRef.current?.open();
 				}}
-				onCancel={() => {
-					console.log("취소");
-				}}
+				onCancel={() => {}}
 			/>
 			<SuccessNotificationModal
 				title={["탈퇴하신다니 정말 아쉬워요."]}

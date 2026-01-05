@@ -26,8 +26,6 @@ export const userDeleteApi = {
 			`/users/deletion/confirm?mailAuthCode=${mailAuthCode}`,
 		);
 
-		console.log(response);
-
 		if ("error" in response) {
 			const errorCode = response.data?.error;
 			const message = response.data?.message;

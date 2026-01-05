@@ -44,7 +44,7 @@ export default function Modal({
 			try {
 				dialog.close();
 			} catch (err) {
-				console.log(err);
+				console.warn(err);
 			}
 		}
 		return () => {

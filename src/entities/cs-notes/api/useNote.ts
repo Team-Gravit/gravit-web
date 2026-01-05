@@ -8,8 +8,6 @@ export const useNote = (unitId: number) => {
 			const res = await api.note.getNote(unitId, {
 				responseType: "text",
 			});
-
-			console.log(res.data);
 			return res.data as unknown as string;
 		},
 		staleTime: 1000 * 60,
