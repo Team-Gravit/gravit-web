@@ -5,9 +5,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import rocket from "@/shared/assets/images/rocket.png";
 import fire from "@/shared/assets/images/fire.png";
 import RecentLearningCard from "@/widgets/learning-widget/RecentLearningCard";
-import UserLeagueInfo from "@/widgets/user/ui/UserLeagueInfo";
 import Footer from "@/widgets/Footer/Footer";
 import { useFetchMainInfo } from "@/widgets/main/model/hooks";
+import LearningProgressInfo from "@/widgets/learning-widget/LearningProgressInfo";
 
 export const Route = createFileRoute(
 	"/_authenticated/_fixed-header-layout/main",
@@ -51,11 +51,13 @@ function MainPage() {
 				<Banner />
 				<div className="w-full max-w-[1700px] flex-grow p-20 bg-[#f2f2f2] flex flex-col lg:flex-row gap-6">
 					<section className="w-full lg:w-1/2 flex flex-col">
-						<UserLeagueInfo
-							nickname={nickname || ""}
-							league={leagueName || ""}
+						<h2 className="font-semibold text-[40px] mb-5">
+							어서오세요, <b className="font-bold">{nickname}</b>님
+						</h2>
+						<LearningProgressInfo
+							league={leagueName}
 							xp={xp || 0}
-							level={level || 1}
+							level={level || 0}
 						/>
 
 						<div className="flex flex-row gap-4 mt-8">
