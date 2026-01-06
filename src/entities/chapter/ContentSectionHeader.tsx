@@ -1,13 +1,13 @@
 import { useRouter } from "@tanstack/react-router";
 import BackIcon from "@/shared/assets/icons/ic-back.svg?react";
 
-export default function ChapterInfo({
-	chapterName,
-	chapterInfoText,
+export default function ContentSectionHeader({
+	title,
+	description,
 	showActionButtons = false,
 }: {
-	chapterName: string;
-	chapterInfoText: string;
+	title: string;
+	description: string;
 	showActionButtons?: boolean;
 }) {
 	const router = useRouter();
@@ -27,7 +27,7 @@ export default function ChapterInfo({
 					<BackIcon />
 				</button>
 				<h2 className="inline-block text-white font-semibold text-3xl lg:text-4xl ">
-					{chapterName}
+					{title}
 				</h2>
 				{showActionButtons && (
 					<button
@@ -39,7 +39,7 @@ export default function ChapterInfo({
 				)}
 			</div>
 			<p className="max-w-xl text-white font-semibold text-2xl lg:text-3xl break-keep">
-				{chapterInfoText}
+				{description}
 			</p>
 		</section>
 	);

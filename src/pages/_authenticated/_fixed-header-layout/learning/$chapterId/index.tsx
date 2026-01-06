@@ -2,9 +2,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import backgroundImg from "@/shared/assets/images/background.jpg";
 import RightArrowIcon from "@/shared/assets/icons/ic-right-arrow.svg?react";
 import { BackgroundLayout } from "@/shared/ui/background/background";
-import ChapterInfo from "@/entities/chapter/ChapterInfo";
 import { useFetchChapterWithUnits } from "@/entities/learning/model/hooks";
 import type { Unit } from "@/entities/learning/model/types";
+import ContentSectionHeader from "@/entities/chapter/ContentSectionHeader";
 
 export const Route = createFileRoute(
 	"/_authenticated/_fixed-header-layout/learning/$chapterId/",
@@ -23,9 +23,9 @@ function RouteComponent() {
 	return (
 		<BackgroundLayout backgroundImage={backgroundImg} gradientOverlay="partial">
 			<main className="w-full max-w-[1580px] px-16 lg:px-20 xl:px-24 pt-10 lg:pt-24 pb-44 mx-auto">
-				<ChapterInfo
-					chapterName={chapterInfo.chapterName}
-					chapterInfoText={chapterInfo.chapterDescription}
+				<ContentSectionHeader
+					title={chapterInfo.chapterName}
+					description={chapterInfo.chapterDescription}
 				/>
 
 				<section className="w-full">
