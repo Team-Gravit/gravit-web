@@ -56,7 +56,7 @@ function Index() {
 								/>
 							</div>
 						</section>
-						<section className="relative h-[50%] pr-[50vw]">
+						<section className="relative h-[50%] pr-[50vw] overflow-hidden">
 							<img
 								src={roundedPlanetsImg}
 								alt="행성 이미지"
