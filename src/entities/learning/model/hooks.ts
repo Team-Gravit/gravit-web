@@ -29,7 +29,7 @@ export const useFetchProblems = (lessonId: number) => {
 
 export const useFetchChapters = () => {
 	const query = useQuery({
-		queryKey: ["chapters"],
+		queryKey: learningKeys.chapters(),
 		queryFn: async () => {
 			const response = await api.learning.getAllChapters();
 			return mapToChapters(response.data);
@@ -47,7 +47,7 @@ export const useFetchChapters = () => {
 
 export const useFetchChapterWithUnits = (chapterId: number) => {
 	const query = useQuery({
-		queryKey: ["chapterWithUnits", chapterId],
+		queryKey: learningKeys.chapterUnits(chapterId),
 		queryFn: async () => {
 			const response = await api.learning.getAllUnitsInChapter(chapterId);
 			return mapToChapterWithUnits(response.data);
