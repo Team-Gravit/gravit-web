@@ -17,7 +17,7 @@ export const Route = createFileRoute(
 
 function RouteComponent() {
 	const { chapterId, unitId } = Route.useParams();
-	const { lessons, chapterInfo, isPending, data } = useFetchLessons(
+	const { lessons, unitInfo, isPending, data } = useFetchLessons(
 		Number(unitId),
 	);
 
@@ -25,7 +25,7 @@ function RouteComponent() {
 		return <div>로딩중</div>;
 	}
 
-	if (!lessons || !chapterInfo) {
+	if (!lessons || !unitInfo) {
 		return <div>레슨 정보가 없습니다.</div>;
 	}
 
@@ -37,8 +37,8 @@ function RouteComponent() {
 			<main className="w-full max-w-[1580px] px-16 lg:px-20 xl:px-24 pt-10 lg:pt-24 pb-44 mx-auto">
 				<div className="flex flex-row justify-between">
 					<ContentSectionHeader
-						title={chapterInfo.chapterName}
-						description={chapterInfo.chapterDescription}
+						title={unitInfo.unitName}
+						description={unitInfo.unitDescription}
 					/>
 					<Link
 						to={"/learning/$chapterId/$unitId/concept-note"}

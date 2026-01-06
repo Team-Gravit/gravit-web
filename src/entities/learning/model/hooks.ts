@@ -78,7 +78,7 @@ export const useFetchLessons = (unitId: number) => {
 		isPending: query.isPending,
 		isError: query.isError,
 		error: query.error,
-		chapterInfo: query.data?.chapterInfo,
+		unitInfo: query.data?.unitInfo,
 		lessons: query.data?.lessons,
 	};
 };

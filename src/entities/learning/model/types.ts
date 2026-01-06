@@ -38,7 +38,7 @@ export interface Lesson {
 }
 
 export interface ChapterWithLessons {
-	chapterInfo: ChapterInfo;
+	unitInfo: { unitId: number; unitName: string; unitDescription: string };
 	hasBookmarkedProblems: boolean;
 	hasIncorrectProblems: boolean;
 	lessons: Lesson[];

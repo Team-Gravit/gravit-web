@@ -15,19 +15,19 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { ChapterSummary } from './chapter-summary';
+import type { LessonSummary } from './lesson-summary';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { LessonSummary } from './lesson-summary';
+import type { UnitSummary } from './unit-summary';
 
 /**
  * 레슨 페이지 조회 Response
  */
 export interface LessonDetailResponse {
     /**
-     * 챕터 요약 정보
+     * 유닛 요약 정보
      */
-    'chapterSummary': ChapterSummary;
+    'unitSummary': UnitSummary;
     /**
      * 북마크 풀이 가능 여부
      */
