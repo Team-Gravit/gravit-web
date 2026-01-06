@@ -16,6 +16,7 @@ const router = createRouter({
 			isAuthenticated: !!tokenManager.getAccessToken(),
 		} as AuthState,
 	},
+	scrollRestoration: true,
 });
 
 // Register the router instance for type safety
