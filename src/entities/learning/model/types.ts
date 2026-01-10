@@ -82,6 +82,7 @@ export interface Problem {
 	answer: Answer;
 	options: Option[];
 	isBookmarked: boolean;
+	isRemovedFromIncorrect?: boolean;
 }
 
 export interface ProblemsWithUnitSummary {

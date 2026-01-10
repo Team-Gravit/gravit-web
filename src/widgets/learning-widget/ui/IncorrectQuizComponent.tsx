@@ -4,12 +4,12 @@ import { useEffect } from "react";
 import QuizHeader from "@/widgets/learning-widget/QuizHeader";
 import QuizProgressBar from "@/widgets/learning-widget/QuizProgressBar";
 import ProblemStatement from "@/entities/learning/ui/ProblemStatement";
-import AnswerInteraction from "@/widgets/learning-widget/AnswerInteraction";
 import { useQuizSessionState } from "@/features/quiz/model/quiz-session-store";
 import { useFetchIncorrectProblems } from "@/entities/learning/model/use-fetch-incorrect-problems";
 import { useRouter } from "@tanstack/react-router";
 import ReportModal from "@/features/quiz/ui/modal/ReportModal";
 import ReportResultModal from "@/features/quiz/ui/modal/ReportResultModal";
+import IncorrectInteraction from "../quiz/incorrect/IncorrectInteraction";
 
 export default function IncorrectQuizComponent({ unitId }: { unitId: string }) {
 	const { data, isPending } = useFetchIncorrectProblems(Number(unitId));
@@ -72,7 +72,7 @@ export default function IncorrectQuizComponent({ unitId }: { unitId: string }) {
 								problem={currentProblem}
 								totalProblemsCount={totalProblems}
 							/>
-							<AnswerInteraction
+							<IncorrectInteraction
 								problem={currentProblem}
 								totalProblemsCount={totalProblems}
 								unitId={unitIdNum}

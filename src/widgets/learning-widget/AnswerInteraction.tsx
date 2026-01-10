@@ -181,7 +181,8 @@ export default function AnswerInteraction({
 					ref={buttonRef}
 					type="button"
 					onClick={handleButtonClick}
-					className="flex items-center justify-center cursor-pointer w-[80px] h-[80px] lg:w-[100px] lg:h-[100px] bg-main-gr rounded-full absolute bottom-0 right-0 lg:bottom-0 lg:right-0 -translate-y-12 hover:bg-main-gr-dark transition-colors"
+					disabled={false}
+					className="flex items-center justify-center cursor-pointer w-[80px] h-[80px] lg:w-[100px] lg:h-[100px] bg-main-gr rounded-full absolute bottom-0 right-0 lg:bottom-0 lg:right-0 -translate-y-12 hover:bg-main-gr-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
 				>
 					{!isSubmitted ? (
 						<CheckIcon className="w-[45px] lg:w-[74px]" />

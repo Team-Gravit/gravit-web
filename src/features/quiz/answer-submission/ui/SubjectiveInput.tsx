@@ -14,7 +14,7 @@ export default function SubjectiveInput({
 			ref={ref}
 			value={enteredAnswer}
 			onChange={onChange}
-			className="w-full  px-8 py-4 bg-white rounded-lg border-2 border-black/10 text-gray-600 text-2xl font-medium focus:outline-none focus:border-gray-400"
+			className="w-full flex items-center h-[68px] px-8 py-4 box-border bg-white rounded-lg border-2 border-black/10 text-gray-600 text-2xl font-medium focus:outline-none focus:border-gray-400"
 			placeholder="정답을 입력해주세요."
 		/>
 	);
