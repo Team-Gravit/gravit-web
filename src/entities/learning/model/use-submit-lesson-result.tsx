@@ -7,7 +7,8 @@ export const useSubmitLessonResult = () => {
 	const queryClient = useQueryClient();
 	const query = useMutation({
 		mutationFn: async (lessonResult: LearningSubmissionSaveRequest) => {
-			const response = await api.learning.saveLearningSubmission(lessonResult);
+			const response =
+				await api.private.learning.saveLearningSubmission(lessonResult);
 			return response.data;
 		},
 		onSuccess: () => {

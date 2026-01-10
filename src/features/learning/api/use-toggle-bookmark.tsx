@@ -18,10 +18,10 @@ export default function useToggleBookmark() {
 			currentIsBookmarked,
 		}: UseToggleBookmarkParams) => {
 			if (currentIsBookmarked) {
-				await api.learning.deleteBookmark({ problemId });
+				await api.private.learning.deleteBookmark({ problemId });
 				return { action: "delete" as const };
 			} else {
-				await api.learning.saveBookmark({ problemId });
+				await api.private.learning.saveBookmark({ problemId });
 				return { action: "save" as const };
 			}
 		},

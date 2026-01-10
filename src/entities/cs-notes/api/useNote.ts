@@ -5,7 +5,7 @@ export const useNote = (unitId: number) => {
 	return useQuery<string>({
 		queryKey: ["cs-note", unitId],
 		queryFn: async () => {
-			const res = await api.note.getNote(unitId, {
+			const res = await api.private.note.getNote(unitId, {
 				responseType: "text",
 			});
 			return res.data as unknown as string;

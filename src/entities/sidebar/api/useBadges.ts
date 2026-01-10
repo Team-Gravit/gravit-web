@@ -7,7 +7,7 @@ export const useBadges = () => {
 	return useQuery<UserBadges>({
 		queryKey: ["user-badges"],
 		queryFn: async () => {
-			const res = await api.badge.getAllMyBadges();
+			const res = await api.private.badge.getAllMyBadges();
 			return mapToUserBadges(res.data);
 		},
 		staleTime: 1000 * 60,

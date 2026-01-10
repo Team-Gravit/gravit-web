@@ -6,7 +6,7 @@ export const useUserLeagueProfile = () => {
 	return useQuery<MyLeagueRankWithProfileResponse>({
 		queryKey: ["user-league-profile"],
 		queryFn: async () => {
-			const res = await api.ranking.user.getMyLeagueWithProfile();
+			const res = await api.private.myLeagueProfile.getMyLeagueWithProfile();
 			return res.data;
 		},
 		staleTime: 1000 * 60,

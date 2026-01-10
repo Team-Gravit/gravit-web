@@ -9,7 +9,7 @@ export const useFriendList = (queryText: string) => {
 
 		queryFn: async ({ pageParam = 0 }) => {
 			const page = pageParam as number;
-			const res = await api.friendSearch.search(queryText, page);
+			const res = await api.private.friendSearch.search(queryText, page);
 			return mapToFriendList(res.data);
 		},
 

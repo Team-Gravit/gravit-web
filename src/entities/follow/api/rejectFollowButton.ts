@@ -2,7 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { api } from "@/shared/api";
 
 export const rejectfollowUser = async (id: number): Promise<void> => {
-	await api.friend.rejectFollowing(id);
+	await api.private.friend.rejectFollowing(id);
 };
 
 export const useRejectFollow = () => {

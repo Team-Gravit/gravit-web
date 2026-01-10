@@ -5,7 +5,7 @@ import { learningKeys } from "@/entities/learning/api/query-keys";
 export const useFetchMainInfo = () => {
 	const query = useQuery({
 		queryKey: ["main-info", learningKeys.all],
-		queryFn: () => api.user.manage.getMainPage(),
+		queryFn: () => api.private.user.getMainPage(),
 	});
 
 	return { ...query, data: query.data?.data };

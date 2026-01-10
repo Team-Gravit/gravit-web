@@ -6,7 +6,7 @@ import { toast } from "@/shared/lib/toast";
 export const useRemoveIncorrectProblem = () => {
 	return useMutation({
 		mutationFn: async (problemId: number) => {
-			const response = await api.learning.deleteWrongAnsweredNote({
+			const response = await api.private.learning.deleteWrongAnsweredNote({
 				problemId,
 			});
 			return response.data;
@@ -23,7 +23,8 @@ export const useRemoveIncorrectProblem = () => {
 export const useSubmitProblemResult = () => {
 	return useMutation({
 		mutationFn: async (request: ProblemSubmissionRequest) => {
-			const response = await api.learning.saveProblemSubmission(request);
+			const response =
+				await api.private.learning.saveProblemSubmission(request);
 			return response.data;
 		},
 	});

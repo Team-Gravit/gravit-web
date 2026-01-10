@@ -14,7 +14,7 @@ export const Route = createFileRoute("/_authenticated")({
 
 		if (refreshToken) {
 			try {
-				const response = await api.public.refresh.reissueToken({
+				const response = await api.private.authToken.reissueToken({
 					refreshToken,
 				});
 				if (response.data.accessToken) {

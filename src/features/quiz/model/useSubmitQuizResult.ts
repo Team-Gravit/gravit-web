@@ -10,7 +10,8 @@ export const useSubmitQuizResult = () => {
 	const queryClient = useQueryClient();
 	return useMutation({
 		mutationFn: async (request: LearningSubmissionSaveRequest) => {
-			const response = await api.learning.saveLearningSubmission(request);
+			const response =
+				await api.private.learning.saveLearningSubmission(request);
 			return response.data;
 		},
 		onSuccess: () => {
@@ -25,7 +26,8 @@ export const useSubmitQuizResult = () => {
 export const useSubmitProblemResult = () => {
 	return useMutation({
 		mutationFn: async (request: ProblemSubmissionRequest) => {
-			const response = await api.learning.saveProblemSubmission(request);
+			const response =
+				await api.private.learning.saveProblemSubmission(request);
 			return response.data;
 		},
 	});

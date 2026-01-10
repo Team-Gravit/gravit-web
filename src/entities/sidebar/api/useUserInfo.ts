@@ -7,7 +7,7 @@ export const useUserInfo = () => {
 	return useQuery<UserInfo>({
 		queryKey: ["user-info"],
 		queryFn: async () => {
-			const res = await api.user.manage.getMyPage();
+			const res = await api.private.user.getMyPage();
 			return mapToUserInfo(res.data);
 		},
 		staleTime: 1000 * 60,

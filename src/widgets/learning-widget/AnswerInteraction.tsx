@@ -68,7 +68,7 @@ export default function AnswerInteraction({
 				// STREAM 모드면 즉시 서버 전송
 				if (strategy === "STREAM") {
 					submitResults(async () => {
-						await api.learning.saveProblemSubmission({
+						await api.private.learning.saveProblemSubmission({
 							problemId: problem.problemId,
 							isCorrect: answer.isCorrect,
 						});
@@ -106,7 +106,7 @@ export default function AnswerInteraction({
 					};
 
 					const response =
-						await api.learning.saveLearningSubmission(submitData);
+						await api.private.learning.saveLearningSubmission(submitData);
 
 					// API 응답을 store에 저장
 					saveSubmitResponse(response.data);

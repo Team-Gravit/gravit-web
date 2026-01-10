@@ -7,7 +7,7 @@ export const useNoticeDetail = (noticeId: number) => {
 	return useQuery<NoticeDetail>({
 		queryKey: ["notice-detail", noticeId],
 		queryFn: async () => {
-			const res = await api.notice.getNoticeSummary(noticeId);
+			const res = await api.private.notice.getNoticeSummary(noticeId);
 			return mapToNoticeDetail(res.data);
 		},
 		staleTime: 1000 * 60,

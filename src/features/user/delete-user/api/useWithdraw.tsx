@@ -7,7 +7,7 @@ export const useSendWithdrawEmail = () => {
 			const dest =
 				import.meta.env.VITE_ENVIRONMENT === "local" ? "local" : "prod";
 
-			return api.user.delete.request(dest);
+			return api.private.withdrawal.request(dest);
 		},
 	});
 };
@@ -15,7 +15,7 @@ export const useSendWithdrawEmail = () => {
 export const useConfirmWithdraw = () => {
 	return useMutation({
 		mutationFn: (mailAuthCode: string) => {
-			return api.withdraw.delete.confirm(mailAuthCode);
+			return api.private.withdrawal.confirm(mailAuthCode);
 		},
 	});
 };

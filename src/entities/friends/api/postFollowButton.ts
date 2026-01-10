@@ -4,11 +4,11 @@ import type { UserInfo } from "@/entities/sidebar/model/types";
 import { api } from "@/shared/api";
 
 const followFriend = async (id: number): Promise<void> => {
-	await api.friend.following(id);
+	await api.private.friend.following(id);
 };
 
 const unfollowFriend = async (id: number): Promise<void> => {
-	await api.friend.unFollowing(id);
+	await api.private.friend.unFollowing(id);
 };
 
 export const useToggleFollow = (searchValue: string) => {

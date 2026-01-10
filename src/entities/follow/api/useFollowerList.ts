@@ -9,7 +9,7 @@ export const useFollowerList = () => {
 
 		queryFn: async ({ pageParam = 0 }) => {
 			const page = pageParam as number;
-			const res = await api.friend.getFollowers(page);
+			const res = await api.private.friend.getFollowers(page);
 			return mapToFollowList(res.data);
 		},
 
