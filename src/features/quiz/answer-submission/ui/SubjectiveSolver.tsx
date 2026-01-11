@@ -2,7 +2,6 @@ import SubjectiveInput from "./SubjectiveInput";
 import {
 	useEffect,
 	useRef,
-	useState,
 	type ChangeEvent,
 	forwardRef,
 	useImperativeHandle,
@@ -13,19 +12,22 @@ export interface SubjectiveSolverHandle {
 		answer: string;
 		isCorrect: boolean;
 	};
+	hasAnswer: () => boolean;
 }
 
 export default forwardRef<
 	SubjectiveSolverHandle,
 	{
 		answers: string[];
+		enteredAnswer?: string;
+		setEnteredAnswer?: (value: string) => void;
 	}
->(function SubjectiveSolver({ answers }, ref) {
-	const [enteredAnswer, setEnteredAnswer] = useState("");
+>(function SubjectiveSolver({ answers, enteredAnswer = "", setEnteredAnswer }, ref) {
 	const inputRef = useRef<HTMLInputElement>(null);
 
 	const handleChangeAnswer = (e: ChangeEvent<HTMLInputElement>) => {
-		setEnteredAnswer(e.target.value);
+		const newAnswer = e.target.value;
+		setEnteredAnswer?.(newAnswer);
 	};
 
 	// 부모 컴포넌트에서 답을 꺼낼 수 있도록 노출
@@ -36,6 +38,7 @@ export default forwardRef<
 				.map((answer) => answer.toLowerCase())
 				.includes(enteredAnswer.trim().toLowerCase()),
 		}),
+		hasAnswer: () => enteredAnswer.trim().length > 0,
 	}));
 
 	useEffect(() => {
