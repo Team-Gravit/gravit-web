@@ -1,4 +1,4 @@
-import { apiClient } from "@/shared/api/config";
+import { privateApiClient } from "@/shared/api/config";
 
 export interface PostOAuthResponse {
 	accessToken: string;
@@ -10,7 +10,7 @@ export async function PostOAuth(
 	code: string,
 ): Promise<PostOAuthResponse> {
 	const dest = import.meta.env.VITE_ENVIRONMENT === "local" ? "local" : "prod";
-	const { data } = await apiClient.post<PostOAuthResponse>(
+	const { data } = await privateApiClient.post<PostOAuthResponse>(
 		`/oauth/${provider}?dest=${dest}`,
 		{ code },
 	);
