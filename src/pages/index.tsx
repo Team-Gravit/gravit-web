@@ -1,22 +1,31 @@
-import Footer from "@/widgets/Footer/Footer";
-import Logo from "@/shared/assets/icons/logo-gr.svg?react";
-import { createFileRoute, Link } from "@tanstack/react-router";
-import backgroundImage from "@/shared/assets/images/landing-background.png";
-import GravitLogo from "@/shared/assets/icons/logo.svg?react";
-import roundedPlanetsImg from "@/shared/assets/images/planet-group.png";
-import phoneImg from "@/shared/assets/images/phone.png";
-import leagueBadgeImg from "@/shared/assets/images/league-badge.png";
-import leaguePhoneImg from "@/shared/assets/images/league-phone.png";
-import leagueItem from "@/shared/assets/images/league-item.png";
-import leagueGroup from "@/shared/assets/images/league-group.png";
+import { createFileRoute, Link, redirect } from "@tanstack/react-router";
+import { useOauthLogin } from "@/entities/login/model/useOauthLogin";
 import SocialButton from "@/features/login/ui/SocialButton";
+import { tokenManager } from "@/shared/api/config";
 import google from "@/shared/assets/icons/buttons/google.svg";
 import kakao from "@/shared/assets/icons/buttons/kakao.svg";
 import naver from "@/shared/assets/icons/buttons/naver.svg";
-import { useOauthLogin } from "@/entities/login/model/useOauthLogin";
+import Logo from "@/shared/assets/icons/logo-gr.svg?react";
+import GravitLogo from "@/shared/assets/icons/logo.svg?react";
+import backgroundImage from "@/shared/assets/images/landing-background.png";
+import leagueBadgeImg from "@/shared/assets/images/league-badge.png";
+import leagueGroup from "@/shared/assets/images/league-group.png";
+import leagueItem from "@/shared/assets/images/league-item.png";
+import leaguePhoneImg from "@/shared/assets/images/league-phone.png";
+import phoneImg from "@/shared/assets/images/phone.png";
+import roundedPlanetsImg from "@/shared/assets/images/planet-group.png";
 import { BackgroundLayout } from "@/shared/ui/background/background";
+import Footer from "@/widgets/Footer/Footer";
 
 export const Route = createFileRoute("/")({
+	beforeLoad: async () => {
+		const accessToken = tokenManager.getAccessToken();
+
+		// 이미 로그인한 사용자는 메인 페이지로 리다이렉트
+		if (accessToken) {
+			throw redirect({ to: "/main" });
+		}
+	},
 	component: Index,
 });
 

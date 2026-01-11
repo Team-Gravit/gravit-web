@@ -23,12 +23,15 @@ export default function Header({ className }: { className?: string }) {
 			PROFILE_COLORS[data.profileImgNumber as keyof typeof PROFILE_COLORS];
 
 		loginState = (
-			<p className="h-full flex gap-4 items-center flex-1 justify-end">
+			<Link
+				to="/user"
+				className="h-full flex gap-4 items-center flex-1 justify-end"
+			>
 				<Profile
 					style={{ color: profileBgColor }}
 					className="w-[40px] h-[40px]"
 				/>
-				<span className="text-black font-bold text-xl leading-normal">
+				<span className="hidden lg:block text-black font-bold text-xl leading-normal">
 					어서오세요, {data.nickname}님
 				</span>
 				<button
@@ -42,7 +45,7 @@ export default function Header({ className }: { className?: string }) {
 				>
 					로그아웃
 				</button>
-			</p>
+			</Link>
 		);
 	}
 
