@@ -77,8 +77,6 @@ export function createQuizSessionState(
 
 				const newAnswers = [...state.userAnswers, newAnswer];
 
-				console.log(newAnswers, "제출!");
-
 				return { ...state, userAnswers: newAnswers };
 			}),
 		goToNextProblem: () => {

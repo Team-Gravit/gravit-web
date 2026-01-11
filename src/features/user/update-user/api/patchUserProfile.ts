@@ -15,7 +15,7 @@ export const usePatchUserProfile = () => {
 		mutationKey: ["patch-user-profile"],
 
 		mutationFn: async (updateRequest) => {
-			const res = await api.user.manage.updateProfile(updateRequest);
+			const res = await api.private.user.updateProfile(updateRequest);
 
 			return mapToUserProfile(res.data as UserResponse);
 		},

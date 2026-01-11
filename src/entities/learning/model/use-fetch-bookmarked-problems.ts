@@ -7,7 +7,8 @@ export const useFetchBookmarkedProblems = (unitId: number) => {
 	const query = useQuery({
 		queryKey: learningKeys.unitBookmarks(unitId),
 		queryFn: async () => {
-			const response = await api.learning.getBookmarkedProblemsInUnit(unitId);
+			const response =
+				await api.private.learning.getBookmarkedProblemsInUnit(unitId);
 
 			return mapToProblemsWithUnitSummary(response.data);
 		},

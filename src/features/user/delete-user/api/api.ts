@@ -1,10 +1,10 @@
-import { apiClient } from "@/shared/api/config";
+import { privateApiClient } from "@/shared/api/config";
 import type { ApiResponse } from "@/shared/api/types";
 
 export const userDeleteApi = {
 	/** 계정 삭제 요청 메일 발송 */
 	requestAccountDeletion: async (dest: string): Promise<void> => {
-		const response = await apiClient.post<ApiResponse<undefined>>(
+		const response = await privateApiClient.post<ApiResponse<undefined>>(
 			`/users/deletion/request?dest=${dest}`,
 		);
 		if ("error" in response) {
@@ -22,11 +22,9 @@ export const userDeleteApi = {
 		}
 	},
 	confirmAccountDeletion: async (mailAuthCode: string): Promise<void> => {
-		const response = await apiClient.post<ApiResponse<undefined>>(
+		const response = await privateApiClient.post<ApiResponse<undefined>>(
 			`/users/deletion/confirm?mailAuthCode=${mailAuthCode}`,
 		);
-
-		console.log(response);
 
 		if ("error" in response) {
 			const errorCode = response.data?.error;

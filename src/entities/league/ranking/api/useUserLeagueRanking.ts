@@ -14,7 +14,7 @@ export const useUserLeagueRanking = () => {
 		queryFn: async ({ pageParam = 0 }) => {
 			const page = pageParam as number;
 
-			const res = await api.ranking.global.getLeagueRankingByUser(page);
+			const res = await api.private.leagueRank.getLeagueRankingByUser(page);
 
 			return res.data as unknown as UserLeaguesList;
 		},

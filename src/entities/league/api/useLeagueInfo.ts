@@ -6,7 +6,7 @@ export const useLeagueInfo = (leagueId: number) => {
 	return useQuery<LeagueResponse>({
 		queryKey: ["league-info", leagueId],
 		queryFn: async () => {
-			const res = await api.league.getLeague(leagueId);
+			const res = await api.private.league.getLeague(leagueId);
 			return res.data;
 		},
 		staleTime: 1000 * 60,

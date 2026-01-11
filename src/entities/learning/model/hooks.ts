@@ -12,7 +12,8 @@ export const useFetchProblems = (lessonId: number) => {
 	const query = useQuery({
 		queryKey: learningKeys.lessonProblems(lessonId),
 		queryFn: async () => {
-			const response = await api.learning.getAllProblemsInLesson(lessonId);
+			const response =
+				await api.private.learning.getAllProblemsInLesson(lessonId);
 
 			return mapToProblemsWithUnitSummary(response.data);
 		},
@@ -29,9 +30,9 @@ export const useFetchProblems = (lessonId: number) => {
 
 export const useFetchChapters = () => {
 	const query = useQuery({
-		queryKey: ["chapters"],
+		queryKey: learningKeys.chapters(),
 		queryFn: async () => {
-			const response = await api.learning.getAllChapters();
+			const response = await api.private.learning.getAllChapters();
 			return mapToChapters(response.data);
 		},
 		select: (data) => ({
@@ -47,9 +48,10 @@ export const useFetchChapters = () => {
 
 export const useFetchChapterWithUnits = (chapterId: number) => {
 	const query = useQuery({
-		queryKey: ["chapterWithUnits", chapterId],
+		queryKey: learningKeys.chapterUnits(chapterId),
 		queryFn: async () => {
-			const response = await api.learning.getAllUnitsInChapter(chapterId);
+			const response =
+				await api.private.learning.getAllUnitsInChapter(chapterId);
 			return mapToChapterWithUnits(response.data);
 		},
 	});
@@ -67,7 +69,7 @@ export const useFetchLessons = (unitId: number) => {
 	const query = useQuery({
 		queryKey: learningKeys.unitLessons(unitId),
 		queryFn: async () => {
-			const response = await api.learning.getAllLessonsInUnit(unitId);
+			const response = await api.private.learning.getAllLessonsInUnit(unitId);
 			return mapToChapterWithLessons(response.data);
 		},
 		refetchOnMount: "always",
@@ -78,7 +80,7 @@ export const useFetchLessons = (unitId: number) => {
 		isPending: query.isPending,
 		isError: query.isError,
 		error: query.error,
-		chapterInfo: query.data?.chapterInfo,
+		unitInfo: query.data?.unitInfo,
 		lessons: query.data?.lessons,
 	};
 };

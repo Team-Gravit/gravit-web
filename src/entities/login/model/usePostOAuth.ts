@@ -4,6 +4,7 @@ import type { AuthCodeRequest } from "@/shared/api/@generated";
 import { toast } from "@/shared/lib/toast";
 import type { AxiosError } from "axios";
 import { useRouter } from "@tanstack/react-router";
+import { STORAGE_KEYS } from "@/shared/config/storage";
 
 export function usePostOAuth() {
 	const router = useRouter();
@@ -21,7 +22,8 @@ export function usePostOAuth() {
 		},
 		retry: false,
 		onSuccess: (data) => {
-			localStorage.setItem("accessToken", data.accessToken);
+			localStorage.setItem(STORAGE_KEYS.accessToken, data.accessToken);
+			localStorage.setItem(STORAGE_KEYS.refreshToken, data.refreshToken);
 
 			if (data.isOnboarded) {
 				window.location.href = "/main";

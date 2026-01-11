@@ -1,10 +1,5 @@
 import Page404Component from "@/widgets/error-widget/Page404Component";
-import {
-	Outlet,
-	useLayoutEffect,
-	useLocation,
-	createRootRouteWithContext,
-} from "@tanstack/react-router";
+import { Outlet, createRootRouteWithContext } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 
 export interface RouteContext {
@@ -16,12 +11,6 @@ export interface AuthState {
 }
 
 const RootLayout = () => {
-	const location = useLocation();
-
-	useLayoutEffect(() => {
-		window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-	}, [location.pathname]);
-
 	return (
 		<>
 			<Outlet />

@@ -4,25 +4,39 @@ import { useEffect } from "react";
 import QuizHeader from "@/widgets/learning-widget/QuizHeader";
 import QuizProgressBar from "@/widgets/learning-widget/QuizProgressBar";
 import ProblemStatement from "@/entities/learning/ui/ProblemStatement";
+import AnswerInteraction from "@/widgets/learning-widget/AnswerInteraction";
 import { useQuizSessionState } from "@/features/quiz/model/quiz-session-store";
-import { useFetchIncorrectProblems } from "@/entities/learning/model/use-fetch-incorrect-problems";
-import { useRouter } from "@tanstack/react-router";
 import ReportModal from "@/features/quiz/ui/modal/ReportModal";
 import ReportResultModal from "@/features/quiz/ui/modal/ReportResultModal";
-import IncorrectInteraction from "../quiz/incorrect/IncorrectInteraction";
+import type { Problem } from "@/entities/learning/model/types";
+import type { UnitSummary } from "@/shared/api/@generated";
 
-export default function IncorrectQuizComponent({ unitId }: { unitId: string }) {
-	const { data, isPending } = useFetchIncorrectProblems(Number(unitId));
-
+export default function BaseQuizComponent({
+	data,
+	isPending,
+	onQuit,
+	additionalModals,
+	resultComponent,
+}: {
+	data:
+		| { problems: Problem[]; unitSummary: UnitSummary; totalProblems: number }
+		| undefined;
+	isPending: boolean;
+	onQuit: () => void;
+	additionalModals?: React.ReactNode;
+	resultComponent?: React.ReactNode;
+}) {
 	const userAnswers = useQuizSessionState((state) => state.userAnswers);
 	const currentProblemIndex = useQuizSessionState(
 		(state) => state.currentProblemIndex,
 	);
+	const isSubmittingResult = useQuizSessionState(
+		(state) => state.isSubmittingResult,
+	);
 	const resetQuiz = useQuizSessionState((state) => state.resetQuiz);
 	const resetTime = useQuizSessionState((state) => state.resetTime);
-	const isQuizCompleted = useQuizSessionState((state) => state.isQuizCompleted);
-	const router = useRouter();
 
+	const isQuizCompleted = useQuizSessionState((state) => state.isQuizCompleted);
 	useEffect(() => {
 		resetQuiz();
 		resetTime();
@@ -42,7 +56,7 @@ export default function IncorrectQuizComponent({ unitId }: { unitId: string }) {
 	}
 
 	if (!data) {
-		return <div>문제가 발생했습니다.</div>;
+		return <div>문제가 없습니다</div>;
 	}
 
 	const { problems, totalProblems, unitSummary } = data;
@@ -51,19 +65,20 @@ export default function IncorrectQuizComponent({ unitId }: { unitId: string }) {
 	const currentProblem = problems[currentProblemIndex];
 	const unitIdNum = unitSummary.unitId;
 
-	const handleClickQuit = () => {
-		router.history.back();
-	};
+	if (!unitIdNum) {
+		return <div>올바르지 않은 유닛 아이디입니다.</div>;
+	}
 
 	return (
 		<>
 			<ReportModal problemId={currentProblem.problemId} />
 			<ReportResultModal type="confirm" />
+			{additionalModals}
 			{!isQuizCompleted && (
 				<div className="w-full h-screen flex flex-col">
 					<QuizHeader
-						onHandleQuit={handleClickQuit}
 						learningTitle={data.unitSummary.title}
+						onHandleQuit={onQuit}
 					/>
 					<QuizProgressBar progress={`${percent}%`} />
 					<main className=" bg-gray-200 flex flex-col items-center h-full">
@@ -72,7 +87,7 @@ export default function IncorrectQuizComponent({ unitId }: { unitId: string }) {
 								problem={currentProblem}
 								totalProblemsCount={totalProblems}
 							/>
-							<IncorrectInteraction
+							<AnswerInteraction
 								problem={currentProblem}
 								totalProblemsCount={totalProblems}
 								unitId={unitIdNum}
@@ -81,6 +96,7 @@ export default function IncorrectQuizComponent({ unitId }: { unitId: string }) {
 					</main>
 				</div>
 			)}
+			{!isSubmittingResult && isQuizCompleted && resultComponent}
 		</>
 	);
 }

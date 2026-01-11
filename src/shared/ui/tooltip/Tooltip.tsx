@@ -40,14 +40,12 @@ export default function Tooltip({
 	const onHandleMouseHover = (e: React.MouseEvent) => {
 		e.preventDefault();
 		e.stopPropagation();
-		console.log("hover");
 		setIsVisible(true);
 	};
 
 	const onHandleMouseLeave = (e: React.MouseEvent) => {
 		e.preventDefault();
 		e.stopPropagation();
-		console.log("leave");
 		setIsVisible(false);
 	};
 

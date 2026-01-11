@@ -67,15 +67,8 @@ export default function AnswerInteraction({
 
 				// STREAM 모드면 즉시 서버 전송
 				if (strategy === "STREAM") {
-					// TODO: useSubmitAnswerStream 호출
-					console.log(
-						"[STREAM] 주관식 답 제출:",
-						answer.answer,
-						answer.isCorrect,
-					);
-
 					submitResults(async () => {
-						await api.learning.saveProblemSubmission({
+						await api.private.learning.saveProblemSubmission({
 							problemId: problem.problemId,
 							isCorrect: answer.isCorrect,
 						});
@@ -113,7 +106,7 @@ export default function AnswerInteraction({
 					};
 
 					const response =
-						await api.learning.saveLearningSubmission(submitData);
+						await api.private.learning.saveLearningSubmission(submitData);
 
 					// API 응답을 store에 저장
 					saveSubmitResponse(response.data);
@@ -188,7 +181,8 @@ export default function AnswerInteraction({
 					ref={buttonRef}
 					type="button"
 					onClick={handleButtonClick}
-					className="flex items-center justify-center cursor-pointer w-[80px] h-[80px] lg:w-[100px] lg:h-[100px] bg-main-gr rounded-full absolute bottom-0 right-0 lg:bottom-0 lg:right-0 -translate-y-12 hover:bg-main-gr-dark transition-colors"
+					disabled={false}
+					className="flex items-center justify-center cursor-pointer w-[80px] h-[80px] lg:w-[100px] lg:h-[100px] bg-main-gr rounded-full absolute bottom-0 right-0 lg:bottom-0 lg:right-0 -translate-y-12 hover:bg-main-gr-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
 				>
 					{!isSubmitted ? (
 						<CheckIcon className="w-[45px] lg:w-[74px]" />

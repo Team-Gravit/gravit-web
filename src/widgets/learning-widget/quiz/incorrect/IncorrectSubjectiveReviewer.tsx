@@ -1,17 +1,15 @@
 import { cn } from "@/shared/lib/cn";
-import type { UserAnswer } from "../../model/types";
-import { useQuizSessionState } from "../../model/quiz-session-store";
-import RemoveFromIncorrectListBtn from "./RemoveFromMistakeListBtn";
 import type { Answer } from "@/entities/learning/model/types";
+import type { UserAnswer } from "@/features/quiz/model/types";
+import RemoveFromIncorrectListBtn from "@/features/quiz/answer-review/ui/RemoveFromMistakeListBtn";
 
-export default function SubjectiveReviewer({
+export default function IncorrectSubjectiveReviewer({
 	userAnswer,
 	answer,
 }: {
 	userAnswer: UserAnswer;
 	answer: Answer;
 }) {
-	const mode = useQuizSessionState((state) => state.mode);
 	return (
 		<div className="w-full flex flex-col items-center gap-8">
 			<div
@@ -38,9 +36,8 @@ export default function SubjectiveReviewer({
 					<small className="self-start text-[#00A80B] font-semibold text-2xl">
 						정답입니다!
 					</small>
-					{mode === "INCORRECT" && (
-						<RemoveFromIncorrectListBtn problemId={userAnswer.problemId} />
-					)}
+
+					<RemoveFromIncorrectListBtn problemId={userAnswer.problemId} />
 				</div>
 			) : null}
 		</div>

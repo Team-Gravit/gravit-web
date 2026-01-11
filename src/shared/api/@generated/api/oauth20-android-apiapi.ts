@@ -27,22 +27,71 @@ import type { ErrorResponse } from '../models';
 import type { IdTokenRequest } from '../models';
 // @ts-ignore
 import type { LoginResponse } from '../models';
+// @ts-ignore
+import type { NaverAndroidUserInfoRequest } from '../models';
 /**
  * OAuth20AndroidAPIApi - axios parameter creator
  */
 export const OAuth20AndroidAPIApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Android 에서 전달한 OAuth IdToken 을 기반으로 사용자 정보를 조회하고 회원가입/로그인 처리를 합니다
+         * Android 에서 전달한 OAuth IdToken 및 provider 기반으로 사용자 정보를 조회하고 회원가입/로그인 처리를 합니다. <br>google, kakao 만 해당 api로 로그인 할 수 있습니다(IdToken 방식)IdToken 을 body에 담고, provider는 쿼리 파라미터로 담아서 사용합니다.
          * @summary OAuth 회원가입/로그인 처리
+         * @param {string} provider 
          * @param {IdTokenRequest} idTokenRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        oauthLogin1: async (idTokenRequest: IdTokenRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        oauthLogin1: async (provider: string, idTokenRequest: IdTokenRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'provider' is not null or undefined
+            assertParamExists('oauthLogin1', 'provider', provider)
             // verify required parameter 'idTokenRequest' is not null or undefined
             assertParamExists('oauthLogin1', 'idTokenRequest', idTokenRequest)
             const localVarPath = `/api/v1/oauth/android`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication BearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (provider !== undefined) {
+                localVarQueryParameter['provider'] = provider;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(idTokenRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Android에서 전달한 네이버 사용자 정보를 기반으로 회원가입/로그인 처리를 합니다. <br>네이버는 IdToken 방식을 지원하지 않기 때문에 Android에서 직접 사용자 정보(providerId, email, nickname)를 전달합니다.
+         * @summary 네이버 OAuth 회원가입/로그인 처리
+         * @param {NaverAndroidUserInfoRequest} naverAndroidUserInfoRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        oauthNaverLogin: async (naverAndroidUserInfoRequest: NaverAndroidUserInfoRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'naverAndroidUserInfoRequest' is not null or undefined
+            assertParamExists('oauthNaverLogin', 'naverAndroidUserInfoRequest', naverAndroidUserInfoRequest)
+            const localVarPath = `/api/v1/oauth/android/naver`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -65,7 +114,7 @@ export const OAuth20AndroidAPIApiAxiosParamCreator = function (configuration?: C
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(idTokenRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(naverAndroidUserInfoRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -82,16 +131,30 @@ export const OAuth20AndroidAPIApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = OAuth20AndroidAPIApiAxiosParamCreator(configuration)
     return {
         /**
-         * Android 에서 전달한 OAuth IdToken 을 기반으로 사용자 정보를 조회하고 회원가입/로그인 처리를 합니다
+         * Android 에서 전달한 OAuth IdToken 및 provider 기반으로 사용자 정보를 조회하고 회원가입/로그인 처리를 합니다. <br>google, kakao 만 해당 api로 로그인 할 수 있습니다(IdToken 방식)IdToken 을 body에 담고, provider는 쿼리 파라미터로 담아서 사용합니다.
          * @summary OAuth 회원가입/로그인 처리
+         * @param {string} provider 
          * @param {IdTokenRequest} idTokenRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async oauthLogin1(idTokenRequest: IdTokenRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LoginResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.oauthLogin1(idTokenRequest, options);
+        async oauthLogin1(provider: string, idTokenRequest: IdTokenRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LoginResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.oauthLogin1(provider, idTokenRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['OAuth20AndroidAPIApi.oauthLogin1']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Android에서 전달한 네이버 사용자 정보를 기반으로 회원가입/로그인 처리를 합니다. <br>네이버는 IdToken 방식을 지원하지 않기 때문에 Android에서 직접 사용자 정보(providerId, email, nickname)를 전달합니다.
+         * @summary 네이버 OAuth 회원가입/로그인 처리
+         * @param {NaverAndroidUserInfoRequest} naverAndroidUserInfoRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async oauthNaverLogin(naverAndroidUserInfoRequest: NaverAndroidUserInfoRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LoginResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.oauthNaverLogin(naverAndroidUserInfoRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['OAuth20AndroidAPIApi.oauthNaverLogin']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
@@ -104,14 +167,25 @@ export const OAuth20AndroidAPIApiFactory = function (configuration?: Configurati
     const localVarFp = OAuth20AndroidAPIApiFp(configuration)
     return {
         /**
-         * Android 에서 전달한 OAuth IdToken 을 기반으로 사용자 정보를 조회하고 회원가입/로그인 처리를 합니다
+         * Android 에서 전달한 OAuth IdToken 및 provider 기반으로 사용자 정보를 조회하고 회원가입/로그인 처리를 합니다. <br>google, kakao 만 해당 api로 로그인 할 수 있습니다(IdToken 방식)IdToken 을 body에 담고, provider는 쿼리 파라미터로 담아서 사용합니다.
          * @summary OAuth 회원가입/로그인 처리
+         * @param {string} provider 
          * @param {IdTokenRequest} idTokenRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        oauthLogin1(idTokenRequest: IdTokenRequest, options?: RawAxiosRequestConfig): AxiosPromise<LoginResponse> {
-            return localVarFp.oauthLogin1(idTokenRequest, options).then((request) => request(axios, basePath));
+        oauthLogin1(provider: string, idTokenRequest: IdTokenRequest, options?: RawAxiosRequestConfig): AxiosPromise<LoginResponse> {
+            return localVarFp.oauthLogin1(provider, idTokenRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Android에서 전달한 네이버 사용자 정보를 기반으로 회원가입/로그인 처리를 합니다. <br>네이버는 IdToken 방식을 지원하지 않기 때문에 Android에서 직접 사용자 정보(providerId, email, nickname)를 전달합니다.
+         * @summary 네이버 OAuth 회원가입/로그인 처리
+         * @param {NaverAndroidUserInfoRequest} naverAndroidUserInfoRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        oauthNaverLogin(naverAndroidUserInfoRequest: NaverAndroidUserInfoRequest, options?: RawAxiosRequestConfig): AxiosPromise<LoginResponse> {
+            return localVarFp.oauthNaverLogin(naverAndroidUserInfoRequest, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -121,14 +195,26 @@ export const OAuth20AndroidAPIApiFactory = function (configuration?: Configurati
  */
 export class OAuth20AndroidAPIApi extends BaseAPI {
     /**
-     * Android 에서 전달한 OAuth IdToken 을 기반으로 사용자 정보를 조회하고 회원가입/로그인 처리를 합니다
+     * Android 에서 전달한 OAuth IdToken 및 provider 기반으로 사용자 정보를 조회하고 회원가입/로그인 처리를 합니다. <br>google, kakao 만 해당 api로 로그인 할 수 있습니다(IdToken 방식)IdToken 을 body에 담고, provider는 쿼리 파라미터로 담아서 사용합니다.
      * @summary OAuth 회원가입/로그인 처리
+     * @param {string} provider 
      * @param {IdTokenRequest} idTokenRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public oauthLogin1(idTokenRequest: IdTokenRequest, options?: RawAxiosRequestConfig) {
-        return OAuth20AndroidAPIApiFp(this.configuration).oauthLogin1(idTokenRequest, options).then((request) => request(this.axios, this.basePath));
+    public oauthLogin1(provider: string, idTokenRequest: IdTokenRequest, options?: RawAxiosRequestConfig) {
+        return OAuth20AndroidAPIApiFp(this.configuration).oauthLogin1(provider, idTokenRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Android에서 전달한 네이버 사용자 정보를 기반으로 회원가입/로그인 처리를 합니다. <br>네이버는 IdToken 방식을 지원하지 않기 때문에 Android에서 직접 사용자 정보(providerId, email, nickname)를 전달합니다.
+     * @summary 네이버 OAuth 회원가입/로그인 처리
+     * @param {NaverAndroidUserInfoRequest} naverAndroidUserInfoRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public oauthNaverLogin(naverAndroidUserInfoRequest: NaverAndroidUserInfoRequest, options?: RawAxiosRequestConfig) {
+        return OAuth20AndroidAPIApiFp(this.configuration).oauthNaverLogin(naverAndroidUserInfoRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

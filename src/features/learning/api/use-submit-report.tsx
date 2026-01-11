@@ -15,7 +15,7 @@ export const useSubmitReport = () => {
 			content: string;
 			problemId: number;
 		}) => {
-			const response = await api.learning.submitProblemReport({
+			const response = await api.private.learning.submitProblemReport({
 				reportType,
 				content,
 				problemId,

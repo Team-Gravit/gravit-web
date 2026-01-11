@@ -8,7 +8,7 @@ export const useNoticeList = (page: number) => {
 	return useQuery<NoticeList>({
 		queryKey: ["notice-list", page],
 		queryFn: async () => {
-			const res = await api.notice.getNoticeSummaries(page);
+			const res = await api.private.notice.getNoticeSummaries(page);
 			const data = res.data as SliceResponse & { totalPages?: number };
 
 			if (!data.contents) {

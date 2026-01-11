@@ -9,7 +9,7 @@ import { api } from "@/shared/api";
 export const useRestoreAccount = () => {
 	return useMutation({
 		mutationFn: async (providerId: string) => {
-			const response = await api.public.restore.restoreUser(providerId);
+			const response = await api.public.userRestore.restoreUser(providerId);
 
 			return response.data;
 		},

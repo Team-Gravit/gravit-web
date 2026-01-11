@@ -103,7 +103,7 @@ export function mapToChapterWithLessons(
 	raw: LessonDetailResponse,
 ): ChapterWithLessons {
 	const {
-		chapterSummary,
+		unitSummary,
 		lessonSummaries,
 		bookmarkAccessible,
 		wrongAnsweredNoteAccessible,
@@ -111,9 +111,9 @@ export function mapToChapterWithLessons(
 
 	// 필수 필드 검증
 	if (
-		!chapterSummary?.chapterId ||
-		!chapterSummary?.title ||
-		chapterSummary.description === undefined
+		!unitSummary?.unitId ||
+		!unitSummary?.title ||
+		unitSummary.description === undefined
 	) {
 		throw new Error("Invalid chapter data: missing required fields");
 	}
@@ -122,10 +122,10 @@ export function mapToChapterWithLessons(
 		throw new Error("Invalid unit details: missing or invalid array");
 	}
 
-	const chapterInfo = {
-		chapterId: chapterSummary.chapterId,
-		chapterName: chapterSummary.title,
-		chapterDescription: chapterSummary.description,
+	const unitInfo = {
+		unitId: unitSummary.unitId,
+		unitName: unitSummary.title,
+		unitDescription: unitSummary.description,
 	};
 
 	const lessons: Lesson[] = lessonSummaries.map((lessonSummary) => {
@@ -147,7 +147,7 @@ export function mapToChapterWithLessons(
 	const hasIncorrectProblems = wrongAnsweredNoteAccessible;
 
 	return {
-		chapterInfo,
+		unitInfo,
 		hasBookmarkedProblems,
 		hasIncorrectProblems,
 		lessons,

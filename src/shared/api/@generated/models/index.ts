@@ -34,6 +34,7 @@ export * from './mission-completed-event';
 export * from './mission-detail';
 export * from './my-league-rank-with-profile-response';
 export * from './my-page-response';
+export * from './naver-android-user-info-request';
 export * from './notice-create-request';
 export * from './notice-detail-response';
 export * from './notice-update-request';
