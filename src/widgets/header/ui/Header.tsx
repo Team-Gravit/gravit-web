@@ -28,7 +28,7 @@ export default function Header({ className }: { className?: string }) {
 					style={{ color: profileBgColor }}
 					className="w-[40px] h-[40px]"
 				/>
-				<span className="text-black font-bold text-xl leading-normal">
+				<span className="hidden lg:block text-black font-bold text-xl leading-normal">
 					어서오세요, {data.nickname}님
 				</span>
 				<button
