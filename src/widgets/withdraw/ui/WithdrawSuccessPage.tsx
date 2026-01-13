@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import CheckIcon from "@/shared/assets/icons/check.svg?react";
-import AppCenterLogo from "@/shared/assets/images/logo-ac.png";
 import Logo from "@/shared/assets/icons/logo-gr.svg?react";
+import AppCenterLogo from "@/shared/assets/images/logo-ac.png";
 
 export default function WithdrawSuccessPage() {
 	return (

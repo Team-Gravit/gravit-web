@@ -1,4 +1,4 @@
-import { type RefObject } from "react";
+import type { RefObject } from "react";
 import type { Follow } from "@/entities/follow/model/types";
 import FollowListItem from "@/features/follow/FollowListItem";
 

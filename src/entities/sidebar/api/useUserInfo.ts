@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { api } from "@/shared/api";
 import { mapToUserInfo } from "@/entities/sidebar/model/mappers";
 import type { UserInfo } from "@/entities/sidebar/model/types";
+import { api } from "@/shared/api";
 
 export const useUserInfo = () => {
 	return useQuery<UserInfo>({

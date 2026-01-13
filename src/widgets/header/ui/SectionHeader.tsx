@@ -1,4 +1,4 @@
-import { useNavigate, useLocation } from "@tanstack/react-router";
+import { useLocation, useNavigate } from "@tanstack/react-router";
 import LeftArrow from "@/shared/assets/icons/buttons/left-arrow.svg?react";
 
 interface SectionHeaderProps {

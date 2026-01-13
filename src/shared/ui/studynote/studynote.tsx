@@ -1,8 +1,8 @@
+import type { FC } from "react";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
-import remarkGfm from "remark-gfm";
 import rehypeSanitize from "rehype-sanitize";
-import type { FC } from "react";
+import remarkGfm from "remark-gfm";
 
 const StudyNote: FC<{ content: string }> = ({ content }) => {
 	const lines = content.split(/\r?\n/).filter((line) => line.trim() !== "");

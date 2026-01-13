@@ -1,10 +1,10 @@
 import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "@tanstack/react-router";
+import type { AxiosError } from "axios";
 import { api } from "@/shared/api";
 import type { AuthCodeRequest } from "@/shared/api/@generated";
-import { toast } from "@/shared/lib/toast";
-import type { AxiosError } from "axios";
-import { useRouter } from "@tanstack/react-router";
 import { STORAGE_KEYS } from "@/shared/config/storage";
+import { toast } from "@/shared/lib/toast";
 
 export function usePostOAuth() {
 	const router = useRouter();

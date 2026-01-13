@@ -1,6 +1,6 @@
+import { Link } from "@tanstack/react-router";
 import Mascot401Icon from "@/shared/assets/icons/ic-mascot-401.svg?react";
 import ErrorPageTemplate from "./ErrorPageTemplate";
-import { Link } from "@tanstack/react-router";
 
 export default function Page401Component() {
 	return (

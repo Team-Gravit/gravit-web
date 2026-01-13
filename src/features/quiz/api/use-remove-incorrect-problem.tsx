@@ -1,8 +1,8 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { learningKeys } from "@/entities/learning/api/query-keys";
 import { api, type LessonResponse } from "@/shared/api";
 import type { ProblemSubmissionRequest } from "@/shared/api/@generated";
 import { toast } from "@/shared/lib/toast";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 interface UseRemoveIncorrectProblemParams {
 	unitId: number;
@@ -15,9 +15,10 @@ export const useRemoveIncorrectProblem = ({
 
 	return useMutation({
 		mutationFn: async (problemId: number) => {
-			const response = await api.private.learning.deleteWrongAnsweredNote({
-				problemId,
-			});
+			const response =
+				await api.private.wrongAnsweredNote.deleteWrongAnsweredProblem({
+					problemId,
+				});
 			return response.data;
 		},
 
@@ -65,8 +66,7 @@ export const useRemoveIncorrectProblem = ({
 export const useSubmitProblemResult = () => {
 	return useMutation({
 		mutationFn: async (request: ProblemSubmissionRequest) => {
-			const response =
-				await api.private.learning.saveProblemSubmission(request);
+			const response = await api.private.problem.saveProblemSubmission(request);
 			return response.data;
 		},
 	});

@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { api } from "@/shared/api/index";
 import { mapToUserBadges } from "@/entities/sidebar/model/mappers";
 import type { UserBadges } from "@/entities/sidebar/model/types";
+import { api } from "@/shared/api/index";
 
 export const useBadges = () => {
 	return useQuery<UserBadges>({

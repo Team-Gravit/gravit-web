@@ -1,12 +1,12 @@
+import { useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
+import { useToggleFollowModal } from "@/entities/follow/api/postFollowButton";
+import { useRejectFollow } from "@/entities/follow/api/rejectFollowButton";
 import type { Follow } from "@/entities/follow/model/types";
+import type { UserInfo } from "@/entities/sidebar/model/types";
+import X from "@/shared/assets/icons/buttons/x.svg?react";
 import Profile from "@/shared/assets/icons/profile2.svg?react";
 import { PROFILE_COLORS } from "@/shared/lib/ProfileColor";
-import X from "@/shared/assets/icons/buttons/x.svg?react";
-import type { UserInfo } from "@/entities/sidebar/model/types";
-import { useToggleFollowModal } from "@/entities/follow/api/postFollowButton";
-import { useQueryClient } from "@tanstack/react-query";
-import { useRejectFollow } from "@/entities/follow/api/rejectFollowButton";
 
 interface Props {
 	item: Follow;

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { api } from "@/shared/api";
 import { learningKeys } from "@/entities/learning/api/query-keys";
+import { api } from "@/shared/api";
 
 export const useFetchMainInfo = () => {
 	const query = useQuery({

@@ -21,7 +21,7 @@ export interface AnswerResponse {
     /**
      * 정답 내용
      */
-    'content'?: string;
+    'contents'?: Array<string>;
     /**
      * 정답 해설
      */

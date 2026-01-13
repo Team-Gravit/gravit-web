@@ -1,7 +1,7 @@
+import { privateApiClient } from "@/shared/api/config";
 import type { ApiResponse } from "@/shared/api/types";
 import type { Chapter } from "../model/types";
-import type { ProblemListResponseDTO, ChapterDetailResponseDTO } from "./dto";
-import { privateApiClient } from "@/shared/api/config";
+import type { ChapterDetailResponseDTO, ProblemListResponseDTO } from "./dto";
 
 export const learningApi = {
 	/** 전체 챕터 정보 */

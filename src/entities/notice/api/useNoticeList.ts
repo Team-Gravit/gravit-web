@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { api } from "@/shared/api";
-import type { NoticeList, NoticeItem } from "@/entities/notice/model/types";
 import { mapToNoticeList } from "@/entities/notice/model/mappers";
+import type { NoticeItem, NoticeList } from "@/entities/notice/model/types";
+import { api } from "@/shared/api";
 import type { SliceResponse } from "@/shared/api/@generated";
 
 export const useNoticeList = (page: number) => {

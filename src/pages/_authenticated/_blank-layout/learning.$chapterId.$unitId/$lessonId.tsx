@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import LessonQuizComponent from "@/widgets/learning-widget/ui/LessonQuizComponent";
 import { QuizStoreProvider } from "@/features/quiz/model/quiz-store-context";
+import LessonQuizComponent from "@/widgets/learning-widget/ui/LessonQuizComponent";
 
 export const Route = createFileRoute(
 	"/_authenticated/_blank-layout/learning/$chapterId/$unitId/$lessonId",

@@ -1,11 +1,11 @@
-import LearningProgressInfo from "@/widgets/learning-widget/LearningProgressInfo";
+import { Link, useRouter } from "@tanstack/react-router";
+import { useQuizSessionState } from "@/features/quiz/model/quiz-session-store";
 import Mascot from "@/shared/assets/icons/end-mascot.svg?react";
-import { StatCard } from "@/shared/ui/card/StatCard";
 import bookImg from "@/shared/assets/images/books.png";
 import playImg from "@/shared/assets/images/play.png";
-import { Link, useRouter } from "@tanstack/react-router";
+import { StatCard } from "@/shared/ui/card/StatCard";
+import LearningProgressInfo from "@/widgets/learning-widget/LearningProgressInfo";
 import formatTime from "./lib/formatTime";
-import { useQuizSessionState } from "@/features/quiz/model/quiz-session-store";
 
 export default function QuizResultWidget() {
 	const router = useRouter();

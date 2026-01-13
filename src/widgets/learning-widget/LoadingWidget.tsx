@@ -1,7 +1,7 @@
-import LoadingSpinner from "@/shared/assets/icons/spinner.svg?react";
-import loadingGif from "./assets/lesson-loading.gif";
-import { cn } from "@/shared/lib/cn";
 import { useLayoutEffect } from "react";
+import LoadingSpinner from "@/shared/assets/icons/spinner.svg?react";
+import { cn } from "@/shared/lib/cn";
+import loadingGif from "./assets/lesson-loading.gif";
 
 const LEARNING_TIPS = [
 	{

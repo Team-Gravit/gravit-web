@@ -1,10 +1,10 @@
-import cardBackground from "@/shared/assets/images/card-bg.webp";
-import InfoCircle from "@/shared/assets/icons/info-circle.svg?react";
+import type { Chapter } from "@/entities/learning/model/types";
 import LessonProgressBar from "@/entities/learning/ui/LessonProgressBar";
+import InfoCircle from "@/shared/assets/icons/info-circle.svg?react";
+import cardBackground from "@/shared/assets/images/card-bg.webp";
+import { cn } from "@/shared/lib/cn";
 import { getPlanetImage } from "@/shared/lib/planet/utils";
 import Tooltip from "@/shared/ui/tooltip/Tooltip";
-import type { Chapter } from "@/entities/learning/model/types";
-import { cn } from "@/shared/lib/cn";
 
 function ChapterCard({
 	chapter,

@@ -1,13 +1,13 @@
-import mercuryImg from "./Mercury.png";
-import venusImg from "./Venus.png";
+import activeAsteroidImg from "./active-asteroid.png";
 import earthImg from "./Earth.png";
-import marsImg from "./Mars.png";
+import inactiveAsteroidImg from "./inactive-asteroid.png";
 import jupiterImg from "./Jupiter.png";
+import marsImg from "./Mars.png";
+import mercuryImg from "./Mercury.png";
+import neptuneImg from "./Neptune.png";
 import saturnImg from "./Saturn.png";
 import uranusImg from "./Uranus.png";
-import neptuneImg from "./Neptune.png";
-import inactiveAsteroidImg from "./inactive-asteroid.png";
-import activeAsteroidImg from "./active-asteroid.png";
+import venusImg from "./Venus.png";
 
 export const PLANET_IMAGES = {
 	1: mercuryImg,

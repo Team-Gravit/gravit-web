@@ -1,8 +1,8 @@
-import { cn } from "@/shared/lib/cn";
-import type { UserAnswer } from "../../model/types";
-import { useQuizSessionState } from "../../model/quiz-session-store";
-import RemoveFromIncorrectListBtn from "./RemoveFromMistakeListBtn";
 import type { Answer } from "@/entities/learning/model/types";
+import { cn } from "@/shared/lib/cn";
+import { useQuizSessionState } from "../../model/quiz-session-store";
+import type { UserAnswer } from "../../model/types";
+import RemoveFromIncorrectListBtn from "./RemoveFromMistakeListBtn";
 
 export default function SubjectiveReviewer({
 	userAnswer,

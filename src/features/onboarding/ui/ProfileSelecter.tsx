@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import RightArrow from "@/shared/assets/icons/buttons/right-gray-arrow.svg?react";
+import { useEffect, useState } from "react";
 import LeftArrow from "@/shared/assets/icons/buttons/left-gray-arrow.svg?react";
+import RightArrow from "@/shared/assets/icons/buttons/right-gray-arrow.svg?react";
 import Profile from "@/shared/assets/icons/profile2.svg?react";
 import { PROFILE_COLORS } from "@/shared/lib/ProfileColor";
 

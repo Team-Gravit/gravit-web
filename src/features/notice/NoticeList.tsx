@@ -1,6 +1,6 @@
 import { useNavigate } from "@tanstack/react-router";
-import RightArrow from "@/shared/assets/icons/buttons/right-arrow.svg?react";
 import type { NoticeItem } from "@/entities/notice/model/types";
+import RightArrow from "@/shared/assets/icons/buttons/right-arrow.svg?react";
 
 interface NoticeListProps {
 	notices: NoticeItem[];

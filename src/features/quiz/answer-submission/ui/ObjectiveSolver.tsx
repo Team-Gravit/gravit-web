@@ -1,9 +1,9 @@
 import { useState } from "react";
-import ObjectiveOptionItem from "./ObjectiveOptionItem";
 import type { Option } from "@/entities/learning/model/types";
+import { api } from "@/shared/api";
 import { useQuizSessionState } from "../../model/quiz-session-store";
 import { useQuizContext } from "../../model/use-quiz-context";
-import { api } from "@/shared/api";
+import ObjectiveOptionItem from "./ObjectiveOptionItem";
 
 export default function ObjectiveSolver({ options }: { options: Option[] }) {
 	const saveUserAnswer = useQuizSessionState((state) => state.saveUserAnswer);
@@ -30,7 +30,7 @@ export default function ObjectiveSolver({ options }: { options: Option[] }) {
 		// 2. STREAM 모드면 즉시 서버 전송
 		if (strategy === "STREAM") {
 			submitResults(async () => {
-				await api.private.learning.saveProblemSubmission({
+				await api.private.problem.saveProblemSubmission({
 					problemId: selectedOption.problemId,
 					isCorrect: selectedOption.isAnswer,
 				});

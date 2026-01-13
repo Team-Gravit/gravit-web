@@ -1,5 +1,5 @@
-import bannerImage from "@/shared/assets/images/banner2.webp";
 import type { FC } from "react";
+import bannerImage from "@/shared/assets/images/banner2.webp";
 
 type Banner2Props = {
 	subject?: string;

@@ -1,7 +1,7 @@
 import type { Problem } from "@/entities/learning/model/types";
 import type { UserAnswer } from "@/features/quiz/model/types";
-import IncorrectSubjectiveReviewer from "./IncorrectSubjectiveReviewer";
 import IncorrectObjectiveReviewer from "./IncorrectObjectiveReviewer";
+import IncorrectSubjectiveReviewer from "./IncorrectSubjectiveReviewer";
 
 interface ReviewPhaseProps {
 	problem: Problem;

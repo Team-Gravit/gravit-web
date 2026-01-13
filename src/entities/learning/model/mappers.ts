@@ -155,11 +155,11 @@ export function mapToChapterWithLessons(
 }
 
 function mapToAnswer(raw: AnswerResponse | undefined): Answer {
-	if (!raw?.content || !raw?.explanation) {
+	if (!raw?.contents || !raw?.explanation) {
 		throw new Error("Invalid answer: missing required fields");
 	}
 	return {
-		content: raw.content.split(",").map((s) => s.trim()),
+		content: raw.contents,
 		explanation: raw.explanation,
 	};
 }

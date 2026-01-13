@@ -1,7 +1,7 @@
 import { createFileRoute, Outlet } from "@tanstack/react-router";
-import Page401Component from "@/widgets/error-widget/Page401Component";
-import { tokenManager } from "@/shared/api/config";
 import { api } from "@/shared/api";
+import { tokenManager } from "@/shared/api/config";
+import Page401Component from "@/widgets/error-widget/Page401Component";
 
 export const Route = createFileRoute("/_authenticated")({
 	beforeLoad: async () => {

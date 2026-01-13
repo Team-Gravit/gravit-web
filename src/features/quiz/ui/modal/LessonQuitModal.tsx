@@ -1,7 +1,7 @@
 import { useRouter } from "@tanstack/react-router";
+import Modal from "@/widgets/modal/modal";
 import { useLessonModalStore } from "../../model/use-lesson-modal-store";
 import RabbitIcon from "./assets/mascot-sad.svg?react";
-import Modal from "@/widgets/modal/modal";
 
 export const LessonQuitModal = () => {
 	const { isQuitOpen, closeQuitModal } = useLessonModalStore();

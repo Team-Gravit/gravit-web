@@ -1,8 +1,8 @@
 import type { Option } from "@/entities/learning/model/types";
-import { cn } from "@/shared/lib/cn";
-import XIcon from "@/shared/assets/icons/x-light.svg?react";
-import CheckIcon from "@/shared/assets/icons/check-light.svg?react";
 import RemoveFromIncorrectListBtn from "@/features/quiz/answer-review/ui/RemoveFromMistakeListBtn";
+import CheckIcon from "@/shared/assets/icons/check-light.svg?react";
+import XIcon from "@/shared/assets/icons/x-light.svg?react";
+import { cn } from "@/shared/lib/cn";
 
 export default function IncorrectObjectiveReviewerItem({
 	option,

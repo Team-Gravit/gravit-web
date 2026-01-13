@@ -28,6 +28,8 @@ import type { FollowCountsResponse } from '../models';
 // @ts-ignore
 import type { FriendResponse } from '../models';
 // @ts-ignore
+import type { SliceResponse } from '../models';
+// @ts-ignore
 import type { SliceResponseFollowerResponse } from '../models';
 // @ts-ignore
 import type { SliceResponseFollowingResponse } from '../models';
@@ -225,6 +227,52 @@ export const FriendAPIApiAxiosParamCreator = function (configuration?: Configura
             };
         },
         /**
+         * 사용자 핸들&닉네임 으로 팔로우 대상 검색을 수행합니다.<br> - (핸들의 경우) <br> - 입력이 \'@\' 부터 시작하면 handle 기반 조회를 시도합니다. <br> - 입력은 정규화됩니다: 선두 \'@\' 제거, 유니코드 정규화(NFKC), 소문자화, 허용 문자만 유지(소문자,숫자).<br> - 매칭 우선순위: 정확 일치 > 접두 일치 > 부분 일치.<br> - (닉네임의 경우) <br> - 입력이 문자(알파벳, 한글) 이나 숫자로 시작하면 nickname 기반 조회를 시도합니다 <br> - 입력은 정규화 됩니다. 유니코드 정규화(NFKC), 소문자화, 허용 문자만 유지(소문자, 한글, 숫자).<br> - 매칭 우선순위: 정확 일치 > 접두 일치 > 부분 일치.<br> 🔐 <strong>Jwt 필요</strong><br> 🔐 <strong>다음 페이지가 존재하면 hasNextPage 가 true, 없으면 false</strong><br> 
+         * @summary 핸들&닉네임 검색
+         * @param {string} queryText 검색할 핸들 문자열 (선두 \&#39;@\&#39; 허용, 대소문자 무시)
+         * @param {number} [page] 0부터 시작하는 페이지 인덱스
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        search: async (queryText: string, page?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'queryText' is not null or undefined
+            assertParamExists('search', 'queryText', queryText)
+            const localVarPath = `/api/v1/friends/search`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication BearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (queryText !== undefined) {
+                localVarQueryParameter['queryText'] = queryText;
+            }
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * 다른 사용자에 대한 팔로잉을 취소합니다<br>🔐 <strong>Jwt 필요</strong><br>
          * @summary 언팔로잉
          * @param {number} followeeId 언팔로잉할 대상 유저 ID
@@ -336,6 +384,20 @@ export const FriendAPIApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
+         * 사용자 핸들&닉네임 으로 팔로우 대상 검색을 수행합니다.<br> - (핸들의 경우) <br> - 입력이 \'@\' 부터 시작하면 handle 기반 조회를 시도합니다. <br> - 입력은 정규화됩니다: 선두 \'@\' 제거, 유니코드 정규화(NFKC), 소문자화, 허용 문자만 유지(소문자,숫자).<br> - 매칭 우선순위: 정확 일치 > 접두 일치 > 부분 일치.<br> - (닉네임의 경우) <br> - 입력이 문자(알파벳, 한글) 이나 숫자로 시작하면 nickname 기반 조회를 시도합니다 <br> - 입력은 정규화 됩니다. 유니코드 정규화(NFKC), 소문자화, 허용 문자만 유지(소문자, 한글, 숫자).<br> - 매칭 우선순위: 정확 일치 > 접두 일치 > 부분 일치.<br> 🔐 <strong>Jwt 필요</strong><br> 🔐 <strong>다음 페이지가 존재하면 hasNextPage 가 true, 없으면 false</strong><br> 
+         * @summary 핸들&닉네임 검색
+         * @param {string} queryText 검색할 핸들 문자열 (선두 \&#39;@\&#39; 허용, 대소문자 무시)
+         * @param {number} [page] 0부터 시작하는 페이지 인덱스
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async search(queryText: string, page?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SliceResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.search(queryText, page, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FriendAPIApi.search']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * 다른 사용자에 대한 팔로잉을 취소합니다<br>🔐 <strong>Jwt 필요</strong><br>
          * @summary 언팔로잉
          * @param {number} followeeId 언팔로잉할 대상 유저 ID
@@ -407,6 +469,17 @@ export const FriendAPIApiFactory = function (configuration?: Configuration, base
             return localVarFp.rejectFollowing(followerId, options).then((request) => request(axios, basePath));
         },
         /**
+         * 사용자 핸들&닉네임 으로 팔로우 대상 검색을 수행합니다.<br> - (핸들의 경우) <br> - 입력이 \'@\' 부터 시작하면 handle 기반 조회를 시도합니다. <br> - 입력은 정규화됩니다: 선두 \'@\' 제거, 유니코드 정규화(NFKC), 소문자화, 허용 문자만 유지(소문자,숫자).<br> - 매칭 우선순위: 정확 일치 > 접두 일치 > 부분 일치.<br> - (닉네임의 경우) <br> - 입력이 문자(알파벳, 한글) 이나 숫자로 시작하면 nickname 기반 조회를 시도합니다 <br> - 입력은 정규화 됩니다. 유니코드 정규화(NFKC), 소문자화, 허용 문자만 유지(소문자, 한글, 숫자).<br> - 매칭 우선순위: 정확 일치 > 접두 일치 > 부분 일치.<br> 🔐 <strong>Jwt 필요</strong><br> 🔐 <strong>다음 페이지가 존재하면 hasNextPage 가 true, 없으면 false</strong><br> 
+         * @summary 핸들&닉네임 검색
+         * @param {string} queryText 검색할 핸들 문자열 (선두 \&#39;@\&#39; 허용, 대소문자 무시)
+         * @param {number} [page] 0부터 시작하는 페이지 인덱스
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        search(queryText: string, page?: number, options?: RawAxiosRequestConfig): AxiosPromise<SliceResponse> {
+            return localVarFp.search(queryText, page, options).then((request) => request(axios, basePath));
+        },
+        /**
          * 다른 사용자에 대한 팔로잉을 취소합니다<br>🔐 <strong>Jwt 필요</strong><br>
          * @summary 언팔로잉
          * @param {number} followeeId 언팔로잉할 대상 유저 ID
@@ -475,6 +548,18 @@ export class FriendAPIApi extends BaseAPI {
      */
     public rejectFollowing(followerId: number, options?: RawAxiosRequestConfig) {
         return FriendAPIApiFp(this.configuration).rejectFollowing(followerId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 사용자 핸들&닉네임 으로 팔로우 대상 검색을 수행합니다.<br> - (핸들의 경우) <br> - 입력이 \'@\' 부터 시작하면 handle 기반 조회를 시도합니다. <br> - 입력은 정규화됩니다: 선두 \'@\' 제거, 유니코드 정규화(NFKC), 소문자화, 허용 문자만 유지(소문자,숫자).<br> - 매칭 우선순위: 정확 일치 > 접두 일치 > 부분 일치.<br> - (닉네임의 경우) <br> - 입력이 문자(알파벳, 한글) 이나 숫자로 시작하면 nickname 기반 조회를 시도합니다 <br> - 입력은 정규화 됩니다. 유니코드 정규화(NFKC), 소문자화, 허용 문자만 유지(소문자, 한글, 숫자).<br> - 매칭 우선순위: 정확 일치 > 접두 일치 > 부분 일치.<br> 🔐 <strong>Jwt 필요</strong><br> 🔐 <strong>다음 페이지가 존재하면 hasNextPage 가 true, 없으면 false</strong><br> 
+     * @summary 핸들&닉네임 검색
+     * @param {string} queryText 검색할 핸들 문자열 (선두 \&#39;@\&#39; 허용, 대소문자 무시)
+     * @param {number} [page] 0부터 시작하는 페이지 인덱스
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public search(queryText: string, page?: number, options?: RawAxiosRequestConfig) {
+        return FriendAPIApiFp(this.configuration).search(queryText, page, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

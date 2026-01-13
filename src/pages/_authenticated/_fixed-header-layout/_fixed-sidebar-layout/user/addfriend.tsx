@@ -1,11 +1,11 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useState, useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
-import SectionHeader from "@/widgets/header/ui/SectionHeader";
+import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import { useToggleFollow } from "@/entities/friends/api/postFollowButton";
+import { useFriendList } from "@/entities/friends/api/useFriendList";
 import FriendList from "@/entities/friends/ui/FriendList";
 import SearchFriend from "@/features/friends/SearchFriend";
-import { useFriendList } from "@/entities/friends/api/useFriendList";
-import { useToggleFollow } from "@/entities/friends/api/postFollowButton";
+import SectionHeader from "@/widgets/header/ui/SectionHeader";
 
 export const Route = createFileRoute(
 	"/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/addfriend",

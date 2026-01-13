@@ -1,15 +1,15 @@
 // src/entities/league/model/mappers.ts
 import type {
-	LeagueResponse,
-	LeagueRankRow,
-	MyLeagueRankWithProfileResponse,
 	LastSeasonPopupDto,
+	LeagueRankRow,
+	LeagueResponse,
+	MyLeagueRankWithProfileResponse,
 } from "@/shared/api/@generated";
 import type {
-	LeagueInfo,
-	UserLeagues,
-	UserLeagueInfo,
 	LastSeasonPopup,
+	LeagueInfo,
+	UserLeagueInfo,
+	UserLeagues,
 } from "./types";
 
 /** OpenAPI LeagueResponse → 프론트엔드 LeagueInfo */

@@ -1,5 +1,5 @@
-import type { UserAnswer } from "../../model/types";
 import type { Option } from "@/entities/learning/model/types";
+import type { UserAnswer } from "../../model/types";
 import ObjectiveReviewerItem from "./ObjectiveReviewerItem";
 
 export default function ObjectiveReviewer({

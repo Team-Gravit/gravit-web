@@ -1,10 +1,10 @@
 import type { LastSeasonPopupDto } from "@/shared/api/@generated";
-import SeasonEnd from "@/shared/assets/icons/season-end.svg?react";
-import { PROFILE_COLORS } from "@/shared/lib/ProfileColor";
-import Profile from "@/shared/assets/icons/profile2.svg?react";
-import { tiers } from "@/shared/lib/tiers";
 import LeafLeft from "@/shared/assets/icons/leaf-left.svg?react";
 import LeafRight from "@/shared/assets/icons/leaf-right.svg?react";
+import Profile from "@/shared/assets/icons/profile2.svg?react";
+import SeasonEnd from "@/shared/assets/icons/season-end.svg?react";
+import { PROFILE_COLORS } from "@/shared/lib/ProfileColor";
+import { tiers } from "@/shared/lib/tiers";
 
 interface SeasonEndModalProps {
 	popup: LastSeasonPopupDto;

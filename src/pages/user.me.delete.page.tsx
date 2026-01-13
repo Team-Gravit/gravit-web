@@ -2,11 +2,11 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { z } from "zod";
 import { useConfirmWithdraw } from "@/features/user/delete-user/api/useWithdraw";
-import WithdrawSuccessPage from "@/widgets/withdraw/ui/WithdrawSuccessPage";
-import WithdrawFailedPage from "@/widgets/withdraw/ui/WithdrawFailedPage";
 import MascotIcon from "@/shared/assets/icons/ic-mascot-error.svg?react";
 import Logo from "@/shared/assets/icons/logo-gr.svg?react";
 import AppCenterLogo from "@/shared/assets/images/logo-ac.png";
+import WithdrawFailedPage from "@/widgets/withdraw/ui/WithdrawFailedPage";
+import WithdrawSuccessPage from "@/widgets/withdraw/ui/WithdrawSuccessPage";
 
 export const Route = createFileRoute("/user/me/delete/page")({
 	component: RouteComponent,
@@ -16,7 +16,7 @@ export const Route = createFileRoute("/user/me/delete/page")({
 });
 
 function RouteComponent() {
-const { mailAuthCode } = Route.useSearch();
+	const { mailAuthCode } = Route.useSearch();
 	const confirmWithdraw = useConfirmWithdraw();
 	const [isConfirmed, setIsConfirmed] = useState(false);
 

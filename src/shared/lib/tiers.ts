@@ -1,18 +1,18 @@
 import Bronze1 from "@/shared/assets/icons/tiers/Bronze1.svg?react";
 import Bronze2 from "@/shared/assets/icons/tiers/Bronze2.svg?react";
 import Bronze3 from "@/shared/assets/icons/tiers/Bronze3.svg?react";
-import Silver1 from "@/shared/assets/icons/tiers/Silver1.svg?react";
-import Silver2 from "@/shared/assets/icons/tiers/Silver2.svg?react";
-import Silver3 from "@/shared/assets/icons/tiers/Silver3.svg?react";
+import Diamond1 from "@/shared/assets/icons/tiers/Diamond1.svg?react";
+import Diamond2 from "@/shared/assets/icons/tiers/Diamond2.svg?react";
+import Diamond3 from "@/shared/assets/icons/tiers/Diamond3.svg?react";
 import Gold1 from "@/shared/assets/icons/tiers/Gold1.svg?react";
 import Gold2 from "@/shared/assets/icons/tiers/Gold2.svg?react";
 import Gold3 from "@/shared/assets/icons/tiers/Gold3.svg?react";
 import Platinum1 from "@/shared/assets/icons/tiers/Platinum1.svg?react";
 import Platinum2 from "@/shared/assets/icons/tiers/Platinum2.svg?react";
 import Platinum3 from "@/shared/assets/icons/tiers/Platinum3.svg?react";
-import Diamond1 from "@/shared/assets/icons/tiers/Diamond1.svg?react";
-import Diamond2 from "@/shared/assets/icons/tiers/Diamond2.svg?react";
-import Diamond3 from "@/shared/assets/icons/tiers/Diamond3.svg?react";
+import Silver1 from "@/shared/assets/icons/tiers/Silver1.svg?react";
+import Silver2 from "@/shared/assets/icons/tiers/Silver2.svg?react";
+import Silver3 from "@/shared/assets/icons/tiers/Silver3.svg?react";
 
 export const tiers = [
 	{ id: 1, name: "브론즈 3", icon: Bronze3 },

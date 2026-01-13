@@ -1,9 +1,9 @@
 import type { Option } from "@/entities/learning/model/types";
 import { cn } from "@/shared/lib/cn";
-import XIcon from "./assets/x-light.svg?react";
-import CheckIcon from "./assets/check-light.svg?react";
-import RemoveFromIncorrectListBtn from "./RemoveFromMistakeListBtn";
 import { useQuizSessionState } from "../../model/quiz-session-store";
+import CheckIcon from "./assets/check-light.svg?react";
+import XIcon from "./assets/x-light.svg?react";
+import RemoveFromIncorrectListBtn from "./RemoveFromMistakeListBtn";
 
 export default function ObjectiveReviewerItem({
 	option,

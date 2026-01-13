@@ -1,7 +1,7 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { api } from "@/shared/api";
-import type { FollowList } from "@/entities/follow/model/types";
 import { mapToFollowList } from "@/entities/follow/model/mappers";
+import type { FollowList } from "@/entities/follow/model/types";
+import { api } from "@/shared/api";
 
 export const useFollowingList = () => {
 	return useInfiniteQuery<FollowList>({

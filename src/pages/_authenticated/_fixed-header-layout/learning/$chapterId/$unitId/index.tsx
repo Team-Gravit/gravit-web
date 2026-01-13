@@ -1,13 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { BackgroundLayout } from "@/shared/ui/background/background";
-import backgroundImg from "@/shared/assets/images/background.jpg";
-import NextIcon from "@/shared/assets/icons/ic-right-arrow.svg?react";
-import BookmarkIcon from "@/shared/assets/icons/ic-bookmark.svg?react";
+import ContentSectionHeader from "@/entities/chapter/ContentSectionHeader";
 import { useFetchLessons } from "@/entities/learning/model/hooks";
+import BookmarkIcon from "@/shared/assets/icons/ic-bookmark.svg?react";
+import NextIcon from "@/shared/assets/icons/ic-right-arrow.svg?react";
+import backgroundImg from "@/shared/assets/images/background.jpg";
+import { cn } from "@/shared/lib/cn";
 // import { useNavigate } from "@tanstack/react-router";
 import { toast } from "@/shared/lib/toast";
-import { cn } from "@/shared/lib/cn";
-import ContentSectionHeader from "@/entities/chapter/ContentSectionHeader";
+import { BackgroundLayout } from "@/shared/ui/background/background";
 
 export const Route = createFileRoute(
 	"/_authenticated/_fixed-header-layout/learning/$chapterId/$unitId/",

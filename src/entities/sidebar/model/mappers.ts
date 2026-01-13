@@ -1,10 +1,10 @@
 import type {
-	MyPageResponse,
 	AllBadgesResponse,
 	BadgeCategoryResponse,
 	BadgeResponse,
+	MyPageResponse,
 } from "@/shared/api/@generated";
-import type { UserInfo, Badge, BadgeCategory, UserBadges } from "./types";
+import type { Badge, BadgeCategory, UserBadges, UserInfo } from "./types";
 
 /** OpenAPI MyPageResponse → 프론트엔드 UserInfo */
 export function mapToUserInfo(raw: MyPageResponse): UserInfo {
