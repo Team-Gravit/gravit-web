@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import type { ToastProps } from "../../lib/toast/types";
 // import type { ToastProps } from "../../lib/toast/types";
 import { cn } from "@/shared/lib/cn";
+import type { ToastProps } from "../../lib/toast/types";
 
 const ANIMATION_TIME = 500;
 

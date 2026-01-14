@@ -1,14 +1,14 @@
-import LoadingWidget from "@/widgets/learning-widget/LoadingWidget";
-import { useMinimumLoadingTime } from "@/widgets/learning-widget/lib/useMinimumLoadingTime";
+import { useRouter } from "@tanstack/react-router";
 import { useEffect } from "react";
-import QuizHeader from "@/widgets/learning-widget/QuizHeader";
-import QuizProgressBar from "@/widgets/learning-widget/QuizProgressBar";
+import { useFetchIncorrectProblems } from "@/entities/learning/model/use-fetch-incorrect-problems";
 import ProblemStatement from "@/entities/learning/ui/ProblemStatement";
 import { useQuizSessionState } from "@/features/quiz/model/quiz-session-store";
-import { useFetchIncorrectProblems } from "@/entities/learning/model/use-fetch-incorrect-problems";
-import { useRouter } from "@tanstack/react-router";
 import ReportModal from "@/features/quiz/ui/modal/ReportModal";
 import ReportResultModal from "@/features/quiz/ui/modal/ReportResultModal";
+import LoadingWidget from "@/widgets/learning-widget/LoadingWidget";
+import { useMinimumLoadingTime } from "@/widgets/learning-widget/lib/useMinimumLoadingTime";
+import QuizHeader from "@/widgets/learning-widget/QuizHeader";
+import QuizProgressBar from "@/widgets/learning-widget/QuizProgressBar";
 import IncorrectInteraction from "../quiz/incorrect/IncorrectInteraction";
 
 export default function IncorrectQuizComponent({ unitId }: { unitId: string }) {

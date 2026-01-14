@@ -1,5 +1,5 @@
-import { cn } from "@/shared/lib/cn";
 import { Link } from "@tanstack/react-router";
+import { cn } from "@/shared/lib/cn";
 
 export default function StartMissionButton({
 	isCompleted,

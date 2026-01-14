@@ -1,5 +1,5 @@
-import Profile2 from "@/shared/assets/icons/profile2.svg?react";
 import LevelProgressCircle from "@/entities/league/ui/LevelProgressCircle";
+import Profile2 from "@/shared/assets/icons/profile2.svg?react";
 import { PROFILE_COLORS } from "@/shared/lib/ProfileColor";
 
 interface User {

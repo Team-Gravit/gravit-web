@@ -8,7 +8,9 @@ export const useFetchIncorrectProblems = (unitId: number) => {
 		queryKey: learningKeys.unitWrongAnswers(unitId),
 		queryFn: async () => {
 			const response =
-				await api.private.learning.getWrongAnsweredProblemsInUnit(unitId);
+				await api.private.wrongAnsweredNote.getAllWrongAnsweredProblemInUnit(
+					unitId,
+				);
 
 			return mapToProblemsWithUnitSummary(response.data);
 		},

@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { api } from "@/shared/api";
 import type { AxiosError } from "axios";
-import type { UserProfile } from "@/entities/user/model/types";
 import { mapToUserProfile } from "@/entities/user/model/mappers";
+import type { UserProfile } from "@/entities/user/model/types";
+import { api } from "@/shared/api";
 import type {
 	UserProfileUpdateRequest,
 	UserResponse,

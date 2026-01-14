@@ -1,7 +1,7 @@
-import { cn } from "@/shared/lib/cn";
 import type { Answer } from "@/entities/learning/model/types";
-import type { UserAnswer } from "@/features/quiz/model/types";
 import RemoveFromIncorrectListBtn from "@/features/quiz/answer-review/ui/RemoveFromMistakeListBtn";
+import type { UserAnswer } from "@/features/quiz/model/types";
+import { cn } from "@/shared/lib/cn";
 
 export default function IncorrectSubjectiveReviewer({
 	userAnswer,

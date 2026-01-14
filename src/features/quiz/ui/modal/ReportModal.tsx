@@ -1,10 +1,10 @@
-import ReportIcon from "./assets/report-color.svg?react";
-import CheckIcon from "./assets/report-check.svg?react";
+import { useState } from "react";
+import { useSubmitReport } from "@/features/learning/api/use-submit-report";
 import { cn } from "@/shared/lib/cn";
 import Modal from "@/widgets/modal/modal";
 import { useLessonModalStore } from "../../model/use-lesson-modal-store";
-import { useState } from "react";
-import { useSubmitReport } from "@/features/learning/api/use-submit-report";
+import CheckIcon from "./assets/report-check.svg?react";
+import ReportIcon from "./assets/report-color.svg?react";
 
 export interface ReportModalRef {
 	open: () => void;

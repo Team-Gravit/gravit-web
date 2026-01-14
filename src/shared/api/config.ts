@@ -1,6 +1,6 @@
 import axios, { type AxiosError, type AxiosInstance } from "axios";
-import { Configuration } from "./@generated";
 import { STORAGE_KEYS } from "../config/storage";
+import { Configuration } from "./@generated";
 
 // 커스텀 에러 클래스
 

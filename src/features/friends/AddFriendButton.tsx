@@ -1,5 +1,5 @@
-import Friends from "@/shared/assets/icons/buttons/friends.svg?react";
 import { useNavigate } from "@tanstack/react-router";
+import Friends from "@/shared/assets/icons/buttons/friends.svg?react";
 
 export default function AddFriendButton() {
 	const navigate = useNavigate();

@@ -1,12 +1,12 @@
 import useToggleBookmark from "@/features/learning/api/use-toggle-bookmark";
-import BookmarkIcon from "@/shared/assets/icons/ic-bookmark-empty.svg?react";
-import ClipBoardIcon from "./clipboard.svg?react";
-import { cn } from "@/shared/lib/cn";
-import ReportButton from "@/features/quiz/ui/modal/ReportButton";
-import type { Problem } from "../model/types";
 import { useQuizSessionState } from "@/features/quiz/model/quiz-session-store";
-import { learningKeys } from "../api/query-keys";
 import { useLessonModalStore } from "@/features/quiz/model/use-lesson-modal-store";
+import ReportButton from "@/features/quiz/ui/modal/ReportButton";
+import BookmarkIcon from "@/shared/assets/icons/ic-bookmark-empty.svg?react";
+import { cn } from "@/shared/lib/cn";
+import { learningKeys } from "../api/query-keys";
+import type { Problem } from "../model/types";
+import ClipBoardIcon from "./clipboard.svg?react";
 
 export default function ProblemHeader({
 	totalProblemsCount,

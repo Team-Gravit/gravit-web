@@ -1,5 +1,5 @@
+import { createFileRoute, Outlet } from "@tanstack/react-router";
 import Sidebar from "@/widgets/sidebar/SideBar";
-import { Outlet, createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute(
 	"/_authenticated/_fixed-header-layout/_fixed-sidebar-layout",

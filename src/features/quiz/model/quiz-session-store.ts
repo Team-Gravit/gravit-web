@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import type { UserAnswer } from "./types";
 import { useQuizContext } from "./use-quiz-context";
-import type { LearningSubmissionSaveResponse } from "@/shared/api/@generated";
+import type { LearningSubmissionSaveResponse } from "@/shared/api/@generated/models/learning-submission-save-response";
 
 export type QuizMode = "LESSON" | "BOOKMARK" | "INCORRECT";
 export type SubmitStrategy = "BATCH" | "STREAM";

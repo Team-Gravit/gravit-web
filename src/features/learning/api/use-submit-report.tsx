@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
+import { useLessonModalStore } from "@/features/quiz/model/use-lesson-modal-store";
 import type { ReportType } from "@/features/quiz/ui/modal/ReportModal";
 import { api } from "@/shared/api";
-import { useLessonModalStore } from "@/features/quiz/model/use-lesson-modal-store";
 
 export const useSubmitReport = () => {
 	const { closeReportModal, openResultModal } = useLessonModalStore();
@@ -15,7 +15,7 @@ export const useSubmitReport = () => {
 			content: string;
 			problemId: number;
 		}) => {
-			const response = await api.private.learning.submitProblemReport({
+			const response = await api.private.report.submitProblemReport({
 				reportType,
 				content,
 				problemId,

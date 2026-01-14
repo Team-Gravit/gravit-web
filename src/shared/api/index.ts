@@ -1,18 +1,24 @@
-import {
-	AuthTokenAPIApi,
-	BadgeApi,
-	CSNoteAPIApi,
-	FriendAPIApi,
-	FriendSearchAPIApi,
-	LeagueAPIApi,
-	LeagueRankAPIApi,
-	LearningAPIApi,
-	MyLeagueProfileAPIApi,
-	NoticeQueryAPIApi,
-	OAuth20APIApi,
-	UserAPIApi,
-	UserDeletionAPIApi,
-} from "./@generated";
+// API 클래스 직접 import
+import { AuthTokenAPIApi } from "./@generated/api/auth-token-apiapi";
+import { BadgeApi } from "./@generated/api/badge-api";
+import { BookmarkAPIApi } from "./@generated/api/bookmark-apiapi";
+import { ChapterAPIApi } from "./@generated/api/chapter-apiapi";
+import { CSNoteAPIApi } from "./@generated/api/csnote-apiapi";
+import { FriendAPIApi } from "./@generated/api/friend-apiapi";
+import { FriendSearchAPIApi } from "./@generated/api/friend-search-apiapi";
+import { LeagueAPIApi } from "./@generated/api/league-apiapi";
+import { LeagueRankAPIApi } from "./@generated/api/league-rank-apiapi";
+import { LessonAPIApi } from "./@generated/api/lesson-apiapi";
+import { MyLeagueProfileAPIApi } from "./@generated/api/my-league-profile-apiapi";
+import { NoticeQueryAPIApi } from "./@generated/api/notice-query-apiapi";
+import { OAuth20APIApi } from "./@generated/api/oauth20-apiapi";
+import { ProblemAPIApi } from "./@generated/api/problem-apiapi";
+import { ReportAPIApi } from "./@generated/api/report-apiapi";
+import { UnitAPIApi } from "./@generated/api/unit-apiapi";
+import { UserAPIApi } from "./@generated/api/user-apiapi";
+import { UserDeletionAPIApi } from "./@generated/api/user-deletion-apiapi";
+import { WrongAnsweredNoteAPIApi } from "./@generated/api/wrong-answered-note-apiapi";
+
 import {
 	privateApiClient,
 	privateApiConfiguration,
@@ -64,8 +70,37 @@ export const api = {
 			undefined,
 			privateApiClient,
 		),
-		// 학습
-		learning: new LearningAPIApi(
+		// 학습 관련 - 새로운 엔드포인트
+		chapter: new ChapterAPIApi(
+			privateApiConfiguration,
+			undefined,
+			privateApiClient,
+		),
+		unit: new UnitAPIApi(privateApiConfiguration, undefined, privateApiClient),
+		lesson: new LessonAPIApi(
+			privateApiConfiguration,
+			undefined,
+			privateApiClient,
+		),
+		problem: new ProblemAPIApi(
+			privateApiConfiguration,
+			undefined,
+			privateApiClient,
+		),
+		// 북마크
+		bookmark: new BookmarkAPIApi(
+			privateApiConfiguration,
+			undefined,
+			privateApiClient,
+		),
+		// 오답노트
+		wrongAnsweredNote: new WrongAnsweredNoteAPIApi(
+			privateApiConfiguration,
+			undefined,
+			privateApiClient,
+		),
+		// 신고
+		report: new ReportAPIApi(
 			privateApiConfiguration,
 			undefined,
 			privateApiClient,

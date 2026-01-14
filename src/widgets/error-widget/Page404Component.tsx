@@ -1,6 +1,6 @@
+import { Link, useRouter } from "@tanstack/react-router";
 import Mascot404Icon from "@/shared/assets/icons/ic-mascot-404.svg?react";
 import ErrorPageTemplate from "./ErrorPageTemplate"; // 위에서 만든 컴포넌트 import
-import { Link, useRouter } from "@tanstack/react-router";
 
 export default function Page404Component() {
 	const router = useRouter();

@@ -1,10 +1,9 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import z from "zod";
-import { Link } from "@tanstack/react-router";
-import CheckIcon from "@/shared/assets/icons/ic-round-check.svg?react";
-import AppCenterLogo from "@/shared/assets/images/logo-ac.png";
-import Logo from "@/shared/assets/icons/logo-gr.svg?react";
 import { useRestoreAccount } from "@/features/user/use-restore-account";
+import CheckIcon from "@/shared/assets/icons/ic-round-check.svg?react";
+import Logo from "@/shared/assets/icons/logo-gr.svg?react";
+import AppCenterLogo from "@/shared/assets/images/logo-ac.png";
 import { toast } from "@/shared/lib/toast";
 
 const searchSchema = z.object({

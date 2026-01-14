@@ -1,17 +1,17 @@
-import { useFetchProblems } from "@/entities/learning/model/hooks";
-import LoadingWidget from "@/widgets/learning-widget/LoadingWidget";
-import { useMinimumLoadingTime } from "@/widgets/learning-widget/lib/useMinimumLoadingTime";
 import { useEffect } from "react";
-import QuizHeader from "@/widgets/learning-widget/QuizHeader";
-import QuizProgressBar from "@/widgets/learning-widget/QuizProgressBar";
+import { useFetchProblems } from "@/entities/learning/model/hooks";
 import ProblemStatement from "@/entities/learning/ui/ProblemStatement";
-import AnswerInteraction from "@/widgets/learning-widget/AnswerInteraction";
 import { useQuizSessionState } from "@/features/quiz/model/quiz-session-store";
-import QuizResultWidget from "../QuizResultWidget";
+import { useLessonModalStore } from "@/features/quiz/model/use-lesson-modal-store";
+import { LessonQuitModal } from "@/features/quiz/ui/modal/LessonQuitModal";
 import ReportModal from "@/features/quiz/ui/modal/ReportModal";
 import ReportResultModal from "@/features/quiz/ui/modal/ReportResultModal";
-import { LessonQuitModal } from "@/features/quiz/ui/modal/LessonQuitModal";
-import { useLessonModalStore } from "@/features/quiz/model/use-lesson-modal-store";
+import AnswerInteraction from "@/widgets/learning-widget/AnswerInteraction";
+import LoadingWidget from "@/widgets/learning-widget/LoadingWidget";
+import { useMinimumLoadingTime } from "@/widgets/learning-widget/lib/useMinimumLoadingTime";
+import QuizHeader from "@/widgets/learning-widget/QuizHeader";
+import QuizProgressBar from "@/widgets/learning-widget/QuizProgressBar";
+import QuizResultWidget from "../QuizResultWidget";
 
 export default function LessonQuizComponent({
 	lessonId,

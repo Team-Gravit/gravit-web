@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { api } from "@/shared/api";
-import type { NoticeDetail } from "@/entities/notice/model/types";
 import { mapToNoticeDetail } from "@/entities/notice/model/mappers";
+import type { NoticeDetail } from "@/entities/notice/model/types";
+import { api } from "@/shared/api";
 
 export const useNoticeDetail = (noticeId: number) => {
 	return useQuery<NoticeDetail>({

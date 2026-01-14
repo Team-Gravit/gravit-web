@@ -1,6 +1,6 @@
+import type { UserBadges } from "@/entities/sidebar/model/types";
 import CopperBadge from "@/shared/assets/icons/copper-badge.svg?react";
 import GoldBadge from "@/shared/assets/icons/gold-badge.svg?react";
-import type { UserBadges } from "@/entities/sidebar/model/types";
 
 interface Props {
 	userBadges: UserBadges;

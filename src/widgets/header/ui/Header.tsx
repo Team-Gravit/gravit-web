@@ -1,10 +1,10 @@
 import { Link } from "@tanstack/react-router";
-import Logo from "@/shared/assets/icons/logo-gr.svg?react";
-import { cn } from "@/shared/lib/cn";
-import Profile from "@/shared/assets/icons/profile2.svg?react";
 import { useUserInfo } from "@/entities/sidebar/api/useUserInfo";
-import { PROFILE_COLORS } from "@/shared/lib/ProfileColor";
 import { tokenManager } from "@/shared/api/config";
+import Logo from "@/shared/assets/icons/logo-gr.svg?react";
+import Profile from "@/shared/assets/icons/profile2.svg?react";
+import { cn } from "@/shared/lib/cn";
+import { PROFILE_COLORS } from "@/shared/lib/ProfileColor";
 
 const HEADER_NAV_LIST: HeaderNavProps[] = [
 	{ to: "/main", text: "홈" },

@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import Banner2 from "@/shared/ui/banner/Banner2";
-import StudyNote from "@/shared/ui/studynote/studynote";
 import { useNote } from "@/entities/cs-notes/api/useNote";
 import { useFetchChapterWithUnits } from "@/entities/learning/model/hooks";
+import Banner2 from "@/shared/ui/banner/Banner2";
+import StudyNote from "@/shared/ui/studynote/studynote";
 
 export const Route = createFileRoute(
 	"/_authenticated/_fixed-header-layout/learning/$chapterId/$unitId/concept-note",

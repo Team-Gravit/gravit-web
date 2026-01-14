@@ -1,16 +1,16 @@
+import { useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import CheckIcon from "@/shared/assets/icons/check.svg?react";
-import NextIcon from "./assets/floating-next.svg?react";
+import { learningKeys } from "@/entities/learning/api/query-keys";
 import type { Problem } from "@/entities/learning/model/types";
-import { useQuizContext } from "@/features/quiz/model/use-quiz-context";
-import AnswerPhase, { type AnswerPhaseHandle } from "./AnswerPhase";
-import ReviewPhase from "./ReviewPhase";
 import { useQuizSessionState } from "@/features/quiz/model/quiz-session-store";
+import { useQuizContext } from "@/features/quiz/model/use-quiz-context";
 import { api } from "@/shared/api";
 import type { LearningSubmissionSaveRequest } from "@/shared/api/@generated";
-import { useRouter } from "@tanstack/react-router";
-import { learningKeys } from "@/entities/learning/api/query-keys";
-import { useQueryClient } from "@tanstack/react-query";
+import CheckIcon from "@/shared/assets/icons/check.svg?react";
+import AnswerPhase, { type AnswerPhaseHandle } from "./AnswerPhase";
+import NextIcon from "./assets/floating-next.svg?react";
+import ReviewPhase from "./ReviewPhase";
 
 interface AnswerInteractionProps {
 	problem: Problem;
@@ -51,6 +51,11 @@ export default function AnswerInteraction({
 
 	const [enteredAnswer, setEnteredAnswer] = useState("");
 
+	// 문제가 바뀔 때마다 입력값 초기화
+	useEffect(() => {
+		setEnteredAnswer("");
+	}, [problem.problemId]);
+
 	// 한 개 버튼의 핵심 로직
 	const handleButtonClick = async () => {
 		// 제출되지 않은 경우
@@ -70,7 +75,7 @@ export default function AnswerInteraction({
 				// STREAM 모드면 즉시 서버 전송
 				if (strategy === "STREAM") {
 					submitResults(async () => {
-						await api.private.learning.saveProblemSubmission({
+						await api.private.problem.saveProblemSubmission({
 							problemId: problem.problemId,
 							isCorrect: answer.isCorrect,
 						});
@@ -108,7 +113,7 @@ export default function AnswerInteraction({
 					};
 
 					const response =
-						await api.private.learning.saveLearningSubmission(submitData);
+						await api.private.lesson.saveLessonSubmission(submitData);
 
 					// API 응답을 store에 저장
 					saveSubmitResponse(response.data);
@@ -175,6 +180,7 @@ export default function AnswerInteraction({
 		>
 			{!isSubmitted ? (
 				<AnswerPhase
+					key={problem.problemId}
 					ref={answerPhaseRef}
 					problem={problem}
 					enteredAnswer={enteredAnswer}

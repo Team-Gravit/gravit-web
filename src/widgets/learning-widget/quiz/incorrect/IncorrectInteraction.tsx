@@ -1,13 +1,13 @@
+import { useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import CheckIcon from "@/shared/assets/icons/check.svg?react";
-import NextIcon from "./../../assets/floating-next.svg?react";
+import { learningKeys } from "@/entities/learning/api/query-keys";
 import type { Problem } from "@/entities/learning/model/types";
 import { useQuizSessionState } from "@/features/quiz/model/quiz-session-store";
 import { api } from "@/shared/api";
-import { useRouter } from "@tanstack/react-router";
-import { learningKeys } from "@/entities/learning/api/query-keys";
-import { useQueryClient } from "@tanstack/react-query";
+import CheckIcon from "@/shared/assets/icons/check.svg?react";
 import AnswerPhase, { type AnswerPhaseHandle } from "../../AnswerPhase";
+import NextIcon from "./../../assets/floating-next.svg?react";
 import IncorrectReviewPhase from "./IncorrectReviewPahse";
 
 interface AnswerInteractionProps {
@@ -58,7 +58,7 @@ export default function IncorrectInteraction({
 				);
 
 				submitResults(async () => {
-					await api.private.learning.saveProblemSubmission({
+					await api.private.problem.saveProblemSubmission({
 						problemId: problem.problemId,
 						isCorrect: answer.isCorrect,
 					});

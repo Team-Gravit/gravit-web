@@ -1,4 +1,4 @@
-import { forwardRef, useRef, useImperativeHandle } from "react";
+import { forwardRef, useImperativeHandle, useRef } from "react";
 import type { Problem } from "@/entities/learning/model/types";
 import ObjectiveSolver from "@/features/quiz/answer-submission/ui/ObjectiveSolver";
 import SubjectiveSolver, {
@@ -55,10 +55,9 @@ export default forwardRef<
 		);
 	}
 
-		if (problemType === "OBJECTIVE") {
-			return <ObjectiveSolver options={options} />;
-		}
+	if (problemType === "OBJECTIVE") {
+		return <ObjectiveSolver options={options} />;
+	}
 
-		return null;
-	},
-);
+	return null;
+});

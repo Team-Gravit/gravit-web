@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { api } from "@/shared/api/index";
 import type { LeagueHomeResponse } from "@/shared/api/@generated";
+import { api } from "@/shared/api/index";
 
 export const useSeasonInfo = () => {
 	return useQuery<LeagueHomeResponse>({

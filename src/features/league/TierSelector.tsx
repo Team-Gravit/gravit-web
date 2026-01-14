@@ -1,6 +1,5 @@
-import { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import type { LeagueInfo } from "@/entities/league/model/types";
-import React from "react";
 
 type Tier = {
 	id: number;

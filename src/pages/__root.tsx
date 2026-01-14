@@ -1,6 +1,6 @@
-import Page404Component from "@/widgets/error-widget/Page404Component";
-import { Outlet, createRootRouteWithContext } from "@tanstack/react-router";
+import { createRootRouteWithContext, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
+import Page404Component from "@/widgets/error-widget/Page404Component";
 
 export interface RouteContext {
 	auth: AuthState;

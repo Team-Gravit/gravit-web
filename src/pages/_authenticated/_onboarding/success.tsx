@@ -1,8 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import Mascot from "@/shared/assets/icons/end-mascot.svg?react";
 import Form from "@/shared/ui/form/Form";
 import Logo from "@/shared/ui/logo/Logo";
-import { useNavigate } from "@tanstack/react-router";
-import Mascot from "@/shared/assets/icons/end-mascot.svg?react";
 
 export const Route = createFileRoute("/_authenticated/_onboarding/success")({
 	component: SuccessPage,

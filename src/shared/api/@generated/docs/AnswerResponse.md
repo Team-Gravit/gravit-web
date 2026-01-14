@@ -6,7 +6,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**content** | **string** | 정답 내용 | [optional] [default to undefined]
+**contents** | **Array&lt;string&gt;** | 정답 내용 | [optional] [default to undefined]
 **explanation** | **string** | 정답 해설 | [optional] [default to undefined]
 
 ## Example
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 import { AnswerResponse } from './api';
 
 const instance: AnswerResponse = {
-    content,
+    contents,
     explanation,
 };
 ```

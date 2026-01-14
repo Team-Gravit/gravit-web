@@ -3,7 +3,7 @@ import type {
 	SliceResponse,
 } from "@/shared/api/@generated";
 
-import type { NoticeItem, NoticeList, NoticeDetail } from "./types";
+import type { NoticeDetail, NoticeItem, NoticeList } from "./types";
 
 /** OpenAPI NoticeDetailResponse → 프론트엔드 NoticeDetail */
 export function mapToNoticeDetail(raw: NoticeDetailResponse): NoticeDetail {

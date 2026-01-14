@@ -1,11 +1,11 @@
-import SubjectiveInput from "./SubjectiveInput";
 import {
-	useEffect,
-	useRef,
 	type ChangeEvent,
 	forwardRef,
+	useEffect,
 	useImperativeHandle,
+	useRef,
 } from "react";
+import SubjectiveInput from "./SubjectiveInput";
 
 export interface SubjectiveSolverHandle {
 	getAnswer: () => {
@@ -22,7 +22,10 @@ export default forwardRef<
 		enteredAnswer?: string;
 		setEnteredAnswer?: (value: string) => void;
 	}
->(function SubjectiveSolver({ answers, enteredAnswer = "", setEnteredAnswer }, ref) {
+>(function SubjectiveSolver(
+	{ answers, enteredAnswer = "", setEnteredAnswer },
+	ref,
+) {
 	const inputRef = useRef<HTMLInputElement>(null);
 
 	const handleChangeAnswer = (e: ChangeEvent<HTMLInputElement>) => {

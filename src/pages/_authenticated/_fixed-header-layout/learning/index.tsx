@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import Banner from "@/shared/ui/banner/Banner";
-import ChapterCard from "@/features/learning/ChapterCard";
 import { useFetchChapters } from "@/entities/learning/model/hooks";
+import ChapterCard from "@/features/learning/ChapterCard";
+import Banner from "@/shared/ui/banner/Banner";
 
 export const Route = createFileRoute(
 	"/_authenticated/_fixed-header-layout/learning/",
@@ -35,23 +35,16 @@ function RouteComponent() {
 						</button>
 					</nav>
 					<section className="w-full grid grid-cols-1 lg:grid-cols-3 2xl:grid-cols-4 gap-8 lg:gap-10 mb-10">
-						{chapters.map((chapter, idx) => {
-							const isActive = idx <= 2;
+						{chapters.map((chapter) => {
 							return (
-								<>
-									{isActive ? (
-										<Link
-											to={"/learning/$chapterId"}
-											params={{ chapterId: String(chapter.chapterId) }}
-											key={chapter.chapterId}
-											className="w-full"
-										>
-											<ChapterCard chapter={chapter} isActive={isActive} />
-										</Link>
-									) : (
-										<ChapterCard chapter={chapter} isActive={isActive} />
-									)}
-								</>
+								<Link
+									to={"/learning/$chapterId"}
+									params={{ chapterId: String(chapter.chapterId) }}
+									key={chapter.chapterId}
+									className="w-full"
+								>
+									<ChapterCard chapter={chapter} isActive={true} />
+								</Link>
 							);
 						})}
 					</section>

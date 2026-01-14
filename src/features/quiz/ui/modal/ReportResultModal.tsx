@@ -1,6 +1,6 @@
-import Modal from "@/widgets/modal/modal";
 import CheckIcon from "@/shared/assets/icons/check.svg?react";
 import { renderWithBr } from "@/shared/lib/renderWithBr";
+import Modal from "@/widgets/modal/modal";
 import { useLessonModalStore } from "../../model/use-lesson-modal-store";
 
 export default function ReportResultModal({

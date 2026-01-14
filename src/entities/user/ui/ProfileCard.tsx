@@ -1,6 +1,6 @@
+import type { UserInfo } from "@/entities/sidebar/model/types";
 import Profile from "@/shared/assets/icons/profile2.svg?react";
 import { PROFILE_COLORS } from "@/shared/lib/ProfileColor";
-import type { UserInfo } from "@/entities/sidebar/model/types";
 
 interface Props {
 	userInfo: UserInfo;

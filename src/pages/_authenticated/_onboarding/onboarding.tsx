@@ -1,11 +1,10 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useState, useRef } from "react";
-import { useNavigate } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useRef, useState } from "react";
+import { usePostOnboarding } from "@/features/onboarding/api/usePostOnboarding";
+import NicknameForm from "@/features/onboarding/ui/NicknameForm";
+import ProfileSelector from "@/features/onboarding/ui/ProfileSelecter";
 import Form from "@/shared/ui/form/Form";
 import Logo from "@/shared/ui/logo/Logo";
-import ProfileSelector from "@/features/onboarding/ui/ProfileSelecter";
-import NicknameForm from "@/features/onboarding/ui/NicknameForm";
-import { usePostOnboarding } from "@/features/onboarding/api/usePostOnboarding";
 
 export const Route = createFileRoute("/_authenticated/_onboarding/onboarding")({
 	component: OnboardingPage,

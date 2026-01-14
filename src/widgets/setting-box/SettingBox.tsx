@@ -1,16 +1,16 @@
-import SettingButton from "@/features/button/SettingButton";
+import { useRef } from "react";
 import type { Item } from "@/features/button/SettingButton";
+import SettingButton from "@/features/button/SettingButton";
+import { useSendWithdrawEmail } from "@/features/user/delete-user/api/useWithdraw";
+import { tokenManager } from "@/shared/api/config";
 import {
 	ConfirmModal,
 	type ConfirmModalRef,
 } from "@/shared/ui/modal/ConfirmModal";
-import { useRef } from "react";
-import { useSendWithdrawEmail } from "@/features/user/delete-user/api/useWithdraw";
 import {
-	SuccessNotificationModal,
 	type SuccessModalRef,
+	SuccessNotificationModal,
 } from "@/shared/ui/modal/SuccessNotificationModal";
-import { tokenManager } from "@/shared/api/config";
 
 interface Section {
 	title?: string;

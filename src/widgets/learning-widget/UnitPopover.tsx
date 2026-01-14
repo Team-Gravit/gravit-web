@@ -1,6 +1,6 @@
-import { cn } from "@/shared/lib/cn";
 import { Link } from "@tanstack/react-router";
 import LockIcon from "@/shared/assets/icons/lock.svg?react";
+import { cn } from "@/shared/lib/cn";
 
 export default function UnitPopover({
 	unitId,

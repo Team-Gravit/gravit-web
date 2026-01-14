@@ -1,9 +1,9 @@
-import AbortIcon from "./assets/x.svg?react";
-import TimerIcon from "./assets/timer.svg?react";
 import { useEffect, useRef } from "react";
-import formatTime from "./lib/formatTime";
 import { useQuizSessionState } from "@/features/quiz/model/quiz-session-store";
 import { useIsAnyModalOpen } from "@/features/quiz/model/use-lesson-modal-store";
+import TimerIcon from "./assets/timer.svg?react";
+import AbortIcon from "./assets/x.svg?react";
+import formatTime from "./lib/formatTime";
 
 export default function QuizHeader({
 	onHandleQuit,

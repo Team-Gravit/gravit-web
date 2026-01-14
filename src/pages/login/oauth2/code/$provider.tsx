@@ -1,10 +1,10 @@
-import { usePostOAuth } from "@/entities/login/model/usePostOAuth";
 import {
 	createFileRoute,
 	useLocation,
 	useParams,
 } from "@tanstack/react-router";
 import { useEffect } from "react";
+import { usePostOAuth } from "@/entities/login/model/usePostOAuth";
 
 export const Route = createFileRoute("/login/oauth2/code/$provider")({
 	component: OAuthCallback,

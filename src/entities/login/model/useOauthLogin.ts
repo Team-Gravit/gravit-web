@@ -7,8 +7,6 @@ import { getLoginUrl } from "@/entities/login/api/getLoginUrl";
 	- 성공 시 로그인 URL로 리디렉션
  */
 
-
-
 export function useOauthLogin() {
 	return useMutation({
 		mutationFn: getLoginUrl,
@@ -16,8 +14,6 @@ export function useOauthLogin() {
 			localStorage.setItem("returnTo", window.location.pathname);
 			window.location.href = loginUrl;
 		},
-		onError: () => {
-			
-		},
+		onError: () => {},
 	});
 }

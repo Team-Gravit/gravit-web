@@ -1,11 +1,10 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useState, useEffect } from "react";
-import { useNavigate } from "@tanstack/react-router";
-import Form from "@/shared/ui/form/Form";
-import ProfileSelector from "@/features/onboarding/ui/ProfileSelecter";
-import NicknameForm from "@/features/onboarding/ui/NicknameForm";
-import { usePatchUserProfile } from "@/features/user/update-user/api/patchUserProfile";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { useUserInfo } from "@/entities/sidebar/api/useUserInfo";
+import NicknameForm from "@/features/onboarding/ui/NicknameForm";
+import ProfileSelector from "@/features/onboarding/ui/ProfileSelecter";
+import { usePatchUserProfile } from "@/features/user/update-user/api/patchUserProfile";
+import Form from "@/shared/ui/form/Form";
 
 export const Route = createFileRoute(
 	"/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/edit",

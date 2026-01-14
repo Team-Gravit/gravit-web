@@ -1,13 +1,13 @@
+import { createFileRoute } from "@tanstack/react-router";
+import fire from "@/shared/assets/images/fire.png";
+import rocket from "@/shared/assets/images/rocket.png";
 import Banner from "@/shared/ui/banner/Banner";
 import { StatCard } from "@/shared/ui/card/StatCard";
-import MissionCard from "@/widgets/misson-widget/MissionCard";
-import { createFileRoute } from "@tanstack/react-router";
-import rocket from "@/shared/assets/images/rocket.png";
-import fire from "@/shared/assets/images/fire.png";
-import RecentLearningCard from "@/widgets/learning-widget/RecentLearningCard";
 import Footer from "@/widgets/Footer/Footer";
-import { useFetchMainInfo } from "@/widgets/main/model/hooks";
 import LearningProgressInfo from "@/widgets/learning-widget/LearningProgressInfo";
+import RecentLearningCard from "@/widgets/learning-widget/RecentLearningCard";
+import { useFetchMainInfo } from "@/widgets/main/model/hooks";
+import MissionCard from "@/widgets/misson-widget/MissionCard";
 
 export const Route = createFileRoute(
 	"/_authenticated/_fixed-header-layout/main",

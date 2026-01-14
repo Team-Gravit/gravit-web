@@ -1,19 +1,19 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, useEffect, useRef } from "react";
-import TierSelector from "@/features/league/TierSelector";
-import UserRankList from "@/entities/league/ui/UserRankList";
-import { tiers } from "@/shared/lib/tiers";
-import { useUserLeagueRanking } from "@/entities/league/ranking/api/useUserLeagueRanking";
+import { useEffect, useRef, useState } from "react";
+import { useLeagueInfo } from "@/entities/league/api/useLeagueInfo";
+import { useSeasonInfo } from "@/entities/league/api/useSeasonInfo";
+import { mapToLeagueInfo, mapToUser } from "@/entities/league/model/mappers";
 import { useLeagueRanking } from "@/entities/league/ranking/api/useLeagueRanking";
 import { useUserLeagueProfile } from "@/entities/league/ranking/api/useUserLeagueProfile";
-import { useSeasonInfo } from "@/entities/league/api/useSeasonInfo";
-import { useLeagueInfo } from "@/entities/league/api/useLeagueInfo";
-import SeasonEndModal from "@/features/league/SeasonEndModal";
+import { useUserLeagueRanking } from "@/entities/league/ranking/api/useUserLeagueRanking";
+import UserRankList from "@/entities/league/ui/UserRankList";
 import WaitingTab from "@/entities/league/ui/WaitingTab";
-import { getNextMonday, getRemainingTime } from "@/shared/lib/date";
+import SeasonEndModal from "@/features/league/SeasonEndModal";
+import TierSelector from "@/features/league/TierSelector";
 import Timer from "@/shared/assets/icons/timer.svg?react";
 import BackgroundImage from "@/shared/assets/images/bg-dark.png";
-import { mapToLeagueInfo, mapToUser } from "@/entities/league/model/mappers";
+import { getNextMonday, getRemainingTime } from "@/shared/lib/date";
+import { tiers } from "@/shared/lib/tiers";
 
 export const Route = createFileRoute(
 	"/_authenticated/_fixed-header-layout/league",

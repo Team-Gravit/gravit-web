@@ -1,11 +1,11 @@
-import LessonProgressBar from "@/entities/learning/ui/LessonProgressBar";
-import Card from "@/shared/ui/card/Card";
-import backgroundImg from "./assets/learning-card-bg.webp";
 import { Link } from "@tanstack/react-router";
-import ArrowButton from "./assets/arrow-left.svg?react";
+import LessonProgressBar from "@/entities/learning/ui/LessonProgressBar";
 import InfoIcon from "@/shared/assets/icons/info-circle.svg?react";
-import Tooltip from "@/shared/ui/tooltip/Tooltip";
 import { getPlanetImage } from "@/shared/lib/planet/utils";
+import Card from "@/shared/ui/card/Card";
+import Tooltip from "@/shared/ui/tooltip/Tooltip";
+import ArrowButton from "./assets/arrow-left.svg?react";
+import backgroundImg from "./assets/learning-card-bg.webp";
 
 type RecentLearningSummary =
 	| {

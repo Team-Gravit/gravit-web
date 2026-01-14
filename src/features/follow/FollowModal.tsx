@@ -1,11 +1,11 @@
-import { useRef, useState, useEffect } from "react";
+import { useQueryClient } from "@tanstack/react-query";
+import { useEffect, useRef, useState } from "react";
+import { useFollowerList } from "@/entities/follow/api/useFollowerList";
+import { useFollowingList } from "@/entities/follow/api/useFollowingList";
 import type { Follow } from "@/entities/follow/model/types";
 import FollowListWrapper from "@/entities/follow/ui/FollowListWrapper";
 import FollowTab from "@/features/follow/FollowTab";
-import { useFollowerList } from "@/entities/follow/api/useFollowerList";
-import { useFollowingList } from "@/entities/follow/api/useFollowingList";
 import X from "@/shared/assets/icons/buttons/x.svg?react";
-import { useQueryClient } from "@tanstack/react-query";
 
 interface Props {
 	isOpen: boolean;

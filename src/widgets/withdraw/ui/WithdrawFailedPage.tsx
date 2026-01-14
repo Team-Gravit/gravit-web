@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
+import MascotIcon from "@/shared/assets/icons/ic-mascot-error.svg?react";
 import Logo from "@/shared/assets/icons/logo-gr.svg?react";
 import AppCenterLogo from "@/shared/assets/images/logo-ac.png";
-import MascotIcon from "@/shared/assets/icons/ic-mascot-error.svg?react";
 
 export default function WithdrawFailedPage() {
 	return (

@@ -1,13 +1,13 @@
 import {
 	createFileRoute,
-	useParams,
 	useNavigate,
+	useParams,
 } from "@tanstack/react-router";
-import SectionHeader from "@/widgets/header/ui/SectionHeader";
-import NoticeList from "@/features/notice/NoticeList";
-import PaginationButton from "@/features/button/PaginationButton";
 import { useNoticeList } from "@/entities/notice/api/useNoticeList";
 import type { NoticeItem } from "@/entities/notice/model/types";
+import PaginationButton from "@/features/button/PaginationButton";
+import NoticeList from "@/features/notice/NoticeList";
+import SectionHeader from "@/widgets/header/ui/SectionHeader";
 
 export const Route = createFileRoute(
 	"/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/",
