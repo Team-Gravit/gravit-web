@@ -44,6 +44,11 @@ export default function IncorrectInteraction({
 	// 주관식 답 입력 상태 관리 (State 끌어올리기)
 	const [enteredAnswer, setEnteredAnswer] = useState("");
 
+	// 문제가 바뀔 때마다 입력값 초기화
+	useEffect(() => {
+		setEnteredAnswer("");
+	}, [problem.problemId]);
+
 	const handleButtonClick = async () => {
 		if (!isSubmitted) {
 			const answer = answerPhaseRef.current?.getAnswer();
@@ -87,7 +92,7 @@ export default function IncorrectInteraction({
 
 	useEffect(() => {
 		const handleGlobalKeyDown = (e: globalThis.KeyboardEvent) => {
-			if (e.key === "Enter" && buttonRef.current) {
+			if (e.key === "Enter" && buttonRef.current && !buttonRef.current.disabled) {
 				buttonRef.current.click();
 			}
 		};
