@@ -12,6 +12,7 @@ interface NicknameFormProps {
 	setDirty: (value: boolean) => void;
 	helperText?: ReactNode;
 	labelTextSize?: string;
+	labelTextColor?: string;
 	inputTextSize?: string;
 	helperTextSize?: string;
 	helperFontColor?: string;
@@ -29,6 +30,7 @@ export default function NicknameForm({
 	setDirty,
 	helperText,
 	labelTextSize = "text-lg",
+	labelTextColor = "text-white",
 	inputTextSize = "text-lg",
 	helperTextSize = "text-sm",
 	helperFontColor,
@@ -62,7 +64,7 @@ export default function NicknameForm({
 	return (
 		<div className="flex flex-col gap-2 mt-7 mb-6 w-full">
 			<label
-				className={`mb-2 font-semibold flex flex-col gap-3 text-white ${labelTextSize}`}
+				className={`mb-2 font-semibold flex flex-col gap-3 ${labelTextColor} ${labelTextSize}`}
 			>
 				<span className={labelTextSize}>닉네임 설정</span>
 				<input
