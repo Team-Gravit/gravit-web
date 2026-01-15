@@ -161,7 +161,7 @@ export default function AnswerInteraction({
 
 	useEffect(() => {
 		const handleGlobalKeyDown = (e: globalThis.KeyboardEvent) => {
-			if (e.key === "Enter" && buttonRef.current) {
+			if (e.key === "Enter" && buttonRef.current && !buttonRef.current.disabled) {
 				buttonRef.current.click();
 			}
 		};
