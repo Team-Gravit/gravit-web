@@ -61,7 +61,12 @@ function RouteComponent() {
 	return (
 		<div className="w-full h-full flex flex-col items-center bg-[#f2f2f2] p-8">
 			<Form className="w-full h-[640px] px-48 py-32 flex flex-col relative">
-				<ProfileSelector gap={32} value={colorIndex} onChange={setColorIndex} />
+				<ProfileSelector
+					arrowColor="#A8A8A8"
+					gap={32}
+					value={colorIndex}
+					onChange={setColorIndex}
+				/>
 
 				<div className="flex-1 w-full min-h-[150px] mt-6 px-6">
 					<NicknameForm
@@ -81,11 +86,12 @@ function RouteComponent() {
 						}
 						inputTextSize="text-2xl w-[300px] font-normal"
 						labelTextSize="text-2xl"
+						labelTextColor="text-black"
 						helperTextSize="text-xl"
 					/>
 				</div>
 
-				<div className="flex flex-row w-full px-48 gap-4 absolute bottom-8">
+				<div className="flex flex-row w-full px-[220px] gap-4 absolute bottom-8">
 					<button
 						type="button"
 						onClick={() => navigate({ to: "/user" })}

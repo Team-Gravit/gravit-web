@@ -8,12 +8,14 @@ interface ProfileSelectorProps {
 	value?: number;
 	onChange?: (index: number) => void;
 	gap?: number;
+	arrowColor?: string;
 }
 
 export default function ProfileSelector({
 	value,
 	onChange,
 	gap = 10,
+	arrowColor = "#f8f8f8",
 }: ProfileSelectorProps) {
 	const [colorIndex, setColorIndex] = useState(value ?? 0);
 
@@ -45,7 +47,10 @@ export default function ProfileSelector({
 			style={{ gap: `${gap * 0.25}rem` }}
 		>
 			<button type="button" onClick={handlePrev}>
-				<LeftArrow className="mt-0.5 cursor-pointer text-[#f8f8f8]" />
+				<LeftArrow
+					className="mt-0.5 cursor-pointer"
+					style={{ color: arrowColor }}
+				/>
 			</button>
 
 			<Profile
@@ -54,7 +59,7 @@ export default function ProfileSelector({
 			/>
 
 			<button type="button" onClick={handleNext}>
-				<RightArrow className="cursor-pointer text-[#f8f8f8]" />
+				<RightArrow className="cursor-pointer" style={{ color: arrowColor }} />
 			</button>
 		</div>
 	);
