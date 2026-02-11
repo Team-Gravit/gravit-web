@@ -170,12 +170,7 @@ function PrivacyPage() {
 					</ul>
 					<p className="mb-4">
 						권리 행사는 서비스 내 설정 메뉴 또는 고객센터(
-						
-							href="mailto:xunssoie@gmail.com"
-							className="text-blue-600 hover:underline"
-						>
-							xunssoie@gmail.com
-						</a>
+						<a href="mailto:xunssoie@gmail.com" className="text-blue-600 hover:underline">xunssoie@gmail.com</a>
 						)를 통해 가능합니다.
 					</p>
 
@@ -212,12 +207,7 @@ function PrivacyPage() {
 						<li>성명: 한준서</li>
 						<li>
 							이메일:{" "}
-							
-								href="mailto:xunssoie@gmail.com"
-								className="text-blue-600 hover:underline"
-							>
-								xunssoie@gmail.com
-							</a>
+							<a href="mailto:xunssoie@gmail.com" className="text-blue-600 hover:underline">xunssoie@gmail.com</a>
 						</li>
 					</ul>
 					<p className="mb-2">
@@ -227,50 +217,22 @@ function PrivacyPage() {
 					<ul className="list-disc list-inside mb-4 ml-4">
 						<li>
 							개인정보침해신고센터: (국번없이) 118 (
-							
-								href="https://privacy.kisa.or.kr"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="text-blue-600 hover:underline"
-							>
-								privacy.kisa.or.kr
-							</a>
+							<a href="https://privacy.kisa.or.kr" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">privacy.kisa.or.kr</a>
 							)
 						</li>
 						<li>
 							개인정보분쟁조정위원회: (국번없이) 1833-6972 (
-							
-								href="https://www.kopico.go.kr"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="text-blue-600 hover:underline"
-							>
-								www.kopico.go.kr
-							</a>
+							<a href="https://www.kopico.go.kr" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">www.kopico.go.kr</a>
 							)
 						</li>
 						<li>
 							대검찰청 사이버수사과: (국번없이) 1301 (
-							
-								href="https://www.spo.go.kr"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="text-blue-600 hover:underline"
-							>
-								www.spo.go.kr
-							</a>
+							<a href="https://www.spo.go.kr" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">www.spo.go.kr</a>
 							)
 						</li>
 						<li>
 							경찰청 사이버안전국: (국번없이) 182 (
-							
-								href="https://ecrm.cyber.go.kr"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="text-blue-600 hover:underline"
-							>
-								ecrm.cyber.go.kr
-							</a>
+							<a href="https://ecrm.cyber.go.kr" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">ecrm.cyber.go.kr</a>
 							)
 						</li>
 					</ul>
