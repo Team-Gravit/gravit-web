@@ -9,9 +9,9 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './../../pages/__root'
-import { Route as AuthenticatedRouteRouteImport } from './../../pages/_authenticated/route'
-import { Route as PrivacyRouteImport } from './../../pages/privacy'
 import { Route as TermsRouteImport } from './../../pages/terms'
+import { Route as PrivacyRouteImport } from './../../pages/privacy'
+import { Route as AuthenticatedRouteRouteImport } from './../../pages/_authenticated/route'
 import { Route as IndexRouteImport } from './../../pages/index'
 import { Route as AuthenticatedFixedHeaderLayoutRouteRouteImport } from './../../pages/_authenticated/_fixed-header-layout/route'
 import { Route as AuthenticatedBlankLayoutRouteRouteImport } from './../../pages/_authenticated/_blank-layout/route'
@@ -35,8 +35,9 @@ import { Route as AuthenticatedFixedHeaderLayoutUserMeDeletePageRouteImport } fr
 import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/index'
 import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageNoticeIdIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/$noticeId/index'
 
-const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
-  id: '/_authenticated',
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -44,9 +45,8 @@ const PrivacyRoute = PrivacyRouteImport.update({
   path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
-const TermsRoute = TermsRouteImport.update({
-  id: '/terms',
-  path: '/terms',
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -243,9 +243,9 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
-  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/_authenticated/_blank-layout': typeof AuthenticatedBlankLayoutRouteRouteWithChildren
   '/_authenticated/_fixed-header-layout': typeof AuthenticatedFixedHeaderLayoutRouteRouteWithChildren
   '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRouteWithChildren
@@ -318,9 +318,9 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/_authenticated'
     | '/privacy'
     | '/terms'
-    | '/_authenticated'
     | '/_authenticated/_blank-layout'
     | '/_authenticated/_fixed-header-layout'
     | '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout'
@@ -346,14 +346,28 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   PrivacyRoute: typeof PrivacyRoute
   TermsRoute: typeof TermsRoute
-  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   LoginOauth2CodeProviderRoute: typeof LoginOauth2CodeProviderRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated': {
       id: '/_authenticated'
       path: ''
@@ -366,20 +380,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/privacy': {
-      id: '/privacy'
-      path: '/privacy'
-      fullPath: '/privacy'
-      preLoaderRoute: typeof PrivacyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/terms': {
-      id: '/terms'
-      path: '/terms'
-      fullPath: '/terms'
-      preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/_fixed-header-layout': {
@@ -639,9 +639,9 @@ const AuthenticatedRouteRouteWithChildren =
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   PrivacyRoute: PrivacyRoute,
   TermsRoute: TermsRoute,
-  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   LoginOauth2CodeProviderRoute: LoginOauth2CodeProviderRoute,
 }
 export const routeTree = rootRouteImport
