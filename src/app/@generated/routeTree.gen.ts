@@ -10,6 +10,8 @@
 
 import { Route as rootRouteImport } from './../../pages/__root'
 import { Route as AuthenticatedRouteRouteImport } from './../../pages/_authenticated/route'
+import { Route as PrivacyRouteImport } from './../../pages/privacy'
+import { Route as TermsRouteImport } from './../../pages/terms'
 import { Route as IndexRouteImport } from './../../pages/index'
 import { Route as AuthenticatedFixedHeaderLayoutRouteRouteImport } from './../../pages/_authenticated/_fixed-header-layout/route'
 import { Route as AuthenticatedBlankLayoutRouteRouteImport } from './../../pages/_authenticated/_blank-layout/route'
@@ -35,6 +37,16 @@ import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePage
 
 const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
   id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -184,6 +196,8 @@ const AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageNoticeIdInde
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/privacy': typeof PrivacyRoute
+  '/terms': typeof TermsRoute
   '/addfriend': typeof AuthenticatedFixedHeaderLayoutAddfriendRoute
   '/league': typeof AuthenticatedFixedHeaderLayoutLeagueRoute
   '/main': typeof AuthenticatedFixedHeaderLayoutMainRoute
@@ -205,6 +219,8 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/privacy': typeof PrivacyRoute
+  '/terms': typeof TermsRoute
   '/addfriend': typeof AuthenticatedFixedHeaderLayoutAddfriendRoute
   '/league': typeof AuthenticatedFixedHeaderLayoutLeagueRoute
   '/main': typeof AuthenticatedFixedHeaderLayoutMainRoute
@@ -227,6 +243,8 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/privacy': typeof PrivacyRoute
+  '/terms': typeof TermsRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/_authenticated/_blank-layout': typeof AuthenticatedBlankLayoutRouteRouteWithChildren
   '/_authenticated/_fixed-header-layout': typeof AuthenticatedFixedHeaderLayoutRouteRouteWithChildren
@@ -254,6 +272,8 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/privacy'
+    | '/terms'
     | '/addfriend'
     | '/league'
     | '/main'
@@ -275,6 +295,8 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/privacy'
+    | '/terms'
     | '/addfriend'
     | '/league'
     | '/main'
@@ -296,6 +318,8 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/privacy'
+    | '/terms'
     | '/_authenticated'
     | '/_authenticated/_blank-layout'
     | '/_authenticated/_fixed-header-layout'
@@ -322,6 +346,8 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  PrivacyRoute: typeof PrivacyRoute
+  TermsRoute: typeof TermsRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   LoginOauth2CodeProviderRoute: typeof LoginOauth2CodeProviderRoute
 }
@@ -340,6 +366,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/_fixed-header-layout': {
@@ -599,6 +639,8 @@ const AuthenticatedRouteRouteWithChildren =
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  PrivacyRoute: PrivacyRoute,
+  TermsRoute: TermsRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   LoginOauth2CodeProviderRoute: LoginOauth2CodeProviderRoute,
 }
