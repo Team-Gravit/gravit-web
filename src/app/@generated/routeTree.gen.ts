@@ -9,10 +9,10 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './../../pages/__root'
-import { Route as RestoreRouteImport } from './../../pages/restore'
-import { Route as AuthenticatedRouteRouteImport } from './../../pages/_authenticated/route'
-import { Route as PrivacyRouteImport } from './../../pages/privacy'
 import { Route as TermsRouteImport } from './../../pages/terms'
+import { Route as RestoreRouteImport } from './../../pages/restore'
+import { Route as PrivacyRouteImport } from './../../pages/privacy'
+import { Route as AuthenticatedRouteRouteImport } from './../../pages/_authenticated/route'
 import { Route as IndexRouteImport } from './../../pages/index'
 import { Route as AuthenticatedOnboardingRouteRouteImport } from './../../pages/_authenticated/_onboarding/route'
 import { Route as AuthenticatedFixedHeaderLayoutRouteRouteImport } from './../../pages/_authenticated/_fixed-header-layout/route'
@@ -40,13 +40,14 @@ import { Route as AuthenticatedBlankLayoutLearningChapterIdUnitIdLessonIdRouteIm
 import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/index'
 import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageNoticeIdIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/$noticeId/index'
 
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RestoreRoute = RestoreRouteImport.update({
   id: '/restore',
   path: '/restore',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
-  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -54,9 +55,8 @@ const PrivacyRoute = PrivacyRouteImport.update({
   path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
-const TermsRoute = TermsRouteImport.update({
-  id: '/terms',
-  path: '/terms',
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -235,8 +235,8 @@ const AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageNoticeIdInde
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/privacy': typeof PrivacyRoute
+  '/restore': typeof RestoreRoute
   '/terms': typeof TermsRoute
-  '/addfriend': typeof AuthenticatedFixedHeaderLayoutAddfriendRoute
   '/league': typeof AuthenticatedFixedHeaderLayoutLeagueRoute
   '/main': typeof AuthenticatedFixedHeaderLayoutMainRoute
   '/test': typeof AuthenticatedFixedHeaderLayoutTestRoute
@@ -262,8 +262,8 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/privacy': typeof PrivacyRoute
+  '/restore': typeof RestoreRoute
   '/terms': typeof TermsRoute
-  '/addfriend': typeof AuthenticatedFixedHeaderLayoutAddfriendRoute
   '/league': typeof AuthenticatedFixedHeaderLayoutLeagueRoute
   '/main': typeof AuthenticatedFixedHeaderLayoutMainRoute
   '/test': typeof AuthenticatedFixedHeaderLayoutTestRoute
@@ -289,10 +289,10 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/privacy': typeof PrivacyRoute
-  '/terms': typeof TermsRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/privacy': typeof PrivacyRoute
   '/restore': typeof RestoreRoute
+  '/terms': typeof TermsRoute
   '/_authenticated/_blank-layout': typeof AuthenticatedBlankLayoutRouteRouteWithChildren
   '/_authenticated/_fixed-header-layout': typeof AuthenticatedFixedHeaderLayoutRouteRouteWithChildren
   '/_authenticated/_onboarding': typeof AuthenticatedOnboardingRouteRouteWithChildren
@@ -324,8 +324,8 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/privacy'
+    | '/restore'
     | '/terms'
-    | '/addfriend'
     | '/league'
     | '/main'
     | '/test'
@@ -351,8 +351,8 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/privacy'
+    | '/restore'
     | '/terms'
-    | '/addfriend'
     | '/league'
     | '/main'
     | '/test'
@@ -377,10 +377,10 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
-    | '/privacy'
-    | '/terms'
     | '/_authenticated'
+    | '/privacy'
     | '/restore'
+    | '/terms'
     | '/_authenticated/_blank-layout'
     | '/_authenticated/_fixed-header-layout'
     | '/_authenticated/_onboarding'
@@ -410,21 +410,35 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  PrivacyRoute: typeof PrivacyRoute
-  TermsRoute: typeof TermsRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  PrivacyRoute: typeof PrivacyRoute
   RestoreRoute: typeof RestoreRoute
+  TermsRoute: typeof TermsRoute
   LoginOauth2CodeProviderRoute: typeof LoginOauth2CodeProviderRoute
   UserMeDeletePageRoute: typeof UserMeDeletePageRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/restore': {
       id: '/restore'
       path: '/restore'
       fullPath: '/restore'
       preLoaderRoute: typeof RestoreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated': {
@@ -441,19 +455,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/privacy': {
-      id: '/privacy'
-      path: '/privacy'
-      fullPath: '/privacy'
-      preLoaderRoute: typeof PrivacyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/terms': {
-      id: '/terms'
-      path: '/terms'
-      fullPath: '/terms'
-      preLoaderRoute: typeof TermsRouteImport
-      parentRoute: typeof rootRouteImport
+    '/_authenticated/_onboarding': {
+      id: '/_authenticated/_onboarding'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof AuthenticatedOnboardingRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/_fixed-header-layout': {
       id: '/_authenticated/_fixed-header-layout'
@@ -753,10 +760,10 @@ const AuthenticatedRouteRouteWithChildren =
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  PrivacyRoute: PrivacyRoute,
-  TermsRoute: TermsRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  PrivacyRoute: PrivacyRoute,
   RestoreRoute: RestoreRoute,
+  TermsRoute: TermsRoute,
   LoginOauth2CodeProviderRoute: LoginOauth2CodeProviderRoute,
   UserMeDeletePageRoute: UserMeDeletePageRoute,
 }
