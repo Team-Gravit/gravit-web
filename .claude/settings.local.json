@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__ide__getDiagnostics",
+      "Bash(pnpm router:generate:*)",
+      "Bash(npx @tanstack/router-cli generate:*)"
+    ]
+  }
+}

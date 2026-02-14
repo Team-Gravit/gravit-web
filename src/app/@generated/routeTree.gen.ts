@@ -9,7 +9,9 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './../../pages/__root'
+import { Route as TermsRouteImport } from './../../pages/terms'
 import { Route as RestoreRouteImport } from './../../pages/restore'
+import { Route as PrivacyRouteImport } from './../../pages/privacy'
 import { Route as AuthenticatedRouteRouteImport } from './../../pages/_authenticated/route'
 import { Route as IndexRouteImport } from './../../pages/index'
 import { Route as AuthenticatedOnboardingRouteRouteImport } from './../../pages/_authenticated/_onboarding/route'
@@ -38,9 +40,19 @@ import { Route as AuthenticatedBlankLayoutLearningChapterIdUnitIdLessonIdRouteIm
 import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/index'
 import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageNoticeIdIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/$noticeId/index'
 
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RestoreRoute = RestoreRouteImport.update({
   id: '/restore',
   path: '/restore',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
@@ -222,7 +234,9 @@ const AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageNoticeIdInde
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/privacy': typeof PrivacyRoute
   '/restore': typeof RestoreRoute
+  '/terms': typeof TermsRoute
   '/league': typeof AuthenticatedFixedHeaderLayoutLeagueRoute
   '/main': typeof AuthenticatedFixedHeaderLayoutMainRoute
   '/test': typeof AuthenticatedFixedHeaderLayoutTestRoute
@@ -247,7 +261,9 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/privacy': typeof PrivacyRoute
   '/restore': typeof RestoreRoute
+  '/terms': typeof TermsRoute
   '/league': typeof AuthenticatedFixedHeaderLayoutLeagueRoute
   '/main': typeof AuthenticatedFixedHeaderLayoutMainRoute
   '/test': typeof AuthenticatedFixedHeaderLayoutTestRoute
@@ -274,7 +290,9 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/privacy': typeof PrivacyRoute
   '/restore': typeof RestoreRoute
+  '/terms': typeof TermsRoute
   '/_authenticated/_blank-layout': typeof AuthenticatedBlankLayoutRouteRouteWithChildren
   '/_authenticated/_fixed-header-layout': typeof AuthenticatedFixedHeaderLayoutRouteRouteWithChildren
   '/_authenticated/_onboarding': typeof AuthenticatedOnboardingRouteRouteWithChildren
@@ -305,7 +323,9 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/privacy'
     | '/restore'
+    | '/terms'
     | '/league'
     | '/main'
     | '/test'
@@ -330,7 +350,9 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/privacy'
     | '/restore'
+    | '/terms'
     | '/league'
     | '/main'
     | '/test'
@@ -356,7 +378,9 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/_authenticated'
+    | '/privacy'
     | '/restore'
+    | '/terms'
     | '/_authenticated/_blank-layout'
     | '/_authenticated/_fixed-header-layout'
     | '/_authenticated/_onboarding'
@@ -387,18 +411,34 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  PrivacyRoute: typeof PrivacyRoute
   RestoreRoute: typeof RestoreRoute
+  TermsRoute: typeof TermsRoute
   LoginOauth2CodeProviderRoute: typeof LoginOauth2CodeProviderRoute
   UserMeDeletePageRoute: typeof UserMeDeletePageRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/restore': {
       id: '/restore'
       path: '/restore'
       fullPath: '/restore'
       preLoaderRoute: typeof RestoreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated': {
@@ -721,7 +761,9 @@ const AuthenticatedRouteRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  PrivacyRoute: PrivacyRoute,
   RestoreRoute: RestoreRoute,
+  TermsRoute: TermsRoute,
   LoginOauth2CodeProviderRoute: LoginOauth2CodeProviderRoute,
   UserMeDeletePageRoute: UserMeDeletePageRoute,
 }
