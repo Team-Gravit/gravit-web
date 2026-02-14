@@ -9,6 +9,8 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './../../pages/__root'
+import { Route as TermsRouteImport } from './../../pages/terms'
+import { Route as PrivacyRouteImport } from './../../pages/privacy'
 import { Route as AuthenticatedRouteRouteImport } from './../../pages/_authenticated/route'
 import { Route as IndexRouteImport } from './../../pages/index'
 import { Route as AuthenticatedFixedHeaderLayoutRouteRouteImport } from './../../pages/_authenticated/_fixed-header-layout/route'
@@ -33,6 +35,16 @@ import { Route as AuthenticatedFixedHeaderLayoutUserMeDeletePageRouteImport } fr
 import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/index'
 import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageNoticeIdIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/$noticeId/index'
 
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
   id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
@@ -184,6 +196,8 @@ const AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageNoticeIdInde
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/privacy': typeof PrivacyRoute
+  '/terms': typeof TermsRoute
   '/addfriend': typeof AuthenticatedFixedHeaderLayoutAddfriendRoute
   '/league': typeof AuthenticatedFixedHeaderLayoutLeagueRoute
   '/main': typeof AuthenticatedFixedHeaderLayoutMainRoute
@@ -205,6 +219,8 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/privacy': typeof PrivacyRoute
+  '/terms': typeof TermsRoute
   '/addfriend': typeof AuthenticatedFixedHeaderLayoutAddfriendRoute
   '/league': typeof AuthenticatedFixedHeaderLayoutLeagueRoute
   '/main': typeof AuthenticatedFixedHeaderLayoutMainRoute
@@ -228,6 +244,8 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/privacy': typeof PrivacyRoute
+  '/terms': typeof TermsRoute
   '/_authenticated/_blank-layout': typeof AuthenticatedBlankLayoutRouteRouteWithChildren
   '/_authenticated/_fixed-header-layout': typeof AuthenticatedFixedHeaderLayoutRouteRouteWithChildren
   '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRouteWithChildren
@@ -254,6 +272,8 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/privacy'
+    | '/terms'
     | '/addfriend'
     | '/league'
     | '/main'
@@ -275,6 +295,8 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/privacy'
+    | '/terms'
     | '/addfriend'
     | '/league'
     | '/main'
@@ -297,6 +319,8 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/_authenticated'
+    | '/privacy'
+    | '/terms'
     | '/_authenticated/_blank-layout'
     | '/_authenticated/_fixed-header-layout'
     | '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout'
@@ -323,11 +347,27 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  PrivacyRoute: typeof PrivacyRoute
+  TermsRoute: typeof TermsRoute
   LoginOauth2CodeProviderRoute: typeof LoginOauth2CodeProviderRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated': {
       id: '/_authenticated'
       path: ''
@@ -600,6 +640,8 @@ const AuthenticatedRouteRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  PrivacyRoute: PrivacyRoute,
+  TermsRoute: TermsRoute,
   LoginOauth2CodeProviderRoute: LoginOauth2CodeProviderRoute,
 }
 export const routeTree = rootRouteImport
