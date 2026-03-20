@@ -7,6 +7,7 @@ import { routeTree } from "@/app/@generated/routeTree.gen";
 import { tokenManager } from "@/shared/api/config";
 import type { AuthState } from "./pages/__root";
 import { ToastContainer } from "./shared/ui/toast";
+import { HelmetProvider } from "react-helmet-async";
 
 // Create a new router instance
 const router = createRouter({
@@ -46,9 +47,11 @@ if (!rootElement) {
 }
 createRoot(rootElement).render(
 	<StrictMode>
-		<QueryClientProvider client={queryClient}>
-			<ToastContainer />
-			<RouterProvider router={router} />
-		</QueryClientProvider>
+		<HelmetProvider>
+			<QueryClientProvider client={queryClient}>
+				<ToastContainer />
+				<RouterProvider router={router} />
+			</QueryClientProvider>
+		</HelmetProvider>
 	</StrictMode>,
 );

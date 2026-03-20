@@ -26,6 +26,7 @@
         "hast-util-sanitize": "^5.0.2",
         "react": "^19.1.1",
         "react-dom": "^19.1.1",
+        "react-helmet-async": "^3.0.0",
         "react-markdown": "^10.1.0",
         "rehype-autolink-headings": "^7.1.0",
         "rehype-raw": "^7.0.0",
