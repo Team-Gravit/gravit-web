@@ -1,5 +1,6 @@
 import { createFileRoute, useParams } from "@tanstack/react-router";
 import { useNoticeDetail } from "@/entities/notice/api/useNoticeDetail";
+import { PageSeo } from "@/shared/ui/seo/PageSeo";
 import SectionHeader from "@/widgets/header/ui/SectionHeader";
 
 export const Route = createFileRoute(
@@ -19,6 +20,11 @@ function RouteComponent() {
 
 	return (
 		<div className="flex flex-col w-full h-full">
+			<PageSeo
+				title={`공지사항 - ${notice.title}`}
+				description={notice.content.slice(0, 100)}
+				noIndex={true}
+			/>
 			<SectionHeader title="공지사항 상세" />
 			<div className="flex flex-col gap-2 px-[60px] py-8">
 				<h1 className="text-2xl font-medium">{notice.title}</h1>

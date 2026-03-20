@@ -5,6 +5,7 @@ import { useConfirmWithdraw } from "@/features/user/delete-user/api/useWithdraw"
 import MascotIcon from "@/shared/assets/icons/ic-mascot-error.svg?react";
 import Logo from "@/shared/assets/icons/logo-gr.svg?react";
 import AppCenterLogo from "@/shared/assets/images/logo-ac.png";
+import { PageSeo } from "@/shared/ui/seo/PageSeo";
 import WithdrawFailedPage from "@/widgets/withdraw/ui/WithdrawFailedPage";
 import WithdrawSuccessPage from "@/widgets/withdraw/ui/WithdrawSuccessPage";
 
@@ -40,6 +41,11 @@ function RouteComponent() {
 	// 확인 페이지
 	return (
 		<div className="flex flex-col w-screen h-screen items-center justify-between">
+			<PageSeo
+				title="회원 탈퇴 확인"
+				description="Gravit 회원 탈퇴를 최종 확인합니다."
+				noIndex={true}
+			/>
 			<header className="flex items-center px-8 py-4 justify-start h-[var(--header-height)] w-full bg-white border-b border-b-gray-300">
 				<Link to="/" className="mr-3">
 					<Logo className={`h-6`} />

@@ -5,6 +5,7 @@ import type { Unit } from "@/entities/learning/model/types";
 import RightArrowIcon from "@/shared/assets/icons/ic-right-arrow.svg?react";
 import backgroundImg from "@/shared/assets/images/background.jpg";
 import { BackgroundLayout } from "@/shared/ui/background/background";
+import { PageSeo } from "@/shared/ui/seo/PageSeo";
 
 export const Route = createFileRoute(
 	"/_authenticated/_fixed-header-layout/learning/$chapterId/",
@@ -22,6 +23,11 @@ function RouteComponent() {
 	}
 	return (
 		<BackgroundLayout backgroundImage={backgroundImg} gradientOverlay="partial">
+			<PageSeo
+				title={chapterInfo.chapterName}
+				description={`${chapterInfo.chapterName} 챕터의 유닛 목록을 확인하세요. ${chapterInfo.chapterDescription}`}
+				noIndex={true}
+			/>
 			<main className="w-full max-w-[1580px] px-16 lg:px-20 xl:px-24 pt-10 lg:pt-24 pb-44 mx-auto">
 				<ContentSectionHeader
 					title={chapterInfo.chapterName}

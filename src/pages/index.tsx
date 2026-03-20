@@ -15,6 +15,7 @@ import leaguePhoneImg from "@/shared/assets/images/league-phone.png";
 import phoneImg from "@/shared/assets/images/phone.png";
 import roundedPlanetsImg from "@/shared/assets/images/planet-group.png";
 import { BackgroundLayout } from "@/shared/ui/background/background";
+import { PageSeo } from "@/shared/ui/seo/PageSeo";
 import Footer from "@/widgets/Footer/Footer";
 
 export const Route = createFileRoute("/")({
@@ -34,6 +35,11 @@ function Index() {
 
 	return (
 		<div className="w-full h-full max-w-screen overflow-hidden relative">
+			<PageSeo
+				title="재미있고 효과적인 CS 교육"
+				description="그래빗과 함께 행성을 탐험하며 CS 지식을 쌓아보세요. 자료구조부터 소프트웨어 엔지니어링까지 게임처럼 재밌게 학습하세요."
+				canonicalPath="/"
+			/>
 			<header className="fixed flex items-center px-8 py-4 justify-start h-[var(--header-height)] w-full bg-white z-[110]">
 				<Link to="/" className="mr-3">
 					<Logo className={`h-6`} />

@@ -5,6 +5,7 @@ import { useToggleFollow } from "@/entities/friends/api/postFollowButton";
 import { useFriendList } from "@/entities/friends/api/useFriendList";
 import FriendList from "@/entities/friends/ui/FriendList";
 import SearchFriend from "@/features/friends/SearchFriend";
+import { PageSeo } from "@/shared/ui/seo/PageSeo";
 import SectionHeader from "@/widgets/header/ui/SectionHeader";
 
 export const Route = createFileRoute(
@@ -46,6 +47,11 @@ export default function RouteComponent() {
 
 	return (
 		<div className="flex flex-col w-full h-full">
+			<PageSeo
+				title="친구 추가"
+				description="태그나 닉네임으로 친구를 검색하고 추가하세요."
+				noIndex={true}
+			/>
 			<SectionHeader title="친구 추가" />
 			<div className="flex flex-col px-6 py-6">
 				<SearchFriend value={searchValue} onChange={setSearchValue} />

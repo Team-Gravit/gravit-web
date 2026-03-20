@@ -5,6 +5,7 @@ import CheckIcon from "@/shared/assets/icons/ic-round-check.svg?react";
 import Logo from "@/shared/assets/icons/logo-gr.svg?react";
 import AppCenterLogo from "@/shared/assets/images/logo-ac.png";
 import { toast } from "@/shared/lib/toast";
+import { PageSeo } from "@/shared/ui/seo/PageSeo";
 
 const searchSchema = z.object({
 	providerId: z.string(),
@@ -35,6 +36,11 @@ function RouteComponent() {
 
 	return (
 		<div className="flex flex-col w-screen h-screen items-center justify-between">
+			<PageSeo
+				title="계정 복구"
+				description="탈퇴 처리 중인 Gravit 계정을 복구합니다."
+				noIndex={true}
+			/>
 			<header className="flex items-center px-8 py-4 justify-start h-[var(--header-height)] w-full bg-white border-b border-b-gray-300">
 				<Link to="/" className="mr-3">
 					<Logo className={`h-6`} />

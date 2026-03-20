@@ -5,6 +5,7 @@ import NicknameForm from "@/features/onboarding/ui/NicknameForm";
 import ProfileSelector from "@/features/onboarding/ui/ProfileSelecter";
 import { usePatchUserProfile } from "@/features/user/update-user/api/patchUserProfile";
 import Form from "@/shared/ui/form/Form";
+import { PageSeo } from "@/shared/ui/seo/PageSeo";
 
 export const Route = createFileRoute(
 	"/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/edit",
@@ -59,6 +60,11 @@ function RouteComponent() {
 
 	return (
 		<div className="w-full h-full flex flex-col items-center bg-[#f2f2f2] p-8">
+			<PageSeo
+				title="프로필 수정"
+				description="닉네임과 프로필 이미지를 변경하세요."
+				noIndex={true}
+			/>
 			<Form className="w-full h-[640px] px-48 py-32 flex flex-col relative">
 				<ProfileSelector
 					arrowColor="#A8A8A8"

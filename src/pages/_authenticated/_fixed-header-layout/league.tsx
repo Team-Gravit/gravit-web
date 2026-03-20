@@ -14,6 +14,7 @@ import Timer from "@/shared/assets/icons/timer.svg?react";
 import BackgroundImage from "@/shared/assets/images/bg-dark.png";
 import { getNextMonday, getRemainingTime } from "@/shared/lib/date";
 import { tiers } from "@/shared/lib/tiers";
+import { PageSeo } from "@/shared/ui/seo/PageSeo";
 
 export const Route = createFileRoute(
 	"/_authenticated/_fixed-header-layout/league",
@@ -132,6 +133,12 @@ export default function LeaguePage() {
 			className="w-screen min-h-screen flex flex-col bg-no-repeat bg-top bg-cover mt-[var(--header-height)]"
 			style={{ backgroundImage: `url(${BackgroundImage})` }}
 		>
+			<PageSeo
+				title="리그"
+				description="다른 사용자들과 LP를 경쟁하며 브론즈부터 다이아몬드 리그까지 승급하세요."
+				canonicalPath="/league"
+				noIndex={true}
+			/>
 			{showWaitingTab && (
 				<div className="flex flex-row w-full h-full items-center justify-center py-17">
 					<WaitingTab />

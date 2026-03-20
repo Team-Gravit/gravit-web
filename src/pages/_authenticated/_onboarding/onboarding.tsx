@@ -5,6 +5,7 @@ import NicknameForm from "@/features/onboarding/ui/NicknameForm";
 import ProfileSelector from "@/features/onboarding/ui/ProfileSelecter";
 import Form from "@/shared/ui/form/Form";
 import Logo from "@/shared/ui/logo/Logo";
+import { PageSeo } from "@/shared/ui/seo/PageSeo";
 
 export const Route = createFileRoute("/_authenticated/_onboarding/onboarding")({
 	component: OnboardingPage,
@@ -59,6 +60,11 @@ function OnboardingPage() {
 
 	return (
 		<>
+			<PageSeo
+				title="프로필 설정"
+				description="닉네임과 프로필 이미지를 설정하고 Gravit을 시작하세요."
+				noIndex={true}
+			/>
 			<Logo />
 			<Form darkMode className="w-[549px] h-[460px] py-8 px-28">
 				<ProfileSelector onChange={setColorIndex} />

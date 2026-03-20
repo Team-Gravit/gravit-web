@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import Logo from "@/shared/assets/icons/logo-gr.svg?react";
+import { PageSeo } from "@/shared/ui/seo/PageSeo";
 import Footer from "@/widgets/Footer/Footer";
 
 export const Route = createFileRoute("/terms")({
@@ -9,6 +10,11 @@ export const Route = createFileRoute("/terms")({
 function TermsPage() {
 	return (
 		<>
+			<PageSeo
+				title="서비스 이용약관"
+				description="Gravit 서비스 이용약관을 확인하세요. 서비스 이용에 관한 권리, 의무 및 책임사항을 규정합니다."
+				canonicalPath="/terms"
+			/>
 			<header className="flex items-center px-8 py-4 justify-start h-[var(--header-height)] w-full bg-white z-[110]">
 				<Link to="/" className="mr-3">
 					<Logo className="h-6" />

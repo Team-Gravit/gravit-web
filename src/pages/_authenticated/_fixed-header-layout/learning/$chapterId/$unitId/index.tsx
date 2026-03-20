@@ -8,6 +8,7 @@ import { cn } from "@/shared/lib/cn";
 // import { useNavigate } from "@tanstack/react-router";
 import { toast } from "@/shared/lib/toast";
 import { BackgroundLayout } from "@/shared/ui/background/background";
+import { PageSeo } from "@/shared/ui/seo/PageSeo";
 
 export const Route = createFileRoute(
 	"/_authenticated/_fixed-header-layout/learning/$chapterId/$unitId/",
@@ -34,6 +35,11 @@ function RouteComponent() {
 
 	return (
 		<BackgroundLayout backgroundImage={backgroundImg} gradientOverlay="partial">
+			<PageSeo
+				title={unitInfo.unitName}
+				description={`${unitInfo.unitName} 유닛의 레슨 목록입니다. ${unitInfo.unitDescription}`}
+				noIndex={true}
+			/>
 			<main className="w-full max-w-[1580px] px-16 lg:px-20 xl:px-24 pt-10 lg:pt-24 pb-44 mx-auto">
 				<div className="flex flex-row justify-between">
 					<ContentSectionHeader

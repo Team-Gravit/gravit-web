@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import Logo from "@/shared/assets/icons/logo-gr.svg?react";
+import { PageSeo } from "@/shared/ui/seo/PageSeo";
 import Footer from "@/widgets/Footer/Footer";
 
 export const Route = createFileRoute("/privacy")({
@@ -9,6 +10,11 @@ export const Route = createFileRoute("/privacy")({
 function PrivacyPage() {
 	return (
 		<>
+			<PageSeo
+				title="개인정보 처리방침"
+				description="Gravit 개인정보 처리방침을 확인하세요. 수집 항목, 이용 목적, 보유 기간 등 개인정보 처리에 관한 사항을 안내합니다."
+				canonicalPath="/privacy"
+			/>
 			<header className="flex items-center px-8 py-4 justify-start h-[var(--header-height)] w-full bg-white z-[110]">
 				<Link to="/" className="mr-3">
 					<Logo className="h-6" />

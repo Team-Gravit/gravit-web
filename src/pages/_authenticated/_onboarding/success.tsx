@@ -2,6 +2,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import Mascot from "@/shared/assets/icons/end-mascot.svg?react";
 import Form from "@/shared/ui/form/Form";
 import Logo from "@/shared/ui/logo/Logo";
+import { PageSeo } from "@/shared/ui/seo/PageSeo";
 
 export const Route = createFileRoute("/_authenticated/_onboarding/success")({
 	component: SuccessPage,
@@ -12,6 +13,11 @@ function SuccessPage() {
 
 	return (
 		<>
+			<PageSeo
+				title="계정 생성 완료"
+				description="Gravit 계정이 성공적으로 생성되었습니다. CS 학습을 시작하세요!"
+				noIndex={true}
+			/>
 			<Logo />
 			<Form darkMode className="w-[549px] h-[460px] py-8 px-28">
 				<h3 className="text-2xl font-semibold text-white">계정 생성 완료!</h3>

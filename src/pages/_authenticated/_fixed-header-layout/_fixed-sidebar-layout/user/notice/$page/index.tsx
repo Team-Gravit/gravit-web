@@ -7,6 +7,7 @@ import { useNoticeList } from "@/entities/notice/api/useNoticeList";
 import type { NoticeItem } from "@/entities/notice/model/types";
 import PaginationButton from "@/features/button/PaginationButton";
 import NoticeList from "@/features/notice/NoticeList";
+import { PageSeo } from "@/shared/ui/seo/PageSeo";
 import SectionHeader from "@/widgets/header/ui/SectionHeader";
 
 export const Route = createFileRoute(
@@ -43,6 +44,11 @@ export default function RouteComponent() {
 
 	return (
 		<div className="flex flex-col w-full h-full">
+			<PageSeo
+				title="공지사항"
+				description="Gravit 서비스의 공지사항을 확인하세요."
+				noIndex={true}
+			/>
 			<SectionHeader title="공지사항" />
 			<NoticeList notices={notices} currentPage={currentPage} />
 			<PaginationButton

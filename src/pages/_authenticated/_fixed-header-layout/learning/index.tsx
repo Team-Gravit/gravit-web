@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useFetchChapters } from "@/entities/learning/model/hooks";
 import ChapterCard from "@/features/learning/ChapterCard";
 import Banner from "@/shared/ui/banner/Banner";
+import { PageSeo } from "@/shared/ui/seo/PageSeo";
 
 export const Route = createFileRoute(
 	"/_authenticated/_fixed-header-layout/learning/",
@@ -26,6 +27,12 @@ function RouteComponent() {
 
 	return (
 		<main className="flex-grow flex flex-col justify-start bg-gray-200">
+			<PageSeo
+				title="개념 학습"
+				description="자료구조, 알고리즘, 네트워크 등 다양한 CS 챕터를 선택해 학습을 시작하세요."
+				canonicalPath="/learning"
+				noIndex={true}
+			/>
 			<Banner />
 			<div className="w-full h-full flex flex-col items-center py-8 mx-auto">
 				<div className="w-full sm:w-[90%] xl:w-[80%] 2xl:w-[70%] flex flex-col gap-8">

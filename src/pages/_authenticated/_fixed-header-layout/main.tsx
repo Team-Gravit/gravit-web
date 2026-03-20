@@ -8,6 +8,7 @@ import LearningProgressInfo from "@/widgets/learning-widget/LearningProgressInfo
 import RecentLearningCard from "@/widgets/learning-widget/RecentLearningCard";
 import { useFetchMainInfo } from "@/widgets/main/model/hooks";
 import MissionCard from "@/widgets/misson-widget/MissionCard";
+import { PageSeo } from "@/shared/ui/seo/PageSeo";
 
 export const Route = createFileRoute(
 	"/_authenticated/_fixed-header-layout/main",
@@ -47,6 +48,12 @@ function MainPage() {
 
 	return (
 		<>
+			<PageSeo
+				title="홈"
+				description="나의 CS 학습 현황, 미션, 리그 정보를 한눈에 확인하세요."
+				canonicalPath="/main"
+				noIndex={true}
+			/>
 			<main className="flex-grow flex flex-col items-center justify-center bg-gray-200">
 				<Banner />
 				<div className="w-full max-w-[1700px] flex-grow p-20 bg-[#f2f2f2] flex flex-col lg:flex-row gap-6">

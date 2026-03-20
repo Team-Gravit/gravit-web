@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useNote } from "@/entities/cs-notes/api/useNote";
 import { useFetchChapterWithUnits } from "@/entities/learning/model/hooks";
 import Banner2 from "@/shared/ui/banner/Banner2";
+import { PageSeo } from "@/shared/ui/seo/PageSeo";
 import StudyNote from "@/shared/ui/studynote/studynote";
 
 export const Route = createFileRoute(
@@ -47,6 +48,11 @@ export default function ConceptNotePage() {
 
 	return (
 		<div className="w-screen min-h-screen flex-col">
+			<PageSeo
+				title={`${chapterInfo.chapterName} Unit${unitNumber} 개념노트`}
+				description={`${chapterInfo.chapterName} Unit${unitNumber}의 CS 개념노트를 확인하세요.`}
+				noIndex={true}
+			/>
 			<Banner2 subject={bannerData.subject} title={bannerData.title} />
 
 			<div className="flex py-14 justify-center">

@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { PageSeo } from "@/shared/ui/seo/PageSeo";
 import SectionHeader from "@/widgets/header/ui/SectionHeader";
 
 export const Route = createFileRoute(
@@ -10,6 +11,11 @@ export const Route = createFileRoute(
 function RouteComponent() {
 	return (
 		<div className="flex flex-col w-full h-full">
+			<PageSeo
+				title="개인정보 처리방침"
+				description="Gravit 앱 개인정보 처리방침을 확인하세요."
+				noIndex={true}
+			/>
 			<SectionHeader title="개인정보 처리방침" />
 			<div className="flex flex-col px-[60px] py-8">
 				<h1 className="text-2xl font-bold mb-6">개인정보처리방침</h1>
