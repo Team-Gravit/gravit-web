@@ -29,3 +29,5 @@ dist-ssr
 .env.production
 
 CLAUDE.md
+
+.claude/*
