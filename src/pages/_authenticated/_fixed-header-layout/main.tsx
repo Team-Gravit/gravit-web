@@ -16,10 +16,10 @@ export const Route = createFileRoute(
 });
 
 function MainPage() {
-	const { data, isFetching, isError, error } = useFetchMainInfo();
+	const { data, isPending, isError, error } = useFetchMainInfo();
 
-	if (isFetching) {
-		return <div>로딩중</div>;
+	if (isPending) {
+		return <div></div>;
 	}
 
 	if (isError) {
@@ -42,7 +42,7 @@ function MainPage() {
 			recentSolvedChapterDescription,
 			recentSolvedChapterProgressRate,
 		},
-		missionDetail: { missionDescription, awardXp, isCompleted },
+		missionDetail: { missionDescription, awardXp, isCompleted, missionName },
 	} = data as Required<typeof data>;
 
 	return (
@@ -62,6 +62,7 @@ function MainPage() {
 
 						<div className="flex flex-row gap-4 mt-8">
 							<MissionCard
+								missionName={missionName || ""}
 								missionInfo={{ missionDescription, awardXp: awardXp || 0 }}
 								isCompleted={isCompleted || false}
 							/>

@@ -1,13 +1,16 @@
 import StartMissionButton from "@/features/mission/StartMissionButton";
 import CompletedStampIcon from "@/shared/assets/icons/misson-completed.svg?react";
 import Card from "@/shared/ui/card/Card";
+import { getMissionUrl } from "./get-mission-url";
 
 export default function MissionCard({
 	missionInfo,
 	isCompleted,
+	missionName,
 }: {
 	missionInfo: { missionDescription: string; awardXp: number };
 	isCompleted: boolean;
+	missionName: string;
 }) {
 	return (
 		<Card className=" h-full w-2/3 min-h-[400px] flex flex-col justify-between p-5 ">
@@ -31,7 +34,10 @@ export default function MissionCard({
 					</ul>
 				)}
 			</div>
-			<StartMissionButton isCompleted={isCompleted} />
+			<StartMissionButton
+				url={getMissionUrl(missionName)}
+				isCompleted={isCompleted}
+			/>
 		</Card>
 	);
 }

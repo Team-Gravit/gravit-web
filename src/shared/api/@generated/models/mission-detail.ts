@@ -18,6 +18,10 @@ export interface MissionDetail {
     /**
      * 미션 이름
      */
+    'missionName'?: string;
+    /**
+     * 미션 설명
+     */
     'missionDescription': string;
     /**
      * 보상 xp

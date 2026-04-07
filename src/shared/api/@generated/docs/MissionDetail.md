@@ -5,7 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**missionDescription** | **string** | 미션 이름 | [default to undefined]
+**missionName** | **string** | 미션 이름 | [optional] [default to undefined]
+**missionDescription** | **string** | 미션 설명 | [default to undefined]
 **awardXp** | **number** | 보상 xp | [optional] [default to undefined]
 **isCompleted** | **boolean** | 완료 여부 | [optional] [default to undefined]
 
@@ -15,6 +16,7 @@ Name | Type | Description | Notes
 import { MissionDetail } from './api';
 
 const instance: MissionDetail = {
+    missionName,
     missionDescription,
     awardXp,
     isCompleted,

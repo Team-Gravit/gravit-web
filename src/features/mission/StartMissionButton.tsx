@@ -3,13 +3,15 @@ import { cn } from "@/shared/lib/cn";
 
 export default function StartMissionButton({
 	isCompleted,
+	url,
 }: {
 	isCompleted: boolean;
+	url: string;
 }) {
 	return (
 		<Link
 			disabled={isCompleted}
-			to="/learning"
+			to={url}
 			className={cn(
 				"w-full rounded-xl px-2.5 py-6 font-semibold text-3xl text-center",
 				isCompleted
