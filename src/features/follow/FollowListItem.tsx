@@ -7,6 +7,7 @@ import type { UserInfo } from "@/entities/sidebar/model/types";
 import X from "@/shared/assets/icons/buttons/x.svg?react";
 import Profile from "@/shared/assets/icons/profile2.svg?react";
 import { PROFILE_COLORS } from "@/shared/lib/ProfileColor";
+import { userKeys } from "@/entities/user/api/queryKey";
 
 interface Props {
 	item: Follow;
@@ -33,7 +34,7 @@ export default function FollowListItem({ item, type }: Props) {
 			onSettled: () => setIsLoading(false),
 		});
 
-		queryClient.setQueryData<UserInfo>(["user-info"], (oldData) => {
+		queryClient.setQueryData<UserInfo>(userKeys.info(), (oldData) => {
 			if (!oldData) return oldData;
 			return {
 				...oldData,
@@ -86,13 +87,16 @@ export default function FollowListItem({ item, type }: Props) {
 						rejectMutation.mutate(item.id, {
 							onSettled: () => setIsLoading(false),
 							onSuccess: () => {
-								queryClient.setQueryData<UserInfo>(["user-info"], (oldData) => {
-									if (!oldData) return oldData;
-									return {
-										...oldData,
-										follower: oldData.follower - 1,
-									};
-								});
+								queryClient.setQueryData<UserInfo>(
+									userKeys.info(),
+									(oldData) => {
+										if (!oldData) return oldData;
+										return {
+											...oldData,
+											follower: oldData.follower - 1,
+										};
+									},
+								);
 							},
 						});
 					}}

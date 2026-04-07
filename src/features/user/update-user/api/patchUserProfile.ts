@@ -7,6 +7,7 @@ import type {
 	UserProfileUpdateRequest,
 	UserResponse,
 } from "@/shared/api/@generated";
+import { userKeys } from "@/entities/user/api/queryKey";
 
 export const usePatchUserProfile = () => {
 	const queryClient = useQueryClient();
@@ -21,7 +22,7 @@ export const usePatchUserProfile = () => {
 		},
 
 		onSuccess: (data) => {
-			queryClient.setQueryData<UserProfile>(["user-info"], (oldData) => {
+			queryClient.setQueryData<UserProfile>(userKeys.info(), (oldData) => {
 				if (!oldData) return data;
 				return {
 					...oldData,
