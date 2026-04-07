@@ -2,10 +2,11 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { mapToFriendList } from "@/entities/friends/model/mappers";
 import type { FriendList } from "@/entities/friends/model/types";
 import { api } from "@/shared/api";
+import { userKeys } from "@/entities/user/api/queryKey";
 
 export const useFriendList = (queryText: string) => {
 	return useInfiniteQuery<FriendList>({
-		queryKey: ["friend-list", queryText],
+		queryKey: userKeys.friends.search(queryText),
 
 		queryFn: async ({ pageParam = 0 }) => {
 			const page = pageParam as number;

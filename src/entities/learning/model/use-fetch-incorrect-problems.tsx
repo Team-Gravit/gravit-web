@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/shared/api";
-import { learningKeys } from "../api/query-keys";
 import { mapToProblemsWithUnitSummary } from "./mappers";
+import { learningKeys } from "../api/query-keys";
 
 export const useFetchIncorrectProblems = (unitId: number) => {
 	const query = useQuery({
-		queryKey: learningKeys.unitWrongAnswers(unitId),
+		queryKey: learningKeys.units.wrongAnswers(unitId),
 		queryFn: async () => {
 			const response =
 				await api.private.wrongAnsweredNote.getAllWrongAnsweredProblemInUnit(

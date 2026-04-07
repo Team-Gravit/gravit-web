@@ -1,16 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/shared/api";
-import { learningKeys } from "../api/query-keys";
 import {
 	mapToChapters,
 	mapToChapterWithLessons,
 	mapToChapterWithUnits,
 	mapToProblemsWithUnitSummary,
 } from "./mappers";
+import { learningKeys } from "../api/query-keys";
 
 export const useFetchProblems = (lessonId: number) => {
 	const query = useQuery({
-		queryKey: learningKeys.lessonProblems(lessonId),
+		queryKey: learningKeys.lessons.problems(lessonId),
 		queryFn: async () => {
 			const response =
 				await api.private.problem.getAllProblemInLesson(lessonId);
@@ -30,7 +30,7 @@ export const useFetchProblems = (lessonId: number) => {
 
 export const useFetchChapters = () => {
 	const query = useQuery({
-		queryKey: learningKeys.chapters(),
+		queryKey: learningKeys.chapters.list(),
 		queryFn: async () => {
 			const response = await api.private.chapter.getAllChapter();
 			return mapToChapters(response.data);
@@ -48,7 +48,7 @@ export const useFetchChapters = () => {
 
 export const useFetchChapterWithUnits = (chapterId: number) => {
 	const query = useQuery({
-		queryKey: learningKeys.chapterUnits(chapterId),
+		queryKey: learningKeys.units.list(chapterId),
 		queryFn: async () => {
 			const response = await api.private.unit.getAllUnitInChapter(chapterId);
 			return mapToChapterWithUnits(response.data);
@@ -66,7 +66,7 @@ export const useFetchChapterWithUnits = (chapterId: number) => {
 
 export const useFetchLessons = (unitId: number) => {
 	const query = useQuery({
-		queryKey: learningKeys.unitLessons(unitId),
+		queryKey: learningKeys.units.lessons(unitId),
 		queryFn: async () => {
 			const response = await api.private.lesson.getAllLessonInUnit(unitId);
 			return mapToChapterWithLessons(response.data);

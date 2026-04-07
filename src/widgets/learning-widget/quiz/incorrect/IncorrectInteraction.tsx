@@ -45,6 +45,7 @@ export default function IncorrectInteraction({
 	const [enteredAnswer, setEnteredAnswer] = useState("");
 
 	// 문제가 바뀔 때마다 입력값 초기화
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
 		setEnteredAnswer("");
 	}, [problem.problemId]);
@@ -78,11 +79,11 @@ export default function IncorrectInteraction({
 			completeQuiz();
 
 			await queryClient.invalidateQueries({
-				queryKey: learningKeys.unitLessons(unitId),
+				queryKey: learningKeys.units.lessons(unitId),
 			});
 
 			await queryClient.invalidateQueries({
-				queryKey: learningKeys.unitWrongAnswers(unitId),
+				queryKey: learningKeys.units.wrongAnswers(unitId),
 			});
 			router.history.back();
 		} else {
@@ -92,7 +93,11 @@ export default function IncorrectInteraction({
 
 	useEffect(() => {
 		const handleGlobalKeyDown = (e: globalThis.KeyboardEvent) => {
-			if (e.key === "Enter" && buttonRef.current && !buttonRef.current.disabled) {
+			if (
+				e.key === "Enter" &&
+				buttonRef.current &&
+				!buttonRef.current.disabled
+			) {
 				buttonRef.current.click();
 			}
 		};

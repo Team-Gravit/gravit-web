@@ -1,10 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/shared/api";
 import type { LeagueResponse } from "@/shared/api/@generated";
+import { leagueKeys } from "./query-keys";
 
 export const useLeagueInfo = (leagueId: number) => {
 	return useQuery<LeagueResponse>({
-		queryKey: ["league-info", leagueId],
+		queryKey: leagueKeys.info(leagueId),
 		queryFn: async () => {
 			const res = await api.private.league.getLeague(leagueId);
 			return res.data;

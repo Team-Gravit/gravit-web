@@ -1,5 +1,6 @@
 import { useQueryClient } from "@tanstack/react-query";
 import { useEffect, useRef, useState } from "react";
+import { userKeys } from "@/entities/user/api/queryKey";
 import { useFollowerList } from "@/entities/follow/api/useFollowerList";
 import { useFollowingList } from "@/entities/follow/api/useFollowingList";
 import type { Follow } from "@/entities/follow/model/types";
@@ -32,8 +33,8 @@ export default function FollowModal({
 
 	useEffect(() => {
 		if (isOpen) {
-			queryClient.invalidateQueries({ queryKey: ["follower-list"] });
-			queryClient.invalidateQueries({ queryKey: ["following-list"] });
+			queryClient.invalidateQueries({ queryKey: userKeys.follow.followers() });
+			queryClient.invalidateQueries({ queryKey: userKeys.follow.following() });
 		}
 	}, [isOpen, queryClient]);
 
@@ -41,9 +42,9 @@ export default function FollowModal({
 		if (!isOpen) return;
 
 		if (activeTab === "followers") {
-			queryClient.invalidateQueries({ queryKey: ["follower-list"] });
+			queryClient.invalidateQueries({ queryKey: userKeys.follow.followers() });
 		} else {
-			queryClient.invalidateQueries({ queryKey: ["following-list"] });
+			queryClient.invalidateQueries({ queryKey: userKeys.follow.following() });
 		}
 	}, [activeTab, isOpen, queryClient]);
 

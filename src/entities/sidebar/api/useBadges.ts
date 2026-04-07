@@ -2,10 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import { mapToUserBadges } from "@/entities/sidebar/model/mappers";
 import type { UserBadges } from "@/entities/sidebar/model/types";
 import { api } from "@/shared/api/index";
+import { userKeys } from "@/entities/user/api/queryKey";
 
 export const useBadges = () => {
 	return useQuery<UserBadges>({
-		queryKey: ["user-badges"],
+		queryKey: userKeys.badges(),
 		queryFn: async () => {
 			const res = await api.private.badge.getAllMyBadges();
 			return mapToUserBadges(res.data);

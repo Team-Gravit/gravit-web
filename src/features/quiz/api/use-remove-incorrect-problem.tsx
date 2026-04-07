@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { learningKeys } from "@/entities/learning/api/query-keys";
 import { api, type LessonResponse } from "@/shared/api";
 import type { ProblemSubmissionRequest } from "@/shared/api/@generated";
 import { toast } from "@/shared/lib/toast";
+import { learningKeys } from "@/shared/lib/query-keys";
 
 interface UseRemoveIncorrectProblemParams {
 	unitId: number;
@@ -23,7 +23,7 @@ export const useRemoveIncorrectProblem = ({
 		},
 
 		onMutate: async (problemId) => {
-			const queryKey = learningKeys.unitWrongAnswers(unitId);
+			const queryKey = learningKeys.units.wrongAnswers(unitId);
 			await queryClient.cancelQueries({ queryKey });
 
 			// 이전 데이터 백업

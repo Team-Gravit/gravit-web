@@ -1,9 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/shared/api";
+import { learningKeys } from "@/shared/lib/query-keys";
 
 export const useNote = (unitId: number) => {
 	return useQuery<string>({
-		queryKey: ["cs-note", unitId],
+		queryKey: learningKeys.units.csNote(unitId),
 		queryFn: async () => {
 			const res = await api.private.note.getNote(unitId, {
 				responseType: "text",

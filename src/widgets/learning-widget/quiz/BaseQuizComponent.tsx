@@ -88,6 +88,7 @@ export default function BaseQuizComponent({
 								totalProblemsCount={totalProblems}
 							/>
 							<AnswerInteraction
+								key={currentProblem.problemId}
 								problem={currentProblem}
 								totalProblemsCount={totalProblems}
 								unitId={unitIdNum}

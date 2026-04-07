@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import type { Friend } from "@/entities/friends/model/types";
 import type { UserInfo } from "@/entities/sidebar/model/types";
 import { api } from "@/shared/api";
+import { userKeys } from "@/entities/user/api/queryKey";
 
 const followFriend = async (id: number): Promise<void> => {
 	await api.private.friend.following(id);
@@ -26,9 +27,10 @@ export const useToggleFollow = (searchValue: string) => {
 		},
 
 		onMutate: (friend) => {
+			// 친구 검색 결과 낙관적 업데이트
 			queryClient.setQueryData<{
 				pages: { contents: Friend[]; hasNextPage: boolean }[];
-			}>(["friend-list", searchValue], (oldData) => {
+			}>(userKeys.friends.search(searchValue), (oldData) => {
 				if (!oldData) return oldData;
 				return {
 					...oldData,
@@ -43,7 +45,8 @@ export const useToggleFollow = (searchValue: string) => {
 				};
 			});
 
-			queryClient.setQueryData<UserInfo>(["user-info"], (oldData) => {
+			// 사이드바 팔로잉 카운트 낙관적 업데이트
+			queryClient.setQueryData<UserInfo>(userKeys.info(), (oldData) => {
 				if (!oldData) return oldData;
 				return {
 					...oldData,
@@ -57,8 +60,11 @@ export const useToggleFollow = (searchValue: string) => {
 		onError: (err: unknown) => {
 			console.error("❌ API 호출 실패:", err);
 
-			queryClient.invalidateQueries({ queryKey: ["friend-list", searchValue] });
-			queryClient.invalidateQueries({ queryKey: ["user-info"] });
+			// 에러 시 실제 서버 데이터로 재동기화
+			queryClient.invalidateQueries({
+				queryKey: userKeys.friends.search(searchValue),
+			});
+			queryClient.invalidateQueries({ queryKey: userKeys.info() });
 		},
 	});
 };

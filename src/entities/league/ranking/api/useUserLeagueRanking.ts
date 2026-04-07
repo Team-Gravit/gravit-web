@@ -1,6 +1,7 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { api } from "@/shared/api";
 import type { LeagueRankRow } from "@/shared/api/@generated";
+import { leagueKeys } from "@/entities/league/api/query-keys";
 
 export interface UserLeaguesList {
 	hasNextPage: boolean;
@@ -9,7 +10,7 @@ export interface UserLeaguesList {
 
 export const useUserLeagueRanking = () => {
 	return useInfiniteQuery<UserLeaguesList>({
-		queryKey: ["user-league-ranking"],
+		queryKey: leagueKeys.userLeagueRanking(),
 
 		queryFn: async ({ pageParam = 0 }) => {
 			const page = pageParam as number;

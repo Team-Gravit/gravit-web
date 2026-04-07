@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/shared/api";
-import { learningKeys } from "../api/query-keys";
 import { mapToProblemsWithUnitSummary } from "./mappers";
+import { learningKeys } from "../api/query-keys";
 
 export const useFetchBookmarkedProblems = (unitId: number) => {
 	const query = useQuery({
-		queryKey: learningKeys.unitBookmarks(unitId),
+		queryKey: learningKeys.units.bookmarks(unitId),
 		queryFn: async () => {
 			const response =
 				await api.private.bookmark.getAllBookmarkedProblemInUnit(unitId);

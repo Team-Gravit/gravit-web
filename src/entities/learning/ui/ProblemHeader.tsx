@@ -29,11 +29,11 @@ export default function ProblemHeader({
 	const getQueryKey = () => {
 		switch (mode) {
 			case "BOOKMARK":
-				return unitId ? learningKeys.unitBookmarks(unitId) : null;
+				return unitId ? learningKeys.units.bookmarks(unitId) : null;
 			case "INCORRECT":
-				return unitId ? learningKeys.unitWrongAnswers(unitId) : null;
+				return unitId ? learningKeys.units.wrongAnswers(unitId) : null;
 			case "LESSON":
-				return lessonId ? learningKeys.lessonProblems(lessonId) : null;
+				return lessonId ? learningKeys.lessons.problems(lessonId) : null;
 			default:
 				return null;
 		}

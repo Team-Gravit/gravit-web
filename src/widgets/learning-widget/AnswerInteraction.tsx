@@ -1,7 +1,6 @@
 import { useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { learningKeys } from "@/entities/learning/api/query-keys";
 import type { Problem } from "@/entities/learning/model/types";
 import { useQuizSessionState } from "@/features/quiz/model/quiz-session-store";
 import { useQuizContext } from "@/features/quiz/model/use-quiz-context";
@@ -11,6 +10,8 @@ import CheckIcon from "@/shared/assets/icons/check.svg?react";
 import AnswerPhase, { type AnswerPhaseHandle } from "./AnswerPhase";
 import NextIcon from "./assets/floating-next.svg?react";
 import ReviewPhase from "./ReviewPhase";
+import { leagueKeys, learningKeys } from "@/shared/lib/query-keys";
+import { userKeys } from "@/entities/user/api/queryKey";
 
 interface AnswerInteractionProps {
 	problem: Problem;
@@ -50,11 +51,6 @@ export default function AnswerInteraction({
 	const isLastQuestion = activeQuestionIndex === totalProblemsCount;
 
 	const [enteredAnswer, setEnteredAnswer] = useState("");
-
-	// 문제가 바뀔 때마다 입력값 초기화
-	useEffect(() => {
-		setEnteredAnswer("");
-	}, [problem.problemId]);
 
 	// 한 개 버튼의 핵심 로직
 	const handleButtonClick = async () => {
@@ -121,7 +117,7 @@ export default function AnswerInteraction({
 
 				// 레슨 완료 시 전체 학습 데이터 무효화
 				await queryClient.invalidateQueries({
-					queryKey: learningKeys.unitLessons(unitId),
+					queryKey: learningKeys.units.lessons(unitId),
 				});
 
 				await queryClient.invalidateQueries({
@@ -131,24 +127,31 @@ export default function AnswerInteraction({
 
 				// 메인 페이지 데이터 무효화
 				await queryClient.invalidateQueries({
-					queryKey: ["users", "main-page"],
+					queryKey: userKeys.mainPage(),
+				});
+
+				await queryClient.invalidateQueries({
+					queryKey: leagueKeys.all,
+					refetchType: "active",
 				});
 			}
 
 			completeQuiz();
 
+			/** TODO: query.invalidate가 잘되는지 확인해봐야함 */
+
 			if (strategy === "STREAM") {
 				await queryClient.invalidateQueries({
-					queryKey: learningKeys.unitLessons(unitId),
+					queryKey: learningKeys.units.lessons(unitId),
 				});
 
 				if (mode === "BOOKMARK") {
 					await queryClient.invalidateQueries({
-						queryKey: learningKeys.unitBookmarks(unitId),
+						queryKey: learningKeys.units.bookmarks(unitId),
 					});
 				} else if (mode === "INCORRECT") {
 					await queryClient.invalidateQueries({
-						queryKey: learningKeys.unitWrongAnswers(unitId),
+						queryKey: learningKeys.units.wrongAnswers(unitId),
 					});
 				}
 
@@ -161,7 +164,11 @@ export default function AnswerInteraction({
 
 	useEffect(() => {
 		const handleGlobalKeyDown = (e: globalThis.KeyboardEvent) => {
-			if (e.key === "Enter" && buttonRef.current && !buttonRef.current.disabled) {
+			if (
+				e.key === "Enter" &&
+				buttonRef.current &&
+				!buttonRef.current.disabled
+			) {
 				buttonRef.current.click();
 			}
 		};
@@ -174,10 +181,7 @@ export default function AnswerInteraction({
 	}, []);
 
 	return (
-		<section
-			key={problem.problemId}
-			className="relative flex flex-col w-full gap-6 flex-grow justify-between"
-		>
+		<section className="relative flex flex-col w-full gap-6 flex-grow justify-between">
 			{!isSubmitted ? (
 				<AnswerPhase
 					key={problem.problemId}
