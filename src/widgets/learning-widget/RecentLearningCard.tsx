@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import LessonProgressBar from "@/entities/learning/ui/LessonProgressBar";
 import InfoIcon from "@/shared/assets/icons/info-circle.svg?react";
 import { getPlanetImage } from "@/shared/lib/planet/utils";
-import Card from "@/shared/ui/card/Card";
+import Card from "@/shared/ui/card/_card";
 import Tooltip from "@/shared/ui/tooltip/Tooltip";
 import ArrowButton from "./assets/arrow-left.svg?react";
 import backgroundImg from "./assets/learning-card-bg.webp";
