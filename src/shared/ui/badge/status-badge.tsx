@@ -1,4 +1,4 @@
-import { cva, type VariantProps } from "class-variance-authority";
+import { cva } from "class-variance-authority";
 
 const badgeVariants = cva("inline-flex items-center rounded-full font-medium", {
 	variants: {
