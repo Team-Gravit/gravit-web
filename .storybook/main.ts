@@ -18,6 +18,7 @@ const config: StorybookConfig = {
     const { mergeConfig } = await import('vite');
     return mergeConfig(config, {
       plugins: [tailwindcss()],
+      base: '/gravit-web/',
     });
   },
   
