@@ -31,3 +31,7 @@ dist-ssr
 CLAUDE.md
 
 .claude/*
+
+.agents/*
+skills-lock.json
+tsconfig.tsbuildinfo
