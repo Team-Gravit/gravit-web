@@ -2,29 +2,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "@/app/styles/globals.css";
-import { createRouter, RouterProvider } from "@tanstack/react-router";
-import { routeTree } from "@/app/@generated/routeTree.gen";
-import { tokenManager } from "@/shared/api/config";
-import type { AuthState } from "./pages/__root";
+import { RouterProvider } from "@tanstack/react-router";
 import { ToastContainer } from "./shared/ui/toast";
-
-// Create a new router instance
-const router = createRouter({
-	routeTree,
-	context: {
-		auth: {
-			isAuthenticated: !!tokenManager.getAccessToken(),
-		} as AuthState,
-	},
-	scrollRestoration: true,
-});
-
-// Register the router instance for type safety
-declare module "@tanstack/react-router" {
-	interface Register {
-		router: typeof router;
-	}
-}
+import { router } from "./app/router";
 
 const queryClient = new QueryClient({
 	defaultOptions: {
