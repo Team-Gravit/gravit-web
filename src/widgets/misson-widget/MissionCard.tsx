@@ -1,6 +1,6 @@
 import StartMissionButton from "@/features/mission/StartMissionButton";
 import CompletedStampIcon from "@/shared/assets/icons/misson-completed.svg?react";
-import Card from "@/shared/ui/card/Card";
+import Card from "@/shared/ui/card/_card";
 import { getMissionUrl } from "./get-mission-url";
 
 export default function MissionCard({

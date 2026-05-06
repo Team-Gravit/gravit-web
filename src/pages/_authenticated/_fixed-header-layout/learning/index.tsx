@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useFetchChapters } from "@/entities/learning/model/hooks";
-import ChapterCard from "@/features/learning/ChapterCard";
+import ChapterCard from "@/features/learning/_ChapterCard";
 import Banner from "@/shared/ui/banner/Banner";
 
 export const Route = createFileRoute(

@@ -6,6 +6,7 @@ import { cn } from "@/shared/lib/cn";
 import { getPlanetImage } from "@/shared/lib/planet/utils";
 import Tooltip from "@/shared/ui/tooltip/Tooltip";
 
+/** TODO: delete - 곧 삭제될 컴포넌트 */
 function ChapterCard({
 	chapter,
 	isActive,
