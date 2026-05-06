@@ -1,5 +1,5 @@
 import ChapterCard from "@/features/learning/ui/chapter-card";
-import Card from "@/shared/ui/card/Card";
+import Card from "@/shared/ui/card/card";
 
 interface ChaptersSectionProps {
 	chapters: {
@@ -15,7 +15,7 @@ export default function ChaptersSection({ chapters }: ChaptersSectionProps) {
 		<Card>
 			<Card.Header>
 				<Card.Title>새 주제 시작하기</Card.Title>
-				<Card.Link url="./">전체 보기</Card.Link>
+				<Card.Link to="./">전체 보기</Card.Link>
 			</Card.Header>
 			<div className="w-full flex-1 grid grid-cols-2 gap-4">
 				{chapters.map((chapter) => (

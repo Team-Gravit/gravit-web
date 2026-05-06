@@ -2,6 +2,7 @@ import BgCard from "@/shared/ui/card/bg-card";
 import cardBg from "@/shared/assets/images/card-bg.webp";
 import { PLANET_IMAGES } from "@/shared/assets/images/planets";
 import LockIcon from "@/shared/assets/_icons/lock-icon.svg?react";
+import { Link } from "@tanstack/react-router";
 
 export default function ChapterCard({
 	title,
@@ -32,12 +33,12 @@ export default function ChapterCard({
 					<LockIcon className="size-4" /> 잠김
 				</span>
 			) : (
-				<a
-					href={"./"}
+				<Link
+					to={"/"}
 					className="text-base font-medium underline underline-offset-3 text-[#FBF1FF]"
 				>
 					학습하러 가기 →
-				</a>
+				</Link>
 			)}
 			<img
 				src={PLANET_IMAGES[chapterId as keyof typeof PLANET_IMAGES]}

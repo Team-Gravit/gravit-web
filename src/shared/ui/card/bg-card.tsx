@@ -1,6 +1,6 @@
 import { cn } from "@/shared/lib/cn";
 import { cva } from "class-variance-authority";
-import Card from "./Card";
+import Card from "./card";
 
 const bgCardVariants = cva(
 	" flex flex-col w-full bg-cover bg-center bg-no-repeat h-fit",

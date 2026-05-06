@@ -1,4 +1,5 @@
 import { cn } from "@/shared/lib/cn";
+import { Link } from "@tanstack/react-router";
 import { cva, type VariantProps } from "class-variance-authority";
 
 const cardVariants = cva("box-border flex flex-col bg-white w-full", {
@@ -48,24 +49,24 @@ function CardTitle({
 }
 
 function CardLink({
-	url,
+	to,
 	children,
 	className,
 }: {
-	url: string;
+	to: string;
 	children: React.ReactNode;
 	className?: string;
 }) {
 	return (
-		<a
-			href={url}
+		<Link
+			to={to}
 			className={cn(
 				"font-medium text-base text-gray-400 underline underline-offset-2 shadow-[0px_4px_32px_0px_#00000006]",
 				className,
 			)}
 		>
 			{children}
-		</a>
+		</Link>
 	);
 }
 
