@@ -2,17 +2,14 @@ import DayBadge from "../badge/day-badge";
 
 const WEEK_DAYS = ["월", "화", "수", "목", "금", "토", "일"];
 
-
-
 export default function WeeklyStreak() {
-
 	const today = (new Date().getDay() + 6) % 7;
 
-    const getDayStatus = (dayIndex: number, todayIndex: number) => {
-	if (dayIndex === todayIndex) return "today";
-	if (dayIndex < todayIndex) return "completed";
-	return "upcoming";
-};
+	const getDayStatus = (dayIndex: number, todayIndex: number) => {
+		if (dayIndex === todayIndex) return "today";
+		if (dayIndex < todayIndex) return "completed";
+		return "upcoming";
+	};
 
 	return (
 		<ul className="flex gap-3 md:gap-2">

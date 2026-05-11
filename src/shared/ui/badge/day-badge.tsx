@@ -17,18 +17,11 @@ const dayBadgeVariants = cva(
 				upcoming: "border-gray-400 text-gray-500 ",
 			},
 		},
-
 	},
 );
 
-export default function DayBadge({
-	label,
-	className,
-	status,
-}: DayBadgeProps) {
+export default function DayBadge({ label, className, status }: DayBadgeProps) {
 	return (
-		<span className={cn(dayBadgeVariants({ status }), className)}>
-			{label}
-		</span>
+		<span className={cn(dayBadgeVariants({ status }), className)}>{label}</span>
 	);
 }
