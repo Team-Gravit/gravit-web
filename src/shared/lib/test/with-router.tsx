@@ -82,11 +82,13 @@ export const WithRouter = <
 		routeTree: rootRoute.addChildren([mockedRoute]),
 	});
 
-	mockedRouter.navigate({
+	const navigateOptions = {
 		to: initialPath === "/" ? "/" : initialPath.replace(/\/$/, ""),
 		search,
 		params,
-	} as any);
+	} as Parameters<typeof mockedRouter.navigate>[0];
+
+	mockedRouter.navigate(navigateOptions);
 
 	mockedRouter.navigate = fn();
 
