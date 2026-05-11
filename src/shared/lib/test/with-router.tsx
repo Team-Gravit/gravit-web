@@ -51,14 +51,17 @@ export const WithRouter = <
 >({
 	children,
 	routeId,
+	path,
 	search,
 	params,
 }: React.PropsWithChildren<
 	{
 		routeId: TId;
+		path?: string;
 	} & ExtractRouteOptions<TId>
 >) => {
 	const history = createMemoryHistory();
+	const initialPath = String(path ?? routeId);
 
 	const rootRoute = createRootRoute({
 		component: () => (
@@ -70,7 +73,7 @@ export const WithRouter = <
 	});
 	const mockedRoute = createRoute({
 		getParentRoute: () => rootRoute,
-		path: routeId,
+		path: initialPath,
 		component: () => children,
 	});
 
@@ -80,7 +83,7 @@ export const WithRouter = <
 	});
 
 	mockedRouter.navigate({
-		to: routeId.replace(/\/$/, ""),
+		to: initialPath === "/" ? "/" : initialPath.replace(/\/$/, ""),
 		search,
 		params,
 	} as any);
@@ -96,6 +99,7 @@ export const withTanstackRouter = <
 >(
 	options: {
 		routeId: TId;
+		path?: string;
 	} & ExtractRouteOptions<TId>,
 ) => {
 	return (Story: React.ComponentType): JSX.Element => {

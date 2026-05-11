@@ -2,7 +2,7 @@
 import '../src/app/styles/globals.css'
 import type { Preview } from '@storybook/react-vite'
 import { withTanstackRouter } from '../src/shared/lib/test/with-router';
-
+import { MINIMAL_VIEWPORTS } from "storybook/viewport";
 const preview: Preview = {
   parameters: {
     controls: {
@@ -11,6 +11,10 @@ const preview: Preview = {
        date: /Date$/i,
       },
     },
+
+      viewport : {
+        options : MINIMAL_VIEWPORTS
+      }
   },
   decorators: [
     withTanstackRouter({ routeId: "/" }),
