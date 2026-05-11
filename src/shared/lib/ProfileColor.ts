@@ -19,3 +19,9 @@ export const PROFILE_COLORS = {
 	18: "#340D91",
 	19: "#8138C5",
 } as const;
+
+export const getProfileColor = (colorKey: number) => {
+	return (
+		PROFILE_COLORS[colorKey as keyof typeof PROFILE_COLORS] ?? PROFILE_COLORS[1]
+	);
+};
