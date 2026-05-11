@@ -8,7 +8,7 @@ const bgCardVariants = cva(
 		variants: {
 			size: {
 				sm: "p-3 rounded-lg gap-2",
-				md: "p-5 rounded-xl gap-4",
+				md: "p-3 md:p-5 rounded-lg md:rounded-xl gap-4",
 				lg: "p-7 rounded-2xl gap-6",
 			},
 		},
