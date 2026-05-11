@@ -1,13 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import LabeledProgressBar from "./labeled-progress-bar";
 
-type StoryArg = {
-	value: number;
-	labelText: string;
-	valueLabelText: string;
-	barClassName?: string;
-};
-
 const meta: Meta<typeof LabeledProgressBar> = {
 	title: "Shared/UI/Progress/LabeledProgressBar",
 	component: LabeledProgressBar,
@@ -21,13 +14,16 @@ const meta: Meta<typeof LabeledProgressBar> = {
 			description: "진행률 퍼센트",
 		},
 		label: {
-			description: "상단 좌측 요소",
+			description: "상단 좌측 라벨",
 		},
-		valueLabel: {
-			description: "상단 우측 요소",
+		className: {
+			description: "전체 래퍼 요소 클래스",
 		},
 		barClassName: {
 			description: "프로그래스 바 요소 클래스",
+		},
+		labelClassName: {
+			description: "상단 라벨 요소 클래스",
 		},
 	},
 	decorators: [
@@ -47,23 +43,6 @@ type Story = StoryObj<typeof LabeledProgressBar>;
 export const Default: Story = {
 	args: {
 		value: 60,
-		label: <span className="text-2xl font-semibold">자료구조</span>,
-		valueLabel: <span className="text-main-1">60%</span>,
+		label: "자료구조",
 	},
-};
-
-// 문서 내에서 수정, 편집이 편하도록
-export const Playground: StoryObj<StoryArg> = {
-	args: {
-		value: 60,
-		labelText: "자료구조",
-		valueLabelText: "60%",
-	},
-	render: ({ labelText, valueLabelText, ...args }) => (
-		<LabeledProgressBar
-			{...args}
-			label={<span className="text-2xl font-semibold">{labelText}</span>}
-			valueLabel={<span className="text-main-1">{valueLabelText}</span>}
-		/>
-	),
 };
