@@ -20,11 +20,11 @@ export default function ChapterCard({
 			className="relative h-[185px] md:h-[232px] justify-between overflow-hidden"
 			backgroundImage={cardBg}
 		>
-			<BgCard.Header className="flex-col justify-start w-full items-start md:gap-1">
+			<BgCard.Header className="flex-col justify-start w-full items-start md:gap-1 z-10">
 				<span className="text-xs text-gray-400 block md:hidden">
 					새 주제 시작하기
 				</span>
-				<BgCard.Title className="font-mbc md:font-pretendard text-white font-normal md:font-semibold text-base md:text-xl break-keep line-clamp-1 md:line-clamp-2">
+				<BgCard.Title className="font-mbc md:font-pretendard text-white font-normal md:font-semibold text-base md:text-xl break-keep line-clamp-3 md:line-clamp-2">
 					{title}
 				</BgCard.Title>
 				<span className="text-xs font-normal md:font-medium md:text-base text-white/50">
@@ -34,7 +34,7 @@ export default function ChapterCard({
 			<img
 				src={PLANET_IMAGES[chapterId as keyof typeof PLANET_IMAGES]}
 				alt="Planet"
-				className="aspect-square object-contain absolute w-[120px] md:w-1/2 right-0 bottom-0 translate-x-1/6 translate-y-1/6"
+				className="aspect-square object-contain absolute h-[70%] md:h-fit md:w-1/2 right-0 bottom-0 translate-x-1/6 translate-y-1/6 z-0"
 			/>
 			{status === "locked" ? (
 				<span className="px-4 py-1 rounded-full bg-black/40 border border-gray-300 flex items-center justify-center w-fit text-gray-300 text-xs md:text-base font-normal md:font-medium gap-1 z-10">
