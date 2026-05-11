@@ -19,10 +19,6 @@ const meta: Meta<typeof ProgressRing> = {
 			control: "number",
 			description: "Progress Ring 사이즈",
 		},
-		strokeWidth: {
-			control: "number",
-			description: "Progress Ring 두께",
-		},
 		children: {
 			description: "Progress Ring 내 요소",
 		},
