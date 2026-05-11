@@ -2,6 +2,11 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import pcBackgroundImage from "@/shared/assets/images/banner.webp";
 import { withTanstackRouter } from "@/shared/lib/test/with-router";
 import HeaderContent from "./header-content";
+import {
+	DEFAULT_HEADER_NAV_LIST,
+	LEARNING_HEADER_NAV_LIST,
+} from "../header-nav-list";
+import HeaderBackButton from "./header-back-button";
 
 const meta: Meta<typeof HeaderContent> = {
 	title: "Widgets/Header/Header",
@@ -12,14 +17,31 @@ const meta: Meta<typeof HeaderContent> = {
 	tags: ["autodocs"],
 	args: {
 		profileImageNum: 1,
+		navList: DEFAULT_HEADER_NAV_LIST,
+	},
+	argTypes: {
+		profileImageNum: {
+			description: "프로필 이미지 색상",
+		},
+		navList: {
+			description: "헤더 네비게이션 리스트",
+		},
+		leftSlot: {
+			description: "헤더 왼쪽 요소",
+		},
+		rightSlot: {
+			description: "헤더 오른쪽 요소",
+		},
 	},
 	decorators: [
 		(Story) => (
 			<div
 				style={{
+					zoom: 0.75,
+					minWidth: 1280,
 					backgroundImage: `url(${pcBackgroundImage})`,
 				}}
-				className="w-full h-[300px] p-4 bg-center"
+				className="w-full p-4 bg-center"
 			>
 				<Story />
 			</div>
@@ -70,6 +92,21 @@ export const UserActive: Story = {
 			routeId:
 				"/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/",
 			path: "/user",
+		}),
+	],
+};
+
+export const LearningPageHeader: Story = {
+	name: "학습 페이지 헤더",
+	args: {
+		navList: LEARNING_HEADER_NAV_LIST,
+		leftSlot: <HeaderBackButton />,
+		rightSlot: <span className="text-[#EB3D32] text-xl">탈퇴하기</span>,
+	},
+	decorators: [
+		withTanstackRouter({
+			routeId: "/_authenticated/_fixed-header-layout/learning/",
+			path: "/learning",
 		}),
 	],
 };
