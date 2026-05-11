@@ -6,7 +6,7 @@ const cardVariants = cva("box-border flex flex-col bg-white w-full", {
 	variants: {
 		size: {
 			sm: "p-3 rounded-lg gap-2",
-			md: "p-5 rounded-xl gap-4", // 현재 나온 디자인은 md 사이즈만 존재하지만, 추후 사이즈가 추가될 수 있으므로 다른 사이즈도 정의해둠
+			md: "p-3 rounded-lg gap-2 md:p-5 md:rounded-xl md:gap-4", // 현재 나온 디자인은 md 사이즈만 존재하지만, 추후 사이즈가 추가될 수 있으므로 다른 사이즈도 정의해둠
 			lg: "p-7 rounded-2xl gap-6",
 		},
 	},
@@ -42,7 +42,12 @@ function CardTitle({
 	className?: string;
 }) {
 	return (
-		<h3 className={cn("font-medium text-base text-gray-500", className)}>
+		<h3
+			className={cn(
+				"font-normal md:font-medium text-xs md:text-base text-gray-500",
+				className,
+			)}
+		>
 			{children}
 		</h3>
 	);
@@ -61,7 +66,7 @@ function CardLink({
 		<Link
 			to={to}
 			className={cn(
-				"font-medium text-base text-gray-400 underline underline-offset-2 shadow-[0px_4px_32px_0px_#00000006]",
+				"font-normal md:font-medium text-xs md:text-base text-gray-400 underline underline-offset-2 shadow-[0px_4px_32px_0px_#00000006]",
 				className,
 			)}
 		>
