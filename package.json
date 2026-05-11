@@ -19,6 +19,8 @@
         "build-storybook": "storybook build"
     },
     "dependencies": {
+        "@radix-ui/react-scroll-area": "^1.2.10",
+        "@radix-ui/themes": "^3.3.0",
         "@tanstack/react-query": "^5.87.4",
         "@tanstack/react-query-devtools": "^5.87.4",
         "@tanstack/react-router": "^1.131.36",
