@@ -1,5 +1,7 @@
 @import 'tailwindcss';
- @plugin "@tailwindcss/typography";
+@plugin "@tailwindcss/typography";
+
+@import './typography.css';
 
 @theme {
     /*기본 색상 비활성화*/
