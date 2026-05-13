@@ -34,3 +34,5 @@ CLAUDE.md
 
 .agents/*
 skills-lock.json
+
+storybook-static
