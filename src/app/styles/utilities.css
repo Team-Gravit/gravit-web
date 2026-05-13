@@ -1,0 +1,146 @@
+@layer utilities {
+    .animate-fadeIn {
+        animation: fadeIn 0.2s ease-in;
+    }
+
+    .bg-main-gradient {
+        background: linear-gradient(45deg, var(--color-main-2) 0%, var(--color-main-end) 100%);
+    }
+
+    .text-main-gradient {
+        background: linear-gradient(45deg, var(--color-main-2) 0%, var(--color-main-end) 100%);
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .primary-btn {
+        border-radius: 10px;
+        background: var(--color-cta);
+        color: #fff;
+        cursor: pointer
+    }
+
+    .gray-btn {
+        border-radius: 10px;
+        background: var(--primitive-gray-500);
+        color: #fff;
+        cursor: pointer
+    }
+
+    .bg-space-gradient {
+        background: linear-gradient(293deg, #4721CA 3.59%, #17034E 95.08%);
+    }
+    .scrollbar-hide {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    scrollbar-width: none;
+  }
+  
+  .custom-shadow{
+        box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.25)
+    }
+
+    .text-stroke-gradient {
+        color: white;
+        -webkit-text-stroke: 5px var(--color-cta);
+        paint-order: stroke fill;
+    }
+}
+
+@layer base {
+  .prose {
+    font-style: normal !important;
+    color: #1F2328 !important;
+    line-height: 1.6;
+    font-family: 'Pretendard';
+  }
+
+
+  .prose blockquote {
+    quotes: none !important;
+    padding: 0.5em 1em;
+    border-left: 4px solid #dfe2e5;
+    margin: 1em 0;
+  }
+
+  .prose blockquote::before,
+  .prose blockquote::after {
+    content: none !important;
+  }
+
+
+  .prose pre {
+    background-color: #f6f8fa !important;
+    border-radius: 6px !important;
+    padding: 1em !important;
+  }
+
+  .prose pre code {
+    background: transparent !important;
+    color: #1F2328 !important;
+    font-family: 'Source Code Pro', monospace;
+    font-weight: 400;
+  }
+
+  .prose code {
+    background-color: #f6f8fa;
+    border-radius: 4px;
+    padding: 0.2em 0.4em;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.875em;
+  }
+
+  .prose table {
+    border-collapse: collapse;
+    table-layout: auto !important;
+    width: auto !important;      
+  }
+
+  .prose th,
+  .prose td {
+    border: 1px solid #dfe2e5;
+    padding: 0.5em 1em!important;
+  }
+
+  .prose th:first-child,
+  .prose td:first-child {
+    padding-left: 1em !important;
+  }
+
+  .prose th:last-child,
+  .prose td:last-child {
+    padding-right: 1em !important;
+  }
+
+  .prose th {
+    font-weight: 600;
+    text-align: center !important;
+  }
+
+
+  .prose tr:nth-child(even) td {
+    background-color: #f6f8fa;
+  }
+
+
+  .prose blockquote p,
+  .prose li,
+  .prose strong {
+    font-style: normal !important;
+  }
+
+  .prose li::marker {
+  color: #1F2328 !important; 
+}
+
+  .prose blockquote {
+    quotes: none !important;
+    color: #59636E !important;
+  }
+
+  .prose blockquote::before,
+  .prose blockquote::after {
+    content: none !important;
+  }
+}
