@@ -18,14 +18,7 @@ export default function UnitListCard({
 				<Card.Link to="/units">전체 학습화면 보기</Card.Link>
 			</Card.Header>
 			<div className="w-full px-3 md:px-5">
-				<LabeledProgressBar
-					label={
-						<h3 className="text-[#242424] font-semibold text-base md:text-2xl">
-							자료구조
-						</h3>
-					}
-					value={20}
-				/>
+				<LabeledProgressBar label={"자료구조"} value={20} />
 			</div>
 			<UnitListScrollArea units={units} />
 		</Card>
