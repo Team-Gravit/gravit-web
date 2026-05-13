@@ -5,7 +5,6 @@ interface ProgressRingProps {
 	children?: React.ReactNode;
 	value: number;
 	size?: number;
-	strokeWidth?: number;
 	strokeClassName?: string;
 }
 
@@ -13,16 +12,17 @@ export default function ProgressRing({
 	children,
 	value,
 	size = 64,
-	strokeWidth = 3,
 	strokeClassName,
 }: ProgressRingProps) {
+	const strokeWidth = 3;
+
 	const safeValue = Math.min(Math.max(value, 0), 100);
 
 	const radius = (size - strokeWidth) / 2;
 	const circumference = 2 * Math.PI * radius;
-	const offset = circumference + (safeValue / 100) * circumference;
-
+	const offset = circumference - (safeValue / 100) * circumference;
 	const gradientId = useId();
+	const contentSize = size - 12;
 
 	return (
 		<div
@@ -30,14 +30,15 @@ export default function ProgressRing({
 				width: size,
 				height: size,
 			}}
-			className={cn("relative  inline-flex items-center justify-center")}
+			className="relative items-center justify-center flex shrink-0"
 		>
 			<svg
 				style={{
 					width: size,
 					height: size,
 				}}
-				className="inset-0 absolute -rotate-90"
+				className="absolute inset-0 rotate-90 -scale-x-[1]"
+				aria-hidden="true"
 			>
 				<linearGradient id={gradientId} x1="0" x2="1" y2="1">
 					<stop offset="0%" stopColor="#8100B3" />
@@ -67,8 +68,16 @@ export default function ProgressRing({
 				/>
 			</svg>
 
-			<div className="size-30 overflow-hidden p-1.5 inline-flex items-center justify-center">
-				{children}
+			<div
+				className="absolute inset-0 grid place-items-center"
+				style={{ width: size, height: size }}
+			>
+				<div
+					style={{ width: contentSize, height: contentSize }}
+					className="overflow-hidden [&>svg]:size-full [&>svg]:block"
+				>
+					{children}
+				</div>
 			</div>
 		</div>
 	);

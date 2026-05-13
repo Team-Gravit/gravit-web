@@ -1,4 +1,4 @@
-import pcBackgroundImage from "@/shared/assets/images/banner.webp";
+import pcBackgroundImage from "@/shared/assets/images/pcBannerImage.webp";
 import mobileBackgroundImage from "@/shared/assets/images/mobile-banner.png";
 import { cn } from "@/shared/lib/cn";
 
@@ -8,9 +8,9 @@ export default function HeroSection({
 	children: React.ReactNode;
 }) {
 	return (
-		<section className="flex relative w-full h-[330px] overflow-hidden">
+		<section className="flex relative w-full h-[360px] md:h-[274px] overflow-hidden">
 			<picture className="absolute inset-0 w-full h-full overflow-hidden z-0">
-				<source media="(max-width: 480px)" srcSet={mobileBackgroundImage} />
+				<source media="(max-width: 768px)" srcSet={mobileBackgroundImage} />
 				<img
 					src={pcBackgroundImage}
 					className="object-cover object-right h-full w-full"
@@ -19,7 +19,7 @@ export default function HeroSection({
 			</picture>
 			<div
 				id="overlay"
-				className=" max-[480px]:block hidden pointer-events-none absolute inset-x-0 bottom-0 z-50 h-16 bg-gradient-to-t from-gray-200 to-transparent"
+				className="block md:hidden pointer-events-none absolute inset-x-0 bottom-0 z-50 h-16 bg-gradient-to-t from-gray-200 to-transparent"
 			/>
 
 			{children}
@@ -37,8 +37,8 @@ function HeroContent({
 	spacing?: "header-aligned" | "content-padded";
 }) {
 	const heroContentSpacing = {
-		"header-aligned": "lg:px-19 lg:pb-14 p-5 max-[480px]:pb-12",
-		"content-padded": "max-w-300  mx-auto px-5 max-[480px]:pb-12 pb-5 xl:px-0",
+		"header-aligned": "md:px-19 md:pb-14 p-5 pb-12",
+		"content-padded": "max-w-300  mx-auto px-5 pb-12 pb-5 xl:px-0",
 	};
 
 	return (

@@ -47,7 +47,7 @@ export const Mobile: Story = {
 	},
 	render: () => (
 		<HeroSection>
-			<HeroSection.Content className="text-white">
+			<HeroSection.Content spacing="content-padded" className="text-white">
 				<p className="text-3xl  mb-1 font-semibold">어서오세요, 땅콩님!</p>
 				<p className="text-lg">그래빗과 함께 CS 지식을 마스터해요!</p>
 			</HeroSection.Content>

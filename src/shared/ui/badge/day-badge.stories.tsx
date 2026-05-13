@@ -19,18 +19,6 @@ const meta: Meta<typeof DayBadge> = {
 				},
 			},
 		},
-		size: {
-			control: "select",
-			description: "배지 크기",
-			table: {
-				type: {
-					summary: "'sm' | 'md'",
-				},
-				defaultValue: {
-					summary: "md",
-				},
-			},
-		},
 		label: {
 			control: "text",
 			description: "배지 라벨",
@@ -39,7 +27,6 @@ const meta: Meta<typeof DayBadge> = {
 	args: {
 		label: "월",
 		status: "completed",
-		size: "md",
 	},
 };
 
@@ -62,21 +49,5 @@ export const Completed: Story = {
 export const Upcoming: Story = {
 	args: {
 		status: "upcoming",
-	},
-};
-
-export const SizeSmall: Story = {
-	name: "크기 - sm",
-	args: {
-		status: "today",
-		size: "sm",
-	},
-};
-
-export const SizeMedium: Story = {
-	name: "크기 - md",
-	args: {
-		status: "today",
-		size: "md",
 	},
 };
