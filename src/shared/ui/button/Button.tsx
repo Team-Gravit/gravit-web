@@ -42,7 +42,7 @@ const blockButtonVariants = cva(
 				primary: "bg-[#9b00cf] text-white hover:bg-[#6D0689]",
 				secondary: "bg-[#DCDCDC] text-[#6D6D6D] hover:bg-[#A8A8A8]",
 			},
-			size: { md: "h-[56px] rounded-lg font-semibold text-md" },
+			size: { md: "h-[56px] rounded-lg font-semibold text-lg" },
 		},
 		defaultVariants: { variant: "primary", size: "md" },
 	},
