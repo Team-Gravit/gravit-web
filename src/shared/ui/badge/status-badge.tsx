@@ -8,9 +8,10 @@ const badgeVariants = cva("inline-flex items-center rounded-full font-medium", {
 			notStarted: "bg-white border border-[#C6C6C6] text-[#A8A8A8]",
 		},
 		size: {
-			sm: "px-3 py-0.5 text-xs",
-			md: "px-4 py-1 text-base",
-			lg: "px-5 py-2 text-lg",
+			// 높이는 직접 지정할 것
+			sm: "px-3 h-[22px] text-xs",
+			md: "px-4 h-[29px] text-base",
+			lg: "px-3 md:px-5 h-[26px] md:h-8 text-xs md:text-lg",
 		},
 	},
 	defaultVariants: {

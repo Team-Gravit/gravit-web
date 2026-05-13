@@ -16,6 +16,7 @@ import phoneImg from "@/shared/assets/images/phone.png";
 import roundedPlanetsImg from "@/shared/assets/images/planet-group.png";
 import { BackgroundLayout } from "@/shared/ui/background/background";
 import Footer from "@/widgets/Footer/Footer";
+import "@radix-ui/themes/styles.css";
 
 export const Route = createFileRoute("/")({
 	beforeLoad: async () => {
