@@ -8,9 +8,7 @@ export const leagueKeys = {
 	ranking: (leagueId: number) =>
 		[...leagueKeys.all, "ranking", leagueId] as const,
 
-	userLeagueProfile: () =>
-		[...leagueKeys.all, "user-league-profile"] as const,
+	userLeagueProfile: () => [...leagueKeys.all, "user-league-profile"] as const,
 
-	userLeagueRanking: () =>
-		[...leagueKeys.all, "user-league-ranking"] as const,
+	userLeagueRanking: () => [...leagueKeys.all, "user-league-ranking"] as const,
 } as const;

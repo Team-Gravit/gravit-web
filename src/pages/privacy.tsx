@@ -24,9 +24,7 @@ function PrivacyPage() {
 						있도록 다음과 같이 개인정보 처리방침을 수립·공개합니다.
 					</p>
 
-					<p className="mb-6 font-semibold">
-						최종 수정일: 2026년 2월 2일
-					</p>
+					<p className="mb-6 font-semibold">최종 수정일: 2026년 2월 2일</p>
 
 					<h2 className="text-xl font-semibold mt-8 mb-3">
 						1. 개인정보의 수집 항목 및 수집 방법
@@ -81,8 +79,8 @@ function PrivacyPage() {
 					</h2>
 					<ul className="list-disc list-inside mb-4 ml-4">
 						<li>
-							<span className="font-semibold">회원 탈퇴 시:</span> 즉시 파기 (단,
-							관련 법령에 따라 보관이 필요한 경우 예외)
+							<span className="font-semibold">회원 탈퇴 시:</span> 즉시 파기
+							(단, 관련 법령에 따라 보관이 필요한 경우 예외)
 						</li>
 						<li>
 							<span className="font-semibold">법령에 따른 보관:</span>{" "}
@@ -99,8 +97,7 @@ function PrivacyPage() {
 						4. 개인정보의 제3자 제공
 					</h2>
 					<p className="mb-2">
-						서비스는 원칙적으로 사용자의 개인정보를 제3자에게 제공하지
-						않습니다.
+						서비스는 원칙적으로 사용자의 개인정보를 제3자에게 제공하지 않습니다.
 					</p>
 					<p className="mb-2">단, 다음의 경우는 예외로 합니다.</p>
 					<ul className="list-disc list-inside mb-4 ml-4">
@@ -170,7 +167,12 @@ function PrivacyPage() {
 					</ul>
 					<p className="mb-4">
 						권리 행사는 서비스 내 설정 메뉴 또는 고객센터(
-						<a href="mailto:xunssoie@gmail.com" className="text-blue-600 hover:underline">xunssoie@gmail.com</a>
+						<a
+							href="mailto:xunssoie@gmail.com"
+							className="text-blue-600 hover:underline"
+						>
+							xunssoie@gmail.com
+						</a>
 						)를 통해 가능합니다.
 					</p>
 
@@ -207,7 +209,12 @@ function PrivacyPage() {
 						<li>성명: 한준서</li>
 						<li>
 							이메일:{" "}
-							<a href="mailto:xunssoie@gmail.com" className="text-blue-600 hover:underline">xunssoie@gmail.com</a>
+							<a
+								href="mailto:xunssoie@gmail.com"
+								className="text-blue-600 hover:underline"
+							>
+								xunssoie@gmail.com
+							</a>
 						</li>
 					</ul>
 					<p className="mb-2">
@@ -217,22 +224,50 @@ function PrivacyPage() {
 					<ul className="list-disc list-inside mb-4 ml-4">
 						<li>
 							개인정보침해신고센터: (국번없이) 118 (
-							<a href="https://privacy.kisa.or.kr" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">privacy.kisa.or.kr</a>
+							<a
+								href="https://privacy.kisa.or.kr"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="text-blue-600 hover:underline"
+							>
+								privacy.kisa.or.kr
+							</a>
 							)
 						</li>
 						<li>
 							개인정보분쟁조정위원회: (국번없이) 1833-6972 (
-							<a href="https://www.kopico.go.kr" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">www.kopico.go.kr</a>
+							<a
+								href="https://www.kopico.go.kr"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="text-blue-600 hover:underline"
+							>
+								www.kopico.go.kr
+							</a>
 							)
 						</li>
 						<li>
 							대검찰청 사이버수사과: (국번없이) 1301 (
-							<a href="https://www.spo.go.kr" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">www.spo.go.kr</a>
+							<a
+								href="https://www.spo.go.kr"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="text-blue-600 hover:underline"
+							>
+								www.spo.go.kr
+							</a>
 							)
 						</li>
 						<li>
 							경찰청 사이버안전국: (국번없이) 182 (
-							<a href="https://ecrm.cyber.go.kr" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">ecrm.cyber.go.kr</a>
+							<a
+								href="https://ecrm.cyber.go.kr"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="text-blue-600 hover:underline"
+							>
+								ecrm.cyber.go.kr
+							</a>
 							)
 						</li>
 					</ul>
@@ -242,8 +277,8 @@ function PrivacyPage() {
 					</h2>
 					<p className="mb-4">
 						본 개인정보 처리방침은 법령·정책 또는 보안기술의 변경에 따라 내용의
-						추가·삭제 및 수정이 있을 시 시행일자 최소 7일 전에 서비스
-						공지사항을 통해 고지합니다.
+						추가·삭제 및 수정이 있을 시 시행일자 최소 7일 전에 서비스 공지사항을
+						통해 고지합니다.
 					</p>
 
 					<div className="mt-8 pt-6 border-t border-gray-300">
