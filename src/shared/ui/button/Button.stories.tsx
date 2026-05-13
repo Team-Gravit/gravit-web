@@ -165,7 +165,13 @@ export const AllStates: Story = {
 export const Block: Story = {
 	render: ({ children, disabled, loading, loadingText }) => (
 		<div style={{ width: "320px" }}>
-			<Button display="block" variant="primary" disabled={disabled} loading={loading} loadingText={loadingText}>
+			<Button
+				display="block"
+				variant="primary"
+				disabled={disabled}
+				loading={loading}
+				loadingText={loadingText}
+			>
 				{children}
 			</Button>
 		</div>
@@ -180,7 +186,13 @@ export const Block: Story = {
 export const BlockSecondary: Story = {
 	render: ({ children, disabled, loading, loadingText }) => (
 		<div style={{ width: "320px" }}>
-			<Button display="block" variant="secondary" disabled={disabled} loading={loading} loadingText={loadingText}>
+			<Button
+				display="block"
+				variant="secondary"
+				disabled={disabled}
+				loading={loading}
+				loadingText={loadingText}
+			>
 				{children}
 			</Button>
 		</div>
@@ -195,7 +207,13 @@ export const BlockSecondary: Story = {
 export const BlockLoading: Story = {
 	render: ({ children, disabled, loadingText }) => (
 		<div style={{ width: "320px" }}>
-			<Button display="block" variant="primary" loading disabled={disabled} loadingText={loadingText}>
+			<Button
+				display="block"
+				variant="primary"
+				loading
+				disabled={disabled}
+				loadingText={loadingText}
+			>
 				{children}
 			</Button>
 		</div>

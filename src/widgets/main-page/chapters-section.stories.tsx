@@ -27,7 +27,12 @@ type Story = StoryObj<typeof meta>;
 
 const mockChapters = [
 	{ id: 1, title: "변수와 자료형", status: "unlocked" as const, lessonNum: 1 },
-	{ id: 2, title: "조건문과 반복문", status: "unlocked" as const, lessonNum: 2 },
+	{
+		id: 2,
+		title: "조건문과 반복문",
+		status: "unlocked" as const,
+		lessonNum: 2,
+	},
 	{ id: 3, title: "함수와 스코프", status: "locked" as const, lessonNum: 3 },
 	{ id: 4, title: "객체와 배열", status: "locked" as const, lessonNum: 4 },
 ];

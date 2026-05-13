@@ -37,9 +37,13 @@ export default function Footer() {
 				</address>
 
 				<nav className="flex gap-4 mt-5 text-xs text-white/60">
-					<Link to="/privacy" className="hover:text-white/90 hover:underline">개인정보 처리방침</Link>
+					<Link to="/privacy" className="hover:text-white/90 hover:underline">
+						개인정보 처리방침
+					</Link>
 					<span>|</span>
-					<Link to="/terms" className="hover:text-white/90 hover:underline">서비스 이용약관</Link>
+					<Link to="/terms" className="hover:text-white/90 hover:underline">
+						서비스 이용약관
+					</Link>
 				</nav>
 			</div>
 		</footer>

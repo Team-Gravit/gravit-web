@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "@/app/styles/globals.css";
+import "@/app/styles/index.css";
 import { RouterProvider } from "@tanstack/react-router";
 import { ToastContainer } from "./shared/ui/toast";
 import { router } from "./app/router";

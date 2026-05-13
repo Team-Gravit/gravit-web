@@ -24,7 +24,10 @@ export default function RouteComponent() {
 	const friends = data?.pages.flatMap((p) => p.contents) ?? [];
 
 	useEffect(() => {
-		queryClient.removeQueries({ queryKey: userKeys.friends.all(), exact: false });
+		queryClient.removeQueries({
+			queryKey: userKeys.friends.all(),
+			exact: false,
+		});
 		if (searchValue.trim()) refetch();
 	}, [searchValue, refetch, queryClient]);
 
