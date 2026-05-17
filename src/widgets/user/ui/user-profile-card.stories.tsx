@@ -22,11 +22,11 @@ const meta: Meta<typeof UserProfileCard> = {
 			description: "유저의 현재 레벨",
 			type: "number",
 		},
-		leagueName: {
+		currentLeague: {
 			description: "유저의 현재 리그",
 			type: "string",
 		},
-		streakDays: {
+		consecutiveSolvedDays: {
 			description: "유저의 연속 학습일",
 			type: "number",
 		},
@@ -35,9 +35,9 @@ const meta: Meta<typeof UserProfileCard> = {
 		profileImageNumber: 4,
 		nickname: "홍길동",
 		handle: "y2t3g6vm",
-		leagueName: "브론즈 3",
+		currentLeague: "브론즈 3",
 		level: 7,
-		streakDays: 4,
+		consecutiveSolvedDays: 4,
 	},
 };
 

@@ -11,8 +11,8 @@ interface UserProfileCardProps {
 	profileImageNumber: number;
 	level: number;
 	handle: string;
-	leagueName: string;
-	streakDays: number;
+	currentLeague: string;
+	consecutiveSolvedDays: number;
 }
 
 export default function UserProfileCard({
@@ -20,8 +20,8 @@ export default function UserProfileCard({
 	profileImageNumber,
 	level,
 	handle,
-	leagueName,
-	streakDays,
+	currentLeague,
+	consecutiveSolvedDays,
 }: UserProfileCardProps) {
 	const navigate = useNavigate();
 
@@ -51,7 +51,7 @@ export default function UserProfileCard({
 					</Button>
 
 					<Link
-						aria-lebel="사용자 설정 페이지로 이동"
+						aria-label="사용자 설정 페이지로 이동"
 						className="flex items-center justify-center"
 						to="/user"
 					>
@@ -73,9 +73,9 @@ export default function UserProfileCard({
 
 						<div className="flex items-center gap-1 md:gap-2 text-cta-text caption1 md:headline2">
 							<ProfileCardLabel>{`LV. ${level}`}</ProfileCardLabel>
-							<ProfileCardLabel>{leagueName}</ProfileCardLabel>
+							<ProfileCardLabel>{currentLeague}</ProfileCardLabel>
 							<ProfileCardLabel className="max-md:hidden">
-								{`${streakDays}일 연속 학습중`}
+								{`${consecutiveSolvedDays}일 연속 학습중`}
 							</ProfileCardLabel>
 						</div>
 					</div>
