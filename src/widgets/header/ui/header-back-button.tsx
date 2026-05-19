@@ -1,5 +1,5 @@
-import LeftArrow from "@/shared/assets/icons/buttons/left-arrow.svg?react";
 import { useNavigate, useRouter } from "@tanstack/react-router";
+import LeftArrow from "@/shared/assets/icons/buttons/left-arrow.svg?react";
 
 interface HeaderBackButtonProps {
 	fallbackTo?: string;

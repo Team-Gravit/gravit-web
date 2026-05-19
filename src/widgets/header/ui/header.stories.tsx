@@ -1,12 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import pcBackgroundImage from "@/shared/assets/images/banner.webp";
 import { withTanstackRouter } from "@/shared/lib/test/with-router";
+import { DEFAULT_HEADER_NAV_LIST } from "../config/nav";
 import HeaderContent from "./header-content";
-import {
-	DEFAULT_HEADER_NAV_LIST,
-	LEARNING_HEADER_NAV_LIST,
-} from "../header-nav-list";
-import HeaderBackButton from "./header-back-button";
 
 const meta: Meta<typeof HeaderContent> = {
 	title: "Widgets/Header/Header",
@@ -18,6 +14,7 @@ const meta: Meta<typeof HeaderContent> = {
 	args: {
 		profileImageNum: 1,
 		navList: DEFAULT_HEADER_NAV_LIST,
+		variant: "transparent",
 	},
 	argTypes: {
 		profileImageNum: {
@@ -26,20 +23,26 @@ const meta: Meta<typeof HeaderContent> = {
 		navList: {
 			description: "헤더 네비게이션 리스트",
 		},
-		leftSlot: {
-			description: "헤더 왼쪽 요소",
-		},
-		rightSlot: {
-			description: "헤더 오른쪽 요소",
+		variant: {
+			control: "select",
+			description: "헤더 스타일 variant",
+			options: ["transparent", "solid"],
+			table: {
+				type: {
+					summary: "transparent | solid",
+				},
+				defaultValue: { summary: "transparent" },
+			},
 		},
 	},
 	decorators: [
-		(Story) => (
+		(Story, { args: { variant } }) => (
 			<div
 				style={{
 					zoom: 0.75,
 					minWidth: 1280,
-					backgroundImage: `url(${pcBackgroundImage})`,
+					backgroundImage:
+						variant === "transparent" ? `url(${pcBackgroundImage})` : undefined,
 				}}
 				className="w-full p-4 bg-center"
 			>
@@ -53,10 +56,15 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Transparent: Story = {};
 
+export const Solid: Story = {
+	args: {
+		variant: "solid",
+	},
+};
 export const MainActive: Story = {
-	name: "홈 활성화",
+	name: "홈 활성화 (Transparent)",
 	decorators: [
 		withTanstackRouter({
 			routeId: "/_authenticated/_fixed-header-layout/main",
@@ -66,7 +74,7 @@ export const MainActive: Story = {
 };
 
 export const LearningActive: Story = {
-	name: "학습 활성화",
+	name: "학습 활성화 (Transparent)",
 	decorators: [
 		withTanstackRouter({
 			routeId: "/_authenticated/_fixed-header-layout/learning/",
@@ -76,7 +84,7 @@ export const LearningActive: Story = {
 };
 
 export const LeagueActive: Story = {
-	name: "리그 활성화",
+	name: "리그 활성화 (Transparent)",
 	decorators: [
 		withTanstackRouter({
 			routeId: "/_authenticated/_fixed-header-layout/league",
@@ -86,27 +94,12 @@ export const LeagueActive: Story = {
 };
 
 export const UserActive: Story = {
-	name: "마이그래빗 활성화",
+	name: "마이그래빗 활성화 (Transparent)",
 	decorators: [
 		withTanstackRouter({
 			routeId:
 				"/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/",
 			path: "/user",
-		}),
-	],
-};
-
-export const LearningPageHeader: Story = {
-	name: "학습 페이지 헤더",
-	args: {
-		navList: LEARNING_HEADER_NAV_LIST,
-		leftSlot: <HeaderBackButton />,
-		rightSlot: <span className="text-[#EB3D32] text-xl">탈퇴하기</span>,
-	},
-	decorators: [
-		withTanstackRouter({
-			routeId: "/_authenticated/_fixed-header-layout/learning/",
-			path: "/learning",
 		}),
 	],
 };
