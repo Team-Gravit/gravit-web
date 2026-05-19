@@ -1,4 +1,4 @@
-import{g as JR}from"./iframe-D6zRJniE.js";var Ri={exports:{}};/*! axe v4.11.4
+import{l as JR}from"./iframe-CMcfv20_.js";var Ri={exports:{}};/*! axe v4.11.4
  * Copyright (c) 2015 - 2026 Deque Systems, Inc.
  *
  * Your use of this Source Code Form is subject to the terms of the Mozilla Public
