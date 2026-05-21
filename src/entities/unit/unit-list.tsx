@@ -1,23 +1,21 @@
 import UnitItem from "./unit-item";
+import type { UnitProgress } from "@/entities/learning/model/schema";
 
-interface UnitListProps {
-	units: {
-		id: number;
-		title: string;
-		status: "completed" | "inProgress" | "notStarted";
-	}[];
+export default function UnitList({
+	units,
+	className,
+}: {
+	units: UnitProgress[];
 	className?: string;
-}
-
-export default function UnitList({ units, className }: UnitListProps) {
+}) {
 	return (
 		<div className={`flex flex-col gap-2 ${className ?? ""}`}>
 			{units.map((unit) => (
 				<UnitItem
-					key={unit.id}
-					unitId={unit.id}
+					key={unit.unitId}
+					unitId={unit.unitId}
 					unitTitle={unit.title}
-					unitStatus={unit.status}
+					unitStatus={unit.isCompleted ? "completed" : "inProgress"}
 				/>
 			))}
 		</div>
