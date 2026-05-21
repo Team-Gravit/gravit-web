@@ -1,6 +1,6 @@
 # OAuth20APIApi
 
-All URIs are relative to *https://grav-it.inuappcenter.kr*
+All URIs are relative to *https://grav-it-dev.inuappcenter.kr*
 
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|
@@ -24,7 +24,7 @@ const configuration = new Configuration();
 const apiInstance = new OAuth20APIApi(configuration);
 
 let provider: string; //제공자(kakao, naver, google) 이름 (default to undefined)
-let dest: string; //Dest(local, prod) (default to undefined)
+let dest: string; //Dest(local, dev, prod) (default to undefined)
 
 const { status, data } = await apiInstance.authorizeUrl(
     provider,
@@ -37,7 +37,7 @@ const { status, data } = await apiInstance.authorizeUrl(
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **provider** | [**string**] | 제공자(kakao, naver, google) 이름 | defaults to undefined|
-| **dest** | [**string**] | Dest(local, prod) | defaults to undefined|
+| **dest** | [**string**] | Dest(local, dev, prod) | defaults to undefined|
 
 
 ### Return type
@@ -81,7 +81,7 @@ const configuration = new Configuration();
 const apiInstance = new OAuth20APIApi(configuration);
 
 let provider: string; //제공자(kakao, naver, google) 이름 (default to undefined)
-let dest: string; //Dest(local, prod) (default to undefined)
+let dest: string; //Dest(local, dev, prod) (default to undefined)
 let authCodeRequest: AuthCodeRequest; //
 
 const { status, data } = await apiInstance.oauthLogin(
@@ -97,7 +97,7 @@ const { status, data } = await apiInstance.oauthLogin(
 |------------- | ------------- | ------------- | -------------|
 | **authCodeRequest** | **AuthCodeRequest**|  | |
 | **provider** | [**string**] | 제공자(kakao, naver, google) 이름 | defaults to undefined|
-| **dest** | [**string**] | Dest(local, prod) | defaults to undefined|
+| **dest** | [**string**] | Dest(local, dev, prod) | defaults to undefined|
 
 
 ### Return type

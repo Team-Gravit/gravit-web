@@ -18,13 +18,13 @@
 import type { ProblemResponse } from './problem-response';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { UnitSummary } from './unit-summary';
+import type { UnitSummaryResponse } from './unit-summary-response';
 
 export interface WrongAnsweredProblemsResponse {
     /**
      * 유닛 요약 정보
      */
-    'unitSummary': UnitSummary;
+    'unitSummaryResponse': UnitSummaryResponse;
     /**
      * 문제 목록
      */

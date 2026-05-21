@@ -24,11 +24,11 @@ import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError
 // @ts-ignore
 import type { ErrorResponse } from '../models';
 // @ts-ignore
-import type { LeagueRankRow } from '../models';
+import type { LeagueRankRowDto } from '../models';
 // @ts-ignore
 import type { MyLeagueRankWithProfileResponse } from '../models';
 // @ts-ignore
-import type { SliceResponseLeagueRankRow } from '../models';
+import type { SliceResponseLeagueRankRowDto } from '../models';
 /**
  * UserLeagueAPIApi - axios parameter creator
  */
@@ -165,7 +165,7 @@ export const UserLeagueAPIApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getLeagueRanking(leagueId: number, pageNum: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LeagueRankRow>>> {
+        async getLeagueRanking(leagueId: number, pageNum: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LeagueRankRowDto>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getLeagueRanking(leagueId, pageNum, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UserLeagueAPIApi.getLeagueRanking']?.[localVarOperationServerIndex]?.url;
@@ -178,7 +178,7 @@ export const UserLeagueAPIApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getLeagueRankingByUser(pageNum: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LeagueRankRow>>> {
+        async getLeagueRankingByUser(pageNum: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LeagueRankRowDto>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getLeagueRankingByUser(pageNum, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UserLeagueAPIApi.getLeagueRankingByUser']?.[localVarOperationServerIndex]?.url;
@@ -213,7 +213,7 @@ export const UserLeagueAPIApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getLeagueRanking(leagueId: number, pageNum: number, options?: RawAxiosRequestConfig): AxiosPromise<Array<LeagueRankRow>> {
+        getLeagueRanking(leagueId: number, pageNum: number, options?: RawAxiosRequestConfig): AxiosPromise<Array<LeagueRankRowDto>> {
             return localVarFp.getLeagueRanking(leagueId, pageNum, options).then((request) => request(axios, basePath));
         },
         /**
@@ -223,7 +223,7 @@ export const UserLeagueAPIApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getLeagueRankingByUser(pageNum: number, options?: RawAxiosRequestConfig): AxiosPromise<Array<LeagueRankRow>> {
+        getLeagueRankingByUser(pageNum: number, options?: RawAxiosRequestConfig): AxiosPromise<Array<LeagueRankRowDto>> {
             return localVarFp.getLeagueRankingByUser(pageNum, options).then((request) => request(axios, basePath));
         },
         /**

@@ -1,6 +1,6 @@
 # UserLeagueAPIApi
 
-All URIs are relative to *https://grav-it.inuappcenter.kr*
+All URIs are relative to *https://grav-it-dev.inuappcenter.kr*
 
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|
@@ -9,7 +9,7 @@ All URIs are relative to *https://grav-it.inuappcenter.kr*
 |[**getMyLeagueWithProfile**](#getmyleaguewithprofile) | **GET** /api/v1/ranking/me | 내 리그·랭킹 요약 조회|
 
 # **getLeagueRanking**
-> Array<LeagueRankRow> getLeagueRanking()
+> Array<LeagueRankRowDto> getLeagueRanking()
 
 특정 리그의 랭킹을 페이지 단위로 조회합니다.<br> - `pageNum`은 0부터 시작하는 페이지 번호(0-based)입니다.<br> 🔐 <strong>다음 페이지가 존재하면 hasNextPage 가 true, 없으면 false</strong><br> 
 
@@ -43,7 +43,7 @@ const { status, data } = await apiInstance.getLeagueRanking(
 
 ### Return type
 
-**Array<LeagueRankRow>**
+**Array<LeagueRankRowDto>**
 
 ### Authorization
 
@@ -66,7 +66,7 @@ const { status, data } = await apiInstance.getLeagueRanking(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getLeagueRankingByUser**
-> Array<LeagueRankRow> getLeagueRankingByUser()
+> Array<LeagueRankRowDto> getLeagueRankingByUser()
 
 인증된 사용자의 현재 리그를 기준으로 랭킹을 페이지 단위로 조회합니다. - `pageNum`은 0부터 시작하는 페이지 번호(0-based)입니다. <br> 🔐 <strong>Jwt 필요</strong><br> 🔐 <strong>다음 페이지가 존재하면 hasNextPage 가 true, 없으면 false</strong><br> 
 
@@ -97,7 +97,7 @@ const { status, data } = await apiInstance.getLeagueRankingByUser(
 
 ### Return type
 
-**Array<LeagueRankRow>**
+**Array<LeagueRankRowDto>**
 
 ### Authorization
 

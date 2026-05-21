@@ -24,7 +24,7 @@ import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError
 // @ts-ignore
 import type { ErrorResponse } from '../models';
 // @ts-ignore
-import type { UnitDetailResponse } from '../models';
+import type { UnitPageResponse } from '../models';
 /**
  * UnitAPIApi - axios parameter creator
  */
@@ -84,7 +84,7 @@ export const UnitAPIApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAllUnitInChapter(chapterId: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UnitDetailResponse>> {
+        async getAllUnitInChapter(chapterId: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UnitPageResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getAllUnitInChapter(chapterId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UnitAPIApi.getAllUnitInChapter']?.[localVarOperationServerIndex]?.url;
@@ -106,7 +106,7 @@ export const UnitAPIApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAllUnitInChapter(chapterId: number, options?: RawAxiosRequestConfig): AxiosPromise<UnitDetailResponse> {
+        getAllUnitInChapter(chapterId: number, options?: RawAxiosRequestConfig): AxiosPromise<UnitPageResponse> {
             return localVarFp.getAllUnitInChapter(chapterId, options).then((request) => request(axios, basePath));
         },
     };

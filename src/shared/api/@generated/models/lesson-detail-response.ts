@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { LessonSummary } from './lesson-summary';
+import type { LessonSummaryResponse } from './lesson-summary-response';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { UnitSummary } from './unit-summary';
+import type { UnitSummaryResponse } from './unit-summary-response';
 
 /**
  * 레슨 페이지 조회 Response
@@ -27,7 +27,7 @@ export interface LessonDetailResponse {
     /**
      * 유닛 요약 정보
      */
-    'unitSummary': UnitSummary;
+    'unitSummaryResponse': UnitSummaryResponse;
     /**
      * 북마크 풀이 가능 여부
      */
@@ -43,6 +43,6 @@ export interface LessonDetailResponse {
     /**
      * 레슨 요약 정보 목록
      */
-    'lessonSummaries': Array<LessonSummary>;
+    'lessonSummaries': Array<LessonSummaryResponse>;
 }
 

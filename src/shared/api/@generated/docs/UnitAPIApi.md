@@ -1,13 +1,13 @@
 # UnitAPIApi
 
-All URIs are relative to *https://grav-it.inuappcenter.kr*
+All URIs are relative to *https://grav-it-dev.inuappcenter.kr*
 
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|
 |[**getAllUnitInChapter**](#getallunitinchapter) | **GET** /api/v1/units/{chapterId} | 유닛 조회|
 
 # **getAllUnitInChapter**
-> UnitDetailResponse getAllUnitInChapter()
+> UnitPageResponse getAllUnitInChapter()
 
 유저의 유닛 진행도를 포함한 유닛 목록을 조회합니다.<br>🔐 <strong>Jwt 필요</strong><br>
 
@@ -38,7 +38,7 @@ const { status, data } = await apiInstance.getAllUnitInChapter(
 
 ### Return type
 
-**UnitDetailResponse**
+**UnitPageResponse**
 
 ### Authorization
 
