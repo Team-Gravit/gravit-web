@@ -1,4 +1,4 @@
-import type { Option } from "@/entities/learning/model/types";
+import type { Option } from "@/entities/learning/model/_types";
 import type { UserAnswer } from "../../model/types";
 import ObjectiveReviewerItem from "./ObjectiveReviewerItem";
 

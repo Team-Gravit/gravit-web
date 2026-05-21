@@ -1,4 +1,4 @@
-import type { Problem } from "@/entities/learning/model/types";
+import type { Problem } from "@/entities/learning/model/_types";
 
 export interface ProblemListResponseDTO {
 	problems: Problem[];

@@ -1,4 +1,4 @@
-import type { Answer } from "@/entities/learning/model/types";
+import type { Answer } from "@/entities/learning/model/_types";
 import { cn } from "@/shared/lib/cn";
 import { useQuizSessionState } from "../../model/quiz-session-store";
 import type { UserAnswer } from "../../model/types";

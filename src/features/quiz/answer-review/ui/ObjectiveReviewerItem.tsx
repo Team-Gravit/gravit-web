@@ -1,4 +1,4 @@
-import type { Option } from "@/entities/learning/model/types";
+import type { Option } from "@/entities/learning/model/_types";
 import { cn } from "@/shared/lib/cn";
 import { useQuizSessionState } from "../../model/quiz-session-store";
 import CheckIcon from "./assets/check-light.svg?react";

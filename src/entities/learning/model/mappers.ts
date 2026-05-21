@@ -19,7 +19,7 @@ import type {
 	ProblemsWithUnitSummary,
 	Unit,
 	UnitSummaryInfo,
-} from "./types";
+} from "./_types";
 
 /**
  * ChapterDetailResponse (OpenAPI 타입, 옵셔널 많음)

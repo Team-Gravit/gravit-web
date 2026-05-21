@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import type { Problem } from "@/entities/learning/model/types";
+import type { Problem } from "@/entities/learning/model/_types";
 import ProblemStatement from "@/entities/learning/ui/ProblemStatement";
 import { useQuizSessionState } from "@/features/quiz/model/quiz-session-store";
 import ReportModal from "@/features/quiz/ui/modal/ReportModal";
