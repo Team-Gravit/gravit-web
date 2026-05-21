@@ -17,7 +17,7 @@ export default function HeroSection({
 					alt="hero section background"
 				/>
 			</picture>
-			<div className="block md:hidden pointer-events-none absolute inset-x-0 bottom-0 z-50 h-16 bg-gradient-to-t from-gray-200 to-transparent" />
+			<div className="block md:hidden pointer-events-none absolute inset-x-0 bottom-0 z-5 h-16 bg-gradient-to-t from-gray-200 to-transparent" />
 
 			{children}
 		</section>
