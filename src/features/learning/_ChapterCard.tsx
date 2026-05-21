@@ -1,4 +1,4 @@
-import type { Chapter } from "@/entities/learning/model/types";
+import type { Chapter } from "@/entities/learning/model/_types";
 import LessonProgressBar from "@/entities/learning/ui/LessonProgressBar";
 import InfoCircle from "@/shared/assets/icons/info-circle.svg?react";
 import cardBackground from "@/shared/assets/images/card-bg.webp";
