@@ -178,6 +178,91 @@
     --animate-fade-in-y: fadeInWithTransformY 0.5s forwards;
     --animate-fade-out-y: fadeOutWithTransformY 0.5s forwards;
 
+    --text-display1: 40px;
+    --text-display1--line-height: 1.25;
+    --text-display1--letter-spacing: 0.6px;
+    --text-display1--font-weight: 700;
+
+    --text-display2: 36px;
+    --text-display2--line-height: 1.25;
+    --text-display2--letter-spacing: -0.6px;
+    --text-display2--font-weight: 700;
+
+    --text-title1: 32px;
+    --text-title1--line-height: 1.25;
+    --text-title1--letter-spacing: -0.6px;
+    --text-title1--font-weight: 700;
+
+    --text-title2: 28px;
+    --text-title2--line-height: 1.25;
+    --text-title2--letter-spacing: -0.6px;
+    --text-title2--font-weight: 700;
+
+    --text-title3: 24px;
+    --text-title3--line-height: 1.25;
+    --text-title3--letter-spacing: -0.6px;
+    --text-title3--font-weight: 700;
+
+    --text-heading1: 22px;
+    --text-heading1--line-height: 1.25;
+    --text-heading1--letter-spacing: -0.6px;
+    --text-heading1--font-weight: 600;
+
+    --text-heading2: 20px;
+    --text-heading2--line-height: 1.25;
+    --text-heading2--letter-spacing: -0.6px;
+    --text-heading2--font-weight: 600;
+
+    --text-headline1: 18px;
+    --text-headline1--line-height: 1.25;
+    --text-headline1--letter-spacing: -0.6px;
+    --text-headline1--font-weight: 600;
+
+    --text-headline2: 17px;
+    --text-headline2--line-height: 1.25;
+    --text-headline2--letter-spacing: -0.6px;
+    --text-headline2--font-weight: 600;
+
+    --text-body1-normal: 16px;
+    --text-body1-normal--line-height: 1.5;
+    --text-body1-normal--letter-spacing: normal;
+    --text-body1-normal--font-weight: 400;
+
+    --text-body1-reading: 16px;
+    --text-body1-reading--line-height: 1.6;
+    --text-body1-reading--letter-spacing: normal;
+    --text-body1-reading--font-weight: 400;
+
+    --text-body2-normal: 15px;
+    --text-body2-normal--line-height: 1.5;
+    --text-body2-normal--letter-spacing: normal;
+    --text-body2-normal--font-weight: 400;
+
+    --text-body2-reading: 15px;
+    --text-body2-reading--line-height: 1.6;
+    --text-body2-reading--letter-spacing: normal;
+    --text-body2-reading--font-weight: 400;
+
+    --text-label1: 14px;
+    --text-label1--line-height: normal;
+    --text-label1--letter-spacing: normal;
+    --text-label1--font-weight: 600;
+
+    --text-label2: 13px;
+    --text-label2--line-height: normal;
+    --text-label2--letter-spacing: normal;
+    --text-label2--font-weight: 400;
+
+    --text-caption1: 12px;
+    --text-caption1--line-height: normal;
+    --text-caption1--letter-spacing: normal;
+    --text-caption1--font-weight: 400;
+
+    --text-caption2: 11px;
+    --text-caption2--line-height: normal;
+    --text-caption2--letter-spacing: normal;
+    --text-caption2--font-weight: 400;
+
     @keyframes skeletonPulse {
         0%,
         100% {
