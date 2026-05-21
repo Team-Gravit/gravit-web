@@ -14,13 +14,14 @@ import { Route as RestoreRouteImport } from './../../pages/restore'
 import { Route as PrivacyRouteImport } from './../../pages/privacy'
 import { Route as AuthenticatedRouteRouteImport } from './../../pages/_authenticated/route'
 import { Route as IndexRouteImport } from './../../pages/index'
+import { Route as AuthenticatedMainRouteRouteImport } from './../../pages/_authenticated/main/route'
 import { Route as AuthenticatedOnboardingRouteRouteImport } from './../../pages/_authenticated/_onboarding/route'
 import { Route as AuthenticatedFixedHeaderLayoutRouteRouteImport } from './../../pages/_authenticated/_fixed-header-layout/route'
 import { Route as AuthenticatedBlankLayoutRouteRouteImport } from './../../pages/_authenticated/_blank-layout/route'
 import { Route as AuthenticatedOnboardingSuccessRouteImport } from './../../pages/_authenticated/_onboarding/success'
 import { Route as AuthenticatedOnboardingOnboardingRouteImport } from './../../pages/_authenticated/_onboarding/onboarding'
 import { Route as AuthenticatedFixedHeaderLayoutTestRouteImport } from './../../pages/_authenticated/_fixed-header-layout/test'
-import { Route as AuthenticatedFixedHeaderLayoutMainRouteImport } from './../../pages/_authenticated/_fixed-header-layout/main'
+import { Route as AuthenticatedFixedHeaderLayoutMainsRouteImport } from './../../pages/_authenticated/_fixed-header-layout/mains'
 import { Route as AuthenticatedFixedHeaderLayoutLeagueRouteImport } from './../../pages/_authenticated/_fixed-header-layout/league'
 import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/route'
 import { Route as AuthenticatedFixedHeaderLayoutLearningIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/learning/index'
@@ -64,6 +65,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedMainRouteRoute = AuthenticatedMainRouteRouteImport.update({
+  id: '/main',
+  path: '/main',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedOnboardingRouteRoute =
   AuthenticatedOnboardingRouteRouteImport.update({
     id: '/_onboarding',
@@ -97,10 +103,10 @@ const AuthenticatedFixedHeaderLayoutTestRoute =
     path: '/test',
     getParentRoute: () => AuthenticatedFixedHeaderLayoutRouteRoute,
   } as any)
-const AuthenticatedFixedHeaderLayoutMainRoute =
-  AuthenticatedFixedHeaderLayoutMainRouteImport.update({
-    id: '/main',
-    path: '/main',
+const AuthenticatedFixedHeaderLayoutMainsRoute =
+  AuthenticatedFixedHeaderLayoutMainsRouteImport.update({
+    id: '/mains',
+    path: '/mains',
     getParentRoute: () => AuthenticatedFixedHeaderLayoutRouteRoute,
   } as any)
 const AuthenticatedFixedHeaderLayoutLeagueRoute =
@@ -237,8 +243,9 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/restore': typeof RestoreRoute
   '/terms': typeof TermsRoute
+  '/main': typeof AuthenticatedMainRouteRoute
   '/league': typeof AuthenticatedFixedHeaderLayoutLeagueRoute
-  '/main': typeof AuthenticatedFixedHeaderLayoutMainRoute
+  '/mains': typeof AuthenticatedFixedHeaderLayoutMainsRoute
   '/test': typeof AuthenticatedFixedHeaderLayoutTestRoute
   '/onboarding': typeof AuthenticatedOnboardingOnboardingRoute
   '/success': typeof AuthenticatedOnboardingSuccessRoute
@@ -264,8 +271,9 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/restore': typeof RestoreRoute
   '/terms': typeof TermsRoute
+  '/main': typeof AuthenticatedMainRouteRoute
   '/league': typeof AuthenticatedFixedHeaderLayoutLeagueRoute
-  '/main': typeof AuthenticatedFixedHeaderLayoutMainRoute
+  '/mains': typeof AuthenticatedFixedHeaderLayoutMainsRoute
   '/test': typeof AuthenticatedFixedHeaderLayoutTestRoute
   '/onboarding': typeof AuthenticatedOnboardingOnboardingRoute
   '/success': typeof AuthenticatedOnboardingSuccessRoute
@@ -296,9 +304,10 @@ export interface FileRoutesById {
   '/_authenticated/_blank-layout': typeof AuthenticatedBlankLayoutRouteRouteWithChildren
   '/_authenticated/_fixed-header-layout': typeof AuthenticatedFixedHeaderLayoutRouteRouteWithChildren
   '/_authenticated/_onboarding': typeof AuthenticatedOnboardingRouteRouteWithChildren
+  '/_authenticated/main': typeof AuthenticatedMainRouteRoute
   '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRouteWithChildren
   '/_authenticated/_fixed-header-layout/league': typeof AuthenticatedFixedHeaderLayoutLeagueRoute
-  '/_authenticated/_fixed-header-layout/main': typeof AuthenticatedFixedHeaderLayoutMainRoute
+  '/_authenticated/_fixed-header-layout/mains': typeof AuthenticatedFixedHeaderLayoutMainsRoute
   '/_authenticated/_fixed-header-layout/test': typeof AuthenticatedFixedHeaderLayoutTestRoute
   '/_authenticated/_onboarding/onboarding': typeof AuthenticatedOnboardingOnboardingRoute
   '/_authenticated/_onboarding/success': typeof AuthenticatedOnboardingSuccessRoute
@@ -326,8 +335,9 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/restore'
     | '/terms'
-    | '/league'
     | '/main'
+    | '/league'
+    | '/mains'
     | '/test'
     | '/onboarding'
     | '/success'
@@ -353,8 +363,9 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/restore'
     | '/terms'
-    | '/league'
     | '/main'
+    | '/league'
+    | '/mains'
     | '/test'
     | '/onboarding'
     | '/success'
@@ -384,9 +395,10 @@ export interface FileRouteTypes {
     | '/_authenticated/_blank-layout'
     | '/_authenticated/_fixed-header-layout'
     | '/_authenticated/_onboarding'
+    | '/_authenticated/main'
     | '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout'
     | '/_authenticated/_fixed-header-layout/league'
-    | '/_authenticated/_fixed-header-layout/main'
+    | '/_authenticated/_fixed-header-layout/mains'
     | '/_authenticated/_fixed-header-layout/test'
     | '/_authenticated/_onboarding/onboarding'
     | '/_authenticated/_onboarding/success'
@@ -455,6 +467,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/main': {
+      id: '/_authenticated/main'
+      path: '/main'
+      fullPath: '/main'
+      preLoaderRoute: typeof AuthenticatedMainRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/_onboarding': {
       id: '/_authenticated/_onboarding'
       path: ''
@@ -497,11 +516,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedFixedHeaderLayoutTestRouteImport
       parentRoute: typeof AuthenticatedFixedHeaderLayoutRouteRoute
     }
-    '/_authenticated/_fixed-header-layout/main': {
-      id: '/_authenticated/_fixed-header-layout/main'
-      path: '/main'
-      fullPath: '/main'
-      preLoaderRoute: typeof AuthenticatedFixedHeaderLayoutMainRouteImport
+    '/_authenticated/_fixed-header-layout/mains': {
+      id: '/_authenticated/_fixed-header-layout/mains'
+      path: '/mains'
+      fullPath: '/mains'
+      preLoaderRoute: typeof AuthenticatedFixedHeaderLayoutMainsRouteImport
       parentRoute: typeof AuthenticatedFixedHeaderLayoutRouteRoute
     }
     '/_authenticated/_fixed-header-layout/league': {
@@ -690,7 +709,7 @@ const AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRouteWithChildren =
 interface AuthenticatedFixedHeaderLayoutRouteRouteChildren {
   AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRoute: typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRouteWithChildren
   AuthenticatedFixedHeaderLayoutLeagueRoute: typeof AuthenticatedFixedHeaderLayoutLeagueRoute
-  AuthenticatedFixedHeaderLayoutMainRoute: typeof AuthenticatedFixedHeaderLayoutMainRoute
+  AuthenticatedFixedHeaderLayoutMainsRoute: typeof AuthenticatedFixedHeaderLayoutMainsRoute
   AuthenticatedFixedHeaderLayoutTestRoute: typeof AuthenticatedFixedHeaderLayoutTestRoute
   AuthenticatedFixedHeaderLayoutLearningIndexRoute: typeof AuthenticatedFixedHeaderLayoutLearningIndexRoute
   AuthenticatedFixedHeaderLayoutLearningChapterIdIndexRoute: typeof AuthenticatedFixedHeaderLayoutLearningChapterIdIndexRoute
@@ -704,8 +723,8 @@ const AuthenticatedFixedHeaderLayoutRouteRouteChildren: AuthenticatedFixedHeader
       AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRouteWithChildren,
     AuthenticatedFixedHeaderLayoutLeagueRoute:
       AuthenticatedFixedHeaderLayoutLeagueRoute,
-    AuthenticatedFixedHeaderLayoutMainRoute:
-      AuthenticatedFixedHeaderLayoutMainRoute,
+    AuthenticatedFixedHeaderLayoutMainsRoute:
+      AuthenticatedFixedHeaderLayoutMainsRoute,
     AuthenticatedFixedHeaderLayoutTestRoute:
       AuthenticatedFixedHeaderLayoutTestRoute,
     AuthenticatedFixedHeaderLayoutLearningIndexRoute:
@@ -744,6 +763,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedBlankLayoutRouteRoute: typeof AuthenticatedBlankLayoutRouteRouteWithChildren
   AuthenticatedFixedHeaderLayoutRouteRoute: typeof AuthenticatedFixedHeaderLayoutRouteRouteWithChildren
   AuthenticatedOnboardingRouteRoute: typeof AuthenticatedOnboardingRouteRouteWithChildren
+  AuthenticatedMainRouteRoute: typeof AuthenticatedMainRouteRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
@@ -753,6 +773,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
     AuthenticatedFixedHeaderLayoutRouteRouteWithChildren,
   AuthenticatedOnboardingRouteRoute:
     AuthenticatedOnboardingRouteRouteWithChildren,
+  AuthenticatedMainRouteRoute: AuthenticatedMainRouteRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
