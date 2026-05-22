@@ -29,4 +29,4 @@ export const MISSION_LABEL_MAP = {
 export type MissionName = keyof typeof MISSION_LABEL_MAP;
 
 export const BOTTOM_TAB_BAR_HEIGHT = 68;
-export const HEADER_HEIGHT = 56;
+export const HEADER_HEIGHT = 70;
