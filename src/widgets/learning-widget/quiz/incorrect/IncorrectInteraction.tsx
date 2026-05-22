@@ -2,7 +2,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { learningKeys } from "@/entities/learning/api/query-keys";
-import type { Problem } from "@/entities/learning/model/types";
+import type { Problem } from "@/entities/learning/model/_types";
 import { useQuizSessionState } from "@/features/quiz/model/quiz-session-store";
 import { api } from "@/shared/api";
 import CheckIcon from "@/shared/assets/icons/check.svg?react";

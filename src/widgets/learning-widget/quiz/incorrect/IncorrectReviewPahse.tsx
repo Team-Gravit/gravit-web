@@ -1,4 +1,4 @@
-import type { Problem } from "@/entities/learning/model/types";
+import type { Problem } from "@/entities/learning/model/_types";
 import type { UserAnswer } from "@/features/quiz/model/types";
 import IncorrectObjectiveReviewer from "./IncorrectObjectiveReviewer";
 import IncorrectSubjectiveReviewer from "./IncorrectSubjectiveReviewer";

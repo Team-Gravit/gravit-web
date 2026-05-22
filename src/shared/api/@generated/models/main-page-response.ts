@@ -15,34 +15,31 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { LearningDetail } from './learning-detail';
+import type { LeagueDetailResponse } from './league-detail-response';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { MissionDetail } from './mission-detail';
+import type { LearningDetailResponse } from './learning-detail-response';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { UserLevelDetail } from './user-level-detail';
+import type { MissionDetailResponse } from './mission-detail-response';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { RecommendedUnitResponse } from './recommended-unit-response';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { UserLevelDetailResponse } from './user-level-detail-response';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { WeeklyLearningRecordResponse } from './weekly-learning-record-response';
 
 export interface MainPageResponse {
-    /**
-     * 닉네임
-     */
+    'profileImgNumber'?: number;
     'nickname'?: string;
-    /**
-     * 리그 이름(티어)
-     */
-    'leagueName'?: string;
-    /**
-     * 유저 레벨 관련 정보
-     */
-    'userLevelDetail'?: UserLevelDetail;
-    /**
-     * 유저 학습 관련 정보
-     */
-    'learningDetail'?: LearningDetail;
-    /**
-     * 미션 관련 정보
-     */
-    'missionDetail'?: MissionDetail;
+    'userLevelDetailResponse'?: UserLevelDetailResponse;
+    'leagueDetailResponse'?: LeagueDetailResponse;
+    'learningDetailResponse'?: LearningDetailResponse;
+    'recommendedUnitResponses'?: Array<RecommendedUnitResponse>;
+    'weeklyLearningRecordResponse'?: WeeklyLearningRecordResponse;
+    'missionDetailResponse'?: MissionDetailResponse;
 }
 

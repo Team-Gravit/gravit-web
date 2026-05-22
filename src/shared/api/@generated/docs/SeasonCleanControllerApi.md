@@ -1,6 +1,6 @@
 # SeasonCleanControllerApi
 
-All URIs are relative to *https://grav-it.inuappcenter.kr*
+All URIs are relative to *https://grav-it-dev.inuappcenter.kr*
 
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|

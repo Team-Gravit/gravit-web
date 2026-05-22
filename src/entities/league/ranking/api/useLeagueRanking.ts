@@ -1,11 +1,11 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { api } from "@/shared/api";
-import type { LeagueRankRow } from "@/shared/api/@generated";
+import type { LeagueRankRowDto } from "@/shared/api/@generated";
 import { leagueKeys } from "@/entities/league/api/query-keys";
 
 interface LeagueRankingResponse {
 	hasNextPage: boolean;
-	contents: LeagueRankRow[];
+	contents: LeagueRankRowDto[];
 }
 
 export const useLeagueRanking = (leagueId: number) => {

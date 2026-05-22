@@ -1,4 +1,4 @@
-import type { Problem, UnitDetail } from "../model/types";
+import type { Problem, UnitDetail } from "../model/_types";
 
 export type ChapterDetailResponseDTO = {
 	chapterId: number;

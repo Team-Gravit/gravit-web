@@ -6,7 +6,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**chapterSummary** | [**ChapterSummary**](ChapterSummary.md) | 챕터 요약 정보 | [default to undefined]
+**chapterSummaryResponse** | [**ChapterSummaryResponse**](ChapterSummaryResponse.md) | 챕터 요약 정보 | [default to undefined]
 **chapterProgressRate** | **number** | 진행도(퍼센트) | [optional] [default to undefined]
 
 ## Example
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 import { ChapterDetailResponse } from './api';
 
 const instance: ChapterDetailResponse = {
-    chapterSummary,
+    chapterSummaryResponse,
     chapterProgressRate,
 };
 ```

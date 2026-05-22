@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { Option } from "@/entities/learning/model/types";
+import type { Option } from "@/entities/learning/model/_types";
 import { api } from "@/shared/api";
 import { useQuizSessionState } from "../../model/quiz-session-store";
 import { useQuizContext } from "../../model/use-quiz-context";

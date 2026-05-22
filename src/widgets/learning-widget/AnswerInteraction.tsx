@@ -1,7 +1,7 @@
 import { useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import type { Problem } from "@/entities/learning/model/types";
+import type { Problem } from "@/entities/learning/model/_types";
 import { useQuizSessionState } from "@/features/quiz/model/quiz-session-store";
 import { useQuizContext } from "@/features/quiz/model/use-quiz-context";
 import { api } from "@/shared/api";

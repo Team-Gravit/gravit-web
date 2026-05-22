@@ -1,15 +1,15 @@
 import { useEffect } from "react";
-import type { Problem } from "@/entities/learning/model/types";
+import type { Problem } from "@/entities/learning/model/_types";
 import ProblemStatement from "@/entities/learning/ui/ProblemStatement";
 import { useQuizSessionState } from "@/features/quiz/model/quiz-session-store";
 import ReportModal from "@/features/quiz/ui/modal/ReportModal";
 import ReportResultModal from "@/features/quiz/ui/modal/ReportResultModal";
-import type { UnitSummary } from "@/shared/api/@generated";
 import AnswerInteraction from "@/widgets/learning-widget/AnswerInteraction";
 import LoadingWidget from "@/widgets/learning-widget/LoadingWidget";
 import { useMinimumLoadingTime } from "@/widgets/learning-widget/lib/useMinimumLoadingTime";
 import QuizHeader from "@/widgets/learning-widget/QuizHeader";
 import QuizProgressBar from "@/widgets/learning-widget/QuizProgressBar";
+import type { UnitSummary } from "@/shared/api/@generated/models/unit-summary";
 
 export default function BaseQuizComponent({
 	data,

@@ -5,11 +5,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**nickname** | **string** | 닉네임 | [optional] [default to undefined]
-**leagueName** | **string** | 리그 이름(티어) | [optional] [default to undefined]
-**userLevelDetail** | [**UserLevelDetail**](UserLevelDetail.md) | 유저 레벨 관련 정보 | [optional] [default to undefined]
-**learningDetail** | [**LearningDetail**](LearningDetail.md) | 유저 학습 관련 정보 | [optional] [default to undefined]
-**missionDetail** | [**MissionDetail**](MissionDetail.md) | 미션 관련 정보 | [optional] [default to undefined]
+**profileImgNumber** | **number** |  | [optional] [default to undefined]
+**nickname** | **string** |  | [optional] [default to undefined]
+**userLevelDetailResponse** | [**UserLevelDetailResponse**](UserLevelDetailResponse.md) |  | [optional] [default to undefined]
+**leagueDetailResponse** | [**LeagueDetailResponse**](LeagueDetailResponse.md) |  | [optional] [default to undefined]
+**learningDetailResponse** | [**LearningDetailResponse**](LearningDetailResponse.md) |  | [optional] [default to undefined]
+**recommendedUnitResponses** | [**Array&lt;RecommendedUnitResponse&gt;**](RecommendedUnitResponse.md) |  | [optional] [default to undefined]
+**weeklyLearningRecordResponse** | [**WeeklyLearningRecordResponse**](WeeklyLearningRecordResponse.md) |  | [optional] [default to undefined]
+**missionDetailResponse** | [**MissionDetailResponse**](MissionDetailResponse.md) |  | [optional] [default to undefined]
 
 ## Example
 
@@ -17,11 +20,14 @@ Name | Type | Description | Notes
 import { MainPageResponse } from './api';
 
 const instance: MainPageResponse = {
+    profileImgNumber,
     nickname,
-    leagueName,
-    userLevelDetail,
-    learningDetail,
-    missionDetail,
+    userLevelDetailResponse,
+    leagueDetailResponse,
+    learningDetailResponse,
+    recommendedUnitResponses,
+    weeklyLearningRecordResponse,
+    missionDetailResponse,
 };
 ```
 

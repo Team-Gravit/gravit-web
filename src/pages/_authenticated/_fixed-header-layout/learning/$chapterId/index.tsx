@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import ContentSectionHeader from "@/entities/chapter/ContentSectionHeader";
 import { useFetchChapterWithUnits } from "@/entities/learning/model/hooks";
-import type { Unit } from "@/entities/learning/model/types";
+import type { Unit } from "@/entities/learning/model/_types";
 import RightArrowIcon from "@/shared/assets/icons/ic-right-arrow.svg?react";
 import backgroundImg from "@/shared/assets/images/background.jpg";
 import { BackgroundLayout } from "@/shared/ui/background/background";

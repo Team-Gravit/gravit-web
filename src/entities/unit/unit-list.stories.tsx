@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { UnitProgress } from "@/entities/learning/model/schema";
 import UnitList from "./unit-list";
 
 const UNIT_TITLES = [
@@ -9,16 +10,11 @@ const UNIT_TITLES = [
 	"비동기 프로그래밍",
 ];
 
-const makeUnits = (inProgressIndex: number | null) =>
+const makeUnits = (completedCount: number): UnitProgress[] =>
 	UNIT_TITLES.map((title, i) => ({
-		id: i + 1,
+		unitId: i + 1,
 		title,
-		status:
-			inProgressIndex === null || i < inProgressIndex
-				? ("completed" as const)
-				: i === inProgressIndex
-					? ("inProgress" as const)
-					: ("notStarted" as const),
+		isCompleted: i < completedCount,
 	}));
 
 const meta = {
@@ -44,31 +40,20 @@ type Story = StoryObj<typeof meta>;
 
 export const AllNotStarted: Story = {
 	name: "시작 전",
-	args: {
-		units: UNIT_TITLES.map((title, i) => ({
-			id: i + 1,
-			title,
-			status: "notStarted",
-		})),
-	},
-};
-
-export const FirstInProgress: Story = {
-	name: "첫 번째 유닛 진행 중",
 	args: { units: makeUnits(0) },
 };
 
-export const MiddleInProgress: Story = {
-	name: "중간 유닛 진행 중",
-	args: { units: makeUnits(2) },
+export const FirstCompleted: Story = {
+	name: "첫 번째 완료",
+	args: { units: makeUnits(1) },
 };
 
-export const LastInProgress: Story = {
-	name: "마지막 유닛 진행 중",
-	args: { units: makeUnits(UNIT_TITLES.length - 1) },
+export const MiddleCompleted: Story = {
+	name: "절반 완료",
+	args: { units: makeUnits(3) },
 };
 
 export const AllCompleted: Story = {
 	name: "전체 완료",
-	args: { units: makeUnits(null) },
+	args: { units: makeUnits(UNIT_TITLES.length) },
 };

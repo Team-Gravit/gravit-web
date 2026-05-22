@@ -36,7 +36,7 @@ export const OAuth20APIApiAxiosParamCreator = function (configuration?: Configur
          * OAuth 정보를 바탕으로 로그인 URL을 생성합니다
          * @summary 로그인 URL 생성
          * @param {string} provider 제공자(kakao, naver, google) 이름
-         * @param {string} dest Dest(local, prod)
+         * @param {string} dest Dest(local, dev, prod)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -81,7 +81,7 @@ export const OAuth20APIApiAxiosParamCreator = function (configuration?: Configur
          * AuthCode를 기반으로 사용자 정보를 조회하고 회원가입 및 로그인 처리를 합니다
          * @summary OAuth 회원가입/로그인 처리
          * @param {string} provider 제공자(kakao, naver, google) 이름
-         * @param {string} dest Dest(local, prod)
+         * @param {string} dest Dest(local, dev, prod)
          * @param {AuthCodeRequest} authCodeRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -141,7 +141,7 @@ export const OAuth20APIApiFp = function(configuration?: Configuration) {
          * OAuth 정보를 바탕으로 로그인 URL을 생성합니다
          * @summary 로그인 URL 생성
          * @param {string} provider 제공자(kakao, naver, google) 이름
-         * @param {string} dest Dest(local, prod)
+         * @param {string} dest Dest(local, dev, prod)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -155,7 +155,7 @@ export const OAuth20APIApiFp = function(configuration?: Configuration) {
          * AuthCode를 기반으로 사용자 정보를 조회하고 회원가입 및 로그인 처리를 합니다
          * @summary OAuth 회원가입/로그인 처리
          * @param {string} provider 제공자(kakao, naver, google) 이름
-         * @param {string} dest Dest(local, prod)
+         * @param {string} dest Dest(local, dev, prod)
          * @param {AuthCodeRequest} authCodeRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -179,7 +179,7 @@ export const OAuth20APIApiFactory = function (configuration?: Configuration, bas
          * OAuth 정보를 바탕으로 로그인 URL을 생성합니다
          * @summary 로그인 URL 생성
          * @param {string} provider 제공자(kakao, naver, google) 이름
-         * @param {string} dest Dest(local, prod)
+         * @param {string} dest Dest(local, dev, prod)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -190,7 +190,7 @@ export const OAuth20APIApiFactory = function (configuration?: Configuration, bas
          * AuthCode를 기반으로 사용자 정보를 조회하고 회원가입 및 로그인 처리를 합니다
          * @summary OAuth 회원가입/로그인 처리
          * @param {string} provider 제공자(kakao, naver, google) 이름
-         * @param {string} dest Dest(local, prod)
+         * @param {string} dest Dest(local, dev, prod)
          * @param {AuthCodeRequest} authCodeRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -209,7 +209,7 @@ export class OAuth20APIApi extends BaseAPI {
      * OAuth 정보를 바탕으로 로그인 URL을 생성합니다
      * @summary 로그인 URL 생성
      * @param {string} provider 제공자(kakao, naver, google) 이름
-     * @param {string} dest Dest(local, prod)
+     * @param {string} dest Dest(local, dev, prod)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -221,7 +221,7 @@ export class OAuth20APIApi extends BaseAPI {
      * AuthCode를 기반으로 사용자 정보를 조회하고 회원가입 및 로그인 처리를 합니다
      * @summary OAuth 회원가입/로그인 처리
      * @param {string} provider 제공자(kakao, naver, google) 이름
-     * @param {string} dest Dest(local, prod)
+     * @param {string} dest Dest(local, dev, prod)
      * @param {AuthCodeRequest} authCodeRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}

@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { UnitSummary } from './unit-summary';
+import type { UnitSummaryResponse } from './unit-summary-response';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { UserLevelResponse } from './user-level-response';
@@ -35,6 +35,6 @@ export interface LessonSubmissionSaveResponse {
     /**
      * 유닛 요약 정보
      */
-    'unitSummary': UnitSummary;
+    'unitSummaryResponse': UnitSummaryResponse;
 }
 

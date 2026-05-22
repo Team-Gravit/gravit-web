@@ -27,6 +27,7 @@ export * from './api/chapter-apiapi';
 export * from './api/friend-apiapi';
 export * from './api/league-apiapi';
 export * from './api/lesson-apiapi';
+export * from './api/my-page-apiapi';
 export * from './api/notice-query-apiapi';
 export * from './api/oauth20-apiapi';
 export * from './api/oauth20-android-apiapi';

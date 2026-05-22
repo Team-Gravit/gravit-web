@@ -15,22 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { ChapterSummary } from './chapter-summary';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { UnitDetail } from './unit-detail';
+import type { UnitSummaryResponse } from './unit-summary-response';
 
-/**
- * 유닛 페이지 조회 Response
- */
 export interface UnitDetailResponse {
-    /**
-     * 챕터 요약 정보
-     */
-    'chapterSummary': ChapterSummary;
-    /**
-     * 유닛 상세 정보 목록
-     */
-    'unitDetails': Array<UnitDetail>;
+    'unitSummaryResponse'?: UnitSummaryResponse;
+    'progressRate'?: number;
 }
 

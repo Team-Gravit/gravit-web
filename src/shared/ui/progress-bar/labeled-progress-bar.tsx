@@ -17,9 +17,9 @@ export default function LabeledProgressBar({
 	labelClassName,
 }: LabeledProgressBarProps) {
 	return (
-		<div className={cn("flex flex-col gap-1.5", className)}>
+		<div className={cn("flex flex-col gap-1 md:gap-1.5", className)}>
 			<div className="flex justify-between items-center">
-				<span className={cn("text-2xl font-semibold", labelClassName)}>
+				<span className={cn(labelClassName ? labelClassName : "text-heading1")}>
 					{label}
 				</span>
 				<span className="text-main-1">{`${value}%`}</span>

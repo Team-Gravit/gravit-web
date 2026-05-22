@@ -5,8 +5,8 @@ import type {
 	LessonResponse,
 	OptionResponse,
 	ProblemResponse,
-	UnitDetailResponse,
-	UnitSummary,
+	UnitPageResponse,
+	UnitSummaryResponse,
 } from "@/shared/api/@generated";
 import type {
 	Answer,
@@ -19,29 +19,23 @@ import type {
 	ProblemsWithUnitSummary,
 	Unit,
 	UnitSummaryInfo,
-} from "./types";
+} from "./_types";
 
-/**
- * ChapterDetailResponse (OpenAPI 타입, 옵셔널 많음)
- *   ↓
- * Chapter (프론트엔드 도메인 타입, 모두 필수)
- */
 export function mapToChapter(raw: ChapterDetailResponse): Chapter {
-	const { chapterSummary, chapterProgressRate } = raw;
+	const { chapterSummaryResponse, chapterProgressRate } = raw;
 
-	// 필수 필드 검증
 	if (
-		!chapterSummary?.chapterId ||
-		!chapterSummary?.title ||
-		chapterSummary.description === undefined
+		!chapterSummaryResponse?.chapterId ||
+		!chapterSummaryResponse?.title ||
+		chapterSummaryResponse.description === undefined
 	) {
 		throw new Error("Invalid chapter data: missing required fields");
 	}
 
 	return {
-		chapterId: chapterSummary.chapterId,
-		title: chapterSummary.title,
-		description: chapterSummary.description,
+		chapterId: chapterSummaryResponse.chapterId,
+		title: chapterSummaryResponse.title,
+		description: chapterSummaryResponse.description,
 		progressRate: chapterProgressRate || 0,
 	};
 }
@@ -50,70 +44,63 @@ export function mapToChapters(raw: ChapterDetailResponse[]): Chapter[] {
 	return raw.map(mapToChapter);
 }
 
-export function mapToChapterWithUnits(
-	raw: UnitDetailResponse,
-): ChapterWithUnits {
-	const { chapterSummary, unitDetails } = raw;
+export function mapToChapterWithUnits(raw: UnitPageResponse): ChapterWithUnits {
+	const { chapterSummaryResponse, unitDetailResponses } = raw;
 
-	// 필수 필드 검증
 	if (
-		!chapterSummary?.chapterId ||
-		!chapterSummary?.title ||
-		chapterSummary.description === undefined
+		!chapterSummaryResponse?.chapterId ||
+		!chapterSummaryResponse?.title ||
+		chapterSummaryResponse.description === undefined
 	) {
 		throw new Error("Invalid chapter data: missing required fields");
 	}
 
-	if (!unitDetails || !Array.isArray(unitDetails)) {
+	if (!unitDetailResponses || !Array.isArray(unitDetailResponses)) {
 		throw new Error("Invalid unit details: missing or invalid array");
 	}
 
 	const chapterInfo = {
-		chapterId: chapterSummary.chapterId,
-		chapterName: chapterSummary.title,
-		chapterDescription: chapterSummary.description,
+		chapterId: chapterSummaryResponse.chapterId,
+		chapterName: chapterSummaryResponse.title,
+		chapterDescription: chapterSummaryResponse.description,
 	};
 
-	const units: Unit[] = unitDetails.map((unitDetail) => {
-		const { unitSummaries, progressRate } = unitDetail;
+	const units: Unit[] = unitDetailResponses.map((unitDetail) => {
+		const { unitSummaryResponse, progressRate } = unitDetail;
 
 		if (
-			!unitSummaries?.unitId ||
-			!unitSummaries?.title ||
-			unitSummaries.description === undefined
+			!unitSummaryResponse?.unitId ||
+			!unitSummaryResponse?.title ||
+			unitSummaryResponse.description === undefined
 		) {
 			throw new Error("Invalid unit data: missing required fields");
 		}
 
 		return {
-			unitId: unitSummaries.unitId,
-			title: unitSummaries.title,
-			description: unitSummaries.description,
+			unitId: unitSummaryResponse.unitId,
+			title: unitSummaryResponse.title,
+			description: unitSummaryResponse.description,
 			progressRate: progressRate || 0,
 		};
 	});
 
-	return {
-		chapterInfo,
-		units,
-	};
+	return { chapterInfo, units };
 }
 
 export function mapToChapterWithLessons(
 	raw: LessonDetailResponse,
 ): ChapterWithLessons {
 	const {
-		unitSummary,
+		unitSummaryResponse,
 		lessonSummaries,
 		bookmarkAccessible,
 		wrongAnsweredNoteAccessible,
 	} = raw;
 
-	// 필수 필드 검증
 	if (
-		!unitSummary?.unitId ||
-		!unitSummary?.title ||
-		unitSummary.description === undefined
+		!unitSummaryResponse?.unitId ||
+		!unitSummaryResponse?.title ||
+		unitSummaryResponse.description === undefined
 	) {
 		throw new Error("Invalid chapter data: missing required fields");
 	}
@@ -123,9 +110,9 @@ export function mapToChapterWithLessons(
 	}
 
 	const unitInfo = {
-		unitId: unitSummary.unitId,
-		unitName: unitSummary.title,
-		unitDescription: unitSummary.description,
+		unitId: unitSummaryResponse.unitId,
+		unitName: unitSummaryResponse.title,
+		unitDescription: unitSummaryResponse.description,
 	};
 
 	const lessons: Lesson[] = lessonSummaries.map((lessonSummary) => {
@@ -135,21 +122,13 @@ export function mapToChapterWithLessons(
 			throw new Error("Invalid unit data: missing required fields");
 		}
 
-		return {
-			lessonId,
-			title,
-			totalProblem,
-			isSolved,
-		};
+		return { lessonId, title, totalProblem, isSolved };
 	});
-
-	const hasBookmarkedProblems = bookmarkAccessible;
-	const hasIncorrectProblems = wrongAnsweredNoteAccessible;
 
 	return {
 		unitInfo,
-		hasBookmarkedProblems,
-		hasIncorrectProblems,
+		hasBookmarkedProblems: bookmarkAccessible,
+		hasIncorrectProblems: wrongAnsweredNoteAccessible,
 		lessons,
 	};
 }
@@ -158,10 +137,7 @@ function mapToAnswer(raw: AnswerResponse | undefined): Answer {
 	if (!raw?.contents || !raw?.explanation) {
 		throw new Error("Invalid answer: missing required fields");
 	}
-	return {
-		content: raw.contents,
-		explanation: raw.explanation,
-	};
+	return { content: raw.contents, explanation: raw.explanation };
 }
 
 function mapToOption(raw: OptionResponse): Option {
@@ -202,26 +178,22 @@ function mapToProblem(raw: ProblemResponse): Problem {
 	};
 }
 
-function mapToUnitSummaryInfo(raw: UnitSummary): UnitSummaryInfo {
+function mapToUnitSummaryInfo(raw: UnitSummaryResponse): UnitSummaryInfo {
 	if (!raw.title || !raw.description || raw.unitId === undefined) {
 		throw new Error("Invalid unit summary: missing required fields");
 	}
 
-	return {
-		unitId: raw.unitId,
-		title: raw.title,
-		description: raw.description,
-	};
+	return { unitId: raw.unitId, title: raw.title, description: raw.description };
 }
 
 export function mapToProblemsWithUnitSummary(
 	raw: LessonResponse,
 ): ProblemsWithUnitSummary {
-	if (!raw.unitSummary || !raw.problems || !Array.isArray(raw.problems)) {
+	if (!raw.unitSummaryResponse || !raw.problems || !Array.isArray(raw.problems)) {
 		throw new Error("Invalid lesson response: missing required fields");
 	}
 	return {
-		unitSummary: mapToUnitSummaryInfo(raw.unitSummary),
+		unitSummary: mapToUnitSummaryInfo(raw.unitSummaryResponse),
 		problems: raw.problems.map(mapToProblem),
 		totalProblems: raw.totalProblems || raw.problems.length,
 	};

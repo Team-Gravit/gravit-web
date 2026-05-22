@@ -1,6 +1,6 @@
 import { privateApiClient } from "@/shared/api/config";
 import type { ApiResponse } from "@/shared/api/types";
-import type { Chapter } from "../model/types";
+import type { Chapter } from "../model/_types";
 import type { ChapterDetailResponseDTO, ProblemListResponseDTO } from "./dto";
 
 export const learningApi = {

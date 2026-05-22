@@ -1,5 +1,5 @@
 import { forwardRef, useImperativeHandle, useRef } from "react";
-import type { Problem } from "@/entities/learning/model/types";
+import type { Problem } from "@/entities/learning/model/_types";
 import ObjectiveSolver from "@/features/quiz/answer-submission/ui/ObjectiveSolver";
 import SubjectiveSolver, {
 	type SubjectiveSolverHandle,

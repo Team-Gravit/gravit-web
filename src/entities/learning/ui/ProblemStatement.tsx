@@ -1,4 +1,4 @@
-import type { Problem } from "../model/types";
+import type { Problem } from "../model/_types";
 import ProblemHeader from "./ProblemHeader";
 
 export default function ProblemStatement({

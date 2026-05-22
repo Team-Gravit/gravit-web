@@ -1,4 +1,4 @@
-import type { Answer } from "@/entities/learning/model/types";
+import type { Answer } from "@/entities/learning/model/_types";
 import RemoveFromIncorrectListBtn from "@/features/quiz/answer-review/ui/RemoveFromMistakeListBtn";
 import type { UserAnswer } from "@/features/quiz/model/types";
 import { cn } from "@/shared/lib/cn";

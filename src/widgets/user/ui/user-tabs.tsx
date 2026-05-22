@@ -1,10 +1,10 @@
 import { Link } from "@tanstack/react-router";
 
 const USER_TABS = [
-	{ to: "/user", label: "요약" },
-	{ to: "/user/learning", label: "학습" },
-	{ to: "/user/league", label: "리그" },
-	{ to: "/user/social", label: "소셜" },
+	{ to: "/my/summary", label: "요약" },
+	{ to: "/my/learning", label: "학습" },
+	{ to: "/my/league", label: "리그" },
+	{ to: "/my/social", label: "소셜" },
 ];
 
 function UserTabs() {

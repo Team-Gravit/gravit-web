@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { UnitProgress } from "@/entities/learning/model/schema";
 import UnitListCard from "./unit-list-card";
 
 const UNIT_TITLES = [
@@ -22,17 +23,18 @@ const MANY_UNIT_TITLES = [
 	"TypeScript 기초",
 ];
 
-const makeUnits = (inProgressIndex: number | null) =>
+const makeUnits = (completedCount: number): UnitProgress[] =>
 	UNIT_TITLES.map((title, i) => ({
-		id: i + 1,
+		unitId: i + 1,
 		title,
-		status:
-			inProgressIndex === null || i < inProgressIndex
-				? ("completed" as const)
-				: i === inProgressIndex
-					? ("inProgress" as const)
-					: ("notStarted" as const),
+		isCompleted: i < completedCount,
 	}));
+
+const defaultArgs = {
+	chapterId: 1,
+	chapterTitle: "프로그래밍 기초",
+	chapterProgressRate: 40,
+};
 
 const meta = {
 	title: "Widgets/MainPage/UnitListCard",
@@ -59,44 +61,37 @@ const fixedWidth = [
 
 export const Default: Story = {
 	name: "기본 (진행 중 포함)",
-	args: { units: makeUnits(2) },
+	args: { ...defaultArgs, units: makeUnits(2) },
 	decorators: fixedWidth,
 };
 
 export const AllNotStarted: Story = {
 	name: "시작 전",
 	args: {
-		units: UNIT_TITLES.map((title, i) => ({
-			id: i + 1,
-			title,
-			status: "notStarted" as const,
-		})),
+		...defaultArgs,
+		chapterProgressRate: 0,
+		units: makeUnits(0),
 	},
 	decorators: fixedWidth,
 };
 
-export const FirstInProgress: Story = {
-	name: "첫 번째 유닛 진행 중",
-	args: { units: makeUnits(0) },
-	decorators: fixedWidth,
-};
-
-export const LastInProgress: Story = {
-	name: "마지막 유닛 진행 중",
-	args: { units: makeUnits(UNIT_TITLES.length - 1) },
+export const FirstCompleted: Story = {
+	name: "첫 번째 완료",
+	args: { ...defaultArgs, chapterProgressRate: 20, units: makeUnits(1) },
 	decorators: fixedWidth,
 };
 
 export const AllCompleted: Story = {
 	name: "전체 완료",
-	args: { units: makeUnits(null) },
+	args: { ...defaultArgs, chapterProgressRate: 100, units: makeUnits(UNIT_TITLES.length) },
 	decorators: fixedWidth,
 };
 
 export const SingleUnit: Story = {
 	name: "유닛 1개",
 	args: {
-		units: [{ id: 1, title: "변수와 자료형", status: "inProgress" }],
+		...defaultArgs,
+		units: [{ unitId: 1, title: "변수와 자료형", isCompleted: false }],
 	},
 	decorators: fixedWidth,
 };
@@ -104,15 +99,11 @@ export const SingleUnit: Story = {
 export const Scrollable: Story = {
 	name: "스크롤 (유닛 10개)",
 	args: {
+		...defaultArgs,
 		units: MANY_UNIT_TITLES.map((title, i) => ({
-			id: i + 1,
+			unitId: i + 1,
 			title,
-			status:
-				i < 3
-					? ("completed" as const)
-					: i === 3
-						? ("inProgress" as const)
-						: ("notStarted" as const),
+			isCompleted: i < 3,
 		})),
 	},
 	decorators: fixedWidth,
@@ -131,7 +122,7 @@ export const OnMobile: Story = {
 			</div>
 		),
 	],
-	args: { units: makeUnits(2) },
+	args: { ...defaultArgs, units: makeUnits(2) },
 };
 
 export const OnDesktop: Story = {
@@ -147,5 +138,5 @@ export const OnDesktop: Story = {
 			</div>
 		),
 	],
-	args: { units: makeUnits(2) },
+	args: { ...defaultArgs, units: makeUnits(2) },
 };

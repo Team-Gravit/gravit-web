@@ -5,7 +5,7 @@ import ReportButton from "@/features/quiz/ui/modal/ReportButton";
 import BookmarkIcon from "@/shared/assets/icons/ic-bookmark-empty.svg?react";
 import { cn } from "@/shared/lib/cn";
 import { learningKeys } from "../api/query-keys";
-import type { Problem } from "../model/types";
+import type { Problem } from "../model/_types";
 import ClipBoardIcon from "./clipboard.svg?react";
 
 export default function ProblemHeader({

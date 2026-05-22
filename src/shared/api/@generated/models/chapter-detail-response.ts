@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { ChapterSummary } from './chapter-summary';
+import type { ChapterSummaryResponse } from './chapter-summary-response';
 
 /**
  * 챕터 정보 조회 Response
@@ -24,7 +24,7 @@ export interface ChapterDetailResponse {
     /**
      * 챕터 요약 정보
      */
-    'chapterSummary': ChapterSummary;
+    'chapterSummaryResponse': ChapterSummaryResponse;
     /**
      * 진행도(퍼센트)
      */

@@ -44,7 +44,7 @@ export const Default: Story = {
 		<Card {...args}>
 			<Card.Header>
 				<Card.Title>카드 제목</Card.Title>
-				<Card.Link to="#">더보기</Card.Link>
+				<Card.Link to=".">더보기</Card.Link>
 			</Card.Header>
 			<p className="text-sm text-gray-700">카드 본문 내용이 들어갑니다.</p>
 		</Card>
@@ -109,7 +109,7 @@ export const WithHeaderAndLink: Story = {
 		<Card {...args}>
 			<Card.Header>
 				<Card.Title>최근 활동</Card.Title>
-				<Card.Link to="/activities">전체보기</Card.Link>
+				<Card.Link to=".">전체보기</Card.Link>
 			</Card.Header>
 			<p className="text-sm text-gray-700">최근 활동 목록이 들어갑니다.</p>
 		</Card>
@@ -158,7 +158,7 @@ export const BgCardDefault: Story = {
 		<BgCard size={size ?? "md"} className={className} backgroundImage={cardBg}>
 			<BgCard.Header>
 				<BgCard.Title className="text-white">카드 제목</BgCard.Title>
-				<BgCard.Link to="#" className="text-white/70">
+				<BgCard.Link to="." className="text-white/70">
 					더보기
 				</BgCard.Link>
 			</BgCard.Header>

@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**unitSummary** | [**UnitSummary**](UnitSummary.md) | 유닛 요약 정보 | [default to undefined]
+**unitSummaryResponse** | [**UnitSummaryResponse**](UnitSummaryResponse.md) | 유닛 요약 정보 | [default to undefined]
 **problems** | [**Array&lt;ProblemResponse&gt;**](ProblemResponse.md) | 문제 목록 | [default to undefined]
 **totalProblems** | **number** | 전체 문제 수 | [optional] [default to undefined]
 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 import { WrongAnsweredProblemsResponse } from './api';
 
 const instance: WrongAnsweredProblemsResponse = {
-    unitSummary,
+    unitSummaryResponse,
     problems,
     totalProblems,
 };
