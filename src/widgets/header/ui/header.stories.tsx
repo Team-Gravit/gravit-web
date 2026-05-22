@@ -67,7 +67,7 @@ export const MainActive: Story = {
 	name: "홈 활성화 (Transparent)",
 	decorators: [
 		withTanstackRouter({
-			routeId: "/_authenticated/_fixed-header-layout/main",
+			routeId: "/_authenticated/main",
 			path: "/main",
 		}),
 	],

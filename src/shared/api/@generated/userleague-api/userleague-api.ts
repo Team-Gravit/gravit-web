@@ -30,6 +30,8 @@ import type {
 import { customInstance } from '../../mutator';
 
 
+type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
+
 
 
 export type getLeagueRankingByUserResponse200 = {
@@ -99,16 +101,16 @@ export const getGetLeagueRankingByUserQueryKey = (pageNum: number,) => {
     }
 
 
-export const getGetLeagueRankingByUserQueryOptions = <TData = Awaited<ReturnType<typeof getLeagueRankingByUser>>, TError = SliceResponseLeagueRankRowDto>(pageNum: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLeagueRankingByUser>>, TError, TData>>, }
+export const getGetLeagueRankingByUserQueryOptions = <TData = Awaited<ReturnType<typeof getLeagueRankingByUser>>, TError = SliceResponseLeagueRankRowDto>(pageNum: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLeagueRankingByUser>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
 ) => {
 
-const {query: queryOptions} = options ?? {};
+const {query: queryOptions, request: requestOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetLeagueRankingByUserQueryKey(pageNum);
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getLeagueRankingByUser>>> = ({ signal }) => getLeagueRankingByUser(pageNum, { signal });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getLeagueRankingByUser>>> = ({ signal }) => getLeagueRankingByUser(pageNum, { signal, ...requestOptions });
 
 
 
@@ -128,7 +130,7 @@ export function useGetLeagueRankingByUser<TData = Awaited<ReturnType<typeof getL
           TError,
           Awaited<ReturnType<typeof getLeagueRankingByUser>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetLeagueRankingByUser<TData = Awaited<ReturnType<typeof getLeagueRankingByUser>>, TError = SliceResponseLeagueRankRowDto>(
@@ -138,11 +140,11 @@ export function useGetLeagueRankingByUser<TData = Awaited<ReturnType<typeof getL
           TError,
           Awaited<ReturnType<typeof getLeagueRankingByUser>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetLeagueRankingByUser<TData = Awaited<ReturnType<typeof getLeagueRankingByUser>>, TError = SliceResponseLeagueRankRowDto>(
- pageNum: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLeagueRankingByUser>>, TError, TData>>, }
+ pageNum: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLeagueRankingByUser>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -150,7 +152,7 @@ export function useGetLeagueRankingByUser<TData = Awaited<ReturnType<typeof getL
  */
 
 export function useGetLeagueRankingByUser<TData = Awaited<ReturnType<typeof getLeagueRankingByUser>>, TError = SliceResponseLeagueRankRowDto>(
- pageNum: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLeagueRankingByUser>>, TError, TData>>, }
+ pageNum: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLeagueRankingByUser>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
@@ -226,16 +228,16 @@ export const getGetMyLeagueWithProfileQueryKey = () => {
     }
 
 
-export const getGetMyLeagueWithProfileQueryOptions = <TData = Awaited<ReturnType<typeof getMyLeagueWithProfile>>, TError = ErrorResponse | MyLeagueRankWithProfileResponse>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyLeagueWithProfile>>, TError, TData>>, }
+export const getGetMyLeagueWithProfileQueryOptions = <TData = Awaited<ReturnType<typeof getMyLeagueWithProfile>>, TError = ErrorResponse | MyLeagueRankWithProfileResponse>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyLeagueWithProfile>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
 ) => {
 
-const {query: queryOptions} = options ?? {};
+const {query: queryOptions, request: requestOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetMyLeagueWithProfileQueryKey();
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getMyLeagueWithProfile>>> = ({ signal }) => getMyLeagueWithProfile({ signal });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getMyLeagueWithProfile>>> = ({ signal }) => getMyLeagueWithProfile({ signal, ...requestOptions });
 
 
 
@@ -255,7 +257,7 @@ export function useGetMyLeagueWithProfile<TData = Awaited<ReturnType<typeof getM
           TError,
           Awaited<ReturnType<typeof getMyLeagueWithProfile>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetMyLeagueWithProfile<TData = Awaited<ReturnType<typeof getMyLeagueWithProfile>>, TError = ErrorResponse | MyLeagueRankWithProfileResponse>(
@@ -265,11 +267,11 @@ export function useGetMyLeagueWithProfile<TData = Awaited<ReturnType<typeof getM
           TError,
           Awaited<ReturnType<typeof getMyLeagueWithProfile>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetMyLeagueWithProfile<TData = Awaited<ReturnType<typeof getMyLeagueWithProfile>>, TError = ErrorResponse | MyLeagueRankWithProfileResponse>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyLeagueWithProfile>>, TError, TData>>, }
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyLeagueWithProfile>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -277,7 +279,7 @@ export function useGetMyLeagueWithProfile<TData = Awaited<ReturnType<typeof getM
  */
 
 export function useGetMyLeagueWithProfile<TData = Awaited<ReturnType<typeof getMyLeagueWithProfile>>, TError = ErrorResponse | MyLeagueRankWithProfileResponse>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyLeagueWithProfile>>, TError, TData>>, }
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyLeagueWithProfile>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
@@ -363,16 +365,16 @@ export const getGetLeagueRankingQueryKey = (leagueId: number,
 
 
 export const getGetLeagueRankingQueryOptions = <TData = Awaited<ReturnType<typeof getLeagueRanking>>, TError = SliceResponseLeagueRankRowDto>(leagueId: number,
-    pageNum: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLeagueRanking>>, TError, TData>>, }
+    pageNum: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLeagueRanking>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
 ) => {
 
-const {query: queryOptions} = options ?? {};
+const {query: queryOptions, request: requestOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetLeagueRankingQueryKey(leagueId,pageNum);
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getLeagueRanking>>> = ({ signal }) => getLeagueRanking(leagueId,pageNum, { signal });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getLeagueRanking>>> = ({ signal }) => getLeagueRanking(leagueId,pageNum, { signal, ...requestOptions });
 
 
 
@@ -393,7 +395,7 @@ export function useGetLeagueRanking<TData = Awaited<ReturnType<typeof getLeagueR
           TError,
           Awaited<ReturnType<typeof getLeagueRanking>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetLeagueRanking<TData = Awaited<ReturnType<typeof getLeagueRanking>>, TError = SliceResponseLeagueRankRowDto>(
@@ -404,12 +406,12 @@ export function useGetLeagueRanking<TData = Awaited<ReturnType<typeof getLeagueR
           TError,
           Awaited<ReturnType<typeof getLeagueRanking>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetLeagueRanking<TData = Awaited<ReturnType<typeof getLeagueRanking>>, TError = SliceResponseLeagueRankRowDto>(
  leagueId: number,
-    pageNum: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLeagueRanking>>, TError, TData>>, }
+    pageNum: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLeagueRanking>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -418,7 +420,7 @@ export function useGetLeagueRanking<TData = Awaited<ReturnType<typeof getLeagueR
 
 export function useGetLeagueRanking<TData = Awaited<ReturnType<typeof getLeagueRanking>>, TError = SliceResponseLeagueRankRowDto>(
  leagueId: number,
-    pageNum: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLeagueRanking>>, TError, TData>>, }
+    pageNum: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLeagueRanking>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 

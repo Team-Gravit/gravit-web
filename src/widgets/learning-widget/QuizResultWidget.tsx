@@ -23,7 +23,7 @@ export default function QuizResultWidget() {
 	const xp = submitResponse?.userLevelResponse?.xp ?? 0;
 	const league = submitResponse?.leagueName ?? "브론즈";
 	const level = submitResponse?.userLevelResponse?.currentLevel ?? 1;
-	const unitTitle = submitResponse?.unitSummary?.title ?? "자료구조";
+	const unitTitle = submitResponse?.unitSummaryResponse?.title ?? "자료구조";
 	const correctRate = accuracy;
 
 	return (

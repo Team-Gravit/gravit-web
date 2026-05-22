@@ -36,6 +36,8 @@ import type {
 import { customInstance } from '../../mutator';
 
 
+type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
+
 
 
 export type oauthLoginResponse200 = {
@@ -99,15 +101,15 @@ export const oauthLogin = async (provider: string,
 
 
 export const getOauthLoginMutationOptions = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof oauthLogin>>, TError,{provider: string;data: AuthCodeRequest;params: OauthLoginParams}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof oauthLogin>>, TError,{provider: string;data: AuthCodeRequest;params: OauthLoginParams}, TContext>, request?: SecondParameter<typeof customInstance>}
 ): UseMutationOptions<Awaited<ReturnType<typeof oauthLogin>>, TError,{provider: string;data: AuthCodeRequest;params: OauthLoginParams}, TContext> => {
 
 const mutationKey = ['oauthLogin'];
-const {mutation: mutationOptions} = options ?
+const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }};
+      : {mutation: { mutationKey, }, request: undefined};
 
 
 
@@ -115,7 +117,7 @@ const {mutation: mutationOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof oauthLogin>>, {provider: string;data: AuthCodeRequest;params: OauthLoginParams}> = (props) => {
           const {provider,data,params} = props ?? {};
 
-          return  oauthLogin(provider,data,params,)
+          return  oauthLogin(provider,data,params,requestOptions)
         }
 
 
@@ -133,7 +135,7 @@ const {mutation: mutationOptions} = options ?
  * @summary OAuth 회원가입/로그인 처리
  */
 export const useOauthLogin = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof oauthLogin>>, TError,{provider: string;data: AuthCodeRequest;params: OauthLoginParams}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof oauthLogin>>, TError,{provider: string;data: AuthCodeRequest;params: OauthLoginParams}, TContext>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof oauthLogin>>,
         TError,
@@ -211,16 +213,16 @@ export const getAuthorizeUrlQueryKey = (provider: string,
 
 
 export const getAuthorizeUrlQueryOptions = <TData = Awaited<ReturnType<typeof authorizeUrl>>, TError = ErrorResponse>(provider: string,
-    params: AuthorizeUrlParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof authorizeUrl>>, TError, TData>>, }
+    params: AuthorizeUrlParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof authorizeUrl>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
 ) => {
 
-const {query: queryOptions} = options ?? {};
+const {query: queryOptions, request: requestOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getAuthorizeUrlQueryKey(provider,params);
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof authorizeUrl>>> = ({ signal }) => authorizeUrl(provider,params, { signal });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof authorizeUrl>>> = ({ signal }) => authorizeUrl(provider,params, { signal, ...requestOptions });
 
 
 
@@ -241,7 +243,7 @@ export function useAuthorizeUrl<TData = Awaited<ReturnType<typeof authorizeUrl>>
           TError,
           Awaited<ReturnType<typeof authorizeUrl>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useAuthorizeUrl<TData = Awaited<ReturnType<typeof authorizeUrl>>, TError = ErrorResponse>(
@@ -252,12 +254,12 @@ export function useAuthorizeUrl<TData = Awaited<ReturnType<typeof authorizeUrl>>
           TError,
           Awaited<ReturnType<typeof authorizeUrl>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useAuthorizeUrl<TData = Awaited<ReturnType<typeof authorizeUrl>>, TError = ErrorResponse>(
  provider: string,
-    params: AuthorizeUrlParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof authorizeUrl>>, TError, TData>>, }
+    params: AuthorizeUrlParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof authorizeUrl>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -266,7 +268,7 @@ export function useAuthorizeUrl<TData = Awaited<ReturnType<typeof authorizeUrl>>
 
 export function useAuthorizeUrl<TData = Awaited<ReturnType<typeof authorizeUrl>>, TError = ErrorResponse>(
  provider: string,
-    params: AuthorizeUrlParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof authorizeUrl>>, TError, TData>>, }
+    params: AuthorizeUrlParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof authorizeUrl>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 

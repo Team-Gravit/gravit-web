@@ -33,6 +33,8 @@ import type {
 import { customInstance } from '../../mutator';
 
 
+type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
+
 
 
 export type getAllWrongAnsweredProblemInUnitResponse200 = {
@@ -88,16 +90,16 @@ export const getGetAllWrongAnsweredProblemInUnitQueryKey = (unitId: number,) => 
     }
 
 
-export const getGetAllWrongAnsweredProblemInUnitQueryOptions = <TData = Awaited<ReturnType<typeof getAllWrongAnsweredProblemInUnit>>, TError = ErrorResponse>(unitId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllWrongAnsweredProblemInUnit>>, TError, TData>>, }
+export const getGetAllWrongAnsweredProblemInUnitQueryOptions = <TData = Awaited<ReturnType<typeof getAllWrongAnsweredProblemInUnit>>, TError = ErrorResponse>(unitId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllWrongAnsweredProblemInUnit>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
 ) => {
 
-const {query: queryOptions} = options ?? {};
+const {query: queryOptions, request: requestOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetAllWrongAnsweredProblemInUnitQueryKey(unitId);
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getAllWrongAnsweredProblemInUnit>>> = ({ signal }) => getAllWrongAnsweredProblemInUnit(unitId, { signal });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getAllWrongAnsweredProblemInUnit>>> = ({ signal }) => getAllWrongAnsweredProblemInUnit(unitId, { signal, ...requestOptions });
 
 
 
@@ -117,7 +119,7 @@ export function useGetAllWrongAnsweredProblemInUnit<TData = Awaited<ReturnType<t
           TError,
           Awaited<ReturnType<typeof getAllWrongAnsweredProblemInUnit>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetAllWrongAnsweredProblemInUnit<TData = Awaited<ReturnType<typeof getAllWrongAnsweredProblemInUnit>>, TError = ErrorResponse>(
@@ -127,11 +129,11 @@ export function useGetAllWrongAnsweredProblemInUnit<TData = Awaited<ReturnType<t
           TError,
           Awaited<ReturnType<typeof getAllWrongAnsweredProblemInUnit>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetAllWrongAnsweredProblemInUnit<TData = Awaited<ReturnType<typeof getAllWrongAnsweredProblemInUnit>>, TError = ErrorResponse>(
- unitId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllWrongAnsweredProblemInUnit>>, TError, TData>>, }
+ unitId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllWrongAnsweredProblemInUnit>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -139,7 +141,7 @@ export function useGetAllWrongAnsweredProblemInUnit<TData = Awaited<ReturnType<t
  */
 
 export function useGetAllWrongAnsweredProblemInUnit<TData = Awaited<ReturnType<typeof getAllWrongAnsweredProblemInUnit>>, TError = ErrorResponse>(
- unitId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllWrongAnsweredProblemInUnit>>, TError, TData>>, }
+ unitId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllWrongAnsweredProblemInUnit>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
@@ -194,15 +196,15 @@ export const deleteWrongAnsweredProblem = async (wrongAnsweredNoteDeleteRequest:
 
 
 export const getDeleteWrongAnsweredProblemMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteWrongAnsweredProblem>>, TError,{data: WrongAnsweredNoteDeleteRequest}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteWrongAnsweredProblem>>, TError,{data: WrongAnsweredNoteDeleteRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
 ): UseMutationOptions<Awaited<ReturnType<typeof deleteWrongAnsweredProblem>>, TError,{data: WrongAnsweredNoteDeleteRequest}, TContext> => {
 
 const mutationKey = ['deleteWrongAnsweredProblem'];
-const {mutation: mutationOptions} = options ?
+const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }};
+      : {mutation: { mutationKey, }, request: undefined};
 
 
 
@@ -210,7 +212,7 @@ const {mutation: mutationOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof deleteWrongAnsweredProblem>>, {data: WrongAnsweredNoteDeleteRequest}> = (props) => {
           const {data} = props ?? {};
 
-          return  deleteWrongAnsweredProblem(data,)
+          return  deleteWrongAnsweredProblem(data,requestOptions)
         }
 
 
@@ -228,7 +230,7 @@ const {mutation: mutationOptions} = options ?
  * @summary 오답노트 삭제
  */
 export const useDeleteWrongAnsweredProblem = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteWrongAnsweredProblem>>, TError,{data: WrongAnsweredNoteDeleteRequest}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteWrongAnsweredProblem>>, TError,{data: WrongAnsweredNoteDeleteRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof deleteWrongAnsweredProblem>>,
         TError,

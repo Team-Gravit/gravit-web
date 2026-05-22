@@ -29,6 +29,8 @@ import type {
 import { customInstance } from '../../mutator';
 
 
+type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
+
 
 
 export type getNoticeByAdminResponse200 = {
@@ -96,16 +98,16 @@ export const getGetNoticeByAdminQueryKey = (noticeId: number,) => {
     }
 
 
-export const getGetNoticeByAdminQueryOptions = <TData = Awaited<ReturnType<typeof getNoticeByAdmin>>, TError = ErrorResponse>(noticeId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNoticeByAdmin>>, TError, TData>>, }
+export const getGetNoticeByAdminQueryOptions = <TData = Awaited<ReturnType<typeof getNoticeByAdmin>>, TError = ErrorResponse>(noticeId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNoticeByAdmin>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
 ) => {
 
-const {query: queryOptions} = options ?? {};
+const {query: queryOptions, request: requestOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetNoticeByAdminQueryKey(noticeId);
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getNoticeByAdmin>>> = ({ signal }) => getNoticeByAdmin(noticeId, { signal });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getNoticeByAdmin>>> = ({ signal }) => getNoticeByAdmin(noticeId, { signal, ...requestOptions });
 
 
 
@@ -125,7 +127,7 @@ export function useGetNoticeByAdmin<TData = Awaited<ReturnType<typeof getNoticeB
           TError,
           Awaited<ReturnType<typeof getNoticeByAdmin>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetNoticeByAdmin<TData = Awaited<ReturnType<typeof getNoticeByAdmin>>, TError = ErrorResponse>(
@@ -135,11 +137,11 @@ export function useGetNoticeByAdmin<TData = Awaited<ReturnType<typeof getNoticeB
           TError,
           Awaited<ReturnType<typeof getNoticeByAdmin>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetNoticeByAdmin<TData = Awaited<ReturnType<typeof getNoticeByAdmin>>, TError = ErrorResponse>(
- noticeId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNoticeByAdmin>>, TError, TData>>, }
+ noticeId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNoticeByAdmin>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -147,7 +149,7 @@ export function useGetNoticeByAdmin<TData = Awaited<ReturnType<typeof getNoticeB
  */
 
 export function useGetNoticeByAdmin<TData = Awaited<ReturnType<typeof getNoticeByAdmin>>, TError = ErrorResponse>(
- noticeId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNoticeByAdmin>>, TError, TData>>, }
+ noticeId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNoticeByAdmin>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
@@ -223,16 +225,16 @@ export const getGetNoticeSummaryByAdminQueryKey = (page: number,) => {
     }
 
 
-export const getGetNoticeSummaryByAdminQueryOptions = <TData = Awaited<ReturnType<typeof getNoticeSummaryByAdmin>>, TError = ErrorResponse>(page: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNoticeSummaryByAdmin>>, TError, TData>>, }
+export const getGetNoticeSummaryByAdminQueryOptions = <TData = Awaited<ReturnType<typeof getNoticeSummaryByAdmin>>, TError = ErrorResponse>(page: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNoticeSummaryByAdmin>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
 ) => {
 
-const {query: queryOptions} = options ?? {};
+const {query: queryOptions, request: requestOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetNoticeSummaryByAdminQueryKey(page);
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getNoticeSummaryByAdmin>>> = ({ signal }) => getNoticeSummaryByAdmin(page, { signal });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getNoticeSummaryByAdmin>>> = ({ signal }) => getNoticeSummaryByAdmin(page, { signal, ...requestOptions });
 
 
 
@@ -252,7 +254,7 @@ export function useGetNoticeSummaryByAdmin<TData = Awaited<ReturnType<typeof get
           TError,
           Awaited<ReturnType<typeof getNoticeSummaryByAdmin>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetNoticeSummaryByAdmin<TData = Awaited<ReturnType<typeof getNoticeSummaryByAdmin>>, TError = ErrorResponse>(
@@ -262,11 +264,11 @@ export function useGetNoticeSummaryByAdmin<TData = Awaited<ReturnType<typeof get
           TError,
           Awaited<ReturnType<typeof getNoticeSummaryByAdmin>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetNoticeSummaryByAdmin<TData = Awaited<ReturnType<typeof getNoticeSummaryByAdmin>>, TError = ErrorResponse>(
- page: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNoticeSummaryByAdmin>>, TError, TData>>, }
+ page: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNoticeSummaryByAdmin>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -274,7 +276,7 @@ export function useGetNoticeSummaryByAdmin<TData = Awaited<ReturnType<typeof get
  */
 
 export function useGetNoticeSummaryByAdmin<TData = Awaited<ReturnType<typeof getNoticeSummaryByAdmin>>, TError = ErrorResponse>(
- page: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNoticeSummaryByAdmin>>, TError, TData>>, }
+ page: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNoticeSummaryByAdmin>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 

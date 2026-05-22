@@ -31,6 +31,7 @@ const makeUnits = (completedCount: number): UnitProgress[] =>
 	}));
 
 const defaultArgs = {
+	chapterId: 1,
 	chapterTitle: "프로그래밍 기초",
 	chapterProgressRate: 40,
 };

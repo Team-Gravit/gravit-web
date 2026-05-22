@@ -39,6 +39,8 @@ import type {
 import { customInstance } from '../../mutator';
 
 
+type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
+
 
 
 export type unFollowingResponse200 = {
@@ -92,15 +94,15 @@ export const unFollowing = async (followeeId: number, options?: RequestInit): Pr
 
 
 export const getUnFollowingMutationOptions = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof unFollowing>>, TError,{followeeId: number}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof unFollowing>>, TError,{followeeId: number}, TContext>, request?: SecondParameter<typeof customInstance>}
 ): UseMutationOptions<Awaited<ReturnType<typeof unFollowing>>, TError,{followeeId: number}, TContext> => {
 
 const mutationKey = ['unFollowing'];
-const {mutation: mutationOptions} = options ?
+const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }};
+      : {mutation: { mutationKey, }, request: undefined};
 
 
 
@@ -108,7 +110,7 @@ const {mutation: mutationOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof unFollowing>>, {followeeId: number}> = (props) => {
           const {followeeId} = props ?? {};
 
-          return  unFollowing(followeeId,)
+          return  unFollowing(followeeId,requestOptions)
         }
 
 
@@ -126,7 +128,7 @@ const {mutation: mutationOptions} = options ?
  * @summary 언팔로잉
  */
 export const useUnFollowing = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof unFollowing>>, TError,{followeeId: number}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof unFollowing>>, TError,{followeeId: number}, TContext>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof unFollowing>>,
         TError,
@@ -186,15 +188,15 @@ export const rejectFollowing = async (followerId: number, options?: RequestInit)
 
 
 export const getRejectFollowingMutationOptions = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof rejectFollowing>>, TError,{followerId: number}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof rejectFollowing>>, TError,{followerId: number}, TContext>, request?: SecondParameter<typeof customInstance>}
 ): UseMutationOptions<Awaited<ReturnType<typeof rejectFollowing>>, TError,{followerId: number}, TContext> => {
 
 const mutationKey = ['rejectFollowing'];
-const {mutation: mutationOptions} = options ?
+const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }};
+      : {mutation: { mutationKey, }, request: undefined};
 
 
 
@@ -202,7 +204,7 @@ const {mutation: mutationOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof rejectFollowing>>, {followerId: number}> = (props) => {
           const {followerId} = props ?? {};
 
-          return  rejectFollowing(followerId,)
+          return  rejectFollowing(followerId,requestOptions)
         }
 
 
@@ -220,7 +222,7 @@ const {mutation: mutationOptions} = options ?
  * @summary 팔로잉 거절
  */
 export const useRejectFollowing = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof rejectFollowing>>, TError,{followerId: number}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof rejectFollowing>>, TError,{followerId: number}, TContext>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof rejectFollowing>>,
         TError,
@@ -290,15 +292,15 @@ export const following = async (followeeId: number, options?: RequestInit): Prom
 
 
 export const getFollowingMutationOptions = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof following>>, TError,{followeeId: number}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof following>>, TError,{followeeId: number}, TContext>, request?: SecondParameter<typeof customInstance>}
 ): UseMutationOptions<Awaited<ReturnType<typeof following>>, TError,{followeeId: number}, TContext> => {
 
 const mutationKey = ['following'];
-const {mutation: mutationOptions} = options ?
+const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }};
+      : {mutation: { mutationKey, }, request: undefined};
 
 
 
@@ -306,7 +308,7 @@ const {mutation: mutationOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof following>>, {followeeId: number}> = (props) => {
           const {followeeId} = props ?? {};
 
-          return  following(followeeId,)
+          return  following(followeeId,requestOptions)
         }
 
 
@@ -324,7 +326,7 @@ const {mutation: mutationOptions} = options ?
  * @summary 팔로잉
  */
 export const useFollowing = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof following>>, TError,{followeeId: number}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof following>>, TError,{followeeId: number}, TContext>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof following>>,
         TError,
@@ -404,16 +406,16 @@ export const getSearchQueryKey = (params?: SearchParams,) => {
     }
 
 
-export const getSearchQueryOptions = <TData = Awaited<ReturnType<typeof search>>, TError = ErrorResponse>(params: SearchParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof search>>, TError, TData>>, }
+export const getSearchQueryOptions = <TData = Awaited<ReturnType<typeof search>>, TError = ErrorResponse>(params: SearchParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof search>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
 ) => {
 
-const {query: queryOptions} = options ?? {};
+const {query: queryOptions, request: requestOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getSearchQueryKey(params);
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof search>>> = ({ signal }) => search(params, { signal });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof search>>> = ({ signal }) => search(params, { signal, ...requestOptions });
 
 
 
@@ -433,7 +435,7 @@ export function useSearch<TData = Awaited<ReturnType<typeof search>>, TError = E
           TError,
           Awaited<ReturnType<typeof search>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useSearch<TData = Awaited<ReturnType<typeof search>>, TError = ErrorResponse>(
@@ -443,11 +445,11 @@ export function useSearch<TData = Awaited<ReturnType<typeof search>>, TError = E
           TError,
           Awaited<ReturnType<typeof search>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useSearch<TData = Awaited<ReturnType<typeof search>>, TError = ErrorResponse>(
- params: SearchParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof search>>, TError, TData>>, }
+ params: SearchParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof search>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -455,7 +457,7 @@ export function useSearch<TData = Awaited<ReturnType<typeof search>>, TError = E
  */
 
 export function useSearch<TData = Awaited<ReturnType<typeof search>>, TError = ErrorResponse>(
- params: SearchParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof search>>, TError, TData>>, }
+ params: SearchParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof search>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
@@ -531,16 +533,16 @@ export const getGetFollowingsQueryKey = (params?: GetFollowingsParams,) => {
     }
 
 
-export const getGetFollowingsQueryOptions = <TData = Awaited<ReturnType<typeof getFollowings>>, TError = ErrorResponse>(params?: GetFollowingsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getFollowings>>, TError, TData>>, }
+export const getGetFollowingsQueryOptions = <TData = Awaited<ReturnType<typeof getFollowings>>, TError = ErrorResponse>(params?: GetFollowingsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getFollowings>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
 ) => {
 
-const {query: queryOptions} = options ?? {};
+const {query: queryOptions, request: requestOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetFollowingsQueryKey(params);
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getFollowings>>> = ({ signal }) => getFollowings(params, { signal });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getFollowings>>> = ({ signal }) => getFollowings(params, { signal, ...requestOptions });
 
 
 
@@ -560,7 +562,7 @@ export function useGetFollowings<TData = Awaited<ReturnType<typeof getFollowings
           TError,
           Awaited<ReturnType<typeof getFollowings>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetFollowings<TData = Awaited<ReturnType<typeof getFollowings>>, TError = ErrorResponse>(
@@ -570,11 +572,11 @@ export function useGetFollowings<TData = Awaited<ReturnType<typeof getFollowings
           TError,
           Awaited<ReturnType<typeof getFollowings>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetFollowings<TData = Awaited<ReturnType<typeof getFollowings>>, TError = ErrorResponse>(
- params?: GetFollowingsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getFollowings>>, TError, TData>>, }
+ params?: GetFollowingsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getFollowings>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -582,7 +584,7 @@ export function useGetFollowings<TData = Awaited<ReturnType<typeof getFollowings
  */
 
 export function useGetFollowings<TData = Awaited<ReturnType<typeof getFollowings>>, TError = ErrorResponse>(
- params?: GetFollowingsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getFollowings>>, TError, TData>>, }
+ params?: GetFollowingsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getFollowings>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
@@ -658,16 +660,16 @@ export const getGetFollowersQueryKey = (params?: GetFollowersParams,) => {
     }
 
 
-export const getGetFollowersQueryOptions = <TData = Awaited<ReturnType<typeof getFollowers>>, TError = ErrorResponse>(params?: GetFollowersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getFollowers>>, TError, TData>>, }
+export const getGetFollowersQueryOptions = <TData = Awaited<ReturnType<typeof getFollowers>>, TError = ErrorResponse>(params?: GetFollowersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getFollowers>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
 ) => {
 
-const {query: queryOptions} = options ?? {};
+const {query: queryOptions, request: requestOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetFollowersQueryKey(params);
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getFollowers>>> = ({ signal }) => getFollowers(params, { signal });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getFollowers>>> = ({ signal }) => getFollowers(params, { signal, ...requestOptions });
 
 
 
@@ -687,7 +689,7 @@ export function useGetFollowers<TData = Awaited<ReturnType<typeof getFollowers>>
           TError,
           Awaited<ReturnType<typeof getFollowers>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetFollowers<TData = Awaited<ReturnType<typeof getFollowers>>, TError = ErrorResponse>(
@@ -697,11 +699,11 @@ export function useGetFollowers<TData = Awaited<ReturnType<typeof getFollowers>>
           TError,
           Awaited<ReturnType<typeof getFollowers>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetFollowers<TData = Awaited<ReturnType<typeof getFollowers>>, TError = ErrorResponse>(
- params?: GetFollowersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getFollowers>>, TError, TData>>, }
+ params?: GetFollowersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getFollowers>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -709,7 +711,7 @@ export function useGetFollowers<TData = Awaited<ReturnType<typeof getFollowers>>
  */
 
 export function useGetFollowers<TData = Awaited<ReturnType<typeof getFollowers>>, TError = ErrorResponse>(
- params?: GetFollowersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getFollowers>>, TError, TData>>, }
+ params?: GetFollowersParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getFollowers>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
@@ -785,16 +787,16 @@ export const getGetFollowAndFollowingCountQueryKey = () => {
     }
 
 
-export const getGetFollowAndFollowingCountQueryOptions = <TData = Awaited<ReturnType<typeof getFollowAndFollowingCount>>, TError = ErrorResponse>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getFollowAndFollowingCount>>, TError, TData>>, }
+export const getGetFollowAndFollowingCountQueryOptions = <TData = Awaited<ReturnType<typeof getFollowAndFollowingCount>>, TError = ErrorResponse>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getFollowAndFollowingCount>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
 ) => {
 
-const {query: queryOptions} = options ?? {};
+const {query: queryOptions, request: requestOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetFollowAndFollowingCountQueryKey();
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getFollowAndFollowingCount>>> = ({ signal }) => getFollowAndFollowingCount({ signal });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getFollowAndFollowingCount>>> = ({ signal }) => getFollowAndFollowingCount({ signal, ...requestOptions });
 
 
 
@@ -814,7 +816,7 @@ export function useGetFollowAndFollowingCount<TData = Awaited<ReturnType<typeof 
           TError,
           Awaited<ReturnType<typeof getFollowAndFollowingCount>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetFollowAndFollowingCount<TData = Awaited<ReturnType<typeof getFollowAndFollowingCount>>, TError = ErrorResponse>(
@@ -824,11 +826,11 @@ export function useGetFollowAndFollowingCount<TData = Awaited<ReturnType<typeof 
           TError,
           Awaited<ReturnType<typeof getFollowAndFollowingCount>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetFollowAndFollowingCount<TData = Awaited<ReturnType<typeof getFollowAndFollowingCount>>, TError = ErrorResponse>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getFollowAndFollowingCount>>, TError, TData>>, }
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getFollowAndFollowingCount>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -836,7 +838,7 @@ export function useGetFollowAndFollowingCount<TData = Awaited<ReturnType<typeof 
  */
 
 export function useGetFollowAndFollowingCount<TData = Awaited<ReturnType<typeof getFollowAndFollowingCount>>, TError = ErrorResponse>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getFollowAndFollowingCount>>, TError, TData>>, }
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getFollowAndFollowingCount>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 

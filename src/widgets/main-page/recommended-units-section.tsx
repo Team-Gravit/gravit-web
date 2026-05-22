@@ -11,7 +11,7 @@ export default function RecommendedUnitsSection({
 		<Card>
 			<Card.Header>
 				<Card.Title>새 주제 시작하기</Card.Title>
-				<Card.Link to="./">전체 보기</Card.Link>
+				<Card.Link to="/learning">전체 보기</Card.Link>
 			</Card.Header>
 			<div className="w-full flex-1 grid grid-cols-2 gap-4">
 				{units.map((unit) => (

@@ -34,6 +34,8 @@ import type {
 import { customInstance } from '../../mutator';
 
 
+type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
+
 
 
 export type updateProblemResponse204 = {
@@ -82,15 +84,15 @@ export const updateProblem = async (problemUpdateRequest: ProblemUpdateRequest, 
 
 
 export const getUpdateProblemMutationOptions = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateProblem>>, TError,{data: ProblemUpdateRequest}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateProblem>>, TError,{data: ProblemUpdateRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
 ): UseMutationOptions<Awaited<ReturnType<typeof updateProblem>>, TError,{data: ProblemUpdateRequest}, TContext> => {
 
 const mutationKey = ['updateProblem'];
-const {mutation: mutationOptions} = options ?
+const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }};
+      : {mutation: { mutationKey, }, request: undefined};
 
 
 
@@ -98,7 +100,7 @@ const {mutation: mutationOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof updateProblem>>, {data: ProblemUpdateRequest}> = (props) => {
           const {data} = props ?? {};
 
-          return  updateProblem(data,)
+          return  updateProblem(data,requestOptions)
         }
 
 
@@ -116,7 +118,7 @@ const {mutation: mutationOptions} = options ?
  * @summary 문제 수정
  */
 export const useUpdateProblem = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateProblem>>, TError,{data: ProblemUpdateRequest}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateProblem>>, TError,{data: ProblemUpdateRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof updateProblem>>,
         TError,
@@ -164,15 +166,15 @@ export const createProblem = async (problemCreateRequest: ProblemCreateRequest, 
 
 
 export const getCreateProblemMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createProblem>>, TError,{data: ProblemCreateRequest}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createProblem>>, TError,{data: ProblemCreateRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
 ): UseMutationOptions<Awaited<ReturnType<typeof createProblem>>, TError,{data: ProblemCreateRequest}, TContext> => {
 
 const mutationKey = ['createProblem'];
-const {mutation: mutationOptions} = options ?
+const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }};
+      : {mutation: { mutationKey, }, request: undefined};
 
 
 
@@ -180,7 +182,7 @@ const {mutation: mutationOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof createProblem>>, {data: ProblemCreateRequest}> = (props) => {
           const {data} = props ?? {};
 
-          return  createProblem(data,)
+          return  createProblem(data,requestOptions)
         }
 
 
@@ -198,7 +200,7 @@ const {mutation: mutationOptions} = options ?
  * @summary 문제 생성
  */
 export const useCreateProblem = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createProblem>>, TError,{data: ProblemCreateRequest}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createProblem>>, TError,{data: ProblemCreateRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof createProblem>>,
         TError,
@@ -260,16 +262,16 @@ export const getGetProblemQueryKey = (problemId: number,) => {
     }
 
 
-export const getGetProblemQueryOptions = <TData = Awaited<ReturnType<typeof getProblem>>, TError = ErrorResponse>(problemId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProblem>>, TError, TData>>, }
+export const getGetProblemQueryOptions = <TData = Awaited<ReturnType<typeof getProblem>>, TError = ErrorResponse>(problemId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProblem>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
 ) => {
 
-const {query: queryOptions} = options ?? {};
+const {query: queryOptions, request: requestOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetProblemQueryKey(problemId);
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getProblem>>> = ({ signal }) => getProblem(problemId, { signal });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getProblem>>> = ({ signal }) => getProblem(problemId, { signal, ...requestOptions });
 
 
 
@@ -289,7 +291,7 @@ export function useGetProblem<TData = Awaited<ReturnType<typeof getProblem>>, TE
           TError,
           Awaited<ReturnType<typeof getProblem>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetProblem<TData = Awaited<ReturnType<typeof getProblem>>, TError = ErrorResponse>(
@@ -299,11 +301,11 @@ export function useGetProblem<TData = Awaited<ReturnType<typeof getProblem>>, TE
           TError,
           Awaited<ReturnType<typeof getProblem>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetProblem<TData = Awaited<ReturnType<typeof getProblem>>, TError = ErrorResponse>(
- problemId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProblem>>, TError, TData>>, }
+ problemId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProblem>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -311,7 +313,7 @@ export function useGetProblem<TData = Awaited<ReturnType<typeof getProblem>>, TE
  */
 
 export function useGetProblem<TData = Awaited<ReturnType<typeof getProblem>>, TError = ErrorResponse>(
- problemId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProblem>>, TError, TData>>, }
+ problemId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProblem>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
@@ -373,15 +375,15 @@ export const deleteProblem = async (problemId: number, options?: RequestInit): P
 
 
 export const getDeleteProblemMutationOptions = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteProblem>>, TError,{problemId: number}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteProblem>>, TError,{problemId: number}, TContext>, request?: SecondParameter<typeof customInstance>}
 ): UseMutationOptions<Awaited<ReturnType<typeof deleteProblem>>, TError,{problemId: number}, TContext> => {
 
 const mutationKey = ['deleteProblem'];
-const {mutation: mutationOptions} = options ?
+const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }};
+      : {mutation: { mutationKey, }, request: undefined};
 
 
 
@@ -389,7 +391,7 @@ const {mutation: mutationOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof deleteProblem>>, {problemId: number}> = (props) => {
           const {problemId} = props ?? {};
 
-          return  deleteProblem(problemId,)
+          return  deleteProblem(problemId,requestOptions)
         }
 
 
@@ -407,7 +409,7 @@ const {mutation: mutationOptions} = options ?
  * @summary 문제 삭제
  */
 export const useDeleteProblem = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteProblem>>, TError,{problemId: number}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteProblem>>, TError,{problemId: number}, TContext>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof deleteProblem>>,
         TError,

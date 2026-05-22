@@ -26,6 +26,8 @@ import type {
 import { customInstance } from '../../mutator';
 
 
+type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
+
 
 
 export type oauthLogin1Response200 = {
@@ -87,15 +89,15 @@ export const oauthLogin1 = async (idTokenRequest: IdTokenRequest,
 
 
 export const getOauthLogin1MutationOptions = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof oauthLogin1>>, TError,{data: IdTokenRequest;params: OauthLogin1Params}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof oauthLogin1>>, TError,{data: IdTokenRequest;params: OauthLogin1Params}, TContext>, request?: SecondParameter<typeof customInstance>}
 ): UseMutationOptions<Awaited<ReturnType<typeof oauthLogin1>>, TError,{data: IdTokenRequest;params: OauthLogin1Params}, TContext> => {
 
 const mutationKey = ['oauthLogin1'];
-const {mutation: mutationOptions} = options ?
+const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }};
+      : {mutation: { mutationKey, }, request: undefined};
 
 
 
@@ -103,7 +105,7 @@ const {mutation: mutationOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof oauthLogin1>>, {data: IdTokenRequest;params: OauthLogin1Params}> = (props) => {
           const {data,params} = props ?? {};
 
-          return  oauthLogin1(data,params,)
+          return  oauthLogin1(data,params,requestOptions)
         }
 
 
@@ -121,7 +123,7 @@ const {mutation: mutationOptions} = options ?
  * @summary OAuth 회원가입/로그인 처리
  */
 export const useOauthLogin1 = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof oauthLogin1>>, TError,{data: IdTokenRequest;params: OauthLogin1Params}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof oauthLogin1>>, TError,{data: IdTokenRequest;params: OauthLogin1Params}, TContext>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof oauthLogin1>>,
         TError,
@@ -176,15 +178,15 @@ export const oauthNaverLogin = async (naverAndroidUserInfoRequest: NaverAndroidU
 
 
 export const getOauthNaverLoginMutationOptions = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof oauthNaverLogin>>, TError,{data: NaverAndroidUserInfoRequest}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof oauthNaverLogin>>, TError,{data: NaverAndroidUserInfoRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
 ): UseMutationOptions<Awaited<ReturnType<typeof oauthNaverLogin>>, TError,{data: NaverAndroidUserInfoRequest}, TContext> => {
 
 const mutationKey = ['oauthNaverLogin'];
-const {mutation: mutationOptions} = options ?
+const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }};
+      : {mutation: { mutationKey, }, request: undefined};
 
 
 
@@ -192,7 +194,7 @@ const {mutation: mutationOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof oauthNaverLogin>>, {data: NaverAndroidUserInfoRequest}> = (props) => {
           const {data} = props ?? {};
 
-          return  oauthNaverLogin(data,)
+          return  oauthNaverLogin(data,requestOptions)
         }
 
 
@@ -210,7 +212,7 @@ const {mutation: mutationOptions} = options ?
  * @summary 네이버 OAuth 회원가입/로그인 처리
  */
 export const useOauthNaverLogin = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof oauthNaverLogin>>, TError,{data: NaverAndroidUserInfoRequest}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof oauthNaverLogin>>, TError,{data: NaverAndroidUserInfoRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof oauthNaverLogin>>,
         TError,

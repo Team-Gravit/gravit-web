@@ -37,6 +37,8 @@ import type {
 import { customInstance } from '../../mutator';
 
 
+type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
+
 
 
 export type onboardUserResponse200 = {
@@ -95,15 +97,15 @@ export const onboardUser = async (onboardingRequest: OnboardingRequest, options?
 
 
 export const getOnboardUserMutationOptions = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof onboardUser>>, TError,{data: OnboardingRequest}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof onboardUser>>, TError,{data: OnboardingRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
 ): UseMutationOptions<Awaited<ReturnType<typeof onboardUser>>, TError,{data: OnboardingRequest}, TContext> => {
 
 const mutationKey = ['onboardUser'];
-const {mutation: mutationOptions} = options ?
+const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }};
+      : {mutation: { mutationKey, }, request: undefined};
 
 
 
@@ -111,7 +113,7 @@ const {mutation: mutationOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof onboardUser>>, {data: OnboardingRequest}> = (props) => {
           const {data} = props ?? {};
 
-          return  onboardUser(data,)
+          return  onboardUser(data,requestOptions)
         }
 
 
@@ -129,7 +131,7 @@ const {mutation: mutationOptions} = options ?
  * @summary 온보딩 정보 등록
  */
 export const useOnboardUser = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof onboardUser>>, TError,{data: OnboardingRequest}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof onboardUser>>, TError,{data: OnboardingRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof onboardUser>>,
         TError,
@@ -196,16 +198,16 @@ export const getGetUserQueryKey = () => {
     }
 
 
-export const getGetUserQueryOptions = <TData = Awaited<ReturnType<typeof getUser>>, TError = ErrorResponse>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUser>>, TError, TData>>, }
+export const getGetUserQueryOptions = <TData = Awaited<ReturnType<typeof getUser>>, TError = ErrorResponse>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUser>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
 ) => {
 
-const {query: queryOptions} = options ?? {};
+const {query: queryOptions, request: requestOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetUserQueryKey();
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUser>>> = ({ signal }) => getUser({ signal });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUser>>> = ({ signal }) => getUser({ signal, ...requestOptions });
 
 
 
@@ -225,7 +227,7 @@ export function useGetUser<TData = Awaited<ReturnType<typeof getUser>>, TError =
           TError,
           Awaited<ReturnType<typeof getUser>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetUser<TData = Awaited<ReturnType<typeof getUser>>, TError = ErrorResponse>(
@@ -235,11 +237,11 @@ export function useGetUser<TData = Awaited<ReturnType<typeof getUser>>, TError =
           TError,
           Awaited<ReturnType<typeof getUser>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetUser<TData = Awaited<ReturnType<typeof getUser>>, TError = ErrorResponse>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUser>>, TError, TData>>, }
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUser>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -247,7 +249,7 @@ export function useGetUser<TData = Awaited<ReturnType<typeof getUser>>, TError =
  */
 
 export function useGetUser<TData = Awaited<ReturnType<typeof getUser>>, TError = ErrorResponse>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUser>>, TError, TData>>, }
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUser>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
@@ -319,15 +321,15 @@ export const updateProfile = async (userProfileUpdateRequest: UserProfileUpdateR
 
 
 export const getUpdateProfileMutationOptions = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateProfile>>, TError,{data: UserProfileUpdateRequest}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateProfile>>, TError,{data: UserProfileUpdateRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
 ): UseMutationOptions<Awaited<ReturnType<typeof updateProfile>>, TError,{data: UserProfileUpdateRequest}, TContext> => {
 
 const mutationKey = ['updateProfile'];
-const {mutation: mutationOptions} = options ?
+const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }};
+      : {mutation: { mutationKey, }, request: undefined};
 
 
 
@@ -335,7 +337,7 @@ const {mutation: mutationOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof updateProfile>>, {data: UserProfileUpdateRequest}> = (props) => {
           const {data} = props ?? {};
 
-          return  updateProfile(data,)
+          return  updateProfile(data,requestOptions)
         }
 
 
@@ -353,7 +355,7 @@ const {mutation: mutationOptions} = options ?
  * @summary 프로필 수정
  */
 export const useUpdateProfile = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateProfile>>, TError,{data: UserProfileUpdateRequest}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateProfile>>, TError,{data: UserProfileUpdateRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof updateProfile>>,
         TError,
@@ -423,15 +425,15 @@ export const restoreUser = async (params: RestoreUserParams, options?: RequestIn
 
 
 export const getRestoreUserMutationOptions = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof restoreUser>>, TError,{params: RestoreUserParams}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof restoreUser>>, TError,{params: RestoreUserParams}, TContext>, request?: SecondParameter<typeof customInstance>}
 ): UseMutationOptions<Awaited<ReturnType<typeof restoreUser>>, TError,{params: RestoreUserParams}, TContext> => {
 
 const mutationKey = ['restoreUser'];
-const {mutation: mutationOptions} = options ?
+const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }};
+      : {mutation: { mutationKey, }, request: undefined};
 
 
 
@@ -439,7 +441,7 @@ const {mutation: mutationOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof restoreUser>>, {params: RestoreUserParams}> = (props) => {
           const {params} = props ?? {};
 
-          return  restoreUser(params,)
+          return  restoreUser(params,requestOptions)
         }
 
 
@@ -457,7 +459,7 @@ const {mutation: mutationOptions} = options ?
  * @summary 소프트 삭제 계정 복구
  */
 export const useRestoreUser = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof restoreUser>>, TError,{params: RestoreUserParams}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof restoreUser>>, TError,{params: RestoreUserParams}, TContext>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof restoreUser>>,
         TError,
@@ -524,16 +526,16 @@ export const getGetMyPageQueryKey = () => {
     }
 
 
-export const getGetMyPageQueryOptions = <TData = Awaited<ReturnType<typeof getMyPage>>, TError = ErrorResponse>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyPage>>, TError, TData>>, }
+export const getGetMyPageQueryOptions = <TData = Awaited<ReturnType<typeof getMyPage>>, TError = ErrorResponse>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyPage>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
 ) => {
 
-const {query: queryOptions} = options ?? {};
+const {query: queryOptions, request: requestOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetMyPageQueryKey();
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getMyPage>>> = ({ signal }) => getMyPage({ signal });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getMyPage>>> = ({ signal }) => getMyPage({ signal, ...requestOptions });
 
 
 
@@ -553,7 +555,7 @@ export function useGetMyPage<TData = Awaited<ReturnType<typeof getMyPage>>, TErr
           TError,
           Awaited<ReturnType<typeof getMyPage>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetMyPage<TData = Awaited<ReturnType<typeof getMyPage>>, TError = ErrorResponse>(
@@ -563,11 +565,11 @@ export function useGetMyPage<TData = Awaited<ReturnType<typeof getMyPage>>, TErr
           TError,
           Awaited<ReturnType<typeof getMyPage>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetMyPage<TData = Awaited<ReturnType<typeof getMyPage>>, TError = ErrorResponse>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyPage>>, TError, TData>>, }
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyPage>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -575,7 +577,7 @@ export function useGetMyPage<TData = Awaited<ReturnType<typeof getMyPage>>, TErr
  */
 
 export function useGetMyPage<TData = Awaited<ReturnType<typeof getMyPage>>, TError = ErrorResponse>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyPage>>, TError, TData>>, }
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyPage>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
@@ -649,16 +651,16 @@ export const getGetMainPageQueryKey = () => {
     }
 
 
-export const getGetMainPageQueryOptions = <TData = Awaited<ReturnType<typeof getMainPage>>, TError = ErrorResponse>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMainPage>>, TError, TData>>, }
+export const getGetMainPageQueryOptions = <TData = Awaited<ReturnType<typeof getMainPage>>, TError = ErrorResponse>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMainPage>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
 ) => {
 
-const {query: queryOptions} = options ?? {};
+const {query: queryOptions, request: requestOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetMainPageQueryKey();
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getMainPage>>> = ({ signal }) => getMainPage({ signal });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getMainPage>>> = ({ signal }) => getMainPage({ signal, ...requestOptions });
 
 
 
@@ -678,7 +680,7 @@ export function useGetMainPage<TData = Awaited<ReturnType<typeof getMainPage>>, 
           TError,
           Awaited<ReturnType<typeof getMainPage>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetMainPage<TData = Awaited<ReturnType<typeof getMainPage>>, TError = ErrorResponse>(
@@ -688,11 +690,11 @@ export function useGetMainPage<TData = Awaited<ReturnType<typeof getMainPage>>, 
           TError,
           Awaited<ReturnType<typeof getMainPage>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetMainPage<TData = Awaited<ReturnType<typeof getMainPage>>, TError = ErrorResponse>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMainPage>>, TError, TData>>, }
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMainPage>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -700,7 +702,7 @@ export function useGetMainPage<TData = Awaited<ReturnType<typeof getMainPage>>, 
  */
 
 export function useGetMainPage<TData = Awaited<ReturnType<typeof getMainPage>>, TError = ErrorResponse>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMainPage>>, TError, TData>>, }
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMainPage>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 

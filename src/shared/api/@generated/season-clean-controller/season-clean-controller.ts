@@ -18,6 +18,8 @@ import type {
 import { customInstance } from '../../mutator';
 
 
+type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
+
 
 
 export type cleanSeasonResponse200 = {
@@ -55,15 +57,15 @@ export const cleanSeason = async ( options?: RequestInit): Promise<cleanSeasonRe
 
 
 export const getCleanSeasonMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof cleanSeason>>, TError,void, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof cleanSeason>>, TError,void, TContext>, request?: SecondParameter<typeof customInstance>}
 ): UseMutationOptions<Awaited<ReturnType<typeof cleanSeason>>, TError,void, TContext> => {
 
 const mutationKey = ['cleanSeason'];
-const {mutation: mutationOptions} = options ?
+const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }};
+      : {mutation: { mutationKey, }, request: undefined};
 
 
 
@@ -71,7 +73,7 @@ const {mutation: mutationOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof cleanSeason>>, void> = () => {
 
 
-          return  cleanSeason()
+          return  cleanSeason(requestOptions)
         }
 
 
@@ -86,7 +88,7 @@ const {mutation: mutationOptions} = options ?
     export type CleanSeasonMutationError = unknown
 
     export const useCleanSeason = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof cleanSeason>>, TError,void, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof cleanSeason>>, TError,void, TContext>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof cleanSeason>>,
         TError,

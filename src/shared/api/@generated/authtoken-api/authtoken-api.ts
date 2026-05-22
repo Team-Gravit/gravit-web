@@ -24,6 +24,8 @@ import type {
 import { customInstance } from '../../mutator';
 
 
+type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
+
 
 
 export type reissueTokenResponse200 = {
@@ -77,15 +79,15 @@ export const reissueToken = async (refreshTokenRequest: RefreshTokenRequest, opt
 
 
 export const getReissueTokenMutationOptions = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof reissueToken>>, TError,{data: RefreshTokenRequest}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof reissueToken>>, TError,{data: RefreshTokenRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
 ): UseMutationOptions<Awaited<ReturnType<typeof reissueToken>>, TError,{data: RefreshTokenRequest}, TContext> => {
 
 const mutationKey = ['reissueToken'];
-const {mutation: mutationOptions} = options ?
+const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }};
+      : {mutation: { mutationKey, }, request: undefined};
 
 
 
@@ -93,7 +95,7 @@ const {mutation: mutationOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof reissueToken>>, {data: RefreshTokenRequest}> = (props) => {
           const {data} = props ?? {};
 
-          return  reissueToken(data,)
+          return  reissueToken(data,requestOptions)
         }
 
 
@@ -111,7 +113,7 @@ const {mutation: mutationOptions} = options ?
  * @summary 리프레시 토큰으로 엑세스 토큰 재발급
  */
 export const useReissueToken = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof reissueToken>>, TError,{data: RefreshTokenRequest}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof reissueToken>>, TError,{data: RefreshTokenRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof reissueToken>>,
         TError,

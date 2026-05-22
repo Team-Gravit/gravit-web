@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import type { UserAnswer } from "./types";
 import { useQuizContext } from "./use-quiz-context";
-import type { LearningSubmissionSaveResponse } from "@/shared/api/@generated/models/learning-submission-save-response";
+import type { LessonSubmissionSaveResponse } from "@/shared/api/@generated/model/lessonSubmissionSaveResponse";
 
 export type QuizMode = "LESSON" | "BOOKMARK" | "INCORRECT";
 export type SubmitStrategy = "BATCH" | "STREAM";
@@ -15,7 +15,7 @@ interface QuizSession {
 	isQuizCompleted: boolean;
 	isPaused: boolean;
 	isSubmittingResult: boolean;
-	submitResponse: LearningSubmissionSaveResponse | null;
+	submitResponse: LessonSubmissionSaveResponse | null;
 
 	lessonId?: number;
 	unitId?: number;
@@ -29,7 +29,7 @@ interface QuizSession {
 	goToNextProblem: () => void;
 	completeQuiz: () => void;
 	resetQuiz: () => void;
-	saveSubmitResponse: (response: LearningSubmissionSaveResponse) => void;
+	saveSubmitResponse: (response: LessonSubmissionSaveResponse) => void;
 
 	incrementTime: () => void;
 	pauseTime: () => void;
@@ -96,7 +96,7 @@ export function createQuizSessionState(
 			}));
 		},
 
-		saveSubmitResponse: (response: LearningSubmissionSaveResponse) => {
+		saveSubmitResponse: (response: LessonSubmissionSaveResponse) => {
 			set((state) => ({ ...state, submitResponse: response }));
 		},
 

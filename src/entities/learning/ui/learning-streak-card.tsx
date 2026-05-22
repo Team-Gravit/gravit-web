@@ -17,7 +17,7 @@ export default function LearningStreakCard({
 		<Card className={className}>
 			<Card.Header>
 				<Card.Title>연속 학습일</Card.Title>
-				<Card.Link to="/learning-streak">자세히 보기</Card.Link>
+				<Card.Link to="/league">자세히 보기</Card.Link>
 			</Card.Header>
 			<div className="w-full flex flex-col gap-2">
 				<div className="flex items-baseline gap-[5px] text-text-1 font-medium text-base">

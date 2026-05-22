@@ -23,6 +23,8 @@ import type {
 import { customInstance } from '../../mutator';
 
 
+type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
+
 
 
 export type planetCompletedResponse200 = {
@@ -60,15 +62,15 @@ export const planetCompleted = async (lessonCompletedEvent: LessonCompletedEvent
 
 
 export const getPlanetCompletedMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof planetCompleted>>, TError,{data: LessonCompletedEvent}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof planetCompleted>>, TError,{data: LessonCompletedEvent}, TContext>, request?: SecondParameter<typeof customInstance>}
 ): UseMutationOptions<Awaited<ReturnType<typeof planetCompleted>>, TError,{data: LessonCompletedEvent}, TContext> => {
 
 const mutationKey = ['planetCompleted'];
-const {mutation: mutationOptions} = options ?
+const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }};
+      : {mutation: { mutationKey, }, request: undefined};
 
 
 
@@ -76,7 +78,7 @@ const {mutation: mutationOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof planetCompleted>>, {data: LessonCompletedEvent}> = (props) => {
           const {data} = props ?? {};
 
-          return  planetCompleted(data,)
+          return  planetCompleted(data,requestOptions)
         }
 
 
@@ -91,7 +93,7 @@ const {mutation: mutationOptions} = options ?
     export type PlanetCompletedMutationError = unknown
 
     export const usePlanetCompleted = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof planetCompleted>>, TError,{data: LessonCompletedEvent}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof planetCompleted>>, TError,{data: LessonCompletedEvent}, TContext>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof planetCompleted>>,
         TError,
@@ -135,15 +137,15 @@ export const mission = async (missionCompletedEvent: MissionCompletedEvent, opti
 
 
 export const getMissionMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof mission>>, TError,{data: MissionCompletedEvent}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof mission>>, TError,{data: MissionCompletedEvent}, TContext>, request?: SecondParameter<typeof customInstance>}
 ): UseMutationOptions<Awaited<ReturnType<typeof mission>>, TError,{data: MissionCompletedEvent}, TContext> => {
 
 const mutationKey = ['mission'];
-const {mutation: mutationOptions} = options ?
+const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }};
+      : {mutation: { mutationKey, }, request: undefined};
 
 
 
@@ -151,7 +153,7 @@ const {mutation: mutationOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof mission>>, {data: MissionCompletedEvent}> = (props) => {
           const {data} = props ?? {};
 
-          return  mission(data,)
+          return  mission(data,requestOptions)
         }
 
 
@@ -166,7 +168,7 @@ const {mutation: mutationOptions} = options ?
     export type MissionMutationError = unknown
 
     export const useMission = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof mission>>, TError,{data: MissionCompletedEvent}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof mission>>, TError,{data: MissionCompletedEvent}, TContext>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof mission>>,
         TError,

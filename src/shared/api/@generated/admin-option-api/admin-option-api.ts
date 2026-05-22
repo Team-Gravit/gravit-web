@@ -24,6 +24,8 @@ import type {
 import { customInstance } from '../../mutator';
 
 
+type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
+
 
 
 export type updateOptionResponse204 = {
@@ -72,15 +74,15 @@ export const updateOption = async (optionUpdateRequest: OptionUpdateRequest, opt
 
 
 export const getUpdateOptionMutationOptions = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateOption>>, TError,{data: OptionUpdateRequest}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateOption>>, TError,{data: OptionUpdateRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
 ): UseMutationOptions<Awaited<ReturnType<typeof updateOption>>, TError,{data: OptionUpdateRequest}, TContext> => {
 
 const mutationKey = ['updateOption'];
-const {mutation: mutationOptions} = options ?
+const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }};
+      : {mutation: { mutationKey, }, request: undefined};
 
 
 
@@ -88,7 +90,7 @@ const {mutation: mutationOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof updateOption>>, {data: OptionUpdateRequest}> = (props) => {
           const {data} = props ?? {};
 
-          return  updateOption(data,)
+          return  updateOption(data,requestOptions)
         }
 
 
@@ -106,7 +108,7 @@ const {mutation: mutationOptions} = options ?
  * @summary 옵션 수정
  */
 export const useUpdateOption = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateOption>>, TError,{data: OptionUpdateRequest}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateOption>>, TError,{data: OptionUpdateRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof updateOption>>,
         TError,
@@ -161,15 +163,15 @@ export const createOption = async (optionCreateRequest: OptionCreateRequest, opt
 
 
 export const getCreateOptionMutationOptions = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createOption>>, TError,{data: OptionCreateRequest}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createOption>>, TError,{data: OptionCreateRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
 ): UseMutationOptions<Awaited<ReturnType<typeof createOption>>, TError,{data: OptionCreateRequest}, TContext> => {
 
 const mutationKey = ['createOption'];
-const {mutation: mutationOptions} = options ?
+const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }};
+      : {mutation: { mutationKey, }, request: undefined};
 
 
 
@@ -177,7 +179,7 @@ const {mutation: mutationOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof createOption>>, {data: OptionCreateRequest}> = (props) => {
           const {data} = props ?? {};
 
-          return  createOption(data,)
+          return  createOption(data,requestOptions)
         }
 
 
@@ -195,7 +197,7 @@ const {mutation: mutationOptions} = options ?
  * @summary 옵션 생성
  */
 export const useCreateOption = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createOption>>, TError,{data: OptionCreateRequest}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createOption>>, TError,{data: OptionCreateRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof createOption>>,
         TError,
@@ -250,15 +252,15 @@ export const deleteOption = async (optionId: number, options?: RequestInit): Pro
 
 
 export const getDeleteOptionMutationOptions = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteOption>>, TError,{optionId: number}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteOption>>, TError,{optionId: number}, TContext>, request?: SecondParameter<typeof customInstance>}
 ): UseMutationOptions<Awaited<ReturnType<typeof deleteOption>>, TError,{optionId: number}, TContext> => {
 
 const mutationKey = ['deleteOption'];
-const {mutation: mutationOptions} = options ?
+const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }};
+      : {mutation: { mutationKey, }, request: undefined};
 
 
 
@@ -266,7 +268,7 @@ const {mutation: mutationOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof deleteOption>>, {optionId: number}> = (props) => {
           const {optionId} = props ?? {};
 
-          return  deleteOption(optionId,)
+          return  deleteOption(optionId,requestOptions)
         }
 
 
@@ -284,7 +286,7 @@ const {mutation: mutationOptions} = options ?
  * @summary 옵션 삭제
  */
 export const useDeleteOption = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteOption>>, TError,{optionId: number}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteOption>>, TError,{optionId: number}, TContext>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof deleteOption>>,
         TError,

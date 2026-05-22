@@ -24,6 +24,8 @@ import type {
 import { customInstance } from '../../mutator';
 
 
+type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
+
 
 
 export type requestResponse202 = {
@@ -93,15 +95,15 @@ export const request = async (params: RequestParams, options?: RequestInit): Pro
 
 
 export const getRequestMutationOptions = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof request>>, TError,{params: RequestParams}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof request>>, TError,{params: RequestParams}, TContext>, request?: SecondParameter<typeof customInstance>}
 ): UseMutationOptions<Awaited<ReturnType<typeof request>>, TError,{params: RequestParams}, TContext> => {
 
 const mutationKey = ['request'];
-const {mutation: mutationOptions} = options ?
+const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }};
+      : {mutation: { mutationKey, }, request: undefined};
 
 
 
@@ -109,7 +111,7 @@ const {mutation: mutationOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof request>>, {params: RequestParams}> = (props) => {
           const {params} = props ?? {};
 
-          return  request(params,)
+          return  request(params,requestOptions)
         }
 
 
@@ -127,7 +129,7 @@ const {mutation: mutationOptions} = options ?
  * @summary 계정 삭제 요청(인증 메일 발송)
  */
 export const useRequest = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof request>>, TError,{params: RequestParams}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof request>>, TError,{params: RequestParams}, TContext>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof request>>,
         TError,
@@ -202,15 +204,15 @@ export const confirm = async (params: ConfirmParams, options?: RequestInit): Pro
 
 
 export const getConfirmMutationOptions = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof confirm>>, TError,{params: ConfirmParams}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof confirm>>, TError,{params: ConfirmParams}, TContext>, request?: SecondParameter<typeof customInstance>}
 ): UseMutationOptions<Awaited<ReturnType<typeof confirm>>, TError,{params: ConfirmParams}, TContext> => {
 
 const mutationKey = ['confirm'];
-const {mutation: mutationOptions} = options ?
+const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }};
+      : {mutation: { mutationKey, }, request: undefined};
 
 
 
@@ -218,7 +220,7 @@ const {mutation: mutationOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof confirm>>, {params: ConfirmParams}> = (props) => {
           const {params} = props ?? {};
 
-          return  confirm(params,)
+          return  confirm(params,requestOptions)
         }
 
 
@@ -236,7 +238,7 @@ const {mutation: mutationOptions} = options ?
  * @summary 계정 삭제 확정(메일 인증 코드 확인)
  */
 export const useConfirm = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof confirm>>, TError,{params: ConfirmParams}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof confirm>>, TError,{params: ConfirmParams}, TContext>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof confirm>>,
         TError,

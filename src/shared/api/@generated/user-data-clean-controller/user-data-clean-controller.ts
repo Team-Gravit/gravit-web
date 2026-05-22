@@ -22,6 +22,8 @@ import type {
 import { customInstance } from '../../mutator';
 
 
+type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
+
 
 
 export type cleanResponse200 = {
@@ -66,15 +68,15 @@ export const clean = async (params: CleanParams, options?: RequestInit): Promise
 
 
 export const getCleanMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof clean>>, TError,{params: CleanParams}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof clean>>, TError,{params: CleanParams}, TContext>, request?: SecondParameter<typeof customInstance>}
 ): UseMutationOptions<Awaited<ReturnType<typeof clean>>, TError,{params: CleanParams}, TContext> => {
 
 const mutationKey = ['clean'];
-const {mutation: mutationOptions} = options ?
+const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }};
+      : {mutation: { mutationKey, }, request: undefined};
 
 
 
@@ -82,7 +84,7 @@ const {mutation: mutationOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof clean>>, {params: CleanParams}> = (props) => {
           const {params} = props ?? {};
 
-          return  clean(params,)
+          return  clean(params,requestOptions)
         }
 
 
@@ -97,7 +99,7 @@ const {mutation: mutationOptions} = options ?
     export type CleanMutationError = unknown
 
     export const useClean = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof clean>>, TError,{params: CleanParams}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof clean>>, TError,{params: CleanParams}, TContext>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof clean>>,
         TError,

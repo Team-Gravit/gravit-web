@@ -34,6 +34,8 @@ import type {
 import { customInstance } from '../../mutator';
 
 
+type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
+
 
 
 export type saveLessonSubmissionResponse200 = {
@@ -82,15 +84,15 @@ export const saveLessonSubmission = async (learningSubmissionSaveRequest: Learni
 
 
 export const getSaveLessonSubmissionMutationOptions = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof saveLessonSubmission>>, TError,{data: LearningSubmissionSaveRequest}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof saveLessonSubmission>>, TError,{data: LearningSubmissionSaveRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
 ): UseMutationOptions<Awaited<ReturnType<typeof saveLessonSubmission>>, TError,{data: LearningSubmissionSaveRequest}, TContext> => {
 
 const mutationKey = ['saveLessonSubmission'];
-const {mutation: mutationOptions} = options ?
+const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }};
+      : {mutation: { mutationKey, }, request: undefined};
 
 
 
@@ -98,7 +100,7 @@ const {mutation: mutationOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof saveLessonSubmission>>, {data: LearningSubmissionSaveRequest}> = (props) => {
           const {data} = props ?? {};
 
-          return  saveLessonSubmission(data,)
+          return  saveLessonSubmission(data,requestOptions)
         }
 
 
@@ -116,7 +118,7 @@ const {mutation: mutationOptions} = options ?
  * @summary 레슨 결과 저장
  */
 export const useSaveLessonSubmission = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof saveLessonSubmission>>, TError,{data: LearningSubmissionSaveRequest}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof saveLessonSubmission>>, TError,{data: LearningSubmissionSaveRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof saveLessonSubmission>>,
         TError,
@@ -178,16 +180,16 @@ export const getGetAllLessonInUnitQueryKey = (unitId: number,) => {
     }
 
 
-export const getGetAllLessonInUnitQueryOptions = <TData = Awaited<ReturnType<typeof getAllLessonInUnit>>, TError = ErrorResponse>(unitId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllLessonInUnit>>, TError, TData>>, }
+export const getGetAllLessonInUnitQueryOptions = <TData = Awaited<ReturnType<typeof getAllLessonInUnit>>, TError = ErrorResponse>(unitId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllLessonInUnit>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
 ) => {
 
-const {query: queryOptions} = options ?? {};
+const {query: queryOptions, request: requestOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetAllLessonInUnitQueryKey(unitId);
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getAllLessonInUnit>>> = ({ signal }) => getAllLessonInUnit(unitId, { signal });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getAllLessonInUnit>>> = ({ signal }) => getAllLessonInUnit(unitId, { signal, ...requestOptions });
 
 
 
@@ -207,7 +209,7 @@ export function useGetAllLessonInUnit<TData = Awaited<ReturnType<typeof getAllLe
           TError,
           Awaited<ReturnType<typeof getAllLessonInUnit>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetAllLessonInUnit<TData = Awaited<ReturnType<typeof getAllLessonInUnit>>, TError = ErrorResponse>(
@@ -217,11 +219,11 @@ export function useGetAllLessonInUnit<TData = Awaited<ReturnType<typeof getAllLe
           TError,
           Awaited<ReturnType<typeof getAllLessonInUnit>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetAllLessonInUnit<TData = Awaited<ReturnType<typeof getAllLessonInUnit>>, TError = ErrorResponse>(
- unitId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllLessonInUnit>>, TError, TData>>, }
+ unitId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllLessonInUnit>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -229,7 +231,7 @@ export function useGetAllLessonInUnit<TData = Awaited<ReturnType<typeof getAllLe
  */
 
 export function useGetAllLessonInUnit<TData = Awaited<ReturnType<typeof getAllLessonInUnit>>, TError = ErrorResponse>(
- unitId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllLessonInUnit>>, TError, TData>>, }
+ unitId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllLessonInUnit>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 

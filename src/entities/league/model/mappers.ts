@@ -1,7 +1,7 @@
 // src/entities/league/model/mappers.ts
 import type {
 	LastSeasonPopupDto,
-	LeagueRankRow,
+	LeagueRankRowDto,
 	LeagueResponse,
 	MyLeagueRankWithProfileResponse,
 } from "@/shared/api/@generated";
@@ -30,8 +30,8 @@ export function mapToLeagueInfo(raw: LeagueResponse): LeagueInfo {
 	};
 }
 
-/** OpenAPI LeagueRankRow → 프론트엔드 UserLeagues */
-export function mapToUser(raw: LeagueRankRow): UserLeagues {
+/** OpenAPI LeagueRankRowDto → 프론트엔드 UserLeagues */
+export function mapToUser(raw: LeagueRankRowDto): UserLeagues {
 	if (
 		raw.userId === undefined ||
 		!raw.nickname ||

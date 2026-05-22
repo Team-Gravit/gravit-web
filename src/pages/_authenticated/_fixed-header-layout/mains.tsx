@@ -30,20 +30,24 @@ function MainPage() {
 		return <div>데이터 없음</div>;
 	}
 
-	const {
-		nickname,
-		leagueName,
-		userLevelDetail: { level, xp },
-		learningDetail: {
-			consecutiveSolvedDays,
-			planetConquestRate,
-			recentSolvedChapterId,
-			recentSolvedChapterTitle,
-			recentSolvedChapterDescription,
-			recentSolvedChapterProgressRate,
-		},
-		missionDetail: { missionDescription, awardXp, isCompleted, missionName },
-	} = data as Required<typeof data>;
+	const nickname = data.nickname ?? "";
+	const leagueName = data.leagueDetailResponse?.leagueName ?? "";
+	const level = data.userLevelDetailResponse?.level ?? 0;
+	const xp = data.userLevelDetailResponse?.currentXp ?? 0;
+	const consecutiveSolvedDays =
+		data.learningDetailResponse?.consecutiveSolvedDays ?? 0;
+	const planetConquestRate = 0;
+	const recentSolvedChapterId = data.learningDetailResponse?.recentSolvedChapterId;
+	const recentSolvedChapterTitle =
+		data.learningDetailResponse?.recentSolvedChapterTitle ?? "";
+	const recentSolvedChapterDescription = "";
+	const recentSolvedChapterProgressRate =
+		data.learningDetailResponse?.recentSolvedChapterProgressRate ?? 0;
+	const missionDescription =
+		data.missionDetailResponse?.missionDescription ?? "";
+	const awardXp = data.missionDetailResponse?.awardXp ?? 0;
+	const isCompleted = data.missionDetailResponse?.isCompleted ?? false;
+	const missionName = data.missionDetailResponse?.missionType ?? "";
 
 	return (
 		<>

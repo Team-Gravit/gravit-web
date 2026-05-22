@@ -29,6 +29,8 @@ import type {
 import { customInstance } from '../../mutator';
 
 
+type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
+
 
 
 export type getLeagueResponse200 = {
@@ -89,16 +91,16 @@ export const getGetLeagueQueryKey = (leagueId: number,) => {
     }
 
 
-export const getGetLeagueQueryOptions = <TData = Awaited<ReturnType<typeof getLeague>>, TError = ErrorResponse>(leagueId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLeague>>, TError, TData>>, }
+export const getGetLeagueQueryOptions = <TData = Awaited<ReturnType<typeof getLeague>>, TError = ErrorResponse>(leagueId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLeague>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
 ) => {
 
-const {query: queryOptions} = options ?? {};
+const {query: queryOptions, request: requestOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetLeagueQueryKey(leagueId);
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getLeague>>> = ({ signal }) => getLeague(leagueId, { signal });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getLeague>>> = ({ signal }) => getLeague(leagueId, { signal, ...requestOptions });
 
 
 
@@ -118,7 +120,7 @@ export function useGetLeague<TData = Awaited<ReturnType<typeof getLeague>>, TErr
           TError,
           Awaited<ReturnType<typeof getLeague>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetLeague<TData = Awaited<ReturnType<typeof getLeague>>, TError = ErrorResponse>(
@@ -128,11 +130,11 @@ export function useGetLeague<TData = Awaited<ReturnType<typeof getLeague>>, TErr
           TError,
           Awaited<ReturnType<typeof getLeague>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetLeague<TData = Awaited<ReturnType<typeof getLeague>>, TError = ErrorResponse>(
- leagueId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLeague>>, TError, TData>>, }
+ leagueId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLeague>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -140,7 +142,7 @@ export function useGetLeague<TData = Awaited<ReturnType<typeof getLeague>>, TErr
  */
 
 export function useGetLeague<TData = Awaited<ReturnType<typeof getLeague>>, TError = ErrorResponse>(
- leagueId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLeague>>, TError, TData>>, }
+ leagueId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLeague>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
@@ -214,16 +216,16 @@ export const getEnterHomeQueryKey = () => {
     }
 
 
-export const getEnterHomeQueryOptions = <TData = Awaited<ReturnType<typeof enterHome>>, TError = ErrorResponse>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof enterHome>>, TError, TData>>, }
+export const getEnterHomeQueryOptions = <TData = Awaited<ReturnType<typeof enterHome>>, TError = ErrorResponse>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof enterHome>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
 ) => {
 
-const {query: queryOptions} = options ?? {};
+const {query: queryOptions, request: requestOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getEnterHomeQueryKey();
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof enterHome>>> = ({ signal }) => enterHome({ signal });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof enterHome>>> = ({ signal }) => enterHome({ signal, ...requestOptions });
 
 
 
@@ -243,7 +245,7 @@ export function useEnterHome<TData = Awaited<ReturnType<typeof enterHome>>, TErr
           TError,
           Awaited<ReturnType<typeof enterHome>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useEnterHome<TData = Awaited<ReturnType<typeof enterHome>>, TError = ErrorResponse>(
@@ -253,11 +255,11 @@ export function useEnterHome<TData = Awaited<ReturnType<typeof enterHome>>, TErr
           TError,
           Awaited<ReturnType<typeof enterHome>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useEnterHome<TData = Awaited<ReturnType<typeof enterHome>>, TError = ErrorResponse>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof enterHome>>, TError, TData>>, }
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof enterHome>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -265,7 +267,7 @@ export function useEnterHome<TData = Awaited<ReturnType<typeof enterHome>>, TErr
  */
 
 export function useEnterHome<TData = Awaited<ReturnType<typeof enterHome>>, TError = ErrorResponse>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof enterHome>>, TError, TData>>, }
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof enterHome>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 

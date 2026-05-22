@@ -23,6 +23,8 @@ import type {
 import { customInstance } from '../../mutator';
 
 
+type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
+
 
 
 export type submitProblemReportResponse200 = {
@@ -71,15 +73,15 @@ export const submitProblemReport = async (problemReportSubmitRequest: ProblemRep
 
 
 export const getSubmitProblemReportMutationOptions = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof submitProblemReport>>, TError,{data: ProblemReportSubmitRequest}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof submitProblemReport>>, TError,{data: ProblemReportSubmitRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
 ): UseMutationOptions<Awaited<ReturnType<typeof submitProblemReport>>, TError,{data: ProblemReportSubmitRequest}, TContext> => {
 
 const mutationKey = ['submitProblemReport'];
-const {mutation: mutationOptions} = options ?
+const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }};
+      : {mutation: { mutationKey, }, request: undefined};
 
 
 
@@ -87,7 +89,7 @@ const {mutation: mutationOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof submitProblemReport>>, {data: ProblemReportSubmitRequest}> = (props) => {
           const {data} = props ?? {};
 
-          return  submitProblemReport(data,)
+          return  submitProblemReport(data,requestOptions)
         }
 
 
@@ -105,7 +107,7 @@ const {mutation: mutationOptions} = options ?
  * @summary 문제 신고 제출
  */
 export const useSubmitProblemReport = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof submitProblemReport>>, TError,{data: ProblemReportSubmitRequest}, TContext>, }
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof submitProblemReport>>, TError,{data: ProblemReportSubmitRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof submitProblemReport>>,
         TError,

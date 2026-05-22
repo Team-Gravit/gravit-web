@@ -28,6 +28,8 @@ import type {
 import { customInstance } from '../../mutator';
 
 
+type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
+
 
 
 export type getAllMyBadgesResponse200 = {
@@ -86,16 +88,16 @@ export const getGetAllMyBadgesQueryKey = () => {
     }
 
 
-export const getGetAllMyBadgesQueryOptions = <TData = Awaited<ReturnType<typeof getAllMyBadges>>, TError = ErrorResponse>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllMyBadges>>, TError, TData>>, }
+export const getGetAllMyBadgesQueryOptions = <TData = Awaited<ReturnType<typeof getAllMyBadges>>, TError = ErrorResponse>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllMyBadges>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
 ) => {
 
-const {query: queryOptions} = options ?? {};
+const {query: queryOptions, request: requestOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetAllMyBadgesQueryKey();
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getAllMyBadges>>> = ({ signal }) => getAllMyBadges({ signal });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getAllMyBadges>>> = ({ signal }) => getAllMyBadges({ signal, ...requestOptions });
 
 
 
@@ -115,7 +117,7 @@ export function useGetAllMyBadges<TData = Awaited<ReturnType<typeof getAllMyBadg
           TError,
           Awaited<ReturnType<typeof getAllMyBadges>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetAllMyBadges<TData = Awaited<ReturnType<typeof getAllMyBadges>>, TError = ErrorResponse>(
@@ -125,11 +127,11 @@ export function useGetAllMyBadges<TData = Awaited<ReturnType<typeof getAllMyBadg
           TError,
           Awaited<ReturnType<typeof getAllMyBadges>>
         > , 'initialData'
-      >, }
+      >, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetAllMyBadges<TData = Awaited<ReturnType<typeof getAllMyBadges>>, TError = ErrorResponse>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllMyBadges>>, TError, TData>>, }
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllMyBadges>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -137,7 +139,7 @@ export function useGetAllMyBadges<TData = Awaited<ReturnType<typeof getAllMyBadg
  */
 
 export function useGetAllMyBadges<TData = Awaited<ReturnType<typeof getAllMyBadges>>, TError = ErrorResponse>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllMyBadges>>, TError, TData>>, }
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllMyBadges>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
