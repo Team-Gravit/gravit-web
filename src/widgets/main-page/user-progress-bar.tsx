@@ -6,13 +6,19 @@ import { ProgressCard } from "@/shared/ui/progress-card/progress-card";
 export const LevelCard = ({
 	user,
 }: {
-	user: { nickname: string; level: number; xp: number; maxXp: number };
+	user: {
+		profileImgId: number;
+		nickname: string;
+		level: number;
+		xp: number;
+		maxXp: number;
+	};
 }) => (
 	<ProgressCard
 		className="flex-1"
 		leftSlot={
 			<div className="flex items-center gap-2 text-text-1 text-heading2">
-				<Profile profileImgId={1} size="xs" />
+				<Profile profileImgId={user.profileImgId} size="xs" />
 				<span>{user.nickname}</span>
 				<span>LV {user.level}</span>
 			</div>
@@ -38,7 +44,13 @@ export const TierCard = ({
 );
 
 type UserProgressBarProps = {
-	user: { nickname: string; level: number; currentXp: number; maxXp: number };
+	user: {
+		nickname: string;
+		level: number;
+		currentXp: number;
+		maxXp: number;
+		profileImgNumber: number;
+	};
 	rank: {
 		leagueId: number;
 		leagueName: string;
@@ -52,6 +64,7 @@ export default function UserProgressBar({ user, rank }: UserProgressBarProps) {
 		<Card className="flex flex-row items-center gap-4">
 			<LevelCard
 				user={{
+					profileImgId: user.profileImgNumber,
 					nickname: user.nickname,
 					level: user.level,
 					xp: user.currentXp,
