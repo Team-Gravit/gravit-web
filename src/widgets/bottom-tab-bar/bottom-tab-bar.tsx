@@ -30,7 +30,7 @@ const DEFAULT_BOTTOM_TAB_NAV_LIST = [
 	},
 	{
 		label: "마이그래빗",
-		to: "/user",
+		to: "/my",
 		icon: <MyPageIcon />,
 		fillIcon: <MyPageFillIcon />,
 	},
