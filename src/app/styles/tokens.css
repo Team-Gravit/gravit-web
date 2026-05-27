@@ -43,10 +43,24 @@
     /* ================================
         ALIAS - Background
     ================================ */
-    --color-bg-1: var(--primitive-gray-0);    /* #FFFFFF */
+    --color-bg-1: var(--primitive-gray-100);    /* #F8F8F8 */
     --color-bg-2: var(--primitive-gray-200);  /* #F2F2F2 */
     --color-bg-3: var(--primitive-gray-300);  /* #DCDCDC */
     --color-bg-4: var(--primitive-gray-400);  /* #C6C6C6 */
+
+    /* ================================
+        ALIAS - Purple
+    ================================ */
+    --color-purple-100: var(--primitive-purple-100);
+    --color-purple-200: var(--primitive-purple-200);
+    --color-purple-300: var(--primitive-purple-300);
+    --color-purple-400: var(--primitive-purple-400);
+    --color-purple-500: var(--primitive-purple-500);
+    --color-purple-600: var(--primitive-purple-600);
+    --color-purple-700: var(--primitive-purple-700);
+    --color-purple-800: var(--primitive-purple-800);
+    --color-purple-900: var(--primitive-purple-900);
+    --color-purple-950: var(--primitive-purple-950);
 
     /* ================================
         ALIAS - Text

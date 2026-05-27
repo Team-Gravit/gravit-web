@@ -19,8 +19,8 @@ export const ProgressCard = ({
 	<div className={cn("flex flex-col gap-2", className)}>
 		<div className="flex items-center justify-between">
 			<div className="flex items-center gap-2">{leftSlot}</div>
-			<span className="text-gray-500">
-				<strong className="text-[#9b00cf]">{value}</strong> / {max} {unit}
+			<span className="text-gray-500 text-body1-normal">
+				<span className="text-main">{value}</span> / {max} {unit}
 			</span>
 		</div>
 		<ProgressBar value={Math.floor((value / max) * 100)} />

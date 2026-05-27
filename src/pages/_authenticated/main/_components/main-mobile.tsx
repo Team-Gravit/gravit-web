@@ -15,7 +15,9 @@ export default function MainMobile({ vm }: { vm: MainPageViewModel }) {
 					<p className="text-title3 mb-1">
 						어서오세요, {vm.progress.nickname}님!
 					</p>
-					<p className="text-body1">그래빗과 함께 CS 지식을 마스터해요!</p>
+					<p className="text-body1-normal">
+						그래빗과 함께 CS 지식을 마스터해요!
+					</p>
 				</HeroSection.Content>
 			</HeroSection>
 			<main

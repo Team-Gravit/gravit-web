@@ -27,10 +27,10 @@ export default function UnitCard({
 				<span className="text-gray-400 block md:hidden text-label2">
 					새 주제 시작하기
 				</span>
-				<BgCard.Title className="text-headline1 text-white md:font-semibold md:text-xl break-keep line-clamp-3 md:line-clamp-2">
+				<BgCard.Title className="text-headline1 text-white md:text-heading1 break-keep line-clamp-3 md:line-clamp-2">
 					{title}
 				</BgCard.Title>
-				<span className="text-caption1 md:font-medium md:text-base text-gray-400">
+				<span className="text-caption1 md:text-body1-normal text-gray-400">
 					Lesson {lessonNum.toString().padStart(2, "0")}
 				</span>
 			</BgCard.Header>

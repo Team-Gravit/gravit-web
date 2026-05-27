@@ -1,4 +1,10 @@
 @layer utilities {
+
+  .scrollbar-gutter-stable {
+    scrollbar-gutter: stable;
+  }
+
+
     .animate-fadeIn {
         animation: fadeIn 0.2s ease-in;
     }

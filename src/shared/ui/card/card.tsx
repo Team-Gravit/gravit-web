@@ -45,7 +45,7 @@ function CardTitle({
 	return (
 		<h3
 			className={cn(
-				"font-normal md:font-medium text-xs md:text-base text-gray-500",
+				"text-label2 md:text-body1-normal text-gray-500",
 				className,
 			)}
 		>
@@ -65,7 +65,7 @@ function CardLink({
 			to={to}
 			params={params}
 			className={cn(
-				"font-normal md:font-medium text-xs md:text-base text-gray-400 underline underline-offset-2 shadow-[0px_4px_32px_0px_#00000006]",
+				"text-label2 md:text-body1-normal text-gray-400 underline underline-offset-2 shadow-[0px_4px_32px_0px_#00000006]",
 				className,
 			)}
 		>

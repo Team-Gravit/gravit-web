@@ -13,10 +13,10 @@ export default function MainDesktop({ vm }: { vm: MainPageViewModel }) {
 			<Header />
 			<HeroSection>
 				<HeroSection.Content className="text-white">
-					<p className="text-4xl mb-2 font-semibold">
+					<p className="text-display1 mb-2 font-semibold">
 						어서오세요, {vm.progress.nickname}님!
 					</p>
-					<p className="text-lg">그래빗과 함께 CS 지식을 마스터해요!</p>
+					<p className="text-heading2">그래빗과 함께 CS 지식을 마스터해요!</p>
 				</HeroSection.Content>
 			</HeroSection>
 			<main style={{ paddingBottom: 200 }} className="w-full flex-1 bg-bg-2">
