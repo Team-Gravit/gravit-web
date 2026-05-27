@@ -8,7 +8,7 @@ export default function HeroSection({
 	children: React.ReactNode;
 }) {
 	return (
-		<section className="flex relative w-full h-[360px] md:h-[274px] overflow-hidden">
+		<section className="flex relative w-full h-[266px] md:h-[274px] overflow-hidden">
 			<picture className="absolute inset-0 w-full h-full overflow-hidden z-0">
 				<source media="(max-width: 768px)" srcSet={mobileBackgroundImage} />
 				<img
