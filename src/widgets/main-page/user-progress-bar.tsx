@@ -11,7 +11,7 @@ export const LevelCard = ({
 	<ProgressCard
 		className="flex-1"
 		leftSlot={
-			<div className="flex items-center gap-2 text-text-1">
+			<div className="flex items-center gap-2 text-text-1 text-heading2">
 				<Profile profileImgId={1} size="xs" />
 				<span>{user.nickname}</span>
 				<span>LV {user.level}</span>
@@ -29,7 +29,7 @@ export const TierCard = ({
 	rank: { tier: number; tierLabel: string; lp: number; maxLp: number };
 }) => (
 	<ProgressCard
-		className="flex-1"
+		className="flex-1 text-text-1 text-heading2"
 		leftSlot={<TierBadge tier={rank.tier} />}
 		value={rank.lp}
 		max={rank.maxLp}
@@ -39,7 +39,12 @@ export const TierCard = ({
 
 type UserProgressBarProps = {
 	user: { nickname: string; level: number; currentXp: number; maxXp: number };
-	rank: { leagueId: number; leagueName: string; currentLP: number; maxLP: number };
+	rank: {
+		leagueId: number;
+		leagueName: string;
+		currentLP: number;
+		maxLP: number;
+	};
 };
 
 export default function UserProgressBar({ user, rank }: UserProgressBarProps) {
