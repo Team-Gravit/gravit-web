@@ -22,6 +22,7 @@ export const inlineButtonVariants = cva(
 				sm: "px-4 py-2 text-sm",
 				md: "px-4 py-2 text-base font-medium",
 				lg: "px-5 py-2 text-xl font-medium",
+				custom: "",
 			},
 		},
 		defaultVariants: { variant: "primary", size: "md" },
@@ -43,6 +44,7 @@ export const blockButtonVariants = cva(
 			},
 			size: {
 				md: "h-[37px] md:h-[56px] rounded-sm md:rounded-lg font-medium text-[14px] md:text-lg",
+				custom: "",
 			},
 		},
 		defaultVariants: { variant: "primary", size: "md" },

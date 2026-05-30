@@ -98,7 +98,7 @@
     /* ================================
         ALIAS - CTA
     ================================ */
-    --color-cta:  var(--primitive-purple-800);  /* #9B00CF */
+    --color-cta:  var(--primitive-purple-700);  /* #9B00CF */
     --color-cta-hover:    var(--primitive-purple-900);  /* #6D0689 */
     --color-cta-disabled: var(--primitive-gray-300);    /* #DCDCDC */
     --color-cta-text:     var(--primitive-gray-50);     /* #FBFBFB */
@@ -184,6 +184,9 @@
     /*헤더*/
     --header-height: 74px;
 
+    /* 모바일 탭 */
+    --bottom-tab-height : 68px;
+    
     /*스켈레톤 애니메이션*/
     --animate-skeleton-pulse: skeletonPulse 1.5s infinite;
     --animate-skeleton-wave: skeletonWave 1.6s infinite;
