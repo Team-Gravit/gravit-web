@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import SummaryCard from "@/widgets/my-page/summary/summary-card";
 import StudyHeatmap from "@/widgets/my-page/summary/study-heatmap";
 
-export const Route = createFileRoute("/_authenticated/my/summary")({
+export const Route = createFileRoute("/_authenticated/my/_profile-layout/summary")({
 	component: RouteComponent,
 });
 
@@ -12,5 +12,5 @@ function RouteComponent() {
 			<SummaryCard />
 			<StudyHeatmap />
 		</div>
-	);
+	)
 }
