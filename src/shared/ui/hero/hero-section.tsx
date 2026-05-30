@@ -1,5 +1,5 @@
-import pcBackgroundImage from "@/shared/assets/images/pcBannerImage.webp";
-import mobileBackgroundImage from "@/shared/assets/images/mobile-banner.png";
+import pcBackgroundImage from "@/shared/assets/_images/pcBannerImage.png";
+import mobileBackgroundImage from "@/shared/assets/_images/mobile-banner.png";
 import { cn } from "@/shared/lib/cn";
 
 export default function HeroSection({
