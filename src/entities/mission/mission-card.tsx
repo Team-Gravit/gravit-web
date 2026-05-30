@@ -17,7 +17,7 @@ export default function MissionCard({
 			<Card.Header>
 				<Card.Title>오늘의 미션</Card.Title>
 			</Card.Header>
-			<div className="flex flex-col justify-between md:gap-2">
+			<div className="flex flex-col justify-between md:gap-2 flex-1">
 				<div>
 					<h3 className="text-text-1 text-headline2 md:text-title3 leading-none">
 						{missionDescription}

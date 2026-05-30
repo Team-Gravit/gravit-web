@@ -1,5 +1,5 @@
 import { cn } from "@/shared/lib/cn";
-import StatusBadge from "@/shared/ui/badge/status-badge";
+import UnitStatusChip from "./unit-status-chip";
 
 interface UnitItemProps {
 	unitId: number;
@@ -12,13 +12,6 @@ export default function UnitItem({
 	unitTitle,
 	unitStatus,
 }: UnitItemProps) {
-	const statusText =
-		unitStatus === "inProgress"
-			? "진행 중"
-			: unitStatus === "completed"
-				? "완료"
-				: "잠김";
-
 	return (
 		<div
 			className={cn(
@@ -43,7 +36,7 @@ export default function UnitItem({
 			>
 				{unitTitle}
 			</div>
-			<StatusBadge status={unitStatus} text={statusText} size="lg" />
+			<UnitStatusChip status={unitStatus} size="lg" />
 		</div>
 	);
 }
