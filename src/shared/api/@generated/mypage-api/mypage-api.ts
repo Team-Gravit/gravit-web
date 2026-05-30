@@ -32,57 +32,23 @@ import type {
 import { customInstance } from '../../mutator';
 
 
-type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
-
-
-export type getMyPageSummaryResponse200 = {
-  data: MyPageSummaryResponse
-  status: 200
-}
-
-export type getMyPageSummaryResponse404 = {
-  data: ErrorResponse
-  status: 404
-}
-
-export type getMyPageSummaryResponse500 = {
-  data: ErrorResponse
-  status: 500
-}
-
-export type getMyPageSummaryResponseSuccess = (getMyPageSummaryResponse200) & {
-  headers: Headers;
-};
-export type getMyPageSummaryResponseError = (getMyPageSummaryResponse404 | getMyPageSummaryResponse500) & {
-  headers: Headers;
-};
-
-export type getMyPageSummaryResponse = (getMyPageSummaryResponseSuccess | getMyPageSummaryResponseError)
-
-export const getGetMyPageSummaryUrl = () => {
-
-
-
-
-  return `/api/v1/my-pages/summaries`
-}
 
 /**
  * 마이페이지 학습 요약, 올해 일별 학습 이력, 가입 연도부터 현재 연도까지의 조회 가능 연도 목록을 조회합니다<br>🔐 <strong>Jwt 필요</strong><br>
  * @summary 마이페이지 학습 요약 조회
  */
-export const getMyPageSummary = async ( options?: RequestInit): Promise<getMyPageSummaryResponse> => {
+export const getMyPageSummary = (
 
-  return customInstance<getMyPageSummaryResponse>(getGetMyPageSummaryUrl(),
-  {
-    ...options,
-    method: 'GET'
+ signal?: AbortSignal
+) => {
 
 
-  }
-);}
-
+      return customInstance<MyPageSummaryResponse>(
+      {url: `/api/v1/my-pages/summaries`, method: 'GET', signal
+    },
+      );
+    }
 
 
 
@@ -94,16 +60,16 @@ export const getGetMyPageSummaryQueryKey = () => {
     }
 
 
-export const getGetMyPageSummaryQueryOptions = <TData = Awaited<ReturnType<typeof getMyPageSummary>>, TError = ErrorResponse>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyPageSummary>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+export const getGetMyPageSummaryQueryOptions = <TData = Awaited<ReturnType<typeof getMyPageSummary>>, TError = ErrorResponse>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyPageSummary>>, TError, TData>>, }
 ) => {
 
-const {query: queryOptions, request: requestOptions} = options ?? {};
+const {query: queryOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetMyPageSummaryQueryKey();
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getMyPageSummary>>> = ({ signal }) => getMyPageSummary({ signal, ...requestOptions });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getMyPageSummary>>> = ({ signal }) => getMyPageSummary(signal);
 
 
 
@@ -123,7 +89,7 @@ export function useGetMyPageSummary<TData = Awaited<ReturnType<typeof getMyPageS
           TError,
           Awaited<ReturnType<typeof getMyPageSummary>>
         > , 'initialData'
-      >, request?: SecondParameter<typeof customInstance>}
+      >, }
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetMyPageSummary<TData = Awaited<ReturnType<typeof getMyPageSummary>>, TError = ErrorResponse>(
@@ -133,11 +99,11 @@ export function useGetMyPageSummary<TData = Awaited<ReturnType<typeof getMyPageS
           TError,
           Awaited<ReturnType<typeof getMyPageSummary>>
         > , 'initialData'
-      >, request?: SecondParameter<typeof customInstance>}
+      >, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetMyPageSummary<TData = Awaited<ReturnType<typeof getMyPageSummary>>, TError = ErrorResponse>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyPageSummary>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyPageSummary>>, TError, TData>>, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -145,7 +111,7 @@ export function useGetMyPageSummary<TData = Awaited<ReturnType<typeof getMyPageS
  */
 
 export function useGetMyPageSummary<TData = Awaited<ReturnType<typeof getMyPageSummary>>, TError = ErrorResponse>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyPageSummary>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyPageSummary>>, TError, TData>>, }
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
@@ -161,48 +127,21 @@ export function useGetMyPageSummary<TData = Awaited<ReturnType<typeof getMyPageS
 
 
 
-export type getMyPageLearningResponse200 = {
-  data: MyPageLearningResponse
-  status: 200
-}
-
-export type getMyPageLearningResponse500 = {
-  data: ErrorResponse
-  status: 500
-}
-
-export type getMyPageLearningResponseSuccess = (getMyPageLearningResponse200) & {
-  headers: Headers;
-};
-export type getMyPageLearningResponseError = (getMyPageLearningResponse500) & {
-  headers: Headers;
-};
-
-export type getMyPageLearningResponse = (getMyPageLearningResponseSuccess | getMyPageLearningResponseError)
-
-export const getGetMyPageLearningUrl = () => {
-
-
-
-
-  return `/api/v1/my-pages/learning`
-}
-
 /**
  * 마이페이지 주간 리포트, TOP 챕터, 취약 개념을 한 번에 조회합니다<br>🔐 <strong>Jwt 필요</strong><br>
  * @summary 마이페이지 학습 정보 조회
  */
-export const getMyPageLearning = async ( options?: RequestInit): Promise<getMyPageLearningResponse> => {
+export const getMyPageLearning = (
 
-  return customInstance<getMyPageLearningResponse>(getGetMyPageLearningUrl(),
-  {
-    ...options,
-    method: 'GET'
+ signal?: AbortSignal
+) => {
 
 
-  }
-);}
-
+      return customInstance<MyPageLearningResponse>(
+      {url: `/api/v1/my-pages/learning`, method: 'GET', signal
+    },
+      );
+    }
 
 
 
@@ -214,16 +153,16 @@ export const getGetMyPageLearningQueryKey = () => {
     }
 
 
-export const getGetMyPageLearningQueryOptions = <TData = Awaited<ReturnType<typeof getMyPageLearning>>, TError = ErrorResponse>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyPageLearning>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+export const getGetMyPageLearningQueryOptions = <TData = Awaited<ReturnType<typeof getMyPageLearning>>, TError = ErrorResponse>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyPageLearning>>, TError, TData>>, }
 ) => {
 
-const {query: queryOptions, request: requestOptions} = options ?? {};
+const {query: queryOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetMyPageLearningQueryKey();
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getMyPageLearning>>> = ({ signal }) => getMyPageLearning({ signal, ...requestOptions });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getMyPageLearning>>> = ({ signal }) => getMyPageLearning(signal);
 
 
 
@@ -243,7 +182,7 @@ export function useGetMyPageLearning<TData = Awaited<ReturnType<typeof getMyPage
           TError,
           Awaited<ReturnType<typeof getMyPageLearning>>
         > , 'initialData'
-      >, request?: SecondParameter<typeof customInstance>}
+      >, }
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetMyPageLearning<TData = Awaited<ReturnType<typeof getMyPageLearning>>, TError = ErrorResponse>(
@@ -253,11 +192,11 @@ export function useGetMyPageLearning<TData = Awaited<ReturnType<typeof getMyPage
           TError,
           Awaited<ReturnType<typeof getMyPageLearning>>
         > , 'initialData'
-      >, request?: SecondParameter<typeof customInstance>}
+      >, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetMyPageLearning<TData = Awaited<ReturnType<typeof getMyPageLearning>>, TError = ErrorResponse>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyPageLearning>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyPageLearning>>, TError, TData>>, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -265,7 +204,7 @@ export function useGetMyPageLearning<TData = Awaited<ReturnType<typeof getMyPage
  */
 
 export function useGetMyPageLearning<TData = Awaited<ReturnType<typeof getMyPageLearning>>, TError = ErrorResponse>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyPageLearning>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyPageLearning>>, TError, TData>>, }
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
@@ -281,55 +220,22 @@ export function useGetMyPageLearning<TData = Awaited<ReturnType<typeof getMyPage
 
 
 
-export type getMyPageLearningHistoryResponse200 = {
-  data: LearningHistoryResponse
-  status: 200
-}
-
-export type getMyPageLearningHistoryResponse500 = {
-  data: ErrorResponse
-  status: 500
-}
-
-export type getMyPageLearningHistoryResponseSuccess = (getMyPageLearningHistoryResponse200) & {
-  headers: Headers;
-};
-export type getMyPageLearningHistoryResponseError = (getMyPageLearningHistoryResponse500) & {
-  headers: Headers;
-};
-
-export type getMyPageLearningHistoryResponse = (getMyPageLearningHistoryResponseSuccess | getMyPageLearningHistoryResponseError)
-
-export const getGetMyPageLearningHistoryUrl = (params: GetMyPageLearningHistoryParams,) => {
-  const normalizedParams = new URLSearchParams();
-
-  Object.entries(params || {}).forEach(([key, value]) => {
-
-    if (value !== undefined) {
-      normalizedParams.append(key, value === null ? 'null' : value.toString())
-    }
-  });
-
-  const stringifiedParams = normalizedParams.toString();
-
-  return stringifiedParams.length > 0 ? `/api/v1/my-pages/learning/history?${stringifiedParams}` : `/api/v1/my-pages/learning/history`
-}
-
 /**
  * 지정한 연도의 일별 풀이 수와 피크 학습 시간을 조회합니다<br>🔐 <strong>Jwt 필요</strong><br>
  * @summary 마이페이지 학습 이력 조회
  */
-export const getMyPageLearningHistory = async (params: GetMyPageLearningHistoryParams, options?: RequestInit): Promise<getMyPageLearningHistoryResponse> => {
-
-  return customInstance<getMyPageLearningHistoryResponse>(getGetMyPageLearningHistoryUrl(params),
-  {
-    ...options,
-    method: 'GET'
+export const getMyPageLearningHistory = (
+    params: GetMyPageLearningHistoryParams,
+ signal?: AbortSignal
+) => {
 
 
-  }
-);}
-
+      return customInstance<LearningHistoryResponse>(
+      {url: `/api/v1/my-pages/learning/history`, method: 'GET',
+        params, signal
+    },
+      );
+    }
 
 
 
@@ -341,16 +247,16 @@ export const getGetMyPageLearningHistoryQueryKey = (params?: GetMyPageLearningHi
     }
 
 
-export const getGetMyPageLearningHistoryQueryOptions = <TData = Awaited<ReturnType<typeof getMyPageLearningHistory>>, TError = ErrorResponse>(params: GetMyPageLearningHistoryParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyPageLearningHistory>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+export const getGetMyPageLearningHistoryQueryOptions = <TData = Awaited<ReturnType<typeof getMyPageLearningHistory>>, TError = ErrorResponse>(params: GetMyPageLearningHistoryParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyPageLearningHistory>>, TError, TData>>, }
 ) => {
 
-const {query: queryOptions, request: requestOptions} = options ?? {};
+const {query: queryOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetMyPageLearningHistoryQueryKey(params);
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getMyPageLearningHistory>>> = ({ signal }) => getMyPageLearningHistory(params, { signal, ...requestOptions });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getMyPageLearningHistory>>> = ({ signal }) => getMyPageLearningHistory(params, signal);
 
 
 
@@ -370,7 +276,7 @@ export function useGetMyPageLearningHistory<TData = Awaited<ReturnType<typeof ge
           TError,
           Awaited<ReturnType<typeof getMyPageLearningHistory>>
         > , 'initialData'
-      >, request?: SecondParameter<typeof customInstance>}
+      >, }
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetMyPageLearningHistory<TData = Awaited<ReturnType<typeof getMyPageLearningHistory>>, TError = ErrorResponse>(
@@ -380,11 +286,11 @@ export function useGetMyPageLearningHistory<TData = Awaited<ReturnType<typeof ge
           TError,
           Awaited<ReturnType<typeof getMyPageLearningHistory>>
         > , 'initialData'
-      >, request?: SecondParameter<typeof customInstance>}
+      >, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetMyPageLearningHistory<TData = Awaited<ReturnType<typeof getMyPageLearningHistory>>, TError = ErrorResponse>(
- params: GetMyPageLearningHistoryParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyPageLearningHistory>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+ params: GetMyPageLearningHistoryParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyPageLearningHistory>>, TError, TData>>, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -392,7 +298,7 @@ export function useGetMyPageLearningHistory<TData = Awaited<ReturnType<typeof ge
  */
 
 export function useGetMyPageLearningHistory<TData = Awaited<ReturnType<typeof getMyPageLearningHistory>>, TError = ErrorResponse>(
- params: GetMyPageLearningHistoryParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyPageLearningHistory>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+ params: GetMyPageLearningHistoryParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyPageLearningHistory>>, TError, TData>>, }
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
@@ -408,53 +314,21 @@ export function useGetMyPageLearningHistory<TData = Awaited<ReturnType<typeof ge
 
 
 
-export type getMyPageBannerResponse200 = {
-  data: MyPageBannerResponse
-  status: 200
-}
-
-export type getMyPageBannerResponse404 = {
-  data: ErrorResponse
-  status: 404
-}
-
-export type getMyPageBannerResponse500 = {
-  data: ErrorResponse
-  status: 500
-}
-
-export type getMyPageBannerResponseSuccess = (getMyPageBannerResponse200) & {
-  headers: Headers;
-};
-export type getMyPageBannerResponseError = (getMyPageBannerResponse404 | getMyPageBannerResponse500) & {
-  headers: Headers;
-};
-
-export type getMyPageBannerResponse = (getMyPageBannerResponseSuccess | getMyPageBannerResponseError)
-
-export const getGetMyPageBannerUrl = () => {
-
-
-
-
-  return `/api/v1/my-pages/banners`
-}
-
 /**
  * 마이페이지 상단 배너 정보(프로필, 닉네임, 핸들, 레벨, 리그, 연속 학습일)를 조회합니다<br>🔐 <strong>Jwt 필요</strong><br>
  * @summary 마이페이지 배너 조회
  */
-export const getMyPageBanner = async ( options?: RequestInit): Promise<getMyPageBannerResponse> => {
+export const getMyPageBanner = (
 
-  return customInstance<getMyPageBannerResponse>(getGetMyPageBannerUrl(),
-  {
-    ...options,
-    method: 'GET'
+ signal?: AbortSignal
+) => {
 
 
-  }
-);}
-
+      return customInstance<MyPageBannerResponse>(
+      {url: `/api/v1/my-pages/banners`, method: 'GET', signal
+    },
+      );
+    }
 
 
 
@@ -466,16 +340,16 @@ export const getGetMyPageBannerQueryKey = () => {
     }
 
 
-export const getGetMyPageBannerQueryOptions = <TData = Awaited<ReturnType<typeof getMyPageBanner>>, TError = ErrorResponse>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyPageBanner>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+export const getGetMyPageBannerQueryOptions = <TData = Awaited<ReturnType<typeof getMyPageBanner>>, TError = ErrorResponse>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyPageBanner>>, TError, TData>>, }
 ) => {
 
-const {query: queryOptions, request: requestOptions} = options ?? {};
+const {query: queryOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetMyPageBannerQueryKey();
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getMyPageBanner>>> = ({ signal }) => getMyPageBanner({ signal, ...requestOptions });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getMyPageBanner>>> = ({ signal }) => getMyPageBanner(signal);
 
 
 
@@ -495,7 +369,7 @@ export function useGetMyPageBanner<TData = Awaited<ReturnType<typeof getMyPageBa
           TError,
           Awaited<ReturnType<typeof getMyPageBanner>>
         > , 'initialData'
-      >, request?: SecondParameter<typeof customInstance>}
+      >, }
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetMyPageBanner<TData = Awaited<ReturnType<typeof getMyPageBanner>>, TError = ErrorResponse>(
@@ -505,11 +379,11 @@ export function useGetMyPageBanner<TData = Awaited<ReturnType<typeof getMyPageBa
           TError,
           Awaited<ReturnType<typeof getMyPageBanner>>
         > , 'initialData'
-      >, request?: SecondParameter<typeof customInstance>}
+      >, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetMyPageBanner<TData = Awaited<ReturnType<typeof getMyPageBanner>>, TError = ErrorResponse>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyPageBanner>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyPageBanner>>, TError, TData>>, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -517,7 +391,7 @@ export function useGetMyPageBanner<TData = Awaited<ReturnType<typeof getMyPageBa
  */
 
 export function useGetMyPageBanner<TData = Awaited<ReturnType<typeof getMyPageBanner>>, TError = ErrorResponse>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyPageBanner>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyPageBanner>>, TError, TData>>, }
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 

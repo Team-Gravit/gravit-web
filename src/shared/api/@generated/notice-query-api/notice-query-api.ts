@@ -29,52 +29,23 @@ import type {
 import { customInstance } from '../../mutator';
 
 
-type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
-
-
-export type getNoticeSummaryResponse200 = {
-  data: NoticeDetailResponse
-  status: 200
-}
-
-export type getNoticeSummaryResponse404 = {
-  data: ErrorResponse
-  status: 404
-}
-
-export type getNoticeSummaryResponseSuccess = (getNoticeSummaryResponse200) & {
-  headers: Headers;
-};
-export type getNoticeSummaryResponseError = (getNoticeSummaryResponse404) & {
-  headers: Headers;
-};
-
-export type getNoticeSummaryResponse = (getNoticeSummaryResponseSuccess | getNoticeSummaryResponseError)
-
-export const getGetNoticeSummaryUrl = (noticeId: number,) => {
-
-
-
-
-  return `/api/v1/notice/${noticeId}`
-}
 
 /**
  * 공지의 상세 내용을 조회합니다.
  * @summary 공지 상세 조회
  */
-export const getNoticeSummary = async (noticeId: number, options?: RequestInit): Promise<getNoticeSummaryResponse> => {
-
-  return customInstance<getNoticeSummaryResponse>(getGetNoticeSummaryUrl(noticeId),
-  {
-    ...options,
-    method: 'GET'
+export const getNoticeSummary = (
+    noticeId: number,
+ signal?: AbortSignal
+) => {
 
 
-  }
-);}
-
+      return customInstance<NoticeDetailResponse>(
+      {url: `/api/v1/notice/${noticeId}`, method: 'GET', signal
+    },
+      );
+    }
 
 
 
@@ -86,16 +57,16 @@ export const getGetNoticeSummaryQueryKey = (noticeId: number,) => {
     }
 
 
-export const getGetNoticeSummaryQueryOptions = <TData = Awaited<ReturnType<typeof getNoticeSummary>>, TError = ErrorResponse>(noticeId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNoticeSummary>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+export const getGetNoticeSummaryQueryOptions = <TData = Awaited<ReturnType<typeof getNoticeSummary>>, TError = ErrorResponse>(noticeId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNoticeSummary>>, TError, TData>>, }
 ) => {
 
-const {query: queryOptions, request: requestOptions} = options ?? {};
+const {query: queryOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetNoticeSummaryQueryKey(noticeId);
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getNoticeSummary>>> = ({ signal }) => getNoticeSummary(noticeId, { signal, ...requestOptions });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getNoticeSummary>>> = ({ signal }) => getNoticeSummary(noticeId, signal);
 
 
 
@@ -115,7 +86,7 @@ export function useGetNoticeSummary<TData = Awaited<ReturnType<typeof getNoticeS
           TError,
           Awaited<ReturnType<typeof getNoticeSummary>>
         > , 'initialData'
-      >, request?: SecondParameter<typeof customInstance>}
+      >, }
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetNoticeSummary<TData = Awaited<ReturnType<typeof getNoticeSummary>>, TError = ErrorResponse>(
@@ -125,11 +96,11 @@ export function useGetNoticeSummary<TData = Awaited<ReturnType<typeof getNoticeS
           TError,
           Awaited<ReturnType<typeof getNoticeSummary>>
         > , 'initialData'
-      >, request?: SecondParameter<typeof customInstance>}
+      >, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetNoticeSummary<TData = Awaited<ReturnType<typeof getNoticeSummary>>, TError = ErrorResponse>(
- noticeId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNoticeSummary>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+ noticeId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNoticeSummary>>, TError, TData>>, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -137,7 +108,7 @@ export function useGetNoticeSummary<TData = Awaited<ReturnType<typeof getNoticeS
  */
 
 export function useGetNoticeSummary<TData = Awaited<ReturnType<typeof getNoticeSummary>>, TError = ErrorResponse>(
- noticeId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNoticeSummary>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+ noticeId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNoticeSummary>>, TError, TData>>, }
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
@@ -153,41 +124,21 @@ export function useGetNoticeSummary<TData = Awaited<ReturnType<typeof getNoticeS
 
 
 
-export type getNoticeSummariesResponse200 = {
-  data: SliceResponse
-  status: 200
-}
-
-export type getNoticeSummariesResponseSuccess = (getNoticeSummariesResponse200) & {
-  headers: Headers;
-};
-;
-
-export type getNoticeSummariesResponse = (getNoticeSummariesResponseSuccess)
-
-export const getGetNoticeSummariesUrl = (page: number,) => {
-
-
-
-
-  return `/api/v1/notice/summaries/${page}`
-}
-
 /**
  * 최신 공지의 요약 리스트를 페이지 단위(0-based)로 조회합니다.
  * @summary 공지 요약 목록 조회
  */
-export const getNoticeSummaries = async (page: number, options?: RequestInit): Promise<getNoticeSummariesResponse> => {
-
-  return customInstance<getNoticeSummariesResponse>(getGetNoticeSummariesUrl(page),
-  {
-    ...options,
-    method: 'GET'
+export const getNoticeSummaries = (
+    page: number,
+ signal?: AbortSignal
+) => {
 
 
-  }
-);}
-
+      return customInstance<SliceResponse>(
+      {url: `/api/v1/notice/summaries/${page}`, method: 'GET', signal
+    },
+      );
+    }
 
 
 
@@ -199,16 +150,16 @@ export const getGetNoticeSummariesQueryKey = (page: number,) => {
     }
 
 
-export const getGetNoticeSummariesQueryOptions = <TData = Awaited<ReturnType<typeof getNoticeSummaries>>, TError = unknown>(page: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNoticeSummaries>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+export const getGetNoticeSummariesQueryOptions = <TData = Awaited<ReturnType<typeof getNoticeSummaries>>, TError = unknown>(page: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNoticeSummaries>>, TError, TData>>, }
 ) => {
 
-const {query: queryOptions, request: requestOptions} = options ?? {};
+const {query: queryOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetNoticeSummariesQueryKey(page);
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getNoticeSummaries>>> = ({ signal }) => getNoticeSummaries(page, { signal, ...requestOptions });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getNoticeSummaries>>> = ({ signal }) => getNoticeSummaries(page, signal);
 
 
 
@@ -228,7 +179,7 @@ export function useGetNoticeSummaries<TData = Awaited<ReturnType<typeof getNotic
           TError,
           Awaited<ReturnType<typeof getNoticeSummaries>>
         > , 'initialData'
-      >, request?: SecondParameter<typeof customInstance>}
+      >, }
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetNoticeSummaries<TData = Awaited<ReturnType<typeof getNoticeSummaries>>, TError = unknown>(
@@ -238,11 +189,11 @@ export function useGetNoticeSummaries<TData = Awaited<ReturnType<typeof getNotic
           TError,
           Awaited<ReturnType<typeof getNoticeSummaries>>
         > , 'initialData'
-      >, request?: SecondParameter<typeof customInstance>}
+      >, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetNoticeSummaries<TData = Awaited<ReturnType<typeof getNoticeSummaries>>, TError = unknown>(
- page: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNoticeSummaries>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+ page: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNoticeSummaries>>, TError, TData>>, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -250,7 +201,7 @@ export function useGetNoticeSummaries<TData = Awaited<ReturnType<typeof getNotic
  */
 
 export function useGetNoticeSummaries<TData = Awaited<ReturnType<typeof getNoticeSummaries>>, TError = unknown>(
- page: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNoticeSummaries>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+ page: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNoticeSummaries>>, TError, TData>>, }
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 

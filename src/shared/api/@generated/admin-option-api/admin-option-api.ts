@@ -24,65 +24,38 @@ import type {
 import { customInstance } from '../../mutator';
 
 
-type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
-
-
-export type updateOptionResponse204 = {
-  data: void
-  status: 204
-}
-
-export type updateOptionResponse404 = {
-  data: ErrorResponse
-  status: 404
-}
-
-export type updateOptionResponseSuccess = (updateOptionResponse204) & {
-  headers: Headers;
-};
-export type updateOptionResponseError = (updateOptionResponse404) & {
-  headers: Headers;
-};
-
-export type updateOptionResponse = (updateOptionResponseSuccess | updateOptionResponseError)
-
-export const getUpdateOptionUrl = () => {
-
-
-
-
-  return `/api/v1/admin/options`
-}
 
 /**
  * 기존 옵션을 수정합니다<br>🔐 <strong>관리자 권한 필요</strong><br>
  * @summary 옵션 수정
  */
-export const updateOption = async (optionUpdateRequest: OptionUpdateRequest, options?: RequestInit): Promise<updateOptionResponse> => {
+export const updateOption = (
+    optionUpdateRequest: OptionUpdateRequest,
+ signal?: AbortSignal
+) => {
 
-  return customInstance<updateOptionResponse>(getUpdateOptionUrl(),
-  {
-    ...options,
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json', ...options?.headers },
-    body: JSON.stringify(optionUpdateRequest)
-  }
-);}
 
+      return customInstance<void>(
+      {url: `/api/v1/admin/options`, method: 'PUT',
+      headers: {'Content-Type': 'application/json', },
+      data: optionUpdateRequest, signal
+    },
+      );
+    }
 
 
 
 export const getUpdateOptionMutationOptions = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateOption>>, TError,{data: OptionUpdateRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateOption>>, TError,{data: OptionUpdateRequest}, TContext>, }
 ): UseMutationOptions<Awaited<ReturnType<typeof updateOption>>, TError,{data: OptionUpdateRequest}, TContext> => {
 
 const mutationKey = ['updateOption'];
-const {mutation: mutationOptions, request: requestOptions} = options ?
+const {mutation: mutationOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }, request: undefined};
+      : {mutation: { mutationKey, }};
 
 
 
@@ -90,7 +63,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof updateOption>>, {data: OptionUpdateRequest}> = (props) => {
           const {data} = props ?? {};
 
-          return  updateOption(data,requestOptions)
+          return  updateOption(data,)
         }
 
 
@@ -108,7 +81,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  * @summary 옵션 수정
  */
 export const useUpdateOption = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateOption>>, TError,{data: OptionUpdateRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateOption>>, TError,{data: OptionUpdateRequest}, TContext>, }
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof updateOption>>,
         TError,
@@ -117,61 +90,36 @@ export const useUpdateOption = <TError = ErrorResponse,
       > => {
       return useMutation(getUpdateOptionMutationOptions(options), queryClient);
     }
-    export type createOptionResponse204 = {
-  data: void
-  status: 204
-}
-
-export type createOptionResponse404 = {
-  data: ErrorResponse
-  status: 404
-}
-
-export type createOptionResponseSuccess = (createOptionResponse204) & {
-  headers: Headers;
-};
-export type createOptionResponseError = (createOptionResponse404) & {
-  headers: Headers;
-};
-
-export type createOptionResponse = (createOptionResponseSuccess | createOptionResponseError)
-
-export const getCreateOptionUrl = () => {
-
-
-
-
-  return `/api/v1/admin/options`
-}
-
-/**
+    /**
  * 새로운 옵션을 생성합니다<br>🔐 <strong>관리자 권한 필요</strong><br>
  * @summary 옵션 생성
  */
-export const createOption = async (optionCreateRequest: OptionCreateRequest, options?: RequestInit): Promise<createOptionResponse> => {
+export const createOption = (
+    optionCreateRequest: OptionCreateRequest,
+ signal?: AbortSignal
+) => {
 
-  return customInstance<createOptionResponse>(getCreateOptionUrl(),
-  {
-    ...options,
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', ...options?.headers },
-    body: JSON.stringify(optionCreateRequest)
-  }
-);}
 
+      return customInstance<void>(
+      {url: `/api/v1/admin/options`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: optionCreateRequest, signal
+    },
+      );
+    }
 
 
 
 export const getCreateOptionMutationOptions = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createOption>>, TError,{data: OptionCreateRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createOption>>, TError,{data: OptionCreateRequest}, TContext>, }
 ): UseMutationOptions<Awaited<ReturnType<typeof createOption>>, TError,{data: OptionCreateRequest}, TContext> => {
 
 const mutationKey = ['createOption'];
-const {mutation: mutationOptions, request: requestOptions} = options ?
+const {mutation: mutationOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }, request: undefined};
+      : {mutation: { mutationKey, }};
 
 
 
@@ -179,7 +127,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof createOption>>, {data: OptionCreateRequest}> = (props) => {
           const {data} = props ?? {};
 
-          return  createOption(data,requestOptions)
+          return  createOption(data,)
         }
 
 
@@ -197,7 +145,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  * @summary 옵션 생성
  */
 export const useCreateOption = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createOption>>, TError,{data: OptionCreateRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createOption>>, TError,{data: OptionCreateRequest}, TContext>, }
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof createOption>>,
         TError,
@@ -206,61 +154,34 @@ export const useCreateOption = <TError = ErrorResponse,
       > => {
       return useMutation(getCreateOptionMutationOptions(options), queryClient);
     }
-    export type deleteOptionResponse204 = {
-  data: void
-  status: 204
-}
-
-export type deleteOptionResponse404 = {
-  data: ErrorResponse
-  status: 404
-}
-
-export type deleteOptionResponseSuccess = (deleteOptionResponse204) & {
-  headers: Headers;
-};
-export type deleteOptionResponseError = (deleteOptionResponse404) & {
-  headers: Headers;
-};
-
-export type deleteOptionResponse = (deleteOptionResponseSuccess | deleteOptionResponseError)
-
-export const getDeleteOptionUrl = (optionId: number,) => {
-
-
-
-
-  return `/api/v1/admin/options/${optionId}`
-}
-
-/**
+    /**
  * 기존 옵션을 삭제합니다<br>🔐 <strong>관리자 권한 필요</strong><br>
  * @summary 옵션 삭제
  */
-export const deleteOption = async (optionId: number, options?: RequestInit): Promise<deleteOptionResponse> => {
-
-  return customInstance<deleteOptionResponse>(getDeleteOptionUrl(optionId),
-  {
-    ...options,
-    method: 'DELETE'
+export const deleteOption = (
+    optionId: number,
+ signal?: AbortSignal
+) => {
 
 
-  }
-);}
-
+      return customInstance<void>(
+      {url: `/api/v1/admin/options/${optionId}`, method: 'DELETE', signal
+    },
+      );
+    }
 
 
 
 export const getDeleteOptionMutationOptions = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteOption>>, TError,{optionId: number}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteOption>>, TError,{optionId: number}, TContext>, }
 ): UseMutationOptions<Awaited<ReturnType<typeof deleteOption>>, TError,{optionId: number}, TContext> => {
 
 const mutationKey = ['deleteOption'];
-const {mutation: mutationOptions, request: requestOptions} = options ?
+const {mutation: mutationOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }, request: undefined};
+      : {mutation: { mutationKey, }};
 
 
 
@@ -268,7 +189,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof deleteOption>>, {optionId: number}> = (props) => {
           const {optionId} = props ?? {};
 
-          return  deleteOption(optionId,requestOptions)
+          return  deleteOption(optionId,)
         }
 
 
@@ -286,7 +207,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  * @summary 옵션 삭제
  */
 export const useDeleteOption = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteOption>>, TError,{optionId: number}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteOption>>, TError,{optionId: number}, TContext>, }
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof deleteOption>>,
         TError,

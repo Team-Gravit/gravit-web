@@ -6,10 +6,9 @@
  * OpenAPI spec version: 1.0.0
  */
 
-export interface LastSeasonPopupDto {
-  rank?: number;
-  leagueName: string;
-  profileImgNumber?: number;
-  nextLeagueName: string;
-  nextStartLp?: number;
+export interface SeasonHistoryEntry {
+  seasonKey?: string;
+  leagueName?: string;
+  sortOrder?: number;
+  isCurrent?: boolean;
 }

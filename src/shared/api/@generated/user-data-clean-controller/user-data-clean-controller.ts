@@ -22,61 +22,33 @@ import type {
 import { customInstance } from '../../mutator';
 
 
-type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
 
+export const clean = (
+    params: CleanParams,
+ signal?: AbortSignal
+) => {
 
-export type cleanResponse200 = {
-  data: string
-  status: 200
-}
 
-export type cleanResponseSuccess = (cleanResponse200) & {
-  headers: Headers;
-};
-;
-
-export type cleanResponse = (cleanResponseSuccess)
-
-export const getCleanUrl = (params: CleanParams,) => {
-  const normalizedParams = new URLSearchParams();
-
-  Object.entries(params || {}).forEach(([key, value]) => {
-
-    if (value !== undefined) {
-      normalizedParams.append(key, value === null ? 'null' : value.toString())
+      return customInstance<string>(
+      {url: `/api/v1/test/users/clean`, method: 'POST',
+        params, signal
+    },
+      );
     }
-  });
-
-  const stringifiedParams = normalizedParams.toString();
-
-  return stringifiedParams.length > 0 ? `/api/v1/test/users/clean?${stringifiedParams}` : `/api/v1/test/users/clean`
-}
-
-export const clean = async (params: CleanParams, options?: RequestInit): Promise<cleanResponse> => {
-
-  return customInstance<cleanResponse>(getCleanUrl(params),
-  {
-    ...options,
-    method: 'POST'
-
-
-  }
-);}
-
 
 
 
 export const getCleanMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof clean>>, TError,{params: CleanParams}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof clean>>, TError,{params: CleanParams}, TContext>, }
 ): UseMutationOptions<Awaited<ReturnType<typeof clean>>, TError,{params: CleanParams}, TContext> => {
 
 const mutationKey = ['clean'];
-const {mutation: mutationOptions, request: requestOptions} = options ?
+const {mutation: mutationOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }, request: undefined};
+      : {mutation: { mutationKey, }};
 
 
 
@@ -84,7 +56,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof clean>>, {params: CleanParams}> = (props) => {
           const {params} = props ?? {};
 
-          return  clean(params,requestOptions)
+          return  clean(params,)
         }
 
 
@@ -99,7 +71,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
     export type CleanMutationError = unknown
 
     export const useClean = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof clean>>, TError,{params: CleanParams}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof clean>>, TError,{params: CleanParams}, TContext>, }
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof clean>>,
         TError,

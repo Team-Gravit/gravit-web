@@ -6,10 +6,9 @@
  * OpenAPI spec version: 1.0.0
  */
 
-export interface LastSeasonPopupDto {
-  rank?: number;
-  leagueName: string;
+export interface RecommendUserResponse {
+  userId?: number;
+  nickname?: string;
   profileImgNumber?: number;
-  nextLeagueName: string;
-  nextStartLp?: number;
+  mutualFollowCount?: number;
 }

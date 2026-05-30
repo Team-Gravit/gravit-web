@@ -34,65 +34,38 @@ import type {
 import { customInstance } from '../../mutator';
 
 
-type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
-
-
-export type updateProblemResponse204 = {
-  data: void
-  status: 204
-}
-
-export type updateProblemResponse404 = {
-  data: ErrorResponse
-  status: 404
-}
-
-export type updateProblemResponseSuccess = (updateProblemResponse204) & {
-  headers: Headers;
-};
-export type updateProblemResponseError = (updateProblemResponse404) & {
-  headers: Headers;
-};
-
-export type updateProblemResponse = (updateProblemResponseSuccess | updateProblemResponseError)
-
-export const getUpdateProblemUrl = () => {
-
-
-
-
-  return `/api/v1/admin/problems`
-}
 
 /**
  * 기존 문제를 수정합니다<br>🔐 <strong>관리자 권한 필요</strong><br>
  * @summary 문제 수정
  */
-export const updateProblem = async (problemUpdateRequest: ProblemUpdateRequest, options?: RequestInit): Promise<updateProblemResponse> => {
+export const updateProblem = (
+    problemUpdateRequest: ProblemUpdateRequest,
+ signal?: AbortSignal
+) => {
 
-  return customInstance<updateProblemResponse>(getUpdateProblemUrl(),
-  {
-    ...options,
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json', ...options?.headers },
-    body: JSON.stringify(problemUpdateRequest)
-  }
-);}
 
+      return customInstance<void>(
+      {url: `/api/v1/admin/problems`, method: 'PUT',
+      headers: {'Content-Type': 'application/json', },
+      data: problemUpdateRequest, signal
+    },
+      );
+    }
 
 
 
 export const getUpdateProblemMutationOptions = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateProblem>>, TError,{data: ProblemUpdateRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateProblem>>, TError,{data: ProblemUpdateRequest}, TContext>, }
 ): UseMutationOptions<Awaited<ReturnType<typeof updateProblem>>, TError,{data: ProblemUpdateRequest}, TContext> => {
 
 const mutationKey = ['updateProblem'];
-const {mutation: mutationOptions, request: requestOptions} = options ?
+const {mutation: mutationOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }, request: undefined};
+      : {mutation: { mutationKey, }};
 
 
 
@@ -100,7 +73,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof updateProblem>>, {data: ProblemUpdateRequest}> = (props) => {
           const {data} = props ?? {};
 
-          return  updateProblem(data,requestOptions)
+          return  updateProblem(data,)
         }
 
 
@@ -118,7 +91,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  * @summary 문제 수정
  */
 export const useUpdateProblem = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateProblem>>, TError,{data: ProblemUpdateRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateProblem>>, TError,{data: ProblemUpdateRequest}, TContext>, }
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof updateProblem>>,
         TError,
@@ -127,54 +100,36 @@ export const useUpdateProblem = <TError = ErrorResponse,
       > => {
       return useMutation(getUpdateProblemMutationOptions(options), queryClient);
     }
-    export type createProblemResponse201 = {
-  data: void
-  status: 201
-}
-
-export type createProblemResponseSuccess = (createProblemResponse201) & {
-  headers: Headers;
-};
-;
-
-export type createProblemResponse = (createProblemResponseSuccess)
-
-export const getCreateProblemUrl = () => {
-
-
-
-
-  return `/api/v1/admin/problems`
-}
-
-/**
+    /**
  * 새로운 문제를 생성합니다<br>🔐 <strong>관리자 권한 필요</strong><br>
  * @summary 문제 생성
  */
-export const createProblem = async (problemCreateRequest: ProblemCreateRequest, options?: RequestInit): Promise<createProblemResponse> => {
+export const createProblem = (
+    problemCreateRequest: ProblemCreateRequest,
+ signal?: AbortSignal
+) => {
 
-  return customInstance<createProblemResponse>(getCreateProblemUrl(),
-  {
-    ...options,
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', ...options?.headers },
-    body: JSON.stringify(problemCreateRequest)
-  }
-);}
 
+      return customInstance<void>(
+      {url: `/api/v1/admin/problems`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: problemCreateRequest, signal
+    },
+      );
+    }
 
 
 
 export const getCreateProblemMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createProblem>>, TError,{data: ProblemCreateRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createProblem>>, TError,{data: ProblemCreateRequest}, TContext>, }
 ): UseMutationOptions<Awaited<ReturnType<typeof createProblem>>, TError,{data: ProblemCreateRequest}, TContext> => {
 
 const mutationKey = ['createProblem'];
-const {mutation: mutationOptions, request: requestOptions} = options ?
+const {mutation: mutationOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }, request: undefined};
+      : {mutation: { mutationKey, }};
 
 
 
@@ -182,7 +137,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof createProblem>>, {data: ProblemCreateRequest}> = (props) => {
           const {data} = props ?? {};
 
-          return  createProblem(data,requestOptions)
+          return  createProblem(data,)
         }
 
 
@@ -200,7 +155,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  * @summary 문제 생성
  */
 export const useCreateProblem = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createProblem>>, TError,{data: ProblemCreateRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createProblem>>, TError,{data: ProblemCreateRequest}, TContext>, }
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof createProblem>>,
         TError,
@@ -209,48 +164,21 @@ export const useCreateProblem = <TError = unknown,
       > => {
       return useMutation(getCreateProblemMutationOptions(options), queryClient);
     }
-    export type getProblemResponse200 = {
-  data: ProblemResponse
-  status: 200
-}
-
-export type getProblemResponse404 = {
-  data: ErrorResponse
-  status: 404
-}
-
-export type getProblemResponseSuccess = (getProblemResponse200) & {
-  headers: Headers;
-};
-export type getProblemResponseError = (getProblemResponse404) & {
-  headers: Headers;
-};
-
-export type getProblemResponse = (getProblemResponseSuccess | getProblemResponseError)
-
-export const getGetProblemUrl = (problemId: number,) => {
-
-
-
-
-  return `/api/v1/admin/problems/${problemId}`
-}
-
-/**
+    /**
  * 특정 문제의 상세 정보를 조회합니다<br>🔐 <strong>관리자 권한 필요</strong><br>
  * @summary 문제 조회
  */
-export const getProblem = async (problemId: number, options?: RequestInit): Promise<getProblemResponse> => {
-
-  return customInstance<getProblemResponse>(getGetProblemUrl(problemId),
-  {
-    ...options,
-    method: 'GET'
+export const getProblem = (
+    problemId: number,
+ signal?: AbortSignal
+) => {
 
 
-  }
-);}
-
+      return customInstance<ProblemResponse>(
+      {url: `/api/v1/admin/problems/${problemId}`, method: 'GET', signal
+    },
+      );
+    }
 
 
 
@@ -262,16 +190,16 @@ export const getGetProblemQueryKey = (problemId: number,) => {
     }
 
 
-export const getGetProblemQueryOptions = <TData = Awaited<ReturnType<typeof getProblem>>, TError = ErrorResponse>(problemId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProblem>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+export const getGetProblemQueryOptions = <TData = Awaited<ReturnType<typeof getProblem>>, TError = ErrorResponse>(problemId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProblem>>, TError, TData>>, }
 ) => {
 
-const {query: queryOptions, request: requestOptions} = options ?? {};
+const {query: queryOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetProblemQueryKey(problemId);
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getProblem>>> = ({ signal }) => getProblem(problemId, { signal, ...requestOptions });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getProblem>>> = ({ signal }) => getProblem(problemId, signal);
 
 
 
@@ -291,7 +219,7 @@ export function useGetProblem<TData = Awaited<ReturnType<typeof getProblem>>, TE
           TError,
           Awaited<ReturnType<typeof getProblem>>
         > , 'initialData'
-      >, request?: SecondParameter<typeof customInstance>}
+      >, }
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetProblem<TData = Awaited<ReturnType<typeof getProblem>>, TError = ErrorResponse>(
@@ -301,11 +229,11 @@ export function useGetProblem<TData = Awaited<ReturnType<typeof getProblem>>, TE
           TError,
           Awaited<ReturnType<typeof getProblem>>
         > , 'initialData'
-      >, request?: SecondParameter<typeof customInstance>}
+      >, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetProblem<TData = Awaited<ReturnType<typeof getProblem>>, TError = ErrorResponse>(
- problemId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProblem>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+ problemId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProblem>>, TError, TData>>, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -313,7 +241,7 @@ export function useGetProblem<TData = Awaited<ReturnType<typeof getProblem>>, TE
  */
 
 export function useGetProblem<TData = Awaited<ReturnType<typeof getProblem>>, TError = ErrorResponse>(
- problemId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProblem>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+ problemId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProblem>>, TError, TData>>, }
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
@@ -329,61 +257,34 @@ export function useGetProblem<TData = Awaited<ReturnType<typeof getProblem>>, TE
 
 
 
-export type deleteProblemResponse204 = {
-  data: void
-  status: 204
-}
-
-export type deleteProblemResponse404 = {
-  data: ErrorResponse
-  status: 404
-}
-
-export type deleteProblemResponseSuccess = (deleteProblemResponse204) & {
-  headers: Headers;
-};
-export type deleteProblemResponseError = (deleteProblemResponse404) & {
-  headers: Headers;
-};
-
-export type deleteProblemResponse = (deleteProblemResponseSuccess | deleteProblemResponseError)
-
-export const getDeleteProblemUrl = (problemId: number,) => {
-
-
-
-
-  return `/api/v1/admin/problems/${problemId}`
-}
-
 /**
  * 기존 문제를 삭제합니다<br>🔐 <strong>관리자 권한 필요</strong><br>
  * @summary 문제 삭제
  */
-export const deleteProblem = async (problemId: number, options?: RequestInit): Promise<deleteProblemResponse> => {
-
-  return customInstance<deleteProblemResponse>(getDeleteProblemUrl(problemId),
-  {
-    ...options,
-    method: 'DELETE'
+export const deleteProblem = (
+    problemId: number,
+ signal?: AbortSignal
+) => {
 
 
-  }
-);}
-
+      return customInstance<void>(
+      {url: `/api/v1/admin/problems/${problemId}`, method: 'DELETE', signal
+    },
+      );
+    }
 
 
 
 export const getDeleteProblemMutationOptions = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteProblem>>, TError,{problemId: number}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteProblem>>, TError,{problemId: number}, TContext>, }
 ): UseMutationOptions<Awaited<ReturnType<typeof deleteProblem>>, TError,{problemId: number}, TContext> => {
 
 const mutationKey = ['deleteProblem'];
-const {mutation: mutationOptions, request: requestOptions} = options ?
+const {mutation: mutationOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }, request: undefined};
+      : {mutation: { mutationKey, }};
 
 
 
@@ -391,7 +292,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof deleteProblem>>, {problemId: number}> = (props) => {
           const {problemId} = props ?? {};
 
-          return  deleteProblem(problemId,requestOptions)
+          return  deleteProblem(problemId,)
         }
 
 
@@ -409,7 +310,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  * @summary 문제 삭제
  */
 export const useDeleteProblem = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteProblem>>, TError,{problemId: number}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteProblem>>, TError,{problemId: number}, TContext>, }
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof deleteProblem>>,
         TError,

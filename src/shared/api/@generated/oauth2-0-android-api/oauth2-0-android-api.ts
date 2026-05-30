@@ -26,78 +26,40 @@ import type {
 import { customInstance } from '../../mutator';
 
 
-type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
-
-
-export type oauthLogin1Response200 = {
-  data: LoginResponse
-  status: 200
-}
-
-export type oauthLogin1Response400 = {
-  data: ErrorResponse
-  status: 400
-}
-
-export type oauthLogin1Response500 = {
-  data: ErrorResponse
-  status: 500
-}
-
-export type oauthLogin1ResponseSuccess = (oauthLogin1Response200) & {
-  headers: Headers;
-};
-export type oauthLogin1ResponseError = (oauthLogin1Response400 | oauthLogin1Response500) & {
-  headers: Headers;
-};
-
-export type oauthLogin1Response = (oauthLogin1ResponseSuccess | oauthLogin1ResponseError)
-
-export const getOauthLogin1Url = (params: OauthLogin1Params,) => {
-  const normalizedParams = new URLSearchParams();
-
-  Object.entries(params || {}).forEach(([key, value]) => {
-
-    if (value !== undefined) {
-      normalizedParams.append(key, value === null ? 'null' : value.toString())
-    }
-  });
-
-  const stringifiedParams = normalizedParams.toString();
-
-  return stringifiedParams.length > 0 ? `/api/v1/oauth/android?${stringifiedParams}` : `/api/v1/oauth/android`
-}
 
 /**
  * Android 에서 전달한 OAuth IdToken 및 provider 기반으로 사용자 정보를 조회하고 회원가입/로그인 처리를 합니다. <br>google, kakao 만 해당 api로 로그인 할 수 있습니다(IdToken 방식)IdToken 을 body에 담고, provider는 쿼리 파라미터로 담아서 사용합니다.
  * @summary OAuth 회원가입/로그인 처리
  */
-export const oauthLogin1 = async (idTokenRequest: IdTokenRequest,
-    params: OauthLogin1Params, options?: RequestInit): Promise<oauthLogin1Response> => {
+export const oauthLogin1 = (
+    idTokenRequest: IdTokenRequest,
+    params: OauthLogin1Params,
+ signal?: AbortSignal
+) => {
 
-  return customInstance<oauthLogin1Response>(getOauthLogin1Url(params),
-  {
-    ...options,
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', ...options?.headers },
-    body: JSON.stringify(idTokenRequest)
-  }
-);}
 
+      return customInstance<LoginResponse>(
+      {url: `/api/v1/oauth/android`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: idTokenRequest,
+        params, signal
+    },
+      );
+    }
 
 
 
 export const getOauthLogin1MutationOptions = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof oauthLogin1>>, TError,{data: IdTokenRequest;params: OauthLogin1Params}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof oauthLogin1>>, TError,{data: IdTokenRequest;params: OauthLogin1Params}, TContext>, }
 ): UseMutationOptions<Awaited<ReturnType<typeof oauthLogin1>>, TError,{data: IdTokenRequest;params: OauthLogin1Params}, TContext> => {
 
 const mutationKey = ['oauthLogin1'];
-const {mutation: mutationOptions, request: requestOptions} = options ?
+const {mutation: mutationOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }, request: undefined};
+      : {mutation: { mutationKey, }};
 
 
 
@@ -105,7 +67,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof oauthLogin1>>, {data: IdTokenRequest;params: OauthLogin1Params}> = (props) => {
           const {data,params} = props ?? {};
 
-          return  oauthLogin1(data,params,requestOptions)
+          return  oauthLogin1(data,params,)
         }
 
 
@@ -123,7 +85,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  * @summary OAuth 회원가입/로그인 처리
  */
 export const useOauthLogin1 = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof oauthLogin1>>, TError,{data: IdTokenRequest;params: OauthLogin1Params}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof oauthLogin1>>, TError,{data: IdTokenRequest;params: OauthLogin1Params}, TContext>, }
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof oauthLogin1>>,
         TError,
@@ -132,61 +94,36 @@ export const useOauthLogin1 = <TError = ErrorResponse,
       > => {
       return useMutation(getOauthLogin1MutationOptions(options), queryClient);
     }
-    export type oauthNaverLoginResponse200 = {
-  data: LoginResponse
-  status: 200
-}
-
-export type oauthNaverLoginResponse500 = {
-  data: ErrorResponse
-  status: 500
-}
-
-export type oauthNaverLoginResponseSuccess = (oauthNaverLoginResponse200) & {
-  headers: Headers;
-};
-export type oauthNaverLoginResponseError = (oauthNaverLoginResponse500) & {
-  headers: Headers;
-};
-
-export type oauthNaverLoginResponse = (oauthNaverLoginResponseSuccess | oauthNaverLoginResponseError)
-
-export const getOauthNaverLoginUrl = () => {
-
-
-
-
-  return `/api/v1/oauth/android/naver`
-}
-
-/**
+    /**
  * Android에서 전달한 네이버 사용자 정보를 기반으로 회원가입/로그인 처리를 합니다. <br>네이버는 IdToken 방식을 지원하지 않기 때문에 Android에서 직접 사용자 정보(providerId, email, nickname)를 전달합니다.
  * @summary 네이버 OAuth 회원가입/로그인 처리
  */
-export const oauthNaverLogin = async (naverAndroidUserInfoRequest: NaverAndroidUserInfoRequest, options?: RequestInit): Promise<oauthNaverLoginResponse> => {
+export const oauthNaverLogin = (
+    naverAndroidUserInfoRequest: NaverAndroidUserInfoRequest,
+ signal?: AbortSignal
+) => {
 
-  return customInstance<oauthNaverLoginResponse>(getOauthNaverLoginUrl(),
-  {
-    ...options,
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', ...options?.headers },
-    body: JSON.stringify(naverAndroidUserInfoRequest)
-  }
-);}
 
+      return customInstance<LoginResponse>(
+      {url: `/api/v1/oauth/android/naver`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: naverAndroidUserInfoRequest, signal
+    },
+      );
+    }
 
 
 
 export const getOauthNaverLoginMutationOptions = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof oauthNaverLogin>>, TError,{data: NaverAndroidUserInfoRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof oauthNaverLogin>>, TError,{data: NaverAndroidUserInfoRequest}, TContext>, }
 ): UseMutationOptions<Awaited<ReturnType<typeof oauthNaverLogin>>, TError,{data: NaverAndroidUserInfoRequest}, TContext> => {
 
 const mutationKey = ['oauthNaverLogin'];
-const {mutation: mutationOptions, request: requestOptions} = options ?
+const {mutation: mutationOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }, request: undefined};
+      : {mutation: { mutationKey, }};
 
 
 
@@ -194,7 +131,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof oauthNaverLogin>>, {data: NaverAndroidUserInfoRequest}> = (props) => {
           const {data} = props ?? {};
 
-          return  oauthNaverLogin(data,requestOptions)
+          return  oauthNaverLogin(data,)
         }
 
 
@@ -212,7 +149,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  * @summary 네이버 OAuth 회원가입/로그인 처리
  */
 export const useOauthNaverLogin = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof oauthNaverLogin>>, TError,{data: NaverAndroidUserInfoRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof oauthNaverLogin>>, TError,{data: NaverAndroidUserInfoRequest}, TContext>, }
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof oauthNaverLogin>>,
         TError,

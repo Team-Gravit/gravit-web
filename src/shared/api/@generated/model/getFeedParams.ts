@@ -6,10 +6,9 @@
  * OpenAPI spec version: 1.0.0
  */
 
-export interface LastSeasonPopupDto {
-  rank?: number;
-  leagueName: string;
-  profileImgNumber?: number;
-  nextLeagueName: string;
-  nextStartLp?: number;
-}
+export type GetFeedParams = {
+/**
+ * 0부터 시작하는 페이지 인덱스
+ */
+page?: number;
+};

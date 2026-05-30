@@ -37,75 +37,38 @@ import type {
 import { customInstance } from '../../mutator';
 
 
-type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
-
-
-export type onboardUserResponse200 = {
-  data: UserResponse
-  status: 200
-}
-
-export type onboardUserResponse400 = {
-  data: ErrorResponse
-  status: 400
-}
-
-export type onboardUserResponse404 = {
-  data: ErrorResponse
-  status: 404
-}
-
-export type onboardUserResponse500 = {
-  data: ErrorResponse
-  status: 500
-}
-
-export type onboardUserResponseSuccess = (onboardUserResponse200) & {
-  headers: Headers;
-};
-export type onboardUserResponseError = (onboardUserResponse400 | onboardUserResponse404 | onboardUserResponse500) & {
-  headers: Headers;
-};
-
-export type onboardUserResponse = (onboardUserResponseSuccess | onboardUserResponseError)
-
-export const getOnboardUserUrl = () => {
-
-
-
-
-  return `/api/v1/users/onboarding`
-}
 
 /**
  * 최초 로그인 시 사용자 온보딩 정보를 저장합니다<br>🔐 <strong>Jwt 필요</strong><br>
  * @summary 온보딩 정보 등록
  */
-export const onboardUser = async (onboardingRequest: OnboardingRequest, options?: RequestInit): Promise<onboardUserResponse> => {
+export const onboardUser = (
+    onboardingRequest: OnboardingRequest,
+ signal?: AbortSignal
+) => {
 
-  return customInstance<onboardUserResponse>(getOnboardUserUrl(),
-  {
-    ...options,
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', ...options?.headers },
-    body: JSON.stringify(onboardingRequest)
-  }
-);}
 
+      return customInstance<UserResponse>(
+      {url: `/api/v1/users/onboarding`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: onboardingRequest, signal
+    },
+      );
+    }
 
 
 
 export const getOnboardUserMutationOptions = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof onboardUser>>, TError,{data: OnboardingRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof onboardUser>>, TError,{data: OnboardingRequest}, TContext>, }
 ): UseMutationOptions<Awaited<ReturnType<typeof onboardUser>>, TError,{data: OnboardingRequest}, TContext> => {
 
 const mutationKey = ['onboardUser'];
-const {mutation: mutationOptions, request: requestOptions} = options ?
+const {mutation: mutationOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }, request: undefined};
+      : {mutation: { mutationKey, }};
 
 
 
@@ -113,7 +76,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof onboardUser>>, {data: OnboardingRequest}> = (props) => {
           const {data} = props ?? {};
 
-          return  onboardUser(data,requestOptions)
+          return  onboardUser(data,)
         }
 
 
@@ -131,7 +94,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  * @summary 온보딩 정보 등록
  */
 export const useOnboardUser = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof onboardUser>>, TError,{data: OnboardingRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof onboardUser>>, TError,{data: OnboardingRequest}, TContext>, }
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof onboardUser>>,
         TError,
@@ -140,53 +103,21 @@ export const useOnboardUser = <TError = ErrorResponse,
       > => {
       return useMutation(getOnboardUserMutationOptions(options), queryClient);
     }
-    export type getUserResponse200 = {
-  data: UserResponse
-  status: 200
-}
-
-export type getUserResponse404 = {
-  data: ErrorResponse
-  status: 404
-}
-
-export type getUserResponse500 = {
-  data: ErrorResponse
-  status: 500
-}
-
-export type getUserResponseSuccess = (getUserResponse200) & {
-  headers: Headers;
-};
-export type getUserResponseError = (getUserResponse404 | getUserResponse500) & {
-  headers: Headers;
-};
-
-export type getUserResponse = (getUserResponseSuccess | getUserResponseError)
-
-export const getGetUserUrl = () => {
-
-
-
-
-  return `/api/v1/users`
-}
-
-/**
+    /**
  * 로그인한 사용자의 정보를 조회합니다<br>🔐 <strong>Jwt 필요</strong><br>
  * @summary 유저 정보 조회
  */
-export const getUser = async ( options?: RequestInit): Promise<getUserResponse> => {
+export const getUser = (
 
-  return customInstance<getUserResponse>(getGetUserUrl(),
-  {
-    ...options,
-    method: 'GET'
+ signal?: AbortSignal
+) => {
 
 
-  }
-);}
-
+      return customInstance<UserResponse>(
+      {url: `/api/v1/users`, method: 'GET', signal
+    },
+      );
+    }
 
 
 
@@ -198,16 +129,16 @@ export const getGetUserQueryKey = () => {
     }
 
 
-export const getGetUserQueryOptions = <TData = Awaited<ReturnType<typeof getUser>>, TError = ErrorResponse>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUser>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+export const getGetUserQueryOptions = <TData = Awaited<ReturnType<typeof getUser>>, TError = ErrorResponse>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUser>>, TError, TData>>, }
 ) => {
 
-const {query: queryOptions, request: requestOptions} = options ?? {};
+const {query: queryOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetUserQueryKey();
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUser>>> = ({ signal }) => getUser({ signal, ...requestOptions });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUser>>> = ({ signal }) => getUser(signal);
 
 
 
@@ -227,7 +158,7 @@ export function useGetUser<TData = Awaited<ReturnType<typeof getUser>>, TError =
           TError,
           Awaited<ReturnType<typeof getUser>>
         > , 'initialData'
-      >, request?: SecondParameter<typeof customInstance>}
+      >, }
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetUser<TData = Awaited<ReturnType<typeof getUser>>, TError = ErrorResponse>(
@@ -237,11 +168,11 @@ export function useGetUser<TData = Awaited<ReturnType<typeof getUser>>, TError =
           TError,
           Awaited<ReturnType<typeof getUser>>
         > , 'initialData'
-      >, request?: SecondParameter<typeof customInstance>}
+      >, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetUser<TData = Awaited<ReturnType<typeof getUser>>, TError = ErrorResponse>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUser>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUser>>, TError, TData>>, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -249,7 +180,7 @@ export function useGetUser<TData = Awaited<ReturnType<typeof getUser>>, TError =
  */
 
 export function useGetUser<TData = Awaited<ReturnType<typeof getUser>>, TError = ErrorResponse>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUser>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUser>>, TError, TData>>, }
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
@@ -265,71 +196,36 @@ export function useGetUser<TData = Awaited<ReturnType<typeof getUser>>, TError =
 
 
 
-export type updateProfileResponse200 = {
-  data: UserResponse
-  status: 200
-}
-
-export type updateProfileResponse400 = {
-  data: ErrorResponse
-  status: 400
-}
-
-export type updateProfileResponse404 = {
-  data: ErrorResponse
-  status: 404
-}
-
-export type updateProfileResponse500 = {
-  data: ErrorResponse
-  status: 500
-}
-
-export type updateProfileResponseSuccess = (updateProfileResponse200) & {
-  headers: Headers;
-};
-export type updateProfileResponseError = (updateProfileResponse400 | updateProfileResponse404 | updateProfileResponse500) & {
-  headers: Headers;
-};
-
-export type updateProfileResponse = (updateProfileResponseSuccess | updateProfileResponseError)
-
-export const getUpdateProfileUrl = () => {
-
-
-
-
-  return `/api/v1/users`
-}
-
 /**
  * 닉네임, 프로필 사진 등 사용자의 프로필 정보를 수정합니다<br>🔐 <strong>Jwt 필요</strong><br>
  * @summary 프로필 수정
  */
-export const updateProfile = async (userProfileUpdateRequest: UserProfileUpdateRequest, options?: RequestInit): Promise<updateProfileResponse> => {
+export const updateProfile = (
+    userProfileUpdateRequest: UserProfileUpdateRequest,
+ signal?: AbortSignal
+) => {
 
-  return customInstance<updateProfileResponse>(getUpdateProfileUrl(),
-  {
-    ...options,
-    method: 'PATCH',
-    headers: { 'Content-Type': 'application/json', ...options?.headers },
-    body: JSON.stringify(userProfileUpdateRequest)
-  }
-);}
 
+      return customInstance<UserResponse>(
+      {url: `/api/v1/users`, method: 'PATCH',
+      headers: {'Content-Type': 'application/json', },
+      data: userProfileUpdateRequest, signal
+    },
+      );
+    }
 
 
 
 export const getUpdateProfileMutationOptions = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateProfile>>, TError,{data: UserProfileUpdateRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateProfile>>, TError,{data: UserProfileUpdateRequest}, TContext>, }
 ): UseMutationOptions<Awaited<ReturnType<typeof updateProfile>>, TError,{data: UserProfileUpdateRequest}, TContext> => {
 
 const mutationKey = ['updateProfile'];
-const {mutation: mutationOptions, request: requestOptions} = options ?
+const {mutation: mutationOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }, request: undefined};
+      : {mutation: { mutationKey, }};
 
 
 
@@ -337,7 +233,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof updateProfile>>, {data: UserProfileUpdateRequest}> = (props) => {
           const {data} = props ?? {};
 
-          return  updateProfile(data,requestOptions)
+          return  updateProfile(data,)
         }
 
 
@@ -355,7 +251,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  * @summary 프로필 수정
  */
 export const useUpdateProfile = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateProfile>>, TError,{data: UserProfileUpdateRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateProfile>>, TError,{data: UserProfileUpdateRequest}, TContext>, }
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof updateProfile>>,
         TError,
@@ -364,76 +260,38 @@ export const useUpdateProfile = <TError = ErrorResponse,
       > => {
       return useMutation(getUpdateProfileMutationOptions(options), queryClient);
     }
-    export type restoreUserResponse200 = {
-  data: void
-  status: 200
-}
-
-export type restoreUserResponse404 = {
-  data: ErrorResponse
-  status: 404
-}
-
-export type restoreUserResponse500 = {
-  data: ErrorResponse
-  status: 500
-}
-
-export type restoreUserResponseSuccess = (restoreUserResponse200) & {
-  headers: Headers;
-};
-export type restoreUserResponseError = (restoreUserResponse404 | restoreUserResponse500) & {
-  headers: Headers;
-};
-
-export type restoreUserResponse = (restoreUserResponseSuccess | restoreUserResponseError)
-
-export const getRestoreUserUrl = (params: RestoreUserParams,) => {
-  const normalizedParams = new URLSearchParams();
-
-  Object.entries(params || {}).forEach(([key, value]) => {
-
-    if (value !== undefined) {
-      normalizedParams.append(key, value === null ? 'null' : value.toString())
-    }
-  });
-
-  const stringifiedParams = normalizedParams.toString();
-
-  return stringifiedParams.length > 0 ? `/api/v1/users/restore?${stringifiedParams}` : `/api/v1/users/restore`
-}
-
-/**
+    /**
  * 소셜 providerId로 소프트 삭제된 계정을 복구합니다.<br>
 - 이미 활성 상태여도 200(OK)으로 응답합니다(멱등적 동작).<br>
 - 예시 providerId: <code>google 1234567890</code>
 
  * @summary 소프트 삭제 계정 복구
  */
-export const restoreUser = async (params: RestoreUserParams, options?: RequestInit): Promise<restoreUserResponse> => {
-
-  return customInstance<restoreUserResponse>(getRestoreUserUrl(params),
-  {
-    ...options,
-    method: 'PATCH'
+export const restoreUser = (
+    params: RestoreUserParams,
+ signal?: AbortSignal
+) => {
 
 
-  }
-);}
-
+      return customInstance<void>(
+      {url: `/api/v1/users/restore`, method: 'PATCH',
+        params, signal
+    },
+      );
+    }
 
 
 
 export const getRestoreUserMutationOptions = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof restoreUser>>, TError,{params: RestoreUserParams}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof restoreUser>>, TError,{params: RestoreUserParams}, TContext>, }
 ): UseMutationOptions<Awaited<ReturnType<typeof restoreUser>>, TError,{params: RestoreUserParams}, TContext> => {
 
 const mutationKey = ['restoreUser'];
-const {mutation: mutationOptions, request: requestOptions} = options ?
+const {mutation: mutationOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }, request: undefined};
+      : {mutation: { mutationKey, }};
 
 
 
@@ -441,7 +299,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof restoreUser>>, {params: RestoreUserParams}> = (props) => {
           const {params} = props ?? {};
 
-          return  restoreUser(params,requestOptions)
+          return  restoreUser(params,)
         }
 
 
@@ -459,7 +317,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  * @summary 소프트 삭제 계정 복구
  */
 export const useRestoreUser = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof restoreUser>>, TError,{params: RestoreUserParams}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof restoreUser>>, TError,{params: RestoreUserParams}, TContext>, }
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof restoreUser>>,
         TError,
@@ -468,53 +326,21 @@ export const useRestoreUser = <TError = ErrorResponse,
       > => {
       return useMutation(getRestoreUserMutationOptions(options), queryClient);
     }
-    export type getMyPageResponse200 = {
-  data: MyPageResponse
-  status: 200
-}
-
-export type getMyPageResponse404 = {
-  data: ErrorResponse
-  status: 404
-}
-
-export type getMyPageResponse500 = {
-  data: ErrorResponse
-  status: 500
-}
-
-export type getMyPageResponseSuccess = (getMyPageResponse200) & {
-  headers: Headers;
-};
-export type getMyPageResponseError = (getMyPageResponse404 | getMyPageResponse500) & {
-  headers: Headers;
-};
-
-export type getMyPageResponse = (getMyPageResponseSuccess | getMyPageResponseError)
-
-export const getGetMyPageUrl = () => {
-
-
-
-
-  return `/api/v1/users/my-page`
-}
-
-/**
+    /**
  * 사용자의 마이페이지 정보를 조회합니다<br>🔐 <strong>Jwt 필요</strong><br>
  * @summary 마이페이지 조회
  */
-export const getMyPage = async ( options?: RequestInit): Promise<getMyPageResponse> => {
+export const getMyPage = (
 
-  return customInstance<getMyPageResponse>(getGetMyPageUrl(),
-  {
-    ...options,
-    method: 'GET'
+ signal?: AbortSignal
+) => {
 
 
-  }
-);}
-
+      return customInstance<MyPageResponse>(
+      {url: `/api/v1/users/my-page`, method: 'GET', signal
+    },
+      );
+    }
 
 
 
@@ -526,16 +352,16 @@ export const getGetMyPageQueryKey = () => {
     }
 
 
-export const getGetMyPageQueryOptions = <TData = Awaited<ReturnType<typeof getMyPage>>, TError = ErrorResponse>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyPage>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+export const getGetMyPageQueryOptions = <TData = Awaited<ReturnType<typeof getMyPage>>, TError = ErrorResponse>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyPage>>, TError, TData>>, }
 ) => {
 
-const {query: queryOptions, request: requestOptions} = options ?? {};
+const {query: queryOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetMyPageQueryKey();
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getMyPage>>> = ({ signal }) => getMyPage({ signal, ...requestOptions });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getMyPage>>> = ({ signal }) => getMyPage(signal);
 
 
 
@@ -555,7 +381,7 @@ export function useGetMyPage<TData = Awaited<ReturnType<typeof getMyPage>>, TErr
           TError,
           Awaited<ReturnType<typeof getMyPage>>
         > , 'initialData'
-      >, request?: SecondParameter<typeof customInstance>}
+      >, }
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetMyPage<TData = Awaited<ReturnType<typeof getMyPage>>, TError = ErrorResponse>(
@@ -565,11 +391,11 @@ export function useGetMyPage<TData = Awaited<ReturnType<typeof getMyPage>>, TErr
           TError,
           Awaited<ReturnType<typeof getMyPage>>
         > , 'initialData'
-      >, request?: SecondParameter<typeof customInstance>}
+      >, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetMyPage<TData = Awaited<ReturnType<typeof getMyPage>>, TError = ErrorResponse>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyPage>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyPage>>, TError, TData>>, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -577,7 +403,7 @@ export function useGetMyPage<TData = Awaited<ReturnType<typeof getMyPage>>, TErr
  */
 
 export function useGetMyPage<TData = Awaited<ReturnType<typeof getMyPage>>, TError = ErrorResponse>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyPage>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyPage>>, TError, TData>>, }
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
@@ -593,53 +419,21 @@ export function useGetMyPage<TData = Awaited<ReturnType<typeof getMyPage>>, TErr
 
 
 
-export type getMainPageResponse200 = {
-  data: MainPageResponse
-  status: 200
-}
-
-export type getMainPageResponse404 = {
-  data: ErrorResponse
-  status: 404
-}
-
-export type getMainPageResponse500 = {
-  data: ErrorResponse
-  status: 500
-}
-
-export type getMainPageResponseSuccess = (getMainPageResponse200) & {
-  headers: Headers;
-};
-export type getMainPageResponseError = (getMainPageResponse404 | getMainPageResponse500) & {
-  headers: Headers;
-};
-
-export type getMainPageResponse = (getMainPageResponseSuccess | getMainPageResponseError)
-
-export const getGetMainPageUrl = () => {
-
-
-
-
-  return `/api/v1/users/main-page`
-}
-
 /**
  * 사용자의 메인 페이지 정보를 조회합니다<br>닉네임, 리그명, 레벨 정보, 미션 정보, 학습 정보를 포함합니다<br>🔐 <strong>Jwt 필요</strong><br>
  * @summary 메인 페이지 조회
  */
-export const getMainPage = async ( options?: RequestInit): Promise<getMainPageResponse> => {
+export const getMainPage = (
 
-  return customInstance<getMainPageResponse>(getGetMainPageUrl(),
-  {
-    ...options,
-    method: 'GET'
+ signal?: AbortSignal
+) => {
 
 
-  }
-);}
-
+      return customInstance<MainPageResponse>(
+      {url: `/api/v1/users/main-page`, method: 'GET', signal
+    },
+      );
+    }
 
 
 
@@ -651,16 +445,16 @@ export const getGetMainPageQueryKey = () => {
     }
 
 
-export const getGetMainPageQueryOptions = <TData = Awaited<ReturnType<typeof getMainPage>>, TError = ErrorResponse>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMainPage>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+export const getGetMainPageQueryOptions = <TData = Awaited<ReturnType<typeof getMainPage>>, TError = ErrorResponse>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMainPage>>, TError, TData>>, }
 ) => {
 
-const {query: queryOptions, request: requestOptions} = options ?? {};
+const {query: queryOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetMainPageQueryKey();
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getMainPage>>> = ({ signal }) => getMainPage({ signal, ...requestOptions });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getMainPage>>> = ({ signal }) => getMainPage(signal);
 
 
 
@@ -680,7 +474,7 @@ export function useGetMainPage<TData = Awaited<ReturnType<typeof getMainPage>>, 
           TError,
           Awaited<ReturnType<typeof getMainPage>>
         > , 'initialData'
-      >, request?: SecondParameter<typeof customInstance>}
+      >, }
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetMainPage<TData = Awaited<ReturnType<typeof getMainPage>>, TError = ErrorResponse>(
@@ -690,11 +484,11 @@ export function useGetMainPage<TData = Awaited<ReturnType<typeof getMainPage>>, 
           TError,
           Awaited<ReturnType<typeof getMainPage>>
         > , 'initialData'
-      >, request?: SecondParameter<typeof customInstance>}
+      >, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetMainPage<TData = Awaited<ReturnType<typeof getMainPage>>, TError = ErrorResponse>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMainPage>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMainPage>>, TError, TData>>, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -702,7 +496,7 @@ export function useGetMainPage<TData = Awaited<ReturnType<typeof getMainPage>>, 
  */
 
 export function useGetMainPage<TData = Awaited<ReturnType<typeof getMainPage>>, TError = ErrorResponse>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMainPage>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMainPage>>, TError, TData>>, }
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 

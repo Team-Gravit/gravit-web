@@ -18,54 +18,32 @@ import type {
 import { customInstance } from '../../mutator';
 
 
-type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
 
+export const cleanSeason = (
 
-export type cleanSeasonResponse200 = {
-  data: void
-  status: 200
-}
-
-export type cleanSeasonResponseSuccess = (cleanSeasonResponse200) & {
-  headers: Headers;
-};
-;
-
-export type cleanSeasonResponse = (cleanSeasonResponseSuccess)
-
-export const getCleanSeasonUrl = () => {
+ signal?: AbortSignal
+) => {
 
 
-
-
-  return `/api/v1/test/season/clean`
-}
-
-export const cleanSeason = async ( options?: RequestInit): Promise<cleanSeasonResponse> => {
-
-  return customInstance<cleanSeasonResponse>(getCleanSeasonUrl(),
-  {
-    ...options,
-    method: 'POST'
-
-
-  }
-);}
-
+      return customInstance<void>(
+      {url: `/api/v1/test/season/clean`, method: 'POST', signal
+    },
+      );
+    }
 
 
 
 export const getCleanSeasonMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof cleanSeason>>, TError,void, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof cleanSeason>>, TError,void, TContext>, }
 ): UseMutationOptions<Awaited<ReturnType<typeof cleanSeason>>, TError,void, TContext> => {
 
 const mutationKey = ['cleanSeason'];
-const {mutation: mutationOptions, request: requestOptions} = options ?
+const {mutation: mutationOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }, request: undefined};
+      : {mutation: { mutationKey, }};
 
 
 
@@ -73,7 +51,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof cleanSeason>>, void> = () => {
 
 
-          return  cleanSeason(requestOptions)
+          return  cleanSeason()
         }
 
 
@@ -88,7 +66,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
     export type CleanSeasonMutationError = unknown
 
     export const useCleanSeason = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof cleanSeason>>, TError,void, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof cleanSeason>>, TError,void, TContext>, }
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof cleanSeason>>,
         TError,

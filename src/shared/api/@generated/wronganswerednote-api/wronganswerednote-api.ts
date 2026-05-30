@@ -33,52 +33,23 @@ import type {
 import { customInstance } from '../../mutator';
 
 
-type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
-
-
-export type getAllWrongAnsweredProblemInUnitResponse200 = {
-  data: WrongAnsweredProblemsResponse
-  status: 200
-}
-
-export type getAllWrongAnsweredProblemInUnitResponse404 = {
-  data: ErrorResponse
-  status: 404
-}
-
-export type getAllWrongAnsweredProblemInUnitResponseSuccess = (getAllWrongAnsweredProblemInUnitResponse200) & {
-  headers: Headers;
-};
-export type getAllWrongAnsweredProblemInUnitResponseError = (getAllWrongAnsweredProblemInUnitResponse404) & {
-  headers: Headers;
-};
-
-export type getAllWrongAnsweredProblemInUnitResponse = (getAllWrongAnsweredProblemInUnitResponseSuccess | getAllWrongAnsweredProblemInUnitResponseError)
-
-export const getGetAllWrongAnsweredProblemInUnitUrl = (unitId: number,) => {
-
-
-
-
-  return `/api/v1/wrong-answered-notes/${unitId}`
-}
 
 /**
  * 특정 유닛에서 사용자가 틀린 문제 목록을 조회합니다.<br>🔐 <strong>Jwt 필요</strong><br>
  * @summary 유닛 내 오답 문제 조회
  */
-export const getAllWrongAnsweredProblemInUnit = async (unitId: number, options?: RequestInit): Promise<getAllWrongAnsweredProblemInUnitResponse> => {
-
-  return customInstance<getAllWrongAnsweredProblemInUnitResponse>(getGetAllWrongAnsweredProblemInUnitUrl(unitId),
-  {
-    ...options,
-    method: 'GET'
+export const getAllWrongAnsweredProblemInUnit = (
+    unitId: number,
+ signal?: AbortSignal
+) => {
 
 
-  }
-);}
-
+      return customInstance<WrongAnsweredProblemsResponse>(
+      {url: `/api/v1/wrong-answered-notes/${unitId}`, method: 'GET', signal
+    },
+      );
+    }
 
 
 
@@ -90,16 +61,16 @@ export const getGetAllWrongAnsweredProblemInUnitQueryKey = (unitId: number,) => 
     }
 
 
-export const getGetAllWrongAnsweredProblemInUnitQueryOptions = <TData = Awaited<ReturnType<typeof getAllWrongAnsweredProblemInUnit>>, TError = ErrorResponse>(unitId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllWrongAnsweredProblemInUnit>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+export const getGetAllWrongAnsweredProblemInUnitQueryOptions = <TData = Awaited<ReturnType<typeof getAllWrongAnsweredProblemInUnit>>, TError = ErrorResponse>(unitId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllWrongAnsweredProblemInUnit>>, TError, TData>>, }
 ) => {
 
-const {query: queryOptions, request: requestOptions} = options ?? {};
+const {query: queryOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetAllWrongAnsweredProblemInUnitQueryKey(unitId);
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getAllWrongAnsweredProblemInUnit>>> = ({ signal }) => getAllWrongAnsweredProblemInUnit(unitId, { signal, ...requestOptions });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getAllWrongAnsweredProblemInUnit>>> = ({ signal }) => getAllWrongAnsweredProblemInUnit(unitId, signal);
 
 
 
@@ -119,7 +90,7 @@ export function useGetAllWrongAnsweredProblemInUnit<TData = Awaited<ReturnType<t
           TError,
           Awaited<ReturnType<typeof getAllWrongAnsweredProblemInUnit>>
         > , 'initialData'
-      >, request?: SecondParameter<typeof customInstance>}
+      >, }
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetAllWrongAnsweredProblemInUnit<TData = Awaited<ReturnType<typeof getAllWrongAnsweredProblemInUnit>>, TError = ErrorResponse>(
@@ -129,11 +100,11 @@ export function useGetAllWrongAnsweredProblemInUnit<TData = Awaited<ReturnType<t
           TError,
           Awaited<ReturnType<typeof getAllWrongAnsweredProblemInUnit>>
         > , 'initialData'
-      >, request?: SecondParameter<typeof customInstance>}
+      >, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetAllWrongAnsweredProblemInUnit<TData = Awaited<ReturnType<typeof getAllWrongAnsweredProblemInUnit>>, TError = ErrorResponse>(
- unitId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllWrongAnsweredProblemInUnit>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+ unitId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllWrongAnsweredProblemInUnit>>, TError, TData>>, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -141,7 +112,7 @@ export function useGetAllWrongAnsweredProblemInUnit<TData = Awaited<ReturnType<t
  */
 
 export function useGetAllWrongAnsweredProblemInUnit<TData = Awaited<ReturnType<typeof getAllWrongAnsweredProblemInUnit>>, TError = ErrorResponse>(
- unitId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllWrongAnsweredProblemInUnit>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+ unitId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllWrongAnsweredProblemInUnit>>, TError, TData>>, }
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
@@ -157,54 +128,36 @@ export function useGetAllWrongAnsweredProblemInUnit<TData = Awaited<ReturnType<t
 
 
 
-export type deleteWrongAnsweredProblemResponse204 = {
-  data: void
-  status: 204
-}
-
-export type deleteWrongAnsweredProblemResponseSuccess = (deleteWrongAnsweredProblemResponse204) & {
-  headers: Headers;
-};
-;
-
-export type deleteWrongAnsweredProblemResponse = (deleteWrongAnsweredProblemResponseSuccess)
-
-export const getDeleteWrongAnsweredProblemUrl = () => {
-
-
-
-
-  return `/api/v1/wrong-answered-notes`
-}
-
 /**
  * 특정 문제의 오답노트를 삭제합니다.<br>🔐 <strong>Jwt 필요</strong><br>
  * @summary 오답노트 삭제
  */
-export const deleteWrongAnsweredProblem = async (wrongAnsweredNoteDeleteRequest: WrongAnsweredNoteDeleteRequest, options?: RequestInit): Promise<deleteWrongAnsweredProblemResponse> => {
+export const deleteWrongAnsweredProblem = (
+    wrongAnsweredNoteDeleteRequest: WrongAnsweredNoteDeleteRequest,
+ signal?: AbortSignal
+) => {
 
-  return customInstance<deleteWrongAnsweredProblemResponse>(getDeleteWrongAnsweredProblemUrl(),
-  {
-    ...options,
-    method: 'DELETE',
-    headers: { 'Content-Type': 'application/json', ...options?.headers },
-    body: JSON.stringify(wrongAnsweredNoteDeleteRequest)
-  }
-);}
 
+      return customInstance<void>(
+      {url: `/api/v1/wrong-answered-notes`, method: 'DELETE',
+      headers: {'Content-Type': 'application/json', },
+      data: wrongAnsweredNoteDeleteRequest, signal
+    },
+      );
+    }
 
 
 
 export const getDeleteWrongAnsweredProblemMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteWrongAnsweredProblem>>, TError,{data: WrongAnsweredNoteDeleteRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteWrongAnsweredProblem>>, TError,{data: WrongAnsweredNoteDeleteRequest}, TContext>, }
 ): UseMutationOptions<Awaited<ReturnType<typeof deleteWrongAnsweredProblem>>, TError,{data: WrongAnsweredNoteDeleteRequest}, TContext> => {
 
 const mutationKey = ['deleteWrongAnsweredProblem'];
-const {mutation: mutationOptions, request: requestOptions} = options ?
+const {mutation: mutationOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }, request: undefined};
+      : {mutation: { mutationKey, }};
 
 
 
@@ -212,7 +165,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof deleteWrongAnsweredProblem>>, {data: WrongAnsweredNoteDeleteRequest}> = (props) => {
           const {data} = props ?? {};
 
-          return  deleteWrongAnsweredProblem(data,requestOptions)
+          return  deleteWrongAnsweredProblem(data,)
         }
 
 
@@ -230,7 +183,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  * @summary 오답노트 삭제
  */
 export const useDeleteWrongAnsweredProblem = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteWrongAnsweredProblem>>, TError,{data: WrongAnsweredNoteDeleteRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteWrongAnsweredProblem>>, TError,{data: WrongAnsweredNoteDeleteRequest}, TContext>, }
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof deleteWrongAnsweredProblem>>,
         TError,

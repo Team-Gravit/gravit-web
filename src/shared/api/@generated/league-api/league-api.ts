@@ -29,57 +29,23 @@ import type {
 import { customInstance } from '../../mutator';
 
 
-type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
-
-
-export type getLeagueResponse200 = {
-  data: LeagueResponse
-  status: 200
-}
-
-export type getLeagueResponse404 = {
-  data: ErrorResponse
-  status: 404
-}
-
-export type getLeagueResponse500 = {
-  data: ErrorResponse
-  status: 500
-}
-
-export type getLeagueResponseSuccess = (getLeagueResponse200) & {
-  headers: Headers;
-};
-export type getLeagueResponseError = (getLeagueResponse404 | getLeagueResponse500) & {
-  headers: Headers;
-};
-
-export type getLeagueResponse = (getLeagueResponseSuccess | getLeagueResponseError)
-
-export const getGetLeagueUrl = (leagueId: number,) => {
-
-
-
-
-  return `/api/v1/league/${leagueId}`
-}
 
 /**
  * 리그 ID로 리그 정보를 조회합니다<br> <strong>리그 단건 조회는 현재 디자인상 사용하지 않아도 됩니다</strong>
  * @summary 리그 단건 조회
  */
-export const getLeague = async (leagueId: number, options?: RequestInit): Promise<getLeagueResponse> => {
-
-  return customInstance<getLeagueResponse>(getGetLeagueUrl(leagueId),
-  {
-    ...options,
-    method: 'GET'
+export const getLeague = (
+    leagueId: number,
+ signal?: AbortSignal
+) => {
 
 
-  }
-);}
-
+      return customInstance<LeagueResponse>(
+      {url: `/api/v1/league/${leagueId}`, method: 'GET', signal
+    },
+      );
+    }
 
 
 
@@ -91,16 +57,16 @@ export const getGetLeagueQueryKey = (leagueId: number,) => {
     }
 
 
-export const getGetLeagueQueryOptions = <TData = Awaited<ReturnType<typeof getLeague>>, TError = ErrorResponse>(leagueId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLeague>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+export const getGetLeagueQueryOptions = <TData = Awaited<ReturnType<typeof getLeague>>, TError = ErrorResponse>(leagueId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLeague>>, TError, TData>>, }
 ) => {
 
-const {query: queryOptions, request: requestOptions} = options ?? {};
+const {query: queryOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetLeagueQueryKey(leagueId);
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getLeague>>> = ({ signal }) => getLeague(leagueId, { signal, ...requestOptions });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getLeague>>> = ({ signal }) => getLeague(leagueId, signal);
 
 
 
@@ -120,7 +86,7 @@ export function useGetLeague<TData = Awaited<ReturnType<typeof getLeague>>, TErr
           TError,
           Awaited<ReturnType<typeof getLeague>>
         > , 'initialData'
-      >, request?: SecondParameter<typeof customInstance>}
+      >, }
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetLeague<TData = Awaited<ReturnType<typeof getLeague>>, TError = ErrorResponse>(
@@ -130,11 +96,11 @@ export function useGetLeague<TData = Awaited<ReturnType<typeof getLeague>>, TErr
           TError,
           Awaited<ReturnType<typeof getLeague>>
         > , 'initialData'
-      >, request?: SecondParameter<typeof customInstance>}
+      >, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetLeague<TData = Awaited<ReturnType<typeof getLeague>>, TError = ErrorResponse>(
- leagueId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLeague>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+ leagueId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLeague>>, TError, TData>>, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -142,7 +108,7 @@ export function useGetLeague<TData = Awaited<ReturnType<typeof getLeague>>, TErr
  */
 
 export function useGetLeague<TData = Awaited<ReturnType<typeof getLeague>>, TError = ErrorResponse>(
- leagueId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLeague>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+ leagueId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLeague>>, TError, TData>>, }
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
@@ -158,53 +124,21 @@ export function useGetLeague<TData = Awaited<ReturnType<typeof getLeague>>, TErr
 
 
 
-export type enterHomeResponse200 = {
-  data: LeagueHomeResponse
-  status: 200
-}
-
-export type enterHomeResponse404 = {
-  data: ErrorResponse
-  status: 404
-}
-
-export type enterHomeResponse500 = {
-  data: ErrorResponse
-  status: 500
-}
-
-export type enterHomeResponseSuccess = (enterHomeResponse200) & {
-  headers: Headers;
-};
-export type enterHomeResponseError = (enterHomeResponse404 | enterHomeResponse500) & {
-  headers: Headers;
-};
-
-export type enterHomeResponse = (enterHomeResponseSuccess | enterHomeResponseError)
-
-export const getEnterHomeUrl = () => {
-
-
-
-
-  return `/api/v1/league/home`
-}
-
 /**
  * 리그 페이지에 필요한 시즌 정보 및 팝업 데이터를 리턴합니다.<br> 시즌 정보는 필수적으로 포함합니다<br> containsPopup 필드가 true 면, lastSeasonPopup 에 팝업 정보를 포함합니다. <br> containsPopup 필드가 false 면, lastSeasonPopup 은 null 값을 가집니다.
  * @summary 리그 페이지 home 조회
  */
-export const enterHome = async ( options?: RequestInit): Promise<enterHomeResponse> => {
+export const enterHome = (
 
-  return customInstance<enterHomeResponse>(getEnterHomeUrl(),
-  {
-    ...options,
-    method: 'GET'
+ signal?: AbortSignal
+) => {
 
 
-  }
-);}
-
+      return customInstance<LeagueHomeResponse>(
+      {url: `/api/v1/league/home`, method: 'GET', signal
+    },
+      );
+    }
 
 
 
@@ -216,16 +150,16 @@ export const getEnterHomeQueryKey = () => {
     }
 
 
-export const getEnterHomeQueryOptions = <TData = Awaited<ReturnType<typeof enterHome>>, TError = ErrorResponse>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof enterHome>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+export const getEnterHomeQueryOptions = <TData = Awaited<ReturnType<typeof enterHome>>, TError = ErrorResponse>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof enterHome>>, TError, TData>>, }
 ) => {
 
-const {query: queryOptions, request: requestOptions} = options ?? {};
+const {query: queryOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getEnterHomeQueryKey();
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof enterHome>>> = ({ signal }) => enterHome({ signal, ...requestOptions });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof enterHome>>> = ({ signal }) => enterHome(signal);
 
 
 
@@ -245,7 +179,7 @@ export function useEnterHome<TData = Awaited<ReturnType<typeof enterHome>>, TErr
           TError,
           Awaited<ReturnType<typeof enterHome>>
         > , 'initialData'
-      >, request?: SecondParameter<typeof customInstance>}
+      >, }
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useEnterHome<TData = Awaited<ReturnType<typeof enterHome>>, TError = ErrorResponse>(
@@ -255,11 +189,11 @@ export function useEnterHome<TData = Awaited<ReturnType<typeof enterHome>>, TErr
           TError,
           Awaited<ReturnType<typeof enterHome>>
         > , 'initialData'
-      >, request?: SecondParameter<typeof customInstance>}
+      >, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useEnterHome<TData = Awaited<ReturnType<typeof enterHome>>, TError = ErrorResponse>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof enterHome>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof enterHome>>, TError, TData>>, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -267,7 +201,7 @@ export function useEnterHome<TData = Awaited<ReturnType<typeof enterHome>>, TErr
  */
 
 export function useEnterHome<TData = Awaited<ReturnType<typeof enterHome>>, TError = ErrorResponse>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof enterHome>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof enterHome>>, TError, TData>>, }
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 

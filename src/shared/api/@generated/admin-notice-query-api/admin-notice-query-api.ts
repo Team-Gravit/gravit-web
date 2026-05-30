@@ -29,46 +29,7 @@ import type {
 import { customInstance } from '../../mutator';
 
 
-type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
-
-
-export type getNoticeByAdminResponse200 = {
-  data: AdminNoticeDetailResponse
-  status: 200
-}
-
-export type getNoticeByAdminResponse403 = {
-  data: ErrorResponse
-  status: 403
-}
-
-export type getNoticeByAdminResponse404 = {
-  data: ErrorResponse
-  status: 404
-}
-
-export type getNoticeByAdminResponse500 = {
-  data: ErrorResponse
-  status: 500
-}
-
-export type getNoticeByAdminResponseSuccess = (getNoticeByAdminResponse200) & {
-  headers: Headers;
-};
-export type getNoticeByAdminResponseError = (getNoticeByAdminResponse403 | getNoticeByAdminResponse404 | getNoticeByAdminResponse500) & {
-  headers: Headers;
-};
-
-export type getNoticeByAdminResponse = (getNoticeByAdminResponseSuccess | getNoticeByAdminResponseError)
-
-export const getGetNoticeByAdminUrl = (noticeId: number,) => {
-
-
-
-
-  return `/api/v1/admin/notice/${noticeId}`
-}
 
 /**
  * 공지 단건을 조회합니다. <strong>DRAFT</strong> 상태도 조회 가능하며, ADMIN 권한이 필요합니다.<br>
@@ -76,17 +37,17 @@ export const getGetNoticeByAdminUrl = (noticeId: number,) => {
 
  * @summary 어드민 공지 단건 조회
  */
-export const getNoticeByAdmin = async (noticeId: number, options?: RequestInit): Promise<getNoticeByAdminResponse> => {
-
-  return customInstance<getNoticeByAdminResponse>(getGetNoticeByAdminUrl(noticeId),
-  {
-    ...options,
-    method: 'GET'
+export const getNoticeByAdmin = (
+    noticeId: number,
+ signal?: AbortSignal
+) => {
 
 
-  }
-);}
-
+      return customInstance<AdminNoticeDetailResponse>(
+      {url: `/api/v1/admin/notice/${noticeId}`, method: 'GET', signal
+    },
+      );
+    }
 
 
 
@@ -98,16 +59,16 @@ export const getGetNoticeByAdminQueryKey = (noticeId: number,) => {
     }
 
 
-export const getGetNoticeByAdminQueryOptions = <TData = Awaited<ReturnType<typeof getNoticeByAdmin>>, TError = ErrorResponse>(noticeId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNoticeByAdmin>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+export const getGetNoticeByAdminQueryOptions = <TData = Awaited<ReturnType<typeof getNoticeByAdmin>>, TError = ErrorResponse>(noticeId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNoticeByAdmin>>, TError, TData>>, }
 ) => {
 
-const {query: queryOptions, request: requestOptions} = options ?? {};
+const {query: queryOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetNoticeByAdminQueryKey(noticeId);
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getNoticeByAdmin>>> = ({ signal }) => getNoticeByAdmin(noticeId, { signal, ...requestOptions });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getNoticeByAdmin>>> = ({ signal }) => getNoticeByAdmin(noticeId, signal);
 
 
 
@@ -127,7 +88,7 @@ export function useGetNoticeByAdmin<TData = Awaited<ReturnType<typeof getNoticeB
           TError,
           Awaited<ReturnType<typeof getNoticeByAdmin>>
         > , 'initialData'
-      >, request?: SecondParameter<typeof customInstance>}
+      >, }
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetNoticeByAdmin<TData = Awaited<ReturnType<typeof getNoticeByAdmin>>, TError = ErrorResponse>(
@@ -137,11 +98,11 @@ export function useGetNoticeByAdmin<TData = Awaited<ReturnType<typeof getNoticeB
           TError,
           Awaited<ReturnType<typeof getNoticeByAdmin>>
         > , 'initialData'
-      >, request?: SecondParameter<typeof customInstance>}
+      >, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetNoticeByAdmin<TData = Awaited<ReturnType<typeof getNoticeByAdmin>>, TError = ErrorResponse>(
- noticeId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNoticeByAdmin>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+ noticeId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNoticeByAdmin>>, TError, TData>>, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -149,7 +110,7 @@ export function useGetNoticeByAdmin<TData = Awaited<ReturnType<typeof getNoticeB
  */
 
 export function useGetNoticeByAdmin<TData = Awaited<ReturnType<typeof getNoticeByAdmin>>, TError = ErrorResponse>(
- noticeId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNoticeByAdmin>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+ noticeId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNoticeByAdmin>>, TError, TData>>, }
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
@@ -165,55 +126,23 @@ export function useGetNoticeByAdmin<TData = Awaited<ReturnType<typeof getNoticeB
 
 
 
-export type getNoticeSummaryByAdminResponse200 = {
-  data: PageResponse
-  status: 200
-}
-
-export type getNoticeSummaryByAdminResponse403 = {
-  data: ErrorResponse
-  status: 403
-}
-
-export type getNoticeSummaryByAdminResponse500 = {
-  data: ErrorResponse
-  status: 500
-}
-
-export type getNoticeSummaryByAdminResponseSuccess = (getNoticeSummaryByAdminResponse200) & {
-  headers: Headers;
-};
-export type getNoticeSummaryByAdminResponseError = (getNoticeSummaryByAdminResponse403 | getNoticeSummaryByAdminResponse500) & {
-  headers: Headers;
-};
-
-export type getNoticeSummaryByAdminResponse = (getNoticeSummaryByAdminResponseSuccess | getNoticeSummaryByAdminResponseError)
-
-export const getGetNoticeSummaryByAdminUrl = (page: number,) => {
-
-
-
-
-  return `/api/v1/admin/notice/summaries/${page}`
-}
-
 /**
  * 공지 요약 목록을 조회합니다. <strong>DRAFT, PUBLISHED</strong> 모두 포함되며, ADMIN 권한이 필요합니다.<br>
 🔐 <strong>Jwt 필요</strong><br>
 
  * @summary 어드민 공지 목록(요약) 조회
  */
-export const getNoticeSummaryByAdmin = async (page: number, options?: RequestInit): Promise<getNoticeSummaryByAdminResponse> => {
-
-  return customInstance<getNoticeSummaryByAdminResponse>(getGetNoticeSummaryByAdminUrl(page),
-  {
-    ...options,
-    method: 'GET'
+export const getNoticeSummaryByAdmin = (
+    page: number,
+ signal?: AbortSignal
+) => {
 
 
-  }
-);}
-
+      return customInstance<PageResponse>(
+      {url: `/api/v1/admin/notice/summaries/${page}`, method: 'GET', signal
+    },
+      );
+    }
 
 
 
@@ -225,16 +154,16 @@ export const getGetNoticeSummaryByAdminQueryKey = (page: number,) => {
     }
 
 
-export const getGetNoticeSummaryByAdminQueryOptions = <TData = Awaited<ReturnType<typeof getNoticeSummaryByAdmin>>, TError = ErrorResponse>(page: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNoticeSummaryByAdmin>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+export const getGetNoticeSummaryByAdminQueryOptions = <TData = Awaited<ReturnType<typeof getNoticeSummaryByAdmin>>, TError = ErrorResponse>(page: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNoticeSummaryByAdmin>>, TError, TData>>, }
 ) => {
 
-const {query: queryOptions, request: requestOptions} = options ?? {};
+const {query: queryOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetNoticeSummaryByAdminQueryKey(page);
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getNoticeSummaryByAdmin>>> = ({ signal }) => getNoticeSummaryByAdmin(page, { signal, ...requestOptions });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getNoticeSummaryByAdmin>>> = ({ signal }) => getNoticeSummaryByAdmin(page, signal);
 
 
 
@@ -254,7 +183,7 @@ export function useGetNoticeSummaryByAdmin<TData = Awaited<ReturnType<typeof get
           TError,
           Awaited<ReturnType<typeof getNoticeSummaryByAdmin>>
         > , 'initialData'
-      >, request?: SecondParameter<typeof customInstance>}
+      >, }
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetNoticeSummaryByAdmin<TData = Awaited<ReturnType<typeof getNoticeSummaryByAdmin>>, TError = ErrorResponse>(
@@ -264,11 +193,11 @@ export function useGetNoticeSummaryByAdmin<TData = Awaited<ReturnType<typeof get
           TError,
           Awaited<ReturnType<typeof getNoticeSummaryByAdmin>>
         > , 'initialData'
-      >, request?: SecondParameter<typeof customInstance>}
+      >, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetNoticeSummaryByAdmin<TData = Awaited<ReturnType<typeof getNoticeSummaryByAdmin>>, TError = ErrorResponse>(
- page: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNoticeSummaryByAdmin>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+ page: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNoticeSummaryByAdmin>>, TError, TData>>, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -276,7 +205,7 @@ export function useGetNoticeSummaryByAdmin<TData = Awaited<ReturnType<typeof get
  */
 
 export function useGetNoticeSummaryByAdmin<TData = Awaited<ReturnType<typeof getNoticeSummaryByAdmin>>, TError = ErrorResponse>(
- page: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNoticeSummaryByAdmin>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+ page: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNoticeSummaryByAdmin>>, TError, TData>>, }
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 

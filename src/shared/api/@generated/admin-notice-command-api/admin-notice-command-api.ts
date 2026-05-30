@@ -24,58 +24,38 @@ import type {
 import { customInstance } from '../../mutator';
 
 
-type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
-
-
-export type createNoticeResponse201 = {
-  data: AdminNoticeDetailResponse
-  status: 201
-}
-
-export type createNoticeResponseSuccess = (createNoticeResponse201) & {
-  headers: Headers;
-};
-;
-
-export type createNoticeResponse = (createNoticeResponseSuccess)
-
-export const getCreateNoticeUrl = () => {
-
-
-
-
-  return `/api/v1/admin/notice`
-}
 
 /**
  * 관리자 권한으로 공지를 생성합니다.
  * @summary 공지 생성
  */
-export const createNotice = async (noticeCreateRequest: NoticeCreateRequest, options?: RequestInit): Promise<createNoticeResponse> => {
+export const createNotice = (
+    noticeCreateRequest: NoticeCreateRequest,
+ signal?: AbortSignal
+) => {
 
-  return customInstance<createNoticeResponse>(getCreateNoticeUrl(),
-  {
-    ...options,
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', ...options?.headers },
-    body: JSON.stringify(noticeCreateRequest)
-  }
-);}
 
+      return customInstance<AdminNoticeDetailResponse>(
+      {url: `/api/v1/admin/notice`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: noticeCreateRequest, signal
+    },
+      );
+    }
 
 
 
 export const getCreateNoticeMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createNotice>>, TError,{data: NoticeCreateRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createNotice>>, TError,{data: NoticeCreateRequest}, TContext>, }
 ): UseMutationOptions<Awaited<ReturnType<typeof createNotice>>, TError,{data: NoticeCreateRequest}, TContext> => {
 
 const mutationKey = ['createNotice'];
-const {mutation: mutationOptions, request: requestOptions} = options ?
+const {mutation: mutationOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }, request: undefined};
+      : {mutation: { mutationKey, }};
 
 
 
@@ -83,7 +63,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof createNotice>>, {data: NoticeCreateRequest}> = (props) => {
           const {data} = props ?? {};
 
-          return  createNotice(data,requestOptions)
+          return  createNotice(data,)
         }
 
 
@@ -101,7 +81,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  * @summary 공지 생성
  */
 export const useCreateNotice = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createNotice>>, TError,{data: NoticeCreateRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createNotice>>, TError,{data: NoticeCreateRequest}, TContext>, }
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof createNotice>>,
         TError,
@@ -110,54 +90,36 @@ export const useCreateNotice = <TError = unknown,
       > => {
       return useMutation(getCreateNoticeMutationOptions(options), queryClient);
     }
-    export type updateNoticeResponse201 = {
-  data: AdminNoticeDetailResponse
-  status: 201
-}
-
-export type updateNoticeResponseSuccess = (updateNoticeResponse201) & {
-  headers: Headers;
-};
-;
-
-export type updateNoticeResponse = (updateNoticeResponseSuccess)
-
-export const getUpdateNoticeUrl = () => {
-
-
-
-
-  return `/api/v1/admin/notice`
-}
-
-/**
+    /**
  * 관리자 권한으로 공지를 수정합니다.
  * @summary 공지 수정
  */
-export const updateNotice = async (noticeUpdateRequest: NoticeUpdateRequest, options?: RequestInit): Promise<updateNoticeResponse> => {
+export const updateNotice = (
+    noticeUpdateRequest: NoticeUpdateRequest,
+ signal?: AbortSignal
+) => {
 
-  return customInstance<updateNoticeResponse>(getUpdateNoticeUrl(),
-  {
-    ...options,
-    method: 'PATCH',
-    headers: { 'Content-Type': 'application/json', ...options?.headers },
-    body: JSON.stringify(noticeUpdateRequest)
-  }
-);}
 
+      return customInstance<AdminNoticeDetailResponse>(
+      {url: `/api/v1/admin/notice`, method: 'PATCH',
+      headers: {'Content-Type': 'application/json', },
+      data: noticeUpdateRequest, signal
+    },
+      );
+    }
 
 
 
 export const getUpdateNoticeMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateNotice>>, TError,{data: NoticeUpdateRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateNotice>>, TError,{data: NoticeUpdateRequest}, TContext>, }
 ): UseMutationOptions<Awaited<ReturnType<typeof updateNotice>>, TError,{data: NoticeUpdateRequest}, TContext> => {
 
 const mutationKey = ['updateNotice'];
-const {mutation: mutationOptions, request: requestOptions} = options ?
+const {mutation: mutationOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }, request: undefined};
+      : {mutation: { mutationKey, }};
 
 
 
@@ -165,7 +127,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof updateNotice>>, {data: NoticeUpdateRequest}> = (props) => {
           const {data} = props ?? {};
 
-          return  updateNotice(data,requestOptions)
+          return  updateNotice(data,)
         }
 
 
@@ -183,7 +145,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  * @summary 공지 수정
  */
 export const useUpdateNotice = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateNotice>>, TError,{data: NoticeUpdateRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateNotice>>, TError,{data: NoticeUpdateRequest}, TContext>, }
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof updateNotice>>,
         TError,
@@ -192,54 +154,34 @@ export const useUpdateNotice = <TError = unknown,
       > => {
       return useMutation(getUpdateNoticeMutationOptions(options), queryClient);
     }
-    export type deleteNoticeResponse200 = {
-  data: void
-  status: 200
-}
-
-export type deleteNoticeResponseSuccess = (deleteNoticeResponse200) & {
-  headers: Headers;
-};
-;
-
-export type deleteNoticeResponse = (deleteNoticeResponseSuccess)
-
-export const getDeleteNoticeUrl = (noticeId: number,) => {
-
-
-
-
-  return `/api/v1/admin/notice/${noticeId}`
-}
-
-/**
+    /**
  * 관리자 권한으로 공지를 삭제합니다.
  * @summary 공지 삭제
  */
-export const deleteNotice = async (noticeId: number, options?: RequestInit): Promise<deleteNoticeResponse> => {
-
-  return customInstance<deleteNoticeResponse>(getDeleteNoticeUrl(noticeId),
-  {
-    ...options,
-    method: 'DELETE'
+export const deleteNotice = (
+    noticeId: number,
+ signal?: AbortSignal
+) => {
 
 
-  }
-);}
-
+      return customInstance<void>(
+      {url: `/api/v1/admin/notice/${noticeId}`, method: 'DELETE', signal
+    },
+      );
+    }
 
 
 
 export const getDeleteNoticeMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteNotice>>, TError,{noticeId: number}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteNotice>>, TError,{noticeId: number}, TContext>, }
 ): UseMutationOptions<Awaited<ReturnType<typeof deleteNotice>>, TError,{noticeId: number}, TContext> => {
 
 const mutationKey = ['deleteNotice'];
-const {mutation: mutationOptions, request: requestOptions} = options ?
+const {mutation: mutationOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }, request: undefined};
+      : {mutation: { mutationKey, }};
 
 
 
@@ -247,7 +189,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof deleteNotice>>, {noticeId: number}> = (props) => {
           const {noticeId} = props ?? {};
 
-          return  deleteNotice(noticeId,requestOptions)
+          return  deleteNotice(noticeId,)
         }
 
 
@@ -265,7 +207,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  * @summary 공지 삭제
  */
 export const useDeleteNotice = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteNotice>>, TError,{noticeId: number}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteNotice>>, TError,{noticeId: number}, TContext>, }
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof deleteNotice>>,
         TError,
