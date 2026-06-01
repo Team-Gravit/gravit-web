@@ -1,8 +1,16 @@
-import { useGetFollowersInfiniteTemp } from "@/entities/follow/api/use-get-followers-infinite";
-import { useGetFollowingInfiniteTemp } from "@/entities/follow/api/use-get-following-infinite";
 import type { FollowType } from "@/entities/follow/model/types";
 import { useInfiniteScroll } from "@/shared/model/use-infinite-scroll";
 import FollowListItem from "./follow-list-item";
+import {
+	getGetFollowersInfiniteQueryKey,
+	getGetFollowingsInfiniteQueryKey,
+	useGetFollowersInfinite,
+	useGetFollowingsInfinite,
+} from "@/shared/api/@generated/friend-api/friend-api";
+import {
+	mapFollowerList,
+	mapFollowingList,
+} from "@/entities/follow/model/mapper";
 
 interface FollowListContainerProps {
 	type: FollowType;
@@ -13,12 +21,48 @@ function FollowListContainer({
 	type,
 	enabled = true,
 }: FollowListContainerProps) {
-	const followersQuery = useGetFollowersInfiniteTemp(
-		enabled && type === "followers",
+	const followersQuery = useGetFollowersInfinite(
+		{ page: 0 },
+		{
+			query: {
+				queryKey: getGetFollowersInfiniteQueryKey({}),
+				initialPageParam: 0,
+				getNextPageParam: (lastPage, allPages) =>
+					lastPage.hasNextPage ? allPages.length : undefined,
+				enabled: enabled && type === "followers",
+				refetchOnMount: true,
+				staleTime: 0,
+				gcTime: 0,
+				select: (data) => {
+					return {
+						...data,
+						pages: data.pages.map((response) => mapFollowerList(response)),
+					};
+				},
+			},
+		},
 	);
 
-	const followingQuery = useGetFollowingInfiniteTemp(
-		enabled && type === "following",
+	const followingQuery = useGetFollowingsInfinite(
+		{ page: 0 },
+		{
+			query: {
+				queryKey: getGetFollowingsInfiniteQueryKey({}),
+				initialPageParam: 0,
+				getNextPageParam: (lastPage, allPages) =>
+					lastPage.hasNextPage ? allPages.length : undefined,
+				enabled: enabled && type === "following",
+				refetchOnMount: true,
+				staleTime: 0,
+				gcTime: 0,
+				select: (data) => {
+					return {
+						...data,
+						pages: data.pages.map((response) => mapFollowingList(response)),
+					};
+				},
+			},
+		},
 	);
 
 	const currentQuery = type === "followers" ? followersQuery : followingQuery;
