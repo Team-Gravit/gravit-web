@@ -32,11 +32,12 @@ import type {
 import type {
   ErrorResponse,
   FollowCountsResponse,
+  FollowerSliceResponse,
   FriendResponse,
   GetFollowersParams,
   GetFollowingsParams,
   SearchParams,
-  SliceResponse,
+  SearchUserSliceResponse,
   SliceResponseFollowingResponse
 } from '../model';
 
@@ -252,7 +253,7 @@ export const search = (
 ) => {
 
 
-      return customInstance<SliceResponse>(
+      return customInstance<SearchUserSliceResponse>(
       {url: `/api/v1/friends/search`, method: 'GET',
         params, signal
     },
@@ -513,7 +514,7 @@ export const getFollowers = (
 ) => {
 
 
-      return customInstance<unknown>(
+      return customInstance<FollowerSliceResponse>(
       {url: `/api/v1/friends/follower`, method: 'GET',
         params, signal
     },

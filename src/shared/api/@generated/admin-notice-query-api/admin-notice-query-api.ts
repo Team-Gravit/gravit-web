@@ -22,8 +22,8 @@ import type {
 
 import type {
   AdminNoticeDetailResponse,
-  ErrorResponse,
-  PageResponse
+  AdminNoticeSummaryPageResponse,
+  ErrorResponse
 } from '../model';
 
 import { customInstance } from '../../mutator';
@@ -138,7 +138,7 @@ export const getNoticeSummaryByAdmin = (
 ) => {
 
 
-      return customInstance<PageResponse>(
+      return customInstance<AdminNoticeSummaryPageResponse>(
       {url: `/api/v1/admin/notice/summaries/${page}`, method: 'GET', signal
     },
       );

@@ -6,11 +6,10 @@
  * OpenAPI spec version: 1.0.0
  */
 
-export interface FollowerResponse {
-  id?: number;
-  nickname: string;
+export interface SearchUserDto {
+  userId?: number;
   profileImgNumber?: number;
-  handle: string;
-  /** 내가 해당 팔로워를 팔로우 중인지 여부 */
+  nickname?: string;
+  handle?: string;
   isFollowing?: boolean;
 }

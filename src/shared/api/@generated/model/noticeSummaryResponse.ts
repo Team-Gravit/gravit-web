@@ -6,11 +6,10 @@
  * OpenAPI spec version: 1.0.0
  */
 
-export interface FollowerResponse {
+export interface NoticeSummaryResponse {
   id?: number;
-  nickname: string;
-  profileImgNumber?: number;
-  handle: string;
-  /** 내가 해당 팔로워를 팔로우 중인지 여부 */
-  isFollowing?: boolean;
+  title: string;
+  summary: string;
+  pinned?: boolean;
+  publishedAt: string;
 }

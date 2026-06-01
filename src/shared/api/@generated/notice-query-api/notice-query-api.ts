@@ -23,7 +23,7 @@ import type {
 import type {
   ErrorResponse,
   NoticeDetailResponse,
-  SliceResponse
+  NoticeSummaryPageResponse
 } from '../model';
 
 import { customInstance } from '../../mutator';
@@ -134,7 +134,7 @@ export const getNoticeSummaries = (
 ) => {
 
 
-      return customInstance<SliceResponse>(
+      return customInstance<NoticeSummaryPageResponse>(
       {url: `/api/v1/notice/summaries/${page}`, method: 'GET', signal
     },
       );

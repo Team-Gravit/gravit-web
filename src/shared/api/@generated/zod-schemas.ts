@@ -429,9 +429,19 @@ export const GetFeedQueryParams = zod.object({
 })
 
 export const GetFeedResponse = zod.object({
-  "hasNextPage": zod.boolean().optional(),
-  "contents": zod.array(zod.unknown()).optional()
-})
+  "hasNextPage": zod.boolean().optional().describe('다음 페이지 존재 여부'),
+  "contents": zod.array(zod.object({
+  "feedId": zod.number().optional(),
+  "actorId": zod.number().optional(),
+  "actorNickname": zod.string().optional(),
+  "actorProfileImgNumber": zod.number().optional(),
+  "actorHandle": zod.string().optional(),
+  "message": zod.string().optional(),
+  "timeAgo": zod.string().optional(),
+  "canCongratulate": zod.boolean().optional(),
+  "createdAt": zod.iso.datetime({"offset":true}).optional()
+})).optional().describe('피드 목록')
+}).describe('피드 슬라이스 응답')
 
 
 /**
@@ -554,9 +564,17 @@ export const GetNoticeSummariesParams = zod.object({
 })
 
 export const GetNoticeSummariesResponse = zod.object({
-  "hasNextPage": zod.boolean().optional(),
-  "contents": zod.array(zod.unknown()).optional()
-})
+  "page": zod.number().optional().describe('현재 페이지 번호'),
+  "totalPages": zod.number().optional().describe('전체 페이지 수'),
+  "hasNext": zod.boolean().optional().describe('다음 페이지 존재 여부'),
+  "contents": zod.array(zod.object({
+  "id": zod.number().optional(),
+  "title": zod.string(),
+  "summary": zod.string(),
+  "pinned": zod.boolean().optional(),
+  "publishedAt": zod.iso.datetime({"offset":true})
+})).optional().describe('공지 요약 목록')
+}).describe('공지 요약 페이지 응답')
 
 
 /**
@@ -623,9 +641,15 @@ export const SearchQueryParams = zod.object({
 })
 
 export const SearchResponse = zod.object({
-  "hasNextPage": zod.boolean().optional(),
-  "contents": zod.array(zod.unknown()).optional()
-})
+  "hasNextPage": zod.boolean().optional().describe('다음 페이지 존재 여부'),
+  "contents": zod.array(zod.object({
+  "userId": zod.number().optional(),
+  "profileImgNumber": zod.number().optional(),
+  "nickname": zod.string().optional(),
+  "handle": zod.string().optional(),
+  "isFollowing": zod.boolean().optional()
+})).optional().describe('검색 결과 목록')
+}).describe('사용자 검색 슬라이스 응답')
 
 
 /**
@@ -648,6 +672,17 @@ export const getFollowersQueryPageDefault = 0;
 export const GetFollowersQueryParams = zod.object({
   "page": zod.number().default(getFollowersQueryPageDefault)
 })
+
+export const GetFollowersResponse = zod.object({
+  "hasNextPage": zod.boolean().optional().describe('다음 페이지 존재 여부'),
+  "contents": zod.array(zod.object({
+  "id": zod.number().optional(),
+  "nickname": zod.string(),
+  "profileImgNumber": zod.number().optional(),
+  "handle": zod.string(),
+  "isFollowing": zod.boolean().optional().describe('내가 해당 팔로워를 팔로우 중인지 여부')
+})).optional().describe('팔로워 목록')
+}).describe('팔로워 목록 슬라이스 응답')
 
 
 /**
@@ -761,11 +796,17 @@ export const GetNoticeSummaryByAdminParams = zod.object({
 })
 
 export const GetNoticeSummaryByAdminResponse = zod.object({
-  "page": zod.number().optional(),
-  "totalPages": zod.number().optional(),
-  "hasNext": zod.boolean().optional(),
-  "contents": zod.array(zod.unknown()).optional()
-})
+  "page": zod.number().optional().describe('현재 페이지 번호'),
+  "totalPages": zod.number().optional().describe('전체 페이지 수'),
+  "hasNext": zod.boolean().optional().describe('다음 페이지 존재 여부'),
+  "contents": zod.array(zod.object({
+  "id": zod.number().optional(),
+  "title": zod.string(),
+  "summary": zod.string(),
+  "pinned": zod.boolean().optional(),
+  "publishedAt": zod.iso.datetime({"offset":true}).optional()
+})).optional().describe('공지 요약 목록')
+}).describe('어드민 공지 요약 페이지 응답')
 
 
 /**

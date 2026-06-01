@@ -33,7 +33,7 @@ import type {
   ErrorResponse,
   GetFeedParams,
   RecommendUserResponse,
-  SliceResponse
+  SocialFeedSliceResponse
 } from '../model';
 
 import { customInstance } from '../../mutator';
@@ -284,7 +284,7 @@ export const getFeed = (
 ) => {
 
 
-      return customInstance<SliceResponse>(
+      return customInstance<SocialFeedSliceResponse>(
       {url: `/api/v1/social/feed`, method: 'GET',
         params, signal
     },
