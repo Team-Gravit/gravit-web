@@ -7,8 +7,8 @@
  */
 
 export interface UserResponse {
-  userId?: number;
-  profileImgNumber?: number;
-  nickname?: string;
-  providerId?: string;
+  userId: number;
+  profileImgNumber: number;
+  nickname: string;
+  providerId: string;
 }

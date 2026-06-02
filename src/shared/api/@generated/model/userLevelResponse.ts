@@ -11,9 +11,9 @@
  */
 export interface UserLevelResponse {
   /** 현재 레벨 */
-  currentLevel?: number;
+  currentLevel: number;
   /** 다음 레벨 */
-  nextLevel?: number;
+  nextLevel: number;
   /** 경험치 */
-  xp?: number;
+  xp: number;
 }

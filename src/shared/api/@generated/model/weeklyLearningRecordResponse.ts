@@ -7,11 +7,11 @@
  */
 
 export interface WeeklyLearningRecordResponse {
-  MONDAY?: boolean;
-  TUESDAY?: boolean;
-  WEDNESDAY?: boolean;
-  THURSDAY?: boolean;
-  FRIDAY?: boolean;
-  SATURDAY?: boolean;
-  SUNDAY?: boolean;
+  MONDAY: boolean;
+  TUESDAY: boolean;
+  WEDNESDAY: boolean;
+  THURSDAY: boolean;
+  FRIDAY: boolean;
+  SATURDAY: boolean;
+  SUNDAY: boolean;
 }

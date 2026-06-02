@@ -8,6 +8,6 @@
 import type { FollowingResponse } from './followingResponse.ts';
 
 export interface SliceResponseFollowingResponse {
-  hasNextPage?: boolean;
-  contents?: FollowingResponse[];
+  hasNextPage: boolean;
+  contents: FollowingResponse[];
 }

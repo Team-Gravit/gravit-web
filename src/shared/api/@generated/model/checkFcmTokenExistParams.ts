@@ -6,10 +6,10 @@
  * OpenAPI spec version: 1.0.0
  */
 
-export interface NoticeSummaryResponse {
-  id: number;
-  title: string;
-  summary: string;
-  pinned: boolean;
-  publishedAt: string;
-}
+export type CheckFcmTokenExistParams = {
+/**
+ * 클라이언트 디바이스 식별자
+ * @minLength 1
+ */
+deviceId: string;
+};

@@ -8,6 +8,6 @@
 import type { UnitSummaryResponse } from './unitSummaryResponse.ts';
 
 export interface UnitDetailResponse {
-  unitSummaryResponse?: UnitSummaryResponse;
-  progressRate?: number;
+  unitSummaryResponse: UnitSummaryResponse;
+  progressRate: number;
 }

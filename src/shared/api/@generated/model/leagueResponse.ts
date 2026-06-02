@@ -7,8 +7,8 @@
  */
 
 export interface LeagueResponse {
-  leagueId?: number;
+  leagueId: number;
   name: string;
-  minLp?: number;
-  maxLp?: number;
+  minLp: number;
+  maxLp: number;
 }

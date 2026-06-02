@@ -12,7 +12,7 @@ import type { SearchUserDto } from './searchUserDto.ts';
  */
 export interface SearchUserSliceResponse {
   /** 다음 페이지 존재 여부 */
-  hasNextPage?: boolean;
+  hasNextPage: boolean;
   /** 검색 결과 목록 */
-  contents?: SearchUserDto[];
+  contents: SearchUserDto[];
 }

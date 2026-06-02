@@ -8,7 +8,7 @@
 import type { UnitProgressSummaryResponseStatus } from './unitProgressSummaryResponseStatus.ts';
 
 export interface UnitProgressSummaryResponse {
-  unitId?: number;
-  title?: string;
-  status?: UnitProgressSummaryResponseStatus;
+  unitId: number;
+  title: string;
+  status: UnitProgressSummaryResponseStatus;
 }

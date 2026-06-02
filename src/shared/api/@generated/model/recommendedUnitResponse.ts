@@ -7,8 +7,8 @@
  */
 
 export interface RecommendedUnitResponse {
-  unitId?: number;
-  unitTitle?: string;
-  chapterId?: number;
-  chapterTitle?: string;
+  unitId: number;
+  unitTitle: string;
+  chapterId: number;
+  chapterTitle: string;
 }

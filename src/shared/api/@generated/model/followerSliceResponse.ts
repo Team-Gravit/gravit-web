@@ -12,7 +12,7 @@ import type { FollowerResponse } from './followerResponse.ts';
  */
 export interface FollowerSliceResponse {
   /** 다음 페이지 존재 여부 */
-  hasNextPage?: boolean;
+  hasNextPage: boolean;
   /** 팔로워 목록 */
-  contents?: FollowerResponse[];
+  contents: FollowerResponse[];
 }

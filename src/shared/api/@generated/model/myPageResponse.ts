@@ -7,9 +7,9 @@
  */
 
 export interface MyPageResponse {
-  nickname?: string;
-  profileImgNumber?: number;
-  handle?: string;
-  follower?: number;
-  following?: number;
+  nickname: string;
+  profileImgNumber: number;
+  handle: string;
+  follower: number;
+  following: number;
 }

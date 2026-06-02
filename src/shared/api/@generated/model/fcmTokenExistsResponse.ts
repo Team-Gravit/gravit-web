@@ -6,10 +6,6 @@
  * OpenAPI spec version: 1.0.0
  */
 
-export interface NoticeSummaryResponse {
-  id: number;
-  title: string;
-  summary: string;
-  pinned: boolean;
-  publishedAt: string;
+export interface FcmTokenExistsResponse {
+  registered?: boolean;
 }

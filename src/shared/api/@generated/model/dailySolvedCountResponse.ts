@@ -7,6 +7,6 @@
  */
 
 export interface DailySolvedCountResponse {
-  date?: string;
-  solvedLessonCount?: number;
+  date: string;
+  solvedLessonCount: number;
 }

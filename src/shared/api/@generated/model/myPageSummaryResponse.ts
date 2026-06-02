@@ -9,7 +9,7 @@ import type { LearningHistoryResponse } from './learningHistoryResponse.ts';
 import type { LearningSummaryResponse } from './learningSummaryResponse.ts';
 
 export interface MyPageSummaryResponse {
-  learningSummary?: LearningSummaryResponse;
-  learningHistory?: LearningHistoryResponse;
-  years?: number[];
+  learningSummary: LearningSummaryResponse;
+  learningHistory: LearningHistoryResponse;
+  years: number[];
 }

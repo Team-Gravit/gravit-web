@@ -8,9 +8,9 @@
 import type { SeasonHistoryEntry } from './seasonHistoryEntry.ts';
 
 export interface LeagueHistoryResponse {
-  currentSeasonRank?: number;
-  totalSeasonCount?: number;
-  top3SeasonCount?: number;
-  bestLeagueName?: string;
-  seasonHistory?: SeasonHistoryEntry[];
+  currentSeasonRank: number;
+  totalSeasonCount: number;
+  top3SeasonCount: number;
+  bestLeagueName: string;
+  seasonHistory: SeasonHistoryEntry[];
 }

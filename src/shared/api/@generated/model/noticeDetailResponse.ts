@@ -7,13 +7,13 @@
  */
 
 export interface NoticeDetailResponse {
-  id?: number;
+  id: number;
   title: string;
   content: string;
   authorName: string;
   createdAt: string;
   updatedAt: string;
   status: string;
-  pinned?: boolean;
+  pinned: boolean;
   publishedAt: string;
 }

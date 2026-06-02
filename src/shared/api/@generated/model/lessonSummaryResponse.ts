@@ -11,11 +11,11 @@
  */
 export interface LessonSummaryResponse {
   /** 레슨 아이디 */
-  lessonId?: number;
+  lessonId: number;
   /** 레슨 제목 */
   title: string;
   /** 전체 문제 수 */
-  totalProblem?: number;
+  totalProblem: number;
   /** 해결 여부 */
-  isSolved?: boolean;
+  isSolved: boolean;
 }

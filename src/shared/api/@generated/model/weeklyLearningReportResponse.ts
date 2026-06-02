@@ -7,13 +7,13 @@
  */
 
 export interface WeeklyLearningReportResponse {
-  MONDAY?: number;
-  TUESDAY?: number;
-  WEDNESDAY?: number;
-  THURSDAY?: number;
-  FRIDAY?: number;
-  SATURDAY?: number;
-  SUNDAY?: number;
-  thisWeekCompletedLessonCount?: number;
-  weekOverWeekDeltas?: number[];
+  MONDAY: number;
+  TUESDAY: number;
+  WEDNESDAY: number;
+  THURSDAY: number;
+  FRIDAY: number;
+  SATURDAY: number;
+  SUNDAY: number;
+  thisWeekCompletedLessonCount: number;
+  weekOverWeekDeltas: number[];
 }

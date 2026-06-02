@@ -7,13 +7,13 @@
  */
 
 export interface SocialFeedResponse {
-  feedId?: number;
-  actorId?: number;
-  actorNickname?: string;
-  actorProfileImgNumber?: number;
-  actorHandle?: string;
-  message?: string;
-  timeAgo?: string;
-  canCongratulate?: boolean;
-  createdAt?: string;
+  feedId: number;
+  actorId: number;
+  actorNickname: string;
+  actorProfileImgNumber: number;
+  actorHandle: string;
+  message: string;
+  timeAgo: string;
+  canCongratulate: boolean;
+  createdAt: string;
 }

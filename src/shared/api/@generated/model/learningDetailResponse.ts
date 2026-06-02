@@ -8,9 +8,9 @@
 import type { UnitProgressSummaryResponse } from './unitProgressSummaryResponse.ts';
 
 export interface LearningDetailResponse {
-  consecutiveSolvedDays?: number;
-  recentSolvedChapterId?: number;
-  recentSolvedChapterTitle?: string;
-  recentSolvedChapterProgressRate?: number;
-  units?: UnitProgressSummaryResponse[];
+  consecutiveSolvedDays: number;
+  recentSolvedChapterId: number;
+  recentSolvedChapterTitle: string;
+  recentSolvedChapterProgressRate: number;
+  units: UnitProgressSummaryResponse[];
 }

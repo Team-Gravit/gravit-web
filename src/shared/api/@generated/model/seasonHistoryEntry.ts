@@ -7,8 +7,8 @@
  */
 
 export interface SeasonHistoryEntry {
-  seasonKey?: string;
-  leagueName?: string;
-  sortOrder?: number;
-  isCurrent?: boolean;
+  seasonKey: string;
+  leagueName: string;
+  sortOrder: number;
+  isCurrent: boolean;
 }
