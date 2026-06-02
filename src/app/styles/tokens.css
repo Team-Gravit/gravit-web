@@ -94,6 +94,7 @@
     --color-semantic-warning: #f9a825;
     --color-semantic-error:   #EB3D32;
     --color-semantic-info:    var(--primitive-gray-400); /* #C6C6C6 */
+    --color-semantic-5:    #1FABFF;
 
     /* ================================
         ALIAS - CTA
