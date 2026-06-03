@@ -8,7 +8,11 @@ import { Dropdown } from "@/shared/ui/dropdown";
 import ScrollArea from "@/shared/ui/scroll/scroll-area";
 import { useMemo, useState } from "react";
 
-export default function StudyHeatmap() {
+export default function StudyHeatmap({
+	availableYears,
+}: {
+	availableYears: number[];
+}) {
 	const [selectedYear, setSelectedYear] = useState("2026");
 
 	const { data } = useGetMyPageLearningHistory({
@@ -21,6 +25,11 @@ export default function StudyHeatmap() {
 		return undefined;
 	}, [data?.dailySolvedCounts]);
 
+	const dropdownOptions = availableYears.map((year) => ({
+		value: year.toString(),
+		label: year.toString(),
+	}));
+
 	return (
 		<Card className="md:px-8 md:py-7 gap-4 bg-white w-full min-w-0 overflow-hidden ">
 			<div className="flex justify-between items-center">
@@ -28,15 +37,13 @@ export default function StudyHeatmap() {
 					학습 기록
 				</span>
 
-				{/** 옵션 수정될 예정 */}
-				<Dropdown
-					options={[
-						{ value: "2026", label: "2026" },
-						{ value: "2025", label: "2025" },
-					]}
-					value={selectedYear}
-					onChange={setSelectedYear}
-				/>
+				{dropdownOptions.length > 1 && (
+					<Dropdown
+						options={dropdownOptions}
+						value={selectedYear}
+						onChange={setSelectedYear}
+					/>
+				)}
 			</div>
 			<div className="bg-divider-1 h-[1px] w-full" />
 			<ScrollArea orientation="horizontal">
