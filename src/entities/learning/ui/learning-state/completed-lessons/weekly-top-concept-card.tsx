@@ -1,12 +1,12 @@
+import { transformTopChapters } from "@/entities/learning/lib/transform-top-chapters";
+import type { TopChapterResponse } from "@/shared/api/@generated/model";
 import Card from "@/shared/ui/card/card";
 import ProgressBar from "@/shared/ui/progress-bar/progress-bar";
 
-export default function WeeklyTopConceptCard() {
-	const MOCK_DATA = [
-		{ concept: "자료구조", count: 14 },
-		{ concept: "자료구조", count: 14 },
-		{ concept: "자료구조", count: 14 },
-	];
+export default function WeeklyTopConceptCard({data}: {data: TopChapterResponse[]}) {
+
+	const topConceptData = transformTopChapters(data);
+	
 	return (
 		<Card className="gap-4">
 			<div className="flex flex-col gap-2">
@@ -15,11 +15,13 @@ export default function WeeklyTopConceptCard() {
 					어떤 주제에 집중했나요?
 				</h3>
 			</div>
-			<ol className="w-full flex flex-col gap-3">
-				{MOCK_DATA.map((data, idx) => (
+			{topConceptData.length > 0 ? (<ol className="w-full flex flex-col gap-3">
+				{topConceptData.map((data, idx) => (
 					<TopConceptItem key={`weakness-${idx}`} {...data} num={idx + 1} />
 				))}
-			</ol>
+			</ol>) : <div>
+				이번 주 학습 기록이 없습니다
+				</div>}
 		</Card>
 	);
 }
