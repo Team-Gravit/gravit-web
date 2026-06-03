@@ -1,3 +1,4 @@
+import { useGetMyPageBanner } from "@/shared/api/@generated/mypage-api/mypage-api";
 import { HEADER_HEIGHT } from "@/shared/config/constants";
 import useResponsive from "@/shared/model/use-responsive";
 import PageLayout from "@/shared/ui/layout.tsx/page-layout";
@@ -12,6 +13,7 @@ export const Route = createFileRoute("/_authenticated/my/_profile-layout")({
 
 function RouteComponent() {
 	const { isMobile } = useResponsive();
+	const { data } = useGetMyPageBanner();
 	return (
 		<PageLayout bottomTabBar={isMobile}>
 			{isMobile ? null : <Header />}
@@ -19,14 +21,7 @@ function RouteComponent() {
 				className="w-full h-full flex flex-col  "
 				style={{ paddingTop: isMobile ? 0 : HEADER_HEIGHT + 20 * 2 }}
 			>
-				<UserProfileCard
-					currentLeague={"브론즈"}
-					consecutiveSolvedDays={3}
-					handle={`@johndoe`}
-					level={1}
-					nickname={"John Doe"}
-					profileImageNumber={2}
-				/>
+				{data && <UserProfileCard {...data} />}
 				<div className="w-full flex-1 flex flex-col gap-5 md:gap-10 p-5 md:p-0 md:pt-10">
 					<UserTabs />
 					<Outlet />
