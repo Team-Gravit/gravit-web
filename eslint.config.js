@@ -78,9 +78,7 @@ export default tseslint.config(
         'simple-import-sort/exports': 'error',
 
         // @tanstack/eslint-plugin-query (flat config 미지원 → 수동 변환)
-        // stable-query-client는 ESLint 9 미호환으로 제외
         '@tanstack/query/exhaustive-deps': 'error',
-        '@tanstack/query/no-deprecated-options': 'error',
       },
     },
   ]
