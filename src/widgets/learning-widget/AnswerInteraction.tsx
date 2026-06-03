@@ -8,6 +8,7 @@ import { useQuizSessionState } from '@/features/quiz/model/quiz-session-store';
 import { useQuizContext } from '@/features/quiz/model/use-quiz-context';
 import { api } from '@/shared/api';
 import type { LearningSubmissionSaveRequest } from '@/shared/api/@generated';
+import type { LessonSubmissionSaveResponse } from '@/shared/api/@generated/model/lessonSubmissionSaveResponse';
 import CheckIcon from '@/shared/assets/icons/check.svg?react';
 import { leagueKeys, learningKeys } from '@/shared/lib/query-keys';
 
@@ -100,7 +101,7 @@ export default function AnswerInteraction({
           const response = await api.private.lesson.saveLessonSubmission(submitData);
 
           // API 응답을 store에 저장
-          saveSubmitResponse(response.data);
+          saveSubmitResponse(response.data as LessonSubmissionSaveResponse);
         });
 
         // 레슨 완료 시 전체 학습 데이터 무효화

@@ -2,7 +2,8 @@
  * 모바일 디바이스 감지 유틸리티
  */
 export const isMobileDevice = (): boolean => {
-  const userAgent = navigator.userAgent || navigator.vendor || (window as { opera?: string }).opera;
+  const userAgent =
+    navigator.userAgent || navigator.vendor || (window as { opera?: string }).opera || '';
 
   const mobilePattern = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i;
 

@@ -1,5 +1,5 @@
 import { mapFollowerList, mapFollowingList } from '@/entities/follow/model/mapper';
-import type { FollowType } from '@/entities/follow/model/types';
+import type { FollowingList, FollowType } from '@/entities/follow/model/types';
 import {
   getGetFollowersInfiniteQueryKey,
   getGetFollowingsInfiniteQueryKey,
@@ -28,7 +28,7 @@ function FollowListContainer({ type, enabled = true }: FollowListContainerProps)
         refetchOnMount: true,
         staleTime: 0,
         gcTime: 0,
-        select: (data) => {
+        select: (data): { pages: FollowingList[]; pageParams: unknown[] } => {
           return {
             ...data,
             pages: data.pages.map((response) => mapFollowerList(response)),
