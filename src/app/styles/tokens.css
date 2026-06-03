@@ -144,6 +144,7 @@
 
     /*메인 색상*/
     --color-main-1: #ba00ff;
+    --color-main-hover: var(--color-purple-300);
     --color-main-2: #8100b3;
     --color-main-end: #dd00ff;
 
