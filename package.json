@@ -61,7 +61,7 @@
 		"@storybook/react-vite": "^10.3.6",
 		"@tailwindcss/typography": "^0.5.19",
 		"@tailwindcss/vite": "^4.1.13",
-		"@tanstack/eslint-plugin-query": "^4.44.0",
+		"@tanstack/eslint-plugin-query": "^5.101.0",
 		"@tanstack/eslint-plugin-router": "^1.162.0",
 		"@tanstack/router-plugin": "^1.131.36",
 		"@types/node": "^24.3.1",
