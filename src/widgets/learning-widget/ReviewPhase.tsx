@@ -1,22 +1,22 @@
-import type { Problem } from "@/entities/learning/model/_types";
-import ObjectiveReviewer from "@/features/quiz/answer-review/ui/ObjectiveReviewer";
-import SubjectiveReviewer from "@/features/quiz/answer-review/ui/SubjectiveReviewer";
-import type { UserAnswer } from "@/features/quiz/model/types";
+import type { Problem } from '@/entities/learning/model/_types';
+import ObjectiveReviewer from '@/features/quiz/answer-review/ui/ObjectiveReviewer';
+import SubjectiveReviewer from '@/features/quiz/answer-review/ui/SubjectiveReviewer';
+import type { UserAnswer } from '@/features/quiz/model/types';
 
 interface ReviewPhaseProps {
-	problem: Problem;
-	userAnswer: UserAnswer;
+  problem: Problem;
+  userAnswer: UserAnswer;
 }
 
 export default function ReviewPhase({ problem, userAnswer }: ReviewPhaseProps) {
-	return (
-		<div className="w-full">
-			{userAnswer.problemType === "SUBJECTIVE" && (
-				<SubjectiveReviewer userAnswer={userAnswer} answer={problem.answer} />
-			)}
-			{userAnswer.problemType === "OBJECTIVE" && (
-				<ObjectiveReviewer userAnswer={userAnswer} options={problem.options} />
-			)}
-		</div>
-	);
+  return (
+    <div className="w-full">
+      {userAnswer.problemType === 'SUBJECTIVE' && (
+        <SubjectiveReviewer userAnswer={userAnswer} answer={problem.answer} />
+      )}
+      {userAnswer.problemType === 'OBJECTIVE' && (
+        <ObjectiveReviewer userAnswer={userAnswer} options={problem.options} />
+      )}
+    </div>
+  );
 }

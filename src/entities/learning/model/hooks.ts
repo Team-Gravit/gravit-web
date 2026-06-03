@@ -1,85 +1,86 @@
-import { useQuery } from "@tanstack/react-query";
-import { api } from "@/shared/api";
+import { useQuery } from '@tanstack/react-query';
+
+import { api } from '@/shared/api';
+
+import { learningKeys } from '../api/query-keys';
 import {
-	mapToChapters,
-	mapToChapterWithLessons,
-	mapToChapterWithUnits,
-	mapToProblemsWithUnitSummary,
-} from "./mappers";
-import { learningKeys } from "../api/query-keys";
+  mapToChapters,
+  mapToChapterWithLessons,
+  mapToChapterWithUnits,
+  mapToProblemsWithUnitSummary,
+} from './mappers';
 
 export const useFetchProblems = (lessonId: number) => {
-	const query = useQuery({
-		queryKey: learningKeys.lessons.problems(lessonId),
-		queryFn: async () => {
-			const response =
-				await api.private.problem.getAllProblemInLesson(lessonId);
+  const query = useQuery({
+    queryKey: learningKeys.lessons.problems(lessonId),
+    queryFn: async () => {
+      const response = await api.private.problem.getAllProblemInLesson(lessonId);
 
-			return mapToProblemsWithUnitSummary(response.data);
-		},
-		enabled: !!lessonId,
-	});
+      return mapToProblemsWithUnitSummary(response.data);
+    },
+    enabled: !!lessonId,
+  });
 
-	return {
-		...query,
-		problems: query.data?.problems || [],
-		totalProblems: query.data?.totalProblems || 0,
-		unitSummary: query.data?.unitSummary,
-	};
+  return {
+    ...query,
+    problems: query.data?.problems || [],
+    totalProblems: query.data?.totalProblems || 0,
+    unitSummary: query.data?.unitSummary,
+  };
 };
 
 export const useFetchChapters = () => {
-	const query = useQuery({
-		queryKey: learningKeys.chapters.list(),
-		queryFn: async () => {
-			const response = await api.private.chapter.getAllChapter();
-			return mapToChapters(response.data);
-		},
-		select: (data) => ({
-			chapters: data,
-		}),
-	});
+  const query = useQuery({
+    queryKey: learningKeys.chapters.list(),
+    queryFn: async () => {
+      const response = await api.private.chapter.getAllChapter();
+      return mapToChapters(response.data);
+    },
+    select: (data) => ({
+      chapters: data,
+    }),
+  });
 
-	return {
-		...query,
-		chapters: query.data?.chapters || [],
-	};
+  return {
+    ...query,
+    chapters: query.data?.chapters || [],
+  };
 };
 
 export const useFetchChapterWithUnits = (chapterId: number) => {
-	const query = useQuery({
-		queryKey: learningKeys.units.list(chapterId),
-		queryFn: async () => {
-			const response = await api.private.unit.getAllUnitInChapter(chapterId);
-			return mapToChapterWithUnits(response.data);
-		},
-	});
+  const query = useQuery({
+    queryKey: learningKeys.units.list(chapterId),
+    queryFn: async () => {
+      const response = await api.private.unit.getAllUnitInChapter(chapterId);
+      return mapToChapterWithUnits(response.data);
+    },
+  });
 
-	return {
-		isPending: query.isPending,
-		isError: query.isError,
-		error: query.error,
-		chapterInfo: query.data?.chapterInfo,
-		units: query.data?.units,
-	};
+  return {
+    isPending: query.isPending,
+    isError: query.isError,
+    error: query.error,
+    chapterInfo: query.data?.chapterInfo,
+    units: query.data?.units,
+  };
 };
 
 export const useFetchLessons = (unitId: number) => {
-	const query = useQuery({
-		queryKey: learningKeys.units.lessons(unitId),
-		queryFn: async () => {
-			const response = await api.private.lesson.getAllLessonInUnit(unitId);
-			return mapToChapterWithLessons(response.data);
-		},
-		refetchOnMount: "always",
-	});
+  const query = useQuery({
+    queryKey: learningKeys.units.lessons(unitId),
+    queryFn: async () => {
+      const response = await api.private.lesson.getAllLessonInUnit(unitId);
+      return mapToChapterWithLessons(response.data);
+    },
+    refetchOnMount: 'always',
+  });
 
-	return {
-		...query,
-		isPending: query.isPending,
-		isError: query.isError,
-		error: query.error,
-		unitInfo: query.data?.unitInfo,
-		lessons: query.data?.lessons,
-	};
+  return {
+    ...query,
+    isPending: query.isPending,
+    isError: query.isError,
+    error: query.error,
+    unitInfo: query.data?.unitInfo,
+    lessons: query.data?.lessons,
+  };
 };

@@ -1,38 +1,38 @@
 import type {
-	FollowerResponse,
-	FollowingResponse,
-	SliceResponseFollowingResponse,
-} from "@/shared/api/@generated/model";
-import type { SliceResponseFollowerResponse } from "@/shared/api/@generated/model/sliceResponseFollowerResponse";
+  FollowerResponse,
+  FollowingResponse,
+  SliceResponseFollowingResponse,
+} from '@/shared/api/@generated/model';
+import type { SliceResponseFollowerResponse } from '@/shared/api/@generated/model/sliceResponseFollowerResponse';
 
 export const mapFollowing = (raw: FollowingResponse) => {
-	return {
-		id: raw.id || 0,
-		nickname: raw.nickname,
-		handle: raw.handle,
-		profileImgNumber: raw.profileImgNumber ?? 1,
-	};
+  return {
+    id: raw.id || 0,
+    nickname: raw.nickname,
+    handle: raw.handle,
+    profileImgNumber: raw.profileImgNumber ?? 1,
+  };
 };
 export const mapFollower = (raw: FollowerResponse) => {
-	return {
-		id: raw.id || 0,
-		nickname: raw.nickname,
-		handle: raw.handle,
-		profileImgNumber: raw.profileImgNumber ?? 1,
-		isFollowing: raw.isFollowing,
-	};
+  return {
+    id: raw.id || 0,
+    nickname: raw.nickname,
+    handle: raw.handle,
+    profileImgNumber: raw.profileImgNumber ?? 1,
+    isFollowing: raw.isFollowing,
+  };
 };
 
 export const mapFollowingList = (raw: SliceResponseFollowingResponse) => {
-	return {
-		hasNextPage: raw.hasNextPage,
-		contents: raw.contents?.map((data) => mapFollowing(data)) || [],
-	};
+  return {
+    hasNextPage: raw.hasNextPage,
+    contents: raw.contents?.map((data) => mapFollowing(data)) || [],
+  };
 };
 
 export const mapFollowerList = (raw: SliceResponseFollowerResponse) => {
-	return {
-		hasNextPage: raw.hasNextPage,
-		contents: raw.contents?.map((data) => mapFollower(data)) || [],
-	};
+  return {
+    hasNextPage: raw.hasNextPage,
+    contents: raw.contents?.map((data) => mapFollower(data)) || [],
+  };
 };

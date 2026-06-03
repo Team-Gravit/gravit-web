@@ -1,12 +1,13 @@
-import { useQuery } from "@tanstack/react-query";
-import { api } from "@/shared/api";
-import { userKeys } from "@/entities/user/api/queryKey";
+import { useQuery } from '@tanstack/react-query';
+
+import { userKeys } from '@/entities/user/api/queryKey';
+import { api } from '@/shared/api';
 
 export const useFetchMainInfo = () => {
-	const query = useQuery({
-		queryKey: userKeys.mainPage(),
-		queryFn: () => api.private.user.getMainPage(),
-	});
+  const query = useQuery({
+    queryKey: userKeys.mainPage(),
+    queryFn: () => api.private.user.getMainPage(),
+  });
 
-	return { ...query, data: query.data?.data };
+  return { ...query, data: query.data?.data };
 };

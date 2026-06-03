@@ -1,10 +1,11 @@
-import { createFileRoute } from "@tanstack/react-router";
-import MainPage from "./main";
+import { createFileRoute } from '@tanstack/react-router';
 
-export const Route = createFileRoute("/_authenticated/main")({
-	component: RouteComponent,
+import MainPage from './main';
+
+export const Route = createFileRoute('/_authenticated/main')({
+  component: RouteComponent,
 });
 
 function RouteComponent() {
-	return <MainPage />;
+  return <MainPage />;
 }

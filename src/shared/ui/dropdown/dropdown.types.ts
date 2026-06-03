@@ -1,19 +1,19 @@
 export interface Option {
-	value: string;
-	label: string;
-	disabled?: boolean;
+  value: string;
+  label: string;
+  disabled?: boolean;
 }
 
 export interface DropdownProps {
-	options: Option[];
-	value: string;
-	onChange: (value: string) => void;
+  options: Option[];
+  value: string;
+  onChange: (value: string) => void;
 
-	placeholder?: string;
-	disabled?: boolean;
+  placeholder?: string;
+  disabled?: boolean;
 
-	className?: string;
+  className?: string;
 
-	id?: string;
-	"aria-label"?: string;
+  id?: string;
+  'aria-label'?: string;
 }

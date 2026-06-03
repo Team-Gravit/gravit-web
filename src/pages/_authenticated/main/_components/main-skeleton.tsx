@@ -1,3 +1,3 @@
 export default function MainSkeleton() {
-	return <div>main-skeleton</div>;
+  return <div>main-skeleton</div>;
 }

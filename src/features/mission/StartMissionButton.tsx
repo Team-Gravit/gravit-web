@@ -1,25 +1,24 @@
-import { Link } from "@tanstack/react-router";
-import { cn } from "@/shared/lib/cn";
+import { Link } from '@tanstack/react-router';
+
+import { cn } from '@/shared/lib/cn';
 
 export default function StartMissionButton({
-	isCompleted,
-	url,
+  isCompleted,
+  url,
 }: {
-	isCompleted: boolean;
-	url: string;
+  isCompleted: boolean;
+  url: string;
 }) {
-	return (
-		<Link
-			disabled={isCompleted}
-			to={url}
-			className={cn(
-				"w-full rounded-xl px-2.5 py-6 font-semibold text-3xl text-center",
-				isCompleted
-					? "bg-gray-200 text-gray-400 cursor-not-allowed opacity-60"
-					: "bg-gray-200",
-			)}
-		>
-			도전하러 가기
-		</Link>
-	);
+  return (
+    <Link
+      disabled={isCompleted}
+      to={url}
+      className={cn(
+        'w-full rounded-xl px-2.5 py-6 font-semibold text-3xl text-center',
+        isCompleted ? 'bg-gray-200 text-gray-400 cursor-not-allowed opacity-60' : 'bg-gray-200',
+      )}
+    >
+      도전하러 가기
+    </Link>
+  );
 }

@@ -7,33 +7,33 @@ export default defineConfig({
       target: 'src/shared/api/@generated/gravit.ts',
       schemas: 'src/shared/api/@generated/model',
       client: 'react-query',
-      httpClient : 'axios',
+      httpClient: 'axios',
       mock: false,
       override: {
         mutator: {
           path: './src/shared/api/mutator.ts',
           name: 'customInstance',
         },
-       operations : {
-        getFollowers : {
-         query : {
-          useInfinite : true,
-          useInfiniteQueryParam : 'page',
-         }
+        operations: {
+          getFollowers: {
+            query: {
+              useInfinite: true,
+              useInfiniteQueryParam: 'page',
+            },
+          },
+          getFollowings: {
+            query: {
+              useInfinite: true,
+              useInfiniteQueryParam: 'page',
+            },
+          },
+          getFeed: {
+            query: {
+              useInfinite: true,
+              useInfiniteQueryParam: 'page',
+            },
+          },
         },
-        getFollowings : {
-          query : { 
-            useInfinite : true,
-            useInfiniteQueryParam : 'page',
-          }
-       },
-       getFeed : {
-        query : {
-          useInfinite : true,
-          useInfiniteQueryParam : 'page',
-        }
-       }
-       }
       },
     },
     input: {

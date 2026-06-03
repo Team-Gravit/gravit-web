@@ -1,7 +1,7 @@
-import type { Problem } from "@/entities/learning/model/_types";
+import type { Problem } from '@/entities/learning/model/_types';
 
 export interface ProblemListResponseDTO {
-	problems: Problem[];
+  problems: Problem[];
 }
 
 // export interface LearningResultRequestDTO {
@@ -14,31 +14,31 @@ export interface ProblemListResponseDTO {
 // }
 
 export interface LearningResultResponseDTO {
-	success: boolean;
-	userLevel?: number;
-	experienceGained?: number;
-	message?: string;
+  success: boolean;
+  userLevel?: number;
+  experienceGained?: number;
+  message?: string;
 }
 
 export interface SubmitReportRequestDTO {
-	reportType: "TYPO_ERROR" | "CONTENT_ERROR" | "ANSWER_ERROR" | "OTHER_ERROR";
-	content: string;
-	problemId: number;
+  reportType: 'TYPO_ERROR' | 'CONTENT_ERROR' | 'ANSWER_ERROR' | 'OTHER_ERROR';
+  content: string;
+  problemId: number;
 }
 
 export interface SubmitResultRequestDTO {
-	lessonId: number;
-	learningTime: number;
-	accuracy: number;
-	problemResults: {
-		problemId: number;
-		isCorrect: boolean;
-		incorrectCounts: number;
-	}[];
+  lessonId: number;
+  learningTime: number;
+  accuracy: number;
+  problemResults: {
+    problemId: number;
+    isCorrect: boolean;
+    incorrectCounts: number;
+  }[];
 }
 
 export interface SubmitResultResponseDTO {
-	leagueName: string;
-	currentLevel: number;
-	xp: number;
+  leagueName: string;
+  currentLevel: number;
+  xp: number;
 }

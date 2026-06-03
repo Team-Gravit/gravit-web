@@ -1,12 +1,10 @@
-import { LEVEL_SYSTEM } from "../config/constants";
+import { LEVEL_SYSTEM } from '../config/constants';
 
 export const getXpRangeByLevel = (
-	level: number,
+  level: number,
 ): { startXp: number; endXp: number | null } | null => {
-	const levelData = LEVEL_SYSTEM.find((data) => data.level === level);
-	return levelData
-		? { startXp: levelData.startXp, endXp: levelData.endXp }
-		: null;
+  const levelData = LEVEL_SYSTEM.find((data) => data.level === level);
+  return levelData ? { startXp: levelData.startXp, endXp: levelData.endXp } : null;
 };
 
 /**
@@ -16,13 +14,13 @@ export const getXpRangeByLevel = (
  * @returns
  */
 export const getLevelProgress = (level: number, xp: number) => {
-	const levelData = getXpRangeByLevel(level);
+  const levelData = getXpRangeByLevel(level);
 
-	if (levelData) {
-		const { startXp, endXp } = levelData;
+  if (levelData) {
+    const { startXp, endXp } = levelData;
 
-		if (!endXp) return 0;
-		return Math.round(Math.min((xp / (endXp - startXp)) * 100, 100));
-	}
-	return 0;
+    if (!endXp) return 0;
+    return Math.round(Math.min((xp / (endXp - startXp)) * 100, 100));
+  }
+  return 0;
 };

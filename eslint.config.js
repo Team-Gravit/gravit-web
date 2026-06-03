@@ -18,8 +18,8 @@ export default tseslint.config(
   storybook.configs['flat/recommended'],
   // tanstack router
   ...pluginRouter.configs['flat/recommended'],
-  [ 
-    globalIgnores(['dist']),
+  [
+    globalIgnores(['dist', 'src/shared/api/@generated/**']),
     {
       files: ['**/*.{ts,tsx}'],
       extends: [
@@ -81,5 +81,5 @@ export default tseslint.config(
         '@tanstack/query/exhaustive-deps': 'error',
       },
     },
-  ]
+  ],
 );

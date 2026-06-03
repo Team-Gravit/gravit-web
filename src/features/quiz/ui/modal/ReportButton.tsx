@@ -1,15 +1,15 @@
-import ReportIcon from "./assets/report.svg?react";
+import ReportIcon from './assets/report.svg?react';
 
 export default function ReportButton({
-	onHandleClickReport,
-	className,
+  onHandleClickReport,
+  className,
 }: {
-	onHandleClickReport: () => void;
-	className?: string;
+  onHandleClickReport: () => void;
+  className?: string;
 }) {
-	return (
-		<button type="button" onClick={onHandleClickReport} className={className}>
-			<ReportIcon className="w-10 h-10" />
-		</button>
-	);
+  return (
+    <button type="button" onClick={onHandleClickReport} className={className}>
+      <ReportIcon className="w-10 h-10" />
+    </button>
+  );
 }

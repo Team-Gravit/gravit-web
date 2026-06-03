@@ -1,67 +1,64 @@
 @layer utilities {
-
   .scrollbar-gutter-stable {
     scrollbar-gutter: stable;
   }
 
+  .animate-fadeIn {
+    animation: fadeIn 0.2s ease-in;
+  }
 
-    .animate-fadeIn {
-        animation: fadeIn 0.2s ease-in;
-    }
+  .bg-main-gradient {
+    background: linear-gradient(45deg, var(--color-main-2) 0%, var(--color-main-end) 100%);
+  }
 
-    .bg-main-gradient {
-        background: linear-gradient(45deg, var(--color-main-2) 0%, var(--color-main-end) 100%);
-    }
+  .text-main-gradient {
+    background: linear-gradient(45deg, var(--color-main-2) 0%, var(--color-main-end) 100%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 
-    .text-main-gradient {
-        background: linear-gradient(45deg, var(--color-main-2) 0%, var(--color-main-end) 100%);
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
+  .primary-btn {
+    border-radius: 10px;
+    background: var(--color-cta);
+    color: #fff;
+    cursor: pointer;
+  }
 
-    .primary-btn {
-        border-radius: 10px;
-        background: var(--color-cta);
-        color: #fff;
-        cursor: pointer
-    }
+  .gray-btn {
+    border-radius: 10px;
+    background: var(--primitive-gray-500);
+    color: #fff;
+    cursor: pointer;
+  }
 
-    .gray-btn {
-        border-radius: 10px;
-        background: var(--primitive-gray-500);
-        color: #fff;
-        cursor: pointer
-    }
-
-    .bg-space-gradient {
-        background: linear-gradient(293deg, #4721CA 3.59%, #17034E 95.08%);
-    }
-    .scrollbar-hide {
+  .bg-space-gradient {
+    background: linear-gradient(293deg, #4721ca 3.59%, #17034e 95.08%);
+  }
+  .scrollbar-hide {
     &::-webkit-scrollbar {
       display: none;
     }
     scrollbar-width: none;
   }
-  
-  .custom-shadow{
-        box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.25)
-    }
 
-    .text-stroke-gradient {
-        color: white;
-        -webkit-text-stroke: 5px var(--color-cta);
-        paint-order: stroke fill;
-    }
+  .custom-shadow {
+    box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.25);
+  }
+
+  .text-stroke-gradient {
+    color: white;
+    -webkit-text-stroke: 5px var(--color-cta);
+    paint-order: stroke fill;
+  }
 }
 
 @layer base {
   .prose {
     font-style: normal !important;
-    color: #1F2328 !important;
+    color: #1f2328 !important;
     line-height: 1.6;
     font-family: 'Pretendard';
   }
-
 
   .prose blockquote {
     quotes: none !important;
@@ -75,7 +72,6 @@
     content: none !important;
   }
 
-
   .prose pre {
     background-color: #f6f8fa !important;
     border-radius: 6px !important;
@@ -84,7 +80,7 @@
 
   .prose pre code {
     background: transparent !important;
-    color: #1F2328 !important;
+    color: #1f2328 !important;
     font-family: 'Source Code Pro', monospace;
     font-weight: 400;
   }
@@ -100,13 +96,13 @@
   .prose table {
     border-collapse: collapse;
     table-layout: auto !important;
-    width: auto !important;      
+    width: auto !important;
   }
 
   .prose th,
   .prose td {
     border: 1px solid #dfe2e5;
-    padding: 0.5em 1em!important;
+    padding: 0.5em 1em !important;
   }
 
   .prose th:first-child,
@@ -124,11 +120,9 @@
     text-align: center !important;
   }
 
-
   .prose tr:nth-child(even) td {
     background-color: #f6f8fa;
   }
-
 
   .prose blockquote p,
   .prose li,
@@ -137,12 +131,12 @@
   }
 
   .prose li::marker {
-  color: #1F2328 !important; 
-}
+    color: #1f2328 !important;
+  }
 
   .prose blockquote {
     quotes: none !important;
-    color: #59636E !important;
+    color: #59636e !important;
   }
 
   .prose blockquote::before,

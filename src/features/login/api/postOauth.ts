@@ -1,18 +1,15 @@
-import { privateApiClient } from "@/shared/api/config";
+import { privateApiClient } from '@/shared/api/config';
 
 export interface PostOAuthResponse {
-	accessToken: string;
-	isOnboarded: boolean;
+  accessToken: string;
+  isOnboarded: boolean;
 }
 
-export async function PostOAuth(
-	provider: string,
-	code: string,
-): Promise<PostOAuthResponse> {
-	const dest = import.meta.env.VITE_ENVIRONMENT === "local" ? "local" : "prod";
-	const { data } = await privateApiClient.post<PostOAuthResponse>(
-		`/oauth/${provider}?dest=${dest}`,
-		{ code },
-	);
-	return data;
+export async function PostOAuth(provider: string, code: string): Promise<PostOAuthResponse> {
+  const dest = import.meta.env.VITE_ENVIRONMENT === 'local' ? 'local' : 'prod';
+  const { data } = await privateApiClient.post<PostOAuthResponse>(
+    `/oauth/${provider}?dest=${dest}`,
+    { code },
+  );
+  return data;
 }

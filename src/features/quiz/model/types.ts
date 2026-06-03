@@ -1,7 +1,7 @@
 export interface UserAnswer {
-	problemId: number;
-	userInput: string | number;
-	problemType: "SUBJECTIVE" | "OBJECTIVE";
-	isCorrect: boolean;
-	incorrectCounts: number;
+  problemId: number;
+  userInput: string | number;
+  problemType: 'SUBJECTIVE' | 'OBJECTIVE';
+  isCorrect: boolean;
+  incorrectCounts: number;
 }

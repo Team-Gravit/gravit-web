@@ -1,27 +1,25 @@
 export const PROFILE_COLORS = {
-	1: "#EB1D64",
-	2: "#F44334",
-	3: "#FFEA3F",
-	4: "#4CAE51",
-	5: "#53A8EB",
-	6: "#3F50B5",
-	7: "#9D27B0",
-	8: "#673AB7",
-	9: "#808081",
-	10: "#000000",
-	11: "#FF9900",
-	12: "#FE9370",
-	13: "#FBC6DC",
-	14: "#A4ECAD",
-	15: "#6DD6C4",
-	16: "#2989C3",
-	17: "#1430E5",
-	18: "#340D91",
-	19: "#8138C5",
+  1: '#EB1D64',
+  2: '#F44334',
+  3: '#FFEA3F',
+  4: '#4CAE51',
+  5: '#53A8EB',
+  6: '#3F50B5',
+  7: '#9D27B0',
+  8: '#673AB7',
+  9: '#808081',
+  10: '#000000',
+  11: '#FF9900',
+  12: '#FE9370',
+  13: '#FBC6DC',
+  14: '#A4ECAD',
+  15: '#6DD6C4',
+  16: '#2989C3',
+  17: '#1430E5',
+  18: '#340D91',
+  19: '#8138C5',
 } as const;
 
 export const getProfileColor = (colorKey: number) => {
-	return (
-		PROFILE_COLORS[colorKey as keyof typeof PROFILE_COLORS] ?? PROFILE_COLORS[1]
-	);
+  return PROFILE_COLORS[colorKey as keyof typeof PROFILE_COLORS] ?? PROFILE_COLORS[1];
 };

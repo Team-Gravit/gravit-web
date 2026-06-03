@@ -8,6 +8,6 @@
  * 단, 도메인 키 파일들은 각 entities 슬라이스 내부에서 관리됩니다.
  */
 
-export { leagueKeys } from "@/entities/league/api/query-keys";
-export { learningKeys } from "@/entities/learning/api/query-keys";
-export { noticeKeys } from "@/entities/notice/api/query-keys";
+export { leagueKeys } from '@/entities/league/api/query-keys';
+export { learningKeys } from '@/entities/learning/api/query-keys';
+export { noticeKeys } from '@/entities/notice/api/query-keys';

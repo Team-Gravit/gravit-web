@@ -1,6 +1,6 @@
-import { useQuizContext } from "./use-quiz-context";
+import { useQuizContext } from './use-quiz-context';
 
 export const useQuizStore = () => {
-	const { store } = useQuizContext();
-	return store();
+  const { store } = useQuizContext();
+  return store();
 };

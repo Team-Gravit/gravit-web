@@ -1,21 +1,21 @@
-import type { ChangeEvent, Ref } from "react";
+import type { ChangeEvent, Ref } from 'react';
 
 export default function SubjectiveInput({
-	enteredAnswer,
-	onChange,
-	ref,
+  enteredAnswer,
+  onChange,
+  ref,
 }: {
-	enteredAnswer: string;
-	onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-	ref: Ref<HTMLInputElement>;
+  enteredAnswer: string;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  ref: Ref<HTMLInputElement>;
 }) {
-	return (
-		<input
-			ref={ref}
-			value={enteredAnswer}
-			onChange={onChange}
-			className="w-full flex items-center h-[68px] px-8 py-4 box-border bg-white rounded-lg border-2 border-black/10 text-gray-600 text-2xl font-medium focus:outline-none focus:border-gray-400"
-			placeholder="정답을 입력해주세요."
-		/>
-	);
+  return (
+    <input
+      ref={ref}
+      value={enteredAnswer}
+      onChange={onChange}
+      className="w-full flex items-center h-[68px] px-8 py-4 box-border bg-white rounded-lg border-2 border-black/10 text-gray-600 text-2xl font-medium focus:outline-none focus:border-gray-400"
+      placeholder="정답을 입력해주세요."
+    />
+  );
 }
