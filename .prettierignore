@@ -1,0 +1,13 @@
+# 빌드 결과물
+dist
+build
+coverage
+storybook-static
+
+# 패키지
+node_modules
+pnpm-lock.yaml
+
+# 자동 생성 파일
+src/shared/api/@generated
+src/routeTree.gen.ts
