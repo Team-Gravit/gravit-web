@@ -11,6 +11,7 @@ export const mapFollowing = (raw: FollowingResponse) => {
 		nickname: raw.nickname,
 		handle: raw.handle,
 		profileImgNumber: raw.profileImgNumber ?? 1,
+		isFollowing: true,
 	};
 };
 export const mapFollower = (raw: FollowerResponse) => {
@@ -19,7 +20,7 @@ export const mapFollower = (raw: FollowerResponse) => {
 		nickname: raw.nickname,
 		handle: raw.handle,
 		profileImgNumber: raw.profileImgNumber ?? 1,
-		isFollowing: raw.isFollowing,
+		isFollowing: raw.isFollowing ?? false,
 	};
 };
 
