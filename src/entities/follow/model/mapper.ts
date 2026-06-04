@@ -4,8 +4,9 @@ import type {
 	SliceResponseFollowingResponse,
 } from "@/shared/api/@generated/model";
 import type { SliceResponseFollowerResponse } from "@/shared/api/@generated/model/sliceResponseFollowerResponse";
+import type { Follower, FollowerList, Following, FollowingList } from "./types";
 
-export const mapFollowing = (raw: FollowingResponse) => {
+export const mapFollowing = (raw: FollowingResponse): Following => {
 	return {
 		id: raw.id || 0,
 		nickname: raw.nickname,
@@ -14,7 +15,8 @@ export const mapFollowing = (raw: FollowingResponse) => {
 		isFollowing: true,
 	};
 };
-export const mapFollower = (raw: FollowerResponse) => {
+
+export const mapFollower = (raw: FollowerResponse): Follower => {
 	return {
 		id: raw.id || 0,
 		nickname: raw.nickname,
@@ -24,16 +26,16 @@ export const mapFollower = (raw: FollowerResponse) => {
 	};
 };
 
-export const mapFollowingList = (raw: SliceResponseFollowingResponse) => {
+export const mapFollowingList = (raw: SliceResponseFollowingResponse): FollowingList => {
 	return {
-		hasNextPage: raw.hasNextPage,
+		hasNextPage: raw.hasNextPage ?? false,
 		contents: raw.contents?.map((data) => mapFollowing(data)) || [],
 	};
 };
 
-export const mapFollowerList = (raw: SliceResponseFollowerResponse) => {
+export const mapFollowerList = (raw: SliceResponseFollowerResponse): FollowerList => {
 	return {
-		hasNextPage: raw.hasNextPage,
+		hasNextPage: raw.hasNextPage ?? false,
 		contents: raw.contents?.map((data) => mapFollower(data)) || [],
 	};
 };
