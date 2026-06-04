@@ -32,7 +32,7 @@ export function useUnfollow({ onSuccess }: { onSuccess?: () => void } = {}) {
               ...old,
               pages: old.pages.map((page) => ({
                 ...page,
-                contents: page.contents.filter((user) => user.id !== followeeId),
+                contents: page.contents?.filter((user) => user.id !== followeeId),
               })),
             };
           },
