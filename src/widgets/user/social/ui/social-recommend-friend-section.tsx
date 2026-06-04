@@ -5,7 +5,7 @@ import Profile from '@/entities/user/ui/profile';
 import RecommendFriendFollowButton from '@/features/follow/recommend-friend-follow-button';
 import { useGetRecommendedUsers } from '@/shared/api/@generated/social-api/social-api';
 import SectionCard from '@/shared/ui/card/section-card';
-import ScrollArea from '@/shared/ui/scroll/scroll-area';
+// import ScrollArea from '@/shared/ui/scroll/scroll-area';
 
 function SocialRecommendFriendSection() {
   const [listRef] = useAutoAnimate();
@@ -22,7 +22,7 @@ function SocialRecommendFriendSection() {
       description="비슷한 레벨의 학습자들"
       className="gap-4 md:gap-[34px]"
     >
-      <ScrollArea orientation="horizontal">
+      {/* <ScrollArea orientation="horizontal"> */}
         <ul
           ref={listRef}
           className="flex items-stretch gap-4 -mr-8 pr-8 overflow-x-scroll scrollbar-hide snap-x"
@@ -34,7 +34,7 @@ function SocialRecommendFriendSection() {
             />
           ))}
         </ul>
-      </ScrollArea>
+      {/* </ScrollArea> */}
     </SectionCard>
   );
 }
