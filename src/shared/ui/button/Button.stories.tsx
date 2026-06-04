@@ -64,11 +64,6 @@ export const StrokePrimary: Story = {
 	args: { variant: "strokePrimary" },
 };
 
-// Sizes
-export const ExtraSmall: Story = {
-	args: { size: "xs" },
-};
-
 export const Small: Story = {
 	args: { size: "sm" },
 };
@@ -126,7 +121,7 @@ export const AllSizes: Story = {
 				flexWrap: "wrap",
 			}}
 		>
-			{(["xs", "sm", "md", "lg"] as const).map((size) => (
+			{(["sm", "md", "lg"] as const).map((size) => (
 				<Button key={size} variant="primary" size={size}>
 					{size.toUpperCase()}
 				</Button>

@@ -1,13 +1,12 @@
 import { type VariantProps } from "class-variance-authority";
 import { type ButtonHTMLAttributes, forwardRef } from "react";
+
+import { cn } from "@/shared/lib/cn";
+
 import { blockButtonVariants, inlineButtonVariants } from "./button.variants";
 
-type InlineButtonProps = { display?: "inline" } & VariantProps<
-	typeof inlineButtonVariants
->;
-type BlockButtonProps = { display: "block" } & VariantProps<
-	typeof blockButtonVariants
->;
+type InlineButtonProps = { display?: "inline" } & VariantProps<typeof inlineButtonVariants>;
+type BlockButtonProps = { display: "block" } & VariantProps<typeof blockButtonVariants>;
 
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
 	(InlineButtonProps | BlockButtonProps) & {
@@ -33,12 +32,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 			const { variant, size, ...rest } =
 				props as ButtonHTMLAttributes<HTMLButtonElement> & BlockButtonProps;
 			variantClassName = blockButtonVariants({ variant, size, className });
-			// rest는 아래 spread에서 사용
 			return (
 				<button
 					ref={ref}
 					disabled={loading || disabled}
-					className={variantClassName}
+					className={cn(variantClassName, className)}
 					{...rest}
 				>
 					{loading ? <span>{loadingText}</span> : children}
