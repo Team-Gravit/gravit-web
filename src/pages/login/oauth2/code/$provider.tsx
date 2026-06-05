@@ -21,7 +21,7 @@ function OAuthCallback() {
 
 	useEffect(() => {
 		if (provider && code) {
-			const dest = import.meta.env.MODE === "development" ? "local" : "prod";
+			const dest = import.meta.env.MODE === "development" ? "local" : import.meta.env.VITE_OAUTH_DEST;
 
 			postOAuth.mutate({ provider, dest, code });
 		}
