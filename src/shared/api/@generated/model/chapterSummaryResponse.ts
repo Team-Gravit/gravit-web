@@ -8,7 +8,7 @@
 
 export interface ChapterSummaryResponse {
   /** 챕터 아이디 */
-  chapterId?: number;
+  chapterId: number;
   /** 챕터명 */
   title: string;
   /** 챕터 설명 */

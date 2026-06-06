@@ -7,9 +7,9 @@
  */
 
 export interface NoticeSummaryResponse {
-  id?: number;
+  id: number;
   title: string;
   summary: string;
-  pinned?: boolean;
+  pinned: boolean;
   publishedAt: string;
 }

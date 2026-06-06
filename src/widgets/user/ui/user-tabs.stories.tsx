@@ -1,52 +1,50 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
-import UserTabs from "./user-tabs";
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
-	createMemoryHistory,
-	createRootRoute,
-	createRoute,
-	createRouter,
-	Outlet,
-	RouterProvider,
-} from "@tanstack/react-router";
+  createMemoryHistory,
+  createRootRoute,
+  createRoute,
+  createRouter,
+  Outlet,
+  RouterProvider,
+} from '@tanstack/react-router';
 
-const withUserTabRouter = (initialPath = "/user") => {
-	return (Story: React.ComponentType) => {
-		const rootRoute = createRootRoute({
-			component: () => <Outlet />,
-		});
+import UserTabs from './user-tabs';
 
-		const routes = [
-			"/user",
-			"/user/learning",
-			"/user/league",
-			"/user/social",
-		].map((path) =>
-			createRoute({
-				getParentRoute: () => rootRoute,
-				path,
-				component: () => <Story />,
-			}),
-		);
+const withUserTabRouter = (initialPath = '/user') => {
+  const Wrapper = (Story: React.ComponentType) => {
+    const rootRoute = createRootRoute({
+      component: () => <Outlet />,
+    });
 
-		const router = createRouter({
-			history: createMemoryHistory(),
-			routeTree: rootRoute.addChildren(routes),
-		});
+    const routes = ['/user', '/user/learning', '/user/league', '/user/social'].map((path) =>
+      createRoute({
+        getParentRoute: () => rootRoute,
+        path,
+        component: () => <Story />,
+      }),
+    );
 
-		router.navigate({ to: initialPath });
+    const router = createRouter({
+      history: createMemoryHistory(),
+      routeTree: rootRoute.addChildren(routes),
+    });
 
-		return (
-			<div className="bg-text-2-w p-4">
-				<RouterProvider router={router} />
-			</div>
-		);
-	};
+    router.navigate({ to: initialPath });
+
+    return (
+      <div className="bg-text-2-w p-4">
+        <RouterProvider router={router} />
+      </div>
+    );
+  };
+  Wrapper.displayName = 'WithUserTabRouter';
+  return Wrapper;
 };
 
 const meta: Meta<typeof UserTabs> = {
-	title: "Widgets/User/UI/UserTabs",
-	component: UserTabs,
-	decorators: [withUserTabRouter()],
+  title: 'Widgets/User/UI/UserTabs',
+  component: UserTabs,
+  decorators: [withUserTabRouter()],
 };
 
 export default meta;
@@ -54,12 +52,12 @@ export default meta;
 type Story = StoryObj<typeof UserTabs>;
 
 export const Default: Story = {
-	name: "데스크탑",
+  name: '데스크탑',
 };
 
 export const Mobile: Story = {
-	name: "모바일",
-	globals: {
-		viewport: { value: "mobile2", isRotated: false },
-	},
+  name: '모바일',
+  globals: {
+    viewport: { value: 'mobile2', isRotated: false },
+  },
 };

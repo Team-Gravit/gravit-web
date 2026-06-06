@@ -1,23 +1,23 @@
 export interface Following {
-	id: number;
-	profileImgNumber: number;
-	nickname: string;
-	handle: string;
-	isFollowing?: boolean;
+  id: number;
+  profileImgNumber: number;
+  nickname: string;
+  handle: string;
+  isFollowing?: boolean;
 }
 
 export interface Follower extends Following {
-	isFollowing: boolean;
+  isFollowing: boolean;
 }
 
 export interface FollowingList {
-	hasNextPage: boolean;
-	contents: Following[];
+  hasNextPage: boolean;
+  contents: Following[];
 }
 
 export interface FollowerList {
-	hasNextPage: boolean;
-	contents: Follower[];
+  hasNextPage: boolean;
+  contents: Follower[];
 }
 
-export type FollowType = "followers" | "following";
+export type FollowType = 'followers' | 'following';

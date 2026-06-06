@@ -12,7 +12,7 @@ import type { SocialFeedResponse } from './socialFeedResponse.ts';
  */
 export interface SocialFeedSliceResponse {
   /** 다음 페이지 존재 여부 */
-  hasNextPage?: boolean;
+  hasNextPage: boolean;
   /** 피드 목록 */
-  contents?: SocialFeedResponse[];
+  contents: SocialFeedResponse[];
 }

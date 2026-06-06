@@ -9,7 +9,7 @@ import type { CurrentSeasonDto } from './currentSeasonDto.ts';
 import type { LastSeasonPopupDto } from './lastSeasonPopupDto.ts';
 
 export interface LeagueHomeResponse {
-  containsPopup?: boolean;
+  containsPopup: boolean;
   currentSeason: CurrentSeasonDto;
   lastSeasonPopupDto?: LastSeasonPopupDto;
 }

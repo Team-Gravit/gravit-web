@@ -11,13 +11,13 @@
  */
 export interface OptionResponse {
   /** 선지 아이디 */
-  optionId?: number;
+  optionId: number;
   /** 내용 */
   content: string;
   /** 설명 */
   explanation: string;
   /** 정답 여부 */
-  isAnswer?: boolean;
+  isAnswer: boolean;
   /** 문제 아이디 */
-  problemId?: number;
+  problemId: number;
 }

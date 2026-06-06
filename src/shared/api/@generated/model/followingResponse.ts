@@ -7,8 +7,8 @@
  */
 
 export interface FollowingResponse {
-  id?: number;
+  id: number;
   nickname: string;
-  profileImgNumber?: number;
+  profileImgNumber: number;
   handle: string;
 }

@@ -14,7 +14,7 @@ import type { ProblemResponseProblemType } from './problemResponseProblemType.ts
  */
 export interface ProblemResponse {
   /** 문제 아이디 */
-  problemId?: number;
+  problemId: number;
   /** 문제 타입 */
   problemType: ProblemResponseProblemType;
   /** 발문 */
@@ -26,5 +26,5 @@ export interface ProblemResponse {
   /** 객관식 선지 */
   options?: OptionResponse[];
   /** 북마크 여부 */
-  isBookmarked?: boolean;
+  isBookmarked: boolean;
 }

@@ -7,8 +7,8 @@
  */
 
 export interface TopChapterResponse {
-  rank?: number;
-  chapterTitle?: string;
-  solvedLessonCount?: number;
-  ratio?: number;
+  rank: number;
+  chapterTitle: string;
+  solvedLessonCount: number;
+  ratio: number;
 }

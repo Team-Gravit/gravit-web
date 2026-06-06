@@ -8,6 +8,6 @@
 import type { LeagueRankRowDto } from './leagueRankRowDto.ts';
 
 export interface SliceResponseLeagueRankRowDto {
-  hasNextPage?: boolean;
-  contents?: LeagueRankRowDto[];
+  hasNextPage: boolean;
+  contents: LeagueRankRowDto[];
 }

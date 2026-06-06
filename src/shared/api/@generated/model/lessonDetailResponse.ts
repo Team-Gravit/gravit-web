@@ -19,7 +19,7 @@ export interface LessonDetailResponse {
   /** 오답노트 풀이 가능 여부 */
   wrongAnsweredNoteAccessible: boolean;
   /** 유닛 아이디 */
-  unitId?: number;
+  unitId: number;
   /** 레슨 요약 정보 목록 */
   lessonSummaries: LessonSummaryResponse[];
 }

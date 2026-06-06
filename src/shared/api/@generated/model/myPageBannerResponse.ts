@@ -7,10 +7,10 @@
  */
 
 export interface MyPageBannerResponse {
-  profileImageNumber?: number;
-  nickname?: string;
-  handle?: string;
-  level?: number;
-  currentLeague?: string;
-  consecutiveSolvedDays?: number;
+  profileImageNumber: number;
+  nickname: string;
+  handle: string;
+  level: number;
+  currentLeague: string;
+  consecutiveSolvedDays: number;
 }

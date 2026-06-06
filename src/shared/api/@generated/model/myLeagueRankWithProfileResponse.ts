@@ -7,14 +7,14 @@
  */
 
 export interface MyLeagueRankWithProfileResponse {
-  leagueId?: number;
+  leagueId: number;
   leagueName: string;
-  rank?: number;
-  userId?: number;
-  lp?: number;
-  maxLp?: number;
+  rank: number;
+  userId: number;
+  lp: number;
+  maxLp: number;
   nickname: string;
-  profileImgNumber?: number;
-  xp?: number;
-  level?: number;
+  profileImgNumber: number;
+  xp: number;
+  level: number;
 }

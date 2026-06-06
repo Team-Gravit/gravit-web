@@ -3,37 +3,37 @@ name: '🐛 Bug Report'
 description: '버그를 발견했나요?'
 labels: ['🐛 Bug']
 body:
-    - type: textarea
-      attributes:
-          label: 🐛 버그 설명
-          description: 어떤 버그인지 명확하고 간결하게 설명해주세요.
-      validations:
-          required: true
-    - type: textarea
-      attributes:
-          label: 🔄 재현 방법
-          description: 버그를 재현하는 단계를 설명해주세요.
-          placeholder: |
-              1. '...'로 이동
-              2. '....'를 클릭
-              3. '....'까지 스크롤
-              4. 오류 확인
-      validations:
-          required: true
-    - type: textarea
-      attributes:
-          label: ✅ 예상 동작
-          description: 어떤 일이 일어날 것으로 예상했나요?
-      validations:
-          required: true
-    - type: textarea
-      attributes:
-          label: 📱 환경 정보
-          description: |
-              브라우저, OS, 디바이스 등의 환경 정보를 알려주세요.
-          placeholder: |
-              - OS: [예: iOS]
-              - Browser: [예: Chrome, Safari]
-              - Version: [예: 22]
-      validations:
-          required: true
+  - type: textarea
+    attributes:
+      label: 🐛 버그 설명
+      description: 어떤 버그인지 명확하고 간결하게 설명해주세요.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: 🔄 재현 방법
+      description: 버그를 재현하는 단계를 설명해주세요.
+      placeholder: |
+        1. '...'로 이동
+        2. '....'를 클릭
+        3. '....'까지 스크롤
+        4. 오류 확인
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: ✅ 예상 동작
+      description: 어떤 일이 일어날 것으로 예상했나요?
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: 📱 환경 정보
+      description: |
+        브라우저, OS, 디바이스 등의 환경 정보를 알려주세요.
+      placeholder: |
+        - OS: [예: iOS]
+        - Browser: [예: Chrome, Safari]
+        - Version: [예: 22]
+    validations:
+      required: true

@@ -1,36 +1,33 @@
-import type {
-	NoticeDetailResponse,
-	SliceResponse,
-} from "@/shared/api/@generated";
+import type { NoticeDetailResponse, SliceResponse } from '@/shared/api/@generated';
 
-import type { NoticeDetail, NoticeItem, NoticeList } from "./types";
+import type { NoticeDetail, NoticeItem, NoticeList } from './types';
 
 /** OpenAPI NoticeDetailResponse → 프론트엔드 NoticeDetail */
 export function mapToNoticeDetail(raw: NoticeDetailResponse): NoticeDetail {
-	return {
-		id: raw.id ?? 0,
-		title: raw.title,
-		content: raw.content,
-		authorName: raw.authorName,
-		createdAt: raw.createdAt,
-		updatedAt: raw.updatedAt,
-		status: raw.status,
-		pinned: raw.pinned ?? false,
-		publishedAt: raw.publishedAt,
-	};
+  return {
+    id: raw.id ?? 0,
+    title: raw.title,
+    content: raw.content,
+    authorName: raw.authorName,
+    createdAt: raw.createdAt,
+    updatedAt: raw.updatedAt,
+    status: raw.status,
+    pinned: raw.pinned ?? false,
+    publishedAt: raw.publishedAt,
+  };
 }
 
 /** OpenAPI SliceResponse → 프론트엔드 NoticeList */
 export function mapToNoticeList(
-	raw: SliceResponse,
-	page: number,
-	totalPages: number,
-	contents: NoticeItem[],
+  raw: SliceResponse,
+  page: number,
+  totalPages: number,
+  contents: NoticeItem[],
 ): NoticeList {
-	return {
-		page,
-		totalPages,
-		hasNext: raw.hasNextPage ?? false,
-		contents,
-	};
+  return {
+    page,
+    totalPages,
+    hasNext: raw.hasNextPage ?? false,
+    contents,
+  };
 }

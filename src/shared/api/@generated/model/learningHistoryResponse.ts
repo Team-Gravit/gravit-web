@@ -8,6 +8,6 @@
 import type { DailySolvedCountResponse } from './dailySolvedCountResponse.ts';
 
 export interface LearningHistoryResponse {
-  dailySolvedCounts?: DailySolvedCountResponse[];
-  peakLearningHour?: number;
+  dailySolvedCounts: DailySolvedCountResponse[];
+  peakLearningHour: number;
 }

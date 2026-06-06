@@ -14,5 +14,5 @@ export interface BookmarkedProblemResponse {
   /** 문제 목록 */
   problems: ProblemResponse[];
   /** 전체 문제 수 */
-  totalProblems?: number;
+  totalProblems: number;
 }

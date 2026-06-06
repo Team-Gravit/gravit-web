@@ -10,7 +10,7 @@ import type { WeakConceptResponse } from './weakConceptResponse.ts';
 import type { WeeklyLearningReportResponse } from './weeklyLearningReportResponse.ts';
 
 export interface MyPageLearningResponse {
-  weeklyReport?: WeeklyLearningReportResponse;
-  topChapters?: TopChapterResponse[];
-  weakConcepts?: WeakConceptResponse[];
+  weeklyReport: WeeklyLearningReportResponse;
+  topChapters: TopChapterResponse[];
+  weakConcepts: WeakConceptResponse[];
 }

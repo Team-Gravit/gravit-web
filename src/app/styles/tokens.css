@@ -1,326 +1,326 @@
 @theme {
-
-    /* ================================
+  /* ================================
         PRIMITIVE - Purple
     ================================ */
-    --primitive-purple-950: #4A005E;
-    --primitive-purple-900: #6D0689;
-    --primitive-purple-800: #8100A9;
-    --primitive-purple-700: #9B00CF;
-    --primitive-purple-600: #BA00FF;
-    --primitive-purple-500: #BE21FF;
-    --primitive-purple-400: #CF5DFF;
-    --primitive-purple-300: #DF99FF;
-    --primitive-purple-200: #EBC6FF;
-    --primitive-purple-100: #F4E3FF;
-    --primitive-purple-50:  #FBF2FF;
+  --primitive-purple-950: #4a005e;
+  --primitive-purple-900: #6d0689;
+  --primitive-purple-800: #8100a9;
+  --primitive-purple-700: #9b00cf;
+  --primitive-purple-600: #ba00ff;
+  --primitive-purple-500: #be21ff;
+  --primitive-purple-400: #cf5dff;
+  --primitive-purple-300: #df99ff;
+  --primitive-purple-200: #ebc6ff;
+  --primitive-purple-100: #f4e3ff;
+  --primitive-purple-50: #fbf2ff;
 
-    /* ================================
+  /* ================================
         PRIMITIVE - Gray Scale
     ================================ */
-    --primitive-gray-1100: #000000;
-    --primitive-gray-1000: #242424;
-    --primitive-gray-900:  #383838;
-    --primitive-gray-800:  #3D3D3D;
-    --primitive-gray-700:  #666666;
-    --primitive-gray-600:  #6D6D6D;
-    --primitive-gray-500:  #A8A8A8;
-    --primitive-gray-400:  #C6C6C6;
-    --primitive-gray-300:  #DCDCDC;
-    --primitive-gray-200:  #F2F2F2;
-    --primitive-gray-100:  #F8F8F8;
-    --primitive-gray-50:   #FBFBFB;
-    --primitive-gray-0:    #FFFFFF;
+  --primitive-gray-1100: #000000;
+  --primitive-gray-1000: #242424;
+  --primitive-gray-900: #383838;
+  --primitive-gray-800: #3d3d3d;
+  --primitive-gray-700: #666666;
+  --primitive-gray-600: #6d6d6d;
+  --primitive-gray-500: #a8a8a8;
+  --primitive-gray-400: #c6c6c6;
+  --primitive-gray-300: #dcdcdc;
+  --primitive-gray-200: #f2f2f2;
+  --primitive-gray-100: #f8f8f8;
+  --primitive-gray-50: #fbfbfb;
+  --primitive-gray-0: #ffffff;
 
-    /* ================================
+  /* ================================
         ALIAS - Brand
     ================================ */
-    --color-main:       var(--primitive-purple-500);  /* #BE21FF */
-    --color-secondary-1: #000000;
-    --color-secondary-2: #000000;
-    --color-secondary-3: #000000;
+  --color-main: var(--primitive-purple-500); /* #BE21FF */
+  --color-secondary-1: #000000;
+  --color-secondary-2: #000000;
+  --color-secondary-3: #000000;
 
-    /* ================================
+  /* ================================
         ALIAS - Background
     ================================ */
-    --color-bg-1: var(--primitive-gray-100);    /* #F8F8F8 */
-    --color-bg-2: var(--primitive-gray-200);  /* #F2F2F2 */
-    --color-bg-3: var(--primitive-gray-300);  /* #DCDCDC */
-    --color-bg-4: var(--primitive-gray-400);  /* #C6C6C6 */
+  --color-bg-1: var(--primitive-gray-100); /* #F8F8F8 */
+  --color-bg-2: var(--primitive-gray-200); /* #F2F2F2 */
+  --color-bg-3: var(--primitive-gray-300); /* #DCDCDC */
+  --color-bg-4: var(--primitive-gray-400); /* #C6C6C6 */
 
-    /* ================================
+  /* ================================
         ALIAS - Purple
     ================================ */
-    --color-purple-100: var(--primitive-purple-100);
-    --color-purple-200: var(--primitive-purple-200);
-    --color-purple-300: var(--primitive-purple-300);
-    --color-purple-400: var(--primitive-purple-400);
-    --color-purple-500: var(--primitive-purple-500);
-    --color-purple-600: var(--primitive-purple-600);
-    --color-purple-700: var(--primitive-purple-700);
-    --color-purple-800: var(--primitive-purple-800);
-    --color-purple-900: var(--primitive-purple-900);
-    --color-purple-950: var(--primitive-purple-950);
+  --color-purple-100: var(--primitive-purple-100);
+  --color-purple-200: var(--primitive-purple-200);
+  --color-purple-300: var(--primitive-purple-300);
+  --color-purple-400: var(--primitive-purple-400);
+  --color-purple-500: var(--primitive-purple-500);
+  --color-purple-600: var(--primitive-purple-600);
+  --color-purple-700: var(--primitive-purple-700);
+  --color-purple-800: var(--primitive-purple-800);
+  --color-purple-900: var(--primitive-purple-900);
+  --color-purple-950: var(--primitive-purple-950);
 
-    /* ================================
+  /* ================================
         ALIAS - Text
     ================================ */
-    --color-text-1:   var(--primitive-gray-1000); /* #242424 */
-    --color-text-2:   var(--primitive-gray-900);  /* #383838 */
-    --color-text-3:   var(--primitive-gray-600);  /* #6D6D6D */
-    --color-text-4:   var(--primitive-gray-500);  /* #A8A8A8 */
-    --color-text-1-w: var(--primitive-gray-0);    /* #FFFFFF */
-    --color-text-2-w: var(--primitive-gray-200);  /* #F2F2F2 */
-    --color-text-3-w: var(--primitive-gray-500);  /* #A8A8A8 */
+  --color-text-1: var(--primitive-gray-1000); /* #242424 */
+  --color-text-2: var(--primitive-gray-900); /* #383838 */
+  --color-text-3: var(--primitive-gray-600); /* #6D6D6D */
+  --color-text-4: var(--primitive-gray-500); /* #A8A8A8 */
+  --color-text-1-w: var(--primitive-gray-0); /* #FFFFFF */
+  --color-text-2-w: var(--primitive-gray-200); /* #F2F2F2 */
+  --color-text-3-w: var(--primitive-gray-500); /* #A8A8A8 */
 
-    /* ================================
+  /* ================================
         ALIAS - Icon
     ================================ */
-    --color-icon:          #6F6F6F;
-    --color-icon-color:    var(--primitive-purple-500);  /* #BE21FF */
-    --color-icon-disabled: var(--primitive-gray-500);    /* #A8A8A8 */
-    --color-icon-w:        var(--primitive-gray-0);      /* #FFFFFF */
+  --color-icon: #6f6f6f;
+  --color-icon-color: var(--primitive-purple-500); /* #BE21FF */
+  --color-icon-disabled: var(--primitive-gray-500); /* #A8A8A8 */
+  --color-icon-w: var(--primitive-gray-0); /* #FFFFFF */
 
-    /* ================================
+  /* ================================
         ALIAS - Divider
     ================================ */
-    --color-divider-1: var(--primitive-gray-300); /* #DCDCDC */
-    --color-divider-2: var(--primitive-gray-400); /* #C6C6C6 */
+  --color-divider-1: var(--primitive-gray-300); /* #DCDCDC */
+  --color-divider-2: var(--primitive-gray-400); /* #C6C6C6 */
 
-    /* ================================
+  /* ================================
         ALIAS - Semantic
     ================================ */
-    --color-semantic-success: #00C30D;
-    --color-semantic-warning: #f9a825;
-    --color-semantic-error:   #EB3D32;
-    --color-semantic-info:    var(--primitive-gray-400); /* #C6C6C6 */
+  --color-semantic-success: #00c30d;
+  --color-semantic-warning: #f9a825;
+  --color-semantic-error: #eb3d32;
+  --color-semantic-info: var(--primitive-gray-400); /* #C6C6C6 */
+  --color-semantic-5: #1fabff;
 
-    /* ================================
+  /* ================================
         ALIAS - CTA
     ================================ */
-    --color-cta:  var(--primitive-purple-700);  /* #9B00CF */
-    --color-cta-hover:    var(--primitive-purple-900);  /* #6D0689 */
-    --color-cta-disabled: var(--primitive-gray-300);    /* #DCDCDC */
-    --color-cta-text:     var(--primitive-gray-50);     /* #FBFBFB */
+  --color-cta: var(--primitive-purple-700); /* #9B00CF */
+  --color-cta-hover: var(--primitive-purple-900); /* #6D0689 */
+  --color-cta-disabled: var(--primitive-gray-300); /* #DCDCDC */
+  --color-cta-text: var(--primitive-gray-50); /* #FBFBFB */
 
-    /* TODO :  밑의 토큰들은 앞으로 이전 디자인을 제거하면서 같이 제거해야 하는 토큰들입니다.*/    
-    /*기본 색상 비활성화*/
-    --color-gray-*: initial;
+  /* TODO :  밑의 토큰들은 앞으로 이전 디자인을 제거하면서 같이 제거해야 하는 토큰들입니다.*/
+  /*기본 색상 비활성화*/
+  --color-gray-*: initial;
 
-    /*배경*/
-    --color-bg-gray: #f8f8f9;
+  /*배경*/
+  --color-bg-gray: #f8f8f9;
 
-    /*버튼*/
-    --color-kakao-btn: #ffe240;
+  /*버튼*/
+  --color-kakao-btn: #ffe240;
 
-    /*black*/
-    --color-black: #222124;
+  /*black*/
+  --color-black: #222124;
 
-    --background-image-main-gr: var(--main-gr, linear-gradient(45deg, #8100B3 0%, #D0F 100%));
+  --background-image-main-gr: var(--main-gr, linear-gradient(45deg, #8100b3 0%, #d0f 100%));
 
-    
-    /*gray*/
-    --color-gray-100: #f8f8f8;
-    --color-gray-200: #f2f2f2;
-    --color-gray-300: #dcdcdc;
-    --color-gray-400: #c2c2c2;
-    --color-gray-500: #a8a8a8;
-    --color-gray-600: #6d6d6d;
-    --color-gray-700: #5a5a5a;
-    --color-gray-800: #494949;
-    --color-gray-900: #383838;
+  /*gray*/
+  --color-gray-100: #f8f8f8;
+  --color-gray-200: #f2f2f2;
+  --color-gray-300: #dcdcdc;
+  --color-gray-400: #c2c2c2;
+  --color-gray-500: #a8a8a8;
+  --color-gray-600: #6d6d6d;
+  --color-gray-700: #5a5a5a;
+  --color-gray-800: #494949;
+  --color-gray-900: #383838;
 
-    /*텍스트*/
-    --color-text1: #000;
-    --color-text2: #4c4c4c;
+  /*텍스트*/
+  --color-text1: #000;
+  --color-text2: #4c4c4c;
 
-    /*티어 색상*/
-    --color-bronze: #8d5200;
-    --color-silver: #b3b3b3;
-    --color-gold: #ffd900;
-    --color-platinum: #00ffda;
-    --color-diamond: #00e5ff;
+  /*티어 색상*/
+  --color-bronze: #8d5200;
+  --color-silver: #b3b3b3;
+  --color-gold: #ffd900;
+  --color-platinum: #00ffda;
+  --color-diamond: #00e5ff;
 
-    /*메인 색상*/
-    --color-main-1: #ba00ff;
-    --color-main-2: #8100b3;
-    --color-main-end: #dd00ff;
+  /*메인 색상*/
+  --color-main-1: #ba00ff;
+  --color-main-hover: var(--color-purple-300);
+  --color-main-2: #8100b3;
+  --color-main-end: #dd00ff;
 
-    /*학습 페이지 - 헤더*/
-    --color-neutral-20: #9747ff;
-    --color-neutral-60: #4d4d4d;
-    --color-neutral-100: #030303;
+  /*학습 페이지 - 헤더*/
+  --color-neutral-20: #9747ff;
+  --color-neutral-60: #4d4d4d;
+  --color-neutral-100: #030303;
 
-    /*학습 페이지 - 문제 영역*/
-    --color-correct: #00a80b;
-    --color-error: #ff3b2f;
-    --color-error-info: #d00000;
+  /*학습 페이지 - 문제 영역*/
+  --color-correct: #00a80b;
+  --color-error: #ff3b2f;
+  --color-error-info: #d00000;
 
-    /*프로필 색상*/
-    --color-profile-1: #eb1d64;
-    --color-profile-2: #f44334;
-    --color-profile-3: #ffea3f;
-    --color-profile-4: #4cae51;
-    --color-profile-5: #53a8eb;
-    --color-profile-6: #3f50b5;
-    --color-profile-7: #9d27b0;
-    --color-profile-8: #673ab7;
-    --color-profile-9: #808081;
-    --color-profile-10: #000;
+  /*프로필 색상*/
+  --color-profile-1: #eb1d64;
+  --color-profile-2: #f44334;
+  --color-profile-3: #ffea3f;
+  --color-profile-4: #4cae51;
+  --color-profile-5: #53a8eb;
+  --color-profile-6: #3f50b5;
+  --color-profile-7: #9d27b0;
+  --color-profile-8: #673ab7;
+  --color-profile-9: #808081;
+  --color-profile-10: #000;
 
-    /* 반응형 브레이크포인트 */
-    --breakpoint-sm: 640px;
-    --breakpoint-md: 768px;
-    --breakpoint-lg: 1024px;
-    --breakpoint-xl: 1280px;
+  /* 반응형 브레이크포인트 */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
 
-    /* 번호 색상 */
-    --color-3: #FFB608;
+  /* 번호 색상 */
+  --color-3: #ffb608;
 
-    /*폰트*/
-    --font-pretendard: 'Pretendard', sans-serif;
-    --font-mbc: 'MBC1961GulimM', sans-serif;
+  /*폰트*/
+  --font-pretendard: 'Pretendard', sans-serif;
+  --font-mbc: 'MBC1961GulimM', sans-serif;
 
-    /*헤더*/
-    --header-height: 74px;
+  /*헤더*/
+  --header-height: 74px;
 
-    /* 모바일 탭 */
-    --bottom-tab-height : 68px;
-    
-    /*스켈레톤 애니메이션*/
-    --animate-skeleton-pulse: skeletonPulse 1.5s infinite;
-    --animate-skeleton-wave: skeletonWave 1.6s infinite;
+  /* 모바일 탭 */
+  --bottom-tab-height: 68px;
 
-    /*토스트 애니메이션*/
-    --animate-fade-in-y: fadeInWithTransformY 0.5s forwards;
-    --animate-fade-out-y: fadeOutWithTransformY 0.5s forwards;
+  /*스켈레톤 애니메이션*/
+  --animate-skeleton-pulse: skeletonPulse 1.5s infinite;
+  --animate-skeleton-wave: skeletonWave 1.6s infinite;
 
-    --text-display1: 40px;
-    --text-display1--line-height: 1.25;
-    --text-display1--letter-spacing: 0.6px;
-    --text-display1--font-weight: 700;
+  /*토스트 애니메이션*/
+  --animate-fade-in-y: fadeInWithTransformY 0.5s forwards;
+  --animate-fade-out-y: fadeOutWithTransformY 0.5s forwards;
 
-    --text-display2: 36px;
-    --text-display2--line-height: 1.25;
-    --text-display2--letter-spacing: -0.6px;
-    --text-display2--font-weight: 700;
+  --text-display1: 40px;
+  --text-display1--line-height: 1.25;
+  --text-display1--letter-spacing: 0.6px;
+  --text-display1--font-weight: 700;
 
-    --text-title1: 32px;
-    --text-title1--line-height: 1.25;
-    --text-title1--letter-spacing: -0.6px;
-    --text-title1--font-weight: 700;
+  --text-display2: 36px;
+  --text-display2--line-height: 1.25;
+  --text-display2--letter-spacing: -0.6px;
+  --text-display2--font-weight: 700;
 
-    --text-title2: 28px;
-    --text-title2--line-height: 1.25;
-    --text-title2--letter-spacing: -0.6px;
-    --text-title2--font-weight: 700;
+  --text-title1: 32px;
+  --text-title1--line-height: 1.25;
+  --text-title1--letter-spacing: -0.6px;
+  --text-title1--font-weight: 700;
 
-    --text-title3: 24px;
-    --text-title3--line-height: 1.25;
-    --text-title3--letter-spacing: -0.6px;
-    --text-title3--font-weight: 700;
+  --text-title2: 28px;
+  --text-title2--line-height: 1.25;
+  --text-title2--letter-spacing: -0.6px;
+  --text-title2--font-weight: 700;
 
-    --text-heading1: 22px;
-    --text-heading1--line-height: 1.25;
-    --text-heading1--letter-spacing: -0.6px;
-    --text-heading1--font-weight: 600;
+  --text-title3: 24px;
+  --text-title3--line-height: 1.25;
+  --text-title3--letter-spacing: -0.6px;
+  --text-title3--font-weight: 700;
 
-    --text-heading2: 20px;
-    --text-heading2--line-height: 1.25;
-    --text-heading2--letter-spacing: -0.6px;
-    --text-heading2--font-weight: 600;
+  --text-heading1: 22px;
+  --text-heading1--line-height: 1.25;
+  --text-heading1--letter-spacing: -0.6px;
+  --text-heading1--font-weight: 600;
 
-    --text-headline1: 18px;
-    --text-headline1--line-height: 1.25;
-    --text-headline1--letter-spacing: -0.6px;
-    --text-headline1--font-weight: 600;
+  --text-heading2: 20px;
+  --text-heading2--line-height: 1.25;
+  --text-heading2--letter-spacing: -0.6px;
+  --text-heading2--font-weight: 600;
 
-    --text-headline2: 17px;
-    --text-headline2--line-height: 1.25;
-    --text-headline2--letter-spacing: -0.6px;
-    --text-headline2--font-weight: 600;
+  --text-headline1: 18px;
+  --text-headline1--line-height: 1.25;
+  --text-headline1--letter-spacing: -0.6px;
+  --text-headline1--font-weight: 600;
 
-    --text-body1-normal: 16px;
-    --text-body1-normal--line-height: 1.5;
-    --text-body1-normal--letter-spacing: normal;
-    --text-body1-normal--font-weight: 400;
+  --text-headline2: 17px;
+  --text-headline2--line-height: 1.25;
+  --text-headline2--letter-spacing: -0.6px;
+  --text-headline2--font-weight: 600;
 
-    --text-body1-reading: 16px;
-    --text-body1-reading--line-height: 1.6;
-    --text-body1-reading--letter-spacing: normal;
-    --text-body1-reading--font-weight: 400;
+  --text-body1-normal: 16px;
+  --text-body1-normal--line-height: 1.5;
+  --text-body1-normal--letter-spacing: normal;
+  --text-body1-normal--font-weight: 400;
 
-    --text-body2-normal: 15px;
-    --text-body2-normal--line-height: 1.5;
-    --text-body2-normal--letter-spacing: normal;
-    --text-body2-normal--font-weight: 400;
+  --text-body1-reading: 16px;
+  --text-body1-reading--line-height: 1.6;
+  --text-body1-reading--letter-spacing: normal;
+  --text-body1-reading--font-weight: 400;
 
-    --text-body2-reading: 15px;
-    --text-body2-reading--line-height: 1.6;
-    --text-body2-reading--letter-spacing: normal;
-    --text-body2-reading--font-weight: 400;
+  --text-body2-normal: 15px;
+  --text-body2-normal--line-height: 1.5;
+  --text-body2-normal--letter-spacing: normal;
+  --text-body2-normal--font-weight: 400;
 
-    --text-label1: 14px;
-    --text-label1--line-height: normal;
-    --text-label1--letter-spacing: normal;
-    --text-label1--font-weight: 600;
+  --text-body2-reading: 15px;
+  --text-body2-reading--line-height: 1.6;
+  --text-body2-reading--letter-spacing: normal;
+  --text-body2-reading--font-weight: 400;
 
-    --text-label2: 13px;
-    --text-label2--line-height: normal;
-    --text-label2--letter-spacing: normal;
-    --text-label2--font-weight: 400;
+  --text-label1: 14px;
+  --text-label1--line-height: normal;
+  --text-label1--letter-spacing: normal;
+  --text-label1--font-weight: 600;
 
-    --text-caption1: 12px;
-    --text-caption1--line-height: normal;
-    --text-caption1--letter-spacing: normal;
-    --text-caption1--font-weight: 400;
+  --text-label2: 13px;
+  --text-label2--line-height: normal;
+  --text-label2--letter-spacing: normal;
+  --text-label2--font-weight: 400;
 
-    --text-caption2: 11px;
-    --text-caption2--line-height: normal;
-    --text-caption2--letter-spacing: normal;
-    --text-caption2--font-weight: 400;
+  --text-caption1: 12px;
+  --text-caption1--line-height: normal;
+  --text-caption1--letter-spacing: normal;
+  --text-caption1--font-weight: 400;
 
-    @keyframes skeletonPulse {
-        0%,
-        100% {
-            opacity: 1;
-        }
-        50% {
-            opacity: 0.4;
-        }
+  --text-caption2: 11px;
+  --text-caption2--line-height: normal;
+  --text-caption2--letter-spacing: normal;
+  --text-caption2--font-weight: 400;
+
+  @keyframes skeletonPulse {
+    0%,
+    100% {
+      opacity: 1;
     }
-
-    @keyframes skeletonWave {
-        0% {
-            left: -150%;
-        }
-        50% {
-            left: 0%;
-        }
-        100% {
-            left: 150%;
-        }
+    50% {
+      opacity: 0.4;
     }
+  }
 
-    @keyframes fadeInWithTransformY {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+  @keyframes skeletonWave {
+    0% {
+      left: -150%;
     }
+    50% {
+      left: 0%;
+    }
+    100% {
+      left: 150%;
+    }
+  }
 
-    @keyframes fadeOutWithTransformY {
-        from {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        to {
-            opacity: 0;
-            transform: translateY(20px);
-        }
+  @keyframes fadeInWithTransformY {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
     }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeOutWithTransformY {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+  }
 }

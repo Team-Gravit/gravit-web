@@ -1,32 +1,33 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { learningKeys } from "@/entities/learning/api/query-keys";
-import { api } from "@/shared/api";
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+
+import { learningKeys } from '@/entities/learning/api/query-keys';
+import { api } from '@/shared/api';
 import type {
-	LearningSubmissionSaveRequest,
-	ProblemSubmissionRequest,
-} from "@/shared/api/@generated";
+  LearningSubmissionSaveRequest,
+  ProblemSubmissionRequest,
+} from '@/shared/api/@generated';
 
 export const useSubmitQuizResult = () => {
-	const queryClient = useQueryClient();
-	return useMutation({
-		mutationFn: async (request: LearningSubmissionSaveRequest) => {
-			const response = await api.private.lesson.saveLessonSubmission(request);
-			return response.data;
-		},
-		onSuccess: () => {
-			queryClient.invalidateQueries({
-				queryKey: learningKeys.all,
-			});
-		},
-		onError: () => {},
-	});
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (request: LearningSubmissionSaveRequest) => {
+      const response = await api.private.lesson.saveLessonSubmission(request);
+      return response.data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: learningKeys.all,
+      });
+    },
+    onError: () => {},
+  });
 };
 
 export const useSubmitProblemResult = () => {
-	return useMutation({
-		mutationFn: async (request: ProblemSubmissionRequest) => {
-			const response = await api.private.problem.saveProblemSubmission(request);
-			return response.data;
-		},
-	});
+  return useMutation({
+    mutationFn: async (request: ProblemSubmissionRequest) => {
+      const response = await api.private.problem.saveProblemSubmission(request);
+      return response.data;
+    },
+  });
 };

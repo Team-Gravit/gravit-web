@@ -7,13 +7,13 @@
  */
 
 export interface AdminNoticeDetailResponse {
-  noticeId?: number;
+  noticeId: number;
   title: string;
   contents: string;
   authorName: string;
   createdAt: string;
   updatedAt: string;
   noticeType: string;
-  pinned?: boolean;
+  pinned: boolean;
   publishedAt?: string;
 }

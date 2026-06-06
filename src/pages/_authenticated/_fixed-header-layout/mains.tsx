@@ -1,109 +1,97 @@
-import { createFileRoute } from "@tanstack/react-router";
-import fire from "@/shared/assets/images/fire.png";
-import rocket from "@/shared/assets/images/rocket.png";
-import Banner from "@/shared/ui/banner/Banner";
-import { StatCard } from "@/shared/ui/card/StatCard";
-import Footer from "@/widgets/Footer/Footer";
-import LearningProgressInfo from "@/widgets/learning-widget/LearningProgressInfo";
-import RecentLearningCard from "@/widgets/learning-widget/RecentLearningCard";
-import { useFetchMainInfo } from "@/widgets/main/model/hooks";
-import MissionCard from "@/widgets/misson-widget/MissionCard";
+import { createFileRoute } from '@tanstack/react-router';
 
-export const Route = createFileRoute(
-	"/_authenticated/_fixed-header-layout/mains",
-)({
-	component: MainPage,
+import fire from '@/shared/assets/images/fire.png';
+import rocket from '@/shared/assets/images/rocket.png';
+import Banner from '@/shared/ui/banner/Banner';
+import { StatCard } from '@/shared/ui/card/StatCard';
+import Footer from '@/widgets/Footer/Footer';
+import LearningProgressInfo from '@/widgets/learning-widget/LearningProgressInfo';
+import RecentLearningCard from '@/widgets/learning-widget/RecentLearningCard';
+import { useFetchMainInfo } from '@/widgets/main/model/hooks';
+import MissionCard from '@/widgets/misson-widget/MissionCard';
+
+export const Route = createFileRoute('/_authenticated/_fixed-header-layout/mains')({
+  component: MainPage,
 });
 
 function MainPage() {
-	const { data, isPending, isError, error } = useFetchMainInfo();
+  const { data, isPending, isError, error } = useFetchMainInfo();
 
-	if (isPending) {
-		return <div></div>;
-	}
+  if (isPending) {
+    return <div></div>;
+  }
 
-	if (isError) {
-		return <>{error.message}</>;
-	}
+  if (isError) {
+    return <>{error.message}</>;
+  }
 
-	if (!data) {
-		return <div>데이터 없음</div>;
-	}
+  if (!data) {
+    return <div>데이터 없음</div>;
+  }
 
-	const nickname = data.nickname ?? "";
-	const leagueName = data.leagueDetailResponse?.leagueName ?? "";
-	const level = data.userLevelDetailResponse?.level ?? 0;
-	const xp = data.userLevelDetailResponse?.currentXp ?? 0;
-	const consecutiveSolvedDays =
-		data.learningDetailResponse?.consecutiveSolvedDays ?? 0;
-	const planetConquestRate = 0;
-	const recentSolvedChapterId = data.learningDetailResponse?.recentSolvedChapterId;
-	const recentSolvedChapterTitle =
-		data.learningDetailResponse?.recentSolvedChapterTitle ?? "";
-	const recentSolvedChapterDescription = "";
-	const recentSolvedChapterProgressRate =
-		data.learningDetailResponse?.recentSolvedChapterProgressRate ?? 0;
-	const missionDescription =
-		data.missionDetailResponse?.missionDescription ?? "";
-	const awardXp = data.missionDetailResponse?.awardXp ?? 0;
-	const isCompleted = data.missionDetailResponse?.isCompleted ?? false;
-	const missionName = data.missionDetailResponse?.missionType ?? "";
+  const nickname = data.nickname ?? '';
+  const leagueName = data.leagueDetailResponse?.leagueName ?? '';
+  const level = data.userLevelDetailResponse?.level ?? 0;
+  const xp = data.userLevelDetailResponse?.currentXp ?? 0;
+  const consecutiveSolvedDays = data.learningDetailResponse?.consecutiveSolvedDays ?? 0;
+  const planetConquestRate = 0;
+  const recentSolvedChapterId = data.learningDetailResponse?.recentSolvedChapterId;
+  const recentSolvedChapterTitle = data.learningDetailResponse?.recentSolvedChapterTitle ?? '';
+  const recentSolvedChapterDescription = '';
+  const recentSolvedChapterProgressRate =
+    data.learningDetailResponse?.recentSolvedChapterProgressRate ?? 0;
+  const missionDescription = data.missionDetailResponse?.missionDescription ?? '';
+  const awardXp = data.missionDetailResponse?.awardXp ?? 0;
+  const isCompleted = data.missionDetailResponse?.isCompleted ?? false;
+  const missionName = data.missionDetailResponse?.missionType ?? '';
 
-	return (
-		<>
-			<main className="flex-grow flex flex-col items-center justify-center bg-gray-200">
-				<Banner />
-				<div className="w-full max-w-[1700px] flex-grow p-20 bg-[#f2f2f2] flex flex-col lg:flex-row gap-6">
-					<section className="w-full lg:w-1/2 flex flex-col">
-						<h2 className="font-semibold text-[40px] mb-5">
-							어서오세요, <b className="font-bold">{nickname}</b>님
-						</h2>
-						<LearningProgressInfo
-							league={leagueName}
-							xp={xp || 0}
-							level={level || 0}
-						/>
+  return (
+    <>
+      <main className="flex-grow flex flex-col items-center justify-center bg-gray-200">
+        <Banner />
+        <div className="w-full max-w-[1700px] flex-grow p-20 bg-[#f2f2f2] flex flex-col lg:flex-row gap-6">
+          <section className="w-full lg:w-1/2 flex flex-col">
+            <h2 className="font-semibold text-[40px] mb-5">
+              어서오세요, <b className="font-bold">{nickname}</b>님
+            </h2>
+            <LearningProgressInfo league={leagueName} xp={xp || 0} level={level || 0} />
 
-						<div className="flex flex-row gap-4 mt-8">
-							<MissionCard
-								missionName={missionName || ""}
-								missionInfo={{ missionDescription, awardXp: awardXp || 0 }}
-								isCompleted={isCompleted || false}
-							/>
-							<aside className="flex flex-col w-1/3 min-h-[334px] gap-8">
-								<dl className="flex flex-col gap-4 flex-grow">
-									<StatCard
-										icon={rocket}
-										label={"행성 정복률"}
-										value={`${planetConquestRate}%`}
-									/>
-									<StatCard
-										icon={fire}
-										label={"연속 학습일"}
-										value={`${consecutiveSolvedDays}일`}
-									/>
-								</dl>
-							</aside>
-						</div>
-					</section>
-					<section className="w-full lg:w-1/2 flex flex-col">
-						<h2 className="font-semibold text-[40px] mb-5">최근 진행한 학습</h2>
-						<RecentLearningCard
-							learningSummary={
-								recentSolvedChapterId && recentSolvedChapterProgressRate
-									? {
-											recentSolvedChapterId,
-											recentSolvedChapterTitle,
-											recentSolvedChapterDescription,
-											recentSolvedChapterProgressRate,
-										}
-									: undefined
-							}
-						/>
-					</section>
-				</div>
-			</main>
-			<Footer />
-		</>
-	);
+            <div className="flex flex-row gap-4 mt-8">
+              <MissionCard
+                missionName={missionName || ''}
+                missionInfo={{ missionDescription, awardXp: awardXp || 0 }}
+                isCompleted={isCompleted || false}
+              />
+              <aside className="flex flex-col w-1/3 min-h-[334px] gap-8">
+                <dl className="flex flex-col gap-4 flex-grow">
+                  <StatCard icon={rocket} label={'행성 정복률'} value={`${planetConquestRate}%`} />
+                  <StatCard
+                    icon={fire}
+                    label={'연속 학습일'}
+                    value={`${consecutiveSolvedDays}일`}
+                  />
+                </dl>
+              </aside>
+            </div>
+          </section>
+          <section className="w-full lg:w-1/2 flex flex-col">
+            <h2 className="font-semibold text-[40px] mb-5">최근 진행한 학습</h2>
+            <RecentLearningCard
+              learningSummary={
+                recentSolvedChapterId && recentSolvedChapterProgressRate
+                  ? {
+                      recentSolvedChapterId,
+                      recentSolvedChapterTitle,
+                      recentSolvedChapterDescription,
+                      recentSolvedChapterProgressRate,
+                    }
+                  : undefined
+              }
+            />
+          </section>
+        </div>
+      </main>
+      <Footer />
+    </>
+  );
 }

@@ -7,9 +7,9 @@
  */
 
 export interface WeakConceptResponse {
-  rank?: number;
-  unitTitle?: string;
-  chapterTitle?: string;
-  wrongAnswerCount?: number;
-  wrongAnswerRate?: number;
+  rank: number;
+  unitTitle: string;
+  chapterTitle: string;
+  wrongAnswerCount: number;
+  wrongAnswerRate: number;
 }

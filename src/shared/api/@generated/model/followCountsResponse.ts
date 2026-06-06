@@ -7,6 +7,6 @@
  */
 
 export interface FollowCountsResponse {
-  followerCount?: number;
-  followingCount?: number;
+  followerCount: number;
+  followingCount: number;
 }

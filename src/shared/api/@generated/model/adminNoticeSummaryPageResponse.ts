@@ -12,11 +12,11 @@ import type { AdminNoticeSummaryResponse } from './adminNoticeSummaryResponse.ts
  */
 export interface AdminNoticeSummaryPageResponse {
   /** 현재 페이지 번호 */
-  page?: number;
+  page: number;
   /** 전체 페이지 수 */
-  totalPages?: number;
+  totalPages: number;
   /** 다음 페이지 존재 여부 */
-  hasNext?: boolean;
+  hasNext: boolean;
   /** 공지 요약 목록 */
-  contents?: AdminNoticeSummaryResponse[];
+  contents: AdminNoticeSummaryResponse[];
 }

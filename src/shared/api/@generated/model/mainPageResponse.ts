@@ -13,12 +13,12 @@ import type { UserLevelDetailResponse } from './userLevelDetailResponse.ts';
 import type { WeeklyLearningRecordResponse } from './weeklyLearningRecordResponse.ts';
 
 export interface MainPageResponse {
-  profileImgNumber?: number;
-  nickname?: string;
-  userLevelDetailResponse?: UserLevelDetailResponse;
-  leagueDetailResponse?: LeagueDetailResponse;
-  learningDetailResponse?: LearningDetailResponse;
-  recommendedUnitResponses?: RecommendedUnitResponse[];
-  weeklyLearningRecordResponse?: WeeklyLearningRecordResponse;
-  missionDetailResponse?: MissionDetailResponse;
+  profileImgNumber: number;
+  nickname: string;
+  userLevelDetailResponse: UserLevelDetailResponse;
+  leagueDetailResponse: LeagueDetailResponse;
+  learningDetailResponse: LearningDetailResponse;
+  recommendedUnitResponses: RecommendedUnitResponse[];
+  weeklyLearningRecordResponse: WeeklyLearningRecordResponse;
+  missionDetailResponse: MissionDetailResponse;
 }

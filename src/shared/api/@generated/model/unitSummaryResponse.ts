@@ -8,7 +8,7 @@
 
 export interface UnitSummaryResponse {
   /** 유닛 아이디 */
-  unitId?: number;
+  unitId: number;
   /** 유닛명 */
   title: string;
   /** 유닛 설명 */

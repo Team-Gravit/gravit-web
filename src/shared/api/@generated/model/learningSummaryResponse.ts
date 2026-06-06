@@ -7,9 +7,9 @@
  */
 
 export interface LearningSummaryResponse {
-  topPercent?: number;
-  completedLessonCount?: number;
-  totalLessonCount?: number;
-  totalLearningHours?: number;
-  averageAccuracy?: number;
+  topPercent: number;
+  completedLessonCount: number;
+  totalLessonCount: number;
+  totalLearningHours: number;
+  averageAccuracy: number;
 }

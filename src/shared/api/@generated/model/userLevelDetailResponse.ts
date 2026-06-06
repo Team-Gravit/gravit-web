@@ -7,8 +7,8 @@
  */
 
 export interface UserLevelDetailResponse {
-  level?: number;
-  currentXp?: number;
-  maxXp?: number;
-  levelRate?: number;
+  level: number;
+  currentXp: number;
+  maxXp: number;
+  levelRate: number;
 }

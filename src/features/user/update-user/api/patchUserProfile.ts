@@ -1,38 +1,36 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import type { AxiosError } from "axios";
-import { mapToUserProfile } from "@/entities/user/model/mappers";
-import type { UserProfile } from "@/entities/user/model/types";
-import { api } from "@/shared/api";
-import type {
-	UserProfileUpdateRequest,
-	UserResponse,
-} from "@/shared/api/@generated";
-import { userKeys } from "@/entities/user/api/queryKey";
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import type { AxiosError } from 'axios';
+
+import { userKeys } from '@/entities/user/api/queryKey';
+import { mapToUserProfile } from '@/entities/user/model/mappers';
+import type { UserProfile } from '@/entities/user/model/types';
+import { api } from '@/shared/api';
+import type { UserProfileUpdateRequest, UserResponse } from '@/shared/api/@generated';
 
 export const usePatchUserProfile = () => {
-	const queryClient = useQueryClient();
+  const queryClient = useQueryClient();
 
-	return useMutation<UserProfile, AxiosError, UserProfileUpdateRequest>({
-		mutationKey: ["patch-user-profile"],
+  return useMutation<UserProfile, AxiosError, UserProfileUpdateRequest>({
+    mutationKey: ['patch-user-profile'],
 
-		mutationFn: async (updateRequest) => {
-			const res = await api.private.user.updateProfile(updateRequest);
+    mutationFn: async (updateRequest) => {
+      const res = await api.private.user.updateProfile(updateRequest);
 
-			return mapToUserProfile(res.data as UserResponse);
-		},
+      return mapToUserProfile(res.data as UserResponse);
+    },
 
-		onSuccess: (data) => {
-			queryClient.setQueryData<UserProfile>(userKeys.info(), (oldData) => {
-				if (!oldData) return data;
-				return {
-					...oldData,
-					...data,
-				};
-			});
-		},
+    onSuccess: (data) => {
+      queryClient.setQueryData<UserProfile>(userKeys.info(), (oldData) => {
+        if (!oldData) return data;
+        return {
+          ...oldData,
+          ...data,
+        };
+      });
+    },
 
-		onError: (error: AxiosError) => {
-			console.error("프로필 수정 실패:", error.message);
-		},
-	});
+    onError: (error: AxiosError) => {
+      console.error('프로필 수정 실패:', error.message);
+    },
+  });
 };

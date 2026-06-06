@@ -7,10 +7,10 @@
  */
 
 export interface FollowerResponse {
-  id?: number;
+  id: number;
   nickname: string;
-  profileImgNumber?: number;
+  profileImgNumber: number;
   handle: string;
   /** 내가 해당 팔로워를 팔로우 중인지 여부 */
-  isFollowing?: boolean;
+  isFollowing: boolean;
 }

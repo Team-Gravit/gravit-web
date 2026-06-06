@@ -7,9 +7,9 @@
  */
 
 export interface MissionDetailResponse {
-  missionType?: string;
-  missionDescription?: string;
-  awardXp?: number;
-  progressRate?: number;
-  isCompleted?: boolean;
+  missionType: string;
+  missionDescription: string;
+  awardXp: number;
+  progressRate: number;
+  isCompleted: boolean;
 }

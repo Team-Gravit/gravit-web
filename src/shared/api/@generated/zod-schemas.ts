@@ -287,6 +287,26 @@ export const FollowingParams = zod.object({
 
 
 /**
+ * 클라이언트 디바이스의 FCM 토큰을 등록하거나 갱신합니다.<br>
+🔐 <strong>Jwt 필요</strong><br>
+<strong>멱등</strong>하게 동작합니다: deviceId 기준으로<br>
+- 등록 내역이 없으면 신규 저장<br>
+- 있으면 토큰을 갱신하고 소유자를 현재 사용자로 이전(기기 공유·재로그인 대응)<br>
+클라이언트는 앱 시작/로그인 직후 호출하면 됩니다.
+
+ * @summary FCM 토큰 등록 및 갱신
+ */
+
+
+
+
+export const RegisterFcmTokenBody = zod.object({
+  "deviceId": zod.string().min(1).describe('클라이언트 디바이스 식별자(설치 단위 고유 ID)'),
+  "fcmToken": zod.string().min(1).describe('FCM 등록 토큰')
+})
+
+
+/**
  * 특정 문제를 북마크에 추가합니다.<br>🔐 <strong>Jwt 필요</strong><br>
  * @summary 북마크 저장
  */
@@ -406,10 +426,10 @@ mutualFollowCount: 추천 유저의 팔로잉 중 내가 팔로잉하는 유저 
  * @summary 추천 친구 목록 조회
  */
 export const GetRecommendedUsersResponse = zod.object({
-  "userId": zod.number().optional(),
-  "nickname": zod.string().optional(),
-  "profileImgNumber": zod.number().optional(),
-  "mutualFollowCount": zod.number().optional()
+  "userId": zod.number(),
+  "nickname": zod.string(),
+  "profileImgNumber": zod.number(),
+  "mutualFollowCount": zod.number()
 })
 
 
@@ -429,18 +449,18 @@ export const GetFeedQueryParams = zod.object({
 })
 
 export const GetFeedResponse = zod.object({
-  "hasNextPage": zod.boolean().optional().describe('다음 페이지 존재 여부'),
+  "hasNextPage": zod.boolean().describe('다음 페이지 존재 여부'),
   "contents": zod.array(zod.object({
-  "feedId": zod.number().optional(),
-  "actorId": zod.number().optional(),
-  "actorNickname": zod.string().optional(),
-  "actorProfileImgNumber": zod.number().optional(),
-  "actorHandle": zod.string().optional(),
-  "message": zod.string().optional(),
-  "timeAgo": zod.string().optional(),
-  "canCongratulate": zod.boolean().optional(),
-  "createdAt": zod.iso.datetime({"offset":true}).optional()
-})).optional().describe('피드 목록')
+  "feedId": zod.number(),
+  "actorId": zod.number(),
+  "actorNickname": zod.string(),
+  "actorProfileImgNumber": zod.number(),
+  "actorHandle": zod.string(),
+  "message": zod.string(),
+  "timeAgo": zod.string(),
+  "canCongratulate": zod.boolean(),
+  "createdAt": zod.iso.datetime({"offset":true})
+})).describe('피드 목록')
 }).describe('피드 슬라이스 응답')
 
 
@@ -475,16 +495,16 @@ export const GetLeagueRankingByUserResponse = zod.array(GetLeagueRankingByUserRe
  * @summary 내 리그·랭킹 요약 조회
  */
 export const GetMyLeagueWithProfileResponse = zod.object({
-  "leagueId": zod.number().optional(),
+  "leagueId": zod.number(),
   "leagueName": zod.string(),
-  "rank": zod.number().optional(),
-  "userId": zod.number().optional(),
-  "lp": zod.number().optional(),
-  "maxLp": zod.number().optional(),
+  "rank": zod.number(),
+  "userId": zod.number(),
+  "lp": zod.number(),
+  "maxLp": zod.number(),
   "nickname": zod.string(),
-  "profileImgNumber": zod.number().optional(),
-  "xp": zod.number().optional(),
-  "level": zod.number().optional()
+  "profileImgNumber": zod.number(),
+  "xp": zod.number(),
+  "level": zod.number()
 })
 
 
@@ -543,14 +563,14 @@ export const GetNoticeSummaryParams = zod.object({
 })
 
 export const GetNoticeSummaryResponse = zod.object({
-  "id": zod.number().optional(),
+  "id": zod.number(),
   "title": zod.string(),
   "content": zod.string(),
   "authorName": zod.string(),
   "createdAt": zod.iso.datetime({"offset":true}),
   "updatedAt": zod.iso.datetime({"offset":true}),
   "status": zod.string(),
-  "pinned": zod.boolean().optional(),
+  "pinned": zod.boolean(),
   "publishedAt": zod.iso.datetime({"offset":true})
 })
 
@@ -564,16 +584,16 @@ export const GetNoticeSummariesParams = zod.object({
 })
 
 export const GetNoticeSummariesResponse = zod.object({
-  "page": zod.number().optional().describe('현재 페이지 번호'),
-  "totalPages": zod.number().optional().describe('전체 페이지 수'),
-  "hasNext": zod.boolean().optional().describe('다음 페이지 존재 여부'),
+  "page": zod.number().describe('현재 페이지 번호'),
+  "totalPages": zod.number().describe('전체 페이지 수'),
+  "hasNext": zod.boolean().describe('다음 페이지 존재 여부'),
   "contents": zod.array(zod.object({
-  "id": zod.number().optional(),
+  "id": zod.number(),
   "title": zod.string(),
   "summary": zod.string(),
-  "pinned": zod.boolean().optional(),
+  "pinned": zod.boolean(),
   "publishedAt": zod.iso.datetime({"offset":true})
-})).optional().describe('공지 요약 목록')
+})).describe('공지 요약 목록')
 }).describe('공지 요약 페이지 응답')
 
 
@@ -641,14 +661,14 @@ export const SearchQueryParams = zod.object({
 })
 
 export const SearchResponse = zod.object({
-  "hasNextPage": zod.boolean().optional().describe('다음 페이지 존재 여부'),
+  "hasNextPage": zod.boolean().describe('다음 페이지 존재 여부'),
   "contents": zod.array(zod.object({
   "userId": zod.number().optional(),
   "profileImgNumber": zod.number().optional(),
   "nickname": zod.string().optional(),
   "handle": zod.string().optional(),
   "isFollowing": zod.boolean().optional()
-})).optional().describe('검색 결과 목록')
+})).describe('검색 결과 목록')
 }).describe('사용자 검색 슬라이스 응답')
 
 
@@ -674,14 +694,14 @@ export const GetFollowersQueryParams = zod.object({
 })
 
 export const GetFollowersResponse = zod.object({
-  "hasNextPage": zod.boolean().optional().describe('다음 페이지 존재 여부'),
+  "hasNextPage": zod.boolean().describe('다음 페이지 존재 여부'),
   "contents": zod.array(zod.object({
-  "id": zod.number().optional(),
+  "id": zod.number(),
   "nickname": zod.string(),
-  "profileImgNumber": zod.number().optional(),
+  "profileImgNumber": zod.number(),
   "handle": zod.string(),
-  "isFollowing": zod.boolean().optional().describe('내가 해당 팔로워를 팔로우 중인지 여부')
-})).optional().describe('팔로워 목록')
+  "isFollowing": zod.boolean().describe('내가 해당 팔로워를 팔로우 중인지 여부')
+})).describe('팔로워 목록')
 }).describe('팔로워 목록 슬라이스 응답')
 
 
@@ -692,8 +712,28 @@ export const GetFollowersResponse = zod.object({
  * @summary 팔로워/팔로잉 카운트 조회
  */
 export const GetFollowAndFollowingCountResponse = zod.object({
-  "followerCount": zod.number().optional(),
-  "followingCount": zod.number().optional()
+  "followerCount": zod.number(),
+  "followingCount": zod.number()
+})
+
+
+/**
+ * 현재 사용자가 해당 디바이스에 FCM 토큰을 등록했는지 확인합니다.<br>
+🔐 <strong>Jwt 필요</strong><br>
+클라이언트는 앱 시작 시 호출해 등록 여부(registered)를 확인하고,<br>
+미등록(false)이면 등록 API를 호출하면 됩니다.
+
+ * @summary FCM 토큰 등록 여부 확인
+ */
+
+
+
+export const CheckFcmTokenExistQueryParams = zod.object({
+  "deviceId": zod.string().min(1).describe('클라이언트 디바이스 식별자')
+})
+
+export const CheckFcmTokenExistResponse = zod.object({
+  "registered": zod.boolean().optional()
 })
 
 
@@ -764,14 +804,14 @@ export const GetNoticeByAdminParams = zod.object({
 })
 
 export const GetNoticeByAdminResponse = zod.object({
-  "noticeId": zod.number().optional(),
+  "noticeId": zod.number(),
   "title": zod.string(),
   "contents": zod.string(),
   "authorName": zod.string(),
   "createdAt": zod.iso.datetime({"offset":true}),
   "updatedAt": zod.iso.datetime({"offset":true}),
   "noticeType": zod.string(),
-  "pinned": zod.boolean().optional(),
+  "pinned": zod.boolean(),
   "publishedAt": zod.iso.datetime({"offset":true}).optional()
 })
 
@@ -796,16 +836,16 @@ export const GetNoticeSummaryByAdminParams = zod.object({
 })
 
 export const GetNoticeSummaryByAdminResponse = zod.object({
-  "page": zod.number().optional().describe('현재 페이지 번호'),
-  "totalPages": zod.number().optional().describe('전체 페이지 수'),
-  "hasNext": zod.boolean().optional().describe('다음 페이지 존재 여부'),
+  "page": zod.number().describe('현재 페이지 번호'),
+  "totalPages": zod.number().describe('전체 페이지 수'),
+  "hasNext": zod.boolean().describe('다음 페이지 존재 여부'),
   "contents": zod.array(zod.object({
-  "id": zod.number().optional(),
+  "id": zod.number(),
   "title": zod.string(),
   "summary": zod.string(),
-  "pinned": zod.boolean().optional(),
+  "pinned": zod.boolean(),
   "publishedAt": zod.iso.datetime({"offset":true}).optional()
-})).optional().describe('공지 요약 목록')
+})).describe('공지 요약 목록')
 }).describe('어드민 공지 요약 페이지 응답')
 
 

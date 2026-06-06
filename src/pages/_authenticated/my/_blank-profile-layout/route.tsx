@@ -1,17 +1,17 @@
-import { createFileRoute, Outlet } from "@tanstack/react-router";
-import PageLayout from "@/shared/ui/layout.tsx/page-layout";
+import { createFileRoute, Outlet } from '@tanstack/react-router';
 
-import useResponsive from "@/shared/model/use-responsive";
+import useResponsive from '@/shared/model/use-responsive';
+import PageLayout from '@/shared/ui/layout.tsx/page-layout';
 
-export const Route = createFileRoute("/_authenticated/my/_blank-profile-layout")({
-	component: MyLayout,
+export const Route = createFileRoute('/_authenticated/my/_blank-profile-layout')({
+  component: MyLayout,
 });
 
 function MyLayout() {
-	const { isMobile } = useResponsive();
-	return (
-		<PageLayout bottomTabBar={isMobile}>
-			<Outlet />
-		</PageLayout>
-	)
+  const { isMobile } = useResponsive();
+  return (
+    <PageLayout bottomTabBar={isMobile}>
+      <Outlet />
+    </PageLayout>
+  );
 }

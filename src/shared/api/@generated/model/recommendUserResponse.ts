@@ -7,8 +7,8 @@
  */
 
 export interface RecommendUserResponse {
-  userId?: number;
-  nickname?: string;
-  profileImgNumber?: number;
-  mutualFollowCount?: number;
+  userId: number;
+  nickname: string;
+  profileImgNumber: number;
+  mutualFollowCount: number;
 }

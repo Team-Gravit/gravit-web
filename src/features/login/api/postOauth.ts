@@ -1,8 +1,8 @@
-import { privateApiClient } from "@/shared/api/config";
+import { privateApiClient } from '@/shared/api/config';
 
 export interface PostOAuthResponse {
-	accessToken: string;
-	isOnboarded: boolean;
+  accessToken: string;
+  isOnboarded: boolean;
 }
 
 export async function PostOAuth(

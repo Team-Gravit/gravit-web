@@ -1,5 +1,6 @@
-import { useMutation } from "@tanstack/react-query";
-import { getLoginUrl } from "@/entities/login/api/getLoginUrl";
+import { useMutation } from '@tanstack/react-query';
+
+import { getLoginUrl } from '@/entities/login/api/getLoginUrl';
 
 /*
 	OAuth 로그인 훅
@@ -8,12 +9,12 @@ import { getLoginUrl } from "@/entities/login/api/getLoginUrl";
  */
 
 export function useOauthLogin() {
-	return useMutation({
-		mutationFn: getLoginUrl,
-		onSuccess: (loginUrl: string) => {
-			localStorage.setItem("returnTo", window.location.pathname);
-			window.location.href = loginUrl;
-		},
-		onError: () => {},
-	});
+  return useMutation({
+    mutationFn: getLoginUrl,
+    onSuccess: (loginUrl: string) => {
+      localStorage.setItem('returnTo', window.location.pathname);
+      window.location.href = loginUrl;
+    },
+    onError: () => {},
+  });
 }

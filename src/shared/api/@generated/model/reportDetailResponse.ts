@@ -12,15 +12,15 @@ import type { ReportDetailResponseReportType } from './reportDetailResponseRepor
  */
 export interface ReportDetailResponse {
   /** 신고 ID */
-  reportId?: number;
+  reportId: number;
   /** 신고 유형 */
   reportType: ReportDetailResponseReportType;
   /** 문제 ID */
-  problemId?: number;
+  problemId: number;
   /** 신고 내용 */
   content: string;
   /** 해결 여부 */
-  isResolved?: boolean;
+  isResolved: boolean;
   /** 신고 접수 시간 */
   submittedAt: string;
 }

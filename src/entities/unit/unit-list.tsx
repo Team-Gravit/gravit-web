@@ -1,23 +1,24 @@
-import UnitItem from "./unit-item";
-import type { UnitProgress } from "@/entities/learning/model/schema";
+import type { UnitProgress } from '@/entities/learning/model/schema';
+
+import UnitItem from './unit-item';
 
 export default function UnitList({
-	units,
-	className,
+  units,
+  className,
 }: {
-	units: UnitProgress[];
-	className?: string;
+  units: UnitProgress[];
+  className?: string;
 }) {
-	return (
-		<div className={`flex flex-col gap-2 ${className ?? ""}`}>
-			{units.map((unit) => (
-				<UnitItem
-					key={unit.unitId}
-					unitId={unit.unitId}
-					unitTitle={unit.title}
-					unitStatus={unit.isCompleted ? "completed" : "inProgress"}
-				/>
-			))}
-		</div>
-	);
+  return (
+    <div className={`flex flex-col gap-2 ${className ?? ''}`}>
+      {units.map((unit) => (
+        <UnitItem
+          key={unit.unitId}
+          unitId={unit.unitId}
+          unitTitle={unit.title}
+          unitStatus={unit.isCompleted ? 'completed' : 'inProgress'}
+        />
+      ))}
+    </div>
+  );
 }
