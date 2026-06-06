@@ -33,58 +33,38 @@ import type {
 import { customInstance } from '../../mutator';
 
 
-type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
-
-
-export type saveProblemSubmissionResponse200 = {
-  data: void
-  status: 200
-}
-
-export type saveProblemSubmissionResponseSuccess = (saveProblemSubmissionResponse200) & {
-  headers: Headers;
-};
-;
-
-export type saveProblemSubmissionResponse = (saveProblemSubmissionResponseSuccess)
-
-export const getSaveProblemSubmissionUrl = () => {
-
-
-
-
-  return `/api/v1/problems/results`
-}
 
 /**
  * 문제 풀이 결과를 저장합니다.<br>🔐 <strong>Jwt 필요</strong><br>
  * @summary 문제 결과 저장
  */
-export const saveProblemSubmission = async (problemSubmissionRequest: ProblemSubmissionRequest, options?: RequestInit): Promise<saveProblemSubmissionResponse> => {
+export const saveProblemSubmission = (
+    problemSubmissionRequest: ProblemSubmissionRequest,
+ signal?: AbortSignal
+) => {
 
-  return customInstance<saveProblemSubmissionResponse>(getSaveProblemSubmissionUrl(),
-  {
-    ...options,
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', ...options?.headers },
-    body: JSON.stringify(problemSubmissionRequest)
-  }
-);}
 
+      return customInstance<void>(
+      {url: `/api/v1/problems/results`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: problemSubmissionRequest, signal
+    },
+      );
+    }
 
 
 
 export const getSaveProblemSubmissionMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof saveProblemSubmission>>, TError,{data: ProblemSubmissionRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof saveProblemSubmission>>, TError,{data: ProblemSubmissionRequest}, TContext>, }
 ): UseMutationOptions<Awaited<ReturnType<typeof saveProblemSubmission>>, TError,{data: ProblemSubmissionRequest}, TContext> => {
 
 const mutationKey = ['saveProblemSubmission'];
-const {mutation: mutationOptions, request: requestOptions} = options ?
+const {mutation: mutationOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }, request: undefined};
+      : {mutation: { mutationKey, }};
 
 
 
@@ -92,7 +72,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof saveProblemSubmission>>, {data: ProblemSubmissionRequest}> = (props) => {
           const {data} = props ?? {};
 
-          return  saveProblemSubmission(data,requestOptions)
+          return  saveProblemSubmission(data,)
         }
 
 
@@ -110,7 +90,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  * @summary 문제 결과 저장
  */
 export const useSaveProblemSubmission = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof saveProblemSubmission>>, TError,{data: ProblemSubmissionRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof saveProblemSubmission>>, TError,{data: ProblemSubmissionRequest}, TContext>, }
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof saveProblemSubmission>>,
         TError,
@@ -119,48 +99,21 @@ export const useSaveProblemSubmission = <TError = unknown,
       > => {
       return useMutation(getSaveProblemSubmissionMutationOptions(options), queryClient);
     }
-    export type getAllProblemInLessonResponse200 = {
-  data: LessonResponse
-  status: 200
-}
-
-export type getAllProblemInLessonResponse404 = {
-  data: ErrorResponse
-  status: 404
-}
-
-export type getAllProblemInLessonResponseSuccess = (getAllProblemInLessonResponse200) & {
-  headers: Headers;
-};
-export type getAllProblemInLessonResponseError = (getAllProblemInLessonResponse404) & {
-  headers: Headers;
-};
-
-export type getAllProblemInLessonResponse = (getAllProblemInLessonResponseSuccess | getAllProblemInLessonResponseError)
-
-export const getGetAllProblemInLessonUrl = (lessonId: number,) => {
-
-
-
-
-  return `/api/v1/problems/${lessonId}`
-}
-
-/**
+    /**
  * 특정 레슨을 구성하는 문제 목록을 조회합니다.<br>🔐 <strong>Jwt 필요</strong><br>
  * @summary 레슨 문제 조회
  */
-export const getAllProblemInLesson = async (lessonId: number, options?: RequestInit): Promise<getAllProblemInLessonResponse> => {
-
-  return customInstance<getAllProblemInLessonResponse>(getGetAllProblemInLessonUrl(lessonId),
-  {
-    ...options,
-    method: 'GET'
+export const getAllProblemInLesson = (
+    lessonId: number,
+ signal?: AbortSignal
+) => {
 
 
-  }
-);}
-
+      return customInstance<LessonResponse>(
+      {url: `/api/v1/problems/${lessonId}`, method: 'GET', signal
+    },
+      );
+    }
 
 
 
@@ -172,16 +125,16 @@ export const getGetAllProblemInLessonQueryKey = (lessonId: number,) => {
     }
 
 
-export const getGetAllProblemInLessonQueryOptions = <TData = Awaited<ReturnType<typeof getAllProblemInLesson>>, TError = ErrorResponse>(lessonId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllProblemInLesson>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+export const getGetAllProblemInLessonQueryOptions = <TData = Awaited<ReturnType<typeof getAllProblemInLesson>>, TError = ErrorResponse>(lessonId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllProblemInLesson>>, TError, TData>>, }
 ) => {
 
-const {query: queryOptions, request: requestOptions} = options ?? {};
+const {query: queryOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetAllProblemInLessonQueryKey(lessonId);
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getAllProblemInLesson>>> = ({ signal }) => getAllProblemInLesson(lessonId, { signal, ...requestOptions });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getAllProblemInLesson>>> = ({ signal }) => getAllProblemInLesson(lessonId, signal);
 
 
 
@@ -201,7 +154,7 @@ export function useGetAllProblemInLesson<TData = Awaited<ReturnType<typeof getAl
           TError,
           Awaited<ReturnType<typeof getAllProblemInLesson>>
         > , 'initialData'
-      >, request?: SecondParameter<typeof customInstance>}
+      >, }
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetAllProblemInLesson<TData = Awaited<ReturnType<typeof getAllProblemInLesson>>, TError = ErrorResponse>(
@@ -211,11 +164,11 @@ export function useGetAllProblemInLesson<TData = Awaited<ReturnType<typeof getAl
           TError,
           Awaited<ReturnType<typeof getAllProblemInLesson>>
         > , 'initialData'
-      >, request?: SecondParameter<typeof customInstance>}
+      >, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetAllProblemInLesson<TData = Awaited<ReturnType<typeof getAllProblemInLesson>>, TError = ErrorResponse>(
- lessonId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllProblemInLesson>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+ lessonId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllProblemInLesson>>, TError, TData>>, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -223,7 +176,7 @@ export function useGetAllProblemInLesson<TData = Awaited<ReturnType<typeof getAl
  */
 
 export function useGetAllProblemInLesson<TData = Awaited<ReturnType<typeof getAllProblemInLesson>>, TError = ErrorResponse>(
- lessonId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllProblemInLesson>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+ lessonId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllProblemInLesson>>, TError, TData>>, }
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 

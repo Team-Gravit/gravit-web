@@ -8,30 +8,34 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
+import { createFileRoute } from '@tanstack/react-router'
+
 import { Route as rootRouteImport } from './../../pages/__root'
 import { Route as TermsRouteImport } from './../../pages/terms'
 import { Route as RestoreRouteImport } from './../../pages/restore'
 import { Route as PrivacyRouteImport } from './../../pages/privacy'
 import { Route as IndexRouteImport } from './../../pages/index'
-import { Route as AuthenticatedMyRouteRouteImport } from './../../pages/_authenticated/my/route'
 import { Route as AuthenticatedMainRouteRouteImport } from './../../pages/_authenticated/main/route'
 import { Route as AuthenticatedOnboardingRouteRouteImport } from './../../pages/_authenticated/_onboarding/route'
 import { Route as AuthenticatedFixedHeaderLayoutRouteRouteImport } from './../../pages/_authenticated/_fixed-header-layout/route'
 import { Route as AuthenticatedBlankLayoutRouteRouteImport } from './../../pages/_authenticated/_blank-layout/route'
 import { Route as AuthenticatedMyIndexRouteImport } from './../../pages/_authenticated/my/index'
-import { Route as AuthenticatedMySummaryRouteImport } from './../../pages/_authenticated/my/summary'
-import { Route as AuthenticatedMySocialRouteImport } from './../../pages/_authenticated/my/social'
-import { Route as AuthenticatedMyLearningRouteImport } from './../../pages/_authenticated/my/learning'
-import { Route as AuthenticatedMyLeagueRouteImport } from './../../pages/_authenticated/my/league'
 import { Route as AuthenticatedOnboardingSuccessRouteImport } from './../../pages/_authenticated/_onboarding/success'
 import { Route as AuthenticatedOnboardingOnboardingRouteImport } from './../../pages/_authenticated/_onboarding/onboarding'
 import { Route as AuthenticatedFixedHeaderLayoutTestRouteImport } from './../../pages/_authenticated/_fixed-header-layout/test'
 import { Route as AuthenticatedFixedHeaderLayoutMainsRouteImport } from './../../pages/_authenticated/_fixed-header-layout/mains'
 import { Route as AuthenticatedFixedHeaderLayoutLeagueRouteImport } from './../../pages/_authenticated/_fixed-header-layout/league'
+import { Route as AuthenticatedMyProfileLayoutRouteRouteImport } from './../../pages/_authenticated/my/_profile-layout/route'
+import { Route as AuthenticatedMyBlankProfileLayoutRouteRouteImport } from './../../pages/_authenticated/my/_blank-profile-layout/route'
 import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/route'
 import { Route as AuthenticatedFixedHeaderLayoutLearningIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/learning/index'
 import { Route as UserMeDeletePageRouteImport } from './../../pages/user.me.delete.page'
 import { Route as LoginOauth2CodeProviderRouteImport } from './../../pages/login/oauth2/code/$provider'
+import { Route as AuthenticatedMyProfileLayoutSummaryRouteImport } from './../../pages/_authenticated/my/_profile-layout/summary'
+import { Route as AuthenticatedMyProfileLayoutSocialRouteImport } from './../../pages/_authenticated/my/_profile-layout/social'
+import { Route as AuthenticatedMyProfileLayoutLearningRouteImport } from './../../pages/_authenticated/my/_profile-layout/learning'
+import { Route as AuthenticatedMyProfileLayoutLeagueRouteImport } from './../../pages/_authenticated/my/_profile-layout/league'
+import { Route as AuthenticatedMyBlankProfileLayoutFollowRouteImport } from './../../pages/_authenticated/my/_blank-profile-layout/follow'
 import { Route as AuthenticatedFixedHeaderLayoutLearningChapterIdIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/learning/$chapterId/index'
 import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/index'
 import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserPrivacyRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/privacy'
@@ -45,6 +49,8 @@ import { Route as AuthenticatedBlankLayoutLearningChapterIdUnitIdBookmarkedProbl
 import { Route as AuthenticatedBlankLayoutLearningChapterIdUnitIdLessonIdRouteImport } from './../../pages/_authenticated/_blank-layout/learning.$chapterId.$unitId/$lessonId'
 import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/index'
 import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageNoticeIdIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/$noticeId/index'
+
+const AuthenticatedMyRouteImport = createFileRoute('/_authenticated/my')()
 
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
@@ -66,7 +72,7 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthenticatedMyRouteRoute = AuthenticatedMyRouteRouteImport.update({
+const AuthenticatedMyRoute = AuthenticatedMyRouteImport.update({
   id: '/_authenticated/my',
   path: '/my',
   getParentRoute: () => rootRouteImport,
@@ -94,27 +100,7 @@ const AuthenticatedBlankLayoutRouteRoute =
 const AuthenticatedMyIndexRoute = AuthenticatedMyIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => AuthenticatedMyRouteRoute,
-} as any)
-const AuthenticatedMySummaryRoute = AuthenticatedMySummaryRouteImport.update({
-  id: '/summary',
-  path: '/summary',
-  getParentRoute: () => AuthenticatedMyRouteRoute,
-} as any)
-const AuthenticatedMySocialRoute = AuthenticatedMySocialRouteImport.update({
-  id: '/social',
-  path: '/social',
-  getParentRoute: () => AuthenticatedMyRouteRoute,
-} as any)
-const AuthenticatedMyLearningRoute = AuthenticatedMyLearningRouteImport.update({
-  id: '/learning',
-  path: '/learning',
-  getParentRoute: () => AuthenticatedMyRouteRoute,
-} as any)
-const AuthenticatedMyLeagueRoute = AuthenticatedMyLeagueRouteImport.update({
-  id: '/league',
-  path: '/league',
-  getParentRoute: () => AuthenticatedMyRouteRoute,
+  getParentRoute: () => AuthenticatedMyRoute,
 } as any)
 const AuthenticatedOnboardingSuccessRoute =
   AuthenticatedOnboardingSuccessRouteImport.update({
@@ -146,6 +132,16 @@ const AuthenticatedFixedHeaderLayoutLeagueRoute =
     path: '/league',
     getParentRoute: () => AuthenticatedFixedHeaderLayoutRouteRoute,
   } as any)
+const AuthenticatedMyProfileLayoutRouteRoute =
+  AuthenticatedMyProfileLayoutRouteRouteImport.update({
+    id: '/_profile-layout',
+    getParentRoute: () => AuthenticatedMyRoute,
+  } as any)
+const AuthenticatedMyBlankProfileLayoutRouteRoute =
+  AuthenticatedMyBlankProfileLayoutRouteRouteImport.update({
+    id: '/_blank-profile-layout',
+    getParentRoute: () => AuthenticatedMyRoute,
+  } as any)
 const AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRoute =
   AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRouteImport.update({
     id: '/_fixed-sidebar-layout',
@@ -167,6 +163,36 @@ const LoginOauth2CodeProviderRoute = LoginOauth2CodeProviderRouteImport.update({
   path: '/login/oauth2/code/$provider',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedMyProfileLayoutSummaryRoute =
+  AuthenticatedMyProfileLayoutSummaryRouteImport.update({
+    id: '/summary',
+    path: '/summary',
+    getParentRoute: () => AuthenticatedMyProfileLayoutRouteRoute,
+  } as any)
+const AuthenticatedMyProfileLayoutSocialRoute =
+  AuthenticatedMyProfileLayoutSocialRouteImport.update({
+    id: '/social',
+    path: '/social',
+    getParentRoute: () => AuthenticatedMyProfileLayoutRouteRoute,
+  } as any)
+const AuthenticatedMyProfileLayoutLearningRoute =
+  AuthenticatedMyProfileLayoutLearningRouteImport.update({
+    id: '/learning',
+    path: '/learning',
+    getParentRoute: () => AuthenticatedMyProfileLayoutRouteRoute,
+  } as any)
+const AuthenticatedMyProfileLayoutLeagueRoute =
+  AuthenticatedMyProfileLayoutLeagueRouteImport.update({
+    id: '/league',
+    path: '/league',
+    getParentRoute: () => AuthenticatedMyProfileLayoutRouteRoute,
+  } as any)
+const AuthenticatedMyBlankProfileLayoutFollowRoute =
+  AuthenticatedMyBlankProfileLayoutFollowRouteImport.update({
+    id: '/follow',
+    path: '/follow',
+    getParentRoute: () => AuthenticatedMyBlankProfileLayoutRouteRoute,
+  } as any)
 const AuthenticatedFixedHeaderLayoutLearningChapterIdIndexRoute =
   AuthenticatedFixedHeaderLayoutLearningChapterIdIndexRouteImport.update({
     id: '/learning/$chapterId/',
@@ -275,17 +301,18 @@ export interface FileRoutesByFullPath {
   '/restore': typeof RestoreRoute
   '/terms': typeof TermsRoute
   '/main': typeof AuthenticatedMainRouteRoute
-  '/my': typeof AuthenticatedMyRouteRouteWithChildren
+  '/my': typeof AuthenticatedMyProfileLayoutRouteRouteWithChildren
   '/league': typeof AuthenticatedFixedHeaderLayoutLeagueRoute
   '/mains': typeof AuthenticatedFixedHeaderLayoutMainsRoute
   '/test': typeof AuthenticatedFixedHeaderLayoutTestRoute
   '/onboarding': typeof AuthenticatedOnboardingOnboardingRoute
   '/success': typeof AuthenticatedOnboardingSuccessRoute
-  '/my/league': typeof AuthenticatedMyLeagueRoute
-  '/my/learning': typeof AuthenticatedMyLearningRoute
-  '/my/social': typeof AuthenticatedMySocialRoute
-  '/my/summary': typeof AuthenticatedMySummaryRoute
   '/my/': typeof AuthenticatedMyIndexRoute
+  '/my/follow': typeof AuthenticatedMyBlankProfileLayoutFollowRoute
+  '/my/league': typeof AuthenticatedMyProfileLayoutLeagueRoute
+  '/my/learning': typeof AuthenticatedMyProfileLayoutLearningRoute
+  '/my/social': typeof AuthenticatedMyProfileLayoutSocialRoute
+  '/my/summary': typeof AuthenticatedMyProfileLayoutSummaryRoute
   '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
   '/user/me/delete/page': typeof UserMeDeletePageRoute
   '/learning': typeof AuthenticatedFixedHeaderLayoutLearningIndexRoute
@@ -309,16 +336,17 @@ export interface FileRoutesByTo {
   '/restore': typeof RestoreRoute
   '/terms': typeof TermsRoute
   '/main': typeof AuthenticatedMainRouteRoute
+  '/my': typeof AuthenticatedMyIndexRoute
   '/league': typeof AuthenticatedFixedHeaderLayoutLeagueRoute
   '/mains': typeof AuthenticatedFixedHeaderLayoutMainsRoute
   '/test': typeof AuthenticatedFixedHeaderLayoutTestRoute
   '/onboarding': typeof AuthenticatedOnboardingOnboardingRoute
   '/success': typeof AuthenticatedOnboardingSuccessRoute
-  '/my/league': typeof AuthenticatedMyLeagueRoute
-  '/my/learning': typeof AuthenticatedMyLearningRoute
-  '/my/social': typeof AuthenticatedMySocialRoute
-  '/my/summary': typeof AuthenticatedMySummaryRoute
-  '/my': typeof AuthenticatedMyIndexRoute
+  '/my/follow': typeof AuthenticatedMyBlankProfileLayoutFollowRoute
+  '/my/league': typeof AuthenticatedMyProfileLayoutLeagueRoute
+  '/my/learning': typeof AuthenticatedMyProfileLayoutLearningRoute
+  '/my/social': typeof AuthenticatedMyProfileLayoutSocialRoute
+  '/my/summary': typeof AuthenticatedMyProfileLayoutSummaryRoute
   '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
   '/user/me/delete/page': typeof UserMeDeletePageRoute
   '/learning': typeof AuthenticatedFixedHeaderLayoutLearningIndexRoute
@@ -346,18 +374,21 @@ export interface FileRoutesById {
   '/_authenticated/_fixed-header-layout': typeof AuthenticatedFixedHeaderLayoutRouteRouteWithChildren
   '/_authenticated/_onboarding': typeof AuthenticatedOnboardingRouteRouteWithChildren
   '/_authenticated/main': typeof AuthenticatedMainRouteRoute
-  '/_authenticated/my': typeof AuthenticatedMyRouteRouteWithChildren
   '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRouteWithChildren
+  '/_authenticated/my': typeof AuthenticatedMyRouteWithChildren
+  '/_authenticated/my/_blank-profile-layout': typeof AuthenticatedMyBlankProfileLayoutRouteRouteWithChildren
+  '/_authenticated/my/_profile-layout': typeof AuthenticatedMyProfileLayoutRouteRouteWithChildren
   '/_authenticated/_fixed-header-layout/league': typeof AuthenticatedFixedHeaderLayoutLeagueRoute
   '/_authenticated/_fixed-header-layout/mains': typeof AuthenticatedFixedHeaderLayoutMainsRoute
   '/_authenticated/_fixed-header-layout/test': typeof AuthenticatedFixedHeaderLayoutTestRoute
   '/_authenticated/_onboarding/onboarding': typeof AuthenticatedOnboardingOnboardingRoute
   '/_authenticated/_onboarding/success': typeof AuthenticatedOnboardingSuccessRoute
-  '/_authenticated/my/league': typeof AuthenticatedMyLeagueRoute
-  '/_authenticated/my/learning': typeof AuthenticatedMyLearningRoute
-  '/_authenticated/my/social': typeof AuthenticatedMySocialRoute
-  '/_authenticated/my/summary': typeof AuthenticatedMySummaryRoute
   '/_authenticated/my/': typeof AuthenticatedMyIndexRoute
+  '/_authenticated/my/_blank-profile-layout/follow': typeof AuthenticatedMyBlankProfileLayoutFollowRoute
+  '/_authenticated/my/_profile-layout/league': typeof AuthenticatedMyProfileLayoutLeagueRoute
+  '/_authenticated/my/_profile-layout/learning': typeof AuthenticatedMyProfileLayoutLearningRoute
+  '/_authenticated/my/_profile-layout/social': typeof AuthenticatedMyProfileLayoutSocialRoute
+  '/_authenticated/my/_profile-layout/summary': typeof AuthenticatedMyProfileLayoutSummaryRoute
   '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
   '/user/me/delete/page': typeof UserMeDeletePageRoute
   '/_authenticated/_fixed-header-layout/learning/': typeof AuthenticatedFixedHeaderLayoutLearningIndexRoute
@@ -389,11 +420,12 @@ export interface FileRouteTypes {
     | '/test'
     | '/onboarding'
     | '/success'
+    | '/my/'
+    | '/my/follow'
     | '/my/league'
     | '/my/learning'
     | '/my/social'
     | '/my/summary'
-    | '/my/'
     | '/login/oauth2/code/$provider'
     | '/user/me/delete/page'
     | '/learning'
@@ -417,16 +449,17 @@ export interface FileRouteTypes {
     | '/restore'
     | '/terms'
     | '/main'
+    | '/my'
     | '/league'
     | '/mains'
     | '/test'
     | '/onboarding'
     | '/success'
+    | '/my/follow'
     | '/my/league'
     | '/my/learning'
     | '/my/social'
     | '/my/summary'
-    | '/my'
     | '/login/oauth2/code/$provider'
     | '/user/me/delete/page'
     | '/learning'
@@ -453,18 +486,21 @@ export interface FileRouteTypes {
     | '/_authenticated/_fixed-header-layout'
     | '/_authenticated/_onboarding'
     | '/_authenticated/main'
-    | '/_authenticated/my'
     | '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout'
+    | '/_authenticated/my'
+    | '/_authenticated/my/_blank-profile-layout'
+    | '/_authenticated/my/_profile-layout'
     | '/_authenticated/_fixed-header-layout/league'
     | '/_authenticated/_fixed-header-layout/mains'
     | '/_authenticated/_fixed-header-layout/test'
     | '/_authenticated/_onboarding/onboarding'
     | '/_authenticated/_onboarding/success'
-    | '/_authenticated/my/league'
-    | '/_authenticated/my/learning'
-    | '/_authenticated/my/social'
-    | '/_authenticated/my/summary'
     | '/_authenticated/my/'
+    | '/_authenticated/my/_blank-profile-layout/follow'
+    | '/_authenticated/my/_profile-layout/league'
+    | '/_authenticated/my/_profile-layout/learning'
+    | '/_authenticated/my/_profile-layout/social'
+    | '/_authenticated/my/_profile-layout/summary'
     | '/login/oauth2/code/$provider'
     | '/user/me/delete/page'
     | '/_authenticated/_fixed-header-layout/learning/'
@@ -492,7 +528,7 @@ export interface RootRouteChildren {
   AuthenticatedFixedHeaderLayoutRouteRoute: typeof AuthenticatedFixedHeaderLayoutRouteRouteWithChildren
   AuthenticatedOnboardingRouteRoute: typeof AuthenticatedOnboardingRouteRouteWithChildren
   AuthenticatedMainRouteRoute: typeof AuthenticatedMainRouteRoute
-  AuthenticatedMyRouteRoute: typeof AuthenticatedMyRouteRouteWithChildren
+  AuthenticatedMyRoute: typeof AuthenticatedMyRouteWithChildren
   LoginOauth2CodeProviderRoute: typeof LoginOauth2CodeProviderRoute
   UserMeDeletePageRoute: typeof UserMeDeletePageRoute
 }
@@ -531,7 +567,7 @@ declare module '@tanstack/react-router' {
       id: '/_authenticated/my'
       path: '/my'
       fullPath: '/my'
-      preLoaderRoute: typeof AuthenticatedMyRouteRouteImport
+      preLoaderRoute: typeof AuthenticatedMyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/main': {
@@ -567,35 +603,7 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/my/'
       preLoaderRoute: typeof AuthenticatedMyIndexRouteImport
-      parentRoute: typeof AuthenticatedMyRouteRoute
-    }
-    '/_authenticated/my/summary': {
-      id: '/_authenticated/my/summary'
-      path: '/summary'
-      fullPath: '/my/summary'
-      preLoaderRoute: typeof AuthenticatedMySummaryRouteImport
-      parentRoute: typeof AuthenticatedMyRouteRoute
-    }
-    '/_authenticated/my/social': {
-      id: '/_authenticated/my/social'
-      path: '/social'
-      fullPath: '/my/social'
-      preLoaderRoute: typeof AuthenticatedMySocialRouteImport
-      parentRoute: typeof AuthenticatedMyRouteRoute
-    }
-    '/_authenticated/my/learning': {
-      id: '/_authenticated/my/learning'
-      path: '/learning'
-      fullPath: '/my/learning'
-      preLoaderRoute: typeof AuthenticatedMyLearningRouteImport
-      parentRoute: typeof AuthenticatedMyRouteRoute
-    }
-    '/_authenticated/my/league': {
-      id: '/_authenticated/my/league'
-      path: '/league'
-      fullPath: '/my/league'
-      preLoaderRoute: typeof AuthenticatedMyLeagueRouteImport
-      parentRoute: typeof AuthenticatedMyRouteRoute
+      parentRoute: typeof AuthenticatedMyRoute
     }
     '/_authenticated/_onboarding/success': {
       id: '/_authenticated/_onboarding/success'
@@ -632,6 +640,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedFixedHeaderLayoutLeagueRouteImport
       parentRoute: typeof AuthenticatedFixedHeaderLayoutRouteRoute
     }
+    '/_authenticated/my/_profile-layout': {
+      id: '/_authenticated/my/_profile-layout'
+      path: ''
+      fullPath: '/my'
+      preLoaderRoute: typeof AuthenticatedMyProfileLayoutRouteRouteImport
+      parentRoute: typeof AuthenticatedMyRoute
+    }
+    '/_authenticated/my/_blank-profile-layout': {
+      id: '/_authenticated/my/_blank-profile-layout'
+      path: '/my'
+      fullPath: '/my'
+      preLoaderRoute: typeof AuthenticatedMyBlankProfileLayoutRouteRouteImport
+      parentRoute: typeof AuthenticatedMyRoute
+    }
     '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout': {
       id: '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout'
       path: ''
@@ -659,6 +681,41 @@ declare module '@tanstack/react-router' {
       fullPath: '/login/oauth2/code/$provider'
       preLoaderRoute: typeof LoginOauth2CodeProviderRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/my/_profile-layout/summary': {
+      id: '/_authenticated/my/_profile-layout/summary'
+      path: '/summary'
+      fullPath: '/my/summary'
+      preLoaderRoute: typeof AuthenticatedMyProfileLayoutSummaryRouteImport
+      parentRoute: typeof AuthenticatedMyProfileLayoutRouteRoute
+    }
+    '/_authenticated/my/_profile-layout/social': {
+      id: '/_authenticated/my/_profile-layout/social'
+      path: '/social'
+      fullPath: '/my/social'
+      preLoaderRoute: typeof AuthenticatedMyProfileLayoutSocialRouteImport
+      parentRoute: typeof AuthenticatedMyProfileLayoutRouteRoute
+    }
+    '/_authenticated/my/_profile-layout/learning': {
+      id: '/_authenticated/my/_profile-layout/learning'
+      path: '/learning'
+      fullPath: '/my/learning'
+      preLoaderRoute: typeof AuthenticatedMyProfileLayoutLearningRouteImport
+      parentRoute: typeof AuthenticatedMyProfileLayoutRouteRoute
+    }
+    '/_authenticated/my/_profile-layout/league': {
+      id: '/_authenticated/my/_profile-layout/league'
+      path: '/league'
+      fullPath: '/my/league'
+      preLoaderRoute: typeof AuthenticatedMyProfileLayoutLeagueRouteImport
+      parentRoute: typeof AuthenticatedMyProfileLayoutRouteRoute
+    }
+    '/_authenticated/my/_blank-profile-layout/follow': {
+      id: '/_authenticated/my/_blank-profile-layout/follow'
+      path: '/follow'
+      fullPath: '/my/follow'
+      preLoaderRoute: typeof AuthenticatedMyBlankProfileLayoutFollowRouteImport
+      parentRoute: typeof AuthenticatedMyBlankProfileLayoutRouteRoute
     }
     '/_authenticated/_fixed-header-layout/learning/$chapterId/': {
       id: '/_authenticated/_fixed-header-layout/learning/$chapterId/'
@@ -861,24 +918,62 @@ const AuthenticatedOnboardingRouteRouteWithChildren =
     AuthenticatedOnboardingRouteRouteChildren,
   )
 
-interface AuthenticatedMyRouteRouteChildren {
-  AuthenticatedMyLeagueRoute: typeof AuthenticatedMyLeagueRoute
-  AuthenticatedMyLearningRoute: typeof AuthenticatedMyLearningRoute
-  AuthenticatedMySocialRoute: typeof AuthenticatedMySocialRoute
-  AuthenticatedMySummaryRoute: typeof AuthenticatedMySummaryRoute
+interface AuthenticatedMyBlankProfileLayoutRouteRouteChildren {
+  AuthenticatedMyBlankProfileLayoutFollowRoute: typeof AuthenticatedMyBlankProfileLayoutFollowRoute
+}
+
+const AuthenticatedMyBlankProfileLayoutRouteRouteChildren: AuthenticatedMyBlankProfileLayoutRouteRouteChildren =
+  {
+    AuthenticatedMyBlankProfileLayoutFollowRoute:
+      AuthenticatedMyBlankProfileLayoutFollowRoute,
+  }
+
+const AuthenticatedMyBlankProfileLayoutRouteRouteWithChildren =
+  AuthenticatedMyBlankProfileLayoutRouteRoute._addFileChildren(
+    AuthenticatedMyBlankProfileLayoutRouteRouteChildren,
+  )
+
+interface AuthenticatedMyProfileLayoutRouteRouteChildren {
+  AuthenticatedMyProfileLayoutLeagueRoute: typeof AuthenticatedMyProfileLayoutLeagueRoute
+  AuthenticatedMyProfileLayoutLearningRoute: typeof AuthenticatedMyProfileLayoutLearningRoute
+  AuthenticatedMyProfileLayoutSocialRoute: typeof AuthenticatedMyProfileLayoutSocialRoute
+  AuthenticatedMyProfileLayoutSummaryRoute: typeof AuthenticatedMyProfileLayoutSummaryRoute
+}
+
+const AuthenticatedMyProfileLayoutRouteRouteChildren: AuthenticatedMyProfileLayoutRouteRouteChildren =
+  {
+    AuthenticatedMyProfileLayoutLeagueRoute:
+      AuthenticatedMyProfileLayoutLeagueRoute,
+    AuthenticatedMyProfileLayoutLearningRoute:
+      AuthenticatedMyProfileLayoutLearningRoute,
+    AuthenticatedMyProfileLayoutSocialRoute:
+      AuthenticatedMyProfileLayoutSocialRoute,
+    AuthenticatedMyProfileLayoutSummaryRoute:
+      AuthenticatedMyProfileLayoutSummaryRoute,
+  }
+
+const AuthenticatedMyProfileLayoutRouteRouteWithChildren =
+  AuthenticatedMyProfileLayoutRouteRoute._addFileChildren(
+    AuthenticatedMyProfileLayoutRouteRouteChildren,
+  )
+
+interface AuthenticatedMyRouteChildren {
+  AuthenticatedMyBlankProfileLayoutRouteRoute: typeof AuthenticatedMyBlankProfileLayoutRouteRouteWithChildren
+  AuthenticatedMyProfileLayoutRouteRoute: typeof AuthenticatedMyProfileLayoutRouteRouteWithChildren
   AuthenticatedMyIndexRoute: typeof AuthenticatedMyIndexRoute
 }
 
-const AuthenticatedMyRouteRouteChildren: AuthenticatedMyRouteRouteChildren = {
-  AuthenticatedMyLeagueRoute: AuthenticatedMyLeagueRoute,
-  AuthenticatedMyLearningRoute: AuthenticatedMyLearningRoute,
-  AuthenticatedMySocialRoute: AuthenticatedMySocialRoute,
-  AuthenticatedMySummaryRoute: AuthenticatedMySummaryRoute,
+const AuthenticatedMyRouteChildren: AuthenticatedMyRouteChildren = {
+  AuthenticatedMyBlankProfileLayoutRouteRoute:
+    AuthenticatedMyBlankProfileLayoutRouteRouteWithChildren,
+  AuthenticatedMyProfileLayoutRouteRoute:
+    AuthenticatedMyProfileLayoutRouteRouteWithChildren,
   AuthenticatedMyIndexRoute: AuthenticatedMyIndexRoute,
 }
 
-const AuthenticatedMyRouteRouteWithChildren =
-  AuthenticatedMyRouteRoute._addFileChildren(AuthenticatedMyRouteRouteChildren)
+const AuthenticatedMyRouteWithChildren = AuthenticatedMyRoute._addFileChildren(
+  AuthenticatedMyRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -892,7 +987,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthenticatedOnboardingRouteRoute:
     AuthenticatedOnboardingRouteRouteWithChildren,
   AuthenticatedMainRouteRoute: AuthenticatedMainRouteRoute,
-  AuthenticatedMyRouteRoute: AuthenticatedMyRouteRouteWithChildren,
+  AuthenticatedMyRoute: AuthenticatedMyRouteWithChildren,
   LoginOauth2CodeProviderRoute: LoginOauth2CodeProviderRoute,
   UserMeDeletePageRoute: UserMeDeletePageRoute,
 }

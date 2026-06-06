@@ -2,7 +2,7 @@ import WeaknessConceptsCard from "@/widgets/main-page/weakness-concepts-card";
 import WeeklyTopConceptCard from "@/widgets/main-page/weekly-top-concept-card";
 import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/_authenticated/my/learning")({
+export const Route = createFileRoute("/_authenticated/my/_profile-layout/learning")({
 	component: RouteComponent,
 });
 
@@ -15,5 +15,5 @@ function RouteComponent() {
 			</div>
 			<WeaknessConceptsCard />
 		</div>
-	);
+	)
 }

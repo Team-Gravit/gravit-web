@@ -34,65 +34,38 @@ import type {
 import { customInstance } from '../../mutator';
 
 
-type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
-
-
-export type addBookmarkResponse200 = {
-  data: void
-  status: 200
-}
-
-export type addBookmarkResponse409 = {
-  data: ErrorResponse
-  status: 409
-}
-
-export type addBookmarkResponseSuccess = (addBookmarkResponse200) & {
-  headers: Headers;
-};
-export type addBookmarkResponseError = (addBookmarkResponse409) & {
-  headers: Headers;
-};
-
-export type addBookmarkResponse = (addBookmarkResponseSuccess | addBookmarkResponseError)
-
-export const getAddBookmarkUrl = () => {
-
-
-
-
-  return `/api/v1/bookmarks`
-}
 
 /**
  * 특정 문제를 북마크에 추가합니다.<br>🔐 <strong>Jwt 필요</strong><br>
  * @summary 북마크 저장
  */
-export const addBookmark = async (bookmarkSaveRequest: BookmarkSaveRequest, options?: RequestInit): Promise<addBookmarkResponse> => {
+export const addBookmark = (
+    bookmarkSaveRequest: BookmarkSaveRequest,
+ signal?: AbortSignal
+) => {
 
-  return customInstance<addBookmarkResponse>(getAddBookmarkUrl(),
-  {
-    ...options,
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', ...options?.headers },
-    body: JSON.stringify(bookmarkSaveRequest)
-  }
-);}
 
+      return customInstance<void>(
+      {url: `/api/v1/bookmarks`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: bookmarkSaveRequest, signal
+    },
+      );
+    }
 
 
 
 export const getAddBookmarkMutationOptions = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof addBookmark>>, TError,{data: BookmarkSaveRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof addBookmark>>, TError,{data: BookmarkSaveRequest}, TContext>, }
 ): UseMutationOptions<Awaited<ReturnType<typeof addBookmark>>, TError,{data: BookmarkSaveRequest}, TContext> => {
 
 const mutationKey = ['addBookmark'];
-const {mutation: mutationOptions, request: requestOptions} = options ?
+const {mutation: mutationOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }, request: undefined};
+      : {mutation: { mutationKey, }};
 
 
 
@@ -100,7 +73,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof addBookmark>>, {data: BookmarkSaveRequest}> = (props) => {
           const {data} = props ?? {};
 
-          return  addBookmark(data,requestOptions)
+          return  addBookmark(data,)
         }
 
 
@@ -118,7 +91,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  * @summary 북마크 저장
  */
 export const useAddBookmark = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof addBookmark>>, TError,{data: BookmarkSaveRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof addBookmark>>, TError,{data: BookmarkSaveRequest}, TContext>, }
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof addBookmark>>,
         TError,
@@ -127,61 +100,36 @@ export const useAddBookmark = <TError = ErrorResponse,
       > => {
       return useMutation(getAddBookmarkMutationOptions(options), queryClient);
     }
-    export type deleteBookmarkResponse204 = {
-  data: void
-  status: 204
-}
-
-export type deleteBookmarkResponse404 = {
-  data: ErrorResponse
-  status: 404
-}
-
-export type deleteBookmarkResponseSuccess = (deleteBookmarkResponse204) & {
-  headers: Headers;
-};
-export type deleteBookmarkResponseError = (deleteBookmarkResponse404) & {
-  headers: Headers;
-};
-
-export type deleteBookmarkResponse = (deleteBookmarkResponseSuccess | deleteBookmarkResponseError)
-
-export const getDeleteBookmarkUrl = () => {
-
-
-
-
-  return `/api/v1/bookmarks`
-}
-
-/**
+    /**
  * 특정 문제의 북마크를 삭제합니다.<br>🔐 <strong>Jwt 필요</strong><br>
  * @summary 북마크 삭제
  */
-export const deleteBookmark = async (bookmarkDeleteRequest: BookmarkDeleteRequest, options?: RequestInit): Promise<deleteBookmarkResponse> => {
+export const deleteBookmark = (
+    bookmarkDeleteRequest: BookmarkDeleteRequest,
+ signal?: AbortSignal
+) => {
 
-  return customInstance<deleteBookmarkResponse>(getDeleteBookmarkUrl(),
-  {
-    ...options,
-    method: 'DELETE',
-    headers: { 'Content-Type': 'application/json', ...options?.headers },
-    body: JSON.stringify(bookmarkDeleteRequest)
-  }
-);}
 
+      return customInstance<void>(
+      {url: `/api/v1/bookmarks`, method: 'DELETE',
+      headers: {'Content-Type': 'application/json', },
+      data: bookmarkDeleteRequest, signal
+    },
+      );
+    }
 
 
 
 export const getDeleteBookmarkMutationOptions = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteBookmark>>, TError,{data: BookmarkDeleteRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteBookmark>>, TError,{data: BookmarkDeleteRequest}, TContext>, }
 ): UseMutationOptions<Awaited<ReturnType<typeof deleteBookmark>>, TError,{data: BookmarkDeleteRequest}, TContext> => {
 
 const mutationKey = ['deleteBookmark'];
-const {mutation: mutationOptions, request: requestOptions} = options ?
+const {mutation: mutationOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }, request: undefined};
+      : {mutation: { mutationKey, }};
 
 
 
@@ -189,7 +137,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof deleteBookmark>>, {data: BookmarkDeleteRequest}> = (props) => {
           const {data} = props ?? {};
 
-          return  deleteBookmark(data,requestOptions)
+          return  deleteBookmark(data,)
         }
 
 
@@ -207,7 +155,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  * @summary 북마크 삭제
  */
 export const useDeleteBookmark = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteBookmark>>, TError,{data: BookmarkDeleteRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteBookmark>>, TError,{data: BookmarkDeleteRequest}, TContext>, }
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof deleteBookmark>>,
         TError,
@@ -216,48 +164,21 @@ export const useDeleteBookmark = <TError = ErrorResponse,
       > => {
       return useMutation(getDeleteBookmarkMutationOptions(options), queryClient);
     }
-    export type getAllBookmarkedProblemInUnitResponse200 = {
-  data: BookmarkedProblemResponse
-  status: 200
-}
-
-export type getAllBookmarkedProblemInUnitResponse404 = {
-  data: ErrorResponse
-  status: 404
-}
-
-export type getAllBookmarkedProblemInUnitResponseSuccess = (getAllBookmarkedProblemInUnitResponse200) & {
-  headers: Headers;
-};
-export type getAllBookmarkedProblemInUnitResponseError = (getAllBookmarkedProblemInUnitResponse404) & {
-  headers: Headers;
-};
-
-export type getAllBookmarkedProblemInUnitResponse = (getAllBookmarkedProblemInUnitResponseSuccess | getAllBookmarkedProblemInUnitResponseError)
-
-export const getGetAllBookmarkedProblemInUnitUrl = (unitId: number,) => {
-
-
-
-
-  return `/api/v1/bookmarks/${unitId}`
-}
-
-/**
+    /**
  * 특정 유닛에서 사용자가 북마크한 문제 목록을 조회합니다.<br>🔐 <strong>Jwt 필요</strong><br>
  * @summary 유닛 내 북마크된 문제 조회
  */
-export const getAllBookmarkedProblemInUnit = async (unitId: number, options?: RequestInit): Promise<getAllBookmarkedProblemInUnitResponse> => {
-
-  return customInstance<getAllBookmarkedProblemInUnitResponse>(getGetAllBookmarkedProblemInUnitUrl(unitId),
-  {
-    ...options,
-    method: 'GET'
+export const getAllBookmarkedProblemInUnit = (
+    unitId: number,
+ signal?: AbortSignal
+) => {
 
 
-  }
-);}
-
+      return customInstance<BookmarkedProblemResponse>(
+      {url: `/api/v1/bookmarks/${unitId}`, method: 'GET', signal
+    },
+      );
+    }
 
 
 
@@ -269,16 +190,16 @@ export const getGetAllBookmarkedProblemInUnitQueryKey = (unitId: number,) => {
     }
 
 
-export const getGetAllBookmarkedProblemInUnitQueryOptions = <TData = Awaited<ReturnType<typeof getAllBookmarkedProblemInUnit>>, TError = ErrorResponse>(unitId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllBookmarkedProblemInUnit>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+export const getGetAllBookmarkedProblemInUnitQueryOptions = <TData = Awaited<ReturnType<typeof getAllBookmarkedProblemInUnit>>, TError = ErrorResponse>(unitId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllBookmarkedProblemInUnit>>, TError, TData>>, }
 ) => {
 
-const {query: queryOptions, request: requestOptions} = options ?? {};
+const {query: queryOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetAllBookmarkedProblemInUnitQueryKey(unitId);
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getAllBookmarkedProblemInUnit>>> = ({ signal }) => getAllBookmarkedProblemInUnit(unitId, { signal, ...requestOptions });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getAllBookmarkedProblemInUnit>>> = ({ signal }) => getAllBookmarkedProblemInUnit(unitId, signal);
 
 
 
@@ -298,7 +219,7 @@ export function useGetAllBookmarkedProblemInUnit<TData = Awaited<ReturnType<type
           TError,
           Awaited<ReturnType<typeof getAllBookmarkedProblemInUnit>>
         > , 'initialData'
-      >, request?: SecondParameter<typeof customInstance>}
+      >, }
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetAllBookmarkedProblemInUnit<TData = Awaited<ReturnType<typeof getAllBookmarkedProblemInUnit>>, TError = ErrorResponse>(
@@ -308,11 +229,11 @@ export function useGetAllBookmarkedProblemInUnit<TData = Awaited<ReturnType<type
           TError,
           Awaited<ReturnType<typeof getAllBookmarkedProblemInUnit>>
         > , 'initialData'
-      >, request?: SecondParameter<typeof customInstance>}
+      >, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetAllBookmarkedProblemInUnit<TData = Awaited<ReturnType<typeof getAllBookmarkedProblemInUnit>>, TError = ErrorResponse>(
- unitId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllBookmarkedProblemInUnit>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+ unitId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllBookmarkedProblemInUnit>>, TError, TData>>, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -320,7 +241,7 @@ export function useGetAllBookmarkedProblemInUnit<TData = Awaited<ReturnType<type
  */
 
 export function useGetAllBookmarkedProblemInUnit<TData = Awaited<ReturnType<typeof getAllBookmarkedProblemInUnit>>, TError = ErrorResponse>(
- unitId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllBookmarkedProblemInUnit>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+ unitId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllBookmarkedProblemInUnit>>, TError, TData>>, }
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 

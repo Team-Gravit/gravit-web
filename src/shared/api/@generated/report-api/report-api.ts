@@ -23,65 +23,38 @@ import type {
 import { customInstance } from '../../mutator';
 
 
-type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
-
-
-export type submitProblemReportResponse200 = {
-  data: void
-  status: 200
-}
-
-export type submitProblemReportResponse404 = {
-  data: ErrorResponse
-  status: 404
-}
-
-export type submitProblemReportResponseSuccess = (submitProblemReportResponse200) & {
-  headers: Headers;
-};
-export type submitProblemReportResponseError = (submitProblemReportResponse404) & {
-  headers: Headers;
-};
-
-export type submitProblemReportResponse = (submitProblemReportResponseSuccess | submitProblemReportResponseError)
-
-export const getSubmitProblemReportUrl = () => {
-
-
-
-
-  return `/api/v1/reports`
-}
 
 /**
  * 특정 문제에 대한 오류를 신고합니다.<br>🔐 <strong>Jwt 필요</strong><br>
  * @summary 문제 신고 제출
  */
-export const submitProblemReport = async (problemReportSubmitRequest: ProblemReportSubmitRequest, options?: RequestInit): Promise<submitProblemReportResponse> => {
+export const submitProblemReport = (
+    problemReportSubmitRequest: ProblemReportSubmitRequest,
+ signal?: AbortSignal
+) => {
 
-  return customInstance<submitProblemReportResponse>(getSubmitProblemReportUrl(),
-  {
-    ...options,
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', ...options?.headers },
-    body: JSON.stringify(problemReportSubmitRequest)
-  }
-);}
 
+      return customInstance<void>(
+      {url: `/api/v1/reports`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: problemReportSubmitRequest, signal
+    },
+      );
+    }
 
 
 
 export const getSubmitProblemReportMutationOptions = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof submitProblemReport>>, TError,{data: ProblemReportSubmitRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof submitProblemReport>>, TError,{data: ProblemReportSubmitRequest}, TContext>, }
 ): UseMutationOptions<Awaited<ReturnType<typeof submitProblemReport>>, TError,{data: ProblemReportSubmitRequest}, TContext> => {
 
 const mutationKey = ['submitProblemReport'];
-const {mutation: mutationOptions, request: requestOptions} = options ?
+const {mutation: mutationOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }, request: undefined};
+      : {mutation: { mutationKey, }};
 
 
 
@@ -89,7 +62,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof submitProblemReport>>, {data: ProblemReportSubmitRequest}> = (props) => {
           const {data} = props ?? {};
 
-          return  submitProblemReport(data,requestOptions)
+          return  submitProblemReport(data,)
         }
 
 
@@ -107,7 +80,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  * @summary 문제 신고 제출
  */
 export const useSubmitProblemReport = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof submitProblemReport>>, TError,{data: ProblemReportSubmitRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof submitProblemReport>>, TError,{data: ProblemReportSubmitRequest}, TContext>, }
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof submitProblemReport>>,
         TError,

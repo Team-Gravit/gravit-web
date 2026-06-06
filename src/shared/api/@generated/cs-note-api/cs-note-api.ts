@@ -27,57 +27,24 @@ import type {
 import { customInstance } from '../../mutator';
 
 
-type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
-
-
-export type getNoteResponse200 = {
-  data: Blob
-  status: 200
-}
-
-export type getNoteResponse404 = {
-  data: ErrorResponse
-  status: 404
-}
-
-export type getNoteResponse500 = {
-  data: ErrorResponse
-  status: 500
-}
-
-export type getNoteResponseSuccess = (getNoteResponse200) & {
-  headers: Headers;
-};
-export type getNoteResponseError = (getNoteResponse404 | getNoteResponse500) & {
-  headers: Headers;
-};
-
-export type getNoteResponse = (getNoteResponseSuccess | getNoteResponseError)
-
-export const getGetNoteUrl = (unitId: number,) => {
-
-
-
-
-  return `/api/v1/cs-notes/${unitId}`
-}
 
 /**
  * 챕터와 유닛 정보로 Markdown 형식의 개념 노트를 조회합니다. <br>응답 본문은 Markdown 텍스트 데이터입니다. <br><br>unitId 를 입력하면 unit에 해당하는 개념노트를 응답합니다.
  * @summary 개념 노트 조회
  */
-export const getNote = async (unitId: number, options?: RequestInit): Promise<getNoteResponse> => {
-
-  return customInstance<getNoteResponse>(getGetNoteUrl(unitId),
-  {
-    ...options,
-    method: 'GET'
+export const getNote = (
+    unitId: number,
+ signal?: AbortSignal
+) => {
 
 
-  }
-);}
-
+      return customInstance<Blob>(
+      {url: `/api/v1/cs-notes/${unitId}`, method: 'GET',
+        responseType: 'blob', signal
+    },
+      );
+    }
 
 
 
@@ -89,16 +56,16 @@ export const getGetNoteQueryKey = (unitId: number,) => {
     }
 
 
-export const getGetNoteQueryOptions = <TData = Awaited<ReturnType<typeof getNote>>, TError = ErrorResponse>(unitId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNote>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+export const getGetNoteQueryOptions = <TData = Awaited<ReturnType<typeof getNote>>, TError = ErrorResponse>(unitId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNote>>, TError, TData>>, }
 ) => {
 
-const {query: queryOptions, request: requestOptions} = options ?? {};
+const {query: queryOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetNoteQueryKey(unitId);
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getNote>>> = ({ signal }) => getNote(unitId, { signal, ...requestOptions });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getNote>>> = ({ signal }) => getNote(unitId, signal);
 
 
 
@@ -118,7 +85,7 @@ export function useGetNote<TData = Awaited<ReturnType<typeof getNote>>, TError =
           TError,
           Awaited<ReturnType<typeof getNote>>
         > , 'initialData'
-      >, request?: SecondParameter<typeof customInstance>}
+      >, }
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetNote<TData = Awaited<ReturnType<typeof getNote>>, TError = ErrorResponse>(
@@ -128,11 +95,11 @@ export function useGetNote<TData = Awaited<ReturnType<typeof getNote>>, TError =
           TError,
           Awaited<ReturnType<typeof getNote>>
         > , 'initialData'
-      >, request?: SecondParameter<typeof customInstance>}
+      >, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetNote<TData = Awaited<ReturnType<typeof getNote>>, TError = ErrorResponse>(
- unitId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNote>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+ unitId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNote>>, TError, TData>>, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -140,7 +107,7 @@ export function useGetNote<TData = Awaited<ReturnType<typeof getNote>>, TError =
  */
 
 export function useGetNote<TData = Awaited<ReturnType<typeof getNote>>, TError = ErrorResponse>(
- unitId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNote>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+ unitId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getNote>>, TError, TData>>, }
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 

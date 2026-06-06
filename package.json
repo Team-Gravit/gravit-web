@@ -32,6 +32,7 @@
         "hast-util-sanitize": "^5.0.2",
         "react": "^19.1.1",
         "react-dom": "^19.1.1",
+        "react-intersection-observer": "^10.0.3",
         "react-markdown": "^10.1.0",
         "react-responsive": "^10.0.1",
         "rehype-autolink-headings": "^7.1.0",

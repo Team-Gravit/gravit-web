@@ -34,65 +34,36 @@ import type {
 import { customInstance } from '../../mutator';
 
 
-type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
-
-
-export type updateReportStatusResponse200 = {
-  data: void
-  status: 200
-}
-
-export type updateReportStatusResponse404 = {
-  data: ErrorResponse
-  status: 404
-}
-
-export type updateReportStatusResponseSuccess = (updateReportStatusResponse200) & {
-  headers: Headers;
-};
-export type updateReportStatusResponseError = (updateReportStatusResponse404) & {
-  headers: Headers;
-};
-
-export type updateReportStatusResponse = (updateReportStatusResponseSuccess | updateReportStatusResponseError)
-
-export const getUpdateReportStatusUrl = (reportId: number,) => {
-
-
-
-
-  return `/api/v1/admin/reports/${reportId}/status`
-}
 
 /**
  * 신고의 해결 상태를 토글합니다<br>🔐 <strong>관리자 권한 필요</strong><br>
  * @summary 신고 해결 상태 변경
  */
-export const updateReportStatus = async (reportId: number, options?: RequestInit): Promise<updateReportStatusResponse> => {
-
-  return customInstance<updateReportStatusResponse>(getUpdateReportStatusUrl(reportId),
-  {
-    ...options,
-    method: 'PATCH'
+export const updateReportStatus = (
+    reportId: number,
+ signal?: AbortSignal
+) => {
 
 
-  }
-);}
-
+      return customInstance<void>(
+      {url: `/api/v1/admin/reports/${reportId}/status`, method: 'PATCH', signal
+    },
+      );
+    }
 
 
 
 export const getUpdateReportStatusMutationOptions = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateReportStatus>>, TError,{reportId: number}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateReportStatus>>, TError,{reportId: number}, TContext>, }
 ): UseMutationOptions<Awaited<ReturnType<typeof updateReportStatus>>, TError,{reportId: number}, TContext> => {
 
 const mutationKey = ['updateReportStatus'];
-const {mutation: mutationOptions, request: requestOptions} = options ?
+const {mutation: mutationOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }, request: undefined};
+      : {mutation: { mutationKey, }};
 
 
 
@@ -100,7 +71,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof updateReportStatus>>, {reportId: number}> = (props) => {
           const {reportId} = props ?? {};
 
-          return  updateReportStatus(reportId,requestOptions)
+          return  updateReportStatus(reportId,)
         }
 
 
@@ -118,7 +89,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  * @summary 신고 해결 상태 변경
  */
 export const useUpdateReportStatus = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateReportStatus>>, TError,{reportId: number}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateReportStatus>>, TError,{reportId: number}, TContext>, }
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof updateReportStatus>>,
         TError,
@@ -127,48 +98,22 @@ export const useUpdateReportStatus = <TError = ErrorResponse,
       > => {
       return useMutation(getUpdateReportStatusMutationOptions(options), queryClient);
     }
-    export type getAllReportsResponse200 = {
-  data: ReportSummaryResponse[]
-  status: 200
-}
-
-export type getAllReportsResponseSuccess = (getAllReportsResponse200) & {
-  headers: Headers;
-};
-;
-
-export type getAllReportsResponse = (getAllReportsResponseSuccess)
-
-export const getGetAllReportsUrl = (params?: GetAllReportsParams,) => {
-  const normalizedParams = new URLSearchParams();
-
-  Object.entries(params || {}).forEach(([key, value]) => {
-
-    if (value !== undefined) {
-      normalizedParams.append(key, value === null ? 'null' : value.toString())
-    }
-  });
-
-  const stringifiedParams = normalizedParams.toString();
-
-  return stringifiedParams.length > 0 ? `/api/v1/admin/reports?${stringifiedParams}` : `/api/v1/admin/reports`
-}
-
-/**
+    /**
  * 페이징된 신고 목록을 조회합니다<br>🔐 <strong>관리자 권한 필요</strong><br>
  * @summary 신고 목록 조회
  */
-export const getAllReports = async (params?: GetAllReportsParams, options?: RequestInit): Promise<getAllReportsResponse> => {
-
-  return customInstance<getAllReportsResponse>(getGetAllReportsUrl(params),
-  {
-    ...options,
-    method: 'GET'
+export const getAllReports = (
+    params?: GetAllReportsParams,
+ signal?: AbortSignal
+) => {
 
 
-  }
-);}
-
+      return customInstance<ReportSummaryResponse[]>(
+      {url: `/api/v1/admin/reports`, method: 'GET',
+        params, signal
+    },
+      );
+    }
 
 
 
@@ -180,16 +125,16 @@ export const getGetAllReportsQueryKey = (params?: GetAllReportsParams,) => {
     }
 
 
-export const getGetAllReportsQueryOptions = <TData = Awaited<ReturnType<typeof getAllReports>>, TError = unknown>(params?: GetAllReportsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllReports>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+export const getGetAllReportsQueryOptions = <TData = Awaited<ReturnType<typeof getAllReports>>, TError = unknown>(params?: GetAllReportsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllReports>>, TError, TData>>, }
 ) => {
 
-const {query: queryOptions, request: requestOptions} = options ?? {};
+const {query: queryOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetAllReportsQueryKey(params);
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getAllReports>>> = ({ signal }) => getAllReports(params, { signal, ...requestOptions });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getAllReports>>> = ({ signal }) => getAllReports(params, signal);
 
 
 
@@ -209,7 +154,7 @@ export function useGetAllReports<TData = Awaited<ReturnType<typeof getAllReports
           TError,
           Awaited<ReturnType<typeof getAllReports>>
         > , 'initialData'
-      >, request?: SecondParameter<typeof customInstance>}
+      >, }
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetAllReports<TData = Awaited<ReturnType<typeof getAllReports>>, TError = unknown>(
@@ -219,11 +164,11 @@ export function useGetAllReports<TData = Awaited<ReturnType<typeof getAllReports
           TError,
           Awaited<ReturnType<typeof getAllReports>>
         > , 'initialData'
-      >, request?: SecondParameter<typeof customInstance>}
+      >, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetAllReports<TData = Awaited<ReturnType<typeof getAllReports>>, TError = unknown>(
- params?: GetAllReportsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllReports>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+ params?: GetAllReportsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllReports>>, TError, TData>>, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -231,7 +176,7 @@ export function useGetAllReports<TData = Awaited<ReturnType<typeof getAllReports
  */
 
 export function useGetAllReports<TData = Awaited<ReturnType<typeof getAllReports>>, TError = unknown>(
- params?: GetAllReportsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllReports>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+ params?: GetAllReportsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllReports>>, TError, TData>>, }
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
@@ -247,48 +192,21 @@ export function useGetAllReports<TData = Awaited<ReturnType<typeof getAllReports
 
 
 
-export type getReportResponse200 = {
-  data: ReportDetailResponse
-  status: 200
-}
-
-export type getReportResponse404 = {
-  data: ErrorResponse
-  status: 404
-}
-
-export type getReportResponseSuccess = (getReportResponse200) & {
-  headers: Headers;
-};
-export type getReportResponseError = (getReportResponse404) & {
-  headers: Headers;
-};
-
-export type getReportResponse = (getReportResponseSuccess | getReportResponseError)
-
-export const getGetReportUrl = (reportId: number,) => {
-
-
-
-
-  return `/api/v1/admin/reports/${reportId}`
-}
-
 /**
  * 특정 신고의 상세 정보를 조회합니다<br>🔐 <strong>관리자 권한 필요</strong><br>
  * @summary 신고 상세 조회
  */
-export const getReport = async (reportId: number, options?: RequestInit): Promise<getReportResponse> => {
-
-  return customInstance<getReportResponse>(getGetReportUrl(reportId),
-  {
-    ...options,
-    method: 'GET'
+export const getReport = (
+    reportId: number,
+ signal?: AbortSignal
+) => {
 
 
-  }
-);}
-
+      return customInstance<ReportDetailResponse>(
+      {url: `/api/v1/admin/reports/${reportId}`, method: 'GET', signal
+    },
+      );
+    }
 
 
 
@@ -300,16 +218,16 @@ export const getGetReportQueryKey = (reportId: number,) => {
     }
 
 
-export const getGetReportQueryOptions = <TData = Awaited<ReturnType<typeof getReport>>, TError = ErrorResponse>(reportId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getReport>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+export const getGetReportQueryOptions = <TData = Awaited<ReturnType<typeof getReport>>, TError = ErrorResponse>(reportId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getReport>>, TError, TData>>, }
 ) => {
 
-const {query: queryOptions, request: requestOptions} = options ?? {};
+const {query: queryOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetReportQueryKey(reportId);
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getReport>>> = ({ signal }) => getReport(reportId, { signal, ...requestOptions });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getReport>>> = ({ signal }) => getReport(reportId, signal);
 
 
 
@@ -329,7 +247,7 @@ export function useGetReport<TData = Awaited<ReturnType<typeof getReport>>, TErr
           TError,
           Awaited<ReturnType<typeof getReport>>
         > , 'initialData'
-      >, request?: SecondParameter<typeof customInstance>}
+      >, }
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetReport<TData = Awaited<ReturnType<typeof getReport>>, TError = ErrorResponse>(
@@ -339,11 +257,11 @@ export function useGetReport<TData = Awaited<ReturnType<typeof getReport>>, TErr
           TError,
           Awaited<ReturnType<typeof getReport>>
         > , 'initialData'
-      >, request?: SecondParameter<typeof customInstance>}
+      >, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetReport<TData = Awaited<ReturnType<typeof getReport>>, TError = ErrorResponse>(
- reportId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getReport>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+ reportId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getReport>>, TError, TData>>, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -351,7 +269,7 @@ export function useGetReport<TData = Awaited<ReturnType<typeof getReport>>, TErr
  */
 
 export function useGetReport<TData = Awaited<ReturnType<typeof getReport>>, TError = ErrorResponse>(
- reportId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getReport>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+ reportId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getReport>>, TError, TData>>, }
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 

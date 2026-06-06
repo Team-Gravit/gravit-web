@@ -23,61 +23,33 @@ import type {
 import { customInstance } from '../../mutator';
 
 
-type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
 
+export const testConsecutiveSolvedUser = (
+    params: TestConsecutiveSolvedUserParams,
+ signal?: AbortSignal
+) => {
 
-export type testConsecutiveSolvedUserResponse200 = {
-  data: number
-  status: 200
-}
 
-export type testConsecutiveSolvedUserResponseSuccess = (testConsecutiveSolvedUserResponse200) & {
-  headers: Headers;
-};
-;
-
-export type testConsecutiveSolvedUserResponse = (testConsecutiveSolvedUserResponseSuccess)
-
-export const getTestConsecutiveSolvedUserUrl = (params: TestConsecutiveSolvedUserParams,) => {
-  const normalizedParams = new URLSearchParams();
-
-  Object.entries(params || {}).forEach(([key, value]) => {
-
-    if (value !== undefined) {
-      normalizedParams.append(key, value === null ? 'null' : value.toString())
+      return customInstance<number>(
+      {url: `/api/v1/test/consecutive_solved`, method: 'POST',
+        params, signal
+    },
+      );
     }
-  });
-
-  const stringifiedParams = normalizedParams.toString();
-
-  return stringifiedParams.length > 0 ? `/api/v1/test/consecutive_solved?${stringifiedParams}` : `/api/v1/test/consecutive_solved`
-}
-
-export const testConsecutiveSolvedUser = async (params: TestConsecutiveSolvedUserParams, options?: RequestInit): Promise<testConsecutiveSolvedUserResponse> => {
-
-  return customInstance<testConsecutiveSolvedUserResponse>(getTestConsecutiveSolvedUserUrl(params),
-  {
-    ...options,
-    method: 'POST'
-
-
-  }
-);}
-
 
 
 
 export const getTestConsecutiveSolvedUserMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof testConsecutiveSolvedUser>>, TError,{params: TestConsecutiveSolvedUserParams}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof testConsecutiveSolvedUser>>, TError,{params: TestConsecutiveSolvedUserParams}, TContext>, }
 ): UseMutationOptions<Awaited<ReturnType<typeof testConsecutiveSolvedUser>>, TError,{params: TestConsecutiveSolvedUserParams}, TContext> => {
 
 const mutationKey = ['testConsecutiveSolvedUser'];
-const {mutation: mutationOptions, request: requestOptions} = options ?
+const {mutation: mutationOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }, request: undefined};
+      : {mutation: { mutationKey, }};
 
 
 
@@ -85,7 +57,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof testConsecutiveSolvedUser>>, {params: TestConsecutiveSolvedUserParams}> = (props) => {
           const {params} = props ?? {};
 
-          return  testConsecutiveSolvedUser(params,requestOptions)
+          return  testConsecutiveSolvedUser(params,)
         }
 
 
@@ -100,7 +72,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
     export type TestConsecutiveSolvedUserMutationError = unknown
 
     export const useTestConsecutiveSolvedUser = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof testConsecutiveSolvedUser>>, TError,{params: TestConsecutiveSolvedUserParams}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof testConsecutiveSolvedUser>>, TError,{params: TestConsecutiveSolvedUserParams}, TContext>, }
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof testConsecutiveSolvedUser>>,
         TError,
@@ -109,57 +81,31 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       > => {
       return useMutation(getTestConsecutiveSolvedUserMutationOptions(options), queryClient);
     }
-    export type createChapterAlmostClearUserResponse200 = {
-  data: number
-  status: 200
-}
+    export const createChapterAlmostClearUser = (
+    params: CreateChapterAlmostClearUserParams,
+ signal?: AbortSignal
+) => {
 
-export type createChapterAlmostClearUserResponseSuccess = (createChapterAlmostClearUserResponse200) & {
-  headers: Headers;
-};
-;
 
-export type createChapterAlmostClearUserResponse = (createChapterAlmostClearUserResponseSuccess)
-
-export const getCreateChapterAlmostClearUserUrl = (params: CreateChapterAlmostClearUserParams,) => {
-  const normalizedParams = new URLSearchParams();
-
-  Object.entries(params || {}).forEach(([key, value]) => {
-
-    if (value !== undefined) {
-      normalizedParams.append(key, value === null ? 'null' : value.toString())
+      return customInstance<number>(
+      {url: `/api/v1/test/chapter-almost-clear`, method: 'POST',
+        params, signal
+    },
+      );
     }
-  });
-
-  const stringifiedParams = normalizedParams.toString();
-
-  return stringifiedParams.length > 0 ? `/api/v1/test/chapter-almost-clear?${stringifiedParams}` : `/api/v1/test/chapter-almost-clear`
-}
-
-export const createChapterAlmostClearUser = async (params: CreateChapterAlmostClearUserParams, options?: RequestInit): Promise<createChapterAlmostClearUserResponse> => {
-
-  return customInstance<createChapterAlmostClearUserResponse>(getCreateChapterAlmostClearUserUrl(params),
-  {
-    ...options,
-    method: 'POST'
-
-
-  }
-);}
-
 
 
 
 export const getCreateChapterAlmostClearUserMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createChapterAlmostClearUser>>, TError,{params: CreateChapterAlmostClearUserParams}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createChapterAlmostClearUser>>, TError,{params: CreateChapterAlmostClearUserParams}, TContext>, }
 ): UseMutationOptions<Awaited<ReturnType<typeof createChapterAlmostClearUser>>, TError,{params: CreateChapterAlmostClearUserParams}, TContext> => {
 
 const mutationKey = ['createChapterAlmostClearUser'];
-const {mutation: mutationOptions, request: requestOptions} = options ?
+const {mutation: mutationOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }, request: undefined};
+      : {mutation: { mutationKey, }};
 
 
 
@@ -167,7 +113,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof createChapterAlmostClearUser>>, {params: CreateChapterAlmostClearUserParams}> = (props) => {
           const {params} = props ?? {};
 
-          return  createChapterAlmostClearUser(params,requestOptions)
+          return  createChapterAlmostClearUser(params,)
         }
 
 
@@ -182,7 +128,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
     export type CreateChapterAlmostClearUserMutationError = unknown
 
     export const useCreateChapterAlmostClearUser = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createChapterAlmostClearUser>>, TError,{params: CreateChapterAlmostClearUserParams}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createChapterAlmostClearUser>>, TError,{params: CreateChapterAlmostClearUserParams}, TContext>, }
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof createChapterAlmostClearUser>>,
         TError,

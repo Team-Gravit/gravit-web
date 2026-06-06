@@ -24,70 +24,38 @@ import type {
 import { customInstance } from '../../mutator';
 
 
-type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
-
-
-export type reissueTokenResponse200 = {
-  data: ReissueResponse
-  status: 200
-}
-
-export type reissueTokenResponse400 = {
-  data: ErrorResponse
-  status: 400
-}
-
-export type reissueTokenResponse401 = {
-  data: ErrorResponse
-  status: 401
-}
-
-export type reissueTokenResponseSuccess = (reissueTokenResponse200) & {
-  headers: Headers;
-};
-export type reissueTokenResponseError = (reissueTokenResponse400 | reissueTokenResponse401) & {
-  headers: Headers;
-};
-
-export type reissueTokenResponse = (reissueTokenResponseSuccess | reissueTokenResponseError)
-
-export const getReissueTokenUrl = () => {
-
-
-
-
-  return `/api/v1/auth/reissue`
-}
 
 /**
  * 유효한 리프레시 토큰으로 엑세스 토큰을 재발급합니다. <br> 만약 리프레시 토큰이 유효하지 않다면 재 로그인이 필요합니다.
  * @summary 리프레시 토큰으로 엑세스 토큰 재발급
  */
-export const reissueToken = async (refreshTokenRequest: RefreshTokenRequest, options?: RequestInit): Promise<reissueTokenResponse> => {
+export const reissueToken = (
+    refreshTokenRequest: RefreshTokenRequest,
+ signal?: AbortSignal
+) => {
 
-  return customInstance<reissueTokenResponse>(getReissueTokenUrl(),
-  {
-    ...options,
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', ...options?.headers },
-    body: JSON.stringify(refreshTokenRequest)
-  }
-);}
 
+      return customInstance<ReissueResponse>(
+      {url: `/api/v1/auth/reissue`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: refreshTokenRequest, signal
+    },
+      );
+    }
 
 
 
 export const getReissueTokenMutationOptions = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof reissueToken>>, TError,{data: RefreshTokenRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof reissueToken>>, TError,{data: RefreshTokenRequest}, TContext>, }
 ): UseMutationOptions<Awaited<ReturnType<typeof reissueToken>>, TError,{data: RefreshTokenRequest}, TContext> => {
 
 const mutationKey = ['reissueToken'];
-const {mutation: mutationOptions, request: requestOptions} = options ?
+const {mutation: mutationOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }, request: undefined};
+      : {mutation: { mutationKey, }};
 
 
 
@@ -95,7 +63,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof reissueToken>>, {data: RefreshTokenRequest}> = (props) => {
           const {data} = props ?? {};
 
-          return  reissueToken(data,requestOptions)
+          return  reissueToken(data,)
         }
 
 
@@ -113,7 +81,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  * @summary 리프레시 토큰으로 엑세스 토큰 재발급
  */
 export const useReissueToken = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof reissueToken>>, TError,{data: RefreshTokenRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof reissueToken>>, TError,{data: RefreshTokenRequest}, TContext>, }
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof reissueToken>>,
         TError,

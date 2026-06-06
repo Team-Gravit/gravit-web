@@ -24,53 +24,7 @@ import type {
 import { customInstance } from '../../mutator';
 
 
-type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
-
-
-export type requestResponse202 = {
-  data: void
-  status: 202
-}
-
-export type requestResponse400 = {
-  data: ErrorResponse
-  status: 400
-}
-
-export type requestResponse404 = {
-  data: ErrorResponse
-  status: 404
-}
-
-export type requestResponse500 = {
-  data: ErrorResponse
-  status: 500
-}
-
-export type requestResponseSuccess = (requestResponse202) & {
-  headers: Headers;
-};
-export type requestResponseError = (requestResponse400 | requestResponse404 | requestResponse500) & {
-  headers: Headers;
-};
-
-export type requestResponse = (requestResponseSuccess | requestResponseError)
-
-export const getRequestUrl = (params: RequestParams,) => {
-  const normalizedParams = new URLSearchParams();
-
-  Object.entries(params || {}).forEach(([key, value]) => {
-
-    if (value !== undefined) {
-      normalizedParams.append(key, value === null ? 'null' : value.toString())
-    }
-  });
-
-  const stringifiedParams = normalizedParams.toString();
-
-  return stringifiedParams.length > 0 ? `/api/v1/users/deletion/request?${stringifiedParams}` : `/api/v1/users/deletion/request`
-}
 
 /**
  * 로그인한 사용자에게 **계정 삭제 확인 메일**을 발송합니다.<br>
@@ -80,30 +34,31 @@ export const getRequestUrl = (params: RequestParams,) => {
 
  * @summary 계정 삭제 요청(인증 메일 발송)
  */
-export const request = async (params: RequestParams, options?: RequestInit): Promise<requestResponse> => {
-
-  return customInstance<requestResponse>(getRequestUrl(params),
-  {
-    ...options,
-    method: 'POST'
+export const request = (
+    params: RequestParams,
+ signal?: AbortSignal
+) => {
 
 
-  }
-);}
-
+      return customInstance<void>(
+      {url: `/api/v1/users/deletion/request`, method: 'POST',
+        params, signal
+    },
+      );
+    }
 
 
 
 export const getRequestMutationOptions = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof request>>, TError,{params: RequestParams}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof request>>, TError,{params: RequestParams}, TContext>, }
 ): UseMutationOptions<Awaited<ReturnType<typeof request>>, TError,{params: RequestParams}, TContext> => {
 
 const mutationKey = ['request'];
-const {mutation: mutationOptions, request: requestOptions} = options ?
+const {mutation: mutationOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }, request: undefined};
+      : {mutation: { mutationKey, }};
 
 
 
@@ -111,7 +66,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof request>>, {params: RequestParams}> = (props) => {
           const {params} = props ?? {};
 
-          return  request(params,requestOptions)
+          return  request(params,)
         }
 
 
@@ -129,7 +84,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  * @summary 계정 삭제 요청(인증 메일 발송)
  */
 export const useRequest = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof request>>, TError,{params: RequestParams}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof request>>, TError,{params: RequestParams}, TContext>, }
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof request>>,
         TError,
@@ -138,81 +93,38 @@ export const useRequest = <TError = ErrorResponse,
       > => {
       return useMutation(getRequestMutationOptions(options), queryClient);
     }
-    export type confirmResponse200 = {
-  data: void
-  status: 200
-}
-
-export type confirmResponse400 = {
-  data: ErrorResponse
-  status: 400
-}
-
-export type confirmResponse404 = {
-  data: ErrorResponse
-  status: 404
-}
-
-export type confirmResponse500 = {
-  data: ErrorResponse
-  status: 500
-}
-
-export type confirmResponseSuccess = (confirmResponse200) & {
-  headers: Headers;
-};
-export type confirmResponseError = (confirmResponse400 | confirmResponse404 | confirmResponse500) & {
-  headers: Headers;
-};
-
-export type confirmResponse = (confirmResponseSuccess | confirmResponseError)
-
-export const getConfirmUrl = (params: ConfirmParams,) => {
-  const normalizedParams = new URLSearchParams();
-
-  Object.entries(params || {}).forEach(([key, value]) => {
-
-    if (value !== undefined) {
-      normalizedParams.append(key, value === null ? 'null' : value.toString())
-    }
-  });
-
-  const stringifiedParams = normalizedParams.toString();
-
-  return stringifiedParams.length > 0 ? `/api/v1/users/deletion/confirm?${stringifiedParams}` : `/api/v1/users/deletion/confirm`
-}
-
-/**
+    /**
  * 메일로 발급된 **삭제 인증 코드**를 확인하고 계정 삭제를 확정합니다.<br>
 코드가 유효하면 즉시 삭제가 진행됩니다.<br>
 🔐 <strong>Jwt 불필요</strong> (메일 링크 진입 가정)<br>
 
  * @summary 계정 삭제 확정(메일 인증 코드 확인)
  */
-export const confirm = async (params: ConfirmParams, options?: RequestInit): Promise<confirmResponse> => {
-
-  return customInstance<confirmResponse>(getConfirmUrl(params),
-  {
-    ...options,
-    method: 'POST'
+export const confirm = (
+    params: ConfirmParams,
+ signal?: AbortSignal
+) => {
 
 
-  }
-);}
-
+      return customInstance<void>(
+      {url: `/api/v1/users/deletion/confirm`, method: 'POST',
+        params, signal
+    },
+      );
+    }
 
 
 
 export const getConfirmMutationOptions = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof confirm>>, TError,{params: ConfirmParams}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof confirm>>, TError,{params: ConfirmParams}, TContext>, }
 ): UseMutationOptions<Awaited<ReturnType<typeof confirm>>, TError,{params: ConfirmParams}, TContext> => {
 
 const mutationKey = ['confirm'];
-const {mutation: mutationOptions, request: requestOptions} = options ?
+const {mutation: mutationOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }, request: undefined};
+      : {mutation: { mutationKey, }};
 
 
 
@@ -220,7 +132,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof confirm>>, {params: ConfirmParams}> = (props) => {
           const {params} = props ?? {};
 
-          return  confirm(params,requestOptions)
+          return  confirm(params,)
         }
 
 
@@ -238,7 +150,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  * @summary 계정 삭제 확정(메일 인증 코드 확인)
  */
 export const useConfirm = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof confirm>>, TError,{params: ConfirmParams}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof confirm>>, TError,{params: ConfirmParams}, TContext>, }
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof confirm>>,
         TError,

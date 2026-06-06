@@ -11,4 +11,6 @@ export interface FollowerResponse {
   nickname: string;
   profileImgNumber?: number;
   handle: string;
+  /** 내가 해당 팔로워를 팔로우 중인지 여부 */
+  isFollowing?: boolean;
 }

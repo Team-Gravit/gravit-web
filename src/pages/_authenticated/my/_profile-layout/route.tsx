@@ -1,19 +1,19 @@
-import { createFileRoute, Outlet } from "@tanstack/react-router";
 import { HEADER_HEIGHT } from "@/shared/config/constants";
+import useResponsive from "@/shared/model/use-responsive";
 import PageLayout from "@/shared/ui/layout.tsx/page-layout";
 import Header from "@/widgets/header/ui/_header";
-import UserTabs from "@/widgets/user/ui/user-tabs";
 import UserProfileCard from "@/widgets/user/ui/user-profile-card";
-import useResponsive from "@/shared/model/use-responsive";
+import UserTabs from "@/widgets/user/ui/user-tabs";
+import { createFileRoute, Outlet } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/_authenticated/my")({
-	component: MyLayout,
+export const Route = createFileRoute("/_authenticated/my/_profile-layout")({
+	component: RouteComponent,
 });
 
-function MyLayout() {
+function RouteComponent() {
 	const { isMobile } = useResponsive();
 	return (
-		<PageLayout>
+		<PageLayout bottomTabBar={isMobile}>
 			{isMobile ? null : <Header />}
 			<div
 				className="w-full h-full flex flex-col  "

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { UserInfo } from "@/entities/sidebar/model/types";
-import FollowModal from "@/features/follow/FollowModal";
+import FollowModal from "@/widgets/user/follow/follow-modal";
 
 interface Props {
 	userInfo: UserInfo;

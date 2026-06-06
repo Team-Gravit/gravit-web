@@ -134,23 +134,6 @@ export const GenerateCustomTokenQueryParams = zod.object({
 })
 
 
-export const PlanetCompletedBody = zod.object({
-  "userId": zod.number().optional(),
-  "lessonId": zod.number().optional(),
-  "chapterId": zod.number().optional(),
-  "points": zod.number().optional(),
-  "accuracy": zod.number().optional(),
-  "learningTime": zod.number().optional(),
-  "beforeConsecutiveSolved": zod.number().optional(),
-  "afterConsecutiveSolved": zod.number().optional()
-})
-
-
-export const MissionBody = zod.object({
-  "userId": zod.number().optional()
-})
-
-
 export const TestConsecutiveSolvedUserQueryParams = zod.object({
   "userId": zod.number(),
   "consecutiveSolvedCount": zod.number()
@@ -160,6 +143,30 @@ export const TestConsecutiveSolvedUserQueryParams = zod.object({
 export const CreateChapterAlmostClearUserQueryParams = zod.object({
   "userId": zod.number(),
   "chapterId": zod.number()
+})
+
+
+/**
+ * 추천 친구 목록에서 팔로우 버튼을 눌러 즉시 팔로우합니다.<br>
+🔐 <strong>Jwt 필요</strong>
+
+ * @summary 소셜 탭에서 팔로우
+ */
+export const FollowParams = zod.object({
+  "userId": zod.number().describe('팔로우할 유저 ID')
+})
+
+
+/**
+ * 친구의 활동 피드 항목에 축하를 보냅니다.<br>
+축하받은 유저에게 5 LP가 지급됩니다.<br>
+동일 유저에게 하루 최대 3회까지 축하할 수 있습니다.<br>
+🔐 <strong>Jwt 필요</strong>
+
+ * @summary 피드 항목 축하하기
+ */
+export const CongratulateFeedParams = zod.object({
+  "feedId": zod.number().describe('축하할 피드 ID')
 })
 
 
@@ -390,6 +397,54 @@ export const GetAllUnitInChapterParams = zod.object({
 
 
 /**
+ * 나와 같은 티어의 팔로우하지 않은 유저를 최대 8명 추천합니다.<br>
+같은 티어 유저가 5명 미만이면 ±1 티어로 확장합니다.<br>
+노출 순서는 랜덤입니다.<br>
+mutualFollowCount: 추천 유저의 팔로잉 중 내가 팔로잉하는 유저 수입니다.<br>
+🔐 <strong>Jwt 필요</strong>
+
+ * @summary 추천 친구 목록 조회
+ */
+export const GetRecommendedUsersResponse = zod.object({
+  "userId": zod.number().optional(),
+  "nickname": zod.string().optional(),
+  "profileImgNumber": zod.number().optional(),
+  "mutualFollowCount": zod.number().optional()
+})
+
+
+/**
+ * 팔로잉한 친구의 주요 성취를 피드 형태로 조회합니다.<br>
+피드 이벤트 종류: 행성 정복, 연속 학습 달성, 티어 승급, 레벨업<br>
+최신순으로 정렬됩니다.<br>
+🔐 <strong>Jwt 필요</strong><br>
+<strong>Slice 페이징 적용 (0부터 시작)</strong><br>
+
+ * @summary 친구 활동 피드 조회
+ */
+export const getFeedQueryPageDefault = 0;
+
+export const GetFeedQueryParams = zod.object({
+  "page": zod.number().default(getFeedQueryPageDefault).describe('0부터 시작하는 페이지 인덱스')
+})
+
+export const GetFeedResponse = zod.object({
+  "hasNextPage": zod.boolean().optional().describe('다음 페이지 존재 여부'),
+  "contents": zod.array(zod.object({
+  "feedId": zod.number().optional(),
+  "actorId": zod.number().optional(),
+  "actorNickname": zod.string().optional(),
+  "actorProfileImgNumber": zod.number().optional(),
+  "actorHandle": zod.string().optional(),
+  "message": zod.string().optional(),
+  "timeAgo": zod.string().optional(),
+  "canCongratulate": zod.boolean().optional(),
+  "createdAt": zod.iso.datetime({"offset":true}).optional()
+})).optional().describe('피드 목록')
+}).describe('피드 슬라이스 응답')
+
+
+/**
  * 인증된 사용자의 현재 리그를 기준으로 랭킹을 페이지 단위로 조회합니다.
 - `pageNum`은 0부터 시작하는 페이지 번호(0-based)입니다. <br>
 🔐 <strong>Jwt 필요</strong><br>
@@ -509,9 +564,17 @@ export const GetNoticeSummariesParams = zod.object({
 })
 
 export const GetNoticeSummariesResponse = zod.object({
-  "hasNextPage": zod.boolean().optional(),
-  "contents": zod.array(zod.unknown()).optional()
-})
+  "page": zod.number().optional().describe('현재 페이지 번호'),
+  "totalPages": zod.number().optional().describe('전체 페이지 수'),
+  "hasNext": zod.boolean().optional().describe('다음 페이지 존재 여부'),
+  "contents": zod.array(zod.object({
+  "id": zod.number().optional(),
+  "title": zod.string(),
+  "summary": zod.string(),
+  "pinned": zod.boolean().optional(),
+  "publishedAt": zod.iso.datetime({"offset":true})
+})).optional().describe('공지 요약 목록')
+}).describe('공지 요약 페이지 응답')
 
 
 /**
@@ -547,6 +610,15 @@ export const GetLeagueParams = zod.object({
 
 
 /**
+ * 특정 유저의 시즌별 최종 티어 기록을 조회합니다.
+ * @summary 특정 유저 리그 히스토리 조회
+ */
+export const GetUserLeagueHistoryParams = zod.object({
+  "userId": zod.number().describe('조회할 유저 ID')
+})
+
+
+/**
  * 사용자 핸들&닉네임 으로 팔로우 대상 검색을 수행합니다.<br>
 - (핸들의 경우) <br>
 - 입력이 '@' 부터 시작하면 handle 기반 조회를 시도합니다. <br>
@@ -569,9 +641,15 @@ export const SearchQueryParams = zod.object({
 })
 
 export const SearchResponse = zod.object({
-  "hasNextPage": zod.boolean().optional(),
-  "contents": zod.array(zod.unknown()).optional()
-})
+  "hasNextPage": zod.boolean().optional().describe('다음 페이지 존재 여부'),
+  "contents": zod.array(zod.object({
+  "userId": zod.number().optional(),
+  "profileImgNumber": zod.number().optional(),
+  "nickname": zod.string().optional(),
+  "handle": zod.string().optional(),
+  "isFollowing": zod.boolean().optional()
+})).optional().describe('검색 결과 목록')
+}).describe('사용자 검색 슬라이스 응답')
 
 
 /**
@@ -586,7 +664,7 @@ export const GetFollowingsQueryParams = zod.object({
 
 
 /**
- * 현재 사용자를 팔로우하고 있는 사용자 목록을 조회합니다<br>🔐 <strong>Jwt 필요</strong><br><strong>Slice 페이징을 적용합니다</strong><br>쿼리 파라미터로 page 값을 보내주세요(0부터 시작)
+ * 현재 사용자를 팔로우하고 있는 사용자 목록을 조회합니다<br>🔐 <strong>Jwt 필요</strong><br><strong>Slice 페이징을 적용합니다</strong><br>쿼리 파라미터로 page 값을 보내주세요(0부터 시작)<br><strong>isFollowing</strong>: 내가 해당 팔로워를 팔로우하고 있으면 true (맞팔 여부)
  * @summary 팔로워 목록 조회
  */
 export const getFollowersQueryPageDefault = 0;
@@ -594,6 +672,17 @@ export const getFollowersQueryPageDefault = 0;
 export const GetFollowersQueryParams = zod.object({
   "page": zod.number().default(getFollowersQueryPageDefault)
 })
+
+export const GetFollowersResponse = zod.object({
+  "hasNextPage": zod.boolean().optional().describe('다음 페이지 존재 여부'),
+  "contents": zod.array(zod.object({
+  "id": zod.number().optional(),
+  "nickname": zod.string(),
+  "profileImgNumber": zod.number().optional(),
+  "handle": zod.string(),
+  "isFollowing": zod.boolean().optional().describe('내가 해당 팔로워를 팔로우 중인지 여부')
+})).optional().describe('팔로워 목록')
+}).describe('팔로워 목록 슬라이스 응답')
 
 
 /**
@@ -623,34 +712,6 @@ export const GetNoteParams = zod.object({
  */
 export const GetAllBookmarkedProblemInUnitParams = zod.object({
   "unitId": zod.number()
-})
-
-
-/**
- * 전체 뱃지 카탈로그를 **카테고리 → 뱃지 display_order** 기준으로 정렬하여 반환합니다.<br>
-각 뱃지에는 현재 유저가 획득했는지 여부(earned)가 포함됩니다.<br>
-응답의 earnedCount / totalCount로 전체 대비 획득 개수를 확인할 수 있습니다.
-
- * @summary 내 뱃지 목록(카테고리별 정렬) 조회
- */
-export const GetAllMyBadgesResponse = zod.object({
-  "earnedCount": zod.number().optional(),
-  "totalCount": zod.number().optional(),
-  "badgeCategoryResponses": zod.array(zod.object({
-  "categoryId": zod.number().optional(),
-  "categoryName": zod.string(),
-  "order": zod.number().optional(),
-  "categoryDescription": zod.string(),
-  "badgeResponses": zod.array(zod.object({
-  "badgeId": zod.number().optional(),
-  "code": zod.string(),
-  "name": zod.string(),
-  "description": zod.string(),
-  "order": zod.number().optional(),
-  "iconId": zod.number().optional(),
-  "earned": zod.boolean().optional()
-}))
-}))
 })
 
 
@@ -735,11 +796,17 @@ export const GetNoticeSummaryByAdminParams = zod.object({
 })
 
 export const GetNoticeSummaryByAdminResponse = zod.object({
-  "page": zod.number().optional(),
-  "totalPages": zod.number().optional(),
-  "hasNext": zod.boolean().optional(),
-  "contents": zod.array(zod.unknown()).optional()
-})
+  "page": zod.number().optional().describe('현재 페이지 번호'),
+  "totalPages": zod.number().optional().describe('전체 페이지 수'),
+  "hasNext": zod.boolean().optional().describe('다음 페이지 존재 여부'),
+  "contents": zod.array(zod.object({
+  "id": zod.number().optional(),
+  "title": zod.string(),
+  "summary": zod.string(),
+  "pinned": zod.boolean().optional(),
+  "publishedAt": zod.iso.datetime({"offset":true}).optional()
+})).optional().describe('공지 요약 목록')
+}).describe('어드민 공지 요약 페이지 응답')
 
 
 /**
@@ -749,6 +816,11 @@ export const GetNoticeSummaryByAdminResponse = zod.object({
 export const DeleteWrongAnsweredProblemBody = zod.object({
   "problemId": zod.number().optional().describe('문제 아이디')
 }).describe('오답노트 삭제 request')
+
+
+export const HideFeedParams = zod.object({
+  "feedId": zod.number()
+})
 
 
 /**

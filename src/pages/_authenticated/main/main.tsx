@@ -9,9 +9,8 @@ export default function MainPage() {
 	const { data, isPending, isError } = useGetMainPage();
 
 	if (isPending || isError || !data) return null;
-	if (data.status !== 200) return null;
 
-	const vm = toMainPageViewModel(data.data);
+	const vm = toMainPageViewModel(data);
 
 	return <>{isMobile ? <MainMobile vm={vm} /> : <MainDesktop vm={vm} />}</>;
 }

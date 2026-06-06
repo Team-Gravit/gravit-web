@@ -25,61 +25,33 @@ import type {
 import { customInstance } from '../../mutator';
 
 
-type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
 
+export const login = (
+    params: LoginParams,
+ signal?: AbortSignal
+) => {
 
-export type loginResponse200 = {
-  data: LoginResponse
-  status: 200
-}
 
-export type loginResponseSuccess = (loginResponse200) & {
-  headers: Headers;
-};
-;
-
-export type loginResponse = (loginResponseSuccess)
-
-export const getLoginUrl = (params: LoginParams,) => {
-  const normalizedParams = new URLSearchParams();
-
-  Object.entries(params || {}).forEach(([key, value]) => {
-
-    if (value !== undefined) {
-      normalizedParams.append(key, value === null ? 'null' : value.toString())
+      return customInstance<LoginResponse>(
+      {url: `/api/v1/test/users/login`, method: 'POST',
+        params, signal
+    },
+      );
     }
-  });
-
-  const stringifiedParams = normalizedParams.toString();
-
-  return stringifiedParams.length > 0 ? `/api/v1/test/users/login?${stringifiedParams}` : `/api/v1/test/users/login`
-}
-
-export const login = async (params: LoginParams, options?: RequestInit): Promise<loginResponse> => {
-
-  return customInstance<loginResponse>(getLoginUrl(params),
-  {
-    ...options,
-    method: 'POST'
-
-
-  }
-);}
-
 
 
 
 export const getLoginMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof login>>, TError,{params: LoginParams}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof login>>, TError,{params: LoginParams}, TContext>, }
 ): UseMutationOptions<Awaited<ReturnType<typeof login>>, TError,{params: LoginParams}, TContext> => {
 
 const mutationKey = ['login'];
-const {mutation: mutationOptions, request: requestOptions} = options ?
+const {mutation: mutationOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }, request: undefined};
+      : {mutation: { mutationKey, }};
 
 
 
@@ -87,7 +59,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof login>>, {params: LoginParams}> = (props) => {
           const {params} = props ?? {};
 
-          return  login(params,requestOptions)
+          return  login(params,)
         }
 
 
@@ -102,7 +74,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
     export type LoginMutationError = unknown
 
     export const useLogin = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof login>>, TError,{params: LoginParams}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof login>>, TError,{params: LoginParams}, TContext>, }
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof login>>,
         TError,
@@ -111,57 +83,31 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       > => {
       return useMutation(getLoginMutationOptions(options), queryClient);
     }
-    export type createUserResponse200 = {
-  data: LoginResponse
-  status: 200
-}
+    export const createUser = (
+    params: CreateUserParams,
+ signal?: AbortSignal
+) => {
 
-export type createUserResponseSuccess = (createUserResponse200) & {
-  headers: Headers;
-};
-;
 
-export type createUserResponse = (createUserResponseSuccess)
-
-export const getCreateUserUrl = (params: CreateUserParams,) => {
-  const normalizedParams = new URLSearchParams();
-
-  Object.entries(params || {}).forEach(([key, value]) => {
-
-    if (value !== undefined) {
-      normalizedParams.append(key, value === null ? 'null' : value.toString())
+      return customInstance<LoginResponse>(
+      {url: `/api/v1/test/users/create`, method: 'POST',
+        params, signal
+    },
+      );
     }
-  });
-
-  const stringifiedParams = normalizedParams.toString();
-
-  return stringifiedParams.length > 0 ? `/api/v1/test/users/create?${stringifiedParams}` : `/api/v1/test/users/create`
-}
-
-export const createUser = async (params: CreateUserParams, options?: RequestInit): Promise<createUserResponse> => {
-
-  return customInstance<createUserResponse>(getCreateUserUrl(params),
-  {
-    ...options,
-    method: 'POST'
-
-
-  }
-);}
-
 
 
 
 export const getCreateUserMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createUser>>, TError,{params: CreateUserParams}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createUser>>, TError,{params: CreateUserParams}, TContext>, }
 ): UseMutationOptions<Awaited<ReturnType<typeof createUser>>, TError,{params: CreateUserParams}, TContext> => {
 
 const mutationKey = ['createUser'];
-const {mutation: mutationOptions, request: requestOptions} = options ?
+const {mutation: mutationOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }, request: undefined};
+      : {mutation: { mutationKey, }};
 
 
 
@@ -169,7 +115,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof createUser>>, {params: CreateUserParams}> = (props) => {
           const {params} = props ?? {};
 
-          return  createUser(params,requestOptions)
+          return  createUser(params,)
         }
 
 
@@ -184,7 +130,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
     export type CreateUserMutationError = unknown
 
     export const useCreateUser = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createUser>>, TError,{params: CreateUserParams}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createUser>>, TError,{params: CreateUserParams}, TContext>, }
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof createUser>>,
         TError,
@@ -193,57 +139,31 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       > => {
       return useMutation(getCreateUserMutationOptions(options), queryClient);
     }
-    export type generateCustomTokenResponse200 = {
-  data: LoginResponse
-  status: 200
-}
+    export const generateCustomToken = (
+    params: GenerateCustomTokenParams,
+ signal?: AbortSignal
+) => {
 
-export type generateCustomTokenResponseSuccess = (generateCustomTokenResponse200) & {
-  headers: Headers;
-};
-;
 
-export type generateCustomTokenResponse = (generateCustomTokenResponseSuccess)
-
-export const getGenerateCustomTokenUrl = (params: GenerateCustomTokenParams,) => {
-  const normalizedParams = new URLSearchParams();
-
-  Object.entries(params || {}).forEach(([key, value]) => {
-
-    if (value !== undefined) {
-      normalizedParams.append(key, value === null ? 'null' : value.toString())
+      return customInstance<LoginResponse>(
+      {url: `/api/v1/test/tokens/custom`, method: 'POST',
+        params, signal
+    },
+      );
     }
-  });
-
-  const stringifiedParams = normalizedParams.toString();
-
-  return stringifiedParams.length > 0 ? `/api/v1/test/tokens/custom?${stringifiedParams}` : `/api/v1/test/tokens/custom`
-}
-
-export const generateCustomToken = async (params: GenerateCustomTokenParams, options?: RequestInit): Promise<generateCustomTokenResponse> => {
-
-  return customInstance<generateCustomTokenResponse>(getGenerateCustomTokenUrl(params),
-  {
-    ...options,
-    method: 'POST'
-
-
-  }
-);}
-
 
 
 
 export const getGenerateCustomTokenMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof generateCustomToken>>, TError,{params: GenerateCustomTokenParams}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof generateCustomToken>>, TError,{params: GenerateCustomTokenParams}, TContext>, }
 ): UseMutationOptions<Awaited<ReturnType<typeof generateCustomToken>>, TError,{params: GenerateCustomTokenParams}, TContext> => {
 
 const mutationKey = ['generateCustomToken'];
-const {mutation: mutationOptions, request: requestOptions} = options ?
+const {mutation: mutationOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
       : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }, request: undefined};
+      : {mutation: { mutationKey, }};
 
 
 
@@ -251,7 +171,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       const mutationFn: MutationFunction<Awaited<ReturnType<typeof generateCustomToken>>, {params: GenerateCustomTokenParams}> = (props) => {
           const {params} = props ?? {};
 
-          return  generateCustomToken(params,requestOptions)
+          return  generateCustomToken(params,)
         }
 
 
@@ -266,7 +186,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
     export type GenerateCustomTokenMutationError = unknown
 
     export const useGenerateCustomToken = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof generateCustomToken>>, TError,{params: GenerateCustomTokenParams}, TContext>, request?: SecondParameter<typeof customInstance>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof generateCustomToken>>, TError,{params: GenerateCustomTokenParams}, TContext>, }
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof generateCustomToken>>,
         TError,

@@ -27,45 +27,23 @@ import type {
 import { customInstance } from '../../mutator';
 
 
-type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
-
-
-export type getAllChapterResponse200 = {
-  data: ChapterDetailResponse[]
-  status: 200
-}
-
-export type getAllChapterResponseSuccess = (getAllChapterResponse200) & {
-  headers: Headers;
-};
-;
-
-export type getAllChapterResponse = (getAllChapterResponseSuccess)
-
-export const getGetAllChapterUrl = () => {
-
-
-
-
-  return `/api/v1/chapters`
-}
 
 /**
  * 유저의 챕터 진행도를 포함한 챕터 목록을 조회합니다.<br>🔐 <strong>Jwt 필요</strong><br>
  * @summary 챕터 조회
  */
-export const getAllChapter = async ( options?: RequestInit): Promise<getAllChapterResponse> => {
+export const getAllChapter = (
 
-  return customInstance<getAllChapterResponse>(getGetAllChapterUrl(),
-  {
-    ...options,
-    method: 'GET'
+ signal?: AbortSignal
+) => {
 
 
-  }
-);}
-
+      return customInstance<ChapterDetailResponse[]>(
+      {url: `/api/v1/chapters`, method: 'GET', signal
+    },
+      );
+    }
 
 
 
@@ -77,16 +55,16 @@ export const getGetAllChapterQueryKey = () => {
     }
 
 
-export const getGetAllChapterQueryOptions = <TData = Awaited<ReturnType<typeof getAllChapter>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllChapter>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+export const getGetAllChapterQueryOptions = <TData = Awaited<ReturnType<typeof getAllChapter>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllChapter>>, TError, TData>>, }
 ) => {
 
-const {query: queryOptions, request: requestOptions} = options ?? {};
+const {query: queryOptions} = options ?? {};
 
   const queryKey =  queryOptions?.queryKey ?? getGetAllChapterQueryKey();
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getAllChapter>>> = ({ signal }) => getAllChapter({ signal, ...requestOptions });
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getAllChapter>>> = ({ signal }) => getAllChapter(signal);
 
 
 
@@ -106,7 +84,7 @@ export function useGetAllChapter<TData = Awaited<ReturnType<typeof getAllChapter
           TError,
           Awaited<ReturnType<typeof getAllChapter>>
         > , 'initialData'
-      >, request?: SecondParameter<typeof customInstance>}
+      >, }
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetAllChapter<TData = Awaited<ReturnType<typeof getAllChapter>>, TError = unknown>(
@@ -116,11 +94,11 @@ export function useGetAllChapter<TData = Awaited<ReturnType<typeof getAllChapter
           TError,
           Awaited<ReturnType<typeof getAllChapter>>
         > , 'initialData'
-      >, request?: SecondParameter<typeof customInstance>}
+      >, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetAllChapter<TData = Awaited<ReturnType<typeof getAllChapter>>, TError = unknown>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllChapter>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllChapter>>, TError, TData>>, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -128,7 +106,7 @@ export function useGetAllChapter<TData = Awaited<ReturnType<typeof getAllChapter
  */
 
 export function useGetAllChapter<TData = Awaited<ReturnType<typeof getAllChapter>>, TError = unknown>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllChapter>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllChapter>>, TError, TData>>, }
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 

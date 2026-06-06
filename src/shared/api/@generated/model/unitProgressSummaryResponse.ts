@@ -5,9 +5,10 @@
  * 앱센터 16.5기 동계 프로젝트 Gravit API Docs
  * OpenAPI spec version: 1.0.0
  */
+import type { UnitProgressSummaryResponseStatus } from './unitProgressSummaryResponseStatus.ts';
 
 export interface UnitProgressSummaryResponse {
   unitId?: number;
   title?: string;
-  isCompleted?: boolean;
+  status?: UnitProgressSummaryResponseStatus;
 }
