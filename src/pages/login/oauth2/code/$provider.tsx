@@ -16,9 +16,10 @@ function OAuthCallback() {
   const searchParams = new URLSearchParams(location.search);
   const code = searchParams.get('code');
 
-	useEffect(() => {
-		if (provider && code) {
-			const dest = import.meta.env.MODE === "development" ? "local" : import.meta.env.VITE_OAUTH_DEST;
+  useEffect(() => {
+    if (provider && code) {
+      const dest =
+        import.meta.env.MODE === 'development' ? 'local' : import.meta.env.VITE_OAUTH_DEST;
 
       postOAuth.mutate({ provider, dest, code });
     }
