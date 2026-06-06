@@ -1,8 +1,8 @@
-import { createFileRoute, Link, useNavigate } from '@tanstack/react-router';
+import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import z from 'zod';
 
 import { useGetFollowAndFollowingCount } from '@/shared/api/@generated/friend-api/friend-api';
-import LeftArrow from '@/shared/assets/icons/buttons/left-arrow.svg?react';
+import BackButtonMobileHeader from '@/shared/ui/layout.tsx/header/back-button-mobile-header';
 import FollowListContainer from '@/widgets/user/follow/follow-list-container';
 import FollowListTab from '@/widgets/user/follow/follow-list-tab';
 
@@ -24,22 +24,15 @@ function RouteComponent() {
   if (isGetFollowCountPending || !data) return null;
 
   return (
-    <div className="pt-[49px]">
-      <header className="fixed top-0 left-0 w-full bg-white border-b border-divider-1">
-        <div className="flex justify-center w-full relative py-4">
-          <Link to="/my/social" className="p-3 absolute top-0 left-0">
-            <LeftArrow className="size-6" />
-          </Link>
-          <h3 className="text-label1">친구</h3>
-        </div>
-      </header>
+    <>
+      <BackButtonMobileHeader pageTitle="친구" />
 
       <section className="min-h-svh bg-bg-1">
         <header className="px-4 py-5">
           <FollowListTab
             activeTab={activeTab}
-            followerCount={data.followerCount ?? 0}
-            followingCount={data.followingCount ?? 0}
+            followerCount={data.followerCount}
+            followingCount={data.followingCount}
             setActiveTab={(nextTab) => {
               navigate({ search: { tab: nextTab }, replace: true });
             }}
@@ -48,6 +41,6 @@ function RouteComponent() {
 
         <FollowListContainer type={activeTab} />
       </section>
-    </div>
+    </>
   );
 }
