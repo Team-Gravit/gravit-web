@@ -2,20 +2,19 @@ import { useQueryClient } from '@tanstack/react-query';
 
 import {
   getGetFollowAndFollowingCountQueryKey,
-  useUnFollowing,
+  getGetFollowingsInfiniteQueryKey,
+  useFollowing,
 } from '@/shared/api/@generated/friend-api/friend-api';
 import { getGetRecommendedUsersQueryKey } from '@/shared/api/@generated/social-api/social-api';
-import { Button } from '@/shared/ui/button/Button';
 
-interface UnFollowButtonProps {
-  followeeId: number;
+interface useFollowUserProps {
   onSuccess?: () => void;
 }
 
-function UnFollowButton({ followeeId, onSuccess }: UnFollowButtonProps) {
+function useFollowUser({ onSuccess }: useFollowUserProps) {
   const queryClient = useQueryClient();
 
-  const { mutate: unFollowing, isPending: isUnFollowingPending } = useUnFollowing({
+  return useFollowing({
     mutation: {
       onSuccess: () => {
         onSuccess?.();
@@ -27,21 +26,14 @@ function UnFollowButton({ followeeId, onSuccess }: UnFollowButtonProps) {
         queryClient.invalidateQueries({
           queryKey: getGetRecommendedUsersQueryKey(),
         });
+
+        queryClient.invalidateQueries({
+          queryKey: getGetFollowingsInfiniteQueryKey(),
+          refetchType: 'none',
+        });
       },
     },
   });
-
-  return (
-    <Button
-      onClick={() => unFollowing({ followeeId })}
-      variant={'strokeGray'}
-      disabled={isUnFollowingPending}
-      size="custom"
-      className="bg-bg-1 text-label2 md:text-body1-normal py-2 md:py-[6.5px] px-4 md:px-5 rounded-lg"
-    >
-      팔로우 취소
-    </Button>
-  );
 }
 
-export default UnFollowButton;
+export default useFollowUser;

@@ -27,7 +27,7 @@ export default function FollowListTab({
         role="tab"
         type="button"
         aria-selected={activeTab === 'followers'}
-        className={cn(commonTabStyle)}
+        className={commonTabStyle}
         onClick={() => setActiveTab('followers')}
       >
         <span className="md:text-heading2 text-label1 mr-2">{followerCount}</span>
@@ -38,7 +38,7 @@ export default function FollowListTab({
         role="tab"
         type="button"
         aria-selected={activeTab === 'following'}
-        className={cn(commonTabStyle)}
+        className={commonTabStyle}
         onClick={() => setActiveTab('following')}
       >
         <span className="md:text-heading2 text-label1 mr-2">{followingCount}</span>
