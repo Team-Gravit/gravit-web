@@ -2,7 +2,7 @@ import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import z from 'zod';
 
 import { useGetFollowAndFollowingCount } from '@/shared/api/@generated/friend-api/friend-api';
-import BackButtonMobileHeader from '@/shared/ui/layout.tsx/header/back-button-mobile-header';
+import BackButtonMobileHeader from '@/shared/ui/layout/header/back-button-mobile-header';
 import FollowListContainer from '@/widgets/user/follow/follow-list-container';
 import FollowListTab from '@/widgets/user/follow/follow-list-tab';
 
