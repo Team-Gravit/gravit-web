@@ -32,7 +32,7 @@ export default function FollowModal({
     document.body.style.overflow = 'hidden';
 
     return () => {
-      document.body.style = initialOverFlow;
+      document.body.style.overflow = initialOverFlow;
     };
   }, [isOpen]);
 
