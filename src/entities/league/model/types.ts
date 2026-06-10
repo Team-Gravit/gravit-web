@@ -1,3 +1,5 @@
+import type { LeagueHistoryResponse } from '@/shared/api/@generated/model';
+
 export interface UserLeagueInfo {
   leagueId: number;
   leagueName: string;
@@ -54,3 +56,10 @@ export interface LeagueInfo {
   minLp: number;
   maxLp: number;
 }
+
+export type LeagueStats = Pick<
+  LeagueHistoryResponse,
+  'bestLeagueName' | 'currentSeasonRank' | 'top3SeasonCount'
+>;
+
+export type LeagueHistory = Pick<LeagueHistoryResponse, 'seasonHistory' | 'totalSeasonCount'>;
