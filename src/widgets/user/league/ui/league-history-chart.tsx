@@ -89,7 +89,7 @@ function LeagueHistoryChart({ leagueHistory }: LeagueHistoryChartProps) {
             className={cn('caption1', point.isCurrent ? 'md:text-title3' : 'md:text-heading2')}
             fill={point.isCurrent ? chartColors.brand : chartColors.labelColor}
           >
-            {point.isCurrent ? '현재' : point.seasonKey}
+            {point.isCurrent ? '현재' : point.displayKey}
           </text>
         ))}
 
