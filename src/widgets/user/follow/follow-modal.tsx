@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import type { FollowType } from '@/entities/follow/model/types';
 import X from '@/shared/assets/icons/buttons/x.svg?react';
@@ -21,15 +21,42 @@ export default function FollowModal({
   followerCount,
   followingCount,
 }: FollowModalProps) {
+  const modalRef = useRef<HTMLDivElement>(null);
   const [currentTab, setCurrentTab] = useState<FollowType>(initialTab);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const initialOverFlow = document.body.style.overflow;
+
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = initialOverFlow;
+    };
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/60 flex justify-center items-center z-50">
-      <div className="bg-bg-1 w-full max-w-[630px] max-h-[80vh] rounded-xl flex flex-col">
+    <div
+      role="dialog"
+      aria-modal={isOpen}
+      aria-labelledby="follow-modal-title"
+      onClick={onClose}
+      className="fixed inset-0 bg-black/60 flex justify-center items-center z-50"
+    >
+      <div
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+        ref={modalRef}
+        className="bg-bg-1 w-full max-w-[630px] max-h-[80vh] rounded-xl flex flex-col"
+      >
         <div className="flex items-center justify-between px-6 py-5 border-b border-divider-1">
-          <h2 className="text-text-4 text-body1-normal">팔로우</h2>
+          <h2 id="follow-modal-title" className="text-text-4 text-body1-normal">
+            팔로우
+          </h2>
           <button
             type="button"
             onClick={onClose}

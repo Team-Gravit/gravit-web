@@ -1,14 +1,11 @@
 import * as ScrollArea from '@radix-ui/react-scroll-area';
-import type { InfiniteData } from '@tanstack/react-query';
 import { Fragment, useCallback, useState } from 'react';
 
-import type { FriendActivityFeed, FriendActivityFeedList } from '@/entities/friends/model/types';
+import type { FriendActivityFeed } from '@/entities/friends/model/types';
 import FriendFeedListItem from '@/features/friends/friend-feed-list-item';
 import { useGetFeedInfinite } from '@/shared/api/@generated/social-api/social-api';
 import { useInfiniteScroll } from '@/shared/model/use-infinite-scroll';
 import SectionCard from '@/shared/ui/card/section-card';
-
-type FeedInfiniteResponse = InfiniteData<FriendActivityFeedList, number | undefined>;
 
 export default function SocialFriendsFeedSection() {
   const [viewportEl, setViewportEl] = useState<HTMLDivElement | null>(null);
@@ -22,7 +19,7 @@ export default function SocialFriendsFeedSection() {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useGetFeedInfinite<FeedInfiniteResponse>(
+  } = useGetFeedInfinite(
     { page: 0 },
     {
       query: {

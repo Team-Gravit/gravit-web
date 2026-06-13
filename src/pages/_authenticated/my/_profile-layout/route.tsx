@@ -3,7 +3,7 @@ import { createFileRoute, Outlet } from '@tanstack/react-router';
 import { useGetMyPageBanner } from '@/shared/api/@generated/mypage-api/mypage-api';
 import { HEADER_HEIGHT } from '@/shared/config/constants';
 import useResponsive from '@/shared/model/use-responsive';
-import PageLayout from '@/shared/ui/layout.tsx/page-layout';
+import PageLayout from '@/shared/ui/layout/page-layout';
 import Header from '@/widgets/header/ui/_header';
 import UserProfileCard from '@/widgets/user/ui/user-profile-card';
 import UserTabs from '@/widgets/user/ui/user-tabs';

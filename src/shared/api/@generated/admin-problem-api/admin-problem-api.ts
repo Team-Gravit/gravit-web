@@ -5,6 +5,10 @@
  * 앱센터 16.5기 동계 프로젝트 Gravit API Docs
  * OpenAPI spec version: 1.0.0
  */
+import {
+  useMutation,
+  useQuery
+} from '@tanstack/react-query';
 import type {
   DataTag,
   DefinedInitialDataOptions,
@@ -19,47 +23,44 @@ import type {
   UseQueryOptions,
   UseQueryResult
 } from '@tanstack/react-query';
-import {
-  useMutation,
-  useQuery
-} from '@tanstack/react-query';
+
+import type {
+  ObjectiveProblemUpdateRequest,
+  ProblemDetailResponse,
+  SubjectiveProblemUpdateRequest
+} from '../model';
 
 import { customInstance } from '../../mutator';
-import type {
-  ErrorResponse,
-  ProblemCreateRequest,
-  ProblemResponse,
-  ProblemUpdateRequest
-} from '../model';
 
 
 
 
 /**
- * 기존 문제를 수정합니다<br>🔐 <strong>관리자 권한 필요</strong><br>
- * @summary 문제 수정
+ * instruction/content 부분 수정, answer(콤마 단일) 수정.
+ * @summary 주관식 문제 수정
  */
-export const updateProblem = (
-    problemUpdateRequest: ProblemUpdateRequest,
+export const updateSubjective = (
+    problemId: number,
+    subjectiveProblemUpdateRequest: SubjectiveProblemUpdateRequest,
  signal?: AbortSignal
 ) => {
 
 
       return customInstance<void>(
-      {url: `/api/v1/admin/problems`, method: 'PUT',
+      {url: `/api/v1/admin/problems/${problemId}/subjective`, method: 'PATCH',
       headers: {'Content-Type': 'application/json', },
-      data: problemUpdateRequest, signal
+      data: subjectiveProblemUpdateRequest, signal
     },
       );
     }
 
 
 
-export const getUpdateProblemMutationOptions = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateProblem>>, TError,{data: ProblemUpdateRequest}, TContext>, }
-): UseMutationOptions<Awaited<ReturnType<typeof updateProblem>>, TError,{data: ProblemUpdateRequest}, TContext> => {
+export const getUpdateSubjectiveMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateSubjective>>, TError,{problemId: number;data: SubjectiveProblemUpdateRequest}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof updateSubjective>>, TError,{problemId: number;data: SubjectiveProblemUpdateRequest}, TContext> => {
 
-const mutationKey = ['updateProblem'];
+const mutationKey = ['updateSubjective'];
 const {mutation: mutationOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
@@ -69,10 +70,10 @@ const {mutation: mutationOptions} = options ?
 
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof updateProblem>>, {data: ProblemUpdateRequest}> = (props) => {
-          const {data} = props ?? {};
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof updateSubjective>>, {problemId: number;data: SubjectiveProblemUpdateRequest}> = (props) => {
+          const {problemId,data} = props ?? {};
 
-          return  updateProblem(data,)
+          return  updateSubjective(problemId,data,)
         }
 
 
@@ -82,48 +83,49 @@ const {mutation: mutationOptions} = options ?
 
   return  { mutationFn, ...mutationOptions }}
 
-    export type UpdateProblemMutationResult = NonNullable<Awaited<ReturnType<typeof updateProblem>>>
-    export type UpdateProblemMutationBody = ProblemUpdateRequest
-    export type UpdateProblemMutationError = ErrorResponse
+    export type UpdateSubjectiveMutationResult = NonNullable<Awaited<ReturnType<typeof updateSubjective>>>
+    export type UpdateSubjectiveMutationBody = SubjectiveProblemUpdateRequest
+    export type UpdateSubjectiveMutationError = void
 
     /**
- * @summary 문제 수정
+ * @summary 주관식 문제 수정
  */
-export const useUpdateProblem = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateProblem>>, TError,{data: ProblemUpdateRequest}, TContext>, }
+export const useUpdateSubjective = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateSubjective>>, TError,{problemId: number;data: SubjectiveProblemUpdateRequest}, TContext>, }
  , queryClient?: QueryClient): UseMutationResult<
-        Awaited<ReturnType<typeof updateProblem>>,
+        Awaited<ReturnType<typeof updateSubjective>>,
         TError,
-        {data: ProblemUpdateRequest},
+        {problemId: number;data: SubjectiveProblemUpdateRequest},
         TContext
       > => {
-      return useMutation(getUpdateProblemMutationOptions(options), queryClient);
+      return useMutation(getUpdateSubjectiveMutationOptions(options), queryClient);
     }
     /**
- * 새로운 문제를 생성합니다<br>🔐 <strong>관리자 권한 필요</strong><br>
- * @summary 문제 생성
+ * instruction/content 부분 수정, options 제공 시 4개 전체 교체(정답 1개).
+ * @summary 객관식 문제 수정
  */
-export const createProblem = (
-    problemCreateRequest: ProblemCreateRequest,
+export const updateObjective = (
+    problemId: number,
+    objectiveProblemUpdateRequest: ObjectiveProblemUpdateRequest,
  signal?: AbortSignal
 ) => {
 
 
       return customInstance<void>(
-      {url: `/api/v1/admin/problems`, method: 'POST',
+      {url: `/api/v1/admin/problems/${problemId}/objective`, method: 'PATCH',
       headers: {'Content-Type': 'application/json', },
-      data: problemCreateRequest, signal
+      data: objectiveProblemUpdateRequest, signal
     },
       );
     }
 
 
 
-export const getCreateProblemMutationOptions = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createProblem>>, TError,{data: ProblemCreateRequest}, TContext>, }
-): UseMutationOptions<Awaited<ReturnType<typeof createProblem>>, TError,{data: ProblemCreateRequest}, TContext> => {
+export const getUpdateObjectiveMutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateObjective>>, TError,{problemId: number;data: ObjectiveProblemUpdateRequest}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof updateObjective>>, TError,{problemId: number;data: ObjectiveProblemUpdateRequest}, TContext> => {
 
-const mutationKey = ['createProblem'];
+const mutationKey = ['updateObjective'];
 const {mutation: mutationOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
@@ -133,10 +135,10 @@ const {mutation: mutationOptions} = options ?
 
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof createProblem>>, {data: ProblemCreateRequest}> = (props) => {
-          const {data} = props ?? {};
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof updateObjective>>, {problemId: number;data: ObjectiveProblemUpdateRequest}> = (props) => {
+          const {problemId,data} = props ?? {};
 
-          return  createProblem(data,)
+          return  updateObjective(problemId,data,)
         }
 
 
@@ -146,26 +148,26 @@ const {mutation: mutationOptions} = options ?
 
   return  { mutationFn, ...mutationOptions }}
 
-    export type CreateProblemMutationResult = NonNullable<Awaited<ReturnType<typeof createProblem>>>
-    export type CreateProblemMutationBody = ProblemCreateRequest
-    export type CreateProblemMutationError = unknown
+    export type UpdateObjectiveMutationResult = NonNullable<Awaited<ReturnType<typeof updateObjective>>>
+    export type UpdateObjectiveMutationBody = ObjectiveProblemUpdateRequest
+    export type UpdateObjectiveMutationError = void
 
     /**
- * @summary 문제 생성
+ * @summary 객관식 문제 수정
  */
-export const useCreateProblem = <TError = unknown,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createProblem>>, TError,{data: ProblemCreateRequest}, TContext>, }
+export const useUpdateObjective = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateObjective>>, TError,{problemId: number;data: ObjectiveProblemUpdateRequest}, TContext>, }
  , queryClient?: QueryClient): UseMutationResult<
-        Awaited<ReturnType<typeof createProblem>>,
+        Awaited<ReturnType<typeof updateObjective>>,
         TError,
-        {data: ProblemCreateRequest},
+        {problemId: number;data: ObjectiveProblemUpdateRequest},
         TContext
       > => {
-      return useMutation(getCreateProblemMutationOptions(options), queryClient);
+      return useMutation(getUpdateObjectiveMutationOptions(options), queryClient);
     }
     /**
- * 특정 문제의 상세 정보를 조회합니다<br>🔐 <strong>관리자 권한 필요</strong><br>
- * @summary 문제 조회
+ * OBJECTIVE=options(4) / SUBJECTIVE=answer(단일).
+ * @summary 문제 상세
  */
 export const getProblem = (
     problemId: number,
@@ -173,7 +175,7 @@ export const getProblem = (
 ) => {
 
 
-      return customInstance<ProblemResponse>(
+      return customInstance<ProblemDetailResponse>(
       {url: `/api/v1/admin/problems/${problemId}`, method: 'GET', signal
     },
       );
@@ -189,7 +191,7 @@ export const getGetProblemQueryKey = (problemId: number,) => {
     }
 
 
-export const getGetProblemQueryOptions = <TData = Awaited<ReturnType<typeof getProblem>>, TError = ErrorResponse>(problemId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProblem>>, TError, TData>>, }
+export const getGetProblemQueryOptions = <TData = Awaited<ReturnType<typeof getProblem>>, TError = ProblemDetailResponse>(problemId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProblem>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
@@ -208,10 +210,10 @@ const {query: queryOptions} = options ?? {};
 }
 
 export type GetProblemQueryResult = NonNullable<Awaited<ReturnType<typeof getProblem>>>
-export type GetProblemQueryError = ErrorResponse
+export type GetProblemQueryError = ProblemDetailResponse
 
 
-export function useGetProblem<TData = Awaited<ReturnType<typeof getProblem>>, TError = ErrorResponse>(
+export function useGetProblem<TData = Awaited<ReturnType<typeof getProblem>>, TError = ProblemDetailResponse>(
  problemId: number, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProblem>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getProblem>>,
@@ -221,7 +223,7 @@ export function useGetProblem<TData = Awaited<ReturnType<typeof getProblem>>, TE
       >, }
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetProblem<TData = Awaited<ReturnType<typeof getProblem>>, TError = ErrorResponse>(
+export function useGetProblem<TData = Awaited<ReturnType<typeof getProblem>>, TError = ProblemDetailResponse>(
  problemId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProblem>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getProblem>>,
@@ -231,15 +233,15 @@ export function useGetProblem<TData = Awaited<ReturnType<typeof getProblem>>, TE
       >, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetProblem<TData = Awaited<ReturnType<typeof getProblem>>, TError = ErrorResponse>(
+export function useGetProblem<TData = Awaited<ReturnType<typeof getProblem>>, TError = ProblemDetailResponse>(
  problemId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProblem>>, TError, TData>>, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
- * @summary 문제 조회
+ * @summary 문제 상세
  */
 
-export function useGetProblem<TData = Awaited<ReturnType<typeof getProblem>>, TError = ErrorResponse>(
+export function useGetProblem<TData = Awaited<ReturnType<typeof getProblem>>, TError = ProblemDetailResponse>(
  problemId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getProblem>>, TError, TData>>, }
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
@@ -256,65 +258,3 @@ export function useGetProblem<TData = Awaited<ReturnType<typeof getProblem>>, TE
 
 
 
-/**
- * 기존 문제를 삭제합니다<br>🔐 <strong>관리자 권한 필요</strong><br>
- * @summary 문제 삭제
- */
-export const deleteProblem = (
-    problemId: number,
- signal?: AbortSignal
-) => {
-
-
-      return customInstance<void>(
-      {url: `/api/v1/admin/problems/${problemId}`, method: 'DELETE', signal
-    },
-      );
-    }
-
-
-
-export const getDeleteProblemMutationOptions = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteProblem>>, TError,{problemId: number}, TContext>, }
-): UseMutationOptions<Awaited<ReturnType<typeof deleteProblem>>, TError,{problemId: number}, TContext> => {
-
-const mutationKey = ['deleteProblem'];
-const {mutation: mutationOptions} = options ?
-      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
-      options
-      : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }};
-
-
-
-
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof deleteProblem>>, {problemId: number}> = (props) => {
-          const {problemId} = props ?? {};
-
-          return  deleteProblem(problemId,)
-        }
-
-
-
-
-
-
-  return  { mutationFn, ...mutationOptions }}
-
-    export type DeleteProblemMutationResult = NonNullable<Awaited<ReturnType<typeof deleteProblem>>>
-
-    export type DeleteProblemMutationError = ErrorResponse
-
-    /**
- * @summary 문제 삭제
- */
-export const useDeleteProblem = <TError = ErrorResponse,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof deleteProblem>>, TError,{problemId: number}, TContext>, }
- , queryClient?: QueryClient): UseMutationResult<
-        Awaited<ReturnType<typeof deleteProblem>>,
-        TError,
-        {problemId: number},
-        TContext
-      > => {
-      return useMutation(getDeleteProblemMutationOptions(options), queryClient);
-    }

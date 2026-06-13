@@ -1,6 +1,7 @@
 import { useNavigate } from '@tanstack/react-router';
 import { useState } from 'react';
 
+import type { FollowType } from '@/entities/follow/model/types';
 import { useGetFollowAndFollowingCount } from '@/shared/api/@generated/friend-api/friend-api';
 import useResponsive from '@/shared/model/use-responsive';
 import SectionCard from '@/shared/ui/card/section-card';
@@ -13,7 +14,13 @@ interface SocialFollowSectionViewProps {
 }
 
 function SocialFollowSection() {
-  const { data, isPending: isGetFollowCountPending } = useGetFollowAndFollowingCount();
+  const { data, isPending: isGetFollowCountPending } = useGetFollowAndFollowingCount({
+    query: {
+      staleTime: 0,
+      gcTime: 5 * 60 * 1000,
+      refetchOnMount: true,
+    },
+  });
 
   if (isGetFollowCountPending || !data) return null;
 
@@ -28,7 +35,7 @@ function SocialFollowSection() {
 function SocialFollowSectionView({ followerCount, followingCount }: SocialFollowSectionViewProps) {
   const { isMobile } = useResponsive();
   const navigate = useNavigate();
-  const [followModal, setFollowModal] = useState<'followers' | 'following' | null>(null);
+  const [followModal, setFollowModal] = useState<FollowType | null>(null);
 
   const handleClickFollowButton = (type: 'followers' | 'following') => {
     if (isMobile) {

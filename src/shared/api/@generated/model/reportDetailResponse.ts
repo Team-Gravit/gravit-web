@@ -7,20 +7,11 @@
  */
 import type { ReportDetailResponseReportType } from './reportDetailResponseReportType.ts';
 
-/**
- * 신고 상세 조회 Response
- */
 export interface ReportDetailResponse {
-  /** 신고 ID */
-  reportId: number;
-  /** 신고 유형 */
-  reportType: ReportDetailResponseReportType;
-  /** 문제 ID */
-  problemId: number;
-  /** 신고 내용 */
-  content: string;
-  /** 해결 여부 */
-  isResolved: boolean;
-  /** 신고 접수 시간 */
-  submittedAt: string;
+  reportId?: number;
+  reportType?: ReportDetailResponseReportType;
+  problemId?: number;
+  content?: string;
+  isResolved?: boolean;
+  submittedAt?: string;
 }

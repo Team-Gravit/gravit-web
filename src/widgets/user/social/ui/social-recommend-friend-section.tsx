@@ -1,14 +1,19 @@
+import { useAutoAnimate } from '@formkit/auto-animate/react';
+
 import type { RecommendUser } from '@/entities/friends/model/types';
 import Profile from '@/entities/user/ui/profile';
-import RecommendFriendFollowButton from '@/features/follow/recommend-friend-follow-button';
+import RecommendFriendFollowButton from '@/features/follow/ui/recommend-friend-follow-button';
+import type { RecommendUserResponse } from '@/shared/api/@generated/model';
 import { useGetRecommendedUsers } from '@/shared/api/@generated/social-api/social-api';
 import SectionCard from '@/shared/ui/card/section-card';
 import ScrollArea from '@/shared/ui/scroll/scroll-area';
 
 function SocialRecommendFriendSection() {
-  // TODO : 타입 우회 추후 OPEN API 스펙 고쳐지면 제네릭 제거
+  const [listRef] = useAutoAnimate();
+
+  // TODO : API response 타입 단일 데이터로 되어있음
   const { data: recommendFriends, isPending: isGetRecommendFriendsPending } =
-    useGetRecommendedUsers<RecommendUser[]>();
+    useGetRecommendedUsers<RecommendUserResponse[]>();
 
   if (isGetRecommendFriendsPending || !recommendFriends) return null;
 
@@ -19,7 +24,7 @@ function SocialRecommendFriendSection() {
       className="gap-4 md:gap-[34px]"
     >
       <ScrollArea orientation="horizontal">
-        <ul className="flex items-center gap-4 -mr-8 pr-8 overflow-x-scroll scrollbar-hide snap-x">
+        <ul ref={listRef} className="flex items-center gap-4 -mr-8 pr-8  scrollbar-hide">
           {recommendFriends.map((recommendFriend) => (
             <RecommendFriendListItem
               recommendFriend={recommendFriend}

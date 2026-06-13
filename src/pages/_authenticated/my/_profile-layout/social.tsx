@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 
-import SocialFollowSection from '@/widgets/user/social/ui/social-follow-section';
+import SocialFollowSection from '@/widgets/user/follow/social-follow-section';
 import SocialFriendsFeedSection from '@/widgets/user/social/ui/social-friends-feed-section';
 import SocialRecommendFriendSection from '@/widgets/user/social/ui/social-recommend-friend-section';
 

@@ -8,66 +8,6 @@
 import * as zod from 'zod';
 
 /**
- * 기존 문제를 수정합니다<br>🔐 <strong>관리자 권한 필요</strong><br>
- * @summary 문제 수정
- */
-
-
-
-
-export const UpdateProblemBody = zod.object({
-  "problemId": zod.number().describe('문제 아이디'),
-  "problemType": zod.string().describe('문제 유형'),
-  "instruction": zod.string().min(1).describe('발문'),
-  "content": zod.string().min(1).describe('본문')
-}).describe('문제 수정 Request')
-
-
-/**
- * 새로운 문제를 생성합니다<br>🔐 <strong>관리자 권한 필요</strong><br>
- * @summary 문제 생성
- */
-
-
-
-
-export const CreateProblemBody = zod.object({
-  "lessonId": zod.number().describe('레슨 아이디'),
-  "problemType": zod.string().describe('문제 유형'),
-  "instruction": zod.string().min(1).describe('발문'),
-  "content": zod.string().min(1).describe('본문')
-}).describe('문제 생성 Request')
-
-
-/**
- * 기존 옵션을 수정합니다<br>🔐 <strong>관리자 권한 필요</strong><br>
- * @summary 옵션 수정
- */
-
-
-
-
-export const UpdateOptionBody = zod.object({
-  "optionId": zod.number().describe('옵션 id'),
-  "content": zod.string().min(1).describe('내용'),
-  "explanation": zod.string().min(1).describe('설명'),
-  "isAnswer": zod.boolean().describe('정답 여부')
-}).describe('옵션 수정 Request')
-
-
-/**
- * 새로운 옵션을 생성합니다<br>🔐 <strong>관리자 권한 필요</strong><br>
- * @summary 옵션 생성
- */
-export const CreateOptionBody = zod.object({
-  "content": zod.string().optional().describe('옵션 내용'),
-  "explanation": zod.string().optional().describe('옵션에 대한 설명'),
-  "isAnswer": zod.boolean().optional().describe('정답 여부'),
-  "problemId": zod.number().optional().describe('문제 ID')
-}).describe('옵션 생성 Request')
-
-
-/**
  * 최초 로그인 시 사용자 온보딩 정보를 저장합니다<br>🔐 <strong>Jwt 필요</strong><br>
  * @summary 온보딩 정보 등록
  */
@@ -131,6 +71,48 @@ export const CleanQueryParams = zod.object({
 export const GenerateCustomTokenQueryParams = zod.object({
   "accessToken": zod.string(),
   "newExpirationMinutes": zod.number()
+})
+
+
+/**
+ * 토큰으로 식별된 <strong>본인</strong>에게 NEW_CONTENT 알림을 즉시 발송합니다.<br>🔐 <strong>Jwt 필요</strong> (수신자는 토큰의 유저로 결정됩니다)<br><strong>unitId</strong>: 딥링크 이동 대상이 되는 유닛 ID (FCM data의 targetId로 전달됩니다)<br>본인 기기에 FCM 토큰이 등록돼 있지 않으면 발송 없이 무시됩니다.
+ * @summary [테스트] 새 콘텐츠 알림 발송
+ */
+export const SendNewContentQueryParams = zod.object({
+  "unitId": zod.number().describe('딥링크 대상 유닛 ID')
+})
+
+
+/**
+ * 토큰으로 식별된 <strong>본인</strong>에게 INACTIVITY 알림을 즉시 발송합니다.<br>🔐 <strong>Jwt 필요</strong> (수신자는 토큰의 유저로 결정됩니다)<br>미접속 일수 조건을 검사하지 않고 바로 발송합니다.<br><strong>inactiveDays</strong>: 메시지를 결정하는 미접속 일수. 7 / 14 / 30 / 60 / 90 은 전용 문구가 매칭되며, 그 외 값은 기본 문구가 사용됩니다.<br>본인 기기에 FCM 토큰이 등록돼 있지 않으면 발송 없이 무시됩니다.
+ * @summary [테스트] 장기 미접속 알림 발송
+ */
+export const sendInactivityQueryInactiveDaysDefault = 7;
+
+export const SendInactivityQueryParams = zod.object({
+  "inactiveDays": zod.number().default(sendInactivityQueryInactiveDaysDefault).describe('메시지를 결정하는 미접속 일수 (7\/14\/30\/60\/90 전용 문구)')
+})
+
+
+/**
+ * 토큰으로 식별된 <strong>본인</strong>에게 CONSECUTIVE_LEARNING_WARNING 알림을 즉시 발송합니다.<br>🔐 <strong>Jwt 필요</strong> (수신자는 토큰의 유저로 결정되며, 별도 userId를 받지 않습니다)<br>연속학습 일수 조건을 검사하지 않고 바로 발송합니다.<br><strong>consecutiveDays</strong>: 메시지에 표시될 연속학습 일수 (예: 3 → "오늘 학습을 하지 않으면 3일 연속학습이 끊겨요!")<br>본인 기기에 FCM 토큰이 등록돼 있지 않으면 발송 없이 무시됩니다.
+ * @summary [테스트] 연속학습 끊길 위기 알림 발송
+ */
+export const sendConsecutiveLearningWarningQueryConsecutiveDaysDefault = 3;
+
+export const SendConsecutiveLearningWarningQueryParams = zod.object({
+  "consecutiveDays": zod.number().default(sendConsecutiveLearningWarningQueryConsecutiveDaysDefault).describe('메시지에 표시될 연속학습 일수')
+})
+
+
+export const PublishSeasonRolledOverEventQueryParams = zod.object({
+  "newSeasonKey": zod.string()
+})
+
+
+export const PublishNoticeCreatedEventQueryParams = zod.object({
+  "noticeId": zod.number(),
+  "title": zod.string()
 })
 
 
@@ -334,25 +316,33 @@ export const ReissueTokenBody = zod.object({
 
 
 /**
- * 관리자 권한으로 공지를 생성합니다.
- * @summary 공지 생성
+ * soft delete 자동 제외.
+ * @summary 공지 목록
  */
-export const CreateNoticeBody = zod.object({
-  "title": zod.string(),
-  "content": zod.string(),
-  "status": zod.enum(['DRAFT', 'PUBLISHED', 'ARCHIVED']),
-  "pinned": zod.boolean()
+export const getNoticesQueryPageDefault = 1;
+
+export const GetNoticesQueryParams = zod.object({
+  "page": zod.number().default(getNoticesQueryPageDefault)
 })
 
 
 /**
- * 관리자 권한으로 공지를 수정합니다.
- * @summary 공지 수정
+ * status=PUBLISHED 면 publishedAt 세팅. ARCHIVED 작성 불가.
+ * @summary 공지 생성
  */
-export const UpdateNoticeBody = zod.object({
-  "noticeId": zod.number(),
-  "title": zod.string(),
-  "content": zod.string(),
+export const createNoticeBodyTitleMin = 0;
+export const createNoticeBodyTitleMax = 50;
+
+export const createNoticeBodySummaryMin = 0;
+export const createNoticeBodySummaryMax = 255;
+
+
+
+
+export const CreateNoticeBody = zod.object({
+  "title": zod.string().min(createNoticeBodyTitleMin).max(createNoticeBodyTitleMax),
+  "summary": zod.string().min(createNoticeBodySummaryMin).max(createNoticeBodySummaryMax),
+  "content": zod.string().min(1),
   "status": zod.enum(['DRAFT', 'PUBLISHED', 'ARCHIVED']),
   "pinned": zod.boolean()
 })
@@ -390,11 +380,288 @@ export const RestoreUserQueryParams = zod.object({
 
 
 /**
- * 신고의 해결 상태를 토글합니다<br>🔐 <strong>관리자 권한 필요</strong><br>
- * @summary 신고 해결 상태 변경
+ * ACTIVE/SUSPENDED/DELETED. 감사 로그 기록.
+ * @summary 유저 상태 변경
  */
-export const UpdateReportStatusParams = zod.object({
+export const UpdateStatusParams = zod.object({
+  "userId": zod.number()
+})
+
+export const UpdateStatusBody = zod.object({
+  "status": zod.enum(['ACTIVE', 'SUSPENDED', 'DELETED'])
+})
+
+
+/**
+ * ADMIN/USER. 감사 로그 기록.
+ * @summary 유저 권한 변경
+ */
+export const UpdateRoleParams = zod.object({
+  "userId": zod.number()
+})
+
+export const UpdateRoleBody = zod.object({
+  "role": zod.enum(['ADMIN', 'USER'])
+})
+
+
+/**
+ * @summary 유닛 상세 (lessonCount 포함)
+ */
+export const GetUnitParams = zod.object({
+  "unitId": zod.number()
+})
+
+
+/**
+ * @summary 유닛 부분 수정
+ */
+export const UpdateUnitParams = zod.object({
+  "unitId": zod.number()
+})
+
+export const updateUnitBodyTitleMin = 0;
+export const updateUnitBodyTitleMax = 255;
+
+export const updateUnitBodyDescriptionMin = 0;
+export const updateUnitBodyDescriptionMax = 255;
+
+
+
+export const UpdateUnitBody = zod.object({
+  "title": zod.string().min(updateUnitBodyTitleMin).max(updateUnitBodyTitleMax).optional(),
+  "description": zod.string().min(updateUnitBodyDescriptionMin).max(updateUnitBodyDescriptionMax).optional()
+})
+
+
+/**
+ * 라벨이 COMPLETED 면 409.
+ * @summary 스테이징 문제 수정 (부분)
+ */
+export const UpdateProblemParams = zod.object({
+  "problemId": zod.number()
+})
+
+export const UpdateProblemBody = zod.object({
+  "instruction": zod.string().optional(),
+  "content": zod.string().optional()
+})
+
+
+/**
+ * 라벨이 COMPLETED 면 409.
+ * @summary 스테이징 옵션 수정 (부분)
+ */
+export const UpdateOptionParams = zod.object({
+  "optionId": zod.number()
+})
+
+export const UpdateOptionBody = zod.object({
+  "content": zod.string().optional(),
+  "explanation": zod.string().optional(),
+  "isAnswer": zod.boolean().optional()
+})
+
+
+/**
+ * 라벨이 COMPLETED 면 409.
+ * @summary 스테이징 레슨 수정
+ */
+export const UpdateLessonParams = zod.object({
+  "lessonId": zod.number()
+})
+
+
+
+
+export const UpdateLessonBody = zod.object({
+  "title": zod.string().min(1)
+})
+
+
+/**
+ * status=COMPLETED 로 staging->prod 전환. 비가역. 감사 로그 기록.
+ * @summary 스테이징 라벨 승급(promote)
+ */
+export const PromoteParams = zod.object({
+  "label": zod.string()
+})
+
+export const PromoteBody = zod.object({
+  "status": zod.enum(['PENDING', 'COMPLETED'])
+})
+
+
+/**
+ * 라벨이 COMPLETED 면 409.
+ * @summary 스테이징 정답 수정 (부분)
+ */
+export const UpdateAnswerParams = zod.object({
+  "answerId": zod.number()
+})
+
+export const UpdateAnswerBody = zod.object({
+  "content": zod.string().optional(),
+  "explanation": zod.string().optional()
+})
+
+
+/**
+ * body 의 isResolved 값으로 명시적 설정(toggle 아님).
+ * @summary 신고 처리 상태 변경
+ */
+export const UpdateStatus1Params = zod.object({
   "reportId": zod.number()
+})
+
+export const UpdateStatus1Body = zod.object({
+  "isResolved": zod.boolean()
+})
+
+
+/**
+ * instruction/content 부분 수정, answer(콤마 단일) 수정.
+ * @summary 주관식 문제 수정
+ */
+export const UpdateSubjectiveParams = zod.object({
+  "problemId": zod.number()
+})
+
+
+
+
+
+export const UpdateSubjectiveBody = zod.object({
+  "instruction": zod.string().optional(),
+  "content": zod.string().optional(),
+  "answer": zod.object({
+  "answerId": zod.number(),
+  "content": zod.string().min(1),
+  "explanation": zod.string().min(1)
+}).optional()
+})
+
+
+/**
+ * instruction/content 부분 수정, options 제공 시 4개 전체 교체(정답 1개).
+ * @summary 객관식 문제 수정
+ */
+export const UpdateObjectiveParams = zod.object({
+  "problemId": zod.number()
+})
+
+
+
+export const updateObjectiveBodyOptionsMin = 4;
+export const updateObjectiveBodyOptionsMax = 4;
+
+
+
+export const UpdateObjectiveBody = zod.object({
+  "instruction": zod.string().optional(),
+  "content": zod.string().optional(),
+  "options": zod.array(zod.object({
+  "optionId": zod.number(),
+  "content": zod.string().min(1),
+  "explanation": zod.string().min(1),
+  "isAnswer": zod.boolean()
+})).min(updateObjectiveBodyOptionsMin).max(updateObjectiveBodyOptionsMax).optional()
+})
+
+
+/**
+ * @summary 공지 상세
+ */
+export const GetNoticeParams = zod.object({
+  "noticeId": zod.number()
+})
+
+
+/**
+ * 감사 로그 기록.
+ * @summary 공지 삭제(soft delete)
+ */
+export const DeleteNoticeParams = zod.object({
+  "noticeId": zod.number()
+})
+
+
+/**
+ * 상태 전이 가드(위반 시 409). 감사 로그 기록(상태 전이).
+ * @summary 공지 부분 수정
+ */
+export const UpdateNoticeParams = zod.object({
+  "noticeId": zod.number()
+})
+
+export const updateNoticeBodyTitleMin = 0;
+export const updateNoticeBodyTitleMax = 50;
+
+export const updateNoticeBodySummaryMin = 0;
+export const updateNoticeBodySummaryMax = 255;
+
+
+
+export const UpdateNoticeBody = zod.object({
+  "title": zod.string().min(updateNoticeBodyTitleMin).max(updateNoticeBodyTitleMax).optional(),
+  "summary": zod.string().min(updateNoticeBodySummaryMin).max(updateNoticeBodySummaryMax).optional(),
+  "content": zod.string().optional(),
+  "status": zod.enum(['DRAFT', 'PUBLISHED', 'ARCHIVED']).optional(),
+  "pinned": zod.boolean().optional()
+})
+
+
+/**
+ * @summary 레슨 상세 (problemCount 포함)
+ */
+export const GetLessonParams = zod.object({
+  "lessonId": zod.number()
+})
+
+
+/**
+ * @summary 레슨 부분 수정 (title 만)
+ */
+export const UpdateLesson1Params = zod.object({
+  "lessonId": zod.number()
+})
+
+export const updateLesson1BodyTitleMin = 0;
+export const updateLesson1BodyTitleMax = 255;
+
+
+
+export const UpdateLesson1Body = zod.object({
+  "title": zod.string().min(updateLesson1BodyTitleMin).max(updateLesson1BodyTitleMax).optional()
+})
+
+
+/**
+ * @summary 챕터 상세 (unitCount 포함)
+ */
+export const GetChapterParams = zod.object({
+  "chapterId": zod.number()
+})
+
+
+/**
+ * @summary 챕터 부분 수정
+ */
+export const UpdateChapterParams = zod.object({
+  "chapterId": zod.number()
+})
+
+export const updateChapterBodyTitleMin = 0;
+export const updateChapterBodyTitleMax = 255;
+
+export const updateChapterBodyDescriptionMin = 0;
+export const updateChapterBodyDescriptionMax = 255;
+
+
+
+export const UpdateChapterBody = zod.object({
+  "title": zod.string().min(updateChapterBodyTitleMin).max(updateChapterBodyTitleMax).optional(),
+  "description": zod.string().min(updateChapterBodyDescriptionMin).max(updateChapterBodyDescriptionMax).optional()
 })
 
 
@@ -404,6 +671,15 @@ export const UpdateReportStatusParams = zod.object({
  */
 export const GetAllWrongAnsweredProblemInUnitParams = zod.object({
   "unitId": zod.number()
+})
+
+
+/**
+ * 서버가 정의한 최신 앱 버전을 반환합니다. 클라이언트는 자신의 버전과 비교해 일치하지 않으면 강제 업데이트를 유도합니다. (인증 불필요)
+ * @summary 최신 앱 버전 조회
+ */
+export const GetLatestVersionResponse = zod.object({
+  "version": zod.string().describe('서버가 정의한 최신 앱 버전')
 })
 
 
@@ -425,12 +701,13 @@ mutualFollowCount: 추천 유저의 팔로잉 중 내가 팔로잉하는 유저 
 
  * @summary 추천 친구 목록 조회
  */
-export const GetRecommendedUsersResponse = zod.object({
+export const GetRecommendedUsersResponseItem = zod.object({
   "userId": zod.number(),
   "nickname": zod.string(),
   "profileImgNumber": zod.number(),
   "mutualFollowCount": zod.number()
 })
+export const GetRecommendedUsersResponse = zod.array(GetRecommendedUsersResponseItem)
 
 
 /**
@@ -551,6 +828,27 @@ export const AuthorizeUrlParams = zod.object({
 
 export const AuthorizeUrlQueryParams = zod.object({
   "dest": zod.string().describe('Dest(local, dev, prod)')
+})
+
+
+/**
+ * 로그인 유저의 알림 목록을 최신순으로 반환합니다. (20개/페이지)
+
+**actionType 결정 규칙:**
+- FOLLOW 타입: 현재 팔로우 관계 기준으로 동적 결정
+  - 상대를 아직 팔로우하지 않음 → `FOLLOW_BACK` (맞팔로우 버튼)
+  - 상대를 이미 팔로우 중 → `UNFOLLOW` (팔로우 취소 버튼)
+- 나머지 타입: 알림 타입에 고정된 actionType 반환
+
+ * @summary 알림 인박스 조회
+ */
+export const getInboxQueryPageDefault = 0;
+export const getInboxQueryPageMin = 0;
+
+
+
+export const GetInboxQueryParams = zod.object({
+  "page": zod.number().min(getInboxQueryPageMin).default(getInboxQueryPageDefault).describe('0부터 시작하는 페이지 번호')
 })
 
 
@@ -756,19 +1054,78 @@ export const GetAllBookmarkedProblemInUnitParams = zod.object({
 
 
 /**
- * 페이징된 신고 목록을 조회합니다<br>🔐 <strong>관리자 권한 필요</strong><br>
- * @summary 신고 목록 조회
+ * search(email/nickname/handle 부분일치)·status·role 필터, 1-based page, size 20 고정.
+ * @summary 유저 목록
  */
-export const getAllReportsQueryPageDefault = 0;
+export const getUsersQueryPageDefault = 1;
 
-export const GetAllReportsQueryParams = zod.object({
-  "page": zod.number().default(getAllReportsQueryPageDefault)
+export const GetUsersQueryParams = zod.object({
+  "page": zod.number().default(getUsersQueryPageDefault),
+  "search": zod.string().optional(),
+  "status": zod.enum(['ACTIVE', 'SUSPENDED', 'DELETED']).optional(),
+  "role": zod.enum(['ADMIN', 'USER']).optional()
 })
 
 
 /**
- * 특정 신고의 상세 정보를 조회합니다<br>🔐 <strong>관리자 권한 필요</strong><br>
- * @summary 신고 상세 조회
+ * @summary 유저 상세
+ */
+export const GetUser1Params = zod.object({
+  "userId": zod.number()
+})
+
+
+/**
+ * @summary 유닛의 레슨 목록
+ */
+export const GetLessonsParams = zod.object({
+  "unitId": zod.number()
+})
+
+export const getLessonsQueryPageDefault = 1;
+
+export const GetLessonsQueryParams = zod.object({
+  "page": zod.number().default(getLessonsQueryPageDefault)
+})
+
+
+/**
+ * status(PENDING/COMPLETED) 필터.
+ * @summary 스테이징 라벨 목록
+ */
+export const getLabelsQueryPageDefault = 1;
+
+export const GetLabelsQueryParams = zod.object({
+  "page": zod.number().default(getLabelsQueryPageDefault),
+  "status": zod.enum(['PENDING', 'COMPLETED']).optional()
+})
+
+
+/**
+ * lesson + problems(options|answer) 그루핑.
+ * @summary 스테이징 라벨 상세
+ */
+export const GetLabelDetailParams = zod.object({
+  "label": zod.string()
+})
+
+
+/**
+ * reportType·isResolved 필터, 최신순(id DESC).
+ * @summary 신고 목록
+ */
+export const getReportsQueryPageDefault = 1;
+
+export const GetReportsQueryParams = zod.object({
+  "page": zod.number().default(getReportsQueryPageDefault),
+  "reportType": zod.enum(['TYPO_ERROR', 'CONTENT_ERROR', 'ANSWER_ERROR', 'OTHER_ERROR']).optional(),
+  "isResolved": zod.boolean().optional()
+})
+
+
+/**
+ * 신고자(userId)는 미노출.
+ * @summary 신고 상세
  */
 export const GetReportParams = zod.object({
   "reportId": zod.number()
@@ -776,8 +1133,8 @@ export const GetReportParams = zod.object({
 
 
 /**
- * 특정 문제의 상세 정보를 조회합니다<br>🔐 <strong>관리자 권한 필요</strong><br>
- * @summary 문제 조회
+ * OBJECTIVE=options(4) / SUBJECTIVE=answer(단일).
+ * @summary 문제 상세
  */
 export const GetProblemParams = zod.object({
   "problemId": zod.number()
@@ -785,68 +1142,50 @@ export const GetProblemParams = zod.object({
 
 
 /**
- * 기존 문제를 삭제합니다<br>🔐 <strong>관리자 권한 필요</strong><br>
- * @summary 문제 삭제
+ * @summary 레슨의 문제 목록
  */
-export const DeleteProblemParams = zod.object({
-  "problemId": zod.number()
+export const GetProblemsParams = zod.object({
+  "lessonId": zod.number()
+})
+
+export const getProblemsQueryPageDefault = 1;
+
+export const GetProblemsQueryParams = zod.object({
+  "page": zod.number().default(getProblemsQueryPageDefault)
 })
 
 
 /**
- * 공지 단건을 조회합니다. <strong>DRAFT</strong> 상태도 조회 가능하며, ADMIN 권한이 필요합니다.<br>
-🔐 <strong>Jwt 필요</strong>
-
- * @summary 어드민 공지 단건 조회
+ * @summary 챕터 목록
  */
-export const GetNoticeByAdminParams = zod.object({
-  "noticeId": zod.number().describe('조회할 공지 ID')
-})
+export const getChaptersQueryPageDefault = 1;
 
-export const GetNoticeByAdminResponse = zod.object({
-  "noticeId": zod.number(),
-  "title": zod.string(),
-  "contents": zod.string(),
-  "authorName": zod.string(),
-  "createdAt": zod.iso.datetime({"offset":true}),
-  "updatedAt": zod.iso.datetime({"offset":true}),
-  "noticeType": zod.string(),
-  "pinned": zod.boolean(),
-  "publishedAt": zod.iso.datetime({"offset":true}).optional()
+export const GetChaptersQueryParams = zod.object({
+  "page": zod.number().default(getChaptersQueryPageDefault)
 })
 
 
 /**
- * 관리자 권한으로 공지를 삭제합니다.
- * @summary 공지 삭제
+ * @summary 챕터의 유닛 목록
  */
-export const DeleteNoticeParams = zod.object({
-  "noticeId": zod.number()
+export const GetUnitsParams = zod.object({
+  "chapterId": zod.number()
+})
+
+export const getUnitsQueryPageDefault = 1;
+
+export const GetUnitsQueryParams = zod.object({
+  "page": zod.number().default(getUnitsQueryPageDefault)
 })
 
 
 /**
- * 공지 요약 목록을 조회합니다. <strong>DRAFT, PUBLISHED</strong> 모두 포함되며, ADMIN 권한이 필요합니다.<br>
-🔐 <strong>Jwt 필요</strong><br>
-
- * @summary 어드민 공지 목록(요약) 조회
+ * 참여율(참여자/전체 유저)·참여 인원. 비페이지네이션.
+ * @summary 챕터 유닛별 통계
  */
-export const GetNoticeSummaryByAdminParams = zod.object({
-  "page": zod.number().describe('1부터 시작하는 페이지 번호')
+export const GetChapterStatsParams = zod.object({
+  "chapterId": zod.number()
 })
-
-export const GetNoticeSummaryByAdminResponse = zod.object({
-  "page": zod.number().describe('현재 페이지 번호'),
-  "totalPages": zod.number().describe('전체 페이지 수'),
-  "hasNext": zod.boolean().describe('다음 페이지 존재 여부'),
-  "contents": zod.array(zod.object({
-  "id": zod.number(),
-  "title": zod.string(),
-  "summary": zod.string(),
-  "pinned": zod.boolean(),
-  "publishedAt": zod.iso.datetime({"offset":true}).optional()
-})).describe('공지 요약 목록')
-}).describe('어드민 공지 요약 페이지 응답')
 
 
 /**
@@ -854,19 +1193,10 @@ export const GetNoticeSummaryByAdminResponse = zod.object({
  * @summary 오답노트 삭제
  */
 export const DeleteWrongAnsweredProblemBody = zod.object({
-  "problemId": zod.number().optional().describe('문제 아이디')
+  "problemId": zod.number().describe('문제 아이디')
 }).describe('오답노트 삭제 request')
 
 
 export const HideFeedParams = zod.object({
   "feedId": zod.number()
-})
-
-
-/**
- * 기존 옵션을 삭제합니다<br>🔐 <strong>관리자 권한 필요</strong><br>
- * @summary 옵션 삭제
- */
-export const DeleteOptionParams = zod.object({
-  "optionId": zod.number()
 })

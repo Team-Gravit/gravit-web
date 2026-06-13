@@ -8,9 +8,17 @@
 import type { NoticeUpdateRequestStatus } from './noticeUpdateRequestStatus.ts';
 
 export interface NoticeUpdateRequest {
-  noticeId: number;
-  title: string;
-  content: string;
-  status: NoticeUpdateRequestStatus;
-  pinned: boolean;
+  /**
+     * @minLength 0
+     * @maxLength 50
+     */
+  title?: string;
+  /**
+     * @minLength 0
+     * @maxLength 255
+     */
+  summary?: string;
+  content?: string;
+  status?: NoticeUpdateRequestStatus;
+  pinned?: boolean;
 }

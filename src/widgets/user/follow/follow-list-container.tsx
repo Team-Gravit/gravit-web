@@ -1,14 +1,9 @@
-import { mapFollowerList, mapFollowingList } from '@/entities/follow/model/mapper';
-import type { FollowingList, FollowType } from '@/entities/follow/model/types';
-import {
-  getGetFollowersInfiniteQueryKey,
-  getGetFollowingsInfiniteQueryKey,
-  useGetFollowersInfinite,
-  useGetFollowingsInfinite,
-} from '@/shared/api/@generated/friend-api/friend-api';
+import useFollowListQuery from '@/entities/follow/api/use-follow-list-query';
+import type { FollowType } from '@/entities/follow/model/types';
 import { useInfiniteScroll } from '@/shared/model/use-infinite-scroll';
 
 import FollowListItem from './follow-list-item';
+import FollowListSkeleton from './follow-list-skeleton';
 
 interface FollowListContainerProps {
   type: FollowType;
@@ -16,53 +11,7 @@ interface FollowListContainerProps {
 }
 
 function FollowListContainer({ type, enabled = true }: FollowListContainerProps) {
-  const followersQuery = useGetFollowersInfinite(
-    { page: 0 },
-    {
-      query: {
-        queryKey: getGetFollowersInfiniteQueryKey({}),
-        initialPageParam: 0,
-        getNextPageParam: (lastPage, allPages) =>
-          lastPage.hasNextPage ? allPages.length : undefined,
-        enabled: enabled && type === 'followers',
-        refetchOnMount: true,
-        staleTime: 0,
-        gcTime: 0,
-        select: (data): { pages: FollowingList[]; pageParams: unknown[] } => {
-          return {
-            ...data,
-            pages: data.pages.map((response) => mapFollowerList(response)),
-          };
-        },
-      },
-    },
-  );
-
-  const followingQuery = useGetFollowingsInfinite(
-    { page: 0 },
-    {
-      query: {
-        queryKey: getGetFollowingsInfiniteQueryKey({}),
-        initialPageParam: 0,
-        getNextPageParam: (lastPage, allPages) =>
-          lastPage.hasNextPage ? allPages.length : undefined,
-        enabled: enabled && type === 'following',
-        refetchOnMount: true,
-        staleTime: 0,
-        gcTime: 0,
-        select: (data) => {
-          return {
-            ...data,
-            pages: data.pages.map((response) => mapFollowingList(response)),
-          };
-        },
-      },
-    },
-  );
-
-  const currentQuery = type === 'followers' ? followersQuery : followingQuery;
-
-  const currentTabList = currentQuery.data?.pages.flatMap((page) => page.contents) ?? [];
+  const { currentQuery, followUsers } = useFollowListQuery({ type });
 
   const loadMoreRef = useInfiniteScroll({
     enabled,
@@ -71,12 +20,14 @@ function FollowListContainer({ type, enabled = true }: FollowListContainerProps)
     fetchNextPage: currentQuery.fetchNextPage,
   });
 
+  if (currentQuery.isPending || currentQuery.isRefetching) return <FollowListSkeleton />;
+
   return (
     <>
       {/* TODO : Fallback UI 요청 */}
-      {currentTabList.length > 0 && (
+      {followUsers.length > 0 && (
         <ul className="flex flex-col">
-          {currentTabList.map((user) => (
+          {followUsers.map((user) => (
             <FollowListItem key={`${type}-${user.id}`} type={type} user={user} />
           ))}
 
