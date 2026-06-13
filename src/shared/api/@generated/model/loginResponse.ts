@@ -5,9 +5,11 @@
  * 앱센터 16.5기 동계 프로젝트 Gravit API Docs
  * OpenAPI spec version: 1.0.0
  */
+import type { LoginResponseRole } from './loginResponseRole.ts';
 
 export interface LoginResponse {
   accessToken: string;
   refreshToken: string;
   isOnboarded: boolean;
+  role: LoginResponseRole;
 }

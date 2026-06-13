@@ -5,15 +5,15 @@
  * 앱센터 16.5기 동계 프로젝트 Gravit API Docs
  * OpenAPI spec version: 1.0.0
  */
+import type { AdminNoticeDetailResponseStatus } from './adminNoticeDetailResponseStatus.ts';
 
 export interface AdminNoticeDetailResponse {
-  noticeId: number;
-  title: string;
-  contents: string;
-  authorName: string;
-  createdAt: string;
-  updatedAt: string;
-  noticeType: string;
-  pinned: boolean;
+  noticeId?: number;
+  title?: string;
+  summary?: string;
+  content?: string;
+  status?: AdminNoticeDetailResponseStatus;
+  pinned?: boolean;
   publishedAt?: string;
+  createdAt?: string;
 }
