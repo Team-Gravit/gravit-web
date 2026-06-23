@@ -1,21 +1,21 @@
 import { useState } from 'react';
 
-import type { Following, FollowType } from '@/entities/follow/model/types';
+import type FollowUser from '@/entities/follow/model/types';
+import type { FollowType } from '@/entities/follow/model/types';
 import Profile from '@/entities/user/ui/profile';
-import FollowButton from '@/features/follow/follow-button';
-import UnFollowButton from '@/features/follow/unfollow-button';
+import FollowButton from '@/features/follow/ui/follow-button';
+import UnFollowButton from '@/features/follow/ui/unfollow-button';
 
 interface FollowListItemProps {
   type: FollowType;
-  user: Following;
+  user: FollowUser;
 }
 
 function FollowListItem({ user, type }: FollowListItemProps) {
   const { handle, id, nickname, profileImgNumber } = user;
 
-  const [isFollowing, setIsFollowing] = useState(
-    type === 'following' ? true : (user.isFollowing ?? false),
-  );
+  const [isFollowing, setIsFollowing] = useState(user.isFollowing);
+
   return (
     <li className="flex items-center justify-between px-6 py-3">
       <div className="flex gap-3 items-center">
@@ -27,9 +27,20 @@ function FollowListItem({ user, type }: FollowListItemProps) {
       </div>
 
       {isFollowing ? (
-        <UnFollowButton followeeId={id} onSuccess={() => setIsFollowing(false)} />
+        <UnFollowButton
+          followeeId={id}
+          onSuccess={() => {
+            setIsFollowing(false);
+          }}
+        />
       ) : (
-        <FollowButton type={type} followeeId={id} onSuccess={() => setIsFollowing(true)} />
+        <FollowButton
+          isFollower={type === 'followers'}
+          followeeId={id}
+          onSuccess={() => {
+            setIsFollowing(true);
+          }}
+        />
       )}
     </li>
   );

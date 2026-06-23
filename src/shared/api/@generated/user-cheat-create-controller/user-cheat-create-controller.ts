@@ -5,23 +5,26 @@
  * 앱센터 16.5기 동계 프로젝트 Gravit API Docs
  * OpenAPI spec version: 1.0.0
  */
+import {
+  useMutation
+} from '@tanstack/react-query';
 import type {
   MutationFunction,
   QueryClient,
   UseMutationOptions,
   UseMutationResult
 } from '@tanstack/react-query';
-import {
-  useMutation
-} from '@tanstack/react-query';
 
-import { customInstance } from '../../mutator';
 import type {
   CreateUserParams,
   GenerateCustomTokenParams,
   LoginParams,
-  LoginResponse
+  LoginResponse,
+  PublishNoticeCreatedEventParams,
+  PublishSeasonRolledOverEventParams
 } from '../model';
+
+import { customInstance } from '../../mutator';
 
 
 
@@ -193,4 +196,171 @@ const {mutation: mutationOptions} = options ?
         TContext
       > => {
       return useMutation(getGenerateCustomTokenMutationOptions(options), queryClient);
+    }
+    export const setupFollowRelations = (
+
+ signal?: AbortSignal
+) => {
+
+
+      return customInstance<void>(
+      {url: `/api/v1/test/follows/setup`, method: 'POST', signal
+    },
+      );
+    }
+
+
+
+export const getSetupFollowRelationsMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof setupFollowRelations>>, TError,void, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof setupFollowRelations>>, TError,void, TContext> => {
+
+const mutationKey = ['setupFollowRelations'];
+const {mutation: mutationOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof setupFollowRelations>>, void> = () => {
+
+
+          return  setupFollowRelations()
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type SetupFollowRelationsMutationResult = NonNullable<Awaited<ReturnType<typeof setupFollowRelations>>>
+
+    export type SetupFollowRelationsMutationError = unknown
+
+    export const useSetupFollowRelations = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof setupFollowRelations>>, TError,void, TContext>, }
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof setupFollowRelations>>,
+        TError,
+        void,
+        TContext
+      > => {
+      return useMutation(getSetupFollowRelationsMutationOptions(options), queryClient);
+    }
+    export const publishSeasonRolledOverEvent = (
+    params: PublishSeasonRolledOverEventParams,
+ signal?: AbortSignal
+) => {
+
+
+      return customInstance<void>(
+      {url: `/api/v1/test/events/season-rolled-over`, method: 'POST',
+        params, signal
+    },
+      );
+    }
+
+
+
+export const getPublishSeasonRolledOverEventMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof publishSeasonRolledOverEvent>>, TError,{params: PublishSeasonRolledOverEventParams}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof publishSeasonRolledOverEvent>>, TError,{params: PublishSeasonRolledOverEventParams}, TContext> => {
+
+const mutationKey = ['publishSeasonRolledOverEvent'];
+const {mutation: mutationOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof publishSeasonRolledOverEvent>>, {params: PublishSeasonRolledOverEventParams}> = (props) => {
+          const {params} = props ?? {};
+
+          return  publishSeasonRolledOverEvent(params,)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PublishSeasonRolledOverEventMutationResult = NonNullable<Awaited<ReturnType<typeof publishSeasonRolledOverEvent>>>
+
+    export type PublishSeasonRolledOverEventMutationError = unknown
+
+    export const usePublishSeasonRolledOverEvent = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof publishSeasonRolledOverEvent>>, TError,{params: PublishSeasonRolledOverEventParams}, TContext>, }
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof publishSeasonRolledOverEvent>>,
+        TError,
+        {params: PublishSeasonRolledOverEventParams},
+        TContext
+      > => {
+      return useMutation(getPublishSeasonRolledOverEventMutationOptions(options), queryClient);
+    }
+    export const publishNoticeCreatedEvent = (
+    params: PublishNoticeCreatedEventParams,
+ signal?: AbortSignal
+) => {
+
+
+      return customInstance<void>(
+      {url: `/api/v1/test/events/notice-created`, method: 'POST',
+        params, signal
+    },
+      );
+    }
+
+
+
+export const getPublishNoticeCreatedEventMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof publishNoticeCreatedEvent>>, TError,{params: PublishNoticeCreatedEventParams}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof publishNoticeCreatedEvent>>, TError,{params: PublishNoticeCreatedEventParams}, TContext> => {
+
+const mutationKey = ['publishNoticeCreatedEvent'];
+const {mutation: mutationOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof publishNoticeCreatedEvent>>, {params: PublishNoticeCreatedEventParams}> = (props) => {
+          const {params} = props ?? {};
+
+          return  publishNoticeCreatedEvent(params,)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PublishNoticeCreatedEventMutationResult = NonNullable<Awaited<ReturnType<typeof publishNoticeCreatedEvent>>>
+
+    export type PublishNoticeCreatedEventMutationError = unknown
+
+    export const usePublishNoticeCreatedEvent = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof publishNoticeCreatedEvent>>, TError,{params: PublishNoticeCreatedEventParams}, TContext>, }
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof publishNoticeCreatedEvent>>,
+        TError,
+        {params: PublishNoticeCreatedEventParams},
+        TContext
+      > => {
+      return useMutation(getPublishNoticeCreatedEventMutationOptions(options), queryClient);
     }

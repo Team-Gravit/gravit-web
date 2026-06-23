@@ -27,7 +27,7 @@ export const tiers = [
   { id: 10, name: '플래티넘 3', icon: Platinum3 },
   { id: 11, name: '플래티넘 2', icon: Platinum2 },
   { id: 12, name: '플래티넘 1', icon: Platinum1 },
-  { id: 13, name: '다이아 3', icon: Diamond3 },
-  { id: 14, name: '다이아 2', icon: Diamond2 },
-  { id: 15, name: '다이아 1', icon: Diamond1 },
+  { id: 13, name: '다이아몬드 3', icon: Diamond3 },
+  { id: 14, name: '다이아몬드 2', icon: Diamond2 },
+  { id: 15, name: '다이아몬드 1', icon: Diamond1 },
 ];

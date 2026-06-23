@@ -5,6 +5,10 @@
  * 앱센터 16.5기 동계 프로젝트 Gravit API Docs
  * OpenAPI spec version: 1.0.0
  */
+import {
+  useMutation,
+  useQuery
+} from '@tanstack/react-query';
 import type {
   DataTag,
   DefinedInitialDataOptions,
@@ -19,18 +23,15 @@ import type {
   UseQueryOptions,
   UseQueryResult
 } from '@tanstack/react-query';
-import {
-  useMutation,
-  useQuery
-} from '@tanstack/react-query';
 
-import { customInstance } from '../../mutator';
 import type {
   ErrorResponse,
   LearningSubmissionSaveRequest,
   LessonDetailResponse,
   LessonSubmissionSaveResponse
 } from '../model';
+
+import { customInstance } from '../../mutator';
 
 
 

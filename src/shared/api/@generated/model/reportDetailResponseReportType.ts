@@ -6,9 +6,6 @@
  * OpenAPI spec version: 1.0.0
  */
 
-/**
- * 신고 유형
- */
 export type ReportDetailResponseReportType = typeof ReportDetailResponseReportType[keyof typeof ReportDetailResponseReportType];
 
 

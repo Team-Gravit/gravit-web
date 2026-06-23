@@ -10,5 +10,6 @@ export interface LeagueDetailResponse {
   leagueId: number;
   leagueName: string;
   currentLP: number;
+  minLP: number;
   maxLP: number;
 }

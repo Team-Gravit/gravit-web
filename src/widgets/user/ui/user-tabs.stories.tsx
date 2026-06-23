@@ -10,13 +10,13 @@ import {
 
 import UserTabs from './user-tabs';
 
-const withUserTabRouter = (initialPath = '/user') => {
-  const Wrapper = (Story: React.ComponentType) => {
+const withUserTabRouter = (initialPath = '/my/summary') => {
+  function UserTabRouterDecorator(Story: React.ComponentType) {
     const rootRoute = createRootRoute({
       component: () => <Outlet />,
     });
 
-    const routes = ['/user', '/user/learning', '/user/league', '/user/social'].map((path) =>
+    const routes = ['/my/summary', '/my/learning', '/my/league', '/my/social'].map((path) =>
       createRoute({
         getParentRoute: () => rootRoute,
         path,
@@ -36,9 +36,9 @@ const withUserTabRouter = (initialPath = '/user') => {
         <RouterProvider router={router} />
       </div>
     );
-  };
-  Wrapper.displayName = 'WithUserTabRouter';
-  return Wrapper;
+  }
+
+  return UserTabRouterDecorator;
 };
 
 const meta: Meta<typeof UserTabs> = {

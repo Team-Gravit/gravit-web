@@ -1,6 +1,6 @@
 import { cva } from 'class-variance-authority';
 
-import { getTierIconById } from '../lib/getTierIcon';
+import { getTierIconById, getTierIconByName } from '../lib/getTierIcon';
 
 const sizeVariants = cva('shrink-0 aspect-square', {
   variants: {
@@ -12,7 +12,11 @@ const sizeVariants = cva('shrink-0 aspect-square', {
   defaultVariants: { size: 'sm' },
 });
 
-export default function Tier({ tierId, size }: { tierId: number; size: 'xs' | 'sm' }) {
-  const TierIcon = getTierIconById(tierId);
+type TierProps =
+  | { tierId: number; tierName?: never; size: 'xs' | 'sm' }
+  | { tierId?: never; tierName: string; size: 'xs' | 'sm' };
+
+export default function Tier({ tierId, tierName, size }: TierProps) {
+  const TierIcon = tierId !== undefined ? getTierIconById(tierId) : getTierIconByName(tierName);
   return <TierIcon className={sizeVariants({ size })} />;
 }

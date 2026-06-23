@@ -8,7 +8,17 @@
 import type { NoticeCreateRequestStatus } from './noticeCreateRequestStatus.ts';
 
 export interface NoticeCreateRequest {
+  /**
+     * @minLength 0
+     * @maxLength 50
+     */
   title: string;
+  /**
+     * @minLength 0
+     * @maxLength 255
+     */
+  summary: string;
+  /** @minLength 1 */
   content: string;
   status: NoticeCreateRequestStatus;
   pinned: boolean;
