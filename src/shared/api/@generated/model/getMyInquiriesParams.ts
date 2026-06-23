@@ -6,10 +6,9 @@
  * OpenAPI spec version: 1.0.0
  */
 
-export interface LeagueDetailResponse {
-  leagueId: number;
-  leagueName: string;
-  currentLP: number;
-  minLP: number;
-  maxLP: number;
-}
+export type GetMyInquiriesParams = {
+/**
+ * 1부터 시작하는 페이지 번호
+ */
+page?: number;
+};

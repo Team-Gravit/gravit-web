@@ -6,6 +6,9 @@
  * OpenAPI spec version: 1.0.0
  */
 
+export * from './adminInquiryAnswerResponse.ts';
+export * from './adminInquiryDetailResponse.ts';
+export * from './adminInquiryListItemResponse.ts';
 export * from './adminMeResponse.ts';
 export * from './adminNoticeDetailResponse.ts';
 export * from './adminNoticeDetailResponseStatus.ts';
@@ -42,9 +45,12 @@ export * from './getFeedParams.ts';
 export * from './getFollowersParams.ts';
 export * from './getFollowingsParams.ts';
 export * from './getInboxParams.ts';
+export * from './getInquiriesParams.ts';
+export * from './getInquiriesStatus.ts';
 export * from './getLabelsParams.ts';
 export * from './getLabelsStatus.ts';
 export * from './getLessonsParams.ts';
+export * from './getMyInquiriesParams.ts';
 export * from './getMyPageLearningHistoryParams.ts';
 export * from './getNoticesParams.ts';
 export * from './getProblemsParams.ts';
@@ -55,6 +61,13 @@ export * from './getUsersParams.ts';
 export * from './getUsersRole.ts';
 export * from './getUsersStatus.ts';
 export * from './idTokenRequest.ts';
+export * from './inquiryAnswerCreateRequest.ts';
+export * from './inquiryAnswerResponse.ts';
+export * from './inquiryAnswerUpdateRequest.ts';
+export * from './inquiryDetailResponse.ts';
+export * from './inquirySubmitRequest.ts';
+export * from './inquirySummaryPageResponse.ts';
+export * from './inquirySummaryResponse.ts';
 export * from './labelStatusUpdateRequest.ts';
 export * from './labelStatusUpdateRequestStatus.ts';
 export * from './lastSeasonPopupDto.ts';
@@ -100,6 +113,7 @@ export * from './objectiveOptionUpdateRequest.ts';
 export * from './objectiveProblemUpdateRequest.ts';
 export * from './onboardingRequest.ts';
 export * from './optionResponse.ts';
+export * from './pageResponseAdminInquiryListItemResponse.ts';
 export * from './pageResponseChapterListItemResponse.ts';
 export * from './pageResponseLessonListItemResponse.ts';
 export * from './pageResponseNoticeListItemResponse.ts';

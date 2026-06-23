@@ -6,10 +6,13 @@
  * OpenAPI spec version: 1.0.0
  */
 
-export interface LeagueDetailResponse {
-  leagueId: number;
-  leagueName: string;
-  currentLP: number;
-  minLP: number;
-  maxLP: number;
+/**
+ * 문의 답변 등록 request
+ */
+export interface InquiryAnswerCreateRequest {
+  /**
+     * 답변 내용
+     * @minLength 1
+     */
+  content: string;
 }

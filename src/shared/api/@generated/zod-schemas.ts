@@ -8,6 +8,47 @@
 import * as zod from 'zod';
 
 /**
+ * 등록된 답변 내용을 수정한다. 상태는 RESOLVED 로 유지된다.
+ * @summary 문의 답변 수정
+ */
+export const UpdateAnswerParams = zod.object({
+  "inquiryId": zod.number()
+})
+
+
+
+
+export const UpdateAnswerBody = zod.object({
+  "content": zod.string().min(1).describe('수정할 답변 내용')
+}).describe('문의 답변 수정 request')
+
+
+/**
+ * 답변 등록 시 문의 상태가 RESOLVED 로 자동 전환되고 작성자에게 알림이 발송된다.
+ * @summary 문의 답변 등록
+ */
+export const AnswerInquiryParams = zod.object({
+  "inquiryId": zod.number()
+})
+
+
+
+
+export const AnswerInquiryBody = zod.object({
+  "content": zod.string().min(1).describe('답변 내용')
+}).describe('문의 답변 등록 request')
+
+
+/**
+ * 답변 삭제 시 문의 상태가 PENDING 으로 되돌아간다.
+ * @summary 문의 답변 삭제
+ */
+export const DeleteAnswerParams = zod.object({
+  "inquiryId": zod.number()
+})
+
+
+/**
  * 최초 로그인 시 사용자 온보딩 정보를 저장합니다<br>🔐 <strong>Jwt 필요</strong><br>
  * @summary 온보딩 정보 등록
  */
@@ -239,6 +280,46 @@ export const SaveLessonSubmissionBody = zod.object({
   "isCorrect": zod.boolean().describe('최초 정\/오답 여부')
 })).optional().describe('문제 풀이 제출 리스트')
 }).describe('레슨 풀이 저장 request')
+
+
+/**
+ * 로그인 유저 본인이 작성한 문의 목록을 페이지 단위(1-based)로 조회합니다.<br>🔐 <strong>Jwt 필요</strong><br>
+ * @summary 본인 문의 목록 조회
+ */
+export const getMyInquiriesQueryPageDefault = 1;
+
+export const GetMyInquiriesQueryParams = zod.object({
+  "page": zod.number().default(getMyInquiriesQueryPageDefault).describe('1부터 시작하는 페이지 번호')
+})
+
+export const GetMyInquiriesResponse = zod.object({
+  "page": zod.number().describe('현재 페이지 번호'),
+  "totalPages": zod.number().describe('전체 페이지 수'),
+  "hasNext": zod.boolean().describe('다음 페이지 존재 여부'),
+  "contents": zod.array(zod.object({
+  "id": zod.number(),
+  "title": zod.string(),
+  "type": zod.string(),
+  "status": zod.string(),
+  "createdAt": zod.iso.datetime({"offset":true})
+})).describe('문의 요약 목록')
+}).describe('문의 요약 페이지 응답')
+
+
+/**
+ * 새로운 문의를 제출합니다. 응답 body 로 생성된 문의 ID 를 반환합니다.<br>🔐 <strong>Jwt 필요</strong><br>
+ * @summary 문의 제출
+ */
+
+
+
+
+
+export const SubmitInquiryBody = zod.object({
+  "title": zod.string().min(1).describe('문의 제목'),
+  "type": zod.string().min(1).describe('문의 유형'),
+  "content": zod.string().min(1).describe('문의 내용')
+}).describe('문의 제출 request')
 
 
 /**
@@ -496,11 +577,11 @@ export const PromoteBody = zod.object({
  * 라벨이 COMPLETED 면 409.
  * @summary 스테이징 정답 수정 (부분)
  */
-export const UpdateAnswerParams = zod.object({
+export const UpdateAnswer1Params = zod.object({
   "answerId": zod.number()
 })
 
-export const UpdateAnswerBody = zod.object({
+export const UpdateAnswer1Body = zod.object({
   "content": zod.string().optional(),
   "explanation": zod.string().optional()
 })
@@ -937,6 +1018,29 @@ export const GetUserLeagueHistoryParams = zod.object({
 
 
 /**
+ * 본인이 작성한 문의의 상세 내용과 답변(있으면)을 조회합니다.<br>🔐 <strong>Jwt 필요</strong><br>
+ * @summary 본인 문의 상세 조회
+ */
+export const GetMyInquiryDetailParams = zod.object({
+  "inquiryId": zod.number()
+})
+
+export const GetMyInquiryDetailResponse = zod.object({
+  "id": zod.number(),
+  "title": zod.string(),
+  "type": zod.string(),
+  "content": zod.string(),
+  "status": zod.string(),
+  "createdAt": zod.iso.datetime({"offset":true}),
+  "updatedAt": zod.iso.datetime({"offset":true}),
+  "answer": zod.object({
+  "content": zod.string(),
+  "answeredAt": zod.iso.datetime({"offset":true})
+}).optional().describe('어드민 답변 (없으면 null)')
+})
+
+
+/**
  * 사용자 핸들&닉네임 으로 팔로우 대상 검색을 수행합니다.<br>
 - (핸들의 경우) <br>
 - 입력이 '@' 부터 시작하면 handle 기반 조회를 시도합니다. <br>
@@ -1152,6 +1256,27 @@ export const getProblemsQueryPageDefault = 1;
 
 export const GetProblemsQueryParams = zod.object({
   "page": zod.number().default(getProblemsQueryPageDefault)
+})
+
+
+/**
+ * status 미지정 시 전체 조회. 1-based 페이지, id 내림차순.
+ * @summary 문의 목록(상태별)
+ */
+export const getInquiriesQueryPageDefault = 1;
+
+export const GetInquiriesQueryParams = zod.object({
+  "status": zod.enum(['PENDING', 'RESOLVED']).optional(),
+  "page": zod.number().default(getInquiriesQueryPageDefault)
+})
+
+
+/**
+ * 작성자 정보와 답변(있으면)을 포함한다.
+ * @summary 문의 상세
+ */
+export const GetInquiryParams = zod.object({
+  "inquiryId": zod.number()
 })
 
 

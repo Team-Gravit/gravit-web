@@ -304,7 +304,7 @@ export const usePromote = <TError = void,
  * 라벨이 COMPLETED 면 409.
  * @summary 스테이징 정답 수정 (부분)
  */
-export const updateAnswer = (
+export const updateAnswer1 = (
     answerId: number,
     stagingAnswerUpdateRequest: StagingAnswerUpdateRequest,
  signal?: AbortSignal
@@ -321,11 +321,11 @@ export const updateAnswer = (
 
 
 
-export const getUpdateAnswerMutationOptions = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateAnswer>>, TError,{answerId: number;data: StagingAnswerUpdateRequest}, TContext>, }
-): UseMutationOptions<Awaited<ReturnType<typeof updateAnswer>>, TError,{answerId: number;data: StagingAnswerUpdateRequest}, TContext> => {
+export const getUpdateAnswer1MutationOptions = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateAnswer1>>, TError,{answerId: number;data: StagingAnswerUpdateRequest}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof updateAnswer1>>, TError,{answerId: number;data: StagingAnswerUpdateRequest}, TContext> => {
 
-const mutationKey = ['updateAnswer'];
+const mutationKey = ['updateAnswer1'];
 const {mutation: mutationOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
@@ -335,10 +335,10 @@ const {mutation: mutationOptions} = options ?
 
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof updateAnswer>>, {answerId: number;data: StagingAnswerUpdateRequest}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof updateAnswer1>>, {answerId: number;data: StagingAnswerUpdateRequest}> = (props) => {
           const {answerId,data} = props ?? {};
 
-          return  updateAnswer(answerId,data,)
+          return  updateAnswer1(answerId,data,)
         }
 
 
@@ -348,22 +348,22 @@ const {mutation: mutationOptions} = options ?
 
   return  { mutationFn, ...mutationOptions }}
 
-    export type UpdateAnswerMutationResult = NonNullable<Awaited<ReturnType<typeof updateAnswer>>>
-    export type UpdateAnswerMutationBody = StagingAnswerUpdateRequest
-    export type UpdateAnswerMutationError = void
+    export type UpdateAnswer1MutationResult = NonNullable<Awaited<ReturnType<typeof updateAnswer1>>>
+    export type UpdateAnswer1MutationBody = StagingAnswerUpdateRequest
+    export type UpdateAnswer1MutationError = void
 
     /**
  * @summary 스테이징 정답 수정 (부분)
  */
-export const useUpdateAnswer = <TError = void,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateAnswer>>, TError,{answerId: number;data: StagingAnswerUpdateRequest}, TContext>, }
+export const useUpdateAnswer1 = <TError = void,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof updateAnswer1>>, TError,{answerId: number;data: StagingAnswerUpdateRequest}, TContext>, }
  , queryClient?: QueryClient): UseMutationResult<
-        Awaited<ReturnType<typeof updateAnswer>>,
+        Awaited<ReturnType<typeof updateAnswer1>>,
         TError,
         {answerId: number;data: StagingAnswerUpdateRequest},
         TContext
       > => {
-      return useMutation(getUpdateAnswerMutationOptions(options), queryClient);
+      return useMutation(getUpdateAnswer1MutationOptions(options), queryClient);
     }
     /**
  * status(PENDING/COMPLETED) 필터.

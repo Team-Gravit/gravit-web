@@ -5,11 +5,9 @@
  * 앱센터 16.5기 동계 프로젝트 Gravit API Docs
  * OpenAPI spec version: 1.0.0
  */
+import type { GetInquiriesStatus } from './getInquiriesStatus.ts';
 
-export interface LeagueDetailResponse {
-  leagueId: number;
-  leagueName: string;
-  currentLP: number;
-  minLP: number;
-  maxLP: number;
-}
+export type GetInquiriesParams = {
+status?: GetInquiriesStatus;
+page?: number;
+};

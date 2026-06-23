@@ -6,10 +6,10 @@
  * OpenAPI spec version: 1.0.0
  */
 
-export interface LeagueDetailResponse {
-  leagueId: number;
-  leagueName: string;
-  currentLP: number;
-  minLP: number;
-  maxLP: number;
+export interface InquirySummaryResponse {
+  id: number;
+  title: string;
+  type: string;
+  status: string;
+  createdAt: string;
 }
