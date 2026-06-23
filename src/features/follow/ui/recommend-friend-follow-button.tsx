@@ -8,12 +8,12 @@ interface RecommendFriendFollowButtonProps {
 }
 
 function RecommendFriendFollowButton({ userId }: RecommendFriendFollowButtonProps) {
-  const { mutate: recommendFriendFollow, isPending: isRecommendFriendFollowPending } =
+  const { mutate: followRecommendUser, isPending: isRecommendFriendFollowPending } =
     useFollowRecommendUser();
 
   return (
     <Button
-      onClick={() => recommendFriendFollow({ userId })}
+      onClick={() => followRecommendUser({ userId })}
       disabled={isRecommendFriendFollowPending}
       variant={'strokePrimary'}
       size="custom"

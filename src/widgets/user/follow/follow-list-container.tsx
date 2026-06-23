@@ -20,11 +20,10 @@ function FollowListContainer({ type, enabled = true }: FollowListContainerProps)
     fetchNextPage: currentQuery.fetchNextPage,
   });
 
-  if (currentQuery.isPending || currentQuery.isRefetching) return <FollowListSkeleton />;
+  if (currentQuery.isPending) return <FollowListSkeleton />;
 
   return (
     <>
-      {/* TODO : Fallback UI 요청 */}
       {followUsers.length > 0 && (
         <ul className="flex flex-col">
           {followUsers.map((user) => (

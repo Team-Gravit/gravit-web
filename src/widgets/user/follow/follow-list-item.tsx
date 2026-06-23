@@ -12,9 +12,9 @@ interface FollowListItemProps {
 }
 
 function FollowListItem({ user, type }: FollowListItemProps) {
-  const { handle, id, nickname, profileImgNumber, isFollowing } = user;
+  const { handle, id, nickname, profileImgNumber } = user;
 
-  const [currentFollowingState, setCurrentFollowingState] = useState(isFollowing);
+  const [isFollowing, setIsFollowing] = useState(user.isFollowing);
 
   return (
     <li className="flex items-center justify-between px-6 py-3">
@@ -26,11 +26,11 @@ function FollowListItem({ user, type }: FollowListItemProps) {
         </div>
       </div>
 
-      {currentFollowingState ? (
+      {isFollowing ? (
         <UnFollowButton
           followeeId={id}
           onSuccess={() => {
-            setCurrentFollowingState(false);
+            setIsFollowing(false);
           }}
         />
       ) : (
@@ -38,7 +38,7 @@ function FollowListItem({ user, type }: FollowListItemProps) {
           isFollower={type === 'followers'}
           followeeId={id}
           onSuccess={() => {
-            setCurrentFollowingState(true);
+            setIsFollowing(true);
           }}
         />
       )}

@@ -11,11 +11,11 @@ interface UnFollowButtonProps {
 function UnFollowButton({ followeeId, onSuccess }: UnFollowButtonProps) {
   const { isMobile } = useResponsive();
 
-  const { mutate: unFollowing, isPending: isUnFollowingPending } = useUnfollowUser({ onSuccess });
+  const { mutate: unfollowUser, isPending: isUnFollowingPending } = useUnfollowUser({ onSuccess });
 
   return (
     <Button
-      onClick={() => unFollowing({ followeeId })}
+      onClick={() => unfollowUser({ followeeId })}
       variant={'strokeGray'}
       disabled={isUnFollowingPending}
       size={isMobile ? 'sm' : 'md'}

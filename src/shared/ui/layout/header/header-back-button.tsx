@@ -23,7 +23,7 @@ export default function HeaderBackButton({
       return;
     }
 
-    if (window.history.length > 1) {
+    if (router.history.canGoBack()) {
       router.history.back();
       return;
     }

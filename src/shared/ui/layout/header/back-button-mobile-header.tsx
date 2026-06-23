@@ -9,11 +9,11 @@ interface BackButtonMobileHeaderProps {
   backPath?: string;
 }
 
-function BackButtonMobileHeader(props: BackButtonMobileHeaderProps) {
+function BackButtonMobileHeader({ fallbackTo, backPath, ...rest }: BackButtonMobileHeaderProps) {
   return (
     <MobilePageHeader
-      leftSlot={<HeaderBackButton fallbackTo={props.fallbackTo} backPath={props.backPath} />}
-      {...props}
+      leftSlot={<HeaderBackButton fallbackTo={fallbackTo} backPath={backPath} />}
+      {...rest}
     />
   );
 }
