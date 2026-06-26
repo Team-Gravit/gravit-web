@@ -26,3 +26,7 @@ export const formatRelativeTime = (dateString: string) => {
   const year = Math.floor(month / 12);
   return `${year}년 전`;
 };
+
+export const formatISODate = (isoDate: string) => {
+  return isoDate.split('T')[0].replace(/-/g, '.');
+};

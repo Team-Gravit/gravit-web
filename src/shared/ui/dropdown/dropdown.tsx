@@ -14,7 +14,11 @@ export default function Dropdown({
   placeholder,
   disabled,
   className,
+  label,
   id,
+  labelClassName,
+  placeholderClassName,
+  valueClassName,
   'aria-label': ariaLabel,
 }: DropdownProps) {
   const {
@@ -56,9 +60,29 @@ export default function Dropdown({
         onKeyDown={handleTriggerKeyDown}
         className="px-3 py-2 border border-bg-3 rounded-sm flex items-center justify-between w-full cursor-pointer disabled:cursor-default focus:outline-none text-text-1 disabled:text-gray-400"
       >
-        <span className="text-body1-normal">{selectedLabel || placeholder || '선택하세요'}</span>
+        {selectedLabel && label ? (
+          <div className="text-start w-full">
+            <div className="text-caption1 text-text-4 mb-0.5 md:mb-1">{label}</div>
+            <div className={cn('text-body1-normal', valueClassName)}>{selectedLabel}</div>
+          </div>
+        ) : (
+          <span className={cn('text-body1-normal', valueClassName)}>{selectedLabel}</span>
+        )}
+        {!selectedLabel && (
+          <span
+            className={cn(
+              'text-start w-full text-label1 md:text-body1-normal text-text-4 ',
+              placeholderClassName,
+            )}
+          >
+            {placeholder || '선택하세요'}
+          </span>
+        )}
         <DropdownIcon
-          className={cn('text-gray-600 transition-transform duration-300', isOpen && 'rotate-180')}
+          className={cn(
+            'size-4 text-gray-600 transition-transform duration-300',
+            isOpen && 'rotate-180',
+          )}
         />
       </button>
 
@@ -100,9 +124,9 @@ export default function Dropdown({
                     'flex items-center justify-center px-5 py-4 min-h-14 bg-white focus:outline-none text-body1-normal text-text-1 border-b border-divider-1 last:border-0 shrink-0',
                     option.disabled
                       ? 'text-gray-400 cursor-not-allowed'
-                      : 'hover:bg-gray-300 cursor-pointer',
+                      : 'hover:bg-gray-200 cursor-pointer',
                     'first:rounded-t-lg last:rounded-b-lg p-1',
-                    focusedOptionIdx === i ? 'bg-main-1 text-white hover:bg-main-hover' : '',
+                    focusedOptionIdx === i ? 'bg-bg-3' : '',
                   )}
                 >
                   {option.label}

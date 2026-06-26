@@ -31,7 +31,7 @@ export default function Tabs({ children, className }: TabsProps) {
     <div
       role="tablist"
       className={cn(
-        'flex items-center w-full gap-1 p-1 md:gap-2 md:p-2 bg-text-1-w rounded-lg md:rounded-xl text-text-3 label1 md:heading2',
+        'flex items-center w-full gap-1 p-1 md:gap-2 md:p-2 bg-text-1-w rounded-lg md:rounded-xl text-text-3 text-label1 md:text-heading2',
         className,
       )}
     >
