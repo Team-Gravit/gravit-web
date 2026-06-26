@@ -11,5 +11,6 @@ export interface PageResponseAdminInquiryListItemResponse {
   page: number;
   totalPages: number;
   hasNext: boolean;
+  totalElements: number;
   contents: AdminInquiryListItemResponse[];
 }

@@ -17,6 +17,8 @@ export interface NoticeSummaryPageResponse {
   totalPages: number;
   /** 다음 페이지 존재 여부 */
   hasNext: boolean;
+  /** 전체 공지 개수 */
+  totalElements: number;
   /** 공지 요약 목록 */
   contents: NoticeSummaryResponse[];
 }

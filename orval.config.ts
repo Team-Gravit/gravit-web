@@ -33,6 +33,12 @@ export default defineConfig({
               useInfiniteQueryParam: 'page',
             },
           },
+          getMyInquiries: {
+            query: {
+              useInfinite: true,
+              useInfiniteQueryParam: 'page',
+            },
+          },
         },
       },
     },
