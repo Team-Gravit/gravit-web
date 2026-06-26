@@ -1,6 +1,6 @@
-import { Link, useNavigate } from '@tanstack/react-router';
+import { Link } from '@tanstack/react-router';
 
-import { tokenManager } from '@/shared/api';
+import useLogout from '@/features/auth/logout';
 import Logo from '@/shared/assets/icons/logo.svg?react';
 import Profile from '@/shared/assets/icons/profile2.svg?react';
 import { cn } from '@/shared/lib/cn';
@@ -99,12 +99,7 @@ function HeaderUserMenu({
   profileImageNum: number;
   className?: string;
 }) {
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    tokenManager.clearTokens();
-    navigate({ from: '/', replace: true });
-  };
+  const handleLogout = useLogout();
 
   return (
     <div className={cn('flex items-center gap-5 heading2', className)}>
