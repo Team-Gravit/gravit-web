@@ -62,7 +62,9 @@ export default function Dropdown({
       >
         {selectedLabel && label ? (
           <div className="text-start w-full">
-            <div className="text-caption1 text-text-4 mb-0.5 md:mb-1">{label}</div>
+            <div className={cn('text-caption1 text-text-4 mb-0.5 md:mb-1', labelClassName)}>
+              {label}
+            </div>
             <div className={cn('text-body1-normal', valueClassName)}>{selectedLabel}</div>
           </div>
         ) : (
