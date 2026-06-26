@@ -20,14 +20,16 @@ function MyInquiriesList() {
 
   return (
     <>
-      <ul className="flex-1 rounded-xl overflow-hidden ">
-        {inquiries.map((item) => (
-          <MyInquiriesListItem key={item.id} inquiry={item} />
-        ))}
-        {hasNextPage && (
-          <li ref={loadMoreRef} className="h-4 w-full shrink-0 rounded-xl" aria-hidden />
-        )}
-      </ul>
+      {!isPending && inquiries.length > 0 && (
+        <ul className="flex-1 rounded-xl overflow-hidden ">
+          {inquiries.map((item) => (
+            <MyInquiriesListItem key={item.id} inquiry={item} />
+          ))}
+          {hasNextPage && (
+            <li ref={loadMoreRef} className="h-4 w-full shrink-0 rounded-xl" aria-hidden />
+          )}
+        </ul>
+      )}
       {!isPending && inquiries.length === 0 && (
         <div className="w-full rounded-xl h-[300px] bg-white flex flex-col gap-8 items-center justify-center">
           <div className="text-center">
