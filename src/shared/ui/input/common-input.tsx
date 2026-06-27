@@ -20,7 +20,7 @@ function CommonInput(props: CommonInputProps) {
         className,
       )}
     >
-      {value !== undefined && value !== '' && (
+      {label && value !== undefined && value !== '' && (
         <label
           className={cn('text-caption1 text-text-4 mb-0.5 md:mb-1', labelClassName)}
           htmlFor={id}

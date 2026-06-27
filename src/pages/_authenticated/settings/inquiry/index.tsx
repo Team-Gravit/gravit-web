@@ -18,7 +18,7 @@ function RouteComponent() {
       <div className="flex items-center justify-between w-full">
         <h3 className="text-headline1 md:text-heading1">
           문의 내역
-          <span className="text-main-1 ml-2">{`${data?.pages[0].totalElements || 0}`}</span>
+          <span className="text-main-1 ml-2">{`${data?.pages?.[0]?.totalElements || 0}`}</span>
         </h3>
         <span className="text-caption1 text-text-4">최신순</span>
       </div>

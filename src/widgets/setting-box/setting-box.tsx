@@ -70,7 +70,7 @@ export default SettingBox;
 
 function SettingBoxItem(props: SettingBoxItemProps) {
   const wrapperStyle =
-    'py-[14px] md:py-5 w-full block flex items-center justify-between md:border-b md:border-divider-1 md:last:border-none cursor-pointer';
+    'py-[14px] md:py-5 w-full  flex items-center justify-between md:border-b md:border-divider-1 md:last:border-none cursor-pointer';
 
   const inner = (
     <>

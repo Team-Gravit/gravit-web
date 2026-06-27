@@ -28,11 +28,11 @@ export default function MyInquiriesListItem({ inquiry }: MyInquiriesListItemProp
   });
 
   return (
-    <li
-      onClick={() => setIsOpen((prev) => !prev)}
-      className="p-4 md:px-8 md:py-7 bg-white  border-b border-divider-2 last:border-none"
-    >
-      <div className="flex items-center justify-center w-full gap-2">
+    <li className="p-4 md:px-8 md:py-7 bg-white  border-b border-divider-2 last:border-none">
+      <div
+        onClick={() => setIsOpen((prev) => !prev)}
+        className="flex items-center justify-center w-full gap-2"
+      >
         <div className="flex-1">
           <span className="py-1 px-2 md:px-4 mb-2 md:mb-4 inline-block text-center rounded-full border border-main-2 text-main-2 text-caption1 md:text-body1-normal">
             {getInquiryTypeLabel(inquiry.type)}
