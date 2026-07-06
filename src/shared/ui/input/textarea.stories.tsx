@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 
-import CommonTextarea from './common-textarea';
+import TextArea from './textarea';
 
 const meta = {
-  title: 'Components/Input/CommonTextarea',
-  component: CommonTextarea,
+  title: 'Components/Input/TextArea',
+  component: TextArea,
   parameters: {
     layout: 'centered',
   },
@@ -21,14 +21,14 @@ const meta = {
     placeholder: '내용을 입력하세요',
     disabled: false,
   },
-} satisfies Meta<typeof CommonTextarea>;
+} satisfies Meta<typeof TextArea>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-function ControlledTextarea(props: React.ComponentProps<typeof CommonTextarea>) {
+function ControlledTextarea(props: React.ComponentProps<typeof TextArea>) {
   const [value, setValue] = useState(props.value ?? '');
-  return <CommonTextarea {...props} value={value} onChange={(e) => setValue(e.target.value)} />;
+  return <TextArea {...props} value={value} onChange={(e) => setValue(e.target.value)} />;
 }
 
 export const Default: Story = {

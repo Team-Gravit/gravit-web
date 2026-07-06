@@ -2,7 +2,10 @@ import { type InputHTMLAttributes } from 'react';
 
 import { cn } from '@/shared/lib/cn';
 
-type CommonInputProps = InputHTMLAttributes<HTMLInputElement> & {
+import FieldLabel from './field-label';
+
+type InputProps = InputHTMLAttributes<HTMLInputElement> & {
+  value?: string;
   label?: string;
   className?: string;
   id: string;
@@ -10,8 +13,9 @@ type CommonInputProps = InputHTMLAttributes<HTMLInputElement> & {
   labelClassName?: string;
 };
 
-function CommonInput(props: CommonInputProps) {
+function Input(props: InputProps) {
   const { value, label, className, id, inputClassName, labelClassName, ...rest } = props;
+  const shouldShowFieldLabel = label && value && value.trim().length > 0;
 
   return (
     <div
@@ -20,14 +24,7 @@ function CommonInput(props: CommonInputProps) {
         className,
       )}
     >
-      {label && value !== undefined && value !== '' && (
-        <label
-          className={cn('text-caption1 text-text-4 mb-0.5 md:mb-1', labelClassName)}
-          htmlFor={id}
-        >
-          {label}
-        </label>
-      )}
+      {shouldShowFieldLabel && <FieldLabel id={id} className={labelClassName} label={label} />}
 
       <input
         id={id}
@@ -43,4 +40,4 @@ function CommonInput(props: CommonInputProps) {
   );
 }
 
-export default CommonInput;
+export default Input;

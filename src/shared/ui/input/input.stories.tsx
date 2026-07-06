@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 
-import CommonInput from './common-input';
+import Input from './input';
 
 const meta = {
-  title: 'Components/Input/CommonInput',
-  component: CommonInput,
+  title: 'Components/Input/Input',
+  component: Input,
   parameters: {
     layout: 'centered',
   },
@@ -21,14 +21,14 @@ const meta = {
     placeholder: '제목을 입력하세요',
     disabled: false,
   },
-} satisfies Meta<typeof CommonInput>;
+} satisfies Meta<typeof Input>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-function ControlledInput(props: React.ComponentProps<typeof CommonInput>) {
+function ControlledInput(props: React.ComponentProps<typeof Input>) {
   const [value, setValue] = useState(props.value ?? '');
-  return <CommonInput {...props} value={value} onChange={(e) => setValue(e.target.value)} />;
+  return <Input {...props} value={value} onChange={(e) => setValue(e.target.value)} />;
 }
 
 export const Default: Story = {

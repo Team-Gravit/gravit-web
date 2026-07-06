@@ -2,7 +2,10 @@ import { type TextareaHTMLAttributes } from 'react';
 
 import { cn } from '@/shared/lib/cn';
 
-type CommonTextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & {
+import FieldLabel from './field-label';
+
+type TextAreaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & {
+  value?: string;
   label?: string;
   className?: string;
   id: string;
@@ -10,8 +13,10 @@ type CommonTextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & {
   labelClassName?: string;
 };
 
-function CommonTextarea(props: CommonTextareaProps) {
+function TextArea(props: TextAreaProps) {
   const { value, label, className, textareaClassName, labelClassName, id, ...rest } = props;
+
+  const shouldShowFieldLabel = label && value && value.trim().length > 0;
 
   return (
     <div
@@ -20,14 +25,7 @@ function CommonTextarea(props: CommonTextareaProps) {
         className,
       )}
     >
-      {label && value !== undefined && value !== '' && (
-        <label
-          className={cn('text-caption1 text-text-4 mb-0.5 md:mb-1', labelClassName)}
-          htmlFor={id}
-        >
-          {label}
-        </label>
-      )}
+      {shouldShowFieldLabel && <FieldLabel id={id} className={labelClassName} label={label} />}
 
       <textarea
         id={id}
@@ -43,4 +41,4 @@ function CommonTextarea(props: CommonTextareaProps) {
   );
 }
 
-export default CommonTextarea;
+export default TextArea;
