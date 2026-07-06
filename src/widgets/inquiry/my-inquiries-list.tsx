@@ -19,9 +19,9 @@ function MyInquiriesList() {
   const inquiries = infiniteSelector(data);
 
   return (
-    <>
+    <div className="flex-1">
       {!isPending && inquiries.length > 0 && (
-        <ul className="flex-1 rounded-xl overflow-hidden ">
+        <ul className=" rounded-xl overflow-hidden">
           {inquiries.map((item) => (
             <MyInquiriesListItem key={item.id} inquiry={item} />
           ))}
@@ -46,7 +46,7 @@ function MyInquiriesList() {
           </Link>
         </div>
       )}
-    </>
+    </div>
   );
 }
 
