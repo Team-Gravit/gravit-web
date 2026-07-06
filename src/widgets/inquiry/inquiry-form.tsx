@@ -1,25 +1,22 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from '@tanstack/react-router';
 import type { FormEvent } from 'react';
 
-import { useSubmitInquiry } from '@/shared/api/@generated/inquiry-api/inquiry-api';
+import {
+  getGetMyInquiriesInfiniteQueryKey,
+  useSubmitInquiry,
+} from '@/shared/api/@generated/inquiry-api/inquiry-api';
 import { Button } from '@/shared/ui/button/Button';
 import { Dropdown } from '@/shared/ui/dropdown';
-import CommonInput from '@/shared/ui/input/common-input';
-import CommonTextarea from '@/shared/ui/input/common-textarea';
+import CommonInput from '@/shared/ui/input/input';
+import CommonTextarea from '@/shared/ui/input/textarea';
 
 import { INQUIRY_FORM_DROPDOWN_ITEMS } from './model/inquiry-config';
 import useInquiryForm from './model/use-inquiry-form';
 
 function InquiryForm() {
-  const {
-    inquiryType,
-    inquiryTitle,
-    inquiryContent,
-    onChangeInquiryType,
-    onChangeInquiryTitle,
-    onChangeInquiryContent,
-    isValid,
-  } = useInquiryForm();
+  const queryClient = useQueryClient();
+  const { inquiryForm, updateInquiryForm, isValid } = useInquiryForm();
 
   const navigate = useNavigate();
 
@@ -27,6 +24,7 @@ function InquiryForm() {
     mutation: {
       onSuccess: () => {
         navigate({ to: '/settings/inquiry' });
+        queryClient.invalidateQueries({ queryKey: getGetMyInquiriesInfiniteQueryKey() });
       },
     },
   });
@@ -35,9 +33,9 @@ function InquiryForm() {
     e.preventDefault();
 
     const formData = {
-      type: inquiryType,
-      title: inquiryTitle,
-      content: inquiryContent,
+      type: inquiryForm.type,
+      title: inquiryForm.title,
+      content: inquiryForm.content,
     };
 
     submitInquiry({ data: formData });
@@ -46,12 +44,12 @@ function InquiryForm() {
     <form className="space-y-3" onSubmit={handleSubmit}>
       <Dropdown
         className="w-full bg-white [&>button]:h-[54px] md:[&>button]:h-[74px] [&>button]:px-4 md:[&>button]:px-6 [&>button]:rounded-lg rounded-lg"
-        value={inquiryType}
-        onChange={onChangeInquiryType}
+        value={inquiryForm.type || ''}
+        onChange={(value) => updateInquiryForm('type', value)}
         placeholder="문의 유형을 선택해주세요."
         options={INQUIRY_FORM_DROPDOWN_ITEMS}
         disabled={false}
-        label="문의유형"
+        fieldLabel="문의유형"
         valueClassName="text-label1 md:text-headline2"
         placeholderClassName="text-label1 md:text-headline2"
       />
@@ -60,16 +58,16 @@ function InquiryForm() {
         id="title"
         placeholder="제목을 입력해주세요."
         label="문의제목"
-        value={inquiryTitle}
-        onChange={(e) => onChangeInquiryTitle(e.target.value)}
+        value={inquiryForm.title}
+        onChange={(e) => updateInquiryForm('title', e.target.value)}
       />
 
       <CommonTextarea
         id="content"
         placeholder="문의 내용을 입력해주세요"
         label="문의내용"
-        value={inquiryContent}
-        onChange={(e) => onChangeInquiryContent(e.target.value)}
+        value={inquiryForm.content}
+        onChange={(e) => updateInquiryForm('content', e.target.value)}
         className="max-h-[130px] h-[130px] md:max-h-100 md:h-100"
       />
 

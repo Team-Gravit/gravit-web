@@ -2,30 +2,33 @@ import { useState } from 'react';
 
 import { SubmitInquiryBody } from '@/shared/api/@generated/zod-schemas';
 
-function useInquiryForm() {
-  const [inquiryType, setInquiryType] = useState('');
-  const [inquiryTitle, setInquiryTitle] = useState('');
-  const [inquiryContent, setInquiryContent] = useState('');
+interface InquiryForm {
+  type: string;
+  title: string;
+  content: string;
+}
 
-  const isValid = SubmitInquiryBody.safeParse({
-    type: inquiryType,
-    title: inquiryTitle,
-    content: inquiryContent,
-  }).success;
+const INITIAL_INQUIRY_FORM: InquiryForm = {
+  type: '',
+  title: '',
+  content: '',
+};
+
+function useInquiryForm() {
+  const [inquiryForm, setInquiryForm] = useState<InquiryForm>(INITIAL_INQUIRY_FORM);
+
+  const isValid = SubmitInquiryBody.safeParse(inquiryForm).success;
+
+  const updateInquiryForm = (field: keyof InquiryForm, value: string) => {
+    setInquiryForm((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
 
   return {
-    inquiryType,
-    onChangeInquiryType: (value: string) => {
-      setInquiryType(value);
-    },
-    inquiryTitle,
-    onChangeInquiryTitle: (value: string) => {
-      setInquiryTitle(value);
-    },
-    inquiryContent,
-    onChangeInquiryContent: (value: string) => {
-      setInquiryContent(value);
-    },
+    inquiryForm,
+    updateInquiryForm,
     isValid,
   };
 }
