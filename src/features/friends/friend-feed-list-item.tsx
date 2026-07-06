@@ -15,7 +15,7 @@ function FriendFeedListItem({ feed }: FriendFeedListItemProps) {
   const { feedId, actorNickname, actorProfileImgNumber, createdAt, message } = feed;
 
   return (
-    <li className="flex items-center justify-between md:px-6 py-5 md:py-4">
+    <li className="flex items-center justify-between py-5 md:py-4">
       <div className="flex items-center gap-3 md:gap-6">
         <Profile profileImgId={actorProfileImgNumber} size="sm" />
         <div className="flex flex-col md:flex-col-reverse gap-1 md:gap-0.5">
