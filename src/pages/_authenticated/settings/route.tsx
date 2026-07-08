@@ -2,7 +2,7 @@ import { createFileRoute, Outlet, useMatches } from '@tanstack/react-router';
 
 import useResponsive from '@/shared/model/use-responsive';
 import BackButtonMobileHeader from '@/shared/ui/layout/header/back-button-mobile-header';
-import Header from '@/widgets/header/ui/_header';
+import Header from '@/widgets/header/ui/header';
 
 export const Route = createFileRoute('/_authenticated/settings')({
   component: RouteComponent,

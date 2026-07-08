@@ -28,7 +28,6 @@ interface LeagueStatSectionProps {
 
 function LeagueStatSection({ stats }: LeagueStatSectionProps) {
   const leagueStats = getLeagueStats(stats);
-  console.log(leagueStats);
   return (
     <div className="flex items-center justify-center md:gap-6  md:mb-11">
       {leagueStats.map((stat, index) => (

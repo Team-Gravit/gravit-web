@@ -14,7 +14,6 @@ function RouteComponent() {
 
   if (isPending) return null;
   if (!data) return null;
-  console.log(data);
 
   return (
     <SectionCard title="리그 시즌 히스토리" description="시즌별 최종 티어 기록">
