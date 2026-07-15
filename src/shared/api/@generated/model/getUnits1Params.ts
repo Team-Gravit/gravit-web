@@ -6,13 +6,6 @@
  * OpenAPI spec version: 1.0.0
  */
 
-export type CreateChapterAlmostClearUserParams = {
-/**
- * 대상 유저 ID
- */
-userId: number;
-/**
- * 거의 클리어 상태로 만들 챕터 ID
- */
-chapterId: number;
+export type GetUnits1Params = {
+page?: number;
 };

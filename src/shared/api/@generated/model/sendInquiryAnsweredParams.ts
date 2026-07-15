@@ -6,13 +6,13 @@
  * OpenAPI spec version: 1.0.0
  */
 
-export type CreateChapterAlmostClearUserParams = {
+export type SendInquiryAnsweredParams = {
 /**
- * 대상 유저 ID
+ * 헤드라인에 삽입될 문의 제목
  */
-userId: number;
+title?: string;
 /**
- * 거의 클리어 상태로 만들 챕터 ID
+ * 딥링크 대상 문의 ID
  */
-chapterId: number;
+inquiryId?: number;
 };

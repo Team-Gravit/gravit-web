@@ -35,7 +35,7 @@ import { customInstance } from '../../mutator';
  * 리그 ID로 리그 정보를 조회합니다<br> <strong>리그 단건 조회는 현재 디자인상 사용하지 않아도 됩니다</strong>
  * @summary 리그 단건 조회
  */
-export const getLeague = (
+export const getLeague1 = (
     leagueId: number,
  signal?: AbortSignal
 ) => {
@@ -50,69 +50,69 @@ export const getLeague = (
 
 
 
-export const getGetLeagueQueryKey = (leagueId: number,) => {
+export const getGetLeague1QueryKey = (leagueId: number,) => {
     return [
     `/api/v1/league/${leagueId}`
     ] as const;
     }
 
 
-export const getGetLeagueQueryOptions = <TData = Awaited<ReturnType<typeof getLeague>>, TError = ErrorResponse>(leagueId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLeague>>, TError, TData>>, }
+export const getGetLeague1QueryOptions = <TData = Awaited<ReturnType<typeof getLeague1>>, TError = ErrorResponse>(leagueId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLeague1>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getGetLeagueQueryKey(leagueId);
+  const queryKey =  queryOptions?.queryKey ?? getGetLeague1QueryKey(leagueId);
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getLeague>>> = ({ signal }) => getLeague(leagueId, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getLeague1>>> = ({ signal }) => getLeague1(leagueId, signal);
 
 
 
 
 
-   return  { queryKey, queryFn, enabled: leagueId !== null && leagueId !== undefined, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getLeague>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+   return  { queryKey, queryFn, enabled: leagueId !== null && leagueId !== undefined, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getLeague1>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
-export type GetLeagueQueryResult = NonNullable<Awaited<ReturnType<typeof getLeague>>>
-export type GetLeagueQueryError = ErrorResponse
+export type GetLeague1QueryResult = NonNullable<Awaited<ReturnType<typeof getLeague1>>>
+export type GetLeague1QueryError = ErrorResponse
 
 
-export function useGetLeague<TData = Awaited<ReturnType<typeof getLeague>>, TError = ErrorResponse>(
- leagueId: number, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLeague>>, TError, TData>> & Pick<
+export function useGetLeague1<TData = Awaited<ReturnType<typeof getLeague1>>, TError = ErrorResponse>(
+ leagueId: number, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLeague1>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getLeague>>,
+          Awaited<ReturnType<typeof getLeague1>>,
           TError,
-          Awaited<ReturnType<typeof getLeague>>
+          Awaited<ReturnType<typeof getLeague1>>
         > , 'initialData'
       >, }
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetLeague<TData = Awaited<ReturnType<typeof getLeague>>, TError = ErrorResponse>(
- leagueId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLeague>>, TError, TData>> & Pick<
+export function useGetLeague1<TData = Awaited<ReturnType<typeof getLeague1>>, TError = ErrorResponse>(
+ leagueId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLeague1>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getLeague>>,
+          Awaited<ReturnType<typeof getLeague1>>,
           TError,
-          Awaited<ReturnType<typeof getLeague>>
+          Awaited<ReturnType<typeof getLeague1>>
         > , 'initialData'
       >, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetLeague<TData = Awaited<ReturnType<typeof getLeague>>, TError = ErrorResponse>(
- leagueId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLeague>>, TError, TData>>, }
+export function useGetLeague1<TData = Awaited<ReturnType<typeof getLeague1>>, TError = ErrorResponse>(
+ leagueId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLeague1>>, TError, TData>>, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary 리그 단건 조회
  */
 
-export function useGetLeague<TData = Awaited<ReturnType<typeof getLeague>>, TError = ErrorResponse>(
- leagueId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLeague>>, TError, TData>>, }
+export function useGetLeague1<TData = Awaited<ReturnType<typeof getLeague1>>, TError = ErrorResponse>(
+ leagueId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLeague1>>, TError, TData>>, }
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
-  const queryOptions = getGetLeagueQueryOptions(leagueId,options)
+  const queryOptions = getGetLeague1QueryOptions(leagueId,options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 

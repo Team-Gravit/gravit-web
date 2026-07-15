@@ -17,9 +17,15 @@ import type {
 
 import type {
   ErrorResponse,
+  SendCongratulationParams,
   SendConsecutiveLearningWarningParams,
+  SendFollowParams,
+  SendFriendActivityParams,
   SendInactivityParams,
-  SendNewContentParams
+  SendInquiryAnsweredParams,
+  SendNewContentParams,
+  SendNoticeParams,
+  SendSeasonEndingParams
 } from '../model';
 
 import { customInstance } from '../../mutator';
@@ -28,6 +34,194 @@ import { customInstance } from '../../mutator';
 
 
 /**
+ * 본인에게 SEASON_RESET 알림을 즉시 생성합니다(인앱 적재 + 푸시).<br>🔐 <strong>Jwt 필요</strong>
+ * @summary [테스트] 시즌 종료 + 새 시즌 시작 알림 발송
+ */
+export const sendSeasonReset = (
+
+ signal?: AbortSignal
+) => {
+
+
+      return customInstance<number>(
+      {url: `/api/v1/test/notifications/season-reset`, method: 'POST', signal
+    },
+      );
+    }
+
+
+
+export const getSendSeasonResetMutationOptions = <TError = ErrorResponse,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof sendSeasonReset>>, TError,void, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof sendSeasonReset>>, TError,void, TContext> => {
+
+const mutationKey = ['sendSeasonReset'];
+const {mutation: mutationOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof sendSeasonReset>>, void> = () => {
+
+
+          return  sendSeasonReset()
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type SendSeasonResetMutationResult = NonNullable<Awaited<ReturnType<typeof sendSeasonReset>>>
+
+    export type SendSeasonResetMutationError = ErrorResponse
+
+    /**
+ * @summary [테스트] 시즌 종료 + 새 시즌 시작 알림 발송
+ */
+export const useSendSeasonReset = <TError = ErrorResponse,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof sendSeasonReset>>, TError,void, TContext>, }
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof sendSeasonReset>>,
+        TError,
+        void,
+        TContext
+      > => {
+      return useMutation(getSendSeasonResetMutationOptions(options), queryClient);
+    }
+    /**
+ * 본인에게 SEASON_ENDING 알림을 즉시 생성합니다(인앱 적재 + 푸시).<br>🔐 <strong>Jwt 필요</strong><br><strong>daysBefore</strong>: 마일스톤 선택(7 또는 3). 일치하는 문구가 없으면 첫 마일스톤이 사용됩니다.
+ * @summary [테스트] 시즌 종료 임박 알림 발송
+ */
+export const sendSeasonEnding = (
+    params?: SendSeasonEndingParams,
+ signal?: AbortSignal
+) => {
+
+
+      return customInstance<number>(
+      {url: `/api/v1/test/notifications/season-ending`, method: 'POST',
+        params, signal
+    },
+      );
+    }
+
+
+
+export const getSendSeasonEndingMutationOptions = <TError = ErrorResponse,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof sendSeasonEnding>>, TError,{params?: SendSeasonEndingParams}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof sendSeasonEnding>>, TError,{params?: SendSeasonEndingParams}, TContext> => {
+
+const mutationKey = ['sendSeasonEnding'];
+const {mutation: mutationOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof sendSeasonEnding>>, {params?: SendSeasonEndingParams}> = (props) => {
+          const {params} = props ?? {};
+
+          return  sendSeasonEnding(params,)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type SendSeasonEndingMutationResult = NonNullable<Awaited<ReturnType<typeof sendSeasonEnding>>>
+
+    export type SendSeasonEndingMutationError = ErrorResponse
+
+    /**
+ * @summary [테스트] 시즌 종료 임박 알림 발송
+ */
+export const useSendSeasonEnding = <TError = ErrorResponse,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof sendSeasonEnding>>, TError,{params?: SendSeasonEndingParams}, TContext>, }
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof sendSeasonEnding>>,
+        TError,
+        {params?: SendSeasonEndingParams},
+        TContext
+      > => {
+      return useMutation(getSendSeasonEndingMutationOptions(options), queryClient);
+    }
+    /**
+ * 본인에게 NOTICE 알림을 즉시 생성합니다(인앱 only, 푸시 없음).<br>🔐 <strong>Jwt 필요</strong><br>헤드라인은 고정, <strong>title</strong>은 서브텍스트로 노출됩니다. <strong>noticeId</strong>는 딥링크 대상(targetId).
+ * @summary [테스트] 공지사항 알림 발송
+ */
+export const sendNotice = (
+    params?: SendNoticeParams,
+ signal?: AbortSignal
+) => {
+
+
+      return customInstance<number>(
+      {url: `/api/v1/test/notifications/notice`, method: 'POST',
+        params, signal
+    },
+      );
+    }
+
+
+
+export const getSendNoticeMutationOptions = <TError = ErrorResponse,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof sendNotice>>, TError,{params?: SendNoticeParams}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof sendNotice>>, TError,{params?: SendNoticeParams}, TContext> => {
+
+const mutationKey = ['sendNotice'];
+const {mutation: mutationOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof sendNotice>>, {params?: SendNoticeParams}> = (props) => {
+          const {params} = props ?? {};
+
+          return  sendNotice(params,)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type SendNoticeMutationResult = NonNullable<Awaited<ReturnType<typeof sendNotice>>>
+
+    export type SendNoticeMutationError = ErrorResponse
+
+    /**
+ * @summary [테스트] 공지사항 알림 발송
+ */
+export const useSendNotice = <TError = ErrorResponse,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof sendNotice>>, TError,{params?: SendNoticeParams}, TContext>, }
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof sendNotice>>,
+        TError,
+        {params?: SendNoticeParams},
+        TContext
+      > => {
+      return useMutation(getSendNoticeMutationOptions(options), queryClient);
+    }
+    /**
  * 토큰으로 식별된 <strong>본인</strong>에게 NEW_CONTENT 알림을 즉시 발송합니다.<br>🔐 <strong>Jwt 필요</strong> (수신자는 토큰의 유저로 결정됩니다)<br><strong>unitId</strong>: 딥링크 이동 대상이 되는 유닛 ID (FCM data의 targetId로 전달됩니다)<br>본인 기기에 FCM 토큰이 등록돼 있지 않으면 발송 없이 무시됩니다.
  * @summary [테스트] 새 콘텐츠 알림 발송
  */
@@ -91,6 +285,69 @@ export const useSendNewContent = <TError = ErrorResponse,
       return useMutation(getSendNewContentMutationOptions(options), queryClient);
     }
     /**
+ * 본인에게 INQUIRY_ANSWERED 알림을 즉시 생성합니다(인앱 적재 + 푸시).<br>🔐 <strong>Jwt 필요</strong><br>헤드라인은 <code>[title]에 답변이 달렸어요!</code>(제목 전체 삽입, 말줄임은 프론트 처리). <strong>inquiryId</strong>는 딥링크 대상(targetId).
+ * @summary [테스트] 문의 답변 알림 발송
+ */
+export const sendInquiryAnswered = (
+    params?: SendInquiryAnsweredParams,
+ signal?: AbortSignal
+) => {
+
+
+      return customInstance<number>(
+      {url: `/api/v1/test/notifications/inquiry-answered`, method: 'POST',
+        params, signal
+    },
+      );
+    }
+
+
+
+export const getSendInquiryAnsweredMutationOptions = <TError = ErrorResponse,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof sendInquiryAnswered>>, TError,{params?: SendInquiryAnsweredParams}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof sendInquiryAnswered>>, TError,{params?: SendInquiryAnsweredParams}, TContext> => {
+
+const mutationKey = ['sendInquiryAnswered'];
+const {mutation: mutationOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof sendInquiryAnswered>>, {params?: SendInquiryAnsweredParams}> = (props) => {
+          const {params} = props ?? {};
+
+          return  sendInquiryAnswered(params,)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type SendInquiryAnsweredMutationResult = NonNullable<Awaited<ReturnType<typeof sendInquiryAnswered>>>
+
+    export type SendInquiryAnsweredMutationError = ErrorResponse
+
+    /**
+ * @summary [테스트] 문의 답변 알림 발송
+ */
+export const useSendInquiryAnswered = <TError = ErrorResponse,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof sendInquiryAnswered>>, TError,{params?: SendInquiryAnsweredParams}, TContext>, }
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof sendInquiryAnswered>>,
+        TError,
+        {params?: SendInquiryAnsweredParams},
+        TContext
+      > => {
+      return useMutation(getSendInquiryAnsweredMutationOptions(options), queryClient);
+    }
+    /**
  * 토큰으로 식별된 <strong>본인</strong>에게 INACTIVITY 알림을 즉시 발송합니다.<br>🔐 <strong>Jwt 필요</strong> (수신자는 토큰의 유저로 결정됩니다)<br>미접속 일수 조건을 검사하지 않고 바로 발송합니다.<br><strong>inactiveDays</strong>: 메시지를 결정하는 미접속 일수. 7 / 14 / 30 / 60 / 90 은 전용 문구가 매칭되며, 그 외 값은 기본 문구가 사용됩니다.<br>본인 기기에 FCM 토큰이 등록돼 있지 않으면 발송 없이 무시됩니다.
  * @summary [테스트] 장기 미접속 알림 발송
  */
@@ -152,6 +409,132 @@ export const useSendInactivity = <TError = ErrorResponse,
         TContext
       > => {
       return useMutation(getSendInactivityMutationOptions(options), queryClient);
+    }
+    /**
+ * 실제 발행 흐름을 재사용해 <strong>actor의 SocialFeed를 새로 생성</strong>하고, actor를 팔로우한 유저들에게 UserFeed 배포 + FRIEND_ACTIVITY 알림을 발송합니다(인앱 only, 푸시 없음).<br>따라서 <strong>actor를 팔로우한 유저의 알림함/소셜 피드에서 축하 동기화까지 실제로 검증</strong>할 수 있습니다.<br>예) 21번 유저가 1번 유저를 팔로우한 상태에서 actorId=1로 호출하면, 21번 유저의 피드와 알림함에 동일 피드가 나타납니다.<br>⚠️ actor에게 팔로워가 없으면 배포/알림 대상이 없어 피드만 생성됩니다.<br>생성된 피드 ID는 팔로워의 GET /notifications(targetId) 또는 GET /social/feed(feedId)에서 확인할 수 있습니다.<br>🔐 <strong>Jwt 필요</strong><br><strong>actorId</strong>: 활동을 발생시킨 유저 ID(미지정 시 본인). 이 유저의 팔로워가 알림을 받습니다. <strong>eventType</strong>: PLANET_COMPLETE/STREAK_DAYS/TIER_PROMOTION/LEVEL_UP. <strong>eventValue</strong>: 문구에 들어갈 값(예: STREAK_DAYS면 일수).
+ * @summary [테스트] 친구 활동 알림 발송 (실제 피드 발행)
+ */
+export const sendFriendActivity = (
+    params?: SendFriendActivityParams,
+ signal?: AbortSignal
+) => {
+
+
+      return customInstance<number>(
+      {url: `/api/v1/test/notifications/friend-activity`, method: 'POST',
+        params, signal
+    },
+      );
+    }
+
+
+
+export const getSendFriendActivityMutationOptions = <TError = ErrorResponse,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof sendFriendActivity>>, TError,{params?: SendFriendActivityParams}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof sendFriendActivity>>, TError,{params?: SendFriendActivityParams}, TContext> => {
+
+const mutationKey = ['sendFriendActivity'];
+const {mutation: mutationOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof sendFriendActivity>>, {params?: SendFriendActivityParams}> = (props) => {
+          const {params} = props ?? {};
+
+          return  sendFriendActivity(params,)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type SendFriendActivityMutationResult = NonNullable<Awaited<ReturnType<typeof sendFriendActivity>>>
+
+    export type SendFriendActivityMutationError = ErrorResponse
+
+    /**
+ * @summary [테스트] 친구 활동 알림 발송 (실제 피드 발행)
+ */
+export const useSendFriendActivity = <TError = ErrorResponse,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof sendFriendActivity>>, TError,{params?: SendFriendActivityParams}, TContext>, }
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof sendFriendActivity>>,
+        TError,
+        {params?: SendFriendActivityParams},
+        TContext
+      > => {
+      return useMutation(getSendFriendActivityMutationOptions(options), queryClient);
+    }
+    /**
+ * 본인에게 FOLLOW 알림을 즉시 생성합니다(인앱 only, 푸시 없음).<br>🔐 <strong>Jwt 필요</strong><br><strong>followerId</strong>: 나를 팔로우한 유저 ID(메시지 닉네임·actor·맞팔 버튼에 사용). 미지정 시 본인 ID로 대체돼 항상 렌더링됩니다.
+ * @summary [테스트] 팔로우 알림 발송
+ */
+export const sendFollow = (
+    params?: SendFollowParams,
+ signal?: AbortSignal
+) => {
+
+
+      return customInstance<number>(
+      {url: `/api/v1/test/notifications/follow`, method: 'POST',
+        params, signal
+    },
+      );
+    }
+
+
+
+export const getSendFollowMutationOptions = <TError = ErrorResponse,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof sendFollow>>, TError,{params?: SendFollowParams}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof sendFollow>>, TError,{params?: SendFollowParams}, TContext> => {
+
+const mutationKey = ['sendFollow'];
+const {mutation: mutationOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof sendFollow>>, {params?: SendFollowParams}> = (props) => {
+          const {params} = props ?? {};
+
+          return  sendFollow(params,)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type SendFollowMutationResult = NonNullable<Awaited<ReturnType<typeof sendFollow>>>
+
+    export type SendFollowMutationError = ErrorResponse
+
+    /**
+ * @summary [테스트] 팔로우 알림 발송
+ */
+export const useSendFollow = <TError = ErrorResponse,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof sendFollow>>, TError,{params?: SendFollowParams}, TContext>, }
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof sendFollow>>,
+        TError,
+        {params?: SendFollowParams},
+        TContext
+      > => {
+      return useMutation(getSendFollowMutationOptions(options), queryClient);
     }
     /**
  * 토큰으로 식별된 <strong>본인</strong>에게 DAILY_INCOMPLETE 알림을 즉시 발송합니다.<br>🔐 <strong>Jwt 필요</strong> (수신자는 토큰의 유저로 결정됩니다)<br>학습 미완료 조건을 검사하지 않고 바로 발송합니다.<br>메시지는 사전 정의된 문구 중 무작위로 선택됩니다.<br>본인 기기에 FCM 토큰이 등록돼 있지 않으면 발송 없이 무시됩니다.
@@ -277,4 +660,67 @@ export const useSendConsecutiveLearningWarning = <TError = ErrorResponse,
         TContext
       > => {
       return useMutation(getSendConsecutiveLearningWarningMutationOptions(options), queryClient);
+    }
+    /**
+ * 본인에게 CONGRATULATION 알림을 즉시 생성합니다(인앱 only, 푸시 없음).<br>🔐 <strong>Jwt 필요</strong><br><strong>congratulatorId</strong>: 나를 축하한 유저 ID(메시지 닉네임에 사용). 미지정 시 본인 ID로 대체됩니다.
+ * @summary [테스트] 축하하기 받음 알림 발송
+ */
+export const sendCongratulation = (
+    params?: SendCongratulationParams,
+ signal?: AbortSignal
+) => {
+
+
+      return customInstance<number>(
+      {url: `/api/v1/test/notifications/congratulation`, method: 'POST',
+        params, signal
+    },
+      );
+    }
+
+
+
+export const getSendCongratulationMutationOptions = <TError = ErrorResponse,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof sendCongratulation>>, TError,{params?: SendCongratulationParams}, TContext>, }
+): UseMutationOptions<Awaited<ReturnType<typeof sendCongratulation>>, TError,{params?: SendCongratulationParams}, TContext> => {
+
+const mutationKey = ['sendCongratulation'];
+const {mutation: mutationOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof sendCongratulation>>, {params?: SendCongratulationParams}> = (props) => {
+          const {params} = props ?? {};
+
+          return  sendCongratulation(params,)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type SendCongratulationMutationResult = NonNullable<Awaited<ReturnType<typeof sendCongratulation>>>
+
+    export type SendCongratulationMutationError = ErrorResponse
+
+    /**
+ * @summary [테스트] 축하하기 받음 알림 발송
+ */
+export const useSendCongratulation = <TError = ErrorResponse,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof sendCongratulation>>, TError,{params?: SendCongratulationParams}, TContext>, }
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof sendCongratulation>>,
+        TError,
+        {params?: SendCongratulationParams},
+        TContext
+      > => {
+      return useMutation(getSendCongratulationMutationOptions(options), queryClient);
     }

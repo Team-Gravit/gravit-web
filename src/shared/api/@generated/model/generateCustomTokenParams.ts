@@ -7,6 +7,12 @@
  */
 
 export type GenerateCustomTokenParams = {
+/**
+ * 기준이 되는 기존 accessToken
+ */
 accessToken: string;
+/**
+ * 새 토큰 만료시간(분)
+ */
 newExpirationMinutes: number;
 };

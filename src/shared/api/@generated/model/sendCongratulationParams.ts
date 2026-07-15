@@ -6,13 +6,9 @@
  * OpenAPI spec version: 1.0.0
  */
 
-export type CreateChapterAlmostClearUserParams = {
+export type SendCongratulationParams = {
 /**
- * 대상 유저 ID
+ * 축하한 유저 ID(미지정 시 본인)
  */
-userId: number;
-/**
- * 거의 클리어 상태로 만들 챕터 ID
- */
-chapterId: number;
+congratulatorId?: number;
 };

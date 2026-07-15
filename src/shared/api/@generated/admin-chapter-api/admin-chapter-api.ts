@@ -29,7 +29,7 @@ import type {
   ChapterStatsResponse,
   ChapterUpdateRequest,
   GetChaptersParams,
-  GetUnitsParams,
+  GetUnits1Params,
   PageResponseChapterListItemResponse,
   PageResponseUnitListItemResponse
 } from '../model';
@@ -291,9 +291,9 @@ export function useGetChapters<TData = Awaited<ReturnType<typeof getChapters>>, 
 /**
  * @summary 챕터의 유닛 목록
  */
-export const getUnits = (
+export const getUnits1 = (
     chapterId: number,
-    params?: GetUnitsParams,
+    params?: GetUnits1Params,
  signal?: AbortSignal
 ) => {
 
@@ -308,75 +308,75 @@ export const getUnits = (
 
 
 
-export const getGetUnitsQueryKey = (chapterId: number,
-    params?: GetUnitsParams,) => {
+export const getGetUnits1QueryKey = (chapterId: number,
+    params?: GetUnits1Params,) => {
     return [
     `/api/v1/admin/chapters/${chapterId}/units`, ...(params ? [params] : [])
     ] as const;
     }
 
 
-export const getGetUnitsQueryOptions = <TData = Awaited<ReturnType<typeof getUnits>>, TError = unknown>(chapterId: number,
-    params?: GetUnitsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUnits>>, TError, TData>>, }
+export const getGetUnits1QueryOptions = <TData = Awaited<ReturnType<typeof getUnits1>>, TError = unknown>(chapterId: number,
+    params?: GetUnits1Params, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUnits1>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getGetUnitsQueryKey(chapterId,params);
+  const queryKey =  queryOptions?.queryKey ?? getGetUnits1QueryKey(chapterId,params);
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUnits>>> = ({ signal }) => getUnits(chapterId,params, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getUnits1>>> = ({ signal }) => getUnits1(chapterId,params, signal);
 
 
 
 
 
-   return  { queryKey, queryFn, enabled: chapterId !== null && chapterId !== undefined, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getUnits>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+   return  { queryKey, queryFn, enabled: chapterId !== null && chapterId !== undefined, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getUnits1>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
-export type GetUnitsQueryResult = NonNullable<Awaited<ReturnType<typeof getUnits>>>
-export type GetUnitsQueryError = unknown
+export type GetUnits1QueryResult = NonNullable<Awaited<ReturnType<typeof getUnits1>>>
+export type GetUnits1QueryError = unknown
 
 
-export function useGetUnits<TData = Awaited<ReturnType<typeof getUnits>>, TError = unknown>(
+export function useGetUnits1<TData = Awaited<ReturnType<typeof getUnits1>>, TError = unknown>(
  chapterId: number,
-    params: undefined |  GetUnitsParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUnits>>, TError, TData>> & Pick<
+    params: undefined |  GetUnits1Params, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUnits1>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getUnits>>,
+          Awaited<ReturnType<typeof getUnits1>>,
           TError,
-          Awaited<ReturnType<typeof getUnits>>
+          Awaited<ReturnType<typeof getUnits1>>
         > , 'initialData'
       >, }
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetUnits<TData = Awaited<ReturnType<typeof getUnits>>, TError = unknown>(
+export function useGetUnits1<TData = Awaited<ReturnType<typeof getUnits1>>, TError = unknown>(
  chapterId: number,
-    params?: GetUnitsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUnits>>, TError, TData>> & Pick<
+    params?: GetUnits1Params, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUnits1>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getUnits>>,
+          Awaited<ReturnType<typeof getUnits1>>,
           TError,
-          Awaited<ReturnType<typeof getUnits>>
+          Awaited<ReturnType<typeof getUnits1>>
         > , 'initialData'
       >, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetUnits<TData = Awaited<ReturnType<typeof getUnits>>, TError = unknown>(
+export function useGetUnits1<TData = Awaited<ReturnType<typeof getUnits1>>, TError = unknown>(
  chapterId: number,
-    params?: GetUnitsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUnits>>, TError, TData>>, }
+    params?: GetUnits1Params, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUnits1>>, TError, TData>>, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary 챕터의 유닛 목록
  */
 
-export function useGetUnits<TData = Awaited<ReturnType<typeof getUnits>>, TError = unknown>(
+export function useGetUnits1<TData = Awaited<ReturnType<typeof getUnits1>>, TError = unknown>(
  chapterId: number,
-    params?: GetUnitsParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUnits>>, TError, TData>>, }
+    params?: GetUnits1Params, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getUnits1>>, TError, TData>>, }
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
-  const queryOptions = getGetUnitsQueryOptions(chapterId,params,options)
+  const queryOptions = getGetUnits1QueryOptions(chapterId,params,options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 

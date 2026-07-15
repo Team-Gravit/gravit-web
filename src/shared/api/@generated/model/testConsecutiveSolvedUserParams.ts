@@ -7,6 +7,12 @@
  */
 
 export type TestConsecutiveSolvedUserParams = {
+/**
+ * 대상 유저 ID
+ */
 userId: number;
+/**
+ * 설정할 연속학습 일수
+ */
 consecutiveSolvedCount: number;
 };

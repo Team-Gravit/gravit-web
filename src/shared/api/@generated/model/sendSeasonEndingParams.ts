@@ -6,13 +6,9 @@
  * OpenAPI spec version: 1.0.0
  */
 
-export type CreateChapterAlmostClearUserParams = {
+export type SendSeasonEndingParams = {
 /**
- * 대상 유저 ID
+ * 시즌 종료까지 남은 일수 마일스톤(7/3)
  */
-userId: number;
-/**
- * 거의 클리어 상태로 만들 챕터 ID
- */
-chapterId: number;
+daysBefore?: number;
 };

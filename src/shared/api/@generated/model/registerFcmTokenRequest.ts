@@ -5,6 +5,7 @@
  * 앱센터 16.5기 동계 프로젝트 Gravit API Docs
  * OpenAPI spec version: 1.0.0
  */
+import type { RegisterFcmTokenRequestPlatform } from './registerFcmTokenRequestPlatform.ts';
 
 export interface RegisterFcmTokenRequest {
   /**
@@ -17,4 +18,6 @@ export interface RegisterFcmTokenRequest {
      * @minLength 1
      */
   fcmToken: string;
+  /** 디바이스 플랫폼 (웹은 푸시 미지원, ANDROID 토큰에만 푸시 발송) */
+  platform: RegisterFcmTokenRequestPlatform;
 }

@@ -7,7 +7,16 @@
  */
 
 export type CreateUserParams = {
+/**
+ * 유저 이메일
+ */
 email: string;
+/**
+ * 닉네임(2~8자, 한글/영문/숫자)
+ */
 nickname: string;
+/**
+ * 권한(ADMIN/USER)
+ */
 role: string;
 };

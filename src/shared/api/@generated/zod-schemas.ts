@@ -92,26 +92,65 @@ export const ConfirmQueryParams = zod.object({
 })
 
 
+/**
+ * 지정 userId 의 유저로 로그인 토큰(access/refresh)을 즉시 발급합니다.
+ * @summary [테스트] userId 로 로그인 토큰 발급
+ */
 export const LoginQueryParams = zod.object({
-  "userId": zod.number()
+  "userId": zod.number().describe('로그인할 유저 ID')
 })
 
 
+/**
+ * 이메일/닉네임/권한으로 유저를 즉시 생성하고 온보딩까지 완료한 뒤 토큰을 반환합니다.<br>실제 서버 제약과 동일하게 이메일·권한(ADMIN/USER)·닉네임(2~8자, 한글/영문/숫자)을 검증합니다.
+ * @summary [테스트] 치트 유저 생성
+ */
 export const CreateUserQueryParams = zod.object({
-  "email": zod.string(),
-  "nickname": zod.string(),
-  "role": zod.string()
+  "email": zod.string().describe('유저 이메일'),
+  "nickname": zod.string().describe('닉네임(2~8자, 한글\/영문\/숫자)'),
+  "role": zod.string().describe('권한(ADMIN\/USER)')
 })
 
 
+/**
+ * 해당 이메일을 가진 <strong>모든</strong> 유저(중복 가능)와 연관 데이터를 삭제합니다.<br>소셜/알림/문의/학습/리그/미션 등 users 를 참조하는 데이터를 FK 순서에 맞춰 함께 정리합니다.<br>삭제된 유저 수를 문자열로 반환하며, 대상이 없으면 404를 반환합니다.
+ * @summary [테스트] 유저 및 연관 데이터 삭제
+ */
 export const CleanQueryParams = zod.object({
-  "email": zod.string()
+  "email": zod.string().describe('삭제 대상 유저의 이메일')
 })
 
 
+/**
+ * 기존 accessToken 의 유저로, 지정한 만료시간(분)을 가진 새 accessToken 을 발급합니다.<br>토큰 만료 관련 시나리오 테스트에 사용합니다.
+ * @summary [테스트] 커스텀 만료시간 토큰 발급
+ */
 export const GenerateCustomTokenQueryParams = zod.object({
-  "accessToken": zod.string(),
-  "newExpirationMinutes": zod.number()
+  "accessToken": zod.string().describe('기준이 되는 기존 accessToken'),
+  "newExpirationMinutes": zod.number().describe('새 토큰 만료시간(분)')
+})
+
+
+/**
+ * 본인에게 SEASON_ENDING 알림을 즉시 생성합니다(인앱 적재 + 푸시).<br>🔐 <strong>Jwt 필요</strong><br><strong>daysBefore</strong>: 마일스톤 선택(7 또는 3). 일치하는 문구가 없으면 첫 마일스톤이 사용됩니다.
+ * @summary [테스트] 시즌 종료 임박 알림 발송
+ */
+export const sendSeasonEndingQueryDaysBeforeDefault = 7;
+
+export const SendSeasonEndingQueryParams = zod.object({
+  "daysBefore": zod.number().default(sendSeasonEndingQueryDaysBeforeDefault).describe('시즌 종료까지 남은 일수 마일스톤(7\/3)')
+})
+
+
+/**
+ * 본인에게 NOTICE 알림을 즉시 생성합니다(인앱 only, 푸시 없음).<br>🔐 <strong>Jwt 필요</strong><br>헤드라인은 고정, <strong>title</strong>은 서브텍스트로 노출됩니다. <strong>noticeId</strong>는 딥링크 대상(targetId).
+ * @summary [테스트] 공지사항 알림 발송
+ */
+export const sendNoticeQueryTitleDefault = `테스트 공지 제목`;
+
+export const SendNoticeQueryParams = zod.object({
+  "title": zod.string().default(sendNoticeQueryTitleDefault).describe('서브텍스트로 노출될 공지 제목'),
+  "noticeId": zod.number().optional().describe('딥링크 대상 공지 ID')
 })
 
 
@@ -121,6 +160,18 @@ export const GenerateCustomTokenQueryParams = zod.object({
  */
 export const SendNewContentQueryParams = zod.object({
   "unitId": zod.number().describe('딥링크 대상 유닛 ID')
+})
+
+
+/**
+ * 본인에게 INQUIRY_ANSWERED 알림을 즉시 생성합니다(인앱 적재 + 푸시).<br>🔐 <strong>Jwt 필요</strong><br>헤드라인은 <code>[title]에 답변이 달렸어요!</code>(제목 전체 삽입, 말줄임은 프론트 처리). <strong>inquiryId</strong>는 딥링크 대상(targetId).
+ * @summary [테스트] 문의 답변 알림 발송
+ */
+export const sendInquiryAnsweredQueryTitleDefault = `테스트 문의 제목`;
+
+export const SendInquiryAnsweredQueryParams = zod.object({
+  "title": zod.string().default(sendInquiryAnsweredQueryTitleDefault).describe('헤드라인에 삽입될 문의 제목'),
+  "inquiryId": zod.number().optional().describe('딥링크 대상 문의 ID')
 })
 
 
@@ -136,6 +187,29 @@ export const SendInactivityQueryParams = zod.object({
 
 
 /**
+ * 실제 발행 흐름을 재사용해 <strong>actor의 SocialFeed를 새로 생성</strong>하고, actor를 팔로우한 유저들에게 UserFeed 배포 + FRIEND_ACTIVITY 알림을 발송합니다(인앱 only, 푸시 없음).<br>따라서 <strong>actor를 팔로우한 유저의 알림함/소셜 피드에서 축하 동기화까지 실제로 검증</strong>할 수 있습니다.<br>예) 21번 유저가 1번 유저를 팔로우한 상태에서 actorId=1로 호출하면, 21번 유저의 피드와 알림함에 동일 피드가 나타납니다.<br>⚠️ actor에게 팔로워가 없으면 배포/알림 대상이 없어 피드만 생성됩니다.<br>생성된 피드 ID는 팔로워의 GET /notifications(targetId) 또는 GET /social/feed(feedId)에서 확인할 수 있습니다.<br>🔐 <strong>Jwt 필요</strong><br><strong>actorId</strong>: 활동을 발생시킨 유저 ID(미지정 시 본인). 이 유저의 팔로워가 알림을 받습니다. <strong>eventType</strong>: PLANET_COMPLETE/STREAK_DAYS/TIER_PROMOTION/LEVEL_UP. <strong>eventValue</strong>: 문구에 들어갈 값(예: STREAK_DAYS면 일수).
+ * @summary [테스트] 친구 활동 알림 발송 (실제 피드 발행)
+ */
+export const sendFriendActivityQueryEventTypeDefault = `STREAK_DAYS`;
+export const sendFriendActivityQueryEventValueDefault = `7`;
+
+export const SendFriendActivityQueryParams = zod.object({
+  "actorId": zod.number().optional().describe('활동을 발생시킨 유저 ID(미지정 시 본인). 이 유저의 팔로워가 알림을 받음'),
+  "eventType": zod.enum(['PLANET_COMPLETE', 'STREAK_DAYS', 'TIER_PROMOTION', 'LEVEL_UP']).default(sendFriendActivityQueryEventTypeDefault).describe('피드 이벤트 타입'),
+  "eventValue": zod.string().default(sendFriendActivityQueryEventValueDefault).describe('문구에 들어갈 값')
+})
+
+
+/**
+ * 본인에게 FOLLOW 알림을 즉시 생성합니다(인앱 only, 푸시 없음).<br>🔐 <strong>Jwt 필요</strong><br><strong>followerId</strong>: 나를 팔로우한 유저 ID(메시지 닉네임·actor·맞팔 버튼에 사용). 미지정 시 본인 ID로 대체돼 항상 렌더링됩니다.
+ * @summary [테스트] 팔로우 알림 발송
+ */
+export const SendFollowQueryParams = zod.object({
+  "followerId": zod.number().optional().describe('팔로우한 유저 ID(미지정 시 본인)')
+})
+
+
+/**
  * 토큰으로 식별된 <strong>본인</strong>에게 CONSECUTIVE_LEARNING_WARNING 알림을 즉시 발송합니다.<br>🔐 <strong>Jwt 필요</strong> (수신자는 토큰의 유저로 결정되며, 별도 userId를 받지 않습니다)<br>연속학습 일수 조건을 검사하지 않고 바로 발송합니다.<br><strong>consecutiveDays</strong>: 메시지에 표시될 연속학습 일수 (예: 3 → "오늘 학습을 하지 않으면 3일 연속학습이 끊겨요!")<br>본인 기기에 FCM 토큰이 등록돼 있지 않으면 발송 없이 무시됩니다.
  * @summary [테스트] 연속학습 끊길 위기 알림 발송
  */
@@ -146,26 +220,42 @@ export const SendConsecutiveLearningWarningQueryParams = zod.object({
 })
 
 
-export const PublishSeasonRolledOverEventQueryParams = zod.object({
-  "newSeasonKey": zod.string()
+/**
+ * 본인에게 CONGRATULATION 알림을 즉시 생성합니다(인앱 only, 푸시 없음).<br>🔐 <strong>Jwt 필요</strong><br><strong>congratulatorId</strong>: 나를 축하한 유저 ID(메시지 닉네임에 사용). 미지정 시 본인 ID로 대체됩니다.
+ * @summary [테스트] 축하하기 받음 알림 발송
+ */
+export const SendCongratulationQueryParams = zod.object({
+  "congratulatorId": zod.number().optional().describe('축하한 유저 ID(미지정 시 본인)')
 })
 
 
+/**
+ * NoticeCreatedEvent 를 발행해 실제 알림 경로(NotificationEventListener)를 태웁니다.<br>⚠️ 리스너가 NOTICE 알림을 <strong>전체 활성 유저</strong>에게 브로드캐스트 적재하므로 공유 환경에서는 주의하세요.
+ * @summary [테스트] 공지 생성 이벤트 발행
+ */
 export const PublishNoticeCreatedEventQueryParams = zod.object({
-  "noticeId": zod.number(),
-  "title": zod.string()
+  "noticeId": zod.number().describe('딥링크 대상 공지 ID'),
+  "title": zod.string().describe('서브텍스트로 노출될 공지 제목')
 })
 
 
+/**
+ * 지정 유저의 Learning 연속학습 일수(consecutiveSolvedDays)를 지정 값으로 설정하고 오늘 미해결(todaySolved=false) 상태로 만듭니다.<br>연속학습 끊길 위기 알림 등 연속학습 기반 로직을 테스트할 때 사용합니다.
+ * @summary [테스트] 연속학습 일수 강제 세팅
+ */
 export const TestConsecutiveSolvedUserQueryParams = zod.object({
-  "userId": zod.number(),
-  "consecutiveSolvedCount": zod.number()
+  "userId": zod.number().describe('대상 유저 ID'),
+  "consecutiveSolvedCount": zod.number().describe('설정할 연속학습 일수')
 })
 
 
+/**
+ * 지정 유저에게 해당 챕터의 레슨을 마지막 몇 개만 남기고 전부 제출 처리합니다.<br>챕터 완료 직전 상태(보상/승급 등)를 테스트할 때 사용합니다.
+ * @summary [테스트] 챕터 거의 클리어 상태 생성
+ */
 export const CreateChapterAlmostClearUserQueryParams = zod.object({
-  "userId": zod.number(),
-  "chapterId": zod.number()
+  "userId": zod.number().describe('대상 유저 ID'),
+  "chapterId": zod.number().describe('거의 클리어 상태로 만들 챕터 ID')
 })
 
 
@@ -183,7 +273,8 @@ export const FollowParams = zod.object({
 /**
  * 친구의 활동 피드 항목에 축하를 보냅니다.<br>
 축하받은 유저에게 5 LP가 지급됩니다.<br>
-동일 유저에게 하루 최대 3회까지 축하할 수 있습니다.<br>
+각 피드는 1회만 축하할 수 있으며, 축하 후에는 소셜 피드와 알림함 양쪽에서 '축하 완료(congratulated=true)' 상태로 표시됩니다.<br>
+동일 유저에게 하루 최대 3회까지 축하할 수 있으며, 이 횟수는 소셜 피드와 알림함에서 누른 축하를 합산합니다.<br>
 🔐 <strong>Jwt 필요</strong>
 
  * @summary 피드 항목 축하하기
@@ -366,7 +457,8 @@ export const FollowingParams = zod.object({
 
 export const RegisterFcmTokenBody = zod.object({
   "deviceId": zod.string().min(1).describe('클라이언트 디바이스 식별자(설치 단위 고유 ID)'),
-  "fcmToken": zod.string().min(1).describe('FCM 등록 토큰')
+  "fcmToken": zod.string().min(1).describe('FCM 등록 토큰'),
+  "platform": zod.enum(['ANDROID', 'WEB']).describe('디바이스 플랫폼 (웹은 푸시 미지원, ANDROID 토큰에만 푸시 발송)')
 })
 
 
@@ -817,7 +909,8 @@ export const GetFeedResponse = zod.object({
   "actorHandle": zod.string(),
   "message": zod.string(),
   "timeAgo": zod.string(),
-  "canCongratulate": zod.boolean(),
+  "congratulated": zod.boolean().describe('이 피드를 이미 축하했는지 여부. true면 \'축하 완료\' 상태로 노출한다'),
+  "canCongratulate": zod.boolean().describe('지금 축하 가능한지 여부. congratulated=true(완료)이거나 해당 유저 대상 하루 3회 소진 시 false'),
   "createdAt": zod.iso.datetime({"offset":true})
 })).describe('피드 목록')
 }).describe('피드 슬라이스 응답')
@@ -914,24 +1007,6 @@ export const AuthorizeUrlQueryParams = zod.object({
 
 
 /**
- * 로그인 유저의 알림 목록을 최신순으로 반환합니다. (20개/페이지)
-
-**actionType 결정 규칙:**
-- FOLLOW 타입: 현재 팔로우 관계 기준으로 동적 결정
-  - 상대를 아직 팔로우하지 않음 → `FOLLOW_BACK` (맞팔로우 버튼)
-  - 상대를 이미 팔로우 중 → `UNFOLLOW` (팔로우 취소 버튼)
-- 나머지 타입: 알림 타입에 고정된 actionType 반환
-
- * @summary 알림 인박스 조회
- */
-export const getInboxQueryPageDefault = 0;
-
-export const GetInboxQueryParams = zod.object({
-  "page": zod.number().default(getInboxQueryPageDefault).describe('0부터 시작하는 페이지 번호')
-})
-
-
-/**
  * 공지의 상세 내용을 조회합니다.
  * @summary 공지 상세 조회
  */
@@ -1002,7 +1077,7 @@ export const GetAllLessonInUnitParams = zod.object({
  * 리그 ID로 리그 정보를 조회합니다<br> <strong>리그 단건 조회는 현재 디자인상 사용하지 않아도 됩니다</strong>
  * @summary 리그 단건 조회
  */
-export const GetLeagueParams = zod.object({
+export const GetLeague1Params = zod.object({
   "leagueId": zod.number()
 })
 
@@ -1292,14 +1367,14 @@ export const GetChaptersQueryParams = zod.object({
 /**
  * @summary 챕터의 유닛 목록
  */
-export const GetUnitsParams = zod.object({
+export const GetUnits1Params = zod.object({
   "chapterId": zod.number()
 })
 
-export const getUnitsQueryPageDefault = 1;
+export const getUnits1QueryPageDefault = 1;
 
-export const GetUnitsQueryParams = zod.object({
-  "page": zod.number().default(getUnitsQueryPageDefault)
+export const GetUnits1QueryParams = zod.object({
+  "page": zod.number().default(getUnits1QueryPageDefault)
 })
 
 

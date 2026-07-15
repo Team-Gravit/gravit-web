@@ -6,13 +6,13 @@
  * OpenAPI spec version: 1.0.0
  */
 
-export type CreateChapterAlmostClearUserParams = {
+export type SendNoticeParams = {
 /**
- * 대상 유저 ID
+ * 서브텍스트로 노출될 공지 제목
  */
-userId: number;
+title?: string;
 /**
- * 거의 클리어 상태로 만들 챕터 ID
+ * 딥링크 대상 공지 ID
  */
-chapterId: number;
+noticeId?: number;
 };

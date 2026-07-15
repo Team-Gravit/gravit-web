@@ -7,5 +7,8 @@
  */
 
 export type CleanParams = {
+/**
+ * 삭제 대상 유저의 이메일
+ */
 email: string;
 };
