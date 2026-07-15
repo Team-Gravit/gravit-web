@@ -5,9 +5,10 @@ import Logo from '@/shared/assets/icons/logo.svg?react';
 import Profile from '@/shared/assets/icons/profile2.svg?react';
 import { cn } from '@/shared/lib/cn';
 import { getProfileColor } from '@/shared/lib/ProfileColor';
+import { useUserInfo } from '@/entities/sidebar/api/useUserInfo';
+import { Skeleton } from '@/shared/ui/skeleton/skeleton';
 
 interface HeaderContentProps {
-  profileImageNum: number;
   navList: { to: string; label: string }[];
   variant?: 'transparent' | 'solid';
 }
@@ -27,15 +28,11 @@ const headerVariantClass = {
   },
 };
 
-export default function HeaderContent({
-  profileImageNum,
-  navList,
-  variant = 'transparent',
-}: HeaderContentProps) {
+export default function HeaderContent({ navList, variant = 'transparent' }: HeaderContentProps) {
   return (
     <div
       className={cn(
-        'relative w-full rounded-full transition-all duration-1000',
+        'relative h-18 w-full rounded-full transition-all duration-1000',
         'glass-morphism-border after:rounded-full',
         headerVariantClass[variant].background,
       )}
@@ -51,10 +48,7 @@ export default function HeaderContent({
           showActiveStyle={variant === 'transparent'}
         />
 
-        <HeaderUserMenu
-          profileImageNum={profileImageNum}
-          className={headerVariantClass[variant].userMenuText}
-        />
+        <HeaderUserMenu className={headerVariantClass[variant].userMenuText} />
       </div>
     </div>
   );
@@ -90,25 +84,34 @@ function HeaderNav({
   );
 }
 
-function HeaderUserMenu({
-  profileImageNum,
-  className,
-}: {
-  profileImageNum: number;
-  className?: string;
-}) {
+function HeaderUserMenu({ className }: { className?: string }) {
   const handleLogout = useLogout();
+  const { data, isPending } = useUserInfo();
 
-  return (
-    <div className={cn('flex items-center gap-5 heading2', className)}>
-      <Profile
-        style={{ color: getProfileColor(profileImageNum) }}
-        className="size-12.5 aspect-square"
-      />
+  let userMenuContent = <div />;
 
-      <button type="button" onClick={handleLogout} className="cursor-pointer">
-        로그아웃
-      </button>
-    </div>
-  );
+  if (isPending) {
+    userMenuContent = (
+      <>
+        <Skeleton variant={'circular'} className="size-8 bg-white/10" />
+        <Skeleton textSize={'heading2'} width={62} className="bg-white/10" />
+      </>
+    );
+  }
+
+  if (data?.profileImgNumber) {
+    userMenuContent = (
+      <>
+        <Profile
+          style={{ color: getProfileColor(data.profileImgNumber) }}
+          className="size-8 aspect-square"
+        />
+        <button type="button" onClick={handleLogout} className="cursor-pointer">
+          로그아웃
+        </button>
+      </>
+    );
+  }
+
+  return <div className={cn('flex items-center gap-5 heading2', className)}>{userMenuContent}</div>;
 }
