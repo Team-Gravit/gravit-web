@@ -1,6 +1,6 @@
 import { useNavigate, useRouter } from '@tanstack/react-router';
 
-import LeftArrow from '@/shared/assets/icons/buttons/left-arrow.svg?react';
+import LeftArrow from '@/shared/assets/_icons/chevron-left.svg?react';
 import { cn } from '@/shared/lib/cn';
 
 interface HeaderBackButtonProps {
