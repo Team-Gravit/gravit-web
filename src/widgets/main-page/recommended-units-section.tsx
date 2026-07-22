@@ -1,24 +1,26 @@
-import type { RecommendedUnit } from '@/entities/learning/model/schema';
-import UnitCard from '@/features/learning/ui/unit-card';
-import Card from '@/shared/ui/card/card';
+import { useGetUnits } from '@/shared/api/@generated/mainpage-api/mainpage-api';
 
-export default function RecommendedUnitsSection({ units }: { units: RecommendedUnit[] }) {
-  return (
-    <Card>
-      <Card.Header>
-        <Card.Title>새 주제 시작하기</Card.Title>
-        <Card.Link to="/learning">전체 보기</Card.Link>
-      </Card.Header>
-      <div className="w-full flex-1 grid grid-cols-2 gap-4">
-        {units.map((unit) => (
-          <UnitCard
-            key={unit.unitId}
-            title={unit.chapterTitle}
-            lessonNum={unit.unitId}
-            chapterId={unit.chapterId}
-          />
-        ))}
-      </div>
-    </Card>
-  );
+import { toRecommendedUnitsViewModel } from './model';
+import RecommendedUnitsList from './recommended-units-list';
+import MainSectionError from './ui/main-section-error';
+
+/**
+ * 추천 유닛 섹션. 추천 유닛 목록을 조회해 프레젠테이션 컴포넌트에 전달합니다.
+ * - 로딩: 카드 껍데기(타이틀)는 유지하고 유닛 카드 영역만 스켈레톤(카드에 위임)
+ * - 에러: 카드 전체를 재시도 UI로 대체
+ */
+export default function RecommendedUnitsSection() {
+  const units = useGetUnits();
+
+  if (units.isError) {
+    return <MainSectionError label="추천 유닛" onRetry={() => void units.refetch()} />;
+  }
+
+  if (units.isPending) {
+    return <RecommendedUnitsList isLoading />;
+  }
+
+  if (!units.data) return null;
+
+  return <RecommendedUnitsList units={toRecommendedUnitsViewModel(units.data)} />;
 }
