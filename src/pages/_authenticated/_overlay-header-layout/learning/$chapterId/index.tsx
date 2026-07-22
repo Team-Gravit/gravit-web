@@ -5,7 +5,7 @@ import { useGetAllUnitInChapter } from '@/shared/api/@generated/unit-api/unit-ap
 import RightArrow from '@/shared/assets/_icons/chevron-right.svg?react';
 import { formatUnitIndex } from '@/shared/lib/format-unit-index';
 import ProgressBar from '@/shared/ui/progress-bar/progress-bar';
-export const Route = createFileRoute('/_authenticated/_fixed-header-layout/learning/$chapterId/')({
+export const Route = createFileRoute('/_authenticated/_overlay-header-layout/learning/$chapterId/')({
   component: RouteComponent,
 });
 

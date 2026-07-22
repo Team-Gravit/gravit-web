@@ -19,7 +19,7 @@ import { Route as AuthenticatedRouteRouteImport } from './../../pages/_authentic
 import { Route as IndexRouteImport } from './../../pages/index'
 import { Route as AuthenticatedSplatRouteImport } from './../../pages/_authenticated/$'
 import { Route as AuthenticatedSettingsRouteRouteImport } from './../../pages/_authenticated/settings/route'
-import { Route as AuthenticatedMainRouteRouteImport } from './../../pages/_authenticated/main/route'
+import { Route as AuthenticatedOverlayHeaderLayoutRouteRouteImport } from './../../pages/_authenticated/_overlay-header-layout/route'
 import { Route as AuthenticatedOnboardingRouteRouteImport } from './../../pages/_authenticated/_onboarding/route'
 import { Route as AuthenticatedFixedHeaderLayoutRouteRouteImport } from './../../pages/_authenticated/_fixed-header-layout/route'
 import { Route as AuthenticatedBlankLayoutRouteRouteImport } from './../../pages/_authenticated/_blank-layout/route'
@@ -33,9 +33,10 @@ import { Route as AuthenticatedFixedHeaderLayoutLeagueRouteImport } from './../.
 import { Route as AuthenticatedSettingsInquiryRouteRouteImport } from './../../pages/_authenticated/settings/inquiry/route'
 import { Route as AuthenticatedMyProfileLayoutRouteRouteImport } from './../../pages/_authenticated/my/_profile-layout/route'
 import { Route as AuthenticatedMyBlankProfileLayoutRouteRouteImport } from './../../pages/_authenticated/my/_blank-profile-layout/route'
+import { Route as AuthenticatedOverlayHeaderLayoutMainRouteRouteImport } from './../../pages/_authenticated/_overlay-header-layout/main/route'
 import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/route'
 import { Route as AuthenticatedSettingsInquiryIndexRouteImport } from './../../pages/_authenticated/settings/inquiry/index'
-import { Route as AuthenticatedFixedHeaderLayoutLearningIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/learning/index'
+import { Route as AuthenticatedOverlayHeaderLayoutLearningIndexRouteImport } from './../../pages/_authenticated/_overlay-header-layout/learning/index'
 import { Route as UserMeDeletePageRouteImport } from './../../pages/user.me.delete.page'
 import { Route as LoginOauth2CodeProviderRouteImport } from './../../pages/login/oauth2/code/$provider'
 import { Route as AuthenticatedSettingsInquiryNewRouteImport } from './../../pages/_authenticated/settings/inquiry/new'
@@ -45,15 +46,15 @@ import { Route as AuthenticatedMyProfileLayoutLearningRouteImport } from './../.
 import { Route as AuthenticatedMyProfileLayoutLeagueRouteImport } from './../../pages/_authenticated/my/_profile-layout/league'
 import { Route as AuthenticatedMyBlankProfileLayoutFollowRouteImport } from './../../pages/_authenticated/my/_blank-profile-layout/follow'
 import { Route as AuthenticatedMyBlankProfileLayoutEditRouteImport } from './../../pages/_authenticated/my/_blank-profile-layout/edit'
-import { Route as AuthenticatedFixedHeaderLayoutLearningChapterIdRouteRouteImport } from './../../pages/_authenticated/_fixed-header-layout/learning/$chapterId/route'
-import { Route as AuthenticatedFixedHeaderLayoutLearningChapterIdIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/learning/$chapterId/index'
+import { Route as AuthenticatedOverlayHeaderLayoutLearningChapterIdRouteRouteImport } from './../../pages/_authenticated/_overlay-header-layout/learning/$chapterId/route'
+import { Route as AuthenticatedOverlayHeaderLayoutLearningChapterIdIndexRouteImport } from './../../pages/_authenticated/_overlay-header-layout/learning/$chapterId/index'
 import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/index'
 import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserPrivacyRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/privacy'
 import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserEditRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/edit'
 import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserAddfriendRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/addfriend'
-import { Route as AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/learning/$chapterId/$unitId/index'
+import { Route as AuthenticatedOverlayHeaderLayoutLearningChapterIdUnitIdIndexRouteImport } from './../../pages/_authenticated/_overlay-header-layout/learning/$chapterId/$unitId/index'
 import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/index'
-import { Route as AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdConceptNoteRouteImport } from './../../pages/_authenticated/_fixed-header-layout/learning/$chapterId/$unitId/concept-note'
+import { Route as AuthenticatedOverlayHeaderLayoutLearningChapterIdUnitIdConceptNoteRouteImport } from './../../pages/_authenticated/_overlay-header-layout/learning/$chapterId/$unitId/concept-note'
 import { Route as AuthenticatedBlankLayoutLearningChapterIdUnitIdIncorrectProblemsRouteImport } from './../../pages/_authenticated/_blank-layout/learning.$chapterId.$unitId/incorrect-problems'
 import { Route as AuthenticatedBlankLayoutLearningChapterIdUnitIdBookmarkedProblemsRouteImport } from './../../pages/_authenticated/_blank-layout/learning.$chapterId.$unitId/bookmarked-problems'
 import { Route as AuthenticatedBlankLayoutLearningChapterIdUnitIdLessonIdRouteImport } from './../../pages/_authenticated/_blank-layout/learning.$chapterId.$unitId/$lessonId'
@@ -106,11 +107,11 @@ const AuthenticatedSettingsRouteRoute =
     path: '/settings',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
-const AuthenticatedMainRouteRoute = AuthenticatedMainRouteRouteImport.update({
-  id: '/main',
-  path: '/main',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
+const AuthenticatedOverlayHeaderLayoutRouteRoute =
+  AuthenticatedOverlayHeaderLayoutRouteRouteImport.update({
+    id: '/_overlay-header-layout',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedOnboardingRouteRoute =
   AuthenticatedOnboardingRouteRouteImport.update({
     id: '/_onboarding',
@@ -183,6 +184,12 @@ const AuthenticatedMyBlankProfileLayoutRouteRoute =
     id: '/_blank-profile-layout',
     getParentRoute: () => AuthenticatedMyRoute,
   } as any)
+const AuthenticatedOverlayHeaderLayoutMainRouteRoute =
+  AuthenticatedOverlayHeaderLayoutMainRouteRouteImport.update({
+    id: '/main',
+    path: '/main',
+    getParentRoute: () => AuthenticatedOverlayHeaderLayoutRouteRoute,
+  } as any)
 const AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRoute =
   AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRouteImport.update({
     id: '/_fixed-sidebar-layout',
@@ -194,11 +201,11 @@ const AuthenticatedSettingsInquiryIndexRoute =
     path: '/',
     getParentRoute: () => AuthenticatedSettingsInquiryRouteRoute,
   } as any)
-const AuthenticatedFixedHeaderLayoutLearningIndexRoute =
-  AuthenticatedFixedHeaderLayoutLearningIndexRouteImport.update({
+const AuthenticatedOverlayHeaderLayoutLearningIndexRoute =
+  AuthenticatedOverlayHeaderLayoutLearningIndexRouteImport.update({
     id: '/learning/',
     path: '/learning/',
-    getParentRoute: () => AuthenticatedFixedHeaderLayoutRouteRoute,
+    getParentRoute: () => AuthenticatedOverlayHeaderLayoutRouteRoute,
   } as any)
 const UserMeDeletePageRoute = UserMeDeletePageRouteImport.update({
   id: '/user/me/delete/page',
@@ -252,18 +259,18 @@ const AuthenticatedMyBlankProfileLayoutEditRoute =
     path: '/edit',
     getParentRoute: () => AuthenticatedMyBlankProfileLayoutRouteRoute,
   } as any)
-const AuthenticatedFixedHeaderLayoutLearningChapterIdRouteRoute =
-  AuthenticatedFixedHeaderLayoutLearningChapterIdRouteRouteImport.update({
+const AuthenticatedOverlayHeaderLayoutLearningChapterIdRouteRoute =
+  AuthenticatedOverlayHeaderLayoutLearningChapterIdRouteRouteImport.update({
     id: '/learning/$chapterId',
     path: '/learning/$chapterId',
-    getParentRoute: () => AuthenticatedFixedHeaderLayoutRouteRoute,
+    getParentRoute: () => AuthenticatedOverlayHeaderLayoutRouteRoute,
   } as any)
-const AuthenticatedFixedHeaderLayoutLearningChapterIdIndexRoute =
-  AuthenticatedFixedHeaderLayoutLearningChapterIdIndexRouteImport.update({
+const AuthenticatedOverlayHeaderLayoutLearningChapterIdIndexRoute =
+  AuthenticatedOverlayHeaderLayoutLearningChapterIdIndexRouteImport.update({
     id: '/',
     path: '/',
     getParentRoute: () =>
-      AuthenticatedFixedHeaderLayoutLearningChapterIdRouteRoute,
+      AuthenticatedOverlayHeaderLayoutLearningChapterIdRouteRoute,
   } as any)
 const AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserIndexRoute =
   AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserIndexRouteImport.update({
@@ -297,13 +304,15 @@ const AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserAddfriendRoute =
         AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRoute,
     } as any,
   )
-const AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdIndexRoute =
-  AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdIndexRouteImport.update({
-    id: '/$unitId/',
-    path: '/$unitId/',
-    getParentRoute: () =>
-      AuthenticatedFixedHeaderLayoutLearningChapterIdRouteRoute,
-  } as any)
+const AuthenticatedOverlayHeaderLayoutLearningChapterIdUnitIdIndexRoute =
+  AuthenticatedOverlayHeaderLayoutLearningChapterIdUnitIdIndexRouteImport.update(
+    {
+      id: '/$unitId/',
+      path: '/$unitId/',
+      getParentRoute: () =>
+        AuthenticatedOverlayHeaderLayoutLearningChapterIdRouteRoute,
+    } as any,
+  )
 const AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRoute =
   AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRouteImport.update(
     {
@@ -313,13 +322,13 @@ const AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRoute =
         AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRoute,
     } as any,
   )
-const AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdConceptNoteRoute =
-  AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdConceptNoteRouteImport.update(
+const AuthenticatedOverlayHeaderLayoutLearningChapterIdUnitIdConceptNoteRoute =
+  AuthenticatedOverlayHeaderLayoutLearningChapterIdUnitIdConceptNoteRouteImport.update(
     {
       id: '/$unitId/concept-note',
       path: '/$unitId/concept-note',
       getParentRoute: () =>
-        AuthenticatedFixedHeaderLayoutLearningChapterIdRouteRoute,
+        AuthenticatedOverlayHeaderLayoutLearningChapterIdRouteRoute,
     } as any,
   )
 const AuthenticatedBlankLayoutLearningChapterIdUnitIdIncorrectProblemsRoute =
@@ -368,9 +377,9 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/restore': typeof RestoreRoute
   '/terms': typeof TermsRoute
-  '/main': typeof AuthenticatedMainRouteRoute
   '/settings': typeof AuthenticatedSettingsRouteRouteWithChildren
   '/$': typeof AuthenticatedSplatRoute
+  '/main': typeof AuthenticatedOverlayHeaderLayoutMainRouteRoute
   '/my': typeof AuthenticatedMyProfileLayoutRouteRouteWithChildren
   '/settings/inquiry': typeof AuthenticatedSettingsInquiryRouteRouteWithChildren
   '/league': typeof AuthenticatedFixedHeaderLayoutLeagueRoute
@@ -380,7 +389,7 @@ export interface FileRoutesByFullPath {
   '/success': typeof AuthenticatedOnboardingSuccessRoute
   '/my/': typeof AuthenticatedMyIndexRoute
   '/settings/': typeof AuthenticatedSettingsIndexRoute
-  '/learning/$chapterId': typeof AuthenticatedFixedHeaderLayoutLearningChapterIdRouteRouteWithChildren
+  '/learning/$chapterId': typeof AuthenticatedOverlayHeaderLayoutLearningChapterIdRouteRouteWithChildren
   '/my/edit': typeof AuthenticatedMyBlankProfileLayoutEditRoute
   '/my/follow': typeof AuthenticatedMyBlankProfileLayoutFollowRoute
   '/my/league': typeof AuthenticatedMyProfileLayoutLeagueRoute
@@ -390,19 +399,19 @@ export interface FileRoutesByFullPath {
   '/settings/inquiry/new': typeof AuthenticatedSettingsInquiryNewRoute
   '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
   '/user/me/delete/page': typeof UserMeDeletePageRoute
-  '/learning': typeof AuthenticatedFixedHeaderLayoutLearningIndexRoute
+  '/learning': typeof AuthenticatedOverlayHeaderLayoutLearningIndexRoute
   '/settings/inquiry/': typeof AuthenticatedSettingsInquiryIndexRoute
   '/user/addfriend': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserAddfriendRoute
   '/user/edit': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserEditRoute
   '/user/privacy': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserPrivacyRoute
   '/user': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserIndexRoute
-  '/learning/$chapterId/': typeof AuthenticatedFixedHeaderLayoutLearningChapterIdIndexRoute
+  '/learning/$chapterId/': typeof AuthenticatedOverlayHeaderLayoutLearningChapterIdIndexRoute
   '/learning/$chapterId/$unitId/$lessonId': typeof AuthenticatedBlankLayoutLearningChapterIdUnitIdLessonIdRoute
   '/learning/$chapterId/$unitId/bookmarked-problems': typeof AuthenticatedBlankLayoutLearningChapterIdUnitIdBookmarkedProblemsRoute
   '/learning/$chapterId/$unitId/incorrect-problems': typeof AuthenticatedBlankLayoutLearningChapterIdUnitIdIncorrectProblemsRoute
-  '/learning/$chapterId/$unitId/concept-note': typeof AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdConceptNoteRoute
+  '/learning/$chapterId/$unitId/concept-note': typeof AuthenticatedOverlayHeaderLayoutLearningChapterIdUnitIdConceptNoteRoute
   '/user/notice': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRoute
-  '/learning/$chapterId/$unitId': typeof AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdIndexRoute
+  '/learning/$chapterId/$unitId': typeof AuthenticatedOverlayHeaderLayoutLearningChapterIdUnitIdIndexRoute
   '/user/notice/$page': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRoute
   '/user/notice/$page/$noticeId': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageNoticeIdIndexRoute
 }
@@ -411,8 +420,8 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/restore': typeof RestoreRoute
   '/terms': typeof TermsRoute
-  '/main': typeof AuthenticatedMainRouteRoute
   '/$': typeof AuthenticatedSplatRoute
+  '/main': typeof AuthenticatedOverlayHeaderLayoutMainRouteRoute
   '/my': typeof AuthenticatedMyIndexRoute
   '/league': typeof AuthenticatedFixedHeaderLayoutLeagueRoute
   '/mains': typeof AuthenticatedFixedHeaderLayoutMainsRoute
@@ -429,19 +438,19 @@ export interface FileRoutesByTo {
   '/settings/inquiry/new': typeof AuthenticatedSettingsInquiryNewRoute
   '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
   '/user/me/delete/page': typeof UserMeDeletePageRoute
-  '/learning': typeof AuthenticatedFixedHeaderLayoutLearningIndexRoute
+  '/learning': typeof AuthenticatedOverlayHeaderLayoutLearningIndexRoute
   '/settings/inquiry': typeof AuthenticatedSettingsInquiryIndexRoute
   '/user/addfriend': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserAddfriendRoute
   '/user/edit': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserEditRoute
   '/user/privacy': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserPrivacyRoute
   '/user': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserIndexRoute
-  '/learning/$chapterId': typeof AuthenticatedFixedHeaderLayoutLearningChapterIdIndexRoute
+  '/learning/$chapterId': typeof AuthenticatedOverlayHeaderLayoutLearningChapterIdIndexRoute
   '/learning/$chapterId/$unitId/$lessonId': typeof AuthenticatedBlankLayoutLearningChapterIdUnitIdLessonIdRoute
   '/learning/$chapterId/$unitId/bookmarked-problems': typeof AuthenticatedBlankLayoutLearningChapterIdUnitIdBookmarkedProblemsRoute
   '/learning/$chapterId/$unitId/incorrect-problems': typeof AuthenticatedBlankLayoutLearningChapterIdUnitIdIncorrectProblemsRoute
-  '/learning/$chapterId/$unitId/concept-note': typeof AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdConceptNoteRoute
+  '/learning/$chapterId/$unitId/concept-note': typeof AuthenticatedOverlayHeaderLayoutLearningChapterIdUnitIdConceptNoteRoute
   '/user/notice': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRoute
-  '/learning/$chapterId/$unitId': typeof AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdIndexRoute
+  '/learning/$chapterId/$unitId': typeof AuthenticatedOverlayHeaderLayoutLearningChapterIdUnitIdIndexRoute
   '/user/notice/$page': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRoute
   '/user/notice/$page/$noticeId': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageNoticeIdIndexRoute
 }
@@ -456,10 +465,11 @@ export interface FileRoutesById {
   '/_authenticated/_blank-layout': typeof AuthenticatedBlankLayoutRouteRouteWithChildren
   '/_authenticated/_fixed-header-layout': typeof AuthenticatedFixedHeaderLayoutRouteRouteWithChildren
   '/_authenticated/_onboarding': typeof AuthenticatedOnboardingRouteRouteWithChildren
-  '/_authenticated/main': typeof AuthenticatedMainRouteRoute
+  '/_authenticated/_overlay-header-layout': typeof AuthenticatedOverlayHeaderLayoutRouteRouteWithChildren
   '/_authenticated/settings': typeof AuthenticatedSettingsRouteRouteWithChildren
   '/_authenticated/$': typeof AuthenticatedSplatRoute
   '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRouteWithChildren
+  '/_authenticated/_overlay-header-layout/main': typeof AuthenticatedOverlayHeaderLayoutMainRouteRoute
   '/_authenticated/my': typeof AuthenticatedMyRouteWithChildren
   '/_authenticated/my/_blank-profile-layout': typeof AuthenticatedMyBlankProfileLayoutRouteRouteWithChildren
   '/_authenticated/my/_profile-layout': typeof AuthenticatedMyProfileLayoutRouteRouteWithChildren
@@ -471,7 +481,7 @@ export interface FileRoutesById {
   '/_authenticated/_onboarding/success': typeof AuthenticatedOnboardingSuccessRoute
   '/_authenticated/my/': typeof AuthenticatedMyIndexRoute
   '/_authenticated/settings/': typeof AuthenticatedSettingsIndexRoute
-  '/_authenticated/_fixed-header-layout/learning/$chapterId': typeof AuthenticatedFixedHeaderLayoutLearningChapterIdRouteRouteWithChildren
+  '/_authenticated/_overlay-header-layout/learning/$chapterId': typeof AuthenticatedOverlayHeaderLayoutLearningChapterIdRouteRouteWithChildren
   '/_authenticated/my/_blank-profile-layout/edit': typeof AuthenticatedMyBlankProfileLayoutEditRoute
   '/_authenticated/my/_blank-profile-layout/follow': typeof AuthenticatedMyBlankProfileLayoutFollowRoute
   '/_authenticated/my/_profile-layout/league': typeof AuthenticatedMyProfileLayoutLeagueRoute
@@ -481,19 +491,19 @@ export interface FileRoutesById {
   '/_authenticated/settings/inquiry/new': typeof AuthenticatedSettingsInquiryNewRoute
   '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
   '/user/me/delete/page': typeof UserMeDeletePageRoute
-  '/_authenticated/_fixed-header-layout/learning/': typeof AuthenticatedFixedHeaderLayoutLearningIndexRoute
+  '/_authenticated/_overlay-header-layout/learning/': typeof AuthenticatedOverlayHeaderLayoutLearningIndexRoute
   '/_authenticated/settings/inquiry/': typeof AuthenticatedSettingsInquiryIndexRoute
   '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/addfriend': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserAddfriendRoute
   '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/edit': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserEditRoute
   '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/privacy': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserPrivacyRoute
   '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserIndexRoute
-  '/_authenticated/_fixed-header-layout/learning/$chapterId/': typeof AuthenticatedFixedHeaderLayoutLearningChapterIdIndexRoute
+  '/_authenticated/_overlay-header-layout/learning/$chapterId/': typeof AuthenticatedOverlayHeaderLayoutLearningChapterIdIndexRoute
   '/_authenticated/_blank-layout/learning/$chapterId/$unitId/$lessonId': typeof AuthenticatedBlankLayoutLearningChapterIdUnitIdLessonIdRoute
   '/_authenticated/_blank-layout/learning/$chapterId/$unitId/bookmarked-problems': typeof AuthenticatedBlankLayoutLearningChapterIdUnitIdBookmarkedProblemsRoute
   '/_authenticated/_blank-layout/learning/$chapterId/$unitId/incorrect-problems': typeof AuthenticatedBlankLayoutLearningChapterIdUnitIdIncorrectProblemsRoute
-  '/_authenticated/_fixed-header-layout/learning/$chapterId/$unitId/concept-note': typeof AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdConceptNoteRoute
+  '/_authenticated/_overlay-header-layout/learning/$chapterId/$unitId/concept-note': typeof AuthenticatedOverlayHeaderLayoutLearningChapterIdUnitIdConceptNoteRoute
   '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRoute
-  '/_authenticated/_fixed-header-layout/learning/$chapterId/$unitId/': typeof AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdIndexRoute
+  '/_authenticated/_overlay-header-layout/learning/$chapterId/$unitId/': typeof AuthenticatedOverlayHeaderLayoutLearningChapterIdUnitIdIndexRoute
   '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageIndexRoute
   '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/$noticeId/': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePageNoticeIdIndexRoute
 }
@@ -504,9 +514,9 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/restore'
     | '/terms'
-    | '/main'
     | '/settings'
     | '/$'
+    | '/main'
     | '/my'
     | '/settings/inquiry'
     | '/league'
@@ -547,8 +557,8 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/restore'
     | '/terms'
-    | '/main'
     | '/$'
+    | '/main'
     | '/my'
     | '/league'
     | '/mains'
@@ -591,10 +601,11 @@ export interface FileRouteTypes {
     | '/_authenticated/_blank-layout'
     | '/_authenticated/_fixed-header-layout'
     | '/_authenticated/_onboarding'
-    | '/_authenticated/main'
+    | '/_authenticated/_overlay-header-layout'
     | '/_authenticated/settings'
     | '/_authenticated/$'
     | '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout'
+    | '/_authenticated/_overlay-header-layout/main'
     | '/_authenticated/my'
     | '/_authenticated/my/_blank-profile-layout'
     | '/_authenticated/my/_profile-layout'
@@ -606,7 +617,7 @@ export interface FileRouteTypes {
     | '/_authenticated/_onboarding/success'
     | '/_authenticated/my/'
     | '/_authenticated/settings/'
-    | '/_authenticated/_fixed-header-layout/learning/$chapterId'
+    | '/_authenticated/_overlay-header-layout/learning/$chapterId'
     | '/_authenticated/my/_blank-profile-layout/edit'
     | '/_authenticated/my/_blank-profile-layout/follow'
     | '/_authenticated/my/_profile-layout/league'
@@ -616,19 +627,19 @@ export interface FileRouteTypes {
     | '/_authenticated/settings/inquiry/new'
     | '/login/oauth2/code/$provider'
     | '/user/me/delete/page'
-    | '/_authenticated/_fixed-header-layout/learning/'
+    | '/_authenticated/_overlay-header-layout/learning/'
     | '/_authenticated/settings/inquiry/'
     | '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/addfriend'
     | '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/edit'
     | '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/privacy'
     | '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/'
-    | '/_authenticated/_fixed-header-layout/learning/$chapterId/'
+    | '/_authenticated/_overlay-header-layout/learning/$chapterId/'
     | '/_authenticated/_blank-layout/learning/$chapterId/$unitId/$lessonId'
     | '/_authenticated/_blank-layout/learning/$chapterId/$unitId/bookmarked-problems'
     | '/_authenticated/_blank-layout/learning/$chapterId/$unitId/incorrect-problems'
-    | '/_authenticated/_fixed-header-layout/learning/$chapterId/$unitId/concept-note'
+    | '/_authenticated/_overlay-header-layout/learning/$chapterId/$unitId/concept-note'
     | '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/'
-    | '/_authenticated/_fixed-header-layout/learning/$chapterId/$unitId/'
+    | '/_authenticated/_overlay-header-layout/learning/$chapterId/$unitId/'
     | '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/'
     | '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/$page/$noticeId/'
   fileRoutesById: FileRoutesById
@@ -709,11 +720,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSettingsRouteRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/main': {
-      id: '/_authenticated/main'
-      path: '/main'
-      fullPath: '/main'
-      preLoaderRoute: typeof AuthenticatedMainRouteRouteImport
+    '/_authenticated/_overlay-header-layout': {
+      id: '/_authenticated/_overlay-header-layout'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof AuthenticatedOverlayHeaderLayoutRouteRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/_onboarding': {
@@ -807,6 +818,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedMyBlankProfileLayoutRouteRouteImport
       parentRoute: typeof AuthenticatedMyRoute
     }
+    '/_authenticated/_overlay-header-layout/main': {
+      id: '/_authenticated/_overlay-header-layout/main'
+      path: '/main'
+      fullPath: '/main'
+      preLoaderRoute: typeof AuthenticatedOverlayHeaderLayoutMainRouteRouteImport
+      parentRoute: typeof AuthenticatedOverlayHeaderLayoutRouteRoute
+    }
     '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout': {
       id: '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout'
       path: ''
@@ -821,12 +839,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSettingsInquiryIndexRouteImport
       parentRoute: typeof AuthenticatedSettingsInquiryRouteRoute
     }
-    '/_authenticated/_fixed-header-layout/learning/': {
-      id: '/_authenticated/_fixed-header-layout/learning/'
+    '/_authenticated/_overlay-header-layout/learning/': {
+      id: '/_authenticated/_overlay-header-layout/learning/'
       path: '/learning'
       fullPath: '/learning'
-      preLoaderRoute: typeof AuthenticatedFixedHeaderLayoutLearningIndexRouteImport
-      parentRoute: typeof AuthenticatedFixedHeaderLayoutRouteRoute
+      preLoaderRoute: typeof AuthenticatedOverlayHeaderLayoutLearningIndexRouteImport
+      parentRoute: typeof AuthenticatedOverlayHeaderLayoutRouteRoute
     }
     '/user/me/delete/page': {
       id: '/user/me/delete/page'
@@ -891,19 +909,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedMyBlankProfileLayoutEditRouteImport
       parentRoute: typeof AuthenticatedMyBlankProfileLayoutRouteRoute
     }
-    '/_authenticated/_fixed-header-layout/learning/$chapterId': {
-      id: '/_authenticated/_fixed-header-layout/learning/$chapterId'
+    '/_authenticated/_overlay-header-layout/learning/$chapterId': {
+      id: '/_authenticated/_overlay-header-layout/learning/$chapterId'
       path: '/learning/$chapterId'
       fullPath: '/learning/$chapterId'
-      preLoaderRoute: typeof AuthenticatedFixedHeaderLayoutLearningChapterIdRouteRouteImport
-      parentRoute: typeof AuthenticatedFixedHeaderLayoutRouteRoute
+      preLoaderRoute: typeof AuthenticatedOverlayHeaderLayoutLearningChapterIdRouteRouteImport
+      parentRoute: typeof AuthenticatedOverlayHeaderLayoutRouteRoute
     }
-    '/_authenticated/_fixed-header-layout/learning/$chapterId/': {
-      id: '/_authenticated/_fixed-header-layout/learning/$chapterId/'
+    '/_authenticated/_overlay-header-layout/learning/$chapterId/': {
+      id: '/_authenticated/_overlay-header-layout/learning/$chapterId/'
       path: '/'
       fullPath: '/learning/$chapterId/'
-      preLoaderRoute: typeof AuthenticatedFixedHeaderLayoutLearningChapterIdIndexRouteImport
-      parentRoute: typeof AuthenticatedFixedHeaderLayoutLearningChapterIdRouteRoute
+      preLoaderRoute: typeof AuthenticatedOverlayHeaderLayoutLearningChapterIdIndexRouteImport
+      parentRoute: typeof AuthenticatedOverlayHeaderLayoutLearningChapterIdRouteRoute
     }
     '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/': {
       id: '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/'
@@ -933,12 +951,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserAddfriendRouteImport
       parentRoute: typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRoute
     }
-    '/_authenticated/_fixed-header-layout/learning/$chapterId/$unitId/': {
-      id: '/_authenticated/_fixed-header-layout/learning/$chapterId/$unitId/'
+    '/_authenticated/_overlay-header-layout/learning/$chapterId/$unitId/': {
+      id: '/_authenticated/_overlay-header-layout/learning/$chapterId/$unitId/'
       path: '/$unitId'
       fullPath: '/learning/$chapterId/$unitId'
-      preLoaderRoute: typeof AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdIndexRouteImport
-      parentRoute: typeof AuthenticatedFixedHeaderLayoutLearningChapterIdRouteRoute
+      preLoaderRoute: typeof AuthenticatedOverlayHeaderLayoutLearningChapterIdUnitIdIndexRouteImport
+      parentRoute: typeof AuthenticatedOverlayHeaderLayoutLearningChapterIdRouteRoute
     }
     '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/': {
       id: '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/notice/'
@@ -947,12 +965,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticeIndexRouteImport
       parentRoute: typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRoute
     }
-    '/_authenticated/_fixed-header-layout/learning/$chapterId/$unitId/concept-note': {
-      id: '/_authenticated/_fixed-header-layout/learning/$chapterId/$unitId/concept-note'
+    '/_authenticated/_overlay-header-layout/learning/$chapterId/$unitId/concept-note': {
+      id: '/_authenticated/_overlay-header-layout/learning/$chapterId/$unitId/concept-note'
       path: '/$unitId/concept-note'
       fullPath: '/learning/$chapterId/$unitId/concept-note'
-      preLoaderRoute: typeof AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdConceptNoteRouteImport
-      parentRoute: typeof AuthenticatedFixedHeaderLayoutLearningChapterIdRouteRoute
+      preLoaderRoute: typeof AuthenticatedOverlayHeaderLayoutLearningChapterIdUnitIdConceptNoteRouteImport
+      parentRoute: typeof AuthenticatedOverlayHeaderLayoutLearningChapterIdRouteRoute
     }
     '/_authenticated/_blank-layout/learning/$chapterId/$unitId/incorrect-problems': {
       id: '/_authenticated/_blank-layout/learning/$chapterId/$unitId/incorrect-problems'
@@ -1046,34 +1064,11 @@ const AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRouteWithChildren =
     AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRouteChildren,
   )
 
-interface AuthenticatedFixedHeaderLayoutLearningChapterIdRouteRouteChildren {
-  AuthenticatedFixedHeaderLayoutLearningChapterIdIndexRoute: typeof AuthenticatedFixedHeaderLayoutLearningChapterIdIndexRoute
-  AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdConceptNoteRoute: typeof AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdConceptNoteRoute
-  AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdIndexRoute: typeof AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdIndexRoute
-}
-
-const AuthenticatedFixedHeaderLayoutLearningChapterIdRouteRouteChildren: AuthenticatedFixedHeaderLayoutLearningChapterIdRouteRouteChildren =
-  {
-    AuthenticatedFixedHeaderLayoutLearningChapterIdIndexRoute:
-      AuthenticatedFixedHeaderLayoutLearningChapterIdIndexRoute,
-    AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdConceptNoteRoute:
-      AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdConceptNoteRoute,
-    AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdIndexRoute:
-      AuthenticatedFixedHeaderLayoutLearningChapterIdUnitIdIndexRoute,
-  }
-
-const AuthenticatedFixedHeaderLayoutLearningChapterIdRouteRouteWithChildren =
-  AuthenticatedFixedHeaderLayoutLearningChapterIdRouteRoute._addFileChildren(
-    AuthenticatedFixedHeaderLayoutLearningChapterIdRouteRouteChildren,
-  )
-
 interface AuthenticatedFixedHeaderLayoutRouteRouteChildren {
   AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRoute: typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRouteWithChildren
   AuthenticatedFixedHeaderLayoutLeagueRoute: typeof AuthenticatedFixedHeaderLayoutLeagueRoute
   AuthenticatedFixedHeaderLayoutMainsRoute: typeof AuthenticatedFixedHeaderLayoutMainsRoute
   AuthenticatedFixedHeaderLayoutTestRoute: typeof AuthenticatedFixedHeaderLayoutTestRoute
-  AuthenticatedFixedHeaderLayoutLearningChapterIdRouteRoute: typeof AuthenticatedFixedHeaderLayoutLearningChapterIdRouteRouteWithChildren
-  AuthenticatedFixedHeaderLayoutLearningIndexRoute: typeof AuthenticatedFixedHeaderLayoutLearningIndexRoute
 }
 
 const AuthenticatedFixedHeaderLayoutRouteRouteChildren: AuthenticatedFixedHeaderLayoutRouteRouteChildren =
@@ -1086,10 +1081,6 @@ const AuthenticatedFixedHeaderLayoutRouteRouteChildren: AuthenticatedFixedHeader
       AuthenticatedFixedHeaderLayoutMainsRoute,
     AuthenticatedFixedHeaderLayoutTestRoute:
       AuthenticatedFixedHeaderLayoutTestRoute,
-    AuthenticatedFixedHeaderLayoutLearningChapterIdRouteRoute:
-      AuthenticatedFixedHeaderLayoutLearningChapterIdRouteRouteWithChildren,
-    AuthenticatedFixedHeaderLayoutLearningIndexRoute:
-      AuthenticatedFixedHeaderLayoutLearningIndexRoute,
   }
 
 const AuthenticatedFixedHeaderLayoutRouteRouteWithChildren =
@@ -1112,6 +1103,48 @@ const AuthenticatedOnboardingRouteRouteChildren: AuthenticatedOnboardingRouteRou
 const AuthenticatedOnboardingRouteRouteWithChildren =
   AuthenticatedOnboardingRouteRoute._addFileChildren(
     AuthenticatedOnboardingRouteRouteChildren,
+  )
+
+interface AuthenticatedOverlayHeaderLayoutLearningChapterIdRouteRouteChildren {
+  AuthenticatedOverlayHeaderLayoutLearningChapterIdIndexRoute: typeof AuthenticatedOverlayHeaderLayoutLearningChapterIdIndexRoute
+  AuthenticatedOverlayHeaderLayoutLearningChapterIdUnitIdConceptNoteRoute: typeof AuthenticatedOverlayHeaderLayoutLearningChapterIdUnitIdConceptNoteRoute
+  AuthenticatedOverlayHeaderLayoutLearningChapterIdUnitIdIndexRoute: typeof AuthenticatedOverlayHeaderLayoutLearningChapterIdUnitIdIndexRoute
+}
+
+const AuthenticatedOverlayHeaderLayoutLearningChapterIdRouteRouteChildren: AuthenticatedOverlayHeaderLayoutLearningChapterIdRouteRouteChildren =
+  {
+    AuthenticatedOverlayHeaderLayoutLearningChapterIdIndexRoute:
+      AuthenticatedOverlayHeaderLayoutLearningChapterIdIndexRoute,
+    AuthenticatedOverlayHeaderLayoutLearningChapterIdUnitIdConceptNoteRoute:
+      AuthenticatedOverlayHeaderLayoutLearningChapterIdUnitIdConceptNoteRoute,
+    AuthenticatedOverlayHeaderLayoutLearningChapterIdUnitIdIndexRoute:
+      AuthenticatedOverlayHeaderLayoutLearningChapterIdUnitIdIndexRoute,
+  }
+
+const AuthenticatedOverlayHeaderLayoutLearningChapterIdRouteRouteWithChildren =
+  AuthenticatedOverlayHeaderLayoutLearningChapterIdRouteRoute._addFileChildren(
+    AuthenticatedOverlayHeaderLayoutLearningChapterIdRouteRouteChildren,
+  )
+
+interface AuthenticatedOverlayHeaderLayoutRouteRouteChildren {
+  AuthenticatedOverlayHeaderLayoutMainRouteRoute: typeof AuthenticatedOverlayHeaderLayoutMainRouteRoute
+  AuthenticatedOverlayHeaderLayoutLearningChapterIdRouteRoute: typeof AuthenticatedOverlayHeaderLayoutLearningChapterIdRouteRouteWithChildren
+  AuthenticatedOverlayHeaderLayoutLearningIndexRoute: typeof AuthenticatedOverlayHeaderLayoutLearningIndexRoute
+}
+
+const AuthenticatedOverlayHeaderLayoutRouteRouteChildren: AuthenticatedOverlayHeaderLayoutRouteRouteChildren =
+  {
+    AuthenticatedOverlayHeaderLayoutMainRouteRoute:
+      AuthenticatedOverlayHeaderLayoutMainRouteRoute,
+    AuthenticatedOverlayHeaderLayoutLearningChapterIdRouteRoute:
+      AuthenticatedOverlayHeaderLayoutLearningChapterIdRouteRouteWithChildren,
+    AuthenticatedOverlayHeaderLayoutLearningIndexRoute:
+      AuthenticatedOverlayHeaderLayoutLearningIndexRoute,
+  }
+
+const AuthenticatedOverlayHeaderLayoutRouteRouteWithChildren =
+  AuthenticatedOverlayHeaderLayoutRouteRoute._addFileChildren(
+    AuthenticatedOverlayHeaderLayoutRouteRouteChildren,
   )
 
 interface AuthenticatedSettingsInquiryRouteRouteChildren {
@@ -1212,7 +1245,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedBlankLayoutRouteRoute: typeof AuthenticatedBlankLayoutRouteRouteWithChildren
   AuthenticatedFixedHeaderLayoutRouteRoute: typeof AuthenticatedFixedHeaderLayoutRouteRouteWithChildren
   AuthenticatedOnboardingRouteRoute: typeof AuthenticatedOnboardingRouteRouteWithChildren
-  AuthenticatedMainRouteRoute: typeof AuthenticatedMainRouteRoute
+  AuthenticatedOverlayHeaderLayoutRouteRoute: typeof AuthenticatedOverlayHeaderLayoutRouteRouteWithChildren
   AuthenticatedSettingsRouteRoute: typeof AuthenticatedSettingsRouteRouteWithChildren
   AuthenticatedSplatRoute: typeof AuthenticatedSplatRoute
   AuthenticatedMyRoute: typeof AuthenticatedMyRouteWithChildren
@@ -1225,7 +1258,8 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
     AuthenticatedFixedHeaderLayoutRouteRouteWithChildren,
   AuthenticatedOnboardingRouteRoute:
     AuthenticatedOnboardingRouteRouteWithChildren,
-  AuthenticatedMainRouteRoute: AuthenticatedMainRouteRoute,
+  AuthenticatedOverlayHeaderLayoutRouteRoute:
+    AuthenticatedOverlayHeaderLayoutRouteRouteWithChildren,
   AuthenticatedSettingsRouteRoute: AuthenticatedSettingsRouteRouteWithChildren,
   AuthenticatedSplatRoute: AuthenticatedSplatRoute,
   AuthenticatedMyRoute: AuthenticatedMyRouteWithChildren,

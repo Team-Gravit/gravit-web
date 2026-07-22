@@ -4,7 +4,7 @@ import { useFetchChapters } from '@/entities/learning/model/hooks';
 import ChapterCard from '@/features/learning/_ChapterCard';
 import Banner from '@/shared/ui/banner/Banner';
 
-export const Route = createFileRoute('/_authenticated/_fixed-header-layout/learning/')({
+export const Route = createFileRoute('/_authenticated/_overlay-header-layout/learning/')({
   component: RouteComponent,
 });
 

@@ -1,5 +1,4 @@
 import HeroSection from '@/shared/ui/hero/hero-section';
-import Header from '@/widgets/header/ui/header';
 import ContinueLearningSection from '@/widgets/main-page/continue-learning-section';
 import GrowthSection from '@/widgets/main-page/growth-section';
 import MainGreeting from '@/widgets/main-page/main-greeting';
@@ -10,7 +9,6 @@ import StreakSection from '@/widgets/main-page/streak-section';
 export default function MainDesktop() {
   return (
     <div className="flex flex-col min-h-screen w-full">
-      <Header />
       <HeroSection>
         <HeroSection.Content className="text-white">
           <MainGreeting variant="desktop" />

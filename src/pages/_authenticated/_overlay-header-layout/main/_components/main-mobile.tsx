@@ -19,7 +19,6 @@ export default function MainMobile() {
         <div className="p-4 md:py-0">
           <div className="w-full flex flex-col gap-4">
             <StreakSection />
-
             <div className="flex h-[156px] w-full gap-4">
               <MissionSection className="h-full min-w-0 flex-1" />
               <RecentUnitSection className="h-full min-w-0 flex-1" />

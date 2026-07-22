@@ -1,20 +1,22 @@
 import { Link } from '@tanstack/react-router';
 
+import { useUserInfo } from '@/entities/sidebar/api/useUserInfo';
 import useLogout from '@/features/auth/logout';
 import Logo from '@/shared/assets/icons/logo.svg?react';
 import Profile from '@/shared/assets/icons/profile2.svg?react';
 import { cn } from '@/shared/lib/cn';
 import { getProfileColor } from '@/shared/lib/ProfileColor';
-import { useUserInfo } from '@/entities/sidebar/api/useUserInfo';
 import { Skeleton } from '@/shared/ui/skeleton/skeleton';
+
+export type HeaderVariant = 'overlay' | 'solid';
 
 interface HeaderContentProps {
   navList: { to: string; label: string }[];
-  variant?: 'transparent' | 'solid';
+  variant: HeaderVariant;
 }
 
 const headerVariantClass = {
-  transparent: {
+  overlay: {
     background: 'bg-black/10 backdrop-blur-[66px]',
     navText: 'text-white',
     userMenuText: 'text-bg-1',
@@ -28,7 +30,7 @@ const headerVariantClass = {
   },
 };
 
-export default function HeaderContent({ navList, variant = 'transparent' }: HeaderContentProps) {
+export default function HeaderContent({ navList, variant }: HeaderContentProps) {
   return (
     <div
       className={cn(
@@ -45,7 +47,7 @@ export default function HeaderContent({ navList, variant = 'transparent' }: Head
         <HeaderNav
           navList={navList}
           className={headerVariantClass[variant].navText}
-          showActiveStyle={variant === 'transparent'}
+          showActiveStyle={variant === 'overlay'}
         />
 
         <HeaderUserMenu className={headerVariantClass[variant].userMenuText} />
