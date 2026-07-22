@@ -13,7 +13,7 @@ const skeletonVariants = cva(['inline-block w-20 bg-gray-300', "before:content-[
     },
     animation: {
       pulse: 'animate-skeleton-pulse',
-      wave: 'relative overflow-hidden before:absolute before:top-0 before:left-[-150%] before:h-full before:w-[150%] before:animate-skeleton-wave before:bg-gradient-to-r before:from-transparent before:via-[rgba(255,255,255,0.6)] before:to-transparent',
+      wave: 'relative overflow-hidden before:absolute before:inset-y-0 before:left-0 before:h-full before:w-[150%] before:animate-skeleton-wave before:bg-gradient-to-r before:from-transparent before:via-[rgba(255,255,255,0.6)] before:to-transparent',
       none: '',
     },
     textSize: {
