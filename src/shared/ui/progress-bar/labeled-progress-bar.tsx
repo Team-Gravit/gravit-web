@@ -8,6 +8,7 @@ interface LabeledProgressBarProps {
   className?: string;
   barClassName?: string;
   labelClassName?: string;
+  valueClassName?: string;
 }
 
 export default function LabeledProgressBar({
@@ -16,14 +17,17 @@ export default function LabeledProgressBar({
   className,
   barClassName,
   labelClassName,
+  valueClassName,
 }: LabeledProgressBarProps) {
   return (
     <div className={cn('flex flex-col gap-1 md:gap-1.5', className)}>
-      <div className="flex justify-between items-center">
-        <span className={cn(labelClassName ? labelClassName : 'text-heading1')}>{label}</span>
-        <span className="text-main-1">{`${value}%`}</span>
+      <div className="flex items-center justify-between">
+        <span className={cn('text-heading1', labelClassName)}>{label}</span>
+
+        <span className={cn('text-main text-body1-normal', valueClassName)}>{value}%</span>
       </div>
-      <ProgressBar barClassName={barClassName} value={value} />
+
+      <ProgressBar value={value} barClassName={barClassName} />
     </div>
   );
 }
