@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from '@tanstack/react-router';
 
 import { tokenManager } from '@/shared/api';
 import LeftArrow from '@/shared/assets/_icons/chevron-left.svg?react';
-import backgroundImage from '@/shared/assets/_images/desktop-background.png';
+import backgroundImage from '@/shared/assets/_images/background/desktop-background.png';
 import TextLogo from '@/shared/assets/_images/logo/logo.svg?react';
 import { cn } from '@/shared/lib/cn';
 import useResponsive from '@/shared/model/use-responsive';

@@ -68,10 +68,6 @@ function EditForm({
                 * 글자수 2~8자 <br /> * 공백, 특수문자 제외
               </div>
             }
-            inputTextSize="text-2xl w-[300px] font-normal"
-            labelTextSize="text-2xl"
-            labelTextColor="text-black"
-            helperTextSize="text-xl"
             onValidityChange={setCanSubmit}
             onSubmit={(trimmedNickname) => onSubmit(trimmedNickname, colorIndex)}
           />
