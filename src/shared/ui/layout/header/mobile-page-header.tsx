@@ -6,7 +6,7 @@ interface MobileHeaderProps {
 
 export default function MobilePageHeader({ leftSlot, pageTitle, rightSlot }: MobileHeaderProps) {
   return (
-    <header className="w-full bg-white border-b border-divider-1 h-12 ">
+    <header className="w-full bg-white border-b border-divider-1 h-12 fixed left-0 top-0 z-50">
       <div className="flex justify-center items-center h-full w-full relative">
         <div className="absolute left-0 top-0 flex items-center justify-center">{leftSlot}</div>
         <h1 className="text-label1 text-text-2">{pageTitle}</h1>
