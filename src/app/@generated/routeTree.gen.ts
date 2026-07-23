@@ -15,6 +15,7 @@ import { Route as _indexRouteImport } from './../../pages/__index'
 import { Route as TermsRouteImport } from './../../pages/terms'
 import { Route as RestoreRouteImport } from './../../pages/restore'
 import { Route as PrivacyRouteImport } from './../../pages/privacy'
+import { Route as AuthenticatedRouteRouteImport } from './../../pages/_authenticated/route'
 import { Route as IndexRouteImport } from './../../pages/index'
 import { Route as AuthenticatedSettingsRouteRouteImport } from './../../pages/_authenticated/settings/route'
 import { Route as AuthenticatedMainRouteRouteImport } from './../../pages/_authenticated/main/route'
@@ -78,41 +79,45 @@ const PrivacyRoute = PrivacyRouteImport.update({
   path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedMyRoute = AuthenticatedMyRouteImport.update({
-  id: '/_authenticated/my',
+  id: '/my',
   path: '/my',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedSettingsRouteRoute =
   AuthenticatedSettingsRouteRouteImport.update({
-    id: '/_authenticated/settings',
+    id: '/settings',
     path: '/settings',
-    getParentRoute: () => rootRouteImport,
+    getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedMainRouteRoute = AuthenticatedMainRouteRouteImport.update({
-  id: '/_authenticated/main',
+  id: '/main',
   path: '/main',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedOnboardingRouteRoute =
   AuthenticatedOnboardingRouteRouteImport.update({
-    id: '/_authenticated/_onboarding',
-    getParentRoute: () => rootRouteImport,
+    id: '/_onboarding',
+    getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedFixedHeaderLayoutRouteRoute =
   AuthenticatedFixedHeaderLayoutRouteRouteImport.update({
-    id: '/_authenticated/_fixed-header-layout',
-    getParentRoute: () => rootRouteImport,
+    id: '/_fixed-header-layout',
+    getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedBlankLayoutRouteRoute =
   AuthenticatedBlankLayoutRouteRouteImport.update({
-    id: '/_authenticated/_blank-layout',
-    getParentRoute: () => rootRouteImport,
+    id: '/_blank-layout',
+    getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedSettingsIndexRoute =
   AuthenticatedSettingsIndexRouteImport.update({
@@ -426,6 +431,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/__index': typeof _indexRoute
   '/privacy': typeof PrivacyRoute
   '/restore': typeof RestoreRoute
@@ -554,6 +560,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/_authenticated'
     | '/__index'
     | '/privacy'
     | '/restore'
@@ -603,16 +610,11 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   _indexRoute: typeof _indexRoute
   PrivacyRoute: typeof PrivacyRoute
   RestoreRoute: typeof RestoreRoute
   TermsRoute: typeof TermsRoute
-  AuthenticatedBlankLayoutRouteRoute: typeof AuthenticatedBlankLayoutRouteRouteWithChildren
-  AuthenticatedFixedHeaderLayoutRouteRoute: typeof AuthenticatedFixedHeaderLayoutRouteRouteWithChildren
-  AuthenticatedOnboardingRouteRoute: typeof AuthenticatedOnboardingRouteRouteWithChildren
-  AuthenticatedMainRouteRoute: typeof AuthenticatedMainRouteRoute
-  AuthenticatedSettingsRouteRoute: typeof AuthenticatedSettingsRouteRouteWithChildren
-  AuthenticatedMyRoute: typeof AuthenticatedMyRouteWithChildren
   LoginOauth2CodeProviderRoute: typeof LoginOauth2CodeProviderRoute
   UserMeDeletePageRoute: typeof UserMeDeletePageRoute
 }
@@ -647,6 +649,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -659,42 +668,42 @@ declare module '@tanstack/react-router' {
       path: '/my'
       fullPath: '/my'
       preLoaderRoute: typeof AuthenticatedMyRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/settings': {
       id: '/_authenticated/settings'
       path: '/settings'
       fullPath: '/settings'
       preLoaderRoute: typeof AuthenticatedSettingsRouteRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/main': {
       id: '/_authenticated/main'
       path: '/main'
       fullPath: '/main'
       preLoaderRoute: typeof AuthenticatedMainRouteRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/_onboarding': {
       id: '/_authenticated/_onboarding'
       path: ''
       fullPath: ''
       preLoaderRoute: typeof AuthenticatedOnboardingRouteRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/_fixed-header-layout': {
       id: '/_authenticated/_fixed-header-layout'
       path: ''
       fullPath: ''
       preLoaderRoute: typeof AuthenticatedFixedHeaderLayoutRouteRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/_blank-layout': {
       id: '/_authenticated/_blank-layout'
       path: ''
       fullPath: ''
       preLoaderRoute: typeof AuthenticatedBlankLayoutRouteRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/settings/': {
       id: '/_authenticated/settings/'
@@ -1157,12 +1166,16 @@ const AuthenticatedMyRouteWithChildren = AuthenticatedMyRoute._addFileChildren(
   AuthenticatedMyRouteChildren,
 )
 
-const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  _indexRoute: _indexRoute,
-  PrivacyRoute: PrivacyRoute,
-  RestoreRoute: RestoreRoute,
-  TermsRoute: TermsRoute,
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedBlankLayoutRouteRoute: typeof AuthenticatedBlankLayoutRouteRouteWithChildren
+  AuthenticatedFixedHeaderLayoutRouteRoute: typeof AuthenticatedFixedHeaderLayoutRouteRouteWithChildren
+  AuthenticatedOnboardingRouteRoute: typeof AuthenticatedOnboardingRouteRouteWithChildren
+  AuthenticatedMainRouteRoute: typeof AuthenticatedMainRouteRoute
+  AuthenticatedSettingsRouteRoute: typeof AuthenticatedSettingsRouteRouteWithChildren
+  AuthenticatedMyRoute: typeof AuthenticatedMyRouteWithChildren
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedBlankLayoutRouteRoute:
     AuthenticatedBlankLayoutRouteRouteWithChildren,
   AuthenticatedFixedHeaderLayoutRouteRoute:
@@ -1172,6 +1185,18 @@ const rootRouteChildren: RootRouteChildren = {
   AuthenticatedMainRouteRoute: AuthenticatedMainRouteRoute,
   AuthenticatedSettingsRouteRoute: AuthenticatedSettingsRouteRouteWithChildren,
   AuthenticatedMyRoute: AuthenticatedMyRouteWithChildren,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
+const rootRouteChildren: RootRouteChildren = {
+  IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  _indexRoute: _indexRoute,
+  PrivacyRoute: PrivacyRoute,
+  RestoreRoute: RestoreRoute,
+  TermsRoute: TermsRoute,
   LoginOauth2CodeProviderRoute: LoginOauth2CodeProviderRoute,
   UserMeDeletePageRoute: UserMeDeletePageRoute,
 }

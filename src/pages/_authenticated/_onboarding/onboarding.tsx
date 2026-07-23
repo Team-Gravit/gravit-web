@@ -1,9 +1,9 @@
-import { createFileRoute, useNavigate } from '@tanstack/react-router';
+import { createFileRoute, Navigate, useNavigate } from '@tanstack/react-router';
 import { useState } from 'react';
 
 import NicknameForm from '@/features/onboarding/ui/nickname-form';
 import ProfileSelector from '@/features/onboarding/ui/profile-selector';
-import { useOnboardUser } from '@/shared/api/@generated/user-api/user-api';
+import { useGetUser, useOnboardUser } from '@/shared/api/@generated/user-api/user-api';
 import { cn } from '@/shared/lib/cn';
 import { Button } from '@/shared/ui/button/Button';
 
@@ -13,6 +13,7 @@ export const Route = createFileRoute('/_authenticated/_onboarding/onboarding')({
 
 function OnboardingPage() {
   const navigate = useNavigate();
+  const { data: user, isPending: isUserPending } = useGetUser();
   const [colorIndex, setColorIndex] = useState(0);
   const [canSubmit, setCanSubmit] = useState(false);
   const { mutate, isPending } = useOnboardUser({
@@ -22,6 +23,12 @@ function OnboardingPage() {
       },
     },
   });
+
+  if (isUserPending) return null;
+
+  if (user) {
+    return <Navigate to={'/main'} />;
+  }
 
   const formHelperText = (
     <div className="text-caption1 md:text-label1 text-text-4 space-y-1 md:text-text-1-w">

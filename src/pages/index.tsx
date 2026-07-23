@@ -1,6 +1,7 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, redirect } from '@tanstack/react-router';
 
 import SocialLoginButton from '@/features/login/ui/social-login-button';
+import { tokenManager } from '@/shared/api';
 import GoogleLogo from '@/shared/assets/_images/google.png';
 import KakaoLogo from '@/shared/assets/_images/kakao.png';
 import EmptySymbolLogoImage from '@/shared/assets/_images/logo/empty-symbol-logo.png';
@@ -9,7 +10,12 @@ import NaverLogo from '@/shared/assets/_images/naver.png';
 import EntryLayout from '@/shared/ui/layout/entry-layout';
 
 export const Route = createFileRoute('/')({
-  component: RouteComponent,
+  beforeLoad: () => {
+    if (tokenManager.getAccessToken()) {
+      throw redirect({ to: '/main' });
+    }
+  },
+  component: () => <RouteComponent />,
 });
 
 const OAUTH_PROVIDERS = [

@@ -1,10 +1,9 @@
-import { useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from '@tanstack/react-router';
 
 import { tokenManager } from '@/shared/api';
+import { queryClient } from '@/shared/lib/query-client';
 
 export default function useLogout() {
-  const queryClient = useQueryClient();
   const navigate = useNavigate();
 
   return () => {

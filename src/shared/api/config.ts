@@ -3,7 +3,16 @@ import axios, { type AxiosError, type AxiosInstance } from 'axios';
 import { STORAGE_KEYS } from '../config/storage';
 import { Configuration } from './@generated';
 
-// 커스텀 에러 클래스
+// 인증 실패 시 호출할 핸들러
+// router / queryClient가 만들어지지 않았을 때 undefined를 반환하는 상황을 방지
+let _authFailureHandler: (() => void) | null = null;
+export const setAuthFailureHandler = (handler: () => void) => {
+  _authFailureHandler = handler;
+};
+const handleAuthFailure = () => {
+  tokenManager.clearTokens();
+  _authFailureHandler?.();
+};
 
 // 토큰 관리
 let isRefreshing = false;
@@ -73,8 +82,8 @@ privateApiClient.interceptors.request.use(
     const refreshToken = tokenManager.getRefreshToken();
 
     if (!accessToken && !refreshToken) {
-      window.location.href = '/';
-      return config;
+      handleAuthFailure();
+      return Promise.reject(new Error('No tokens available'));
     }
 
     config.headers['Content-Type'] = 'application/json';
@@ -179,7 +188,7 @@ privateApiClient.interceptors.response.use(
           console.error('❌ Token refresh failed:', refreshError);
         }
 
-        tokenManager.clearTokens();
+        handleAuthFailure();
         return Promise.reject(refreshError);
       }
     }
