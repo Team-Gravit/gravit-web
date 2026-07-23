@@ -58,7 +58,7 @@ export const socialLoginButtonVariants = cva(
       variant: {
         kakao: 'bg-[#FFE240] text-text-3 md:text-text-2 ',
         google:
-          'border-[0.5px] border-dvider-2 md:border-text-4 bg-bg-1 text-text-3 md:text-text-2 ',
+          'border-[0.5px] border-divider-2 md:border-text-4 bg-bg-1 text-text-3 md:text-text-2 ',
         naver: 'bg-[#00B116] text-cta-text md:text-white',
       },
     },

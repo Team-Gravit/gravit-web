@@ -13,7 +13,6 @@ function RouteComponent() {
   const { data, isPending } = useGetMyLeagueHistory();
 
   if (isPending) return null;
-  if (!data) return null;
 
   return (
     <SectionCard title="리그 시즌 히스토리" description="시즌별 최종 티어 기록">
@@ -37,7 +36,7 @@ function RouteComponent() {
         </>
       )}
 
-      {!isPending && !data && (
+      {!data && (
         <div className="min-h-[230px] md:min-h-[540px] flex flex-col items-center justify-center">
           <p className="text-center text-label1 md:text-heading1 text-text-3-w mb-4 md:mb-8">
             아직 획득한 LP가 없어요. <br /> 어서 학습을 진행해 주세요!

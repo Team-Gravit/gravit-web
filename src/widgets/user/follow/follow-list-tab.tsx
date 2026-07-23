@@ -14,7 +14,6 @@ export default function FollowListTab({
   followerCount,
   followingCount,
 }: FollowListTabProps) {
-  // TODO : 타이포 수정
   const commonTabStyle = cn(
     'border-b md:border-b-2 flex-1 flex items-center justify-center py-[11.5px] md:py-4 transition-colors duration-300',
     'text-label1 md:text-body1-normal text-text-3-w',

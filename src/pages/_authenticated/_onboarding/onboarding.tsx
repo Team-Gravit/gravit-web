@@ -32,7 +32,7 @@ function OnboardingPage() {
 
   const handleSubmit = (nickname: string) => {
     mutate({
-      data: { nickname, profilePhotoNumber: colorIndex },
+      data: { nickname, profilePhotoNumber: colorIndex + 1 },
     });
   };
 
