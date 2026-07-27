@@ -27,7 +27,7 @@ function SocialRecommendFriendSection() {
           {recommendFriends.map((recommendFriend) => (
             <RecommendFriendListItem
               recommendFriend={recommendFriend}
-              key={recommendFriend.userId}
+              key={recommendFriend.userId + recommendFriend.nickname}
             />
           ))}
         </ul>
