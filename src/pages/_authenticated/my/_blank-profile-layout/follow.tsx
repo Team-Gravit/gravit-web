@@ -2,7 +2,8 @@ import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import z from 'zod';
 
 import { useGetFollowAndFollowingCount } from '@/shared/api/@generated/friend-api/friend-api';
-import BackButtonMobileHeader from '@/shared/ui/layout/header/back-button-mobile-header';
+import useResponsive from '@/shared/model/use-responsive';
+import PageLayout from '@/shared/ui/layout/page-layout';
 import FollowListContainer from '@/widgets/user/follow/follow-list-container';
 import FollowListTab from '@/widgets/user/follow/follow-list-tab';
 
@@ -13,20 +14,20 @@ const searchSchema = z.object({
 export const Route = createFileRoute('/_authenticated/my/_blank-profile-layout/follow')({
   validateSearch: searchSchema,
   component: RouteComponent,
+  staticData: { pageTitle: '친구' },
 });
 
 function RouteComponent() {
   const { tab: activeTab } = Route.useSearch();
   const navigate = useNavigate({ from: Route.fullPath });
+  const { isMobile } = useResponsive();
 
   const { data, isPending: isGetFollowCountPending } = useGetFollowAndFollowingCount();
 
   if (isGetFollowCountPending || !data) return null;
 
   return (
-    <>
-      <BackButtonMobileHeader pageTitle="친구" />
-
+    <PageLayout bottomTabBar={isMobile}>
       <section className="min-h-svh bg-bg-1">
         <header className="px-4 py-5">
           <FollowListTab
@@ -41,6 +42,6 @@ function RouteComponent() {
 
         <FollowListContainer type={activeTab} />
       </section>
-    </>
+    </PageLayout>
   );
 }
