@@ -1,8 +1,8 @@
 import { createFileRoute, Navigate, useNavigate } from '@tanstack/react-router';
-import { useState } from 'react';
 
-import NicknameForm from '@/features/onboarding/ui/nickname-form';
-import ProfileSelector from '@/features/onboarding/ui/profile-selector';
+import { useProfileForm } from '@/features/profile/model/use-profile-form';
+import NicknameForm from '@/features/profile/ui/nickname-form';
+import ProfileSelector from '@/features/profile/ui/profile-selector';
 import { useGetUser, useOnboardUser } from '@/shared/api/@generated/user-api/user-api';
 import { cn } from '@/shared/lib/cn';
 import { Button } from '@/shared/ui/button/Button';
@@ -14,8 +14,9 @@ export const Route = createFileRoute('/_authenticated/_onboarding/onboarding')({
 function OnboardingPage() {
   const navigate = useNavigate();
   const { data: user, isPending: isUserPending } = useGetUser();
-  const [colorIndex, setColorIndex] = useState(0);
-  const [canSubmit, setCanSubmit] = useState(false);
+
+  const { canSubmit, colorIndex, setColorIndex, handleNicknameChange } = useProfileForm();
+
   const { mutate, isPending } = useOnboardUser({
     mutation: {
       onSuccess: () => {
@@ -29,13 +30,6 @@ function OnboardingPage() {
   if (user) {
     return <Navigate to={'/main'} />;
   }
-
-  const formHelperText = (
-    <div className="text-caption1 md:text-label1 text-text-4 space-y-1 md:text-text-1-w">
-      <p>*글자수 2~8자</p>
-      <p>*공백, 특수문자 제외</p>
-    </div>
-  );
 
   const handleSubmit = (nickname: string) => {
     mutate({
@@ -54,12 +48,15 @@ function OnboardingPage() {
         'after:mask-[linear-gradient(#fff_0_0),linear-gradient(#fff_0_0)] after:[mask-origin:content-box,border-box] after:[mask-clip:content-box,border-box] after:mask-exclude',
       )}
     >
-      <div className="flex-1 flex flex-col justify-center md:gap-2.5 gap-6 md:max-w-[325px] md:min-h-100 md:mx-auto md:mb-10">
-        <ProfileSelector onChange={setColorIndex} />
+      <div className="flex-1 flex flex-col justify-center md:gap-2.5 gap-6 md:max-w-[325px] md:w-full md:min-h-100 md:mx-auto md:mb-10">
+        <ProfileSelector
+          colorIndex={colorIndex}
+          onChange={setColorIndex}
+          className="justify-between "
+        />
         <NicknameForm
           formId="onboarding-nickname-form"
-          helperText={formHelperText}
-          onValidityChange={setCanSubmit}
+          onValidityChange={handleNicknameChange}
           onSubmit={handleSubmit}
         />
       </div>

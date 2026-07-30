@@ -1,7 +1,8 @@
-import { createFileRoute, Outlet } from '@tanstack/react-router';
+import { createFileRoute, Outlet, useMatches } from '@tanstack/react-router';
 
 import useResponsive from '@/shared/model/use-responsive';
-import PageLayout from '@/shared/ui/layout/page-layout';
+import BackButtonMobileHeader from '@/shared/ui/layout/header/back-button-mobile-header';
+import Header from '@/widgets/header/ui/header';
 
 export const Route = createFileRoute('/_authenticated/my/_blank-profile-layout')({
   component: MyLayout,
@@ -9,9 +10,16 @@ export const Route = createFileRoute('/_authenticated/my/_blank-profile-layout')
 
 function MyLayout() {
   const { isMobile } = useResponsive();
+  const matches = useMatches();
+  const lastMatch = matches[matches.length - 1];
+  const pageTitle = lastMatch?.staticData?.pageTitle ?? '';
+
   return (
-    <PageLayout bottomTabBar={isMobile}>
-      <Outlet />
-    </PageLayout>
+    <div className="flex flex-col min-h-svh">
+      {isMobile ? <BackButtonMobileHeader pageTitle={pageTitle} /> : <Header />}
+      <main className="pt-[var(--mobile-header-height)] md:pt-[110px] flex-1 flex flex-col">
+        <Outlet />
+      </main>
+    </div>
   );
 }

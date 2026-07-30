@@ -44,6 +44,7 @@ import { Route as AuthenticatedMyProfileLayoutSocialRouteImport } from './../../
 import { Route as AuthenticatedMyProfileLayoutLearningRouteImport } from './../../pages/_authenticated/my/_profile-layout/learning'
 import { Route as AuthenticatedMyProfileLayoutLeagueRouteImport } from './../../pages/_authenticated/my/_profile-layout/league'
 import { Route as AuthenticatedMyBlankProfileLayoutFollowRouteImport } from './../../pages/_authenticated/my/_blank-profile-layout/follow'
+import { Route as AuthenticatedMyBlankProfileLayoutEditRouteImport } from './../../pages/_authenticated/my/_blank-profile-layout/edit'
 import { Route as AuthenticatedFixedHeaderLayoutLearningChapterIdRouteRouteImport } from './../../pages/_authenticated/_fixed-header-layout/learning/$chapterId/route'
 import { Route as AuthenticatedFixedHeaderLayoutLearningChapterIdIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/learning/$chapterId/index'
 import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/index'
@@ -245,6 +246,12 @@ const AuthenticatedMyBlankProfileLayoutFollowRoute =
     path: '/follow',
     getParentRoute: () => AuthenticatedMyBlankProfileLayoutRouteRoute,
   } as any)
+const AuthenticatedMyBlankProfileLayoutEditRoute =
+  AuthenticatedMyBlankProfileLayoutEditRouteImport.update({
+    id: '/edit',
+    path: '/edit',
+    getParentRoute: () => AuthenticatedMyBlankProfileLayoutRouteRoute,
+  } as any)
 const AuthenticatedFixedHeaderLayoutLearningChapterIdRouteRoute =
   AuthenticatedFixedHeaderLayoutLearningChapterIdRouteRouteImport.update({
     id: '/learning/$chapterId',
@@ -374,6 +381,7 @@ export interface FileRoutesByFullPath {
   '/my/': typeof AuthenticatedMyIndexRoute
   '/settings/': typeof AuthenticatedSettingsIndexRoute
   '/learning/$chapterId': typeof AuthenticatedFixedHeaderLayoutLearningChapterIdRouteRouteWithChildren
+  '/my/edit': typeof AuthenticatedMyBlankProfileLayoutEditRoute
   '/my/follow': typeof AuthenticatedMyBlankProfileLayoutFollowRoute
   '/my/league': typeof AuthenticatedMyProfileLayoutLeagueRoute
   '/my/learning': typeof AuthenticatedMyProfileLayoutLearningRoute
@@ -412,6 +420,7 @@ export interface FileRoutesByTo {
   '/onboarding': typeof AuthenticatedOnboardingOnboardingRoute
   '/success': typeof AuthenticatedOnboardingSuccessRoute
   '/settings': typeof AuthenticatedSettingsIndexRoute
+  '/my/edit': typeof AuthenticatedMyBlankProfileLayoutEditRoute
   '/my/follow': typeof AuthenticatedMyBlankProfileLayoutFollowRoute
   '/my/league': typeof AuthenticatedMyProfileLayoutLeagueRoute
   '/my/learning': typeof AuthenticatedMyProfileLayoutLearningRoute
@@ -463,6 +472,7 @@ export interface FileRoutesById {
   '/_authenticated/my/': typeof AuthenticatedMyIndexRoute
   '/_authenticated/settings/': typeof AuthenticatedSettingsIndexRoute
   '/_authenticated/_fixed-header-layout/learning/$chapterId': typeof AuthenticatedFixedHeaderLayoutLearningChapterIdRouteRouteWithChildren
+  '/_authenticated/my/_blank-profile-layout/edit': typeof AuthenticatedMyBlankProfileLayoutEditRoute
   '/_authenticated/my/_blank-profile-layout/follow': typeof AuthenticatedMyBlankProfileLayoutFollowRoute
   '/_authenticated/my/_profile-layout/league': typeof AuthenticatedMyProfileLayoutLeagueRoute
   '/_authenticated/my/_profile-layout/learning': typeof AuthenticatedMyProfileLayoutLearningRoute
@@ -507,6 +517,7 @@ export interface FileRouteTypes {
     | '/my/'
     | '/settings/'
     | '/learning/$chapterId'
+    | '/my/edit'
     | '/my/follow'
     | '/my/league'
     | '/my/learning'
@@ -545,6 +556,7 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/success'
     | '/settings'
+    | '/my/edit'
     | '/my/follow'
     | '/my/league'
     | '/my/learning'
@@ -595,6 +607,7 @@ export interface FileRouteTypes {
     | '/_authenticated/my/'
     | '/_authenticated/settings/'
     | '/_authenticated/_fixed-header-layout/learning/$chapterId'
+    | '/_authenticated/my/_blank-profile-layout/edit'
     | '/_authenticated/my/_blank-profile-layout/follow'
     | '/_authenticated/my/_profile-layout/league'
     | '/_authenticated/my/_profile-layout/learning'
@@ -871,6 +884,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedMyBlankProfileLayoutFollowRouteImport
       parentRoute: typeof AuthenticatedMyBlankProfileLayoutRouteRoute
     }
+    '/_authenticated/my/_blank-profile-layout/edit': {
+      id: '/_authenticated/my/_blank-profile-layout/edit'
+      path: '/edit'
+      fullPath: '/my/edit'
+      preLoaderRoute: typeof AuthenticatedMyBlankProfileLayoutEditRouteImport
+      parentRoute: typeof AuthenticatedMyBlankProfileLayoutRouteRoute
+    }
     '/_authenticated/_fixed-header-layout/learning/$chapterId': {
       id: '/_authenticated/_fixed-header-layout/learning/$chapterId'
       path: '/learning/$chapterId'
@@ -1129,11 +1149,14 @@ const AuthenticatedSettingsRouteRouteWithChildren =
   )
 
 interface AuthenticatedMyBlankProfileLayoutRouteRouteChildren {
+  AuthenticatedMyBlankProfileLayoutEditRoute: typeof AuthenticatedMyBlankProfileLayoutEditRoute
   AuthenticatedMyBlankProfileLayoutFollowRoute: typeof AuthenticatedMyBlankProfileLayoutFollowRoute
 }
 
 const AuthenticatedMyBlankProfileLayoutRouteRouteChildren: AuthenticatedMyBlankProfileLayoutRouteRouteChildren =
   {
+    AuthenticatedMyBlankProfileLayoutEditRoute:
+      AuthenticatedMyBlankProfileLayoutEditRoute,
     AuthenticatedMyBlankProfileLayoutFollowRoute:
       AuthenticatedMyBlankProfileLayoutFollowRoute,
   }

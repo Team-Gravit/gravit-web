@@ -2,8 +2,8 @@ import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { useState } from 'react';
 
 import { useUserInfo } from '@/entities/sidebar/api/useUserInfo';
-import NicknameForm from '@/features/onboarding/ui/nickname-form';
-import ProfileSelector from '@/features/onboarding/ui/profile-selector';
+import NicknameForm from '@/features/profile/ui/nickname-form';
+import ProfileSelector from '@/features/profile/ui/profile-selector';
 import { usePatchUserProfile } from '@/features/user/update-user/api/patchUserProfile';
 import Form from '@/shared/ui/form/Form';
 
@@ -56,18 +56,13 @@ function EditForm({
   return (
     <div className="w-full h-full flex flex-col items-center bg-[#f2f2f2] p-8">
       <Form className="w-full h-[640px] px-48 py-32 flex flex-col relative">
-        <ProfileSelector gap={32} value={colorIndex} onChange={setColorIndex} />
+        <ProfileSelector colorIndex={colorIndex} onChange={setColorIndex} />
 
         <div className="flex-1 w-full min-h-[150px] mt-6 px-6">
           <NicknameForm
             formId="edit-nickname-form"
             initialNickname={user.nickname}
             placeholder={user.nickname}
-            helperText={
-              <div className="text-xl text-[#868686] font-normal">
-                * 글자수 2~8자 <br /> * 공백, 특수문자 제외
-              </div>
-            }
             onValidityChange={setCanSubmit}
             onSubmit={(trimmedNickname) => onSubmit(trimmedNickname, colorIndex)}
           />
