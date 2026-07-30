@@ -15,7 +15,7 @@ function RouteComponent() {
   const pageTitle = lastMatches?.staticData?.pageTitle ?? '';
 
   return (
-    <div className="flex flex-col min-h-svh bg-bg-2">
+    <div className="flex flex-col min-h-svh bg-bg-2 pt-[var(--mobile-header-height)] md:py-5">
       {isMobile ? <BackButtonMobileHeader pageTitle={pageTitle} /> : <Header />}
       <main className="md:pt-[110px] flex-1 flex flex-col">
         <Outlet />
