@@ -59,7 +59,7 @@ function Modal({ isOpen, onClose, children, className }: ModalProps) {
         <div
           onClick={(e) => e.stopPropagation()}
           className={cn(
-            'flex max-h-[80vh] w-full max-w-[630px] flex-col rounded-xl bg-bg-1',
+            'flex max-h-[80vh] w-[calc(100%-32px)]  max-w-[630px] flex-col rounded-xl bg-bg-1',
             className,
           )}
         >
@@ -79,17 +79,17 @@ interface ModalHeaderProps {
 function ModalHeader({ title, id }: ModalHeaderProps) {
   const { onClose } = useModalContext();
   return (
-    <div className="flex shrink-0 items-center justify-between border-b border-divider-1 px-6 py-5">
-      <h2 id={id} className="text-body1-normal text-text-4">
+    <div className="flex shrink-0 items-center justify-between border-b border-divider-1 px-4 py-2 md:px-6 md:py-5">
+      <h2 id={id} className="text-body2 md:text-body1-normal text-text-4">
         {title}
       </h2>
       <button
         type="button"
         aria-label="모달 닫기"
         onClick={onClose}
-        className="flex size-6 items-center justify-center p-1.5"
+        className="flex size-10 md:size-6 items-center justify-center p-1.5"
       >
-        <X />
+        <X className="size-3" />
       </button>
     </div>
   );
@@ -101,7 +101,9 @@ interface ModalContentProps {
 }
 
 function ModalContent({ children, className }: ModalContentProps) {
-  return <div className={cn('overflow-y-auto py-4 scrollbar-hide', className)}>{children}</div>;
+  return (
+    <div className={cn('overflow-y-auto p-4 md:py-4 scrollbar-hide', className)}>{children}</div>
+  );
 }
 
 interface ModalFooterProps {
