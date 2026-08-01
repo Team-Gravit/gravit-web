@@ -3,8 +3,8 @@ import { useEffect } from 'react';
 import type { Problem } from '@/entities/learning/model/_types';
 import ProblemStatement from '@/entities/learning/ui/ProblemStatement';
 import { useQuizSessionState } from '@/features/quiz/model/quiz-session-store';
-import ReportModal from '@/features/quiz/ui/modal/ReportModal';
-import ReportResultModal from '@/features/quiz/ui/modal/ReportResultModal';
+import ReportModal from '@/features/quiz/ui/modal/report-modal';
+import ReportResultModal from '@/features/quiz/ui/modal/report-result-modal';
 import type { UnitSummary } from '@/shared/api/@generated/models/unit-summary';
 import AnswerInteraction from '@/widgets/learning-widget/AnswerInteraction';
 import { useMinimumLoadingTime } from '@/widgets/learning-widget/lib/useMinimumLoadingTime';
@@ -67,7 +67,7 @@ export default function BaseQuizComponent({
   return (
     <>
       <ReportModal problemId={currentProblem.problemId} />
-      <ReportResultModal type="confirm" />
+      <ReportResultModal />
       {additionalModals}
       {!isQuizCompleted && (
         <div className="w-full h-screen flex flex-col">
