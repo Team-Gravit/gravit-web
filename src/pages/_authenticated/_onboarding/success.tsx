@@ -24,9 +24,7 @@ function SuccessPage() {
         'flex-1 flex flex-col justify-center relative',
         'md:flex-0 md:max-w-[630px] md:w-full md:p-8 md:rounded-xl',
         'md:bg-gradient-to-tl to-white/25 from-white/10 md:to-100%  md:backdrop-blur-xl md:drop-shadow-[0_4px_32px_0,rgba(0,0,0,2.4)]',
-        'after:p-px after:pointer-events-none after:absolute after:inset-0 after:rounded-xl ',
-        'after:bg-linear-to-l after:from-white/30 after:via-white/20 after:to-white/30',
-        'after:mask-[linear-gradient(#fff_0_0),linear-gradient(#fff_0_0)] after:[mask-origin:content-box,border-box] after:[mask-clip:content-box,border-box] after:mask-exclude',
+        'glass-morphism-border after:rounded-xl',
       )}
     >
       <div className="flex flex-col justify-center items-center flex-1 md:min-h-100">
