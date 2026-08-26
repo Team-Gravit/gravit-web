@@ -59,9 +59,10 @@ export default function SocialFriendsFeedSection() {
               {hasNextPage && <div ref={loadMoreRef} className="h-4 shrink-0" aria-hidden />}
             </>
           ) : (
-            // TODO : Fallback UI 요청
             <div className="min-h-[150px] flex items-center justify-center">
-              <p className="text-text-4 text-label1 md:text-heading2">최근 친구 활동이 없습니다</p>
+              <p className="text-text-3-w text-label1 md:text-heading1 text-center py-15 md:py-39">
+                아직 활동한 친구가 없어요. <br />더 많은 사용자들과 친구가 되어 보세요!
+              </p>
             </div>
           )}
         </ScrollArea.Viewport>

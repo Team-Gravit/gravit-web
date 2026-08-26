@@ -17,6 +17,7 @@ import { Route as RestoreRouteImport } from './../../pages/restore'
 import { Route as PrivacyRouteImport } from './../../pages/privacy'
 import { Route as AuthenticatedRouteRouteImport } from './../../pages/_authenticated/route'
 import { Route as IndexRouteImport } from './../../pages/index'
+import { Route as AuthenticatedSplatRouteImport } from './../../pages/_authenticated/$'
 import { Route as AuthenticatedSettingsRouteRouteImport } from './../../pages/_authenticated/settings/route'
 import { Route as AuthenticatedMainRouteRouteImport } from './../../pages/_authenticated/main/route'
 import { Route as AuthenticatedOnboardingRouteRouteImport } from './../../pages/_authenticated/_onboarding/route'
@@ -91,6 +92,11 @@ const IndexRoute = IndexRouteImport.update({
 const AuthenticatedMyRoute = AuthenticatedMyRouteImport.update({
   id: '/my',
   path: '/my',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedSplatRoute = AuthenticatedSplatRouteImport.update({
+  id: '/$',
+  path: '/$',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedSettingsRouteRoute =
@@ -357,6 +363,7 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/main': typeof AuthenticatedMainRouteRoute
   '/settings': typeof AuthenticatedSettingsRouteRouteWithChildren
+  '/$': typeof AuthenticatedSplatRoute
   '/my': typeof AuthenticatedMyProfileLayoutRouteRouteWithChildren
   '/settings/inquiry': typeof AuthenticatedSettingsInquiryRouteRouteWithChildren
   '/league': typeof AuthenticatedFixedHeaderLayoutLeagueRoute
@@ -397,6 +404,7 @@ export interface FileRoutesByTo {
   '/restore': typeof RestoreRoute
   '/terms': typeof TermsRoute
   '/main': typeof AuthenticatedMainRouteRoute
+  '/$': typeof AuthenticatedSplatRoute
   '/my': typeof AuthenticatedMyIndexRoute
   '/league': typeof AuthenticatedFixedHeaderLayoutLeagueRoute
   '/mains': typeof AuthenticatedFixedHeaderLayoutMainsRoute
@@ -441,6 +449,7 @@ export interface FileRoutesById {
   '/_authenticated/_onboarding': typeof AuthenticatedOnboardingRouteRouteWithChildren
   '/_authenticated/main': typeof AuthenticatedMainRouteRoute
   '/_authenticated/settings': typeof AuthenticatedSettingsRouteRouteWithChildren
+  '/_authenticated/$': typeof AuthenticatedSplatRoute
   '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRouteWithChildren
   '/_authenticated/my': typeof AuthenticatedMyRouteWithChildren
   '/_authenticated/my/_blank-profile-layout': typeof AuthenticatedMyBlankProfileLayoutRouteRouteWithChildren
@@ -487,6 +496,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/main'
     | '/settings'
+    | '/$'
     | '/my'
     | '/settings/inquiry'
     | '/league'
@@ -527,6 +537,7 @@ export interface FileRouteTypes {
     | '/restore'
     | '/terms'
     | '/main'
+    | '/$'
     | '/my'
     | '/league'
     | '/mains'
@@ -570,6 +581,7 @@ export interface FileRouteTypes {
     | '/_authenticated/_onboarding'
     | '/_authenticated/main'
     | '/_authenticated/settings'
+    | '/_authenticated/$'
     | '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout'
     | '/_authenticated/my'
     | '/_authenticated/my/_blank-profile-layout'
@@ -668,6 +680,13 @@ declare module '@tanstack/react-router' {
       path: '/my'
       fullPath: '/my'
       preLoaderRoute: typeof AuthenticatedMyRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/$': {
+      id: '/_authenticated/$'
+      path: '/$'
+      fullPath: '/$'
+      preLoaderRoute: typeof AuthenticatedSplatRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/settings': {
@@ -1172,6 +1191,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedOnboardingRouteRoute: typeof AuthenticatedOnboardingRouteRouteWithChildren
   AuthenticatedMainRouteRoute: typeof AuthenticatedMainRouteRoute
   AuthenticatedSettingsRouteRoute: typeof AuthenticatedSettingsRouteRouteWithChildren
+  AuthenticatedSplatRoute: typeof AuthenticatedSplatRoute
   AuthenticatedMyRoute: typeof AuthenticatedMyRouteWithChildren
 }
 
@@ -1184,6 +1204,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
     AuthenticatedOnboardingRouteRouteWithChildren,
   AuthenticatedMainRouteRoute: AuthenticatedMainRouteRoute,
   AuthenticatedSettingsRouteRoute: AuthenticatedSettingsRouteRouteWithChildren,
+  AuthenticatedSplatRoute: AuthenticatedSplatRoute,
   AuthenticatedMyRoute: AuthenticatedMyRouteWithChildren,
 }
 
