@@ -16,7 +16,7 @@ function MyLayout() {
 
   return (
     <div className="flex flex-col min-h-svh">
-      {isMobile ? <BackButtonMobileHeader pageTitle={pageTitle} /> : <Header />}
+      {isMobile ? <BackButtonMobileHeader pageTitle={pageTitle} /> : <Header variant="solid" />}
       <main className="pt-[var(--mobile-header-height)] md:pt-[110px] flex-1 flex flex-col">
         <Outlet />
       </main>

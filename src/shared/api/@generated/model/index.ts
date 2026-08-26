@@ -135,6 +135,7 @@ export * from './problemResponseProblemType.ts';
 export * from './problemSubmissionRequest.ts';
 export * from './profileSummaryResponse.ts';
 export * from './publishNoticeCreatedEventParams.ts';
+export * from './publishSeasonRolledOverEventParams.ts';
 export * from './recommendedUnitResponse.ts';
 export * from './recommendUserResponse.ts';
 export * from './refreshTokenRequest.ts';
