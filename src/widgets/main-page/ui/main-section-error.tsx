@@ -15,7 +15,7 @@ export default function MainSectionError({ className, label, onRetry }: MainSect
     <div
       role="alert"
       className={cn(
-        'min-h-32 flex flex-col items-center justify-center gap-3 rounded-2xl bg-white p-5 text-text-2',
+        'min-h-32 flex flex-col items-center justify-center gap-3 rounded-lg md:rounded-2xl bg-white p-5 text-text-2',
         className,
       )}
     >
