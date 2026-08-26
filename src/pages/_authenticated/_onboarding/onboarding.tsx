@@ -1,11 +1,11 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
-import { usePostOnboarding } from '@/features/onboarding/api/usePostOnboarding';
-import NicknameForm from '@/features/onboarding/ui/NicknameForm';
-import ProfileSelector from '@/features/onboarding/ui/ProfileSelecter';
-import Form from '@/shared/ui/form/Form';
-import Logo from '@/shared/ui/logo/Logo';
+import NicknameForm from '@/features/onboarding/ui/nickname-form';
+import ProfileSelector from '@/features/onboarding/ui/profile-selector';
+import { useOnboardUser } from '@/shared/api/@generated/user-api/user-api';
+import { cn } from '@/shared/lib/cn';
+import { Button } from '@/shared/ui/button/Button';
 
 export const Route = createFileRoute('/_authenticated/_onboarding/onboarding')({
   component: OnboardingPage,
@@ -14,85 +14,58 @@ export const Route = createFileRoute('/_authenticated/_onboarding/onboarding')({
 function OnboardingPage() {
   const navigate = useNavigate();
   const [colorIndex, setColorIndex] = useState(0);
-  const [nickname, setNickname] = useState('');
-  const [isLimit, setIsLimit] = useState(false);
-  const [checking, setChecking] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [dirty, setDirty] = useState(false);
-  const isSubmitting = useRef(false);
-  const { mutate } = usePostOnboarding();
-
-  const handleSubmit = () => {
-    if (loading || isSubmitting.current) return;
-
-    if (!nickname.trim()) {
-      alert('닉네임을 입력해주세요.');
-      return;
-    }
-
-    if (isLimit) {
-      alert('닉네임은 2자 이상 8자 이하이며, 공백 및 특수문자는 사용할 수 없어요.');
-      return;
-    }
-
-    setLoading(true);
-    isSubmitting.current = true;
-
-    mutate(
-      { nickname: nickname.trim(), profilePhotoNumber: colorIndex + 1 },
-      {
-        onSuccess: () => {
-          navigate({ to: '/success' });
-        },
-        onError: (error) => {
-          console.error(error);
-          alert('온보딩 처리 중 오류가 발생했습니다. 다시 시도해주세요.');
-        },
-        onSettled: () => {
-          setLoading(false);
-          isSubmitting.current = false;
-        },
+  const [canSubmit, setCanSubmit] = useState(false);
+  const { mutate, isPending } = useOnboardUser({
+    mutation: {
+      onSuccess: () => {
+        navigate({ to: '/success' });
       },
-    );
+    },
+  });
+
+  const formHelperText = (
+    <div className="text-caption1 md:text-label1 text-text-4 space-y-1 md:text-text-1-w">
+      <p>*글자수 2~8자</p>
+      <p>*공백, 특수문자 제외</p>
+    </div>
+  );
+
+  const handleSubmit = (nickname: string) => {
+    mutate({
+      data: { nickname, profilePhotoNumber: colorIndex },
+    });
   };
 
   return (
-    <>
-      <Logo />
-      <Form darkMode className="w-[549px] h-[460px] py-8 px-28">
+    <div
+      className={cn(
+        'flex-1 flex flex-col justify-center relative',
+        'md:flex-0 md:max-w-[630px] md:w-full md:p-8 md:rounded-xl',
+        'md:bg-gradient-to-tl to-white/25 from-white/10 md:to-100%  md:backdrop-blur-xl md:drop-shadow-[0_4px_32px_0,rgba(0,0,0,2.4)]',
+        'after:p-px after:pointer-events-none after:absolute after:inset-0 after:rounded-xl ',
+        'after:bg-linear-to-l after:from-white/30 after:via-white/20 after:to-white/30',
+        'after:mask-[linear-gradient(#fff_0_0),linear-gradient(#fff_0_0)] after:[mask-origin:content-box,border-box] after:[mask-clip:content-box,border-box] after:mask-exclude',
+      )}
+    >
+      <div className="flex-1 flex flex-col justify-center md:gap-2.5 gap-6 md:max-w-[325px] md:min-h-100 md:mx-auto md:mb-10">
         <ProfileSelector onChange={setColorIndex} />
         <NicknameForm
-          nickname={nickname}
-          setNickname={setNickname}
-          isLimit={isLimit}
-          setIsLimit={setIsLimit}
-          checking={checking}
-          setChecking={setChecking}
-          dirty={dirty}
-          setDirty={setDirty}
-          helperText={
-            <p className="text-sm text-[#F2F2F2]">* 글자수 2~8자 / 공백, 특수문자 제외</p>
-          }
-          helperFontColor="#F2F2F2"
+          formId="onboarding-nickname-form"
+          helperText={formHelperText}
+          onValidityChange={setCanSubmit}
+          onSubmit={handleSubmit}
         />
+      </div>
 
-        <button
-          type="button"
-          onClick={handleSubmit}
-          disabled={!nickname.trim() || isLimit || checking || loading}
-          className={`w-full h-14 text-white py-2 rounded-xl text-lg font-semibold transition flex items-center justify-center gap-2
-            ${!nickname.trim() || isLimit || checking || loading ? 'bg-[#BA00FF] opacity-50' : 'bg-[#BA00FF]'}`}
-        >
-          {loading ? (
-            <>
-              <span className="animate-spin border-2 border-white border-t-transparent rounded-full w-5 h-5"></span>
-              <span>로딩 중...</span>
-            </>
-          ) : (
-            '다음'
-          )}
-        </button>
-      </Form>
-    </>
+      <Button
+        type="submit"
+        form="onboarding-nickname-form"
+        disabled={!canSubmit}
+        loading={isPending}
+        className="md:h-[54px]"
+      >
+        다음
+      </Button>
+    </div>
   );
 }

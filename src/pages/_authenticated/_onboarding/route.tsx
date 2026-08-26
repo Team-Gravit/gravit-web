@@ -1,7 +1,6 @@
-import { createFileRoute, Link, Outlet } from '@tanstack/react-router';
+import { createFileRoute, Outlet } from '@tanstack/react-router';
 
-import HeaderLogo from '@/shared/assets/icons/logo-gr.svg?react';
-import BackgroundImage from '@/shared/assets/images/login-background.webp';
+import EntryLayout from '@/shared/ui/layout/entry-layout';
 
 export const Route = createFileRoute('/_authenticated/_onboarding')({
   component: RouteComponent,
@@ -9,20 +8,10 @@ export const Route = createFileRoute('/_authenticated/_onboarding')({
 
 function RouteComponent() {
   return (
-    <div className="w-screen min-h-screen">
-      <header className=" flex items-center px-8 py-4 justify-start h-[var(--header-height)] w-full bg-white z-[110]">
-        <Link to="/" className="mr-3">
-          <HeaderLogo className={`h-6`} />
-        </Link>
-      </header>
-      <div
-        className="w-full h-screen flex flex-col items-center py-10 gap-4 bg-no-repeat bg-top bg-cover"
-        style={{
-          backgroundImage: `url(${BackgroundImage})`,
-        }}
-      >
+    <div className=" mx-auto w-full h-svh">
+      <EntryLayout className="justify-between pb-5">
         <Outlet />
-      </div>
+      </EntryLayout>
     </div>
   );
 }

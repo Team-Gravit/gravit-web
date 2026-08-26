@@ -50,3 +50,17 @@ export const blockButtonVariants = cva(
     defaultVariants: { variant: 'primary', size: 'md' },
   },
 );
+
+export const socialLoginButtonVariants = cva(
+  'py-3 flex items-center justify-center text-body2-reading h-12 md:text-heading2 md:h-15 relative rounded-lg',
+  {
+    variants: {
+      variant: {
+        kakao: 'bg-[#FFE240] text-text-3 md:text-text-2 ',
+        google:
+          'border-[0.5px] border-dvider-2 md:border-text-4 bg-bg-1 text-text-3 md:text-text-2 ',
+        naver: 'bg-[#00B116] text-cta-text md:text-white',
+      },
+    },
+  },
+);

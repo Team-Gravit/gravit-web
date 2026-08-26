@@ -9,15 +9,9 @@ interface ProfileSelectorProps {
   value?: number;
   onChange?: (index: number) => void;
   gap?: number;
-  arrowColor?: string;
 }
 
-export default function ProfileSelector({
-  value,
-  onChange,
-  gap = 10,
-  arrowColor = '#f8f8f8',
-}: ProfileSelectorProps) {
+export default function ProfileSelector({ value, onChange, gap = 10 }: ProfileSelectorProps) {
   const [colorIndex, setColorIndex] = useState(value ?? 0);
 
   const colorKeys = Object.keys(PROFILE_COLORS).map(Number) as (keyof typeof PROFILE_COLORS)[];
@@ -43,13 +37,16 @@ export default function ProfileSelector({
   return (
     <div className="flex flex-row items-center justify-center" style={{ gap: `${gap * 0.25}rem` }}>
       <button type="button" onClick={handlePrev}>
-        <LeftArrow className="mt-0.5 cursor-pointer" style={{ color: arrowColor }} />
+        <LeftArrow className="mt-0.5 cursor-pointer text-text-3-w md:text-text-1-w" />
       </button>
 
-      <Profile className="w-40 h-40" style={{ color: PROFILE_COLORS[colorKeys[colorIndex]] }} />
+      <Profile
+        className="size-[150px] md:size-[178px]"
+        style={{ color: PROFILE_COLORS[colorKeys[colorIndex]] }}
+      />
 
       <button type="button" onClick={handleNext}>
-        <RightArrow className="cursor-pointer" style={{ color: arrowColor }} />
+        <RightArrow className="cursor-pointer text-text-3-w md:text-text-1-w" />
       </button>
     </div>
   );

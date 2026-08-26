@@ -1,33 +1,42 @@
-import { createFileRoute, useNavigate } from '@tanstack/react-router';
+import { createFileRoute } from '@tanstack/react-router';
 
-import Mascot from '@/shared/assets/icons/end-mascot.svg?react';
-import Form from '@/shared/ui/form/Form';
-import Logo from '@/shared/ui/logo/Logo';
-
+import CelebrateMascot from '@/shared/assets/_images/mascot-celebrate.png';
+import EndMascot from '@/shared/assets/_images/mascot-end.png';
+import { cn } from '@/shared/lib/cn';
+import { LinkButton } from '@/shared/ui/button/link-button';
 export const Route = createFileRoute('/_authenticated/_onboarding/success')({
   component: SuccessPage,
 });
 
 function SuccessPage() {
-  const navigate = useNavigate();
-
   return (
-    <>
-      <Logo />
-      <Form darkMode className="w-[549px] h-[460px] py-8 px-28">
-        <h3 className="text-2xl font-semibold text-white">계정 생성 완료!</h3>
-        <span className="text-[16px] text-[#DCDCDC] mt-4 mb-4">
-          그래빗의 일원이 된 걸 환영해요!
-        </span>
-        <Mascot className="h-56" />
-        <button
-          type="button"
-          onClick={() => navigate({ to: '/main' })}
-          className="mt-auto w-full h-14 text-white py-2 rounded-xl text-lg font-semibold bg-[#BA00FF]"
-        >
-          홈으로
-        </button>
-      </Form>
-    </>
+    <div
+      className={cn(
+        'flex-1 flex flex-col justify-center relative',
+        'md:flex-0 md:max-w-[630px] md:w-full md:p-8 md:rounded-xl',
+        'md:bg-gradient-to-tl to-white/25 from-white/10 md:to-100%  md:backdrop-blur-xl md:drop-shadow-[0_4px_32px_0,rgba(0,0,0,2.4)]',
+        'after:p-px after:pointer-events-none after:absolute after:inset-0 after:rounded-xl ',
+        'after:bg-linear-to-l after:from-white/30 after:via-white/20 after:to-white/30',
+        'after:mask-[linear-gradient(#fff_0_0),linear-gradient(#fff_0_0)] after:[mask-origin:content-box,border-box] after:[mask-clip:content-box,border-box] after:mask-exclude',
+      )}
+    >
+      <div className="flex flex-col justify-center items-center flex-1 md:min-h-100">
+        <div className="mb-10 text-center md:mb-4">
+          <h3 className="text-heading1 text-text-1 mb-1 md:text-title3 md:text-text-1-w md:mb-4">
+            계정 생성 완료!
+          </h3>
+          <span className="text-label2 text-text-4 md:text-body1-normal md:text-text-2-w">
+            그래빗의 일원이 된 걸 환영해요!
+          </span>
+        </div>
+        <picture>
+          <source media="(max-width: 768px)" srcSet={CelebrateMascot} />
+          <img src={EndMascot} className="w-52.5 md:w-39 mr-auto md:mx-auto mb-5" />
+        </picture>
+      </div>
+      <LinkButton to="/main" className="h-12">
+        홈으로
+      </LinkButton>
+    </div>
   );
 }

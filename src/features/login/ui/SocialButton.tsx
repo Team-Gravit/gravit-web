@@ -8,13 +8,8 @@ export default function SocialButton({
   onClick: () => void;
 }) {
   return (
-    <button
-      type="button"
-      id={provider}
-      className="flex w-[400px] lg:w-full cursor-pointer "
-      onClick={onClick}
-    >
-      <img className="flex w-full h-full" src={imgSrc} alt={provider} />
+    <button type="button" id={provider} className="blcok cursor-pointer h-12" onClick={onClick}>
+      <img className="w-full h-12 block object-fill" src={imgSrc} alt={provider} />
     </button>
   );
 }

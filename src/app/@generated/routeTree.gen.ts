@@ -11,6 +11,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRouteImport } from './../../pages/__root'
+import { Route as _indexRouteImport } from './../../pages/__index'
 import { Route as TermsRouteImport } from './../../pages/terms'
 import { Route as RestoreRouteImport } from './../../pages/restore'
 import { Route as PrivacyRouteImport } from './../../pages/privacy'
@@ -57,6 +58,10 @@ import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserNoticePage
 
 const AuthenticatedMyRouteImport = createFileRoute('/_authenticated/my')()
 
+const _indexRoute = _indexRouteImport.update({
+  id: '/__index',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
@@ -410,6 +415,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/__index': typeof _indexRoute
   '/privacy': typeof PrivacyRoute
   '/restore': typeof RestoreRoute
   '/terms': typeof TermsRoute
@@ -535,6 +541,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/__index'
     | '/privacy'
     | '/restore'
     | '/terms'
@@ -582,6 +589,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  _indexRoute: typeof _indexRoute
   PrivacyRoute: typeof PrivacyRoute
   RestoreRoute: typeof RestoreRoute
   TermsRoute: typeof TermsRoute
@@ -597,6 +605,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/__index': {
+      id: '/__index'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof _indexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/terms': {
       id: '/terms'
       path: '/terms'
@@ -1108,6 +1123,7 @@ const AuthenticatedMyRouteWithChildren = AuthenticatedMyRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  _indexRoute: _indexRoute,
   PrivacyRoute: PrivacyRoute,
   RestoreRoute: RestoreRoute,
   TermsRoute: TermsRoute,
