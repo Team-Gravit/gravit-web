@@ -1,69 +1,43 @@
-# React + TypeScript + Vite
+# Gravit Applications
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Gravit의 신규 웹·네이티브 앱과 기존 웹 앱을 한 저장소에서 관리합니다.
 
-Currently, two official plugins are available:
+## 디렉터리 구조
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+```text
+apps/
+├── native/       # Expo 네이티브 앱 (Turborepo workspace)
+├── web/          # 신규 WebView용 웹 앱 (Turborepo workspace)
+└── legacy-web/   # 기존 웹 앱 (독립 pnpm 프로젝트)
+packages/
+├── eslint-config/
+└── typescript-config/
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Workspace 앱 실행
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x';
-import reactDom from 'eslint-plugin-react-dom';
+저장소 루트에서 실행합니다.
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+```sh
+pnpm install
+pnpm dev
+```
+
+루트의 pnpm workspace와 Turbo 작업에는 `apps/native`, `apps/web`, `packages/*`만 포함됩니다.
+
+## Legacy 웹 실행
+
+`legacy-web`은 상위 pnpm workspace와 Turbo 작업에서 제외되어 있습니다. 반드시 앱 디렉터리로 이동한 뒤 독립적으로 설치하고 실행합니다.
+
+```sh
+cd apps/legacy-web
+pnpm install
+pnpm dev
+```
+
+타입 검사와 production build도 같은 디렉터리에서 실행합니다.
+
+```sh
+pnpm check-types
+pnpm build
 ```
