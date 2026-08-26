@@ -1,6 +1,5 @@
 import { useOauthLogin } from '@/entities/login/model/useOauthLogin';
-
-import { socialLoginButtonVariants } from '../../../shared/ui/button/button.variants';
+import { socialLoginButtonVariants } from '@/shared/ui/button/button.variants';
 
 type SocialLoginProvider = 'kakao' | 'google' | 'naver';
 

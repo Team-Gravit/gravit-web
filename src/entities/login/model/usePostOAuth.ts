@@ -4,7 +4,7 @@ import type { AxiosError } from 'axios';
 
 import { api } from '@/shared/api';
 import type { AuthCodeRequest } from '@/shared/api/@generated';
-import { STORAGE_KEYS } from '@/shared/config/storage';
+import { tokenManager } from '@/shared/api/config';
 import { toast } from '@/shared/lib/toast';
 
 export function usePostOAuth() {
@@ -23,14 +23,8 @@ export function usePostOAuth() {
     },
     retry: false,
     onSuccess: (data) => {
-      localStorage.setItem(STORAGE_KEYS.accessToken, data.accessToken);
-      localStorage.setItem(STORAGE_KEYS.refreshToken, data.refreshToken);
-
-      if (data.isOnboarded) {
-        window.location.href = '/main';
-      } else {
-        window.location.href = '/onboarding';
-      }
+      tokenManager.setTokens(data.accessToken, data.refreshToken);
+      router.navigate({ to: data.isOnboarded ? '/main' : '/onboarding', replace: true });
     },
     onError: (error: AxiosError) => {
       if (error.response?.data) {

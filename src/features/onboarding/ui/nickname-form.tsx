@@ -9,11 +9,6 @@ interface NicknameFormProps {
   onSubmit: (nickname: string) => void;
   onValidityChange?: (isValid: boolean) => void;
   helperText?: ReactNode;
-  labelTextSize?: string;
-  labelTextColor?: string;
-  inputTextSize?: string;
-  helperTextSize?: string;
-  helperFontColor?: string;
   placeholder?: string;
 }
 

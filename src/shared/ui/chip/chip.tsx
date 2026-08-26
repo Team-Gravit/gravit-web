@@ -2,11 +2,11 @@ import { cva, type VariantProps } from 'class-variance-authority';
 
 import { cn } from '@/shared/lib/cn';
 
-const chipVariants = cva('inline-flex items-center rounded-full font-medium', {
+const chipVariants = cva('inline-flex items-center rounded-full', {
   variants: {
     variant: {
-      filled: 'bg-main text-text-1-w',
-      outlined: 'bg-white border border-main text-main',
+      filled: 'bg-cta text-text-1-w',
+      outlined: 'bg-white border border-cta text-cta',
       muted: 'bg-white border border-bg-4 text-text-4',
     },
     size: {

@@ -183,7 +183,8 @@
 
   /*헤더*/
   --header-height: 74px;
-
+  --desktop-header-height: 112px;
+  --mobile-header-height: 47px;
   /* 모바일 탭 */
   --bottom-tab-height: 68px;
 

@@ -1,5 +1,6 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, Navigate } from '@tanstack/react-router';
 
+import { useGetUser } from '@/shared/api/@generated/user-api/user-api';
 import CelebrateMascot from '@/shared/assets/_images/mascot-celebrate.png';
 import EndMascot from '@/shared/assets/_images/mascot-end.png';
 import { cn } from '@/shared/lib/cn';
@@ -9,6 +10,14 @@ export const Route = createFileRoute('/_authenticated/_onboarding/success')({
 });
 
 function SuccessPage() {
+  const { data: user, isPending: isUserPending } = useGetUser();
+
+  if (isUserPending) return null;
+
+  if (!user) {
+    return <Navigate to="/onboarding" />;
+  }
+
   return (
     <div
       className={cn(
