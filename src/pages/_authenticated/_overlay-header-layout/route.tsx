@@ -8,7 +8,7 @@ export const Route = createFileRoute('/_authenticated/_overlay-header-layout')({
 
 function OverlayHeaderLayout() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col">
       <div className="hidden md:block">
         <Header variant="overlay" />
       </div>
