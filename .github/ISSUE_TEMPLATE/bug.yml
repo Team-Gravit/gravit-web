@@ -1,0 +1,78 @@
+name: Bug Report
+description: 버그 수정
+title: '[fix] '
+labels: ['fix']
+assignees: []
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: 버그 설명
+      description: 어떤 문제가 발생했는지 명확하게 작성해 주세요.
+      placeholder: |
+        현재 동작과 문제가 되는 지점을 작성해 주세요.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: 재현 방법
+      description: 버그를 재현하는 단계를 작성해 주세요.
+      placeholder: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 예상 동작
+      description: 원래 기대한 동작을 작성해 주세요.
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: 수정 범위
+      description: 수정이 필요한 파일, 모듈, 화면, 패키지 범위를 알고 있다면 작성해 주세요.
+      placeholder: |
+        -
+        -
+    validations:
+      required: false
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: 완료 조건
+      description: 수정 완료 여부를 판단할 수 있는 조건을 작성해 주세요.
+      placeholder: |
+        - [ ]
+        - [ ]
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: 환경 정보
+      description: 브라우저, OS, 디바이스 등 환경 정보를 작성해 주세요.
+      placeholder: |
+        - OS:
+        - Browser:
+        - Device:
+        - Version:
+    validations:
+      required: false
+
+  - type: textarea
+    id: references
+    attributes:
+      label: 참고 자료
+      description: 로그, 스크린샷, 링크가 있다면 작성해 주세요.
+    validations:
+      required: false
