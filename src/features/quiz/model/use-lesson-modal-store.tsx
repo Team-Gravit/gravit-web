@@ -1,35 +1,35 @@
 import { create } from 'zustand';
 
+type LessonModalType = 'report' | 'result' | 'quit' | null;
+
 interface LessonModalState {
-  isReportOpen: boolean;
-  openReportModal: () => void;
-  closeReportModal: () => void;
-
-  isResultOpen: boolean;
-  openResultModal: () => void;
-  closeResultModal: () => void;
-
-  isQuitOpen: boolean;
-  openQuitModal: () => void;
-  closeQuitModal: () => void;
+  lessonModalType: LessonModalType;
+  openLessonModal: (type: LessonModalType) => void;
+  closeLessonModal: () => void;
 }
 
 export const useLessonModalStore = create<LessonModalState>((set) => ({
-  isReportOpen: false,
-  openReportModal: () => set({ isReportOpen: true }),
-  closeReportModal: () => set({ isReportOpen: false }),
-
-  isResultOpen: false,
-  openResultModal: () => set({ isResultOpen: true }),
-  closeResultModal: () => set({ isResultOpen: false }),
-
-  isQuitOpen: false,
-  openQuitModal: () => set({ isQuitOpen: true }),
-  closeQuitModal: () => set({ isQuitOpen: false }),
+  lessonModalType: null,
+  openLessonModal: (type) => {
+    set({ lessonModalType: type });
+  },
+  closeLessonModal: () => {
+    set({ lessonModalType: null });
+  },
 }));
 
+export const useLessonModal = (type: LessonModalType) => {
+  const { lessonModalType, openLessonModal, closeLessonModal } = useLessonModalStore();
+
+  return {
+    isOpen: lessonModalType === type,
+    openModal: () => openLessonModal(type),
+    closeModal: () => closeLessonModal(),
+  };
+};
+
 export const useIsAnyModalOpen = () => {
-  return useLessonModalStore(
-    (state) => state.isReportOpen || state.isResultOpen || state.isQuitOpen,
-  );
+  const lessonModalType = useLessonModalStore((state) => state.lessonModalType);
+
+  return lessonModalType !== null;
 };

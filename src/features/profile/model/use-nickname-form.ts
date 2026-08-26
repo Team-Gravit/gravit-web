@@ -10,7 +10,7 @@ const nicknameSchema = z
 interface UseNicknameFormOptions {
   initialNickname?: string;
   onSubmit: (nickname: string) => void;
-  onValidityChange?: (isValid: boolean) => void;
+  onValidityChange?: (isValid: boolean, isChanged: boolean) => void;
 }
 
 function useNicknameForm({
@@ -39,9 +39,11 @@ function useNicknameForm({
     return () => clearTimeout(handler);
   }, [nickname]);
 
+  const isChanged = nickname !== initialNickname;
+
   useEffect(() => {
-    onValidityChange?.(isValid && !checking);
-  }, [isValid, checking, onValidityChange]);
+    onValidityChange?.(isValid && !checking, isChanged);
+  }, [isValid, checking, isChanged, onValidityChange]);
 
   const handleChange = (value: string) => {
     if (!isDirty) setIsDirty(true);
@@ -59,6 +61,7 @@ function useNicknameForm({
     isValid,
     checking,
     isDirty,
+    isChanged,
     handleSubmit,
   };
 }

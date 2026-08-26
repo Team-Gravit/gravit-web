@@ -25,7 +25,7 @@ function FollowListContainer({ type, enabled = true }: FollowListContainerProps)
   return (
     <>
       {followUsers.length > 0 && (
-        <ul className="flex flex-col">
+        <ul className="flex flex-col h-100">
           {followUsers.map((user) => (
             <FollowListItem key={`${type}-${user.id}`} type={type} user={user} />
           ))}

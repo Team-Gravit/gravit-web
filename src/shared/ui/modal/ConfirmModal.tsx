@@ -1,6 +1,6 @@
 import { forwardRef, useImperativeHandle, useRef } from 'react';
 
-import RabbitIcon from '@/shared/assets/icons/mascot-sad.svg?react';
+import MascotSad from '@/shared/assets/_images/mascot-sad.png';
 import { renderWithBr } from '@/shared/lib/renderWithBr';
 
 export interface ConfirmModalRef {
@@ -39,7 +39,7 @@ export const ConfirmModal = forwardRef<ConfirmModalRef, ConfirmModalProps>(funct
       onClose={onCancel}
     >
       <div className="bg-white rounded-2xl w-[500px] lg:w-[600px] max-h-[600px] pt-3 pb-6 px-8 flex flex-col items-center gap-1">
-        <RabbitIcon width={180} />
+        <img src={MascotSad} alt="울고있는 마스코트 이미지" className="w-[180px]" />
         <div className="text-xl font-semibold text-center space-y-1 ">
           <h3 className="font-semibold">{renderWithBr(title)}</h3>
         </div>

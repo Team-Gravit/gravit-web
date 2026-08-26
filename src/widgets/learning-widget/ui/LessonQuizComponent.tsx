@@ -3,10 +3,10 @@ import { useEffect } from 'react';
 import { useFetchProblems } from '@/entities/learning/model/hooks';
 import ProblemStatement from '@/entities/learning/ui/ProblemStatement';
 import { useQuizSessionState } from '@/features/quiz/model/quiz-session-store';
-import { useLessonModalStore } from '@/features/quiz/model/use-lesson-modal-store';
-import { LessonQuitModal } from '@/features/quiz/ui/modal/LessonQuitModal';
-import ReportModal from '@/features/quiz/ui/modal/ReportModal';
-import ReportResultModal from '@/features/quiz/ui/modal/ReportResultModal';
+import { useLessonModal } from '@/features/quiz/model/use-lesson-modal-store';
+import { LessonQuitModal } from '@/features/quiz/ui/modal/lesson-quit-modal';
+import ReportModal from '@/features/quiz/ui/modal/report-modal';
+import ReportResultModal from '@/features/quiz/ui/modal/report-result-modal';
 import AnswerInteraction from '@/widgets/learning-widget/AnswerInteraction';
 import { useMinimumLoadingTime } from '@/widgets/learning-widget/lib/useMinimumLoadingTime';
 import LoadingWidget from '@/widgets/learning-widget/LoadingWidget';
@@ -21,7 +21,7 @@ export default function LessonQuizComponent({ lessonId }: { lessonId: string }) 
   const userAnswers = useQuizSessionState((state) => state.userAnswers);
   const currentProblemIndex = useQuizSessionState((state) => state.currentProblemIndex);
 
-  const { openQuitModal } = useLessonModalStore();
+  const { openModal: openQuitModal } = useLessonModal('quit');
   const resetQuiz = useQuizSessionState((state) => state.resetQuiz);
   const resetTime = useQuizSessionState((state) => state.resetTime);
   const isQuizCompleted = useQuizSessionState((state) => state.isQuizCompleted);
@@ -64,7 +64,7 @@ export default function LessonQuizComponent({ lessonId }: { lessonId: string }) 
   return (
     <>
       <ReportModal problemId={currentProblem.problemId} />
-      <ReportResultModal type="confirm" />
+      <ReportResultModal />
       <LessonQuitModal />
 
       {!isQuizCompleted && (

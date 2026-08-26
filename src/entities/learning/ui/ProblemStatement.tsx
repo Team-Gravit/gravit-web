@@ -1,5 +1,5 @@
 import type { Problem } from '../model/_types';
-import ProblemHeader from './ProblemHeader';
+import ProblemHeader from './problem-header';
 
 export default function ProblemStatement({
   problem,

@@ -4,8 +4,8 @@ import { useEffect } from 'react';
 import { useFetchIncorrectProblems } from '@/entities/learning/model/use-fetch-incorrect-problems';
 import ProblemStatement from '@/entities/learning/ui/ProblemStatement';
 import { useQuizSessionState } from '@/features/quiz/model/quiz-session-store';
-import ReportModal from '@/features/quiz/ui/modal/ReportModal';
-import ReportResultModal from '@/features/quiz/ui/modal/ReportResultModal';
+import ReportModal from '@/features/quiz/ui/modal/report-modal';
+import ReportResultModal from '@/features/quiz/ui/modal/report-result-modal';
 import { useMinimumLoadingTime } from '@/widgets/learning-widget/lib/useMinimumLoadingTime';
 import LoadingWidget from '@/widgets/learning-widget/LoadingWidget';
 import QuizHeader from '@/widgets/learning-widget/QuizHeader';
@@ -58,7 +58,7 @@ export default function IncorrectQuizComponent({ unitId }: { unitId: string }) {
   return (
     <>
       <ReportModal problemId={currentProblem.problemId} />
-      <ReportResultModal type="confirm" />
+      <ReportResultModal />
       {!isQuizCompleted && (
         <div className="w-full h-screen flex flex-col">
           <QuizHeader onHandleQuit={handleClickQuit} learningTitle={data.unitSummary.title} />
