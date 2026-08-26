@@ -3,6 +3,7 @@ import { FloatingPortal } from '@floating-ui/react';
 import DropdownIcon from '@/shared/assets/icons/arrow-down-icon.svg?react';
 import { cn } from '@/shared/lib/cn';
 
+import FieldLabel from '../input/field-label';
 import ScrollArea from '../scroll/scroll-area';
 import type { DropdownProps } from './dropdown.types';
 import { useDropdown } from './use-dropdown';
@@ -14,7 +15,11 @@ export default function Dropdown({
   placeholder,
   disabled,
   className,
+  fieldLabel,
   id,
+  fieldLabelClassName,
+  placeholderClassName,
+  valueClassName,
   'aria-label': ariaLabel,
 }: DropdownProps) {
   const {
@@ -37,6 +42,30 @@ export default function Dropdown({
 
   const selectedLabel = options.find((o) => o.value === value)?.label ?? '';
 
+  let content;
+
+  if (selectedLabel && fieldLabel) {
+    content = (
+      <div className="text-start w-full">
+        <FieldLabel id={id} className={fieldLabelClassName} label={fieldLabel} />
+        <div className={cn('text-body1-normal', valueClassName)}>{selectedLabel}</div>
+      </div>
+    );
+  } else if (selectedLabel) {
+    content = <span className={cn('text-body1-normal', valueClassName)}>{selectedLabel}</span>;
+  } else {
+    content = (
+      <span
+        className={cn(
+          'text-start w-full text-label1 md:text-body1-normal text-text-4 ',
+          placeholderClassName,
+        )}
+      >
+        {placeholder || '선택하세요'}
+      </span>
+    );
+  }
+
   return (
     <div className={cn('relative w-[150px]', className)}>
       <button
@@ -56,15 +85,17 @@ export default function Dropdown({
         onKeyDown={handleTriggerKeyDown}
         className="px-3 py-2 border border-bg-3 rounded-sm flex items-center justify-between w-full cursor-pointer disabled:cursor-default focus:outline-none text-text-1 disabled:text-gray-400"
       >
-        <span className="text-body1-normal">{selectedLabel || placeholder || '선택하세요'}</span>
+        {content}
         <DropdownIcon
-          className={cn('text-gray-600 transition-transform duration-300', isOpen && 'rotate-180')}
+          className={cn(
+            'size-4 text-gray-600 transition-transform duration-300',
+            isOpen && 'rotate-180',
+          )}
         />
       </button>
 
       {isOpen && (
         <FloatingPortal>
-          {/** biome-ignore lint/a11y/useAriaPropsSupportedByRole: ul[role="listbox"] is valid per WAI-ARIA spec */}
           <ul
             tabIndex={-1}
             id={listboxId}
@@ -100,9 +131,9 @@ export default function Dropdown({
                     'flex items-center justify-center px-5 py-4 min-h-14 bg-white focus:outline-none text-body1-normal text-text-1 border-b border-divider-1 last:border-0 shrink-0',
                     option.disabled
                       ? 'text-gray-400 cursor-not-allowed'
-                      : 'hover:bg-gray-300 cursor-pointer',
+                      : 'hover:bg-gray-200 cursor-pointer',
                     'first:rounded-t-lg last:rounded-b-lg p-1',
-                    focusedOptionIdx === i ? 'bg-main-1 text-white hover:bg-main-hover' : '',
+                    focusedOptionIdx === i ? 'bg-bg-3' : '',
                   )}
                 >
                   {option.label}

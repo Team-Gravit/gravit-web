@@ -11,7 +11,6 @@ import ScrollArea from '@/shared/ui/scroll/scroll-area';
 function SocialRecommendFriendSection() {
   const [listRef] = useAutoAnimate();
 
-  // TODO : API response 타입 단일 데이터로 되어있음
   const { data: recommendFriends, isPending: isGetRecommendFriendsPending } =
     useGetRecommendedUsers<RecommendUserResponse[]>();
 

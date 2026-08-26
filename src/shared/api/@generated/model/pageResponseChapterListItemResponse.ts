@@ -11,5 +11,6 @@ export interface PageResponseChapterListItemResponse {
   page: number;
   totalPages: number;
   hasNext: boolean;
+  totalElements: number;
   contents: ChapterListItemResponse[];
 }

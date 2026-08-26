@@ -11,5 +11,6 @@ export interface PageResponseUserListItemResponse {
   page: number;
   totalPages: number;
   hasNext: boolean;
+  totalElements: number;
   contents: UserListItemResponse[];
 }

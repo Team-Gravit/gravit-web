@@ -296,6 +296,7 @@ export const GetMyInquiriesResponse = zod.object({
   "page": zod.number().describe('현재 페이지 번호'),
   "totalPages": zod.number().describe('전체 페이지 수'),
   "hasNext": zod.boolean().describe('다음 페이지 존재 여부'),
+  "totalElements": zod.number().describe('전체 문의 개수'),
   "contents": zod.array(zod.object({
   "id": zod.number(),
   "title": zod.string(),
@@ -924,12 +925,9 @@ export const AuthorizeUrlQueryParams = zod.object({
  * @summary 알림 인박스 조회
  */
 export const getInboxQueryPageDefault = 0;
-export const getInboxQueryPageMin = 0;
-
-
 
 export const GetInboxQueryParams = zod.object({
-  "page": zod.number().min(getInboxQueryPageMin).default(getInboxQueryPageDefault).describe('0부터 시작하는 페이지 번호')
+  "page": zod.number().default(getInboxQueryPageDefault).describe('0부터 시작하는 페이지 번호')
 })
 
 
@@ -966,6 +964,7 @@ export const GetNoticeSummariesResponse = zod.object({
   "page": zod.number().describe('현재 페이지 번호'),
   "totalPages": zod.number().describe('전체 페이지 수'),
   "hasNext": zod.boolean().describe('다음 페이지 존재 여부'),
+  "totalElements": zod.number().describe('전체 공지 개수'),
   "contents": zod.array(zod.object({
   "id": zod.number(),
   "title": zod.string(),

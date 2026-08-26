@@ -11,5 +11,6 @@ export interface PageResponseStagingLabelListItemResponse {
   page: number;
   totalPages: number;
   hasNext: boolean;
+  totalElements: number;
   contents: StagingLabelListItemResponse[];
 }

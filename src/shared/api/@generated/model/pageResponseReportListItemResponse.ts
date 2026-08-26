@@ -11,5 +11,6 @@ export interface PageResponseReportListItemResponse {
   page: number;
   totalPages: number;
   hasNext: boolean;
+  totalElements: number;
   contents: ReportListItemResponse[];
 }

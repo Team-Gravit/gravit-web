@@ -16,4 +16,9 @@ export interface DropdownProps {
 
   id?: string;
   'aria-label'?: string;
+
+  fieldLabel?: string;
+  fieldLabelClassName?: string;
+  valueClassName?: string;
+  placeholderClassName?: string;
 }

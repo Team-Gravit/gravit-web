@@ -74,7 +74,7 @@ export default function UserProfileCard({
             <Link
               aria-label="사용자 설정 페이지로 이동"
               className="flex items-center justify-center"
-              to="/user"
+              to="/settings"
             >
               <SettingIcon />
             </Link>

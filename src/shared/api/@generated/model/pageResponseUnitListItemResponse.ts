@@ -11,5 +11,6 @@ export interface PageResponseUnitListItemResponse {
   page: number;
   totalPages: number;
   hasNext: boolean;
+  totalElements: number;
   contents: UnitListItemResponse[];
 }

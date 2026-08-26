@@ -9,7 +9,6 @@
 export type GetInboxParams = {
 /**
  * 0부터 시작하는 페이지 번호
- * @minimum 0
  */
 page?: number;
 };

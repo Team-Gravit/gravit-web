@@ -11,5 +11,6 @@ export interface PageResponseProblemListItemResponse {
   page: number;
   totalPages: number;
   hasNext: boolean;
+  totalElements: number;
   contents: ProblemListItemResponse[];
 }

@@ -6,18 +6,23 @@
  * OpenAPI spec version: 1.0.0
  */
 import {
+  useInfiniteQuery,
   useMutation,
   useQuery
 } from '@tanstack/react-query';
 import type {
   DataTag,
   DefinedInitialDataOptions,
+  DefinedUseInfiniteQueryResult,
   DefinedUseQueryResult,
+  InfiniteData,
   MutationFunction,
   QueryClient,
   QueryFunction,
   QueryKey,
   UndefinedInitialDataOptions,
+  UseInfiniteQueryOptions,
+  UseInfiniteQueryResult,
   UseMutationOptions,
   UseMutationResult,
   UseQueryOptions,
@@ -57,11 +62,84 @@ export const getMyInquiries = (
 
 
 
+export const getGetMyInquiriesInfiniteQueryKey = (params?: GetMyInquiriesParams,) => {
+    return [
+    'infinite', `/api/v1/inquiries`, ...(params ? [params] : [])
+    ] as const;
+    }
+
 export const getGetMyInquiriesQueryKey = (params?: GetMyInquiriesParams,) => {
     return [
     `/api/v1/inquiries`, ...(params ? [params] : [])
     ] as const;
     }
+
+
+export const getGetMyInquiriesInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getMyInquiries>>, GetMyInquiriesParams['page']>, TError = unknown>(params?: GetMyInquiriesParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getMyInquiries>>, TError, TData, QueryKey, GetMyInquiriesParams['page']>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGetMyInquiriesInfiniteQueryKey(params);
+
+
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getMyInquiries>>, QueryKey, GetMyInquiriesParams['page']> = ({ signal, pageParam }) => getMyInquiries({...params, 'page': pageParam || params?.['page']}, signal);
+
+
+
+
+
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getMyInquiries>>, TError, TData, QueryKey, GetMyInquiriesParams['page']> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type GetMyInquiriesInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getMyInquiries>>>
+export type GetMyInquiriesInfiniteQueryError = unknown
+
+
+export function useGetMyInquiriesInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getMyInquiries>>, GetMyInquiriesParams['page']>, TError = unknown>(
+ params: undefined |  GetMyInquiriesParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getMyInquiries>>, TError, TData, QueryKey, GetMyInquiriesParams['page']>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getMyInquiries>>,
+          TError,
+          Awaited<ReturnType<typeof getMyInquiries>>, QueryKey
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetMyInquiriesInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getMyInquiries>>, GetMyInquiriesParams['page']>, TError = unknown>(
+ params?: GetMyInquiriesParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getMyInquiries>>, TError, TData, QueryKey, GetMyInquiriesParams['page']>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getMyInquiries>>,
+          TError,
+          Awaited<ReturnType<typeof getMyInquiries>>, QueryKey
+        > , 'initialData'
+      >, }
+ , queryClient?: QueryClient
+  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetMyInquiriesInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getMyInquiries>>, GetMyInquiriesParams['page']>, TError = unknown>(
+ params?: GetMyInquiriesParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getMyInquiries>>, TError, TData, QueryKey, GetMyInquiriesParams['page']>>, }
+ , queryClient?: QueryClient
+  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary 본인 문의 목록 조회
+ */
+
+export function useGetMyInquiriesInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getMyInquiries>>, GetMyInquiriesParams['page']>, TError = unknown>(
+ params?: GetMyInquiriesParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getMyInquiries>>, TError, TData, QueryKey, GetMyInquiriesParams['page']>>, }
+ , queryClient?: QueryClient
+ ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getGetMyInquiriesInfiniteQueryOptions(params,options)
+
+  const query = useInfiniteQuery(queryOptions, queryClient) as  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+
+
+
 
 
 export const getGetMyInquiriesQueryOptions = <TData = Awaited<ReturnType<typeof getMyInquiries>>, TError = unknown>(params?: GetMyInquiriesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getMyInquiries>>, TError, TData>>, }

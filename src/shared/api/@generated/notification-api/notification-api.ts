@@ -21,7 +21,8 @@ import type {
 } from '@tanstack/react-query';
 
 import type {
-  GetInboxParams
+  GetInboxParams,
+  SliceResponseNotificationResponse
 } from '../model';
 
 import { customInstance } from '../../mutator';
@@ -46,7 +47,7 @@ export const getInbox = (
 ) => {
 
 
-      return customInstance<unknown>(
+      return customInstance<SliceResponseNotificationResponse>(
       {url: `/api/v1/notifications`, method: 'GET',
         params, signal
     },

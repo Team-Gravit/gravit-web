@@ -17,6 +17,8 @@ export interface InquirySummaryPageResponse {
   totalPages: number;
   /** 다음 페이지 존재 여부 */
   hasNext: boolean;
+  /** 전체 문의 개수 */
+  totalElements: number;
   /** 문의 요약 목록 */
   contents: InquirySummaryResponse[];
 }

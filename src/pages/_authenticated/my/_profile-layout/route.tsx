@@ -4,7 +4,7 @@ import { useGetMyPageBanner } from '@/shared/api/@generated/mypage-api/mypage-ap
 import { HEADER_HEIGHT } from '@/shared/config/constants';
 import useResponsive from '@/shared/model/use-responsive';
 import PageLayout from '@/shared/ui/layout/page-layout';
-import Header from '@/widgets/header/ui/_header';
+import Header from '@/widgets/header/ui/header';
 import UserProfileCard from '@/widgets/user/ui/user-profile-card';
 import UserTabs from '@/widgets/user/ui/user-tabs';
 
@@ -19,7 +19,7 @@ function RouteComponent() {
     <PageLayout bottomTabBar={isMobile}>
       {isMobile ? null : <Header />}
       <div
-        className="w-full h-full flex flex-col  "
+        className="w-full h-full flex flex-col"
         style={{ paddingTop: isMobile ? 0 : HEADER_HEIGHT + 20 * 2 }}
       >
         {data && <UserProfileCard {...data} />}

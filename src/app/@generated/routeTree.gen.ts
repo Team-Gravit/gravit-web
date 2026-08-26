@@ -15,22 +15,27 @@ import { Route as TermsRouteImport } from './../../pages/terms'
 import { Route as RestoreRouteImport } from './../../pages/restore'
 import { Route as PrivacyRouteImport } from './../../pages/privacy'
 import { Route as IndexRouteImport } from './../../pages/index'
+import { Route as AuthenticatedSettingsRouteRouteImport } from './../../pages/_authenticated/settings/route'
 import { Route as AuthenticatedMainRouteRouteImport } from './../../pages/_authenticated/main/route'
 import { Route as AuthenticatedOnboardingRouteRouteImport } from './../../pages/_authenticated/_onboarding/route'
 import { Route as AuthenticatedFixedHeaderLayoutRouteRouteImport } from './../../pages/_authenticated/_fixed-header-layout/route'
 import { Route as AuthenticatedBlankLayoutRouteRouteImport } from './../../pages/_authenticated/_blank-layout/route'
+import { Route as AuthenticatedSettingsIndexRouteImport } from './../../pages/_authenticated/settings/index'
 import { Route as AuthenticatedMyIndexRouteImport } from './../../pages/_authenticated/my/index'
 import { Route as AuthenticatedOnboardingSuccessRouteImport } from './../../pages/_authenticated/_onboarding/success'
 import { Route as AuthenticatedOnboardingOnboardingRouteImport } from './../../pages/_authenticated/_onboarding/onboarding'
 import { Route as AuthenticatedFixedHeaderLayoutTestRouteImport } from './../../pages/_authenticated/_fixed-header-layout/test'
 import { Route as AuthenticatedFixedHeaderLayoutMainsRouteImport } from './../../pages/_authenticated/_fixed-header-layout/mains'
 import { Route as AuthenticatedFixedHeaderLayoutLeagueRouteImport } from './../../pages/_authenticated/_fixed-header-layout/league'
+import { Route as AuthenticatedSettingsInquiryRouteRouteImport } from './../../pages/_authenticated/settings/inquiry/route'
 import { Route as AuthenticatedMyProfileLayoutRouteRouteImport } from './../../pages/_authenticated/my/_profile-layout/route'
 import { Route as AuthenticatedMyBlankProfileLayoutRouteRouteImport } from './../../pages/_authenticated/my/_blank-profile-layout/route'
 import { Route as AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRouteImport } from './../../pages/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/route'
+import { Route as AuthenticatedSettingsInquiryIndexRouteImport } from './../../pages/_authenticated/settings/inquiry/index'
 import { Route as AuthenticatedFixedHeaderLayoutLearningIndexRouteImport } from './../../pages/_authenticated/_fixed-header-layout/learning/index'
 import { Route as UserMeDeletePageRouteImport } from './../../pages/user.me.delete.page'
 import { Route as LoginOauth2CodeProviderRouteImport } from './../../pages/login/oauth2/code/$provider'
+import { Route as AuthenticatedSettingsInquiryNewRouteImport } from './../../pages/_authenticated/settings/inquiry/new'
 import { Route as AuthenticatedMyProfileLayoutSummaryRouteImport } from './../../pages/_authenticated/my/_profile-layout/summary'
 import { Route as AuthenticatedMyProfileLayoutSocialRouteImport } from './../../pages/_authenticated/my/_profile-layout/social'
 import { Route as AuthenticatedMyProfileLayoutLearningRouteImport } from './../../pages/_authenticated/my/_profile-layout/learning'
@@ -77,6 +82,12 @@ const AuthenticatedMyRoute = AuthenticatedMyRouteImport.update({
   path: '/my',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedSettingsRouteRoute =
+  AuthenticatedSettingsRouteRouteImport.update({
+    id: '/_authenticated/settings',
+    path: '/settings',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const AuthenticatedMainRouteRoute = AuthenticatedMainRouteRouteImport.update({
   id: '/_authenticated/main',
   path: '/main',
@@ -96,6 +107,12 @@ const AuthenticatedBlankLayoutRouteRoute =
   AuthenticatedBlankLayoutRouteRouteImport.update({
     id: '/_authenticated/_blank-layout',
     getParentRoute: () => rootRouteImport,
+  } as any)
+const AuthenticatedSettingsIndexRoute =
+  AuthenticatedSettingsIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedSettingsRouteRoute,
   } as any)
 const AuthenticatedMyIndexRoute = AuthenticatedMyIndexRouteImport.update({
   id: '/',
@@ -132,6 +149,12 @@ const AuthenticatedFixedHeaderLayoutLeagueRoute =
     path: '/league',
     getParentRoute: () => AuthenticatedFixedHeaderLayoutRouteRoute,
   } as any)
+const AuthenticatedSettingsInquiryRouteRoute =
+  AuthenticatedSettingsInquiryRouteRouteImport.update({
+    id: '/inquiry',
+    path: '/inquiry',
+    getParentRoute: () => AuthenticatedSettingsRouteRoute,
+  } as any)
 const AuthenticatedMyProfileLayoutRouteRoute =
   AuthenticatedMyProfileLayoutRouteRouteImport.update({
     id: '/_profile-layout',
@@ -146,6 +169,12 @@ const AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRoute =
   AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRouteImport.update({
     id: '/_fixed-sidebar-layout',
     getParentRoute: () => AuthenticatedFixedHeaderLayoutRouteRoute,
+  } as any)
+const AuthenticatedSettingsInquiryIndexRoute =
+  AuthenticatedSettingsInquiryIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedSettingsInquiryRouteRoute,
   } as any)
 const AuthenticatedFixedHeaderLayoutLearningIndexRoute =
   AuthenticatedFixedHeaderLayoutLearningIndexRouteImport.update({
@@ -163,6 +192,12 @@ const LoginOauth2CodeProviderRoute = LoginOauth2CodeProviderRouteImport.update({
   path: '/login/oauth2/code/$provider',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedSettingsInquiryNewRoute =
+  AuthenticatedSettingsInquiryNewRouteImport.update({
+    id: '/new',
+    path: '/new',
+    getParentRoute: () => AuthenticatedSettingsInquiryRouteRoute,
+  } as any)
 const AuthenticatedMyProfileLayoutSummaryRoute =
   AuthenticatedMyProfileLayoutSummaryRouteImport.update({
     id: '/summary',
@@ -301,21 +336,26 @@ export interface FileRoutesByFullPath {
   '/restore': typeof RestoreRoute
   '/terms': typeof TermsRoute
   '/main': typeof AuthenticatedMainRouteRoute
+  '/settings': typeof AuthenticatedSettingsRouteRouteWithChildren
   '/my': typeof AuthenticatedMyProfileLayoutRouteRouteWithChildren
+  '/settings/inquiry': typeof AuthenticatedSettingsInquiryRouteRouteWithChildren
   '/league': typeof AuthenticatedFixedHeaderLayoutLeagueRoute
   '/mains': typeof AuthenticatedFixedHeaderLayoutMainsRoute
   '/test': typeof AuthenticatedFixedHeaderLayoutTestRoute
   '/onboarding': typeof AuthenticatedOnboardingOnboardingRoute
   '/success': typeof AuthenticatedOnboardingSuccessRoute
   '/my/': typeof AuthenticatedMyIndexRoute
+  '/settings/': typeof AuthenticatedSettingsIndexRoute
   '/my/follow': typeof AuthenticatedMyBlankProfileLayoutFollowRoute
   '/my/league': typeof AuthenticatedMyProfileLayoutLeagueRoute
   '/my/learning': typeof AuthenticatedMyProfileLayoutLearningRoute
   '/my/social': typeof AuthenticatedMyProfileLayoutSocialRoute
   '/my/summary': typeof AuthenticatedMyProfileLayoutSummaryRoute
+  '/settings/inquiry/new': typeof AuthenticatedSettingsInquiryNewRoute
   '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
   '/user/me/delete/page': typeof UserMeDeletePageRoute
   '/learning': typeof AuthenticatedFixedHeaderLayoutLearningIndexRoute
+  '/settings/inquiry/': typeof AuthenticatedSettingsInquiryIndexRoute
   '/user/addfriend': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserAddfriendRoute
   '/user/edit': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserEditRoute
   '/user/privacy': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserPrivacyRoute
@@ -342,14 +382,17 @@ export interface FileRoutesByTo {
   '/test': typeof AuthenticatedFixedHeaderLayoutTestRoute
   '/onboarding': typeof AuthenticatedOnboardingOnboardingRoute
   '/success': typeof AuthenticatedOnboardingSuccessRoute
+  '/settings': typeof AuthenticatedSettingsIndexRoute
   '/my/follow': typeof AuthenticatedMyBlankProfileLayoutFollowRoute
   '/my/league': typeof AuthenticatedMyProfileLayoutLeagueRoute
   '/my/learning': typeof AuthenticatedMyProfileLayoutLearningRoute
   '/my/social': typeof AuthenticatedMyProfileLayoutSocialRoute
   '/my/summary': typeof AuthenticatedMyProfileLayoutSummaryRoute
+  '/settings/inquiry/new': typeof AuthenticatedSettingsInquiryNewRoute
   '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
   '/user/me/delete/page': typeof UserMeDeletePageRoute
   '/learning': typeof AuthenticatedFixedHeaderLayoutLearningIndexRoute
+  '/settings/inquiry': typeof AuthenticatedSettingsInquiryIndexRoute
   '/user/addfriend': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserAddfriendRoute
   '/user/edit': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserEditRoute
   '/user/privacy': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserPrivacyRoute
@@ -374,24 +417,29 @@ export interface FileRoutesById {
   '/_authenticated/_fixed-header-layout': typeof AuthenticatedFixedHeaderLayoutRouteRouteWithChildren
   '/_authenticated/_onboarding': typeof AuthenticatedOnboardingRouteRouteWithChildren
   '/_authenticated/main': typeof AuthenticatedMainRouteRoute
+  '/_authenticated/settings': typeof AuthenticatedSettingsRouteRouteWithChildren
   '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRouteWithChildren
   '/_authenticated/my': typeof AuthenticatedMyRouteWithChildren
   '/_authenticated/my/_blank-profile-layout': typeof AuthenticatedMyBlankProfileLayoutRouteRouteWithChildren
   '/_authenticated/my/_profile-layout': typeof AuthenticatedMyProfileLayoutRouteRouteWithChildren
+  '/_authenticated/settings/inquiry': typeof AuthenticatedSettingsInquiryRouteRouteWithChildren
   '/_authenticated/_fixed-header-layout/league': typeof AuthenticatedFixedHeaderLayoutLeagueRoute
   '/_authenticated/_fixed-header-layout/mains': typeof AuthenticatedFixedHeaderLayoutMainsRoute
   '/_authenticated/_fixed-header-layout/test': typeof AuthenticatedFixedHeaderLayoutTestRoute
   '/_authenticated/_onboarding/onboarding': typeof AuthenticatedOnboardingOnboardingRoute
   '/_authenticated/_onboarding/success': typeof AuthenticatedOnboardingSuccessRoute
   '/_authenticated/my/': typeof AuthenticatedMyIndexRoute
+  '/_authenticated/settings/': typeof AuthenticatedSettingsIndexRoute
   '/_authenticated/my/_blank-profile-layout/follow': typeof AuthenticatedMyBlankProfileLayoutFollowRoute
   '/_authenticated/my/_profile-layout/league': typeof AuthenticatedMyProfileLayoutLeagueRoute
   '/_authenticated/my/_profile-layout/learning': typeof AuthenticatedMyProfileLayoutLearningRoute
   '/_authenticated/my/_profile-layout/social': typeof AuthenticatedMyProfileLayoutSocialRoute
   '/_authenticated/my/_profile-layout/summary': typeof AuthenticatedMyProfileLayoutSummaryRoute
+  '/_authenticated/settings/inquiry/new': typeof AuthenticatedSettingsInquiryNewRoute
   '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
   '/user/me/delete/page': typeof UserMeDeletePageRoute
   '/_authenticated/_fixed-header-layout/learning/': typeof AuthenticatedFixedHeaderLayoutLearningIndexRoute
+  '/_authenticated/settings/inquiry/': typeof AuthenticatedSettingsInquiryIndexRoute
   '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/addfriend': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserAddfriendRoute
   '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/edit': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserEditRoute
   '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/privacy': typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutUserPrivacyRoute
@@ -414,21 +462,26 @@ export interface FileRouteTypes {
     | '/restore'
     | '/terms'
     | '/main'
+    | '/settings'
     | '/my'
+    | '/settings/inquiry'
     | '/league'
     | '/mains'
     | '/test'
     | '/onboarding'
     | '/success'
     | '/my/'
+    | '/settings/'
     | '/my/follow'
     | '/my/league'
     | '/my/learning'
     | '/my/social'
     | '/my/summary'
+    | '/settings/inquiry/new'
     | '/login/oauth2/code/$provider'
     | '/user/me/delete/page'
     | '/learning'
+    | '/settings/inquiry/'
     | '/user/addfriend'
     | '/user/edit'
     | '/user/privacy'
@@ -455,14 +508,17 @@ export interface FileRouteTypes {
     | '/test'
     | '/onboarding'
     | '/success'
+    | '/settings'
     | '/my/follow'
     | '/my/league'
     | '/my/learning'
     | '/my/social'
     | '/my/summary'
+    | '/settings/inquiry/new'
     | '/login/oauth2/code/$provider'
     | '/user/me/delete/page'
     | '/learning'
+    | '/settings/inquiry'
     | '/user/addfriend'
     | '/user/edit'
     | '/user/privacy'
@@ -486,24 +542,29 @@ export interface FileRouteTypes {
     | '/_authenticated/_fixed-header-layout'
     | '/_authenticated/_onboarding'
     | '/_authenticated/main'
+    | '/_authenticated/settings'
     | '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout'
     | '/_authenticated/my'
     | '/_authenticated/my/_blank-profile-layout'
     | '/_authenticated/my/_profile-layout'
+    | '/_authenticated/settings/inquiry'
     | '/_authenticated/_fixed-header-layout/league'
     | '/_authenticated/_fixed-header-layout/mains'
     | '/_authenticated/_fixed-header-layout/test'
     | '/_authenticated/_onboarding/onboarding'
     | '/_authenticated/_onboarding/success'
     | '/_authenticated/my/'
+    | '/_authenticated/settings/'
     | '/_authenticated/my/_blank-profile-layout/follow'
     | '/_authenticated/my/_profile-layout/league'
     | '/_authenticated/my/_profile-layout/learning'
     | '/_authenticated/my/_profile-layout/social'
     | '/_authenticated/my/_profile-layout/summary'
+    | '/_authenticated/settings/inquiry/new'
     | '/login/oauth2/code/$provider'
     | '/user/me/delete/page'
     | '/_authenticated/_fixed-header-layout/learning/'
+    | '/_authenticated/settings/inquiry/'
     | '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/addfriend'
     | '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/edit'
     | '/_authenticated/_fixed-header-layout/_fixed-sidebar-layout/user/privacy'
@@ -528,6 +589,7 @@ export interface RootRouteChildren {
   AuthenticatedFixedHeaderLayoutRouteRoute: typeof AuthenticatedFixedHeaderLayoutRouteRouteWithChildren
   AuthenticatedOnboardingRouteRoute: typeof AuthenticatedOnboardingRouteRouteWithChildren
   AuthenticatedMainRouteRoute: typeof AuthenticatedMainRouteRoute
+  AuthenticatedSettingsRouteRoute: typeof AuthenticatedSettingsRouteRouteWithChildren
   AuthenticatedMyRoute: typeof AuthenticatedMyRouteWithChildren
   LoginOauth2CodeProviderRoute: typeof LoginOauth2CodeProviderRoute
   UserMeDeletePageRoute: typeof UserMeDeletePageRoute
@@ -570,6 +632,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedMyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/settings': {
+      id: '/_authenticated/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AuthenticatedSettingsRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated/main': {
       id: '/_authenticated/main'
       path: '/main'
@@ -597,6 +666,13 @@ declare module '@tanstack/react-router' {
       fullPath: ''
       preLoaderRoute: typeof AuthenticatedBlankLayoutRouteRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/settings/': {
+      id: '/_authenticated/settings/'
+      path: '/'
+      fullPath: '/settings/'
+      preLoaderRoute: typeof AuthenticatedSettingsIndexRouteImport
+      parentRoute: typeof AuthenticatedSettingsRouteRoute
     }
     '/_authenticated/my/': {
       id: '/_authenticated/my/'
@@ -640,6 +716,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedFixedHeaderLayoutLeagueRouteImport
       parentRoute: typeof AuthenticatedFixedHeaderLayoutRouteRoute
     }
+    '/_authenticated/settings/inquiry': {
+      id: '/_authenticated/settings/inquiry'
+      path: '/inquiry'
+      fullPath: '/settings/inquiry'
+      preLoaderRoute: typeof AuthenticatedSettingsInquiryRouteRouteImport
+      parentRoute: typeof AuthenticatedSettingsRouteRoute
+    }
     '/_authenticated/my/_profile-layout': {
       id: '/_authenticated/my/_profile-layout'
       path: ''
@@ -661,6 +744,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedFixedHeaderLayoutFixedSidebarLayoutRouteRouteImport
       parentRoute: typeof AuthenticatedFixedHeaderLayoutRouteRoute
     }
+    '/_authenticated/settings/inquiry/': {
+      id: '/_authenticated/settings/inquiry/'
+      path: '/'
+      fullPath: '/settings/inquiry/'
+      preLoaderRoute: typeof AuthenticatedSettingsInquiryIndexRouteImport
+      parentRoute: typeof AuthenticatedSettingsInquiryRouteRoute
+    }
     '/_authenticated/_fixed-header-layout/learning/': {
       id: '/_authenticated/_fixed-header-layout/learning/'
       path: '/learning'
@@ -681,6 +771,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/login/oauth2/code/$provider'
       preLoaderRoute: typeof LoginOauth2CodeProviderRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/settings/inquiry/new': {
+      id: '/_authenticated/settings/inquiry/new'
+      path: '/new'
+      fullPath: '/settings/inquiry/new'
+      preLoaderRoute: typeof AuthenticatedSettingsInquiryNewRouteImport
+      parentRoute: typeof AuthenticatedSettingsInquiryRouteRoute
     }
     '/_authenticated/my/_profile-layout/summary': {
       id: '/_authenticated/my/_profile-layout/summary'
@@ -918,6 +1015,40 @@ const AuthenticatedOnboardingRouteRouteWithChildren =
     AuthenticatedOnboardingRouteRouteChildren,
   )
 
+interface AuthenticatedSettingsInquiryRouteRouteChildren {
+  AuthenticatedSettingsInquiryNewRoute: typeof AuthenticatedSettingsInquiryNewRoute
+  AuthenticatedSettingsInquiryIndexRoute: typeof AuthenticatedSettingsInquiryIndexRoute
+}
+
+const AuthenticatedSettingsInquiryRouteRouteChildren: AuthenticatedSettingsInquiryRouteRouteChildren =
+  {
+    AuthenticatedSettingsInquiryNewRoute: AuthenticatedSettingsInquiryNewRoute,
+    AuthenticatedSettingsInquiryIndexRoute:
+      AuthenticatedSettingsInquiryIndexRoute,
+  }
+
+const AuthenticatedSettingsInquiryRouteRouteWithChildren =
+  AuthenticatedSettingsInquiryRouteRoute._addFileChildren(
+    AuthenticatedSettingsInquiryRouteRouteChildren,
+  )
+
+interface AuthenticatedSettingsRouteRouteChildren {
+  AuthenticatedSettingsInquiryRouteRoute: typeof AuthenticatedSettingsInquiryRouteRouteWithChildren
+  AuthenticatedSettingsIndexRoute: typeof AuthenticatedSettingsIndexRoute
+}
+
+const AuthenticatedSettingsRouteRouteChildren: AuthenticatedSettingsRouteRouteChildren =
+  {
+    AuthenticatedSettingsInquiryRouteRoute:
+      AuthenticatedSettingsInquiryRouteRouteWithChildren,
+    AuthenticatedSettingsIndexRoute: AuthenticatedSettingsIndexRoute,
+  }
+
+const AuthenticatedSettingsRouteRouteWithChildren =
+  AuthenticatedSettingsRouteRoute._addFileChildren(
+    AuthenticatedSettingsRouteRouteChildren,
+  )
+
 interface AuthenticatedMyBlankProfileLayoutRouteRouteChildren {
   AuthenticatedMyBlankProfileLayoutFollowRoute: typeof AuthenticatedMyBlankProfileLayoutFollowRoute
 }
@@ -987,6 +1118,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthenticatedOnboardingRouteRoute:
     AuthenticatedOnboardingRouteRouteWithChildren,
   AuthenticatedMainRouteRoute: AuthenticatedMainRouteRoute,
+  AuthenticatedSettingsRouteRoute: AuthenticatedSettingsRouteRouteWithChildren,
   AuthenticatedMyRoute: AuthenticatedMyRouteWithChildren,
   LoginOauth2CodeProviderRoute: LoginOauth2CodeProviderRoute,
   UserMeDeletePageRoute: UserMeDeletePageRoute,
