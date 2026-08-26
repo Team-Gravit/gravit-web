@@ -293,13 +293,10 @@
 
   @keyframes skeletonWave {
     0% {
-      left: -150%;
-    }
-    50% {
-      left: 0%;
+      transform: translateX(-100%);
     }
     100% {
-      left: 150%;
+      transform: translateX(100%);
     }
   }
 

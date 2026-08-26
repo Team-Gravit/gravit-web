@@ -8,7 +8,7 @@ function AuthenticatedNotFound() {
   const { isDesktop } = useResponsive();
   return (
     <>
-      {isDesktop && <Header />}
+      {isDesktop && <Header variant="solid" />}
       <NotFoundPage />
     </>
   );

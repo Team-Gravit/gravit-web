@@ -14,6 +14,9 @@ export interface SocialFeedResponse {
   actorHandle: string;
   message: string;
   timeAgo: string;
+  /** 이 피드를 이미 축하했는지 여부. true면 '축하 완료' 상태로 노출한다 */
+  congratulated: boolean;
+  /** 지금 축하 가능한지 여부. congratulated=true(완료)이거나 해당 유저 대상 하루 3회 소진 시 false */
   canCongratulate: boolean;
   createdAt: string;
 }

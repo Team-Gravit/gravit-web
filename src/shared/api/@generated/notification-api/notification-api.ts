@@ -21,8 +21,7 @@ import type {
 } from '@tanstack/react-query';
 
 import type {
-  GetInboxParams,
-  SliceResponseNotificationResponse
+  NotificationResponse
 } from '../model';
 
 import { customInstance } from '../../mutator';
@@ -31,25 +30,30 @@ import { customInstance } from '../../mutator';
 
 
 /**
- * 로그인 유저의 알림 목록을 최신순으로 반환합니다. (20개/페이지)
+ * 로그인 유저의 알림 목록을 최신순으로 반환합니다.
+최근 30일 이내 알림 중 최신 30건까지 단일 목록으로 반환합니다(페이지네이션 없음).
 
 **actionType 결정 규칙:**
 - FOLLOW 타입: 현재 팔로우 관계 기준으로 동적 결정
   - 상대를 아직 팔로우하지 않음 → `FOLLOW_BACK` (맞팔로우 버튼)
-  - 상대를 이미 팔로우 중 → `UNFOLLOW` (팔로우 취소 버튼)
+  - 상대를 이미 팔로우 중 → `NONE` (버튼 없음)
 - 나머지 타입: 알림 타입에 고정된 actionType 반환
+
+**congratulated (축하 완료 여부):**
+- FRIEND_ACTIVITY 타입에서만 값이 있으며(targetId=feedId), 그 외 타입은 null
+- 해당 피드를 이미 축하했으면 true → 소셜 피드와 동일하게 '축하 완료' 상태로 노출
+- 알림함/소셜 피드 어느 쪽에서 축하하든 동일 피드로 동기화됨(actionType은 `CONGRATULATE` 유지)
 
  * @summary 알림 인박스 조회
  */
 export const getInbox = (
-    params?: GetInboxParams,
+
  signal?: AbortSignal
 ) => {
 
 
-      return customInstance<SliceResponseNotificationResponse>(
-      {url: `/api/v1/notifications`, method: 'GET',
-        params, signal
+      return customInstance<NotificationResponse[]>(
+      {url: `/api/v1/notifications`, method: 'GET', signal
     },
       );
     }
@@ -57,23 +61,23 @@ export const getInbox = (
 
 
 
-export const getGetInboxQueryKey = (params?: GetInboxParams,) => {
+export const getGetInboxQueryKey = () => {
     return [
-    `/api/v1/notifications`, ...(params ? [params] : [])
+    `/api/v1/notifications`
     ] as const;
     }
 
 
-export const getGetInboxQueryOptions = <TData = Awaited<ReturnType<typeof getInbox>>, TError = unknown>(params?: GetInboxParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getInbox>>, TError, TData>>, }
+export const getGetInboxQueryOptions = <TData = Awaited<ReturnType<typeof getInbox>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getInbox>>, TError, TData>>, }
 ) => {
 
 const {query: queryOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getGetInboxQueryKey(params);
+  const queryKey =  queryOptions?.queryKey ?? getGetInboxQueryKey();
 
 
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getInbox>>> = ({ signal }) => getInbox(params, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getInbox>>> = ({ signal }) => getInbox(signal);
 
 
 
@@ -87,7 +91,7 @@ export type GetInboxQueryError = unknown
 
 
 export function useGetInbox<TData = Awaited<ReturnType<typeof getInbox>>, TError = unknown>(
- params: undefined |  GetInboxParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getInbox>>, TError, TData>> & Pick<
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getInbox>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getInbox>>,
           TError,
@@ -97,7 +101,7 @@ export function useGetInbox<TData = Awaited<ReturnType<typeof getInbox>>, TError
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetInbox<TData = Awaited<ReturnType<typeof getInbox>>, TError = unknown>(
- params?: GetInboxParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getInbox>>, TError, TData>> & Pick<
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getInbox>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getInbox>>,
           TError,
@@ -107,7 +111,7 @@ export function useGetInbox<TData = Awaited<ReturnType<typeof getInbox>>, TError
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useGetInbox<TData = Awaited<ReturnType<typeof getInbox>>, TError = unknown>(
- params?: GetInboxParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getInbox>>, TError, TData>>, }
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getInbox>>, TError, TData>>, }
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -115,11 +119,11 @@ export function useGetInbox<TData = Awaited<ReturnType<typeof getInbox>>, TError
  */
 
 export function useGetInbox<TData = Awaited<ReturnType<typeof getInbox>>, TError = unknown>(
- params?: GetInboxParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getInbox>>, TError, TData>>, }
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getInbox>>, TError, TData>>, }
  , queryClient?: QueryClient
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
-  const queryOptions = getGetInboxQueryOptions(params,options)
+  const queryOptions = getGetInboxQueryOptions(options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 

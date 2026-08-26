@@ -6,7 +6,7 @@ export default function UnitListScrollArea({ units }: { units: UnitProgress[] })
   return (
     <ScrollArea
       orientation="vertical"
-      className="h-[232px] md:h-[184px]"
+      className="h-[168px] md:h-[184px]"
       viewportClassName="px-3 md:px-5 pb-3 md:pb-5 overscroll-contain"
     >
       <UnitList units={units} />

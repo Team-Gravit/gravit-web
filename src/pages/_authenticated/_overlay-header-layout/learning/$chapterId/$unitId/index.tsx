@@ -11,7 +11,7 @@ import { formatUnitIndex } from '@/shared/lib/format-unit-index';
 import SectionCard from '@/shared/ui/card/section-card';
 
 export const Route = createFileRoute(
-  '/_authenticated/_fixed-header-layout/learning/$chapterId/$unitId/',
+  '/_authenticated/_overlay-header-layout/learning/$chapterId/$unitId/',
 )({
   component: RouteComponent,
 });

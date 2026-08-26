@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import type { RecommendedUnit } from '@/entities/learning/model/schema';
 
-import ChaptersSection from './recommended-units-section';
+import ChaptersSection from './recommended-units-list';
 
 const meta = {
   title: 'Widgets/MainPage/ChaptersSection',

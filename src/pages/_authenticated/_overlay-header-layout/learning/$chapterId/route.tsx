@@ -7,7 +7,7 @@ import useResponsive from '@/shared/model/use-responsive';
 import BackButtonMobileHeader from '@/shared/ui/layout/header/back-button-mobile-header';
 import BottomTabBar from '@/widgets/bottom-tab-bar/bottom-tab-bar';
 
-export const Route = createFileRoute('/_authenticated/_fixed-header-layout/learning/$chapterId')({
+export const Route = createFileRoute('/_authenticated/_overlay-header-layout/learning/$chapterId')({
   component: RouteComponent,
 });
 

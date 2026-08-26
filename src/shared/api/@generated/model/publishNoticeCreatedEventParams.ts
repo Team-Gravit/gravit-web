@@ -7,6 +7,12 @@
  */
 
 export type PublishNoticeCreatedEventParams = {
+/**
+ * 딥링크 대상 공지 ID
+ */
 noticeId: number;
+/**
+ * 서브텍스트로 노출될 공지 제목
+ */
 title: string;
 };

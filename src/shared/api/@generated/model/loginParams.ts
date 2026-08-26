@@ -7,5 +7,8 @@
  */
 
 export type LoginParams = {
+/**
+ * 로그인할 유저 ID
+ */
 userId: number;
 };

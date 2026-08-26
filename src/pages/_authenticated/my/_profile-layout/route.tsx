@@ -17,7 +17,7 @@ function RouteComponent() {
   const { data } = useGetMyPageBanner();
   return (
     <PageLayout bottomTabBar={isMobile}>
-      {isMobile ? null : <Header />}
+      {isMobile ? null : <Header variant="solid" />}
       <div
         className="w-full h-full flex flex-col"
         style={{ paddingTop: isMobile ? 0 : HEADER_HEIGHT + 20 * 2 }}
