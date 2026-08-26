@@ -36,9 +36,7 @@ export default function HeaderContent({
     <div
       className={cn(
         'relative w-full rounded-full transition-all duration-1000',
-        'after:p-px after:pointer-events-none after:absolute after:inset-0 after:rounded-full',
-        'after:bg-linear-to-l after:from-white/60 after:via-white/20 after:to-white/60',
-        'after:mask-[linear-gradient(#fff_0_0),linear-gradient(#fff_0_0)] after:[mask-origin:content-box,border-box] after:[mask-clip:content-box,border-box] after:mask-exclude',
+        'glass-morphism-border after:rounded-full',
         headerVariantClass[variant].background,
       )}
     >

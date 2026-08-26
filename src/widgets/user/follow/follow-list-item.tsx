@@ -17,7 +17,7 @@ function FollowListItem({ user, type }: FollowListItemProps) {
   const [isFollowing, setIsFollowing] = useState(user.isFollowing);
 
   return (
-    <li className="flex items-center justify-between px-6 py-3">
+    <li className="flex items-center justify-between px-4 md:px-2 py-5 md:py-3">
       <div className="flex gap-3 items-center">
         <Profile profileImgId={profileImgNumber} size="sm" />
         <div className="flex flex-col gap-1">

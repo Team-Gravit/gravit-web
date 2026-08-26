@@ -1,4 +1,10 @@
 @layer utilities {
+  .glass-morphism-border {
+    @apply after:content-[''] after:p-[0.5px] after:pointer-events-none after:absolute after:inset-0
+        after:bg-linear-to-l after:from-white/70 after:via-white/20 after:to-white/70 
+        after:mask-[linear-gradient(#fff_0_0),linear-gradient(#fff_0_0)] after:[mask-origin:content-box,border-box] after:[mask-clip:content-box,border-box] after:mask-exclude;
+  }
+
   .scrollbar-gutter-stable {
     scrollbar-gutter: stable;
   }

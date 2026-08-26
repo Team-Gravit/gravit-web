@@ -1,3 +1,5 @@
+@layer lottie-react;
+
 @import 'tailwindcss';
 @import './tokens.css';
 @import './base.css';
