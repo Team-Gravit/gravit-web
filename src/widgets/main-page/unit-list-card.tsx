@@ -84,13 +84,17 @@ function UnitListCardBodySkeleton() {
       <div className="h-[168px] overflow-hidden md:h-[184px]">
         <div className="flex h-fit w-full flex-col gap-2 px-3 pb-3 md:px-5 md:pb-5">
           {Array.from({ length: 3 }).map((_, index) => (
-            <Skeleton key={index} variant="rounded" className="h-[42px] w-full md:h-14" />
+            <Skeleton
+              key={index}
+              variant="block"
+              className="h-[42px] w-full rounded-sm md:h-14 md:rounded-lg"
+            />
           ))}
         </div>
       </div>
       <div className="min-h-[37px] w-full px-3 md:min-h-[56px] md:px-5">
         <Skeleton
-          variant="rectangular"
+          variant="block"
           className="block h-[37px] w-full rounded-sm md:h-[56px] md:rounded-lg"
         />
       </div>

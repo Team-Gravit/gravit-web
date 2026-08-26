@@ -3,19 +3,23 @@ import * as React from 'react';
 
 import { cn } from '@/shared/lib/cn';
 
-const skeletonVariants = cva(['inline-block w-20 bg-gray-300', "before:content-['']"], {
+const LINE_BOX_CHAR = '\u200B'; // Zero Width Space
+
+const skeletonVariants = cva('inline-block bg-gray-300', {
   variants: {
+    /** 스켈레톤 모양 */
     variant: {
-      text: 'h-[1em] align-middle rounded-full',
-      rectangular: 'h-4 rounded-none',
-      rounded: 'h-4 rounded-[12px]',
-      circular: 'h-4 rounded-full',
+      text: 'rounded-full align-middle',
+      block: '',
+      circular: 'rounded-full',
     },
+    /** 애니메이션 */
     animation: {
-      pulse: 'animate-skeleton-pulse',
-      wave: 'relative overflow-hidden before:absolute before:inset-y-0 before:left-0 before:h-full before:w-[150%] before:animate-skeleton-wave before:bg-gradient-to-r before:from-transparent before:via-[rgba(255,255,255,0.6)] before:to-transparent',
+      pulse: 'animate-skeleton-pulse motion-reduce:animate-none',
+      wave: "relative overflow-hidden after:pointer-events-none after:absolute after:inset-0 after:-translate-x-full after:animate-skeleton-wave after:bg-linear-to-r after:from-transparent after:via-white/60 after:to-transparent after:content-[''] motion-reduce:after:animate-none",
       none: '',
     },
+    /** 텍스트 블록 스타일 */
     textSize: {
       display1: 'text-display1',
       display2: 'text-display2',
@@ -45,21 +49,23 @@ const skeletonVariants = cva(['inline-block w-20 bg-gray-300', "before:content-[
 type SkeletonTextSize = NonNullable<VariantProps<typeof skeletonVariants>['textSize']>;
 type SkeletonAnimation = NonNullable<VariantProps<typeof skeletonVariants>['animation']>;
 
-type SkeletonBaseProps = Omit<React.ComponentProps<'div'>, 'children'> & {
+type SkeletonBaseProps = Omit<React.HTMLAttributes<HTMLElement>, 'children'> & {
   animation?: SkeletonAnimation;
   width?: number | string;
   height?: number | string;
 };
 
-/**
- * textSize는 variant가 'text'일 때만 의미가 있습니다(h-[1em] 높이를 타이포 토큰으로 맞춤).
- * 그래서 나머지 variant에서는 타입 수준에서 textSize 전달을 막습니다.
- */
-type SkeletonProps = SkeletonBaseProps &
-  (
-    | { variant?: 'text'; textSize?: SkeletonTextSize }
-    | { variant: 'rectangular' | 'rounded' | 'circular'; textSize?: never }
-  );
+type TextSkeletonProps = {
+  variant?: 'text';
+  textSize?: SkeletonTextSize;
+};
+
+type ShapeSkeletonProps = {
+  variant: 'block' | 'circular';
+  textSize?: never; // textSize prop 금지
+};
+
+type SkeletonProps = SkeletonBaseProps & (TextSkeletonProps | ShapeSkeletonProps);
 
 function toCssSize(value: number | string) {
   return typeof value === 'number' ? `${value}px` : value;
@@ -75,20 +81,44 @@ export function Skeleton({
   style,
   ...props
 }: SkeletonProps) {
-  const textSizeClass = variant === 'text' ? (textSize ?? 'body1Normal') : undefined;
+  const sizeStyle = {
+    ...(width === undefined ? {} : { width: toCssSize(width) }),
+    ...(height === undefined ? {} : { height: toCssSize(height) }),
+    ...style,
+  };
+
+  if (variant === 'text') {
+    return (
+      <span
+        {...props}
+        aria-hidden
+        data-slot="skeleton"
+        data-variant={variant}
+        data-animation={animation}
+        className={cn(
+          skeletonVariants({
+            variant,
+            animation,
+            textSize: textSize ?? 'body1Normal',
+          }),
+          className,
+        )}
+        style={sizeStyle}
+      >
+        {LINE_BOX_CHAR}
+      </span>
+    );
+  }
 
   return (
     <div
+      {...props}
+      aria-hidden
       data-slot="skeleton"
       data-variant={variant}
       data-animation={animation}
-      className={cn(skeletonVariants({ variant, animation, textSize: textSizeClass, className }))}
-      style={{
-        ...(width === undefined ? {} : { width: toCssSize(width) }),
-        ...(height === undefined ? {} : { height: toCssSize(height) }),
-        ...style,
-      }}
-      {...props}
+      className={cn(skeletonVariants({ variant, animation }), className)}
+      style={sizeStyle}
     />
   );
 }

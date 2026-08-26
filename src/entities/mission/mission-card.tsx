@@ -104,7 +104,7 @@ function MissionCardBodySkeleton() {
           <ProgressBar value={0} />
         </div>
       </div>
-      <Skeleton variant="rectangular" className="hidden h-[56px] w-full rounded-lg md:block" />
+      <Skeleton variant="block" className="hidden h-[56px] w-full rounded-lg md:block" />
     </>
   );
 }
