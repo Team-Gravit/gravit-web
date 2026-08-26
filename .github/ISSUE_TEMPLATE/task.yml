@@ -1,24 +1,44 @@
-name: Feature
-description: 기능 추가 또는 기능 변경
-title: '[feat] '
-labels: ['feat']
+name: Task
+description: 설정, 문서, 리팩터링, CI 등 기능 외 작업
+title: '[chore] '
+labels: ['chore']
 assignees: []
 body:
+  - type: dropdown
+    id: type
+    attributes:
+      label: 작업 타입
+      description: 이슈 제목과 라벨도 선택한 타입에 맞게 조정해 주세요.
+      options:
+        - chore
+        - docs
+        - refactor
+        - test
+        - ci
+        - build
+        - style
+        - design
+        - rename
+        - remove
+        - init
+    validations:
+      required: true
+
   - type: textarea
     id: description
     attributes:
       label: 설명
       description: 작업의 목적과 배경을 작성해 주세요.
       placeholder: |
-        어떤 문제를 해결하거나 어떤 기능을 추가하려는지 작성해 주세요.
+        왜 이 작업이 필요한지 작성해 주세요.
     validations:
       required: true
 
   - type: textarea
     id: scope
     attributes:
-      label: 구현 범위
-      description: 이번 이슈에서 처리할 범위를 작성해 주세요.
+      label: 작업 범위
+      description: 변경할 설정, 문서, 파일, 패키지 범위를 작성해 주세요.
       placeholder: |
         -
         -
@@ -29,7 +49,7 @@ body:
     id: acceptance-criteria
     attributes:
       label: 완료 조건
-      description: 완료 여부를 판단할 수 있는 조건을 작성해 주세요.
+      description: 명령어 실행, 문서 반영, 설정 적용 등 검증 가능한 조건을 작성해 주세요.
       placeholder: |
         - [ ]
         - [ ]
