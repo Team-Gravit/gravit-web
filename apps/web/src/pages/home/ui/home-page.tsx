@@ -11,7 +11,7 @@ export function HomePage() {
     >
       <section>
         <p style={{ margin: 0, color: '#a5b4fc' }}>TanStack Router · Feature-Sliced Design</p>
-        <h1 style={{ margin: '12px 0 0', fontSize: '40px' }}>Gravit Web</h1>
+        <h1 className="text-display2 text-main-1">Gravit Web</h1>
       </section>
     </main>
   );
