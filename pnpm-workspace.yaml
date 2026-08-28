@@ -1,4 +1,4 @@
 packages:
-  - "apps/*"
-  - "!apps/legacy-web"
-  - "packages/*"
+  - 'apps/*'
+  - '!apps/legacy-web'
+  - 'packages/*'
