@@ -103,6 +103,27 @@
   --color-cta-disabled: var(--primitive-gray-300); /* #DCDCDC */
   --color-cta-text: var(--primitive-gray-50); /* #FBFBFB */
 
+  /* ================================
+        RADIUS
+    ================================ */
+  /*
+    Tailwind 기본 t-shirt 스케일(rounded-lg 등)을 비활성화하고 px 단위 토큰만 사용합니다.
+    기본 스케일은 8px 다음이 바로 12px 이라 Gravit 이 실제로 쓰는 10px 을 표현하지 못하고,
+    두 어휘가 공존하면 rounded-lg 와 rounded-8 이 같은 값을 다르게 부르게 됩니다.
+
+    rounded-full 과 rounded-none 은 스케일과 무관한 정적 유틸리티라 그대로 사용할 수 있습니다.
+    값 추가는 임의로 하지 않고, 디자인에 실제로 존재하는 radius 인지 확인한 뒤 반영합니다.
+  */
+  --radius-*: initial;
+  --radius-4: 4px;
+  --radius-6: 6px;
+  --radius-8: 8px;
+  --radius-10: 10px;
+  --radius-12: 12px;
+  --radius-16: 16px;
+  --radius-20: 20px;
+  --radius-24: 24px;
+
   /* TODO :  밑의 토큰들은 앞으로 이전 디자인을 제거하면서 같이 제거해야 하는 토큰들입니다.*/
   /*기본 색상 비활성화*/
   --color-gray-*: initial;
