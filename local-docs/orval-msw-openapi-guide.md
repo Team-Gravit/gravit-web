@@ -83,7 +83,7 @@ Axios baseURL · timeout · Authorization · 401 처리
 Worker 파일이다.
 
 ```powershell
-pnpm --filter web exec msw init public --save
+pnpm --filter @repo/web exec msw init public --save
 ```
 
 이 파일은 브라우저 요청을 가로채는 실행기이며, 실제 응답 내용은 포함하지 않는다. 실제 handler는
@@ -112,10 +112,10 @@ VITE_ENABLE_API_MOCKING=true
 ## 재생성과 검증
 
 ```powershell
-pnpm --filter web generate:api
-pnpm --filter web check-types
-pnpm --filter web lint
-pnpm --filter web build
+pnpm --filter @repo/web generate:api
+pnpm --filter @repo/web check-types
+pnpm --filter @repo/web lint
+pnpm --filter @repo/web build
 ```
 
 OpenAPI가 변경되면 생성 파일을 직접 수정하지 않고 `generate:api`를 다시 실행한다.
