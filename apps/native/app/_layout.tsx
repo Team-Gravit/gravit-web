@@ -10,8 +10,10 @@ SplashScreen.setOptions({
 export default function RootLayout() {
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // 로딩이 완료됨
+  // TODO: 실제 초기 로딩 작업이 추가되면 완료 콜백에서 상태를 갱신한다.
   useEffect(() => {
+    // 현재는 로딩 화면 구현 전의 placeholder 상태 전환이다.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsLoaded(true);
   }, []);
 
