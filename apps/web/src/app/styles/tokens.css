@@ -102,6 +102,9 @@
   --color-cta-hover: var(--primitive-purple-900); /* #6D0689 */
   --color-cta-disabled: var(--primitive-gray-300); /* #DCDCDC */
   --color-cta-text: var(--primitive-gray-50); /* #FBFBFB */
+  --color-cta-secondary-default: var(--primitive-gray-300); /* #DCDCDC */
+  --color-cta-secondary-hover: var(--primitive-gray-500); /* #A8A8A8 */
+  --color-cta-secondary-text: var(--primitive-gray-600); /* #6D6D6D */
 
   /* ================================
         RADIUS
