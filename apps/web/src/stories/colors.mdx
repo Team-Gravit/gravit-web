@@ -1,0 +1,168 @@
+import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks';
+
+<Meta title="Foundations/Colors" />
+
+# Colors
+
+`app/styles/tokens.css`의 `@theme static`에 정의된 color 토큰입니다.
+값의 단일 소스는 `tokens.css`입니다.
+
+> 컴포넌트에서는 hex를 하드코딩하지 말고 `bg-main`, `bg-bg-1`, `text-text-1`, `border-divider-1`처럼 토큰 기반 Tailwind class를 사용합니다.
+
+## Primitive
+
+<ColorPalette>
+  <ColorItem
+    title="purple 50–400"
+    subtitle="--primitive-purple-*"
+    colors={{ 50: '#fbf2ff', 100: '#f4e3ff', 200: '#ebc6ff', 300: '#df99ff', 400: '#cf5dff' }}
+  />
+  <ColorItem
+    title="purple 500–950"
+    subtitle="--primitive-purple-*"
+    colors={{
+      500: '#be21ff',
+      600: '#ba00ff',
+      700: '#9b00cf',
+      800: '#8100a9',
+      900: '#6d0689',
+      950: '#4a005e',
+    }}
+  />
+  <ColorItem
+    title="gray 0–400"
+    subtitle="--primitive-gray-*"
+    colors={{
+      0: '#ffffff',
+      50: '#fbfbfb',
+      100: '#f8f8f8',
+      200: '#f2f2f2',
+      300: '#dcdcdc',
+      400: '#c6c6c6',
+    }}
+  />
+  <ColorItem
+    title="gray 500–1100"
+    subtitle="--primitive-gray-*"
+    colors={{
+      500: '#a8a8a8',
+      600: '#6d6d6d',
+      700: '#666666',
+      800: '#3d3d3d',
+      900: '#383838',
+      1000: '#242424',
+      1100: '#000000',
+    }}
+  />
+</ColorPalette>
+
+## Common
+
+<ColorPalette>
+  <ColorItem title="white" subtitle="--primitive-gray-0" colors={{ white: '#ffffff' }} />
+  <ColorItem title="black" subtitle="--primitive-gray-1100" colors={{ black: '#000000' }} />
+  <ColorItem
+    title="opacity-60"
+    subtitle="오버레이 · black 60%"
+    colors={{ 'opacity-60': '#00000099' }}
+  />
+</ColorPalette>
+
+## Brand & Background
+
+<ColorPalette>
+  <ColorItem
+    title="brand"
+    subtitle="--color-main · --color-secondary-*"
+    colors={{
+      main: '#be21ff',
+      'secondary-1': '#000000',
+      'secondary-2': '#000000',
+      'secondary-3': '#000000',
+    }}
+  />
+  <ColorItem
+    title="background"
+    subtitle="--color-bg-*"
+    colors={{ 'bg-1': '#ffffff', 'bg-2': '#f2f2f2', 'bg-3': '#dcdcdc', 'bg-4': '#c6c6c6' }}
+  />
+</ColorPalette>
+
+## Purple
+
+<ColorPalette>
+  <ColorItem
+    title="purple 100–500"
+    subtitle="--color-purple-*"
+    colors={{ 100: '#f4e3ff', 200: '#ebc6ff', 300: '#df99ff', 400: '#cf5dff', 500: '#be21ff' }}
+  />
+  <ColorItem
+    title="purple 600–950"
+    subtitle="--color-purple-*"
+    colors={{ 600: '#ba00ff', 700: '#9b00cf', 800: '#8100a9', 900: '#6d0689', 950: '#4a005e' }}
+  />
+</ColorPalette>
+
+## Text
+
+<ColorPalette>
+  <ColorItem
+    title="text"
+    subtitle="--color-text-*"
+    colors={{
+      'text-1': '#242424',
+      'text-2': '#383838',
+      'text-3': '#6d6d6d',
+      'text-4': '#a8a8a8',
+      'text-1-w': '#ffffff',
+      'text-2-w': '#f2f2f2',
+      'text-3-w': '#a8a8a8',
+    }}
+  />
+</ColorPalette>
+
+## Icon & Divider
+
+<ColorPalette>
+  <ColorItem
+    title="icon"
+    subtitle="--color-icon*"
+    colors={{
+      icon: '#6f6f6f',
+      'icon-color': '#be21ff',
+      'icon-disabled': '#a8a8a8',
+      'icon-w': '#ffffff',
+    }}
+  />
+  <ColorItem
+    title="divider"
+    subtitle="--color-divider-*"
+    colors={{ 'divider-1': '#dcdcdc', 'divider-2': '#c6c6c6' }}
+  />
+</ColorPalette>
+
+## Semantic & CTA
+
+<ColorPalette>
+  <ColorItem
+    title="semantic"
+    subtitle="--color-semantic-*"
+    colors={{
+      success: '#00c30d',
+      warning: '#f9a825',
+      error: '#eb3d32',
+      info: '#c6c6c6',
+      'semantic-5': '#1fabff',
+    }}
+  />
+  <ColorItem
+    title="CTA"
+    subtitle="--color-cta*"
+    colors={{
+      CTA: '#9b00cf',
+      'CTA-hover': '#6d0689',
+      'CTA-disabled': '#dcdcdc',
+      'CTA-text': '#fbfbfb',
+    }}
+  />
+</ColorPalette>
