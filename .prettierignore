@@ -18,3 +18,6 @@ pnpm-lock.yaml
 
 # TanStack Router generated source (committed, but not edited manually)
 apps/web/src/app/routeTree.gen.ts
+
+# MSW generated worker
+apps/web/public/mockServiceWorker.js
