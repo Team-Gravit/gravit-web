@@ -1,0 +1,112 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Foundations/Typography" />
+
+# Typography
+
+본문 폰트는 **Pretendard** (`--font-pretendard`) 입니다.
+아래 타입 스케일은 `app/styles/tokens.css`의 `@theme static`에 정의된 `--text-*` 토큰이며,
+컴포넌트에서는 `text-display1`처럼 **토큰 기반 Tailwind class**로 사용합니다.
+(각 토큰은 size · line-height · letter-spacing · font-weight 를 한 번에 포함합니다.)
+
+export const sample = '다람쥐 헌 쳇바퀴에 타고파 AaBbGg 0123';
+
+export const Row = ({ token, spec, children }) => (
+  <div
+    style={{
+      display: 'flex',
+      alignItems: 'baseline',
+      gap: '24px',
+      padding: '14px 0',
+      borderBottom: '1px solid var(--color-neutral-50)',
+    }}
+  >
+    <div style={{ flex: '0 0 34%', minWidth: '150px' }}>
+      <div style={{ fontSize: '13px', fontWeight: 600 }}>text-{token}</div>
+      <div style={{ fontSize: '12px', color: 'var(--color-neutral-500)' }}>{spec}</div>
+    </div>
+    <div
+      style={{
+        fontFamily: 'var(--font-pretendard)',
+        fontSize: `var(--text-${token})`,
+        lineHeight: `var(--text-${token}--line-height)`,
+        letterSpacing: `var(--text-${token}--letter-spacing)`,
+        fontWeight: `var(--text-${token}--font-weight)`,
+      }}
+    >
+      {children}
+    </div>
+  </div>
+);
+
+## Display
+
+<Row token="display1" spec="40px · 125% · -0.6px · 700">
+  {sample}
+</Row>
+<Row token="display2" spec="36px · 125% · -0.6px · 700">
+  {sample}
+</Row>
+
+## Title
+
+<Row token="title1" spec="32px · 125% · -0.6px · 700">
+  {sample}
+</Row>
+<Row token="title2" spec="28px · 125% · -0.6px · 700">
+  {sample}
+</Row>
+<Row token="title3" spec="24px · 125% · -0.6px · 700">
+  {sample}
+</Row>
+
+## Heading
+
+<Row token="heading1" spec="22px · 125% · -0.6px · 600">
+  {sample}
+</Row>
+<Row token="heading2" spec="20px · 125% · -0.6px · 600">
+  {sample}
+</Row>
+
+## Headline
+
+<Row token="headline1" spec="18px · 125% · -0.6px · 600">
+  {sample}
+</Row>
+<Row token="headline2" spec="17px · 125% · -0.6px · 600">
+  {sample}
+</Row>
+
+## Body
+
+<Row token="body1-normal" spec="16px · 150% · 0 · 400">
+  {sample}
+</Row>
+<Row token="body1-reading" spec="16px · 160% · 0 · 400">
+  {sample}
+</Row>
+<Row token="body2-normal" spec="15px · 150% · 0 · 400">
+  {sample}
+</Row>
+<Row token="body2-reading" spec="15px · 160% · 0 · 400">
+  {sample}
+</Row>
+
+## Label
+
+<Row token="label1" spec="14px · auto · 0 · 600">
+  {sample}
+</Row>
+<Row token="label2" spec="13px · auto · 0 · 400">
+  {sample}
+</Row>
+
+## Caption
+
+<Row token="caption1" spec="12px · auto · 0 · 400">
+  {sample}
+</Row>
+<Row token="caption2" spec="11px · auto · 0 · 400">
+  {sample}
+</Row>
