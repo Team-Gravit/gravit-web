@@ -42,7 +42,7 @@
   /* ================================
         ALIAS - Background
     ================================ */
-  --color-bg-1: var(--primitive-gray-100); /* #F8F8F8 */
+  --color-bg-1: var(--primitive-gray-0); /* #FFFFFF */
   --color-bg-2: var(--primitive-gray-200); /* #F2F2F2 */
   --color-bg-3: var(--primitive-gray-300); /* #DCDCDC */
   --color-bg-4: var(--primitive-gray-400); /* #C6C6C6 */
