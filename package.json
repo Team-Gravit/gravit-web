@@ -7,7 +7,8 @@
     "check-types": "turbo run check-types",
     "clean": "turbo run clean && rm -rf node_modules",
     "format": "prettier --write . --ignore-path .gitignore --ignore-path .prettierignore",
-    "format:check": "prettier --check . --ignore-path .gitignore --ignore-path .prettierignore"
+    "format:check": "prettier --check . --ignore-path .gitignore --ignore-path .prettierignore",
+    "generate:icons": "node scripts/generate-icons.mjs"
   },
   "devDependencies": {
     "@repo/prettier-config": "workspace:*",
