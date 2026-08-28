@@ -12,10 +12,19 @@ if (!rootElement) {
   throw new Error('Root element #app was not found');
 }
 
-createRoot(rootElement).render(
-  <StrictMode>
-    <QueryProvider>
-      <RouterProvider router={router} />
-    </QueryProvider>
-  </StrictMode>,
-);
+async function enableMocking() {
+  if (import.meta.env.VITE_ENABLE_API_MOCKING !== 'true') return;
+
+  const { worker } = await import('@/shared/api/mocks/browser');
+  await worker.start({ onUnhandledRequest: 'bypass' });
+}
+
+void enableMocking().then(() => {
+  createRoot(rootElement).render(
+    <StrictMode>
+      <QueryProvider>
+        <RouterProvider router={router} />
+      </QueryProvider>
+    </StrictMode>,
+  );
+});
