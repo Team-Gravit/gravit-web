@@ -1,0 +1,193 @@
+import { Canvas, Controls, IconGallery, IconItem, Meta } from '@storybook/addon-docs/blocks';
+import * as IconStories from '../shared/ui/icon/icon.stories';
+import { Icon, ICONS } from '../shared/ui/icon';
+
+<Meta of={IconStories} />
+
+# Iconography
+
+아이콘은 **동작**, **상태**와 **이동 방향**을 짧고 일관된 형태로 전달합니다.  
+프로덕트에서는 SVG 파일을 직접 가져오지 않고 공통 `Icon` 컴포넌트를 사용합니다.
+
+## Principles
+
+| 원칙             | 설명                                                               |
+| ---------------- | ------------------------------------------------------------------ |
+| SVG 기반         | 기본 `24×24` viewBox를 사용하며 크기에 맞게 선명하게 렌더링합니다. |
+| `currentColor`   | 단색 아이콘은 부모의 텍스트 색상을 상속합니다.                     |
+| 타입 안전한 이름 | `IconName`에 등록된 이름만 사용할 수 있습니다.                     |
+| 단일 API         | 프로덕트에서는 SVG 대신 공통 `Icon` 컴포넌트를 사용합니다.         |
+| 자동 등록        | 생성 명령이 `ICONS` 레지스트리와 `IconName` 타입을 갱신합니다.     |
+
+## Available icons
+
+현재 `ICONS` 레지스트리에 등록된 전체 아이콘입니다. 새 SVG를 등록하면 이 목록도 자동으로 갱신됩니다.
+
+<IconGallery>
+  {Object.keys(ICONS).map((name) => (
+    <IconItem key={name} name={name}>
+      <Icon name={name} />
+    </IconItem>
+  ))}
+</IconGallery>
+
+## Usage
+
+```tsx
+import { Icon } from '@/shared/ui/icon';
+
+<Icon name="chevron-right" size={24} />;
+```
+
+## Props
+
+| Prop          | 타입                    | 기본값 | 설명                                    |
+| ------------- | ----------------------- | ------ | --------------------------------------- |
+| `name`        | `IconName`              | 필수   | 표시할 아이콘 이름                      |
+| `size`        | `number`                | `24`   | 아이콘의 너비와 높이(px)                |
+| `rotate`      | `0 \| 90 \| 180 \| 270` | `0`    | 상태 전환 등에 사용하는 회전 각도       |
+| `aria-label`  | `string`                | 없음   | 아이콘 자체가 전달하는 접근 가능한 이름 |
+| `aria-hidden` | `boolean`               | 조건부 | `aria-label`이 없으면 자동으로 `true`   |
+
+`className`, `style` 등 기본 SVG 속성도 전달할 수 있습니다. `aria-label`이 없으면 장식 아이콘으로 간주해 접근성 트리에서 자동으로 제외합니다. `aria-label`을 제공하면 `role="img"`가 자동으로 적용됩니다.
+
+## Playground
+
+Controls 패널에서 아이콘 이름, 크기와 회전 값을 변경할 수 있습니다.
+
+<Canvas of={IconStories.Playground} />
+<Controls of={IconStories.Playground} />
+
+## Naming
+
+파일명과 `IconName`은 모두 kebab-case를 사용합니다. 색상이나 비활성 상태처럼 사용하는 곳에서 결정할 표현 속성은 이름에 넣지 않습니다.
+
+```tsx
+// Good
+<Icon name="chevron-left" />
+<Icon name="caret-down" />
+
+// Avoid
+<Icon name="chevronLeft" />
+<Icon name="Chevron_Left" />
+```
+
+### Directional icons
+
+고정된 방향은 회전으로 만들지 않고 방향별 이름을 사용합니다.
+
+```tsx
+<Icon name="chevron-left" />
+<Icon name="chevron-right" />
+<Icon name="chevron-up" />
+<Icon name="chevron-down" />
+```
+
+Accordion처럼 회전 자체가 상태 전환을 표현할 때만 하나의 아이콘을 회전합니다.
+
+```tsx
+<Icon
+  name="chevron-down"
+  className={cn('transition-transform duration-200', isOpen && 'rotate-180')}
+  aria-hidden
+/>
+```
+
+## Color
+
+아이콘은 `currentColor`를 통해 텍스트 색상을 상속합니다. SVG 내부에 hex 색상을 직접 지정하지 않습니다.
+
+<div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
+  {['var(--color-primary)', 'var(--color-neutral-600)', 'var(--color-neutral-300)'].map((color) => (
+    <Icon key={color} name="chevron-right" size={24} style={{ color }} />
+  ))}
+</div>
+
+```tsx
+<Icon name="chevron-right" className="text-primary" />
+<Icon name="chevron-right" className="text-neutral-600" />
+```
+
+## Size
+
+기본 크기는 `24px`입니다. 제품 UI에서는 제한된 크기 단계를 우선 사용합니다.
+
+<div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
+  {[16, 20, 24, 32].map((size) => (
+    <div key={size} style={{ display: 'grid', justifyItems: 'center', gap: 8 }}>
+      <Icon name="chevron-right" size={size} />
+      <code>{size}</code>
+    </div>
+  ))}
+</div>
+
+## Accessibility
+
+아이콘은 기본적으로 장식 요소로 취급되어 보조 기술에서 자동으로 제외됩니다.
+
+```tsx
+<button type="button">
+  다음
+  <Icon name="chevron-right" />
+</button>
+```
+
+아이콘만 있는 버튼은 아이콘이 아니라 버튼에 접근 가능한 이름을 제공합니다.
+
+```tsx
+<button type="button" aria-label="닫기">
+  <Icon name="close" />
+</button>
+```
+
+아이콘 자체가 정보를 전달해야 한다면 `aria-label`을 지정합니다. 이 경우 `role="img"`가 자동으로 적용됩니다.
+
+```tsx
+<Icon name="check" aria-label="완료" />
+```
+
+| 상황               | Icon           | Button        |
+| ------------------ | -------------- | ------------- |
+| 텍스트 옆 장식     | 별도 설정 없음 | 텍스트가 이름 |
+| 아이콘 버튼        | 별도 설정 없음 | `aria-label`  |
+| 아이콘 자체가 정보 | `aria-label`   | 버튼 없음     |
+
+## Do and don't
+
+| Do                                      | Don't                                    |
+| --------------------------------------- | ---------------------------------------- |
+| `Icon` 컴포넌트와 등록된 `name` 사용    | 제품 코드에서 SVG 직접 import            |
+| `size`로 크기 지정                      | `width`와 `height`를 각각 임의 수정      |
+| `currentColor`와 텍스트 색상 토큰 사용  | SVG 내부에 UI 상태 색상 하드코딩         |
+| 고정 방향에는 방향별 아이콘 사용        | 파일 수를 줄이기 위해 다른 방향으로 회전 |
+| 실제 상태 전환에는 회전 애니메이션 사용 | 의미가 다른 아이콘을 CSS로 변형          |
+
+## Adding an icon
+
+<ol className="list-decimal space-y-2 pl-6">
+  <li>
+    <code>src/shared/assets/icons</code>에 kebab-case 이름으로 SVG를 추가합니다.
+  </li>
+  <li>
+    단색 아이콘의 색상은 <code>currentColor</code>를 사용합니다.
+  </li>
+  <li>
+    루트에서 <code>pnpm generate:icons</code>를 실행합니다.
+  </li>
+  <li>이 문서의 전체 목록과 타입 검사에서 생성 결과를 확인합니다.</li>
+</ol>
+
+## How icons are generated
+
+아이콘 에셋과 프로덕트 API는 다음 흐름으로 연결됩니다.
+
+```text
+Figma
+  → SVG export
+  → shared/assets/icons
+  → pnpm generate:icons
+  → icons.generated.ts
+  → <Icon name="…" />
+```
+
+생성 파일은 직접 수정하지 않습니다. SVG를 추가하거나 이름을 변경한 뒤 생성 명령을 다시 실행합니다.

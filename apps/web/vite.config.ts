@@ -2,6 +2,7 @@ import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import { tanstackRouter } from '@tanstack/router-plugin/vite';
 import tailwindcss from '@tailwindcss/vite';
+import svgr from 'vite-plugin-svgr';
 
 import fs from 'fs';
 import path from 'path';
@@ -40,6 +41,8 @@ export default defineConfig(({ mode }) => {
     },
     // React 프로젝트를 Vite에서 실행할 수 있도록 React 플러그인을 등록합니다.
     plugins: [
+      // '...svg?react' 를 React 컴포넌트로 변환합니다. shared/ui/icon 이 이 형태에 의존합니다.
+      svgr(),
       tailwindcss(),
       tanstackRouter({
         target: 'react',

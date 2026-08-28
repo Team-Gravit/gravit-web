@@ -20,8 +20,10 @@
     "@tanstack/react-query": "^5.102.8",
     "@tanstack/react-router": "^1.170.32",
     "axios": "^1.20.0",
+    "clsx": "^2.1.1",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
+    "tailwind-merge": "^3.6.0",
     "tailwindcss": "^4.3.3",
     "zustand": "^5.0.15"
   },
@@ -43,10 +45,12 @@
     "eslint-plugin-storybook": "^10.5.10",
     "msw": "^2.15.0",
     "orval": "^8.26.0",
+    "remark-gfm": "^4.0.1",
     "steiger": "^0.6.0",
     "storybook": "^10.5.10",
     "typescript": "5.9.3",
-    "vite": "^5.1.4"
+    "vite": "^5.1.4",
+    "vite-plugin-svgr": "^5.2.0"
   },
   "msw": {
     "workerDirectory": [
