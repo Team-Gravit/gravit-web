@@ -1,0 +1,17 @@
+# 빌드 산출물
+dist
+build
+.turbo
+.expo
+.expo-shared
+
+# 네이티브 프로젝트 (prebuild 산출물)
+apps/native/android
+apps/native/ios
+
+# 별도 워크스페이스
+apps/legacy-web
+
+# 의존성
+node_modules
+pnpm-lock.yaml

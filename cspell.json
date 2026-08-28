@@ -1,0 +1,29 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "ignorePaths": [
+    "node_modules/**",
+    "dist/**",
+    ".turbo/**",
+    "pnpm-lock.yaml",
+    "apps/native/android/**",
+    "apps/legacy-web/**",
+    "local-docs/**"
+  ],
+  "words": [
+    "commitlint",
+    "esbenp",
+    "gorhom",
+    "lintstagedrc",
+    "metro",
+    "ngrok",
+    "prebuild",
+    "pnpm",
+    "reanimated",
+    "sslip",
+    "tsdk",
+    "turborepo",
+    "webview",
+    "worklets"
+  ]
+}
