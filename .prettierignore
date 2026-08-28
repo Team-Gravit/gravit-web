@@ -15,3 +15,6 @@ apps/legacy-web
 # 의존성
 node_modules
 pnpm-lock.yaml
+
+# TanStack Router generated source (committed, but not edited manually)
+apps/web/src/app/routeTree.gen.ts

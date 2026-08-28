@@ -1,9 +1,11 @@
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
+import { tanstackRouter } from '@tanstack/router-plugin/vite';
 
 import fs from 'fs';
 import path from 'path';
 import os from 'os';
+import { fileURLToPath } from 'node:url';
 
 export default defineConfig(({ mode }) => {
   // 현재 실행 모드
@@ -12,6 +14,11 @@ export default defineConfig(({ mode }) => {
   const useHttps = env.VITE_USE_HTTPS === 'true';
 
   return {
+    resolve: {
+      alias: {
+        '@': fileURLToPath(new URL('./src', import.meta.url)),
+      },
+    },
     // Vite 개발 서버의 실행 방식
     server: {
       // 같은 네트워크의 다른 기기 접속 허용
@@ -31,6 +38,14 @@ export default defineConfig(({ mode }) => {
         : {}),
     },
     // React 프로젝트를 Vite에서 실행할 수 있도록 React 플러그인을 등록합니다.
-    plugins: [react()],
+    plugins: [
+      tanstackRouter({
+        target: 'react',
+        autoCodeSplitting: true,
+        routesDirectory: './src/app/routes',
+        generatedRouteTree: './src/app/routeTree.gen.ts',
+      }),
+      react(),
+    ],
   };
 });
