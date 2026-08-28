@@ -1,11 +1,13 @@
 import { clsx, type ClassValue } from 'clsx';
 import { extendTailwindMerge } from 'tailwind-merge';
 
-// 커스텀 텍스트 토큰: text-{weight}-{size}
-// weight 를 명시해 색상 토큰(text-neutral-900 등)과 구분 → font-size 그룹으로만 등록.
-// 새 size 는 자동 커버, 새 weight 추가 시에만 아래 목록에 단어 추가.
-const isCustomText = (value: string) =>
-  /^(extrabold|bold|semibold|medium|regular)-\d+$/.test(value);
+// 커스텀 타이포 토큰: text-display1, text-body1-normal 등 (tokens.css 의 --text-*)
+// tailwind-merge 는 이 이름들을 모르기 때문에 색상 그룹으로 오인하고, 색상 클래스와 충돌시킨다.
+// 등록하지 않으면 cn('text-body1-normal', 'text-text-1') 에서 font-size 가 조용히 사라진다.
+// 색상 토큰(text-1, main 등)과는 이름이 겹치지 않아 아래 형태로 구분된다.
+const isTypographyToken = (value: string) =>
+  /^(display|title|heading|headline|label|caption)\d$/.test(value) ||
+  /^body\d-(normal|reading)$/.test(value);
 
 // 커스텀 radius 토큰: rounded-{px}
 // tailwind-merge 는 숫자 radius 를 모른다(기본 스케일이 t-shirt 사이즈). 등록하지 않으면
@@ -16,7 +18,7 @@ const isCustomRadius = (value: string) => /^\d+$/.test(value);
 const twMerge = extendTailwindMerge({
   extend: {
     classGroups: {
-      'font-size': [{ text: [isCustomText] }],
+      'font-size': [{ text: [isTypographyToken] }],
     },
     theme: {
       radius: [isCustomRadius],
