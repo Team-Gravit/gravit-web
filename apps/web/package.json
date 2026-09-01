@@ -13,7 +13,9 @@
     "generate:api": "orval --config ./orval.config.ts",
     "check-types": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.3.3",
@@ -40,11 +42,16 @@
     "@tanstack/eslint-plugin-query": "^5.102.8",
     "@tanstack/react-query-devtools": "^5.102.8",
     "@tanstack/router-plugin": "^1.168.35",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.6",
     "@types/react": "^19.2.10",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.4",
     "eslint": "^9.39.1",
     "eslint-plugin-storybook": "^10.5.10",
+    "jsdom": "^30.0.1",
     "msw": "^2.15.0",
     "orval": "^8.26.0",
     "remark-gfm": "^4.0.1",
@@ -52,7 +59,8 @@
     "storybook": "^10.5.10",
     "typescript": "5.9.3",
     "vite": "^5.1.4",
-    "vite-plugin-svgr": "^5.2.0"
+    "vite-plugin-svgr": "^5.2.0",
+    "vitest": "^3"
   },
   "msw": {
     "workerDirectory": [
