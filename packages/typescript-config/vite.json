@@ -10,7 +10,8 @@
     "noEmit": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noImplicitReturns": true
+    "noImplicitReturns": true,
+    "verbatimModuleSyntax": true
   },
   "exclude": ["node_modules"]
 }
