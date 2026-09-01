@@ -163,7 +163,8 @@ import { cn } from '../../../shared/lib/cn';
 ## Code Style
 
 - **파일명 kebab-case** (`icon-button.tsx`, `query-client.ts`). 슬라이스마다 `index.ts` 배럴
-- **named export만.** default export 금지
+- 애플리케이션 모듈은 **named export를 기본으로** 한다. Storybook meta와 빌드·도구 설정처럼
+  프레임워크가 요구하는 default export는 예외다 (`component-convention.md`).
 - 컴포넌트는 PascalCase, props 타입은 `{Component}Props`
 - Boolean은 `is*` / `has*` 접두사, 이벤트 prop은 `on + 동사`
 - Prettier: 2 spaces / single quote / `printWidth: 100` / LF
