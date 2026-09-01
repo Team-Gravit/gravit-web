@@ -34,7 +34,7 @@
   /* ================================
         ALIAS - Brand
     ================================ */
-  --color-main: var(--primitive-purple-500); /* #BE21FF */
+  --color-main: var(--primitive-purple-600); /* #BA00FF */
   --color-secondary-1: #000000;
   --color-secondary-2: #000000;
   --color-secondary-3: #000000;
@@ -42,7 +42,7 @@
   /* ================================
         ALIAS - Background
     ================================ */
-  --color-bg-1: var(--primitive-gray-0); /* #FFFFFF */
+  --color-bg-1: var(--primitive-gray-100); /* #F8F8F8 */
   --color-bg-2: var(--primitive-gray-200); /* #F2F2F2 */
   --color-bg-3: var(--primitive-gray-300); /* #DCDCDC */
   --color-bg-4: var(--primitive-gray-400); /* #C6C6C6 */
@@ -69,14 +69,14 @@
   --color-text-3: var(--primitive-gray-600); /* #6D6D6D */
   --color-text-4: var(--primitive-gray-500); /* #A8A8A8 */
   --color-text-1-w: var(--primitive-gray-0); /* #FFFFFF */
-  --color-text-2-w: var(--primitive-gray-200); /* #F2F2F2 */
+  --color-text-2-w: var(--primitive-gray-300); /* #DCDCDC */
   --color-text-3-w: var(--primitive-gray-500); /* #A8A8A8 */
 
   /* ================================
         ALIAS - Icon
     ================================ */
   --color-icon: #6f6f6f;
-  --color-icon-color: var(--primitive-purple-500); /* #BE21FF */
+  --color-icon-color: var(--primitive-purple-600); /* #BA00FF */
   --color-icon-disabled: var(--primitive-gray-500); /* #A8A8A8 */
   --color-icon-w: var(--primitive-gray-0); /* #FFFFFF */
 
@@ -89,7 +89,7 @@
   /* ================================
         ALIAS - Semantic
     ================================ */
-  --color-semantic-success: #00c30d;
+  --color-semantic-success: #4caf50;
   --color-semantic-warning: #f9a825;
   --color-semantic-error: #eb3d32;
   --color-semantic-info: var(--primitive-gray-400); /* #C6C6C6 */
