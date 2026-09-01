@@ -4,7 +4,13 @@ import { Icon } from '@/shared/ui/icon';
 
 import { Button } from './button';
 
-const BUTTON_VARIANTS = ['default', 'secondary', 'stroke-default', 'stroke-secondary', 'ghost'] as const;
+const BUTTON_VARIANTS = [
+  'default',
+  'secondary',
+  'stroke-default',
+  'stroke-secondary',
+  'ghost',
+] as const;
 const BUTTON_SIZES = ['sm', 'md', 'lg'] as const;
 
 const meta = {
@@ -24,7 +30,8 @@ const meta = {
     size: {
       control: 'inline-radio',
       options: [...BUTTON_SIZES, 'cta', 'icon'],
-      description: '버튼의 크기. 브레이크포인트마다 다르게 주려면 `{ base, md }` 형태를 사용합니다.',
+      description:
+        '버튼의 크기. 브레이크포인트마다 다르게 주려면 `{ base, md }` 형태를 사용합니다.',
       table: { defaultValue: { summary: 'md' } },
     },
     isLoading: {

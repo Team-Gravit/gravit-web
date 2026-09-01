@@ -65,7 +65,7 @@ const buttonVariants = cva(
     defaultVariants: {
       variant: 'default',
     },
-  }
+  },
 );
 
 /**
@@ -136,9 +136,7 @@ function Button({
 
   // asChild 로 렌더된 <a> 등에는 disabled 가 유효하지 않다.
   // 그 경우 aria-disabled 와 pointer-events 차단으로 같은 효과를 낸다.
-  const blockingProps = asChild
-    ? { 'aria-disabled': blocked || undefined }
-    : { disabled: blocked };
+  const blockingProps = asChild ? { 'aria-disabled': blocked || undefined } : { disabled: blocked };
 
   const content = (
     <>
@@ -161,7 +159,7 @@ function Button({
         startIcon && 'pl-4',
         endIcon && 'pr-4',
         asChild && blocked && 'pointer-events-none',
-        className
+        className,
       )}
       {...props}
     >
