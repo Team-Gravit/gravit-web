@@ -16,6 +16,7 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
+    "@react-native-community/netinfo": "12.0.1",
     "expo": "^57.0.17",
     "expo-build-properties": "~57.0.15",
     "expo-constants": "~57.0.15",
@@ -37,8 +38,8 @@
     "react-native-worklets": "0.10.1"
   },
   "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
     "@react-native/metro-config": "0.86.3",
+    "@repo/eslint-config": "workspace:*",
     "@types/react": "~19.2.10",
     "eslint": "^9.39.1",
     "eslint-config-expo": "~57.0.2",

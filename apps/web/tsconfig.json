@@ -1,6 +1,6 @@
 {
   "extends": "@repo/typescript-config/vite.json",
-  "include": ["src", ".storybook"],
+  "include": ["src", ".storybook", "vitest.config.ts", "vitest.setup.ts"],
   "compilerOptions": {
     "jsx": "react-jsx",
     "strictNullChecks": true,
