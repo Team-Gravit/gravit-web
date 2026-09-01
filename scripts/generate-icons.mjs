@@ -3,8 +3,11 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const assetDir = path.join(rootDir, 'apps/web/src/shared/assets/icons');
-const outputFile = path.join(rootDir, 'apps/web/src/shared/ui/icon/icons.generated.ts');
+// svg 는 유일한 소비자인 icon 슬라이스 안에 둔다.
+// shared 직속에 assets 세그먼트를 두면 steiger 의 fsd/segments-by-purpose 에 걸린다.
+const iconSliceDir = path.join(rootDir, 'apps/web/src/shared/ui/icon');
+const assetDir = path.join(iconSliceDir, 'assets');
+const outputFile = path.join(iconSliceDir, 'icons.generated.ts');
 
 /**
  * svg 파일명을 JavaScript 컴포넌트 이름으로 변환합니다.
@@ -41,30 +44,31 @@ const duplicateComponentNames = icons
 
 if (duplicateComponentNames.length > 0) {
   throw new Error(
-    `SVG file names produce duplicate component names: ${[...new Set(duplicateComponentNames)].join(', ')}`
+    `SVG file names produce duplicate component names: ${[...new Set(duplicateComponentNames)].join(', ')}`,
   );
 }
 
 const invalidComponent = icons.find(
-  ({ componentName }) => !/^[A-Za-z_$][\w$]*$/.test(componentName)
+  ({ componentName }) => !/^[A-Za-z_$][\w$]*$/.test(componentName),
 );
 
 if (invalidComponent) {
   throw new Error(
-    `SVG file name cannot be converted to a component name: ${invalidComponent.fileName}`
+    `SVG file name cannot be converted to a component name: ${invalidComponent.fileName}`,
   );
 }
 
 const imports = icons
   .map(
-    ({ componentName, fileName }) =>
-      `import ${componentName} from '@/shared/assets/icons/${fileName}?react';`
+    ({ componentName, fileName }) => `import ${componentName} from './assets/${fileName}?react';`,
   )
   .join('\n');
 
 const entries = icons
   .map(({ componentName, name }) => {
-    const key = /^[A-Za-z_$][\w$]*$/.test(name) ? name : JSON.stringify(name);
+    // 따옴표는 prettier 설정(single quote)에 맞춘다. JSON.stringify 를 쓰면 큰따옴표가 나와
+    // 생성 직후 format:check 가 실패한다.
+    const key = /^[A-Za-z_$][\w$]*$/.test(name) ? name : `'${name.replace(/'/g, "\\'")}'`;
     return `  ${key}: ${componentName},`;
   })
   .join('\n');
