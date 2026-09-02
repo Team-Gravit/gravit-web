@@ -5,13 +5,13 @@ on:
     branches:
       - develop
     paths:
-      - "apps/web/**"
-      - "packages/**"
-      - "pnpm-lock.yaml"
-      - "pnpm-workspace.yaml"
-      - "package.json"
-      - ".npmrc"
-      - ".github/workflows/storybook.yml"
+      - 'apps/web/**'
+      - 'packages/**'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+      - 'package.json'
+      - '.npmrc'
+      - '.github/workflows/storybook.yml'
   workflow_dispatch:
 
 permissions:
@@ -41,7 +41,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v7
         with:
-          node-version: "24"
+          node-version: '24'
           cache: pnpm
           cache-dependency-path: pnpm-lock.yaml
 

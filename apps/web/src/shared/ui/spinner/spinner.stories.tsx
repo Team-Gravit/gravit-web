@@ -89,10 +89,7 @@ export const InButton: Story = {
   parameters: { layout: 'padded' },
   render: () => (
     <div className="flex items-center gap-4">
-      <button
-        type="button"
-        className="rounded-12 bg-cta px-5 py-3 text-cta-text"
-      >
+      <button type="button" className="rounded-12 bg-cta px-5 py-3 text-cta-text">
         저장하기
       </button>
       <button

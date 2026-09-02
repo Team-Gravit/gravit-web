@@ -2,10 +2,8 @@ import { cn } from '@/shared/lib/cn';
 import { Button } from '@/shared/ui/button';
 import { Icon, type IconName } from '@/shared/ui/icon';
 
-export interface IconButtonProps extends Omit<
-  React.ComponentProps<typeof Button>,
-  'children' | 'size'
-> {
+export interface IconButtonProps
+  extends Omit<React.ComponentProps<typeof Button>, 'children' | 'size'> {
   icon: IconName;
   'aria-label': string;
   shape?: 'rounded' | 'circle';

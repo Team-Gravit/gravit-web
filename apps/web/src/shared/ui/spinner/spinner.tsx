@@ -14,10 +14,8 @@ const BORDER_CLASS = {
   lg: 'border-[6px]',
 } as const;
 
-export interface SpinnerProps extends Omit<
-  ComponentProps<'span'>,
-  'children' | 'role' | 'aria-label'
-> {
+export interface SpinnerProps
+  extends Omit<ComponentProps<'span'>, 'children' | 'role' | 'aria-label'> {
   /** 회전 링의 크기. */
   size?: keyof typeof SIZE_CLASS;
   /**
@@ -54,7 +52,7 @@ export function Spinner({ size = 'md', label = '불러오는 중', className, ..
           'size-full animate-spin rounded-full border-current/25 border-t-current',
           // 회전 자체가 로딩이라는 정보이므로 멈추지 않고 느리게 돌린다.
           'motion-reduce:[animation-duration:2s]',
-          BORDER_CLASS[size]
+          BORDER_CLASS[size],
         )}
       />
       {label !== null && <span className="sr-only">{label}</span>}
