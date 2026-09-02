@@ -15,3 +15,13 @@ public/dist
 .agents/
 skills-lock.json
 local-docs/
+
+# Claude Code — 팀 공유 룰/스킬/훅/설정은 추적, 개인 설정만 제외
+.claude/settings.local.json
+.claude/.cache/
+
+# 다른 프로젝트에서 가져온 참조용 하네스 (로컬 참고용, 5MB+ 이미지 포함)
+docs/_reference/
+
+# TanStack Router 플러그인 임시 산출물 (build 시 생성)
+apps/web/.tanstack/

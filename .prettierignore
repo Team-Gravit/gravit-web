@@ -21,3 +21,6 @@ apps/web/src/app/routeTree.gen.ts
 
 # MSW generated worker
 apps/web/public/mockServiceWorker.js
+
+# 다른 프로젝트에서 가져온 참조용 하네스 (우리가 포맷할 대상이 아님)
+docs/_reference
