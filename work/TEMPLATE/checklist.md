@@ -17,7 +17,7 @@ mode: 'feature' # feature | migrate | refactor | design-fix | fix | infra
 | 2   | 타입            | `pnpm check-types`                                 | ⬜   |
 | 3   | 테스트          | `pnpm test`                                        | ⬜   |
 | 4   | 빌드            | `pnpm build`                                       | ⬜   |
-| 5   | 포맷            | `npx prettier --check <이번 변경 파일...>`         | ⬜   |
+| 5   | 포맷            | `pnpm exec prettier --check <이번 변경 파일...>`   | ⬜   |
 | 6   | generated 경계  | `pages`/`widgets`가 생성 경로를 직접 참조하지 않음 | ⬜   |
 
 실패 항목이 있으면 아래에 원문과 조치를 기록한다.

@@ -45,14 +45,17 @@ cp -r work/TEMPLATE "work/to-do/MIG-004-LEARN-01-학습홈-이전"
 | --------------- | ------------------------------------------------------------------------------------------------------------------- |
 | `spec.md`       | 사람이 시작. `refactor-baseline`이 현행 동작 기준선을, `design-diff`가 시안 대조 결과를 **각자 자기 섹션에만** 추가 |
 | `plan.md`       | `ai-plan`                                                                                                           |
-| `issues.md`     | `feature-planner`                                                                                                   |
+| `issues.md`     | `feature-planner` 또는 `refactor-planner`                                                                           |
 | `issue-{N}.md`  | 향후 `test-scenarios` — 스킬 도입 전에는 사용하지 않는 예약 템플릿                                                  |
 | `checklist.md`  | `ai-validate`                                                                                                       |
 | `retrospect.md` | 선택 회고. 향후 `ai-retrospect` 도입 시 **덮어쓰지 않고 `---` 아래에 회차를 누적**                                  |
 
-큰 `FEAT-`·`NAT-` work task는 여러 실행 이슈로 나눌 수 있다. 실행 이슈 하나는 GitHub Issue
-하나와 정확히 연결한다. 파일명은 work task 내부 순번(`issue-01.md`)을 사용하고, GitHub Issue
-번호는 파일명이 아니라 `github_issue` frontmatter에 기록한다.
+큰 `FEAT-`·`NAT-`·`MIG-`·`REF-` work task는 여러 실행 이슈로 나눌 수 있다. 실행 이슈 하나는
+GitHub Issue 하나와 정확히 연결하고, 연결은 `issues.md`의 각 이슈에 기록한다. `plan.md`와
+`checklist.md`는 개별 실행 이슈가 아니라 work task 전체의 구현 순서와 완료 여부를 관리한다.
+
+`issue-{N}.md`는 향후 테스트 시나리오 스킬을 위한 예약 파일이다. 해당 스킬 도입 전에는 만들지
+않으며 GitHub Issue 연결을 기록하기 위해 빈 파일을 추가하지 않는다.
 
 ## 5. 상태 이동 규칙
 

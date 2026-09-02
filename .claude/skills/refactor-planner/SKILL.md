@@ -191,7 +191,9 @@ rg -l "<대상 경로>" <조사 범위> -g "*.ts" -g "*.tsx"
 
 ## 다음 단계
 
-이슈가 확정되면 `issue-reviewer`로 검토하고, 이슈 하나씩 `ai-plan` → `ai-orchestrate` → `ai-validate`.
+이슈가 확정되면 `issue-reviewer`로 검토한다. 승인된 이슈 전체를 대상으로
+`ai-plan` → `ai-orchestrate` → `ai-validate`를 한 번씩 수행하며, 각 산출물에서 `Issue N`으로
+범위와 완료 여부를 추적한다.
 
 ## 하지 않는 것
 

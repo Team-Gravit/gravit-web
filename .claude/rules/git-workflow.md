@@ -90,7 +90,7 @@ pnpm build
 ```
 
 `pnpm format:check`는 현재 기존 사유로 실패한다(`REF-003`). 해결 전까지는 이번에 변경한 파일만
-`npx prettier --check <파일...>`로 검사한다. 기존 실패와 새로 생긴 실패를 구분한다.
+`pnpm exec prettier --check <파일...>`로 검사한다. 기존 실패와 새로 생긴 실패를 구분한다.
 
 ## 4. AI가 지킬 것
 

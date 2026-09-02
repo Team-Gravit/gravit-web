@@ -37,7 +37,7 @@ pnpm --filter @repo/web exec vitest run -t "테스트 이름"   # 단건 테스�
 **패키지 매니저는 pnpm 8.15.6 고정.** `npm` / `yarn` 명령을 쓰지 않는다.
 `pnpm ci`나 `pnpm verify` 같은 묶음 스크립트는 **없다.** 정식 작업을 마칠 때는
 `lint` → `check-types` → `test` → `build`를 각각 실행한다. `format:check`는 기존 파일의
-포맷 문제(`REF-003`)를 해결하기 전까지 변경한 파일만 `npx prettier --check <파일>`로 검사한다.
+포맷 문제(`REF-003`)를 해결하기 전까지 변경한 파일만 `pnpm exec prettier --check <파일>`로 검사한다.
 
 ## Tech Stack
 
@@ -101,7 +101,7 @@ app(5) → pages(4) → widgets(3) → features(2) → entities(1) → shared(0)
 
 | 파일                      | 범위                                                      |
 | ------------------------- | --------------------------------------------------------- |
-| `refactor-checklist.md`   | **구조 변경 착수 판단.** 사전 결정 5문항 + 자동 보류 신호 |
+| `refactor-checklist.md`   | **구조 변경 착수 판단.** 필수 게이트 6개 + 자동 보류 신호 |
 | `design-source-policy.md` | **Figma가 SoT.** MCP 생성 코드를 구현에 쓰지 않는다       |
 | `i18n-policy.md`          | 한국어 단일 언어. i18n 제안 금지                          |
 | `legacy-web-policy.md`    | `apps/legacy-web` 참조 전용 · 편집 금지                   |
@@ -140,7 +140,7 @@ app(5) → pages(4) → widgets(3) → features(2) → entities(1) → shared(0)
 | -------- | -------------------------- | ---------------------------- |
 | `FEAT-`  | 신규 기능                  | 기획 → 이슈 분해             |
 | `MIG-`   | legacy-web → apps/web 이전 | 현행 동작 기준선 → 시안 대조 |
-| `REF-`   | 구조 리팩터                | 사전 결정 5문항              |
+| `REF-`   | 구조 리팩터                | 필수 게이트 6개              |
 | `FIX-`   | 시안 대조 수정 / 버그      | 재현                         |
 | `NAT-`   | native 기능                | `expo:*` 스킬                |
 | `INFRA-` | 하네스 · 빌드 · CI         | —                            |

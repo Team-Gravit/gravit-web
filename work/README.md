@@ -29,15 +29,15 @@
 
 ## 작업 폴더 안에 들어가는 것
 
-| 파일            | 누가 만드나                                          | 필수              |
-| --------------- | ---------------------------------------------------- | ----------------- |
-| `spec.md`       | 사람 (+ `refactor-baseline`이 현행 동작 기준선 추가) | ✅                |
-| `plan.md`       | `ai-plan`                                            | ✅                |
-| `issues.md`     | `feature-planner`                                    | FEAT/NAT          |
-| `issue-{N}.md`  | 향후 `test-scenarios`                                | 예약(현재 미사용) |
-| `checklist.md`  | `ai-validate`                                        | ✅                |
-| `retrospect.md` | 선택 회고 (향후 `ai-retrospect` 도입 시 회차 누적)   | 선택              |
-| `assets/`       | 사람 (Figma 내보내기 등)                             | 선택              |
+| 파일            | 누가 만드나                                          | 필수                |
+| --------------- | ---------------------------------------------------- | ------------------- |
+| `spec.md`       | 사람 (+ `refactor-baseline`이 현행 동작 기준선 추가) | ✅                  |
+| `plan.md`       | `ai-plan`                                            | ✅                  |
+| `issues.md`     | `feature-planner` 또는 `refactor-planner`            | 큰 FEAT/NAT/MIG/REF |
+| `issue-{N}.md`  | 향후 `test-scenarios`                                | 예약(현재 미사용)   |
+| `checklist.md`  | `ai-validate`                                        | ✅                  |
+| `retrospect.md` | 선택 회고 (향후 `ai-retrospect` 도입 시 회차 누적)   | 선택                |
+| `assets/`       | 사람 (Figma 내보내기 등)                             | 선택                |
 
 새 작업은 `TEMPLATE/`을 복사해서 시작한다.
 
@@ -47,17 +47,20 @@ cp -r work/TEMPLATE "work/to-do/MIG-001-학습화면-이전"
 
 ### Work task와 GitHub Issue의 관계
 
-하나의 work task는 목표와 완료 상태를 관리하고, 큰 `FEAT-`·`NAT-` 작업은 여러 실행 이슈로
-나눌 수 있다. **실행 이슈 하나는 GitHub Issue 하나와 정확히 연결한다.**
+하나의 work task는 목표와 완료 상태를 관리하고, 큰 `FEAT-`·`NAT-`·`MIG-`·`REF-` 작업은 여러
+실행 이슈로 나눌 수 있다. **실행 이슈 하나는 GitHub Issue 하나와 정확히 연결한다.**
 
 ```text
-FEAT-011
-├─ issue-01.md ↔ GitHub Issue #234
-└─ issue-02.md ↔ GitHub Issue #235
+FEAT-011/issues.md
+├─ Issue 1 ↔ GitHub Issue #234
+└─ Issue 2 ↔ GitHub Issue #235
 ```
 
-파일명은 work task 내부 순번인 `issue-01.md` 형식을 쓴다. GitHub Issue 번호는 등록 후 생기므로
-파일명에 넣지 않고 `issue-N.md`의 `github_issue` frontmatter와 `issues.md` 링크에 기록한다.
+GitHub Issue 번호는 등록 후 생기므로 폴더명이나 work ID에 넣지 않고 `issues.md`의 해당 실행
+이슈에 링크로 기록한다. `issue-{N}.md`는 향후 테스트 시나리오용 예약 파일이라 현재는 만들지 않는다.
+
+`plan.md`와 `checklist.md`는 실행 이슈별 문서가 아니라 work task 전체 문서다. 여러 실행 이슈가
+있다면 계획과 검증 표에서 이슈 번호를 함께 적어 누락 여부를 추적한다.
 
 ---
 
