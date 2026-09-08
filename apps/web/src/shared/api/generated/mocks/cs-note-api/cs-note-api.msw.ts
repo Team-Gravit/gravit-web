@@ -13,6 +13,9 @@ import type { RequestHandlerOptions } from 'msw';
 export const getGetNoteResponseMock = (): ArrayBuffer =>
   new ArrayBuffer(faker.number.int({ min: 1, max: 64 }));
 
+export const getGetNoteByUnitIdResponseMock = (): ArrayBuffer =>
+  new ArrayBuffer(faker.number.int({ min: 1, max: 64 }));
+
 export const getGetNoteMockHandler = (
   overrideResponse?:
     | ArrayBuffer
@@ -38,4 +41,30 @@ export const getGetNoteMockHandler = (
     options,
   );
 };
-export const getCsNoteApiMock = () => [getGetNoteMockHandler()];
+
+export const getGetNoteByUnitIdMockHandler = (
+  overrideResponse?:
+    | ArrayBuffer
+    | ((info: Parameters<Parameters<typeof http.get>[1]>[0]) => Promise<ArrayBuffer> | ArrayBuffer),
+  options?: RequestHandlerOptions,
+) => {
+  return http.get(
+    '*/api/v1/cs-notes/units/:unitId',
+    async (info: Parameters<Parameters<typeof http.get>[1]>[0]) => {
+      await delay(600);
+
+      const binaryBody =
+        overrideResponse !== undefined
+          ? typeof overrideResponse === 'function'
+            ? await overrideResponse(info)
+            : overrideResponse
+          : getGetNoteByUnitIdResponseMock();
+      return HttpResponse.arrayBuffer(
+        binaryBody instanceof ArrayBuffer ? binaryBody : new ArrayBuffer(0),
+        { status: 200, headers: { 'Content-Type': 'application/octet-stream' } },
+      );
+    },
+    options,
+  );
+};
+export const getCsNoteApiMock = () => [getGetNoteMockHandler(), getGetNoteByUnitIdMockHandler()];
