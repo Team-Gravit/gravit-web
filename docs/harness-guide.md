@@ -58,6 +58,11 @@ flowchart TB
 
 `AGENTS.md`(Codex)와 `.codex/`도 **같은 `.claude/` 파일을 가리킨다.** 사본을 만들지 않는다.
 
+> **서브에이전트만 파일이 두 개다.** 도구가 자기 형식으로 직접 로드하기 때문에
+> (`.claude/agents/*.md` vs `.codex/agents/*.toml`) 가리키기만으로는 안 된다.
+> 그래서 `.codex/agents/ac-verifier.toml`은 **지시문을 옮겨 적지 않고 정본을 읽으라고만 지시하는**
+> 포인터로 둔다. 규칙을 고칠 때는 `.claude/agents/ac-verifier.md` 한 곳만 고친다.
+
 ## 3. 규칙은 언제 확인되는가
 
 규칙은 다음 세 시점에 확인된다. 같은 검사를 세 번 반복하는 것이 아니라, 각 단계가 확인하는

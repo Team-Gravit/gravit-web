@@ -23,9 +23,14 @@
 
 ## Codex 전용 설정
 
-| 파일                 | 용도                                               |
-| -------------------- | -------------------------------------------------- |
-| `.codex/config.toml` | Figma MCP 연결                                     |
-| `.codex/hooks.json`  | `PreToolUse` → `.claude/hooks/fsd-layer-check.mjs` |
+| 파일                   | 용도                                                  |
+| ---------------------- | ----------------------------------------------------- |
+| `.codex/config.toml`   | Figma MCP 연결                                        |
+| `.codex/hooks.json`    | `PreToolUse` → `.claude/hooks/fsd-layer-check.mjs`    |
+| `.codex/agents/*.toml` | 서브에이전트 등록 → 지시문은 `.claude/agents/`가 정본 |
 
 훅 스크립트는 **한 벌만 둔다.** `.codex/hooks.json`이 `.claude/hooks/`의 것을 가리킨다.
+
+서브에이전트는 도구마다 형식이 달라(`*.md` vs `*.toml`) 파일 자체는 두 개일 수밖에 없다.
+대신 `.codex/agents/*.toml`에는 **지시문을 옮겨 적지 않는다.** "정본을 읽고 따르라"는 안내와
+Codex 쪽에서만 필요한 도구 제약만 둔다. 규칙을 고칠 때 손대는 곳은 `.claude/agents/` 한 곳이다.
