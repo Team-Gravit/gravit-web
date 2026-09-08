@@ -1,8 +1,9 @@
-import { StyleSheet, View, Platform } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useRef } from 'react';
-import { WebView } from 'react-native-webview';
 import Constants from 'expo-constants';
+import * as SplashScreen from 'expo-splash-screen';
+import { useEffect, useRef } from 'react';
+import { Platform, StyleSheet, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { WebView } from 'react-native-webview';
 
 const devHost = Constants.expoConfig?.hostUri?.split(':')[0];
 
@@ -10,9 +11,28 @@ const WEB_URL =
   process.env.EXPO_PUBLIC_WEB_URL ??
   (__DEV__ && devHost ? `http://${devHost}:5173` : 'https://dev.gravit.inuappcenter.kr/');
 
+/** WebView와 safe area 여백에 적용하는 흰색 배경. */
+const WEB_BACKGROUND = '#ffffff';
+
+/**
+ * 로드 결과와 무관하게 스플래시를 내리는 상한.
+ * 서버가 응답 없이 매달리면 `onLoadEnd` 도 `onError` 도 오지 않아 스플래시에 갇힌다.
+ */
+const SPLASH_MAX_WAIT_MS = 10000;
+
+/** 이미 내려간 뒤 다시 불러도 무해하다. */
+function hideSplash() {
+  SplashScreen.hideAsync().catch(console.warn);
+}
+
 export default function WebviewPage() {
   const insets = useSafeAreaInsets();
   const webViewRef = useRef<WebView>(null);
+
+  useEffect(() => {
+    const timer = setTimeout(hideSplash, SPLASH_MAX_WAIT_MS);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <View
@@ -59,14 +79,20 @@ export default function WebviewPage() {
                 `}
         onLoadStart={(event) => console.log('[WebView] load start', event.nativeEvent.url)}
         onLoad={(event) => console.log('[WebView] loaded', event.nativeEvent.url)}
-        onLoadEnd={(event) =>
+        onLoadEnd={(event) => {
           console.log('[WebView] load end', {
             url: event.nativeEvent.url,
             loading: event.nativeEvent.loading,
-          })
-        }
-        onError={(event) => console.error('[WebView] error', event.nativeEvent)}
-        onHttpError={(event) => console.error('[WebView] HTTP error', event.nativeEvent)}
+          });
+          hideSplash();
+        }}
+        onError={(event) => {
+          console.error('[WebView] error', event.nativeEvent);
+          hideSplash();
+        }}
+        onHttpError={(event) => {
+          console.error('[WebView] HTTP error', event.nativeEvent);
+        }}
         onMessage={(event) => console.log('[WebView] browser event', event.nativeEvent.data)}
       />
     </View>
@@ -76,17 +102,10 @@ export default function WebviewPage() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#ffffff',
+    backgroundColor: WEB_BACKGROUND,
   },
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  header: {
-    fontWeight: 'bold',
-    marginBottom: 20,
-    fontSize: 36,
+    backgroundColor: WEB_BACKGROUND,
   },
 });

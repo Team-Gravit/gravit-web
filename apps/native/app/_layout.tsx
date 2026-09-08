@@ -1,28 +1,16 @@
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { useEffect, useState } from 'react';
 
+// WebView 가 로드될 때까지 정적 스플래시를 붙잡아 둔다. 자동으로 내려가면 웹 첫 화면이 그려지기
+// 전에 흰 프레임이 드러난다. 대응하는 hideAsync() 는 app/index.tsx 가 소유한다.
+SplashScreen.preventAutoHideAsync().catch(console.warn);
+
+// 정적 스플래시가 사라질 때의 페이드 연출.
 SplashScreen.setOptions({
   duration: 1000,
   fade: true,
 });
 
 export default function RootLayout() {
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  // TODO: 실제 초기 로딩 작업이 추가되면 완료 콜백에서 상태를 갱신한다.
-  useEffect(() => {
-    // 현재는 로딩 화면 구현 전의 placeholder 상태 전환이다.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setIsLoaded(true);
-  }, []);
-
-  if (!isLoaded) return <></>;
-
-  return (
-    <Stack>
-      {/** 웹뷰를 띄울 단일 페이지 */}
-      <Stack.Screen name="index" options={{ headerShown: false }} />
-    </Stack>
-  );
+  return <Stack screenOptions={{ headerShown: false }} />;
 }

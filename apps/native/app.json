@@ -4,6 +4,7 @@
     "slug": "native",
     "version": "1.0.0",
     "scheme": "com.turbo.example",
+    "backgroundColor": "#FFF",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -20,10 +21,7 @@
       }
     },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#AAAAAA"
-      },
+      "icon": "./assets/icon.png",
       "package": "com.turbo.example"
     },
     "web": {
@@ -35,9 +33,16 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/splash.png",
-          "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
+          "backgroundColor": "#8100B3",
+          "ios": {
+            "image": "./assets/splash-gradient.png",
+            "resizeMode": "cover",
+            "enableFullScreenImage_legacy": true
+          },
+          "android": {
+            "image": "./assets/splash-logo-square.png",
+            "imageWidth": 150
+          }
         }
       ],
       [
