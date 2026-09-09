@@ -2,6 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { RouterProvider } from '@tanstack/react-router';
 
+import { AuthProvider } from '@/app/auth/auth-provider';
 import { QueryProvider } from '@/app/query/query-provider';
 import { router } from '@/app/router/router';
 import '@/app/styles/index.css';
@@ -23,7 +24,9 @@ void enableMocking().then(() => {
   createRoot(rootElement).render(
     <StrictMode>
       <QueryProvider>
-        <RouterProvider router={router} />
+        <AuthProvider>
+          <RouterProvider router={router} />
+        </AuthProvider>
       </QueryProvider>
     </StrictMode>,
   );
