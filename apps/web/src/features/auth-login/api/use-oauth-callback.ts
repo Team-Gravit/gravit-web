@@ -4,7 +4,7 @@ import { setSession } from '@/entities/auth';
 import { useOauthLogin } from '@/shared/api/generated/oauth2-0-api/oauth2-0-api';
 import { getOauthDest } from '@/shared/config';
 
-import type { LoginProvider } from './get-login-url';
+import type { LoginProvider } from '../model/login-providers';
 
 interface OauthCallbackVariables {
   provider: LoginProvider;
