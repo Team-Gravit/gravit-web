@@ -90,7 +90,7 @@ Then 저장소의 `accessToken`과 `refreshToken`이 모두 `null`이다
 
 ## Issue 2: [Feat] 만료된 액세스 토큰을 자동으로 재발급한다
 
-GitHub Issue: 미등록
+GitHub Issue: [#197](https://github.com/Team-Gravit/gravit-web/issues/197)
 
 ### 설명
 
