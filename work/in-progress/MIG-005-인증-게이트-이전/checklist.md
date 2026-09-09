@@ -8,8 +8,12 @@ mode: 'migrate'
 
 > `ai-validate` 산출물.
 >
-> **범위: Issue 1(세션 계약과 토큰 저장소, GitHub #196)만.** Issue 2~5는 미구현이므로
-> work task 전체는 완료가 아니다. 폴더는 `in-progress`에 남는다.
+> **범위: Issue 1(세션 계약과 토큰 저장소, GitHub #196) · Issue 2(토큰 자동 재발급).**
+> Issue 3~5는 미구현이므로 work task 전체는 완료가 아니다. 폴더는 `in-progress`에 남는다.
+>
+> 이슈별로 절을 나눠 누적한다. 앞 이슈의 기록은 덮어쓰지 않는다.
+
+# Issue 1 검증 결과 — 세션 계약과 토큰 저장소
 
 ## 1. 자동 검증
 
@@ -65,7 +69,7 @@ steiger가 2건을 잡아 수정 후 재검증했다. 상세는 §6.
 | `shared/api/config.ts` `tokenManager` → 3파일      | 1    | ✅ 읽기·쓰기·삭제·복원으로 분해               |
 | `setAuthFailureHandler` → `configureAuth` 주입     | 1    | ✅ `session-contract.ts` 모듈 최상위에서 호출 |
 | `main.tsx` 주입 호출 → `app/auth/auth-provider`    | 1    | ✅                                            |
-| 갱신·큐 → `shared/api/refresh-token.ts`            | 2    | ⬜ 미착수                                     |
+| 갱신·큐 → `shared/api/refresh-token.ts`            | 2    | ✅ single-flight 재작성 (Issue 2 §3)          |
 | `entities/login/*` → `features/auth-login/*`       | 3    | ⬜ 미착수                                     |
 | `features/auth/logout.ts` → `features/auth-logout` | 3    | ⬜ 미착수                                     |
 | `pages/_authenticated/route.tsx` → `_protected`    | 4    | ⬜ 미착수                                     |
@@ -139,3 +143,142 @@ steiger의 `fsd/segments-by-purpose`가 그 이름을 거부한다.
 `configureAuth`를 파일 경로로 참조해야 해서 이번에 `shared/api/index.ts`를 만들었다.
 `generated/`는 배럴이 없는 것이 정상이지만(`api-convention.md` §3의 예외), 손으로 쓴 shared
 모듈에는 배럴이 필요하다.
+
+---
+
+# Issue 2 검증 결과 — 만료된 액세스 토큰 자동 재발급
+
+## 1. 자동 검증
+
+| #   | 검사            | 명령                                              | 결과                      |
+| --- | --------------- | ------------------------------------------------- | ------------------------- |
+| 1   | 린트 + FSD 경계 | `pnpm --filter @repo/web lint`                    | ✅ No problems found      |
+| 2   | 타입            | `pnpm --filter @repo/web check-types`             | ✅                        |
+| 3   | 테스트          | `pnpm --filter @repo/web exec vitest run`         | ✅ 8 files / **46 tests** |
+| 4   | 빌드            | `pnpm --filter @repo/web build`                   | ✅ built in 12.65s        |
+| 5   | 포맷            | `pnpm exec prettier --check <이번 변경 파일 7개>` | ✅                        |
+| 6   | generated 경계  | `rg "shared/api/generated" pages widgets`         | ✅ 참조 0건               |
+
+테스트는 Issue 1의 38개 + 이번 신규 8개다. 라우트를 추가하지 않아 트리 재생성은 불필요했다.
+
+`session-contract.test.ts` 1건이 포맷에 걸려 `prettier --write`로 고친 뒤 재확인했다.
+`pnpm format:check` 전체는 `REF-003`의 기존 실패가 있어 실행하지 않았다.
+
+### 재검증 이력 — 1회
+
+재시도 요청의 `Authorization` 헤더 때문에 테스트 2건이 실패해 수정 후 재검증했다. 상세는 §5.
+
+## 2. 요구사항 ↔ 구현 대조
+
+| #    | 요구사항 (issues.md Issue 2)                | 구현 위치                                                                                                                                                   | 상태 |
+| ---- | ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ---- |
+| AC-1 | 재발급 1회 + 원요청 1회 재시도              | `axios-instance.ts` 응답 인터셉터 · `axios-instance.test.ts` "401 이면 재발급 후 원요청을 새 토큰으로 1회 재시도한다"                                       | ✅   |
+| AC-2 | 재시도도 401이면 재발급 재호출 없이 전파    | `isRetried` 플래그 · 〃 "재시도한 요청이 다시 401 이면 재발급을 다시 호출하지 않고 에러를 전파한다"                                                         | ✅   |
+| AC-3 | 동시 401 3건에도 재발급 1회, 같은 새 토큰   | `refresh-token.ts: pendingRefresh` · 〃 "동시에 401 이 3건이어도 재발급은 1회만 나가고 모두 같은 토큰으로 재시도된다"                                       | ✅   |
+| AC-4 | accessToken만 교체, refreshToken 유지       | `session-contract.ts: applyRefreshedToken` · `session-contract.test.ts` "notifyTokenRefreshed 를 호출하면 accessToken 만 교체하고 refreshToken 은 유지한다" | ✅   |
+| AC-5 | 403이면 토큰을 지우지 않음                  | `axios-instance.ts` catch의 403 분기 · `axios-instance.test.ts` "재시도한 요청이 403 이면 onUnauthorized 를 호출하지 않는다"                                | ✅   |
+| AC-6 | 500 실패면 토큰 삭제 + `notifyUnauthorized` | 〃 "재발급이 500 으로 실패하면 onUnauthorized 를 1회 호출한다"                                                                                              | ✅   |
+| AC-7 | 재발급 요청 자체의 401은 재귀하지 않음      | `skipAuthRefresh` 플래그 · 〃 "재발급 요청 자체가 401 을 받아도 재발급을 다시 호출하지 않는다"                                                              | ✅   |
+
+**AC-4의 검증 방식** — Issue 1과 같은 이유로 두 조각으로 나눴다. `shared`가 새 토큰을
+`notifyTokenRefreshed`로 알리는지(`axios-instance.test.ts`의 `onTokenRefreshed` 단언)와,
+계약이 그 알림을 받아 저장소에 반영하는지(`session-contract.test.ts`)를 각각 고정했다.
+`shared` 레이어 테스트가 `entities`를 import하면 레이어 방향이 뒤집히기 때문이다.
+
+## 3. 이전 검증
+
+### 3-1. 기준선 대조 (C3~C7)
+
+| #   | 기준선                                           | 결과                                                             |
+| --- | ------------------------------------------------ | ---------------------------------------------------------------- |
+| C3  | 401 & 재시도 전이면 갱신 후 **1회** 재시도       | ✅ `isRetried` 플래그로 제한. AC-1·AC-2                          |
+| C4  | 갱신 중 **재요청**이 403이면 토큰을 지우지 않음  | ✅ AC-5. 단 재발급 호출 자체의 403은 아래 §3-2 참고              |
+| C5  | 그 외 갱신 실패는 토큰 삭제 + 핸들러 호출        | ✅ `notifyUnauthorized()`가 주입된 `clearSession`을 부른다. AC-6 |
+| C6  | 갱신은 single-flight                             | ✅ `pendingRefresh` 단일 Promise 공유. AC-3                      |
+| C7  | `POST /api/v1/auth/reissue`에 `{ refreshToken }` | ⚠️ 경로·본문 동일. 전송 수단만 ADR-3에 따라 변경 (§3-2)          |
+
+### 3-2. 의도적으로 바꾼 것
+
+| 항목                                                            | 이유                                                                                                                                                          |
+| --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `publicApiClient` 대신 단일 인스턴스 + `skipAuthRefresh` 플래그 | ADR-3의 승인된 결정. 인스턴스를 둘로 나누지 않고 재발급 요청만 인터셉터를 우회한다                                                                            |
+| `isRefreshing` + `failedQueue` + `processQueue` → Promise 하나  | 큐를 직접 굴리지 않아도 같은 약속을 공유하면 single-flight가 성립한다. 대기자에게 결과를 배달하는 코드가 사라진다                                             |
+| `configureAuth`에 `readRefreshToken`·`onTokenRefreshed` 추가    | `shared`가 `entities/auth`의 저장소를 직접 못 읽는다. `plan.md` 영향 파일에는 없었지만 레이어 규칙상 다른 방법이 없다 (§5-② 참고)                             |
+| 재시도 요청에서 요청 인터셉터가 토큰을 다시 붙이지 않는다       | 재발급으로 방금 받은 토큰이 이겨야 한다. legacy는 store가 이미 갱신돼 있어 우연히 같은 결과였다 (§5-① 참고)                                                   |
+| **재발급 호출 자체가 403일 때 토큰을 유지한다**                 | legacy는 내부 catch에서 이미 지운 뒤 핸들러만 건너뛰어 "토큰은 지워지고 이동은 안 되는" 어중간한 상태가 된다. C4 문구에 맞춰 유지로 통일했다. **미판정 항목** |
+
+### 3-3. 남은 legacy 참조
+
+`tokenManager` · `failedQueue` · `isRefreshing` · `processQueue` · `privateApiClient` ·
+`publicApiClient` · `setAuthFailureHandler` 검색 결과 **0건**.
+
+`apps/legacy-web`의 `features/auth/use-refresh-token.tsx`는 계획대로 이전하지 않았다
+(전체가 주석인 죽은 파일, `spec.md` 발견 2).
+
+## 4. 시안 대조 재확인
+
+**해당 없음.** 화면 UI가 없는 로직 이전이다.
+
+## 5. 중간에 막혔던 지점 — 스킬에 반영할 것
+
+### ① 재시도 요청이 요청 인터셉터를 다시 탄다
+
+갱신 후 `config.headers.set('Authorization', 새토큰)`을 해도, 재시도가 요청 인터셉터를
+다시 통과하면서 `getAuthToken()`의 **옛 토큰으로 덮어썼다.** 테스트 2건이 여기서 실패했다.
+
+legacy도 같은 구조인데 문제가 없었던 것은 그 시점에 store가 이미 새 토큰으로 갱신돼 있어
+덮어써도 값이 같았기 때문이다. 즉 **우연히 맞은 것**이지 설계된 동작이 아니다.
+
+`isRetried`면 요청 인터셉터가 토큰 부착을 건너뛰도록 바꿔 재발급 결과가 이기게 했다.
+
+→ **`ai-orchestrate`에 "인터셉터에서 재시도하면 그 요청이 인터셉터를 다시 탄다"를 넣으면
+한 번에 통과한다.** 플래그로 재진입을 제어하는 것이 이 패턴의 핵심이다.
+
+### ② `shared`가 저장소를 읽어야 하는 요구는 계획 단계에서 드러나지 않았다
+
+`plan.md`의 Issue 2 영향 파일은 `refresh-token.ts`와 `axios-instance.ts` 둘뿐이었다.
+그런데 재발급은 `refreshToken`을 읽고 새 `accessToken`을 저장해야 하고, 저장소는
+`entities/auth`에 있다. `shared → entities`는 상향이라 **주입 계약(`configureAuth`) 확장이
+필수**였고, 이는 Issue 1이 만든 파일 2개를 다시 건드리는 일이었다.
+
+→ **`ai-plan`·`refactor-planner`가 영향 분석에서 "이 단계가 주입 지점을 넓히는가"를 묻게
+해야 한다.** 의존성 주입 구조에서는 하위 레이어의 요구가 곧 계약 변경이다.
+
+### ③ MSW 핸들러 URL은 baseURL에 걸린다
+
+테스트가 절대 URL로 호출을 고정해도, **재발급은 코드가 `baseURL`을 거쳐 보낸다.**
+경로만 적은 핸들러로는 잡히지 않아 와일드카드가 필요했다.
+
+앱 코드가 스스로 만드는 요청을 가로챌 때는 경로 와일드카드를 쓴다.
+
+### ④ 생성 API를 확인하지 않고 요청 함수를 손으로 썼다
+
+재발급을 `AXIOS_INSTANCE.post('/api/v1/auth/reissue')`로 직접 구현하고 `ReissueResponse`를
+다시 선언했다. 그러나 orval이 `authtoken-api/authtoken-api.ts`에 `reissueToken`을 이미
+생성해 두었고, 응답 타입도 `model/reissueResponse.ts`에 있다.
+`api-convention.md` §2가 금지하는 두 가지를 그대로 범했다.
+
+사용자 지적으로 발견해 생성 함수로 교체했다. 인터셉터 우회도 생성 함수의 두 번째 인자로
+그대로 넘길 수 있었다 — `reissueToken({ refreshToken }, { skipAuthRefresh: true })`.
+`customInstance`가 `{...config, ...options}`로 병합하기 때문이다.
+
+→ **새 HTTP 호출을 쓰기 전에 `rg <경로명> shared/api/generated/`를 먼저 돌린다.**
+인터셉터나 플래그 같은 특수 사정이 있어도 생성 함수를 포기할 이유가 되지 않는다.
+
+## 6. 기준 문서 갱신
+
+| 대상                            | 갱신 내용                                                | 상태                 |
+| ------------------------------- | -------------------------------------------------------- | -------------------- |
+| `docs/implementation-status.md` | 사용자 화면 변화가 없다                                  | 해당 없음            |
+| `docs/migration-status.md`      | legacy 인증 대체가 아직 완료되지 않았다 (Issue 3~5 남음) | ⬜ work task 완료 시 |
+| 그 외 `docs/`                   | 세션·재발급 계약은 Issue 5까지 끝난 뒤 한 번에 승격한다  | ⬜ work task 완료 시 |
+
+## 7. 후속으로 뽑을 항목
+
+| 항목                                                       | 성격      | 상태           |
+| ---------------------------------------------------------- | --------- | -------------- |
+| 재발급 호출 자체가 403을 받을 때의 세션 처리 (§3-2 마지막) | 판정 필요 | 미등록         |
+| 생성 API 우회를 훅에서 차단 (§5-④)                         | `INFRA-`  | ✅ `INFRA-012` |
+| 계획 단계에서 생성 API 함수를 특정 (§5-④)                  | `INFRA-`  | ✅ `INFRA-013` |
+| 타입 인지 린트로 삼켜진 Promise 차단 검토                  | `INFRA-`  | ✅ `INFRA-014` |
+| legacy 온보딩이 서버 변경으로 깨지는 문제 (`plan.md` §5)   | `FIX-`    | 미등록         |
