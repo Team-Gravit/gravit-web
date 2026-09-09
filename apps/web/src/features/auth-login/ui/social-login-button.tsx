@@ -47,17 +47,19 @@ export interface SocialLoginButtonProps
   size?: SocialLoginButtonSize;
 }
 
+// em 은 자기 자신의 font-size 를 기준으로 한다. 로고에는 font-size 가 없어 버튼에서 물려받으므로
+// 높이가 버튼 글자 크기를 따라간다 — size 변형을 추가해도 로고를 따로 손보지 않는다.
 const PROVIDER_LOGO_CLASS = 'h-[1em] w-auto shrink-0 object-contain';
 
 /** provider 로고
  * - 옆에 있는 레이블이 같은 내용을 말하므로 aria-hidden 적용. */
 function ProviderLogo({ provider, className }: { provider: LoginProvider; className: string }) {
   if (provider === 'google') {
-    return <img src={googleLogo} alt="" className={cn(className, 'h-5')} />;
+    return <img src={googleLogo} alt="" className={className} />;
   }
 
   if (provider === 'kakao') {
-    return <KakaoLogo aria-hidden className={cn(className, 'h-5')} />;
+    return <KakaoLogo aria-hidden className={className} />;
   }
 
   return <NaverLogo aria-hidden className={cn(className, 'h-[17px]')} />;
