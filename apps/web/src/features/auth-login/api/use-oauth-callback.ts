@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 
 import { setSession } from '@/entities/auth';
 import { useOauthLogin } from '@/shared/api/generated/oauth2-0-api/oauth2-0-api';
-import { OAUTH_DEST } from '@/shared/config';
+import { getOauthDest } from '@/shared/config';
 
 import type { LoginProvider } from './get-login-url';
 
@@ -30,7 +30,7 @@ export function useOauthCallback() {
 
   const exchangeCode = useCallback(
     ({ provider, code }: OauthCallbackVariables, options?: Parameters<typeof mutate>[1]) =>
-      mutate({ provider, data: { code }, params: { dest: OAUTH_DEST } }, options),
+      mutate({ provider, data: { code }, params: { dest: getOauthDest() } }, options),
     [mutate],
   );
 

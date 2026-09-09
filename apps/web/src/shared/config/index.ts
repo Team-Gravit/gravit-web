@@ -1,1 +1,1 @@
-export { OAUTH_DEST } from './env';
+export { getOauthDest } from './env';

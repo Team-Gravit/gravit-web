@@ -10,12 +10,21 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProtectedRouteImport } from './routes/_protected'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as RestoreRouteImport } from './routes/restore'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as ProtectedMainRouteImport } from './routes/_protected.main'
+import { Route as ProtectedOnboardingRouteImport } from './routes/_protected.onboarding'
+import { Route as LoginOauth2CodeProviderRouteImport } from './routes/login.oauth2.code.$provider'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProtectedRoute = ProtectedRouteImport.update({
+  id: '/_protected',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -23,40 +32,99 @@ const PrivacyRoute = PrivacyRouteImport.update({
   path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RestoreRoute = RestoreRouteImport.update({
+  id: '/restore',
+  path: '/restore',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProtectedMainRoute = ProtectedMainRouteImport.update({
+  id: '/main',
+  path: '/main',
+  getParentRoute: () => ProtectedRoute,
+} as any)
+const ProtectedOnboardingRoute = ProtectedOnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => ProtectedRoute,
+} as any)
+const LoginOauth2CodeProviderRoute = LoginOauth2CodeProviderRouteImport.update({
+  id: '/login/oauth2/code/$provider',
+  path: '/login/oauth2/code/$provider',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/privacy': typeof PrivacyRoute
+  '/restore': typeof RestoreRoute
   '/terms': typeof TermsRoute
+  '/main': typeof ProtectedMainRoute
+  '/onboarding': typeof ProtectedOnboardingRoute
+  '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/privacy': typeof PrivacyRoute
+  '/restore': typeof RestoreRoute
   '/terms': typeof TermsRoute
+  '/main': typeof ProtectedMainRoute
+  '/onboarding': typeof ProtectedOnboardingRoute
+  '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_protected': typeof ProtectedRouteWithChildren
   '/privacy': typeof PrivacyRoute
+  '/restore': typeof RestoreRoute
   '/terms': typeof TermsRoute
+  '/_protected/main': typeof ProtectedMainRoute
+  '/_protected/onboarding': typeof ProtectedOnboardingRoute
+  '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/privacy' | '/terms'
+  fullPaths:
+    | '/'
+    | '/privacy'
+    | '/restore'
+    | '/terms'
+    | '/main'
+    | '/onboarding'
+    | '/login/oauth2/code/$provider'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/privacy' | '/terms'
-  id: '__root__' | '/' | '/privacy' | '/terms'
+  to:
+    | '/'
+    | '/privacy'
+    | '/restore'
+    | '/terms'
+    | '/main'
+    | '/onboarding'
+    | '/login/oauth2/code/$provider'
+  id:
+    | '__root__'
+    | '/'
+    | '/_protected'
+    | '/privacy'
+    | '/restore'
+    | '/terms'
+    | '/_protected/main'
+    | '/_protected/onboarding'
+    | '/login/oauth2/code/$provider'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ProtectedRoute: typeof ProtectedRouteWithChildren
   PrivacyRoute: typeof PrivacyRoute
+  RestoreRoute: typeof RestoreRoute
   TermsRoute: typeof TermsRoute
+  LoginOauth2CodeProviderRoute: typeof LoginOauth2CodeProviderRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -68,11 +136,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_protected': {
+      id: '/_protected'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof ProtectedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/privacy': {
       id: '/privacy'
       path: '/privacy'
       fullPath: '/privacy'
       preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/restore': {
+      id: '/restore'
+      path: '/restore'
+      fullPath: '/restore'
+      preLoaderRoute: typeof RestoreRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/terms': {
@@ -82,13 +164,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_protected/main': {
+      id: '/_protected/main'
+      path: '/main'
+      fullPath: '/main'
+      preLoaderRoute: typeof ProtectedMainRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/onboarding': {
+      id: '/_protected/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof ProtectedOnboardingRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/login/oauth2/code/$provider': {
+      id: '/login/oauth2/code/$provider'
+      path: '/login/oauth2/code/$provider'
+      fullPath: '/login/oauth2/code/$provider'
+      preLoaderRoute: typeof LoginOauth2CodeProviderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
+interface ProtectedRouteChildren {
+  ProtectedMainRoute: typeof ProtectedMainRoute
+  ProtectedOnboardingRoute: typeof ProtectedOnboardingRoute
+}
+
+const ProtectedRouteChildren: ProtectedRouteChildren = {
+  ProtectedMainRoute: ProtectedMainRoute,
+  ProtectedOnboardingRoute: ProtectedOnboardingRoute,
+}
+
+const ProtectedRouteWithChildren = ProtectedRoute._addFileChildren(
+  ProtectedRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ProtectedRoute: ProtectedRouteWithChildren,
   PrivacyRoute: PrivacyRoute,
+  RestoreRoute: RestoreRoute,
   TermsRoute: TermsRoute,
+  LoginOauth2CodeProviderRoute: LoginOauth2CodeProviderRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
