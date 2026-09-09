@@ -32,27 +32,26 @@ legacy는 위 조건이 모두 충족될 때 한 번에 제거한다. 중간에 
 
 ## 2. 요약
 
-| 영역                | 동작 검증 완료 | 전체 | 폐기 차단 요소                |
-| ------------------- | -------------: | ---: | ----------------------------- |
-| 사용자 라우트       |              2 |   35 | 인증 기반과 주요 화면 미이전  |
-| 공용 기반           |              2 |   12 | 인증·Query·반응형 기반 미이전 |
-| 이전 제외·폐기 대상 |              4 |    4 | 없음                          |
+| 영역                | 동작 검증 완료 | 전체 | 폐기 차단 요소               |
+| ------------------- | -------------: | ---: | ---------------------------- |
+| 사용자 라우트       |              3 |   35 | 인증 기반과 주요 화면 미이전 |
+| 공용 기반           |              3 |   12 | 인증·Query 기반 미이전       |
+| 이전 제외·폐기 대상 |              4 |    4 | 없음                         |
 
-`apps/web`이 현재 제공하는 제품 라우트는 `/terms`, `/privacy`다. `/`는 스캐폴드 화면이므로
-제품 구현 완료로 세지 않는다.
+`apps/web`이 현재 제공하는 제품 라우트는 `/terms`, `/privacy`, `/`(로그인)다.
 
 ## 3. 사용자 라우트 대체 현황
 
 ### 공개 라우트
 
-| Legacy URL                     | 새 경로        | 기준선 | 대체 구현 | 동작 검증 | 작업    | 비고                 |
-| ------------------------------ | -------------- | :----: | :-------: | :-------: | ------- | -------------------- |
-| `/terms`                       | `/terms`       |   ✅   |    ✅     |    ✅     | MIG-004 | Figma 시안 미확인    |
-| `/privacy`                     | `/privacy`     |   ✅   |    ✅     |    ✅     | MIG-004 | Figma 시안 미확인    |
-| `/`                            | 미정           |   ⬜   |    ⬜     |    ⬜     | —       | 현재 스캐폴드가 점유 |
-| `/restore`                     | 미정           |   ⬜   |    ⬜     |    ⬜     | —       | 계정 복구            |
-| `/user/me/delete/page`         | 미정           |   ⬜   |    ⬜     |    ⬜     | —       | 회원 탈퇴            |
-| `/login/oauth2/code/$provider` | 동일 경로 예정 |   ✅   |    ⬜     |    ⬜     | MIG-005 | 인증 기반 라우트     |
+| Legacy URL                     | 새 경로        | 기준선 | 대체 구현 | 동작 검증 | 작업    | 비고              |
+| ------------------------------ | -------------- | :----: | :-------: | :-------: | ------- | ----------------- |
+| `/terms`                       | `/terms`       |   ✅   |    ✅     |    ✅     | MIG-004 | Figma 시안 미확인 |
+| `/privacy`                     | `/privacy`     |   ✅   |    ✅     |    ✅     | MIG-004 | Figma 시안 미확인 |
+| `/`                            | `/`            |   ✅   |    ✅     |    ✅     | MIG-018 | 로그인 화면 (O.1) |
+| `/restore`                     | 미정           |   ⬜   |    ⬜     |    ⬜     | —       | 계정 복구         |
+| `/user/me/delete/page`         | 미정           |   ⬜   |    ⬜     |    ⬜     | —       | 회원 탈퇴         |
+| `/login/oauth2/code/$provider` | 동일 경로 예정 |   ✅   |    ⬜     |    ⬜     | MIG-005 | 인증 기반 라우트  |
 
 ### 인증 필요 라우트
 
@@ -81,20 +80,20 @@ legacy는 위 조건이 모두 충족될 때 한 번에 제거한다. 중간에 
 
 파일명이 아니라 기능을 식별자로 삼는다. 경로가 바뀌어도 기능의 대체 여부를 추적하기 위해서다.
 
-| 기능           | Legacy 근거                           | 새 소유 위치             | 기준선 | 대체 구현 | 동작 검증 | 작업    | 영향             |
-| -------------- | ------------------------------------- | ------------------------ | :----: | :-------: | :-------: | ------- | ---------------- |
-| Footer         | `widgets/Footer/Footer.tsx`           | `widgets/footer/`        |   ✅   |    ✅     |    ✅     | MIG-004 | 전체 공개 화면   |
-| Gravit 로고    | 로고 SVG 2종                          | `shared/ui/logo/`        |   ✅   |    ✅     |    ✅     | MIG-004 | Header·Footer    |
-| 인증 세션      | `shared/api/config.ts`                | 미정                     |   ✅   |    ⬜     |    ⬜     | MIG-005 | 인증 화면 전체   |
-| OAuth callback | callback route                        | `app/routes/`            |   ✅   |    ⬜     |    ⬜     | MIG-005 | 로그인           |
-| 반응형 판정    | `shared/model/use-responsive.ts`      | `shared/lib/` 검토       |   ⬜   |    ⬜     |    ⬜     | —       | 15개 사용처      |
-| Toast          | `shared/lib/toast/`                   | `shared/ui`+`shared/lib` |   ⬜   |    ⬜     |    ⬜     | —       | 6개 사용처       |
-| Query 초기화   | `shared/lib/query/`                   | `app/query/`             |   ⬜   |    ⬜     |    ⬜     | —       | API 화면 전체    |
-| 무한 스크롤    | `shared/model/use-infinite-scroll.ts` | `shared/lib/`            |   ⬜   |    ⬜     |    ⬜     | —       | 3개 사용처       |
-| Planet 유틸    | `shared/lib/planet/`                  | 소비자 slice             |   ⬜   |    ⬜     |    ⬜     | —       | 2개 사용처       |
-| 공용 Button    | `features/button/`                    | `shared/ui/button/`      |   ⬜   |    ✅     |    ⬜     | —       | 사용처 전환 필요 |
-| 메인 위젯      | `widgets/main`, `widgets/main-page`   | `widgets/main/`          |   ⬜   |    ⬜     |    ⬜     | —       | 병합 판정 필요   |
-| Sidebar        | `entities/sidebar`, `widgets/sidebar` | 미정                     |   ⬜   |    ⬜     |    ⬜     | —       | 소유권 판정 필요 |
+| 기능           | Legacy 근거                           | 새 소유 위치                         | 기준선 | 대체 구현 | 동작 검증 | 작업    | 영향                                        |
+| -------------- | ------------------------------------- | ------------------------------------ | :----: | :-------: | :-------: | ------- | ------------------------------------------- |
+| Footer         | `widgets/Footer/Footer.tsx`           | `widgets/footer/`                    |   ✅   |    ✅     |    ✅     | MIG-004 | 전체 공개 화면                              |
+| Gravit 로고    | 로고 SVG 2종                          | `shared/ui/logo/`                    |   ✅   |    ✅     |    ✅     | MIG-004 | Header·Footer                               |
+| 인증 세션      | `shared/api/config.ts`                | 미정                                 |   ✅   |    ⬜     |    ⬜     | MIG-005 | 인증 화면 전체                              |
+| OAuth callback | callback route                        | `app/routes/`                        |   ✅   |    ⬜     |    ⬜     | MIG-005 | 로그인                                      |
+| 반응형 판정    | `shared/model/use-responsive.ts`      | `shared/lib/use-is-wide-viewport.ts` |   ✅   |    ✅     |    ✅     | MIG-018 | 15개 사용처 — 로그인 외는 화면 이전 시 전환 |
+| Toast          | `shared/lib/toast/`                   | `shared/ui`+`shared/lib`             |   ⬜   |    ⬜     |    ⬜     | —       | 6개 사용처                                  |
+| Query 초기화   | `shared/lib/query/`                   | `app/query/`                         |   ⬜   |    ⬜     |    ⬜     | —       | API 화면 전체                               |
+| 무한 스크롤    | `shared/model/use-infinite-scroll.ts` | `shared/lib/`                        |   ⬜   |    ⬜     |    ⬜     | —       | 3개 사용처                                  |
+| Planet 유틸    | `shared/lib/planet/`                  | 소비자 slice                         |   ⬜   |    ⬜     |    ⬜     | —       | 2개 사용처                                  |
+| 공용 Button    | `features/button/`                    | `shared/ui/button/`                  |   ⬜   |    ✅     |    ⬜     | —       | 사용처 전환 필요                            |
+| 메인 위젯      | `widgets/main`, `widgets/main-page`   | `widgets/main/`                      |   ⬜   |    ⬜     |    ⬜     | —       | 병합 판정 필요                              |
+| Sidebar        | `entities/sidebar`, `widgets/sidebar` | 미정                                 |   ⬜   |    ⬜     |    ⬜     | —       | 소유권 판정 필요                            |
 
 ## 5. 이전 제외·폐기 대상
 
@@ -126,5 +125,6 @@ legacy는 위 조건이 모두 충족될 때 한 번에 제거한다. 중간에 
 
 | 날짜       | 내용                                                                       |
 | ---------- | -------------------------------------------------------------------------- |
+| 2026-09-10 | MIG-018 반영. `/` 로그인 화면과 반응형 판정 기반을 대체 구현으로 표시      |
 | 2026-09-01 | 역할 재정의. 제품 구현·토큰 상태를 분리하고 legacy 폐기 조건 중심으로 개편 |
 | 2026-08-31 | 최초 작성. MIG-004 완료 반영                                               |
