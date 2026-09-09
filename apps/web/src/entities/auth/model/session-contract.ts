@@ -3,6 +3,8 @@ import { configureAuth } from '@/shared/api';
 import {
   clearStoredTokens,
   readStoredAccessToken,
+  readStoredRefreshToken,
+  writeStoredAccessToken,
   writeStoredTokens,
   type SessionTokens,
 } from './auth-storage';
@@ -43,10 +45,18 @@ export function restoreSession(): void {
   useAuthStore.getState().setToken(accessToken);
 }
 
+/** 재발급으로 받은 accessToken만 반영한다. refreshToken은 그대로 둔다. (기준선 A3) */
+function applyRefreshedToken(accessToken: string): void {
+  writeStoredAccessToken(accessToken);
+  useAuthStore.getState().setToken(accessToken);
+}
+
 // shared/api가 entities/auth를 직접 참조하지 않도록 토큰 조회와 세션 삭제 함수를 전달한다.
 // 이 모듈을 불러올 때 연결해 별도 초기화 호출의 누락을 방지한다.
 // 연결은 모듈 평가 시 이루어지며, 이 시점에 토큰을 읽거나 세션을 삭제하지는 않는다.
 configureAuth({
   readAuthToken: getSessionToken,
+  readRefreshToken: readStoredRefreshToken,
   onUnauthorized: clearSession,
+  onTokenRefreshed: applyRefreshedToken,
 });
