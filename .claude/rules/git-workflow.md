@@ -67,6 +67,32 @@ PR 이력이 실제 변경과 무관한 커밋으로 지저분해진다. 리뷰�
 git diff <정리 전 백업> HEAD    # 차이가 의도한 것뿐인지
 ```
 
+**정리 전에 백업 브랜치를 만든다.** 이력을 다시 쓰는 작업은 되돌릴 지점이 있어야 한다.
+
+```bash
+git branch backup/<설명>
+```
+
+#### 편집기 없이 rebase 하기
+
+AI 도구는 대화형 편집기를 열 수 없다. 대신 **편집기를 스크립트로 대체**하면
+`rebase -i`를 그대로 쓴다. `GIT_SEQUENCE_EDITOR`는 todo 목록을, `GIT_EDITOR`는 커밋
+메시지를 다룬다.
+
+```bash
+# 메시지 일괄 수정
+GIT_SEQUENCE_EDITOR="sed -i 's/^pick/reword/'" GIT_EDITOR="sed -i 's/(#196)/(#197)/'" git rebase -i <base>
+
+# fixup 접기 — sed 조작도 필요 없다
+git commit --fixup=<sha>
+GIT_SEQUENCE_EDITOR=true GIT_EDITOR=true git rebase --autosquash -i <base>
+```
+
+**`filter-branch`는 쓰지 않는다.** git 자체가 권장을 거두는 명령이고, 위 방식으로
+같은 일을 더 안전하게 할 수 있다.
+
+> rebase 중 충돌이 나면 멈춘다. 해결 후 `git rebase --continue`, 되돌리려면 `--abort`.
+
 ## 3. CI — 무엇이 자동으로 돌고 무엇이 안 도는가
 
 **`.github/workflows/storybook.yml` 하나뿐이다.**
