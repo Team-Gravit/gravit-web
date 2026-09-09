@@ -1,6 +1,11 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { getAuthToken, notifyUnauthorized } from '@/shared/api';
+import {
+  getAuthToken,
+  getRefreshToken,
+  notifyTokenRefreshed,
+  notifyUnauthorized,
+} from '@/shared/api';
 
 import { readStoredAccessToken, readStoredRefreshToken } from './auth-storage';
 import { useAuthStore } from './auth-store';
@@ -87,5 +92,23 @@ describe('HTTP 계층 주입', () => {
 
     expect(readStoredAccessToken()).toBeNull();
     expect(useAuthStore.getState().accessToken).toBeNull();
+  });
+});
+
+describe('재발급 주입', () => {
+  it('getRefreshToken 이 저장소의 refreshToken 을 반환한다', () => {
+    setSession({ accessToken: 'tok_old', refreshToken: 'ref_1' });
+
+    expect(getRefreshToken()).toBe('ref_1');
+  });
+
+  it('notifyTokenRefreshed 를 호출하면 accessToken 만 교체하고 refreshToken 은 유지한다', () => {
+    setSession({ accessToken: 'tok_old', refreshToken: 'ref_1' });
+
+    notifyTokenRefreshed('tok_new');
+
+    expect(readStoredAccessToken()).toBe('tok_new');
+    expect(readStoredRefreshToken()).toBe('ref_1');
+    expect(useAuthStore.getState().accessToken).toBe('tok_new');
   });
 });
