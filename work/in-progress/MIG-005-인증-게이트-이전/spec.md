@@ -355,7 +355,7 @@ _protected.tsx                          ← 게이트 한 곳
 | `shared/api/config.ts` — `setAuthFailureHandler` | `shared/api/auth-token.ts` **이미 존재**  | 대응물 존재  | 호출자 0곳   | C8        |
 | —                                                | `entities/auth/model/session-contract.ts` | new          | —            | A1·C8     |
 | —                                                | `entities/auth/model/session.ts`          | new          | —            | ADR-1     |
-| `main.tsx`의 `setAuthFailureHandler` 호출        | `app/providers/auth-provider.tsx`         | move+rewrite | apps/web 1곳 | C8        |
+| `main.tsx`의 `setAuthFailureHandler` 호출        | `app/auth/auth-provider.tsx`              | move+rewrite | apps/web 1곳 | C8        |
 
 > `tokenManager` 11곳 중 5곳은 화면(`app/router.tsx` · `pages/index.tsx` · `entry-layout.tsx` ·
 > `SettingBox.tsx` · `pages/__index.tsx`)에서 토큰을 직접 읽거나 지운다. `apps/web`에서는 이
@@ -431,3 +431,4 @@ _protected.tsx                          ← 게이트 한 곳
 | 2026-08-31 | 현행 동작 기준선 26항목 + 발견 4건            | 인증 경로 다수의 전제조건이라 이전 전에 흐름을 문서로 고정                                        | -         |
 | 2026-09-02 | 착수 게이트·라우트 수·온보딩 기준선 갱신      | 현재 규칙과 저장소 실측 결과를 반영                                                               | #186      |
 | 2026-09-09 | 확인 필요 6건 판정 · Refactor Brief · ADR 4건 | 백엔드가 `UserResponse.isOnboarded`를 추가하고 온보딩 전 200 응답을 확정해 보류 사유 3건이 해소됨 | -         |
+| 2026-09-09 | Issue 1(세션 계약·토큰 저장소) 구현 및 검증   | 검사 4종 통과, AC-1~7 대조 완료. Issue 2~5는 미착수                                               | #196      |

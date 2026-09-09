@@ -37,9 +37,11 @@ GitHub Issue: [#196](https://github.com/Team-Gravit/gravit-web/issues/196)
 - `entities/auth/model/auth-storage.ts` — 저장소 읽기·쓰기·삭제 (키는 legacy와 동일)
 - `entities/auth/model/session-contract.ts` — `setSession` · `getSessionToken` · `clearSession`,
   마지막에 `configureAuth` 주입
-- `entities/auth/index.ts` 배럴
-- `app/providers/auth-provider.tsx` — 부팅 시 복원 후 `isRestored` 확정
-- `app/main.tsx` — 프로바이더 연결
+- `entities/auth/index.ts` 배럴 — 계약과 store 훅만 노출한다
+- `shared/api/index.ts` 배럴 — `configureAuth` 등을 공개 API로 노출한다
+- `app/auth/auth-provider.tsx` — 부팅 시 복원 후 `isRestored` 확정
+- `src/main.tsx` — 프로바이더 연결
+- `vitest.setup.ts` + `shared/api/mocks/server.ts` — 통합 AC 검증용 MSW 하네스
 - OpenAPI 재생성 반영 커밋
 
 ### 완료 조건 (Acceptance Criteria)
@@ -61,8 +63,9 @@ Then 요청에 `Authorization` 헤더가 없고 요청은 서버로 나간다
 
 ☐ **AC-4** (범위: 단위)
 Given 저장소와 store가 비어 있다
-When `setSession('tok_new')`를 호출한다
-Then 저장소의 `accessToken`과 `useAuthStore.getState().accessToken`이 모두 `'tok_new'`다
+When `setSession({ accessToken: 'tok_new', refreshToken: 'ref_new' })`를 호출한다
+Then 저장소의 `accessToken`과 `useAuthStore.getState().accessToken`이 모두 `'tok_new'`이고,
+저장소의 `refreshToken`이 `'ref_new'`다
 
 ☐ **AC-5** (범위: 통합)
 Given `accessToken: 'tok_abc'`로 요청을 보낸다
@@ -298,7 +301,7 @@ GitHub Issue: 미등록
 - `entities/auth/model/native-message.ts` — 메시지 4종 타입과 대기 상한 상수
 - `entities/auth/model/native-bridge.ts` — `postMessage` 전송, 네이티브 컨텍스트 판별
 - `entities/auth/model/session-contract.ts` — 전송 지점 연결
-- `app/providers/auth-provider.tsx` — 수신·핸드셰이크 대기
+- `app/auth/auth-provider.tsx` — 수신·핸드셰이크 대기
 
 ### 완료 조건 (Acceptance Criteria)
 
@@ -309,7 +312,7 @@ Then `true`를 반환하고, 포함되지 않으면 `false`를 반환한다
 
 ☐ **AC-2** (범위: 통합)
 Given 네이티브 컨텍스트다
-When `setSession('tok_a')`를 호출한다
+When `setSession({ accessToken: 'tok_a', refreshToken: 'ref_a' })`를 호출한다
 Then `{ type: 'AUTH_SIGNED_IN', payload: { token: 'tok_a' } }`가 1회 전송된다
 
 ☐ **AC-3** (범위: 통합)
@@ -334,7 +337,7 @@ Then 대기 상한을 기다리지 않고 `isRestored`가 `true`가 된다
 
 ☐ **AC-7** (범위: 단위)
 Given 브라우저 컨텍스트다
-When `setSession('tok_a')`를 호출한다
+When `setSession({ accessToken: 'tok_a', refreshToken: 'ref_a' })`를 호출한다
 Then `window.ReactNativeWebView.postMessage`가 호출되지 않는다
 
 ### 의존성
