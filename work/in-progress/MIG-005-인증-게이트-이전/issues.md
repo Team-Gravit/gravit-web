@@ -149,7 +149,7 @@ Issue 1 완료 후 시작
 
 ## Issue 3: [Feat] 소셜 로그인과 로그아웃을 이전한다
 
-GitHub Issue: 미등록
+GitHub Issue: [#201](https://github.com/Team-Gravit/gravit-web/issues/201)
 
 ### 설명
 
@@ -166,7 +166,11 @@ GitHub Issue: 미등록
 - `app/routes/login.oauth2.code.$provider.tsx` — 라우트 어댑터
 - `app/routes/_protected.main.tsx` · `_protected.onboarding.tsx` — **이동 목적지 자리만** 만든다.
   화면 본체는 별도 작업이다
+- `app/routes/restore.tsx` — AC-5 이동 대상. 자리 라우트만 만든다
+- `.env.example`에 `VITE_OAUTH_DEST` 추가
 - `returnTo` 저장(D2)은 옮기지 않는다
+- **D7(그 외 에러를 toast로 표시)은 옮기지 않는다** — `apps/web`에 toast가 없다. 별도 항목으로 분리한다
+- **D8은 의도적으로 바꾼다** — `dest`는 `MODE` 분기 없이 `VITE_OAUTH_DEST`를 그대로 읽는다
 
 ### 완료 조건 (Acceptance Criteria)
 
@@ -198,12 +202,16 @@ Then `/restore?providerId=google_123`으로 이동한다
 ☐ **AC-6** (범위: 통합)
 Given `accessToken: 't1'`으로 로그인한 상태이고 Query 캐시에 항목이 1개 이상 있다
 When 로그아웃을 실행한다
-Then 저장소 토큰이 `null`이고 Query 캐시 항목이 `0`개이며 `/`로 replace 이동한다
+Then 저장소 토큰이 `null`이고 Query 캐시 항목이 `0`개이며 완료 콜백이 1회 호출된다
 
-☐ **AC-7** (범위: 단위)
-Given `import.meta.env.DEV`가 `true`다
-When 인가 URL 요청의 `dest`를 계산한다
-Then `'local'`이다
+> 기준선 E1의 **`/`로 replace 이동은 호출부의 몫**이라 이 이슈에서 검증하지 않는다.
+> 목적지는 웹과 네이티브 셸에서 갈릴 수 있어 feature 안에 박지 않는다 (`fsd-features.md` §6).
+> 로그아웃 UI 를 만드는 작업에서 확인한다.
+
+☐ **AC-7** (범위: 통합)
+Given `VITE_OAUTH_DEST`가 `'dev'`다
+When 인가 URL을 요청한다
+Then 요청의 `dest` 쿼리 파라미터가 `'dev'`다
 
 ### 의존성
 
