@@ -12,7 +12,7 @@ export function LoginPageWide() {
         {/* 화면을 대표하는 것이 워드마크라 제목이 글자로 보이지 않는다. 이름은 남긴다. */}
         <h1 className="sr-only">로그인</h1>
 
-        <GravitLogo variant={'mono'} className="h-15 w-auto text-[#9b00cf]" />
+        <GravitLogo variant="mono" className="h-15 w-auto text-cta" />
         <p className="mt-6 text-heading2 text-text-2">그래빗과 함께 CS 지식을 마스터해요!</p>
 
         <div className="mt-13 flex w-full flex-col gap-4">
