@@ -56,13 +56,9 @@ describe('Button', () => {
       expect(screen.queryByRole('button')).not.toBeInTheDocument();
     });
 
-    // FIX-001: asChild 일 때 Slot 에 넘어가는 자식이 Fragment 라서 className·data-slot·
-    // aria-disabled 가 전부 유실된다. 현재 <a> 는 버튼 스타일 없이 맨몸으로 렌더된다.
-    // 고쳐지면 이 테스트가 "통과"해서 it.fails 가 실패하므로, 그때 .fails 를 떼면 된다.
-    // 상세: work/to-do/FIX-001-button-aschild-slot/spec.md
-    it.fails('asChild 면 버튼 스타일과 aria-disabled 가 자식 엘리먼트에 적용된다', () => {
+    it('asChild 면 버튼 스타일과 aria-disabled 가 자식 엘리먼트에 적용된다', () => {
       render(
-        <Button asChild disabled>
+        <Button asChild disabled className="probe-class">
           <a href="/home">홈</a>
         </Button>,
       );
@@ -71,6 +67,34 @@ describe('Button', () => {
 
       expect(link).toHaveAttribute('aria-disabled', 'true');
       expect(link).toHaveAttribute('data-slot', 'button');
+      expect(link).toHaveAttribute('data-variant', 'default');
+      expect(link).toHaveClass('probe-class');
+    });
+
+    it('asChild 에 startIcon 을 주면 아이콘과 레이블이 한 엘리먼트 안에 함께 들어간다', () => {
+      render(
+        <Button asChild startIcon={<span data-testid="start-icon" />}>
+          <a href="/home">홈</a>
+        </Button>,
+      );
+
+      const links = screen.getAllByRole('link', { name: '홈' });
+
+      expect(links).toHaveLength(1);
+      expect(links[0]).toContainElement(screen.getByTestId('start-icon'));
+    });
+
+    it('asChild 와 isLoading 은 함께 쓸 수 없다', () => {
+      // 로딩 표시는 레이블을 <span> 으로 감싸 폭을 유지하는데, 그러면 Slottable 이 Slot 의
+      // 직속 자식에서 사라진다. 타입 수준에서 막는 것이 이 컴포넌트의 계약이다.
+      const invalid = (
+        // @ts-expect-error asChild 는 isLoading 과 배타다
+        <Button asChild isLoading>
+          <a href="/home">홈</a>
+        </Button>
+      );
+
+      expect(invalid).toBeTruthy();
     });
   });
 });

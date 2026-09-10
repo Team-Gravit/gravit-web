@@ -202,3 +202,28 @@ export function ConfirmModal({ ref, ...props }: ConfirmModalProps) {
 `asChild`를 지원하는 컴포넌트는 Slot에 단일 실제 엘리먼트를 전달해야 한다. 자식을 Fragment로
 감싸면 `className`·`data-*`·ARIA 속성이 대상에 전달되지 않는다. 여러 자식을 조합해야 한다면
 `Slottable`로 실제 대상 엘리먼트를 명시한다.
+
+**`Slottable`을 써도 Fragment로 감싸면 소용없다.** `React.Children.toArray`는 Fragment를
+펼치지 않아 Slot이 받은 자식이 Fragment 하나가 되고, 그 안의 `Slottable`을 찾지 못한다.
+`Slottable`은 **Slot의 직속 자식**이어야 한다.
+
+```tsx
+// ✅ 아이콘과 레이블이 Slot 의 직속 자식으로 나열된다
+<Slot {...rootProps}>
+  {startIcon}
+  <Slottable>{children}</Slottable>
+  {endIcon}
+</Slot>
+
+// ❌ Slot 이 받는 자식이 Fragment 하나라 prop 이 전부 버려진다
+<Slot {...rootProps}>
+  <>
+    {startIcon}
+    <Slottable>{children}</Slottable>
+  </>
+</Slot>
+```
+
+**레이블을 감싸는 상태(로딩 등)와 `asChild`는 배타로 선언한다.** 로딩 표시처럼 레이블을
+래퍼 엘리먼트로 감싸는 분기가 있으면 `Slottable`이 직속 자식에서 사라진다. 런타임에 조용히
+깨지게 두지 말고 props 타입을 배타 유니온으로 만들어 컴파일 시점에 막는다 (`shared/ui/button` 참고).

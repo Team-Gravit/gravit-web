@@ -142,10 +142,11 @@ export const WithIcons: Story = {
  * 안내는 버튼의 `aria-busy` 가 담당하고 스피너는 `label={null}` 로 침묵시켜, 로딩이 두 번 읽히지 않습니다.
  */
 export const Loading: Story = {
+  args: { isLoading: true },
   render: (args) => (
     <div className="flex flex-wrap items-center gap-4">
       {BUTTON_VARIANTS.map((variant) => (
-        <Button {...args} key={variant} variant={variant} isLoading>
+        <Button {...args} key={variant} variant={variant}>
           {variant}
         </Button>
       ))}
@@ -171,10 +172,13 @@ export const Disabled: Story = {
  *
  * `<a>` 에는 `disabled` 가 유효하지 않으므로, 이 경우 `aria-disabled` 와
  * pointer-events 차단으로 같은 효과를 냅니다.
+ *
+ * `asChild` 는 `isLoading` 과 함께 쓸 수 없어 공통 args 를 흘려보내지 않습니다.
+ * 그래서 이 story 만 컨트롤을 받지 않습니다.
  */
 export const AsChildLink: Story = {
-  render: (args) => (
-    <Button {...args} asChild>
+  render: () => (
+    <Button asChild>
       <a href="https://storybook.js.org" target="_blank" rel="noreferrer">
         새 탭에서 열기
       </a>

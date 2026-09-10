@@ -183,7 +183,7 @@ import { cn } from '../../../shared/lib/cn';
 9. **환경변수는 `VITE_` 접두사** (Vite). `import.meta.env.VITE_*`.
 10. **native는 web을 WebView로 로드한다.** 웹 화면 변경이 앱 동작에 직결된다.
 11. **`pnpm format:check`가 현재 실패한다** — 커밋된 6개 파일이 prettier 설정과 어긋나 있다 (`work/to-do/REF-003-*`). 새 코드 때문이 아니니 놀라지 않는다. 단, **네가 만든 파일은 반드시 포맷을 맞춘다.**
-12. **`<Button asChild>`는 현재 깨져 있다** — Slot에 Fragment가 넘어가 className·aria-disabled가 유실된다 (`work/to-do/FIX-001-*`). 고치기 전까지 `asChild`를 새로 쓰지 않는다.
+12. **`<Button asChild>`와 `isLoading`은 함께 쓸 수 없다** (타입 에러). 로딩 표시가 레이블을 `<span>`으로 감싸면 `Slottable`이 Slot의 직속 자식에서 사라지고, `asChild`의 대상인 `<a>`에는 「진행 중」이 성립하지도 않는다. 링크를 CTA 모양으로 쓸 때는 `<Button asChild><Link …/></Button>`이 정상 동작한다 (`FIX-001`에서 수정).
 
 13. **제품 구현과 legacy 폐기를 구분한다.** 플랫폼별 화면 구현·검증은 `docs/implementation-status.md`, legacy 대체·폐기는 `docs/migration-status.md`에서 본다. legacy에는 이전 여부 표시를 남기지 않고, 폐기 조건이 모두 충족된 뒤 한 번에 제거한다.
 
