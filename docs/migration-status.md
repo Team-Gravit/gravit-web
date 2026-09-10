@@ -57,22 +57,22 @@ legacy는 위 조건이 모두 충족될 때 한 번에 제거한다. 중간에 
 
 아래 라우트는 모두 MIG-005 인증 기반이 선행돼야 한다.
 
-| 영역        | Legacy URL                                                                                 | 기준선 | 대체 구현 | 동작 검증 | 작업 |
-| ----------- | ------------------------------------------------------------------------------------------ | :----: | :-------: | :-------: | ---- |
-| 메인        | `/main`, `/mains`                                                                          |   ⬜   |    ⬜     |    ⬜     | —    |
-| 학습        | `/learning`                                                                                |   ⬜   |    ⬜     |    ⬜     | —    |
-| 학습        | `/learning/$chapterId`                                                                     |   ⬜   |    ⬜     |    ⬜     | —    |
-| 학습        | `/learning/$chapterId/$unitId`                                                             |   ⬜   |    ⬜     |    ⬜     | —    |
-| 학습        | `/learning/$chapterId/$unitId/concept-note`                                                |   ⬜   |    ⬜     |    ⬜     | —    |
-| 학습        | `/learning/$chapterId/$unitId/$lessonId`                                                   |   ⬜   |    ⬜     |    ⬜     | —    |
-| 학습        | `/learning/$chapterId/$unitId/bookmarked-problems`                                         |   ⬜   |    ⬜     |    ⬜     | —    |
-| 학습        | `/learning/$chapterId/$unitId/incorrect-problems`                                          |   ⬜   |    ⬜     |    ⬜     | —    |
-| 리그        | `/league`                                                                                  |   ⬜   |    ⬜     |    ⬜     | —    |
-| 마이페이지  | `/my`, `/my/summary`, `/my/learning`, `/my/league`, `/my/social`, `/my/edit`, `/my/follow` |   ⬜   |    ⬜     |    ⬜     | —    |
-| 사용자·공지 | `/user`, `/user/edit`, `/user/addfriend`, `/user/privacy`                                  |   ⬜   |    ⬜     |    ⬜     | —    |
-| 사용자·공지 | `/user/notice`, `/user/notice/$page`, `/user/notice/$page/$noticeId`                       |   ⬜   |    ⬜     |    ⬜     | —    |
-| 설정·문의   | `/settings`, `/settings/inquiry`, `/settings/inquiry/new`                                  |   ⬜   |    ⬜     |    ⬜     | —    |
-| 온보딩      | `/onboarding`, `/success`                                                                  |   ⬜   |    ⬜     |    ⬜     | —    |
+| 영역        | Legacy URL                                                                                 | 기준선 | 대체 구현 | 동작 검증 | 작업    |
+| ----------- | ------------------------------------------------------------------------------------------ | :----: | :-------: | :-------: | ------- |
+| 메인        | `/main`, `/mains`                                                                          |   ⬜   |    ⬜     |    ⬜     | —       |
+| 학습        | `/learning`                                                                                |   ⬜   |    ⬜     |    ⬜     | —       |
+| 학습        | `/learning/$chapterId`                                                                     |   ⬜   |    ⬜     |    ⬜     | —       |
+| 학습        | `/learning/$chapterId/$unitId`                                                             |   ⬜   |    ⬜     |    ⬜     | —       |
+| 학습        | `/learning/$chapterId/$unitId/concept-note`                                                |   ⬜   |    ⬜     |    ⬜     | —       |
+| 학습        | `/learning/$chapterId/$unitId/$lessonId`                                                   |   ⬜   |    ⬜     |    ⬜     | —       |
+| 학습        | `/learning/$chapterId/$unitId/bookmarked-problems`                                         |   ⬜   |    ⬜     |    ⬜     | —       |
+| 학습        | `/learning/$chapterId/$unitId/incorrect-problems`                                          |   ⬜   |    ⬜     |    ⬜     | —       |
+| 리그        | `/league`                                                                                  |   ⬜   |    ⬜     |    ⬜     | —       |
+| 마이페이지  | `/my`, `/my/summary`, `/my/learning`, `/my/league`, `/my/social`, `/my/edit`, `/my/follow` |   ⬜   |    ⬜     |    ⬜     | —       |
+| 사용자·공지 | `/user`, `/user/edit`, `/user/addfriend`, `/user/privacy`                                  |   ⬜   |    ⬜     |    ⬜     | —       |
+| 사용자·공지 | `/user/notice`, `/user/notice/$page`, `/user/notice/$page/$noticeId`                       |   ⬜   |    ⬜     |    ⬜     | —       |
+| 설정·문의   | `/settings`, `/settings/inquiry`, `/settings/inquiry/new`                                  |   ⬜   |    ⬜     |    ⬜     | —       |
+| 온보딩      | `/onboarding`, `/success`                                                                  |   ✅   |    ✅     |    ⬜     | MIG-024 |
 
 한 행에 여러 URL이 묶인 경우 작업을 만들 때 사용자에게 관찰 가능한 단위로 행을 분리한다.
 
@@ -123,8 +123,9 @@ legacy는 위 조건이 모두 충족될 때 한 번에 제거한다. 중간에 
 
 ## 갱신 이력
 
-| 날짜       | 내용                                                                       |
-| ---------- | -------------------------------------------------------------------------- |
-| 2026-09-10 | MIG-018 반영. `/` 로그인 화면과 반응형 판정 기반을 대체 구현으로 표시      |
-| 2026-09-01 | 역할 재정의. 제품 구현·토큰 상태를 분리하고 legacy 폐기 조건 중심으로 개편 |
-| 2026-08-31 | 최초 작성. MIG-004 완료 반영                                               |
+| 날짜       | 내용                                                                                                  |
+| ---------- | ----------------------------------------------------------------------------------------------------- |
+| 2026-09-10 | MIG-024 반영. 온보딩 2화면 대체 구현. **완료 화면 경로가 `/success` → `/onboarding/success` 로 바뀜** |
+| 2026-09-10 | MIG-018 반영. `/` 로그인 화면과 반응형 판정 기반을 대체 구현으로 표시                                 |
+| 2026-09-01 | 역할 재정의. 제품 구현·토큰 상태를 분리하고 legacy 폐기 조건 중심으로 개편                            |
+| 2026-08-31 | 최초 작성. MIG-004 완료 반영                                                                          |
