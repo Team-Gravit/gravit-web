@@ -20,6 +20,12 @@ export default defineConfig({
   ],
   test: {
     environment: 'jsdom',
+    // 요청을 절대 URL로 만듭니다. 비워 두면 상대 URL이 되어 해석에 window.location이 필요하고,
+    // location을 대체하는 테스트에서 요청이 나가지 않습니다.
+    env: {
+      VITE_API_BASE_URL: 'https://api.test.local',
+      VITE_OAUTH_DEST: 'local',
+    },
     // describe/it/expect 를 명시적으로 import 합니다. 어떤 러너의 API인지 파일만 보고 알 수 있습니다.
     globals: false,
     setupFiles: ['./vitest.setup.ts'],
