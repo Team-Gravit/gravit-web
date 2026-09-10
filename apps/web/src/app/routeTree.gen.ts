@@ -16,6 +16,8 @@ import { Route as RestoreRouteImport } from './routes/restore'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ProtectedMainRouteImport } from './routes/_protected.main'
 import { Route as ProtectedOnboardingRouteImport } from './routes/_protected.onboarding'
+import { Route as ProtectedOnboardingIndexRouteImport } from './routes/_protected.onboarding.index'
+import { Route as ProtectedOnboardingSuccessRouteImport } from './routes/_protected.onboarding.success'
 import { Route as LoginOauth2CodeProviderRouteImport } from './routes/login.oauth2.code.$provider'
 
 const IndexRoute = IndexRouteImport.update({
@@ -52,6 +54,18 @@ const ProtectedOnboardingRoute = ProtectedOnboardingRouteImport.update({
   path: '/onboarding',
   getParentRoute: () => ProtectedRoute,
 } as any)
+const ProtectedOnboardingIndexRoute =
+  ProtectedOnboardingIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => ProtectedOnboardingRoute,
+  } as any)
+const ProtectedOnboardingSuccessRoute =
+  ProtectedOnboardingSuccessRouteImport.update({
+    id: '/success',
+    path: '/success',
+    getParentRoute: () => ProtectedOnboardingRoute,
+  } as any)
 const LoginOauth2CodeProviderRoute = LoginOauth2CodeProviderRouteImport.update({
   id: '/login/oauth2/code/$provider',
   path: '/login/oauth2/code/$provider',
@@ -64,7 +78,9 @@ export interface FileRoutesByFullPath {
   '/restore': typeof RestoreRoute
   '/terms': typeof TermsRoute
   '/main': typeof ProtectedMainRoute
-  '/onboarding': typeof ProtectedOnboardingRoute
+  '/onboarding': typeof ProtectedOnboardingRouteWithChildren
+  '/onboarding/success': typeof ProtectedOnboardingSuccessRoute
+  '/onboarding/': typeof ProtectedOnboardingIndexRoute
   '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
 }
 export interface FileRoutesByTo {
@@ -73,7 +89,8 @@ export interface FileRoutesByTo {
   '/restore': typeof RestoreRoute
   '/terms': typeof TermsRoute
   '/main': typeof ProtectedMainRoute
-  '/onboarding': typeof ProtectedOnboardingRoute
+  '/onboarding/success': typeof ProtectedOnboardingSuccessRoute
+  '/onboarding': typeof ProtectedOnboardingIndexRoute
   '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
 }
 export interface FileRoutesById {
@@ -84,7 +101,9 @@ export interface FileRoutesById {
   '/restore': typeof RestoreRoute
   '/terms': typeof TermsRoute
   '/_protected/main': typeof ProtectedMainRoute
-  '/_protected/onboarding': typeof ProtectedOnboardingRoute
+  '/_protected/onboarding': typeof ProtectedOnboardingRouteWithChildren
+  '/_protected/onboarding/success': typeof ProtectedOnboardingSuccessRoute
+  '/_protected/onboarding/': typeof ProtectedOnboardingIndexRoute
   '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
 }
 export interface FileRouteTypes {
@@ -96,6 +115,8 @@ export interface FileRouteTypes {
     | '/terms'
     | '/main'
     | '/onboarding'
+    | '/onboarding/success'
+    | '/onboarding/'
     | '/login/oauth2/code/$provider'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -104,6 +125,7 @@ export interface FileRouteTypes {
     | '/restore'
     | '/terms'
     | '/main'
+    | '/onboarding/success'
     | '/onboarding'
     | '/login/oauth2/code/$provider'
   id:
@@ -115,6 +137,8 @@ export interface FileRouteTypes {
     | '/terms'
     | '/_protected/main'
     | '/_protected/onboarding'
+    | '/_protected/onboarding/success'
+    | '/_protected/onboarding/'
     | '/login/oauth2/code/$provider'
   fileRoutesById: FileRoutesById
 }
@@ -178,6 +202,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProtectedOnboardingRouteImport
       parentRoute: typeof ProtectedRoute
     }
+    '/_protected/onboarding/': {
+      id: '/_protected/onboarding/'
+      path: '/'
+      fullPath: '/onboarding/'
+      preLoaderRoute: typeof ProtectedOnboardingIndexRouteImport
+      parentRoute: typeof ProtectedOnboardingRoute
+    }
+    '/_protected/onboarding/success': {
+      id: '/_protected/onboarding/success'
+      path: '/success'
+      fullPath: '/onboarding/success'
+      preLoaderRoute: typeof ProtectedOnboardingSuccessRouteImport
+      parentRoute: typeof ProtectedOnboardingRoute
+    }
     '/login/oauth2/code/$provider': {
       id: '/login/oauth2/code/$provider'
       path: '/login/oauth2/code/$provider'
@@ -188,14 +226,27 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface ProtectedOnboardingRouteChildren {
+  ProtectedOnboardingSuccessRoute: typeof ProtectedOnboardingSuccessRoute
+  ProtectedOnboardingIndexRoute: typeof ProtectedOnboardingIndexRoute
+}
+
+const ProtectedOnboardingRouteChildren: ProtectedOnboardingRouteChildren = {
+  ProtectedOnboardingSuccessRoute: ProtectedOnboardingSuccessRoute,
+  ProtectedOnboardingIndexRoute: ProtectedOnboardingIndexRoute,
+}
+
+const ProtectedOnboardingRouteWithChildren =
+  ProtectedOnboardingRoute._addFileChildren(ProtectedOnboardingRouteChildren)
+
 interface ProtectedRouteChildren {
   ProtectedMainRoute: typeof ProtectedMainRoute
-  ProtectedOnboardingRoute: typeof ProtectedOnboardingRoute
+  ProtectedOnboardingRoute: typeof ProtectedOnboardingRouteWithChildren
 }
 
 const ProtectedRouteChildren: ProtectedRouteChildren = {
   ProtectedMainRoute: ProtectedMainRoute,
-  ProtectedOnboardingRoute: ProtectedOnboardingRoute,
+  ProtectedOnboardingRoute: ProtectedOnboardingRouteWithChildren,
 }
 
 const ProtectedRouteWithChildren = ProtectedRoute._addFileChildren(

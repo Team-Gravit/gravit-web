@@ -16,3 +16,11 @@ declare module '@tanstack/react-router' {
     router: typeof router;
   }
 }
+
+declare module '@tanstack/history' {
+  /** 라우터 이동에 함께 전달하는 화면 흐름 정보. */
+  interface HistoryState {
+    /** 온보딩 제출 직후 완료 화면으로 이동했는지 여부. */
+    fromOnboarding?: boolean;
+  }
+}
