@@ -1,0 +1,20 @@
+{
+  "extends": "@repo/typescript-config/vite.json",
+  // `vite` 타입을 직접 import 하는 도구 설정 파일. `check-types` 에서만 검사하고
+  // 프로덕션 빌드(`tsc && vite build`)의 대상으로 두지 않는다.
+  //
+  // 왜 나눴나 — pnpm 의 hoisted 링커에서는 `vite` 타입 선언이 두 경로로 존재할 수 있다.
+  // 그러면 TS 가 같은 `Plugin<any>` 을 서로 다른 타입으로 보고 TS2769 를 낸다.
+  // 앱 소스와 무관한 이 충돌이 배포를 막지 않게 분리한다.
+  // 근본 해결은 Vite 업그레이드다 (work/to-do/INFRA-008).
+  //
+  // 선례: `vite.config.ts` 는 원래부터 어느 include 에도 없었다.
+  "include": ["vitest.config.ts", ".storybook"],
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "strictNullChecks": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}

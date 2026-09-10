@@ -1,6 +1,11 @@
 {
   "extends": "@repo/typescript-config/vite.json",
-  "include": ["src", ".storybook", "vitest.config.ts", "vitest.setup.ts"],
+  // 빌드가 `tsc && vite build` 라 여기 들어온 파일은 프로덕션 빌드의 성공 여부를 좌우한다.
+  // `vite` 타입을 직접 import 하는 도구 설정은 tsconfig.tooling.json 이 맡는다 (INFRA-021).
+  //
+  // vitest.setup.ts 는 여기 남는다 — vite 를 import 하지 않고,
+  // jest-dom matcher 타입 증강을 src 의 테스트 파일들이 필요로 한다.
+  "include": ["src", "vitest.setup.ts"],
   "compilerOptions": {
     "jsx": "react-jsx",
     "strictNullChecks": true,

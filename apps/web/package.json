@@ -11,7 +11,7 @@
     "lint:eslint": "eslint .",
     "lint:fsd": "steiger ./src",
     "generate:api": "orval --config ./orval.config.ts",
-    "check-types": "tsc --noEmit",
+    "check-types": "tsc --noEmit && tsc -p tsconfig.tooling.json --noEmit",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test": "vitest run",
