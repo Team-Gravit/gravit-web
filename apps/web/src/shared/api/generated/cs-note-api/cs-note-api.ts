@@ -41,8 +41,9 @@ const withQueryKey = <T extends object, K>(query: T, queryKey: K): T & { queryKe
 };
 
 /**
- * 챕터와 유닛 정보로 Markdown 형식의 개념 노트를 조회합니다. <br>응답 본문은 Markdown 텍스트 데이터입니다. <br><br>unitId 를 입력하면 unit에 해당하는 개념노트를 응답합니다.
- * @summary 개념 노트 조회
+ * GET /api/v1/cs-notes/units/{unitId} 로 대체되었습니다. <br>동작은 대체 경로와 동일하며, 이 경로는 추후 제거됩니다.
+ * @deprecated
+ * @summary 개념 노트 조회 (deprecated)
  */
 export const getNote = (
   unitId: number,
@@ -139,7 +140,8 @@ export function useGetNote<
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 /**
- * @summary 개념 노트 조회
+ * @deprecated
+ * @summary 개념 노트 조회 (deprecated)
  */
 
 export function useGetNote<
@@ -154,6 +156,128 @@ export function useGetNote<
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
   const queryOptions = getGetNoteQueryOptions(unitId, options);
+
+  const query = useQuery(queryOptions, queryClient) as UseQueryResult<TData, TError> & {
+    queryKey: DataTag<QueryKey, TData, TError>;
+  };
+
+  return withQueryKey(query, queryOptions.queryKey);
+}
+
+/**
+ * 유닛에 지정된 개념 노트를 Markdown 형식으로 조회합니다. <br>응답 본문은 Markdown 텍스트 데이터입니다.
+ * @summary 개념 노트 조회
+ */
+export const getNoteByUnitId = (
+  unitId: number,
+  options?: SecondParameter<typeof customInstance>,
+  signal?: AbortSignal,
+) => {
+  return customInstance<Blob>(
+    { url: `/api/v1/cs-notes/units/${unitId}`, method: 'GET', responseType: 'blob', signal },
+    options,
+  );
+};
+
+export const getGetNoteByUnitIdQueryKey = (unitId: number) => {
+  return [`/api/v1/cs-notes/units/${unitId}`] as const;
+};
+
+export const getGetNoteByUnitIdQueryOptions = <
+  TData = Awaited<ReturnType<typeof getNoteByUnitId>>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  unitId: number,
+  options?: {
+    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getNoteByUnitId>>, TError, TData>>;
+    request?: SecondParameter<typeof customInstance>;
+  },
+) => {
+  const { query: queryOptions, request: requestOptions } = options ?? {};
+
+  const queryKey = queryOptions?.queryKey ?? getGetNoteByUnitIdQueryKey(unitId);
+
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof getNoteByUnitId>>> = ({ signal }) =>
+    getNoteByUnitId(unitId, requestOptions, signal);
+
+  return {
+    queryKey,
+    queryFn,
+    enabled: unitId !== null && unitId !== undefined,
+    ...queryOptions,
+  } as UseQueryOptions<Awaited<ReturnType<typeof getNoteByUnitId>>, TError, TData> & {
+    queryKey: DataTag<QueryKey, TData, TError>;
+  };
+};
+
+export type GetNoteByUnitIdQueryResult = NonNullable<Awaited<ReturnType<typeof getNoteByUnitId>>>;
+export type GetNoteByUnitIdQueryError = ErrorType<ErrorResponse>;
+
+export function useGetNoteByUnitId<
+  TData = Awaited<ReturnType<typeof getNoteByUnitId>>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  unitId: number,
+  options: {
+    query: Partial<UseQueryOptions<Awaited<ReturnType<typeof getNoteByUnitId>>, TError, TData>> &
+      Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getNoteByUnitId>>,
+          TError,
+          Awaited<ReturnType<typeof getNoteByUnitId>>
+        >,
+        'initialData'
+      >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+export function useGetNoteByUnitId<
+  TData = Awaited<ReturnType<typeof getNoteByUnitId>>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  unitId: number,
+  options?: {
+    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getNoteByUnitId>>, TError, TData>> &
+      Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getNoteByUnitId>>,
+          TError,
+          Awaited<ReturnType<typeof getNoteByUnitId>>
+        >,
+        'initialData'
+      >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+export function useGetNoteByUnitId<
+  TData = Awaited<ReturnType<typeof getNoteByUnitId>>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  unitId: number,
+  options?: {
+    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getNoteByUnitId>>, TError, TData>>;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+/**
+ * @summary 개념 노트 조회
+ */
+
+export function useGetNoteByUnitId<
+  TData = Awaited<ReturnType<typeof getNoteByUnitId>>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  unitId: number,
+  options?: {
+    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getNoteByUnitId>>, TError, TData>>;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+  const queryOptions = getGetNoteByUnitIdQueryOptions(unitId, options);
 
   const query = useQuery(queryOptions, queryClient) as UseQueryResult<TData, TError> & {
     queryKey: DataTag<QueryKey, TData, TError>;

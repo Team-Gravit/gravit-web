@@ -19,6 +19,7 @@ export const getOnboardUserResponseMock = (
   profileImgNumber: faker.number.int(),
   nickname: faker.string.alpha({ length: { min: 10, max: 20 } }),
   providerId: faker.string.alpha({ length: { min: 10, max: 20 } }),
+  isOnboarded: faker.datatype.boolean(),
   ...overrideResponse,
 });
 
@@ -29,6 +30,7 @@ export const getGetUserResponseMock = (
   profileImgNumber: faker.number.int(),
   nickname: faker.string.alpha({ length: { min: 10, max: 20 } }),
   providerId: faker.string.alpha({ length: { min: 10, max: 20 } }),
+  isOnboarded: faker.datatype.boolean(),
   ...overrideResponse,
 });
 
@@ -39,6 +41,7 @@ export const getUpdateProfileResponseMock = (
   profileImgNumber: faker.number.int(),
   nickname: faker.string.alpha({ length: { min: 10, max: 20 } }),
   providerId: faker.string.alpha({ length: { min: 10, max: 20 } }),
+  isOnboarded: faker.datatype.boolean(),
   ...overrideResponse,
 });
 

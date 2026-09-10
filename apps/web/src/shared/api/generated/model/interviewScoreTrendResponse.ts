@@ -6,10 +6,9 @@
  * OpenAPI spec version: 1.0.0
  */
 
-export interface UserResponse {
-  userId: number;
-  profileImgNumber: number;
-  nickname: string;
-  providerId: string;
-  isOnboarded: boolean;
+export interface InterviewScoreTrendResponse {
+  /** 시도 차수 */
+  sequence: number;
+  /** 세션 총점 */
+  score: number;
 }
