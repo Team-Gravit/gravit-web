@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { isLoginProvider } from './get-login-url';
+import { isLoginProvider } from './login-providers';
 
 describe('isLoginProvider', () => {
   it.each(['google', 'kakao', 'naver'])('%s 는 지원하는 provider 다', (value) => {

@@ -1,6 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 
-import { getLoginUrl, type LoginProvider } from '../api/get-login-url';
+import { getLoginUrl } from '../api/get-login-url';
+import type { LoginProvider } from './login-providers';
 
 /** 선택한 소셜 로그인 제공자의 인가 URL을 조회하고, 성공하면 해당 주소로 이동한다. */
 export function useOauthLogin() {
