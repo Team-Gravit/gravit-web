@@ -2,6 +2,7 @@ import type { ComponentProps } from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 
 import { cn } from '@/shared/lib/cn';
+import { Spinner } from '@/shared/ui/spinner';
 
 import { LOGIN_PROVIDER_LABELS, type LoginProvider } from '../model/login-providers';
 import { useOauthLogin } from '../model/use-oauth-login';
@@ -16,6 +17,8 @@ const socialLoginButtonVariants = cva(
 
     // 상호작용
     'cursor-pointer select-none transition-colors',
+    // 색은 바꾸지 않는다. 시안에 로딩·비활성 상태 프레임이 없어 새로 만들지 않는다.
+    'disabled:cursor-default',
 
     // 포커스
     'outline-none focus-visible:ring-3 focus-visible:ring-purple-200',
@@ -70,28 +73,57 @@ export function SocialLoginButton({
   provider,
   size = 'narrow',
   className,
+  disabled,
   ...props
 }: SocialLoginButtonProps) {
-  const { mutate: startOauthLogin } = useOauthLogin();
+  const { mutate: startOauthLogin, isPending } = useOauthLogin();
 
   const handleClick = () => {
     startOauthLogin(provider);
   };
+
+  // 성공하면 window.location.href 로 문서가 전환되므로 pending 이 풀리지 않는다.
+  // 즉 이동이 시작된 뒤에도 버튼이 잠긴 채로 남는 것이 의도된 동작이다.
+  const content = (
+    <>
+      <ProviderLogo
+        provider={provider}
+        className={cn(PROVIDER_LOGO_CLASS, size === 'narrow' && 'absolute left-3.5')}
+      />
+      <span>{LOGIN_PROVIDER_LABELS[provider]}</span>
+    </>
+  );
 
   return (
     <button
       type="button"
       data-slot="social-login-button"
       data-provider={provider}
+      data-loading={isPending || undefined}
+      aria-busy={isPending || undefined}
+      disabled={disabled || isPending}
       onClick={handleClick}
       className={cn(socialLoginButtonVariants({ provider, size }), className)}
       {...props}
     >
-      <ProviderLogo
-        provider={provider}
-        className={cn(PROVIDER_LOGO_CLASS, size === 'narrow' && 'absolute left-3.5')}
-      />
-      <span>{LOGIN_PROVIDER_LABELS[provider]}</span>
+      {isPending ? (
+        <>
+          {/*
+            레이블 자리를 남겨 로딩 전환 시 버튼 크기가 변하지 않게 한다 (Button 과 같은 방식).
+            contents 를 쓰는 이유: 로고는 narrow 에서 버튼 기준으로 absolute 배치되고 wide 에서는
+            버튼의 flex gap 을 받는다. 래퍼가 자체 박스를 가지면 두 배치가 모두 깨진다.
+          */}
+          <span className="invisible contents">{content}</span>
+          {/* 버튼이 aria-busy 로 알리므로 스피너는 침묵시킨다. 색은 currentColor 를 상속한다. */}
+          <Spinner
+            size="sm"
+            label={null}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+          />
+        </>
+      ) : (
+        content
+      )}
     </button>
   );
 }

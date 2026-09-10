@@ -54,6 +54,34 @@ describe('SocialLoginButton', () => {
     expect(screen.getByRole('button', { name: '카카오로 시작하기' })).toBeInTheDocument();
   });
 
+  it('응답이 오기 전에 3회 클릭해도 인가 URL 조회는 1회만 나간다', async () => {
+    let requestCount = 0;
+    // 응답을 붙잡아 두어 pending 구간을 만든다. 풀어 주기 전까지 버튼은 잠겨 있어야 한다.
+    let releaseResponse: () => void = () => {};
+    const responseHeld = new Promise<void>((resolve) => {
+      releaseResponse = resolve;
+    });
+    server.use(
+      http.get(KAKAO_LOGIN_URL_ENDPOINT, async () => {
+        requestCount += 1;
+        await responseHeld;
+        return HttpResponse.json({ loginUrl: AUTHORIZE_URL });
+      }),
+    );
+    render(<SocialLoginButton provider="kakao" />, { wrapper: Wrapper });
+    const button = screen.getByRole('button', { name: '카카오로 시작하기' });
+
+    await userEvent.click(button);
+    await waitFor(() => expect(button).toBeDisabled());
+    await userEvent.click(button);
+    await userEvent.click(button);
+
+    expect(requestCount).toBe(1);
+
+    releaseResponse();
+    await waitFor(() => expect(assignedHref).toBe(AUTHORIZE_URL));
+  });
+
   it('클릭하면 해당 provider 의 인가 URL 조회가 1회 나가고 그 주소로 이동한다', async () => {
     let requestCount = 0;
     server.use(
