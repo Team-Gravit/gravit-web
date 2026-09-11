@@ -37,6 +37,7 @@ import Info from './assets/info.svg?react';
 import LearningFill from './assets/learning-fill.svg?react';
 import Learning from './assets/learning.svg?react';
 import Level from './assets/level.svg?react';
+import LinearTimer from './assets/linear-timer.svg?react';
 import MailOpen from './assets/mail-open.svg?react';
 import Mail from './assets/mail.svg?react';
 import MenuAlt01 from './assets/menu-alt-01.svg?react';
@@ -126,6 +127,7 @@ export const ICONS = {
   'learning-fill': LearningFill,
   learning: Learning,
   level: Level,
+  'linear-timer': LinearTimer,
   'mail-open': MailOpen,
   mail: Mail,
   'menu-alt-01': MenuAlt01,
