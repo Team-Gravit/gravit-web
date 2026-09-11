@@ -20,33 +20,17 @@ interface UseOnboardingFormOptions {
 export function useOnboardingForm({ onSuccess }: UseOnboardingFormOptions) {
   const [colorNumber, setColorNumber] = useState(FIRST_PROFILE_COLOR_NUMBER);
   const [nickname, setNickname] = useState('');
-  const [isChecking, setIsChecking] = useState(false);
-  const [isNicknameValid, setIsNicknameValid] = useState(false);
+  // 입력이 멈춘 뒤 확정된 값. 현재 입력과 다르면 아직 검사 중이다.
+  const [settledNickname, setSettledNickname] = useState('');
 
   const { mutate, isPending } = useOnboardUser({ onSuccess });
 
   useEffect(() => {
-    if (!nickname) {
-      setIsNicknameValid(false);
-      setIsChecking(false);
-      return;
-    }
-
-    setIsChecking(true);
-
-    const timer = setTimeout(() => {
-      setIsNicknameValid(isValidNickname(nickname));
-      setIsChecking(false);
-    }, NICKNAME_CHECK_DELAY_MS);
-
+    const timer = setTimeout(() => setSettledNickname(nickname), NICKNAME_CHECK_DELAY_MS);
     return () => clearTimeout(timer);
   }, [nickname]);
 
-  const nicknameStatus = resolveNicknameStatus({
-    nickname,
-    isChecking,
-    isNicknameValid,
-  });
+  const nicknameStatus = resolveNicknameStatus({ nickname, settledNickname });
 
   const canSubmit = nicknameStatus === 'valid';
 
@@ -77,22 +61,20 @@ export function useOnboardingForm({ onSuccess }: UseOnboardingFormOptions) {
 
 interface ResolveNicknameStatusInput {
   nickname: string;
-  isChecking: boolean;
-  isNicknameValid: boolean;
+  settledNickname: string;
 }
 
 function resolveNicknameStatus({
   nickname,
-  isChecking,
-  isNicknameValid,
+  settledNickname,
 }: ResolveNicknameStatusInput): NicknameFieldStatus {
   if (!nickname) {
     return 'default';
   }
 
-  if (isChecking) {
+  if (nickname !== settledNickname) {
     return 'checking';
   }
 
-  return isNicknameValid ? 'valid' : 'invalid';
+  return isValidNickname(nickname) ? 'valid' : 'invalid';
 }

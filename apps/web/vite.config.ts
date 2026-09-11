@@ -3,7 +3,6 @@ import react from '@vitejs/plugin-react';
 import { tanstackRouter } from '@tanstack/router-plugin/vite';
 import tailwindcss from '@tailwindcss/vite';
 import svgr from 'vite-plugin-svgr';
-
 import fs from 'fs';
 import path from 'path';
 import os from 'os';
@@ -50,7 +49,11 @@ export default defineConfig(({ mode }) => {
         routesDirectory: './src/app/routes',
         generatedRouteTree: './src/app/routeTree.gen.ts',
       }),
-      react(),
+      react({
+        babel: {
+          plugins: ['babel-plugin-react-compiler'],
+        },
+      }),
     ],
   };
 });
