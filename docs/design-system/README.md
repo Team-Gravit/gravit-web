@@ -30,16 +30,17 @@ pnpm --filter @repo/web storybook
 
 ## 2. 근거 자료 (Figma)
 
-| 페이지                         | 링크                                                                                             | 기준 크기 | 프레임 |
-| ------------------------------ | ------------------------------------------------------------------------------------------------ | --------- | -----: |
-| **WEB** (`11802:29211`)        | [Copy link](https://www.figma.com/design/hu4c6qCEMB62qHXk2v8Gsl/-New-Gravit?node-id=11802-29211) | 1920×1080 |     55 |
-| **AOS** (`11802:29212`)        | [Copy link](https://www.figma.com/design/hu4c6qCEMB62qHXk2v8Gsl/-New-Gravit?node-id=11802-29212) | 360×740   |     59 |
-| **Alias Token** (`8240:13750`) | [Copy link](https://www.figma.com/design/hu4c6qCEMB62qHXk2v8Gsl/-New-Gravit?node-id=8240-13750)  | —         |      — |
+| 페이지                         | 링크                                                                                             | 기준 크기                   |      프레임 |
+| ------------------------------ | ------------------------------------------------------------------------------------------------ | --------------------------- | ----------: |
+| **SCREEN** (`13750:65506`)     | [Copy link](https://www.figma.com/design/hu4c6qCEMB62qHXk2v8Gsl/-New-Gravit?node-id=13750-65506) | WEB 1920×1080 · MOB 360×740 | 99 (34화면) |
+| **Alias Token** (`8240:13750`) | [Copy link](https://www.figma.com/design/hu4c6qCEMB62qHXk2v8Gsl/-New-Gravit?node-id=8240-13750)  | —                           |           — |
+
+구버전 `WEB`(`11802:29211`) · `AOS`(`11802:29212`) 섹션은 같은 페이지에 남아 있지만 참조하지 않는다.
 
 **색 토큰의 기준은 Alias Token 페이지다.** 화면 노드에서 `get_variable_defs`로 나오는 값은
 옛 값·로컬 오버라이드·이름 오타(`icon-defult`)가 섞여 있어 기준이 될 수 없다.
 
-파일 키 `hu4c6qCEMB62qHXk2v8Gsl` · 페이지 `2차 에자일`. 화면 ID 체계는
+파일 키 `hu4c6qCEMB62qHXk2v8Gsl` · 페이지 `Screen Design`(`11246:4859`). 화면 ID 체계는
 [`../fe-implement-spec/README.md`](../fe-implement-spec/README.md) §4.
 
 ## 3. 토큰 확정 상태
