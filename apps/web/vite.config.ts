@@ -32,6 +32,22 @@ export default defineConfig(({ mode }) => {
         '/api': {
           target: env.VITE_API_BASE_URL,
           changeOrigin: true,
+          // 기기(WebView)에서는 브라우저 인스펙터를 붙이기 어렵다. 프록시를 지나는 요청의 응답 상태를
+          // 이 터미널에 남겨 실패한 호출을 찾는다.
+          configure: (proxy) => {
+            // 브라우저는 same-origin이라도 POST에 `Origin`을 붙인다. LAN IP origin이 그대로 백엔드에
+            // 가면 CORS 허용 목록에 없어 403(Invalid CORS request)이 난다. 프록시가 보내는 요청은
+            // 서버 간 요청이므로 Origin을 떼어 CORS 판정 대상에서 제외한다.
+            proxy.on('proxyReq', (proxyReq) => {
+              proxyReq.removeHeader('origin');
+            });
+            proxy.on('proxyRes', (proxyRes, req) => {
+              console.log(`[api-proxy] ${req.method} ${req.url} → ${proxyRes.statusCode}`);
+            });
+            proxy.on('error', (error, req) => {
+              console.error(`[api-proxy] ${req.method} ${req.url} → ${error.message}`);
+            });
+          },
         },
       },
       allowedHosts: mode === 'development' ? true : [],
