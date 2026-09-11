@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { Slot } from '@radix-ui/react-slot';
+import { Slot, Slottable } from '@radix-ui/react-slot';
 
 import { cn } from '@/shared/lib/cn';
 import { Spinner } from '@/shared/ui/spinner';
@@ -112,12 +112,27 @@ type ButtonBaseProps = Omit<React.ComponentProps<'button'>, 'children'> &
     endIcon?: React.ReactNode;
   };
 
-export type ButtonProps = ButtonBaseProps & {
-  /** 버튼 대신 자식 엘리먼트로 렌더합니다. 링크를 버튼 모양으로 쓸 때 사용합니다. */
-  asChild?: boolean;
-  /** 진행 중인 작업이 있는 상태. 중복 실행을 막고 진행 상태를 알립니다. */
-  isLoading?: boolean;
-};
+/**
+ * `asChild` 와 `isLoading` 은 배타다.
+ *
+ * 로딩 표시는 레이블을 `invisible` 한 `<span>` 으로 감싸 폭을 유지하는데, 그러면 Slot 이
+ * 병합 대상으로 삼을 `Slottable` 이 직속 자식에서 사라진다. 게다가 `asChild` 의 대상은 보통
+ * `<a>` 라 「진행 중」이라는 상태 자체가 성립하지 않는다.
+ */
+type ButtonRenderProps =
+  | {
+      /** 버튼 대신 자식 엘리먼트로 렌더합니다. 링크를 버튼 모양으로 쓸 때 사용합니다. */
+      asChild: true;
+      /** `asChild` 와 함께 쓸 수 없습니다. 로딩 표시는 실제 `button` 에서만 지원합니다. */
+      isLoading?: never;
+    }
+  | {
+      asChild?: false;
+      /** 진행 중인 작업이 있는 상태. 중복 실행을 막고 진행 상태를 알립니다. */
+      isLoading?: boolean;
+    };
+
+export type ButtonProps = ButtonBaseProps & ButtonRenderProps;
 
 function Button({
   className,
@@ -131,12 +146,36 @@ function Button({
   disabled,
   ...props
 }: ButtonProps) {
-  const Comp = asChild ? Slot : 'button';
-  const blocked = disabled || isLoading;
+  const rootClassName = cn(
+    buttonVariants({ variant }),
+    resolveSize(size),
+    startIcon && 'pl-4',
+    endIcon && 'pr-4',
+    asChild && disabled && 'pointer-events-none',
+    className,
+  );
 
-  // asChild 로 렌더된 <a> 등에는 disabled 가 유효하지 않다.
-  // 그 경우 aria-disabled 와 pointer-events 차단으로 같은 효과를 낸다.
-  const blockingProps = asChild ? { 'aria-disabled': blocked || undefined } : { disabled: blocked };
+  if (asChild) {
+    return (
+      <Slot
+        data-slot="button"
+        data-variant={variant ?? 'default'}
+        // asChild 로 렌더된 <a> 등에는 disabled 가 유효하지 않다.
+        // 그 경우 aria-disabled 와 pointer-events 차단으로 같은 효과를 낸다.
+        aria-disabled={disabled || undefined}
+        className={rootClassName}
+        {...props}
+      >
+        {startIcon}
+        {/*
+          Slot 은 직속 자식에서만 Slottable 을 찾는다. 아이콘과 레이블을 Fragment 로 묶어
+          넘기면 병합 대상이 Fragment 가 되어 className·data-* 가 통째로 버려진다 (FIX-001).
+        */}
+        <Slottable>{children}</Slottable>
+        {endIcon}
+      </Slot>
+    );
+  }
 
   const content = (
     <>
@@ -147,20 +186,13 @@ function Button({
   );
 
   return (
-    <Comp
+    <button
       data-slot="button"
       data-variant={variant ?? 'default'}
       data-loading={isLoading || undefined}
       aria-busy={isLoading || undefined}
-      {...blockingProps}
-      className={cn(
-        buttonVariants({ variant }),
-        resolveSize(size),
-        startIcon && 'pl-4',
-        endIcon && 'pr-4',
-        asChild && blocked && 'pointer-events-none',
-        className,
-      )}
+      disabled={disabled || isLoading}
+      className={rootClassName}
       {...props}
     >
       {isLoading ? (
@@ -177,7 +209,7 @@ function Button({
       ) : (
         content
       )}
-    </Comp>
+    </button>
   );
 }
 
