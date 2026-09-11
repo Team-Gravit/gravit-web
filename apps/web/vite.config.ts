@@ -25,6 +25,15 @@ export default defineConfig(({ mode }) => {
       // 같은 네트워크의 다른 기기 접속 허용
       host: true,
       port: 5173,
+      // WebView가 LAN IP(`http://<host>:5173`) origin으로 접속하면 백엔드 CORS에 걸린다.
+      // `VITE_API_PROXY=true`면 요청이 same-origin 상대 경로로 나오고 여기서 백엔드로 넘긴다.
+      // 생성 API 경로가 `/api/v1/...`로 시작하므로 경로 재작성은 하지 않는다.
+      proxy: {
+        '/api': {
+          target: env.VITE_API_BASE_URL,
+          changeOrigin: true,
+        },
+      },
       allowedHosts: mode === 'development' ? true : [],
       // 인증서 설정 조건부 적용
       ...(useHttps

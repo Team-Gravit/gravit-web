@@ -5,6 +5,8 @@ import Axios, {
   type InternalAxiosRequestConfig,
 } from 'axios';
 
+import { getApiBaseUrl } from '@/shared/config';
+
 import { getAuthToken, notifyUnauthorized } from './auth-token';
 import { refreshAccessToken } from './refresh-token';
 
@@ -20,7 +22,7 @@ declare module 'axios' {
 export const API_REQUEST_TIMEOUT_MS = 15_000;
 
 export const AXIOS_INSTANCE = Axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL,
+  baseURL: getApiBaseUrl(),
   timeout: API_REQUEST_TIMEOUT_MS,
 });
 

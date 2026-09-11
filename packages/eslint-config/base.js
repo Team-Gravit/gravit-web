@@ -15,7 +15,8 @@ export const baseConfig = [
       turbo: turboPlugin,
     },
     rules: {
-      'turbo/no-undeclared-env-vars': 'warn',
+      // `import.meta.env.DEV` 같은 Vite 내장값은 process env가 아니라 turbo.json에 선언할 대상이 아니다.
+      'turbo/no-undeclared-env-vars': ['warn', { allowList: ['^(DEV|PROD|MODE|SSR|BASE_URL)$'] }],
       '@typescript-eslint/no-non-null-assertion': 'off',
     },
   },

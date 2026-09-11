@@ -10,3 +10,18 @@
 export function getOauthDest(): string {
   return import.meta.env.VITE_OAUTH_DEST;
 }
+
+/**
+ * API 요청의 baseURL을 읽는다.
+ *
+ * 개발 서버에서 `VITE_API_PROXY=true`면 빈 문자열을 돌려준다. 생성 API 경로가 이미 `/api/v1/...`로
+ * 시작하므로 요청이 same-origin 상대 경로로 나가고, `vite.config.ts`의 `/api` 프록시가 백엔드로
+ * 넘긴다. 프록시는 dev 서버에만 있으므로 빌드(`vite build` · `vite preview`)에서는 스위치를 무시한다.
+ */
+export function getApiBaseUrl(): string {
+  if (import.meta.env.DEV && import.meta.env.VITE_API_PROXY === 'true') {
+    return '';
+  }
+
+  return import.meta.env.VITE_API_BASE_URL;
+}
