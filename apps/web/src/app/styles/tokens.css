@@ -89,7 +89,7 @@
   /* ================================
         ALIAS - Semantic
     ================================ */
-  --color-semantic-success: #4caf50;
+  --color-semantic-success: #00c30d;
   --color-semantic-warning: #f9a825;
   --color-semantic-error: #eb3d32;
   --color-semantic-info: var(--primitive-gray-400); /* #C6C6C6 */

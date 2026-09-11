@@ -1,6 +1,6 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { Outlet, createFileRoute } from '@tanstack/react-router';
 
-// 온보딩 미완료자의 목적지 자리. 화면 본체는 별도 작업이다.
+// 온보딩 입력과 완료 화면의 공통 레이아웃 라우트.
 export const Route = createFileRoute('/_protected/onboarding')({
-  component: () => null,
+  component: Outlet,
 });
