@@ -50,7 +50,7 @@ export function LeagueArena({ seasonName, myLeagueId }: LeagueArenaProps) {
       </section>
 
       {/* 페이지는 고정, 이 영역만 세로 스크롤. flex-1 min-h-0 으로 남은 높이를 채운다. */}
-      <section className="flex min-h-0 flex-1 flex-col border-t border-bg-4 px-4 pt-6 md:w-[664px] md:flex-none md:border-0 md:px-0 md:pt-0">
+      <section className="flex min-h-0 flex-1 flex-col border-t border-bg-4 px-4 md:w-[664px] md:flex-none md:border-0 md:px-0 md:pt-0">
         <RankingList
           users={users}
           hasNextPage={Boolean(ranking.hasNextPage)}

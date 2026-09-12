@@ -27,7 +27,7 @@ export function LeaguePage() {
     home.containsPopup && Boolean(home.lastSeasonPopupDto) && !modalChecked;
 
   return (
-    <div className="relative flex h-svh w-full flex-col overflow-hidden md:px-10 md:py-16">
+    <div className="relative flex h-full w-full flex-col overflow-hidden md:px-10 md:py-16">
       <div
         aria-hidden
         className="fixed inset-0 -z-10"

@@ -25,3 +25,4 @@ docs/_reference/
 
 # TanStack Router 플러그인 임시 산출물 (build 시 생성)
 apps/web/.tanstack/
+.tanstack/

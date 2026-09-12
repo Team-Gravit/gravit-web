@@ -15,6 +15,12 @@ declare module '@tanstack/react-router' {
   interface Register {
     router: typeof router;
   }
+
+  /** 라우트가 앱 셸에 전달하는 정적 메타. 셸 레이아웃이 `useMatches()`로 읽는다. */
+  interface StaticDataRouteOption {
+    /** 데스크톱 헤더 표면. 기본 `solid`. */
+    headerVariant?: 'overlay' | 'solid';
+  }
 }
 
 declare module '@tanstack/history' {

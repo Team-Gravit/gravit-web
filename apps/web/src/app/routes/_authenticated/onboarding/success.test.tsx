@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { isRedirect } from '@tanstack/react-router';
 
-import { Route } from './_protected.onboarding.success';
+import { Route } from './success';
 
 /**
  * 진입 가드만 직접 호출한다. 통과하면 `null`, 넘기면 목적지를 돌려준다.

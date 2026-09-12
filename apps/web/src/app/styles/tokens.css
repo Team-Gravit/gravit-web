@@ -210,7 +210,7 @@
   --desktop-header-height: 112px;
   --mobile-header-height: 47px;
   /* 모바일 탭 */
-  --bottom-tab-height: 68px;
+  --bottom-tab-height: 60px;
 
   /*스켈레톤 애니메이션*/
   --animate-skeleton-pulse: skeletonPulse 1.5s infinite;
