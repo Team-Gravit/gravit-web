@@ -1,4 +1,5 @@
-export { getUserQueryKey, getUserQueryOptions, useUser } from './api';
+export { getUserQueryKey, getUserQueryOptions, useUser, useMyPageBanner } from './api';
+export type { MyPageBannerResponse } from '@/shared/api/generated/model/myPageBannerResponse';
 export {
   FIRST_PROFILE_COLOR_NUMBER,
   getNextProfileColorNumber,

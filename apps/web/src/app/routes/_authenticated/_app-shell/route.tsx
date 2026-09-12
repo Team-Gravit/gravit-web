@@ -19,7 +19,9 @@ function AppShell() {
       .headerVariant ?? 'solid';
 
   return (
-    <div className="h-svh overflow-hidden">
+    // 앱 캔버스 배경은 셸이 소유한다. 고정 헤더 뒤 영역까지 한 색으로 덮어 흰/회색 seam을 없앤다.
+    // full-bleed 배경을 까는 페이지(리그)는 자기 배경으로 이 위를 덮으므로 영향 없다.
+    <div className="h-svh overflow-hidden bg-bg-2">
       <div className="hidden md:block">
         <Header variant={headerVariant} />
       </div>
