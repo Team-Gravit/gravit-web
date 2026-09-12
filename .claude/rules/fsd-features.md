@@ -1,3 +1,8 @@
+---
+paths:
+  - 'apps/web/src/features/**'
+---
+
 # features 레이어 (2)
 
 **사용자가 하는 일** 하나 = slice 하나. entities가 명사라면 features는 동사다.

@@ -1,3 +1,8 @@
+---
+paths:
+  - 'apps/web/src/{pages,app}/**'
+---
+
 # pages 레이어 (4) + app 레이어 (5)
 
 화면 하나 = slice 하나. 그리고 **라우팅은 pages가 아니라 `app/routes/`에 있다.**

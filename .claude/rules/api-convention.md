@@ -1,3 +1,8 @@
+---
+paths:
+  - 'apps/web/src/**/*.{ts,tsx}'
+---
+
 # API 규칙 (orval + TanStack Query + MSW)
 
 API 클라이언트는 **손으로 쓰지 않는다.** OpenAPI 문서에서 orval이 생성한다.
