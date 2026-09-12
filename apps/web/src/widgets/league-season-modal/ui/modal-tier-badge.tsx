@@ -1,15 +1,16 @@
-import type { FunctionComponent, SVGProps } from 'react';
+import { TierIcon } from '@/entities/league';
 
 import Sparkle from './sparkle.svg?react';
 
 export interface ModalTierBadgeProps {
-  icon: FunctionComponent<SVGProps<SVGSVGElement>>;
+  /** 표시할 티어 이름(`브론즈 3` 등). */
+  tierName: string;
 }
 
-export function ModalTierBadge({ icon: TierIcon }: ModalTierBadgeProps) {
+export function ModalTierBadge({ tierName }: ModalTierBadgeProps) {
   return (
     <div className="relative mx-auto w-40 text-main">
-      <TierIcon className="h-auto w-full" />
+      <TierIcon tierName={tierName} className="h-auto w-full" />
 
       <div aria-hidden className="absolute -top-2 -right-8">
         <div className="relative size-10 inline-flex items-center justify-center rotate-10">

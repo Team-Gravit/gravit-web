@@ -1,8 +1,6 @@
+import { LevelProgressAvatar, type LeagueUser } from '@/entities/league';
 import { cn } from '@/shared/lib/cn';
 import { useIsWideViewport } from '@/shared/lib/use-is-wide-viewport';
-
-import type { LeagueUser } from '../model/types';
-import { LevelProgressAvatar } from './level-progress-avatar';
 
 export interface UserRankRowProps {
   user: LeagueUser;

@@ -1,9 +1,10 @@
 import { useEffect, useRef } from 'react';
 
-import { UserRankRow, type LeagueUser } from '@/entities/league';
+import type { LeagueUser } from '@/entities/league';
 import { useDelayedFlag } from '@/shared/lib/use-delayed-flag';
 
 import { RankingRowSkeleton } from './ranking-row-skeleton';
+import { UserRankRow } from './user-rank-row';
 
 const SKELETON_ROW_COUNT = 8;
 // 이 시간(ms) 이상 로딩이 지속될 때만 스켈레톤을 띄운다. 빠른 응답의 깜빡임 방지.

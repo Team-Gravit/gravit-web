@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef } from 'react';
 
-import type { LeagueTierInfo, Tier } from '@/entities/league';
+import { TierIcon, type LeagueTierInfo, type Tier } from '@/entities/league';
 import { cn } from '@/shared/lib/cn';
 
 export interface TierSelectorProps {
@@ -56,7 +56,6 @@ export function TierSelector({
 
       {tiers.map((tier, idx) => {
         const isSelected = idx === selectedIndex;
-        const TierIcon = tier.icon;
 
         return (
           <button
@@ -72,6 +71,7 @@ export function TierSelector({
             <div className="relative flex h-27.5 w-full items-end justify-center md:h-70 md:items-center">
               <div className="absolute inset-0 flex items-end justify-center md:items-center">
                 <TierIcon
+                  tierId={tier.id}
                   className="h-20 w-16 origin-bottom transition-transform duration-300 md:h-50 md:w-40 md:origin-center"
                   style={{
                     transform: `scale(${isSelected ? 1.35 : 1})`,
