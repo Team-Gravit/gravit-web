@@ -1,0 +1,77 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Foundations/Elevation" />
+
+# Elevation
+
+`app/styles/tokens.css`의 `@theme static`에 정의된 그림자(elevation) 토큰입니다.
+값의 단일 소스는 `tokens.css`이며, 디자인 시스템의 Effect Style을 옮긴 것입니다.
+
+> 그림자는 변수가 아니라 **역할에 레벨을 고정**해서 씁니다. raw 그림자를 하드코딩하지 않고
+> `shadow-elevation-1`처럼 토큰 기반 Tailwind class를 사용합니다.
+
+export const elevationTokens = [
+  { token: '1', role: '카드 · 리스트 · 배너' },
+  { token: '2', role: '드롭다운 · 셀렉트 · 메뉴 · 팝오버 · 툴팁' },
+  { token: '3', role: '모달 · 다이얼로그 · 바텀시트 (+딤)' },
+  { token: '4', role: '긴급 알림 · 최상위 (+딤)' },
+];
+
+export const Row = ({ name, role, shadow }) => (
+  <div
+    style={{
+      display: 'grid',
+      gridTemplateColumns: 'minmax(160px, 1fr) 1fr 96px',
+      alignItems: 'center',
+      gap: '24px',
+      padding: '20px 0',
+      borderBottom: '1px solid var(--color-divider-1)',
+    }}
+  >
+    <code>{name}</code>
+    <span style={{ color: 'var(--color-text-3)' }}>{role}</span>
+    <div
+      aria-label={`${name} elevation preview`}
+      style={{
+        width: '96px',
+        height: '64px',
+        background: 'var(--color-bg-0, #fff)',
+        borderRadius: 'var(--radius-12)',
+        boxShadow: shadow,
+      }}
+    />
+  </div>
+);
+
+## Scale
+
+모든 미리보기는 그림자 차이만 비교할 수 있도록 흰 배경 `96 × 64px` 카드로 고정합니다.
+
+<div>
+  {elevationTokens.map(({ token, role }) => (
+    <Row
+      key={token}
+      name={`shadow-elevation-${token}`}
+      role={role}
+      shadow={`var(--shadow-elevation-${token})`}
+    />
+  ))}
+</div>
+
+## effect/glass-modal
+
+앱 축하·보상 모달 전용 그림자입니다(Glass, 스케일 밖). `shadow-glass-modal`로 사용합니다.
+
+<Row
+  name="shadow-glass-modal"
+  role="앱 축하·보상 모달 (Glass)"
+  shadow="var(--shadow-glass-modal)"
+/>
+
+## Do / Don't
+
+- ✅ 역할에 맞는 레벨을 고정한다 (카드 = 1, 셀렉트 = 2, 모달 = 3)
+- ✅ 모달·시트는 딤(scrim)을 함께 쓴다
+- ❌ 한 화면에 떠 있는 층을 3개 이상 남발하지 않는다 (2개까지)
+- ❌ 위계를 그림자로만 표현하지 않는다 — 색·구분선을 먼저 고려한다
+- ❌ raw 그림자를 하드코딩하지 않는다
