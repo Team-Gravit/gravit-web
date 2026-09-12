@@ -1,3 +1,8 @@
+---
+paths:
+  - 'apps/web/src/**'
+---
+
 # import 규칙
 
 훅(`fsd-layer-check.mjs`)이 강제하는 것과, 훅이 안 보지만 지켜야 하는 것을 함께 다룬다.

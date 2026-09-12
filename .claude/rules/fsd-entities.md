@@ -1,3 +1,8 @@
+---
+paths:
+  - 'apps/web/src/entities/**'
+---
+
 # entities 레이어 (1)
 
 도메인 개념 하나 = slice 하나. "이 서비스에 무엇이 존재하는가"를 담는다.
