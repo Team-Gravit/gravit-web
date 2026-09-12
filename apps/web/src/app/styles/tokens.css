@@ -222,7 +222,7 @@
 
   --text-display1: 40px;
   --text-display1--line-height: 1.25;
-  --text-display1--letter-spacing: 0.6px;
+  --text-display1--letter-spacing: -0.6px;
   --text-display1--font-weight: 700;
 
   --text-display2: 36px;
