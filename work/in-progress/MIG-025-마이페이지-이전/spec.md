@@ -32,6 +32,85 @@ legacy-web의 마이페이지를 `apps/web`으로 FSD 구조에 맞춰 이전한
 - 공통 컴포넌트: 프로필 배너 카드, 마이페이지 섹션 탭
 - `shared/ui/tab` 프리미티브 이전
 
+### Phase 2 상세 범위 (요약 탭)
+
+한 브랜치·PR로 진행(#227). SummaryCard와 StudyHeatmap을 나누지 않는다.
+
+- **shared/ui 프리미티브 이전**: `card`, `scroll`(radix-scroll-area), `calendar-heatmap`(9파일)
+- **연도 Dropdown**: `@radix-ui/react-select` 기반 신규 구현(legacy floating-ui dropdown 미이전 — ADR 참고)
+- **entities/learning 신설**: `lib/transform-learning-history`
+- **어댑터**: `useMyPageSummary`, `useMyPageLearningHistory`
+- **pages/my**: `summary-card`, `study-heatmap`, 요약 탭 조립
+- **라우트**: `my/summary.tsx` 스텁 → 실제
+
+#### Phase 2 현행 동작 기준선 (legacy)
+
+| #   | 동작                                                                                           | 위치 (legacy)                                    |
+| --- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------ |
+| S1  | `useGetMyPageSummary()` 로딩·에러면 아무것도 렌더 안 함, 성공 시 SummaryCard + StudyHeatmap    | `.../my/_profile-layout/summary.tsx`             |
+| S2  | SummaryCard: 학습률 상위%·완료레슨(완료/전체)·총 학습시간h·평균 정답률% 4지표                  | `widgets/my-page/summary/summary-card.tsx`       |
+| S3  | SummaryCard 모바일: 상단에 왕관+상위N%+"전체 학습 순위" 블록, 지표는 3개(학습률 상위 숨김)      | 〃                                               |
+| S4  | StudyHeatmap: 연도 dropdown(옵션 2개↑일 때만) + 캘린더 히트맵 + 색상 범례 + "주로 N시에 학습"  | `widgets/my-page/summary/study-heatmap.tsx`      |
+| S5  | 히트맵: 연초~오늘 일별 solvedLessonCount → 5단계 색, 가로 스크롤, 월/주 라벨                    | `shared/ui/calendar-heatmap/*`                   |
+| S6  | 연도 변경 시 `useGetMyPageLearningHistory({year})` 재조회                                       | study-heatmap.tsx                                |
+
+### Phase 2 시안 대조 결과 (design-diff, 2026-09-12)
+
+> 요약 web `13750-68430` / mobile `13750-54255`. 토큰: `bg/0`→`bg-0`(white), `bg/1`→`bg-1`(#f8f8f8),
+> `bg/2`→`bg-2`, `bg/3`·`divider/1`→`#dcdcdc`, `text/1`→`text-1`, `text/3`→`text-3`, `text/4`·`on-color-3`→`text-4`(#a8a8a8),
+> `brand/Main/1`→`main`(#ba00ff), purple 200/300/500/700, Title1(32) Title3(24) Heading2/lg(20) Body1/sm(16) 3xs(12).
+
+#### SummaryCard (통계 4지표)
+
+| #   | 항목                | 현행(legacy)                    | 시안                              | 판정                          |
+| --- | ------------------- | ------------------------------- | --------------------------------- | ----------------------------- |
+| C1  | 카드 컨테이너       | `Card`(bg-white rounded-lg/xl)  | bg-white `rounded-12` border `rgba(251,241,255,0.6)` shadow elevation | 고침 → rounded-12, 보더/shadow |
+| C2  | 데스크톱 패딩       | `md:p-5`                        | `py-32`(px는 지표 flex)           | 고침 → py-8(32)               |
+| C3  | 지표 값 타이포      | `md:text-title1`                | Title1 32px Bold #242424          | 유지(title1)                  |
+| C4  | 지표 라벨           | `text-text-4`                   | 16px #a8a8a8 (text-4)             | 유지                          |
+| C5  | 완료레슨 서브값     | `md:text-title3 text-text-4`    | 24px #a8a8a8                      | 유지(title3)                  |
+| C6  | 지표 구분선         | `border-l border-gray-300`      | 세로 divider #dcdcdc h-71         | 유지(divider-1)               |
+| C7  | 모바일 상위% 블록   | 왕관+상위N%+전체 학습 순위      | 왕관40 / "상위 4%" 24px **main #ba00ff** / "전체 학습 순위" 12px text-4 | 고침 → main색·크기 정정 |
+| C8  | 모바일 카드 배경    | `bg-purple-50`(왕관칸)          | 왕관 배경 확인 필요                | 확인 필요                     |
+
+#### StudyHeatmap (학습 기록)
+
+| #   | 항목                | 현행(legacy)                        | 시안                                    | 판정                          |
+| --- | ------------------- | ----------------------------------- | --------------------------------------- | ----------------------------- |
+| H1  | 카드                | `Card md:px-8 md:py-7 gap-4`        | bg-white `rounded-12` `px-32 py-28 gap-16` shadow elevation/1 | 고침 → gap-16, shadow |
+| H2  | 헤더 "학습 기록"    | `text-body1-reading text-text-4`   | web 16px / mobile "학습기록" 13px, #a8a8a8 | 유지(text-4)               |
+| H3  | 연도 select         | floating-ui Dropdown                | `w-150 border #dcdcdc rounded-4 px-12 py-8` 값16px #242424 + chevron24 | **재구현(Radix Select)** ADR-1 |
+| H4  | select 드롭 목록    | `rounded-xl` 아이템 `min-h-14`      | `bg-0 rounded-12 shadow elev/2 px-6 py-8` 아이템 `p-16 border-b divider-1` | 고침 → 시안값 |
+| H5  | 구분선              | `bg-divider-1 h-[1px]`             | line #dcdcdc                            | 유지                          |
+| H6  | **히트맵 셀 색**    | `[bg-1, p200, p300, p500, p700]`   | `[gray-300(#dcdcdc), p200, p300, p500, p700]` | **고침 → 첫 단계 bg-1→gray-300** |
+| H7  | 히트맵 셀           | `size 12/16 gap 4/4.5 rounded`     | web size-16 gap-5 rounded-4             | 대체로 일치(gap 미세)         |
+| H8  | 월 라벨             | 상단 월 라벨                        | `px-53` 1~12월 16px #a8a8a8             | 유지                          |
+| H9  | 요일 라벨           | MON/WED/Fri                         | gap-18 16px #a8a8a8                     | 유지                          |
+| H10 | 범례                | 적음/많음 + 5색                     | web "적음/많음" **20px SB #6d6d6d** 셀16 gap8 / mobile 12px | 고침 → 크기 |
+| H11 | peak 안내           | `rounded-sm/lg border-bg-3 caption1`| `border #dcdcdc rounded-8 px-24 py-16` web 16px / mobile `rounded-4 p-12` 12px #6d6d6d | 고침 → rounded/패딩 |
+
+### 확인 필요 (Phase 2 시안)
+
+- **C8 모바일 왕관 배경**: legacy `bg-purple-50`. 시안에서 왕관 아이콘 배경색 미확정(에셋 이미지) → 구현 시 시안 재확인.
+- **H1 카드 shadow(elevation)**: (판정됨 2026-09-12) 디자인 시스템 `13284-5409`에 elevation 5단계가 정식 정의됨.
+  `tokens.css`에 `--shadow-elevation-1~4` + `effect/glass-modal` 도입하고 **역할별 레벨 고정**으로 적용한다.
+  - `elevation-1`(`0 1px 2px -1px #0000000f, 0 1px 3px 0 #0000001a`) = **카드·리스트·배너** → SummaryCard·히트맵 카드
+  - `elevation-2`(`0 2px 4px -2px #0000000f, 0 4px 8px -2px #0000001a`) = **드롭다운·셀렉트** → 연도 Select 목록
+  - elevation-3=모달, 4=긴급, glass-modal=축하모달 (이번 미사용, 토큰만 정의)
+  - Don't: raw 그림자 하드코딩 금지, 한 화면 2층까지. `docs/design-system`·stories에 반영.
+- **H6 히트맵 첫 색**: legacy가 `bg-1`(#f8f8f8)인데 시안은 `gray-300`(#dcdcdc). "학습 없음" 칸이 더 진해짐 →
+  시안 기준으로 `gray-300`. (SoT=Figma)
+
+### API 스키마 차이 (해소됨 2026-09-12)
+
+- legacy는 `useGetMyPageSummary()`가 `{ learningSummary, years }`를 반환했으나, 현재 apps/web
+  OpenAPI에서는 필드 위치가 다르다 — **임의 결정 사안 아님, 위치만 이동**:
+  - `GET /api/v1/my-pages/learning/summaries` → `LearningSummaryResponse`(flat 5필드) = SummaryCard 데이터
+  - `GET /api/v1/my-pages/learning/history?year=` → `LearningHistoryResponse { dailySolvedCounts, peakLearningHour, years }`
+    = StudyHeatmap 데이터. **연도 목록 `years`는 여기 있다.**
+- 따라서 SummaryCard는 `useMyPageSummary`, StudyHeatmap은 `useMyPageLearningHistory`를 각각 쓰고,
+  연도 dropdown은 history 응답의 `years`로 채운다.
+
 ## Out of Scope
 
 - 각 탭(요약/학습/리그/소셜)의 실제 내용 — Phase 2~5
