@@ -10,15 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ProtectedRouteImport } from './routes/_protected'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as RestoreRouteImport } from './routes/restore'
 import { Route as TermsRouteImport } from './routes/terms'
-import { Route as ProtectedLeagueRouteImport } from './routes/_protected.league'
-import { Route as ProtectedMainRouteImport } from './routes/_protected.main'
-import { Route as ProtectedOnboardingRouteImport } from './routes/_protected.onboarding'
-import { Route as ProtectedOnboardingIndexRouteImport } from './routes/_protected.onboarding.index'
-import { Route as ProtectedOnboardingSuccessRouteImport } from './routes/_protected.onboarding.success'
+import { Route as AuthenticatedAppShellRouteRouteImport } from './routes/_authenticated/_app-shell/route'
+import { Route as AuthenticatedOnboardingRouteRouteImport } from './routes/_authenticated/onboarding/route'
+import { Route as AuthenticatedAppShellLeagueRouteImport } from './routes/_authenticated/_app-shell/league'
+import { Route as AuthenticatedAppShellLearningRouteImport } from './routes/_authenticated/_app-shell/learning'
+import { Route as AuthenticatedAppShellMainRouteImport } from './routes/_authenticated/_app-shell/main'
+import { Route as AuthenticatedAppShellMyRouteImport } from './routes/_authenticated/_app-shell/my'
+import { Route as AuthenticatedOnboardingIndexRouteImport } from './routes/_authenticated/onboarding/index'
+import { Route as AuthenticatedOnboardingSuccessRouteImport } from './routes/_authenticated/onboarding/success'
 import { Route as LoginOauth2CodeProviderRouteImport } from './routes/login.oauth2.code.$provider'
 
 const IndexRoute = IndexRouteImport.update({
@@ -26,8 +29,8 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProtectedRoute = ProtectedRouteImport.update({
-  id: '/_protected',
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -45,32 +48,51 @@ const TermsRoute = TermsRouteImport.update({
   path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProtectedLeagueRoute = ProtectedLeagueRouteImport.update({
-  id: '/league',
-  path: '/league',
-  getParentRoute: () => ProtectedRoute,
+const AuthenticatedAppShellRouteRoute =
+  AuthenticatedAppShellRouteRouteImport.update({
+    id: '/_app-shell',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedOnboardingRouteRoute =
+  AuthenticatedOnboardingRouteRouteImport.update({
+    id: '/onboarding',
+    path: '/onboarding',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAppShellLeagueRoute =
+  AuthenticatedAppShellLeagueRouteImport.update({
+    id: '/league',
+    path: '/league',
+    getParentRoute: () => AuthenticatedAppShellRouteRoute,
+  } as any)
+const AuthenticatedAppShellLearningRoute =
+  AuthenticatedAppShellLearningRouteImport.update({
+    id: '/learning',
+    path: '/learning',
+    getParentRoute: () => AuthenticatedAppShellRouteRoute,
+  } as any)
+const AuthenticatedAppShellMainRoute =
+  AuthenticatedAppShellMainRouteImport.update({
+    id: '/main',
+    path: '/main',
+    getParentRoute: () => AuthenticatedAppShellRouteRoute,
+  } as any)
+const AuthenticatedAppShellMyRoute = AuthenticatedAppShellMyRouteImport.update({
+  id: '/my',
+  path: '/my',
+  getParentRoute: () => AuthenticatedAppShellRouteRoute,
 } as any)
-const ProtectedMainRoute = ProtectedMainRouteImport.update({
-  id: '/main',
-  path: '/main',
-  getParentRoute: () => ProtectedRoute,
-} as any)
-const ProtectedOnboardingRoute = ProtectedOnboardingRouteImport.update({
-  id: '/onboarding',
-  path: '/onboarding',
-  getParentRoute: () => ProtectedRoute,
-} as any)
-const ProtectedOnboardingIndexRoute =
-  ProtectedOnboardingIndexRouteImport.update({
+const AuthenticatedOnboardingIndexRoute =
+  AuthenticatedOnboardingIndexRouteImport.update({
     id: '/',
     path: '/',
-    getParentRoute: () => ProtectedOnboardingRoute,
+    getParentRoute: () => AuthenticatedOnboardingRouteRoute,
   } as any)
-const ProtectedOnboardingSuccessRoute =
-  ProtectedOnboardingSuccessRouteImport.update({
+const AuthenticatedOnboardingSuccessRoute =
+  AuthenticatedOnboardingSuccessRouteImport.update({
     id: '/success',
     path: '/success',
-    getParentRoute: () => ProtectedOnboardingRoute,
+    getParentRoute: () => AuthenticatedOnboardingRouteRoute,
   } as any)
 const LoginOauth2CodeProviderRoute = LoginOauth2CodeProviderRouteImport.update({
   id: '/login/oauth2/code/$provider',
@@ -83,11 +105,13 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/restore': typeof RestoreRoute
   '/terms': typeof TermsRoute
-  '/league': typeof ProtectedLeagueRoute
-  '/main': typeof ProtectedMainRoute
-  '/onboarding': typeof ProtectedOnboardingRouteWithChildren
-  '/onboarding/success': typeof ProtectedOnboardingSuccessRoute
-  '/onboarding/': typeof ProtectedOnboardingIndexRoute
+  '/onboarding': typeof AuthenticatedOnboardingRouteRouteWithChildren
+  '/league': typeof AuthenticatedAppShellLeagueRoute
+  '/learning': typeof AuthenticatedAppShellLearningRoute
+  '/main': typeof AuthenticatedAppShellMainRoute
+  '/my': typeof AuthenticatedAppShellMyRoute
+  '/onboarding/success': typeof AuthenticatedOnboardingSuccessRoute
+  '/onboarding/': typeof AuthenticatedOnboardingIndexRoute
   '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
 }
 export interface FileRoutesByTo {
@@ -95,24 +119,29 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/restore': typeof RestoreRoute
   '/terms': typeof TermsRoute
-  '/league': typeof ProtectedLeagueRoute
-  '/main': typeof ProtectedMainRoute
-  '/onboarding/success': typeof ProtectedOnboardingSuccessRoute
-  '/onboarding': typeof ProtectedOnboardingIndexRoute
+  '/league': typeof AuthenticatedAppShellLeagueRoute
+  '/learning': typeof AuthenticatedAppShellLearningRoute
+  '/main': typeof AuthenticatedAppShellMainRoute
+  '/my': typeof AuthenticatedAppShellMyRoute
+  '/onboarding/success': typeof AuthenticatedOnboardingSuccessRoute
+  '/onboarding': typeof AuthenticatedOnboardingIndexRoute
   '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/_protected': typeof ProtectedRouteWithChildren
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/privacy': typeof PrivacyRoute
   '/restore': typeof RestoreRoute
   '/terms': typeof TermsRoute
-  '/_protected/league': typeof ProtectedLeagueRoute
-  '/_protected/main': typeof ProtectedMainRoute
-  '/_protected/onboarding': typeof ProtectedOnboardingRouteWithChildren
-  '/_protected/onboarding/success': typeof ProtectedOnboardingSuccessRoute
-  '/_protected/onboarding/': typeof ProtectedOnboardingIndexRoute
+  '/_authenticated/_app-shell': typeof AuthenticatedAppShellRouteRouteWithChildren
+  '/_authenticated/onboarding': typeof AuthenticatedOnboardingRouteRouteWithChildren
+  '/_authenticated/_app-shell/league': typeof AuthenticatedAppShellLeagueRoute
+  '/_authenticated/_app-shell/learning': typeof AuthenticatedAppShellLearningRoute
+  '/_authenticated/_app-shell/main': typeof AuthenticatedAppShellMainRoute
+  '/_authenticated/_app-shell/my': typeof AuthenticatedAppShellMyRoute
+  '/_authenticated/onboarding/success': typeof AuthenticatedOnboardingSuccessRoute
+  '/_authenticated/onboarding/': typeof AuthenticatedOnboardingIndexRoute
   '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
 }
 export interface FileRouteTypes {
@@ -122,9 +151,11 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/restore'
     | '/terms'
-    | '/league'
-    | '/main'
     | '/onboarding'
+    | '/league'
+    | '/learning'
+    | '/main'
+    | '/my'
     | '/onboarding/success'
     | '/onboarding/'
     | '/login/oauth2/code/$provider'
@@ -135,28 +166,33 @@ export interface FileRouteTypes {
     | '/restore'
     | '/terms'
     | '/league'
+    | '/learning'
     | '/main'
+    | '/my'
     | '/onboarding/success'
     | '/onboarding'
     | '/login/oauth2/code/$provider'
   id:
     | '__root__'
     | '/'
-    | '/_protected'
+    | '/_authenticated'
     | '/privacy'
     | '/restore'
     | '/terms'
-    | '/_protected/league'
-    | '/_protected/main'
-    | '/_protected/onboarding'
-    | '/_protected/onboarding/success'
-    | '/_protected/onboarding/'
+    | '/_authenticated/_app-shell'
+    | '/_authenticated/onboarding'
+    | '/_authenticated/_app-shell/league'
+    | '/_authenticated/_app-shell/learning'
+    | '/_authenticated/_app-shell/main'
+    | '/_authenticated/_app-shell/my'
+    | '/_authenticated/onboarding/success'
+    | '/_authenticated/onboarding/'
     | '/login/oauth2/code/$provider'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ProtectedRoute: typeof ProtectedRouteWithChildren
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   PrivacyRoute: typeof PrivacyRoute
   RestoreRoute: typeof RestoreRoute
   TermsRoute: typeof TermsRoute
@@ -172,11 +208,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_protected': {
-      id: '/_protected'
+    '/_authenticated': {
+      id: '/_authenticated'
       path: ''
       fullPath: '/'
-      preLoaderRoute: typeof ProtectedRouteImport
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -200,40 +236,61 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_protected/league': {
-      id: '/_protected/league'
-      path: '/league'
-      fullPath: '/league'
-      preLoaderRoute: typeof ProtectedLeagueRouteImport
-      parentRoute: typeof ProtectedRoute
+    '/_authenticated/_app-shell': {
+      id: '/_authenticated/_app-shell'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedAppShellRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_protected/main': {
-      id: '/_protected/main'
-      path: '/main'
-      fullPath: '/main'
-      preLoaderRoute: typeof ProtectedMainRouteImport
-      parentRoute: typeof ProtectedRoute
-    }
-    '/_protected/onboarding': {
-      id: '/_protected/onboarding'
+    '/_authenticated/onboarding': {
+      id: '/_authenticated/onboarding'
       path: '/onboarding'
       fullPath: '/onboarding'
-      preLoaderRoute: typeof ProtectedOnboardingRouteImport
-      parentRoute: typeof ProtectedRoute
+      preLoaderRoute: typeof AuthenticatedOnboardingRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_protected/onboarding/': {
-      id: '/_protected/onboarding/'
+    '/_authenticated/_app-shell/league': {
+      id: '/_authenticated/_app-shell/league'
+      path: '/league'
+      fullPath: '/league'
+      preLoaderRoute: typeof AuthenticatedAppShellLeagueRouteImport
+      parentRoute: typeof AuthenticatedAppShellRouteRoute
+    }
+    '/_authenticated/_app-shell/learning': {
+      id: '/_authenticated/_app-shell/learning'
+      path: '/learning'
+      fullPath: '/learning'
+      preLoaderRoute: typeof AuthenticatedAppShellLearningRouteImport
+      parentRoute: typeof AuthenticatedAppShellRouteRoute
+    }
+    '/_authenticated/_app-shell/main': {
+      id: '/_authenticated/_app-shell/main'
+      path: '/main'
+      fullPath: '/main'
+      preLoaderRoute: typeof AuthenticatedAppShellMainRouteImport
+      parentRoute: typeof AuthenticatedAppShellRouteRoute
+    }
+    '/_authenticated/_app-shell/my': {
+      id: '/_authenticated/_app-shell/my'
+      path: '/my'
+      fullPath: '/my'
+      preLoaderRoute: typeof AuthenticatedAppShellMyRouteImport
+      parentRoute: typeof AuthenticatedAppShellRouteRoute
+    }
+    '/_authenticated/onboarding/': {
+      id: '/_authenticated/onboarding/'
       path: '/'
       fullPath: '/onboarding/'
-      preLoaderRoute: typeof ProtectedOnboardingIndexRouteImport
-      parentRoute: typeof ProtectedOnboardingRoute
+      preLoaderRoute: typeof AuthenticatedOnboardingIndexRouteImport
+      parentRoute: typeof AuthenticatedOnboardingRouteRoute
     }
-    '/_protected/onboarding/success': {
-      id: '/_protected/onboarding/success'
+    '/_authenticated/onboarding/success': {
+      id: '/_authenticated/onboarding/success'
       path: '/success'
       fullPath: '/onboarding/success'
-      preLoaderRoute: typeof ProtectedOnboardingSuccessRouteImport
-      parentRoute: typeof ProtectedOnboardingRoute
+      preLoaderRoute: typeof AuthenticatedOnboardingSuccessRouteImport
+      parentRoute: typeof AuthenticatedOnboardingRouteRoute
     }
     '/login/oauth2/code/$provider': {
       id: '/login/oauth2/code/$provider'
@@ -245,38 +302,59 @@ declare module '@tanstack/react-router' {
   }
 }
 
-interface ProtectedOnboardingRouteChildren {
-  ProtectedOnboardingSuccessRoute: typeof ProtectedOnboardingSuccessRoute
-  ProtectedOnboardingIndexRoute: typeof ProtectedOnboardingIndexRoute
+interface AuthenticatedAppShellRouteRouteChildren {
+  AuthenticatedAppShellLeagueRoute: typeof AuthenticatedAppShellLeagueRoute
+  AuthenticatedAppShellLearningRoute: typeof AuthenticatedAppShellLearningRoute
+  AuthenticatedAppShellMainRoute: typeof AuthenticatedAppShellMainRoute
+  AuthenticatedAppShellMyRoute: typeof AuthenticatedAppShellMyRoute
 }
 
-const ProtectedOnboardingRouteChildren: ProtectedOnboardingRouteChildren = {
-  ProtectedOnboardingSuccessRoute: ProtectedOnboardingSuccessRoute,
-  ProtectedOnboardingIndexRoute: ProtectedOnboardingIndexRoute,
+const AuthenticatedAppShellRouteRouteChildren: AuthenticatedAppShellRouteRouteChildren =
+  {
+    AuthenticatedAppShellLeagueRoute: AuthenticatedAppShellLeagueRoute,
+    AuthenticatedAppShellLearningRoute: AuthenticatedAppShellLearningRoute,
+    AuthenticatedAppShellMainRoute: AuthenticatedAppShellMainRoute,
+    AuthenticatedAppShellMyRoute: AuthenticatedAppShellMyRoute,
+  }
+
+const AuthenticatedAppShellRouteRouteWithChildren =
+  AuthenticatedAppShellRouteRoute._addFileChildren(
+    AuthenticatedAppShellRouteRouteChildren,
+  )
+
+interface AuthenticatedOnboardingRouteRouteChildren {
+  AuthenticatedOnboardingSuccessRoute: typeof AuthenticatedOnboardingSuccessRoute
+  AuthenticatedOnboardingIndexRoute: typeof AuthenticatedOnboardingIndexRoute
 }
 
-const ProtectedOnboardingRouteWithChildren =
-  ProtectedOnboardingRoute._addFileChildren(ProtectedOnboardingRouteChildren)
+const AuthenticatedOnboardingRouteRouteChildren: AuthenticatedOnboardingRouteRouteChildren =
+  {
+    AuthenticatedOnboardingSuccessRoute: AuthenticatedOnboardingSuccessRoute,
+    AuthenticatedOnboardingIndexRoute: AuthenticatedOnboardingIndexRoute,
+  }
 
-interface ProtectedRouteChildren {
-  ProtectedLeagueRoute: typeof ProtectedLeagueRoute
-  ProtectedMainRoute: typeof ProtectedMainRoute
-  ProtectedOnboardingRoute: typeof ProtectedOnboardingRouteWithChildren
+const AuthenticatedOnboardingRouteRouteWithChildren =
+  AuthenticatedOnboardingRouteRoute._addFileChildren(
+    AuthenticatedOnboardingRouteRouteChildren,
+  )
+
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAppShellRouteRoute: typeof AuthenticatedAppShellRouteRouteWithChildren
+  AuthenticatedOnboardingRouteRoute: typeof AuthenticatedOnboardingRouteRouteWithChildren
 }
 
-const ProtectedRouteChildren: ProtectedRouteChildren = {
-  ProtectedLeagueRoute: ProtectedLeagueRoute,
-  ProtectedMainRoute: ProtectedMainRoute,
-  ProtectedOnboardingRoute: ProtectedOnboardingRouteWithChildren,
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAppShellRouteRoute: AuthenticatedAppShellRouteRouteWithChildren,
+  AuthenticatedOnboardingRouteRoute:
+    AuthenticatedOnboardingRouteRouteWithChildren,
 }
 
-const ProtectedRouteWithChildren = ProtectedRoute._addFileChildren(
-  ProtectedRouteChildren,
-)
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ProtectedRoute: ProtectedRouteWithChildren,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   PrivacyRoute: PrivacyRoute,
   RestoreRoute: RestoreRoute,
   TermsRoute: TermsRoute,

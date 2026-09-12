@@ -120,6 +120,42 @@ app/
 - 전역 1회 초기화(예: `configureAuth(...)` 주입, MSW 시작)는 여기서 한다
 - **화면 구현은 두지 않는다.** app에 JSX가 쌓이면 `pages`로 내린다
 
+## 6-1. 앱 셸 · 인증 라우트 배치 (pathless 레이아웃) — FEAT-026
+
+라우트를 **3층 축**으로 분류한다. 축 크기에 수단을 맞춘다 — 굵은 구분은 위치, 가는 구분은 데이터.
+
+| 축            | 무엇                    | 수단                                          |
+| ------------- | ----------------------- | --------------------------------------------- |
+| 인증 여부     | 토큰 필요 / 공개        | `_authenticated/`(가드) 안 vs 밖              |
+| 크롬(셸) 종류 | 헤더+탭 / 없음 / 다른 것 | **레이아웃 라우트 폴더 위치** (`_app-shell/`) |
+| 헤더 표면     | overlay / solid         | `staticData.headerVariant` (부모→자식 상속)   |
+
+현재 트리:
+
+```
+routes/
+  index.tsx(로그인) · terms · privacy · restore · login.oauth2…   # 공개
+  _authenticated/                    # 가드: beforeLoad(!getSessionToken() → redirect '/')
+    _app-shell/                      # 데스크톱 헤더(hidden md:block) + 모바일 바텀탭(md:hidden)
+      league(overlay) · main · learning · my (solid)
+    onboarding/                      # 인증 필요하나 셸 없음(전체화면)
+```
+
+**새 페이지 추가 판단 순서**
+
+1. 공개 → `_authenticated/` 밖(최상위)
+2. 인증 + 헤더/탭 → `_app-shell/` 안. 헤더 색만 다르면 `staticData.headerVariant`만 지정
+3. 인증 + 크롬 없음(전체화면) → `_app-shell/` 밖. onboarding이 예시
+   - 셸 페이지의 하위인데 그것만 전체화면이면 평면 파일명 opt-out(`x_.$…`) 대신
+     **별도 레이아웃 그룹 폴더**(`_focus/`)를 형제로 두고 `createFileRoute` 경로로 URL 유지
+4. 다른 크롬(모바일 back-header 등)은 그룹 남발 말고 **셸이 반응형+staticData로 분기**를 우선
+
+**반응형은 CSS 우선** — 같은 요소가 보이고/숨는 수준(`hidden md:block`)은 미디어쿼리.
+레이아웃/트리 자체가 완전히 다를 때만 `useIsWideViewport` 같은 JS 훅(FOUC·리렌더 회피).
+
+셸 유무는 **staticData 플래그가 아니라 레이아웃 라우트 위치**로 정한다. 셸은 실제 DOM 래퍼(헤더
+offset 패딩)이며 셸 페이지 간 이동 시 리마운트되지 않아 유저 정보 재요청이 없다.
+
 ## 7. 데이터는 아래에서 위로만 흐른다
 
 페이지가 props를 못 받으므로, 앱 전역에서 채워야 하는 값(인증 상태, 반응형 정보)은

@@ -5,8 +5,8 @@ import { http, HttpResponse } from 'msw';
 
 import { server } from '@/shared/api/mocks/server';
 
-import { Route } from './_protected.onboarding.index';
-import type { RouterContext } from './__root';
+import { Route } from './index';
+import type { RouterContext } from '../../__root';
 
 const USER_ENDPOINT = '*/api/v1/users';
 

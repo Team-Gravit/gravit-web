@@ -76,7 +76,7 @@ export function RankingList({
   return (
     <div
       ref={scrollRef}
-      className="scrollbar-hide flex h-full flex-col gap-3 overflow-y-auto md:gap-6 md:px-5.5 md:py-1"
+      className="scrollbar-hide flex h-full flex-col gap-3 overflow-y-auto pt-6 pb-3  md:gap-6 md:px-5.5 md:py-1"
     >
       {users.map((user) => (
         <UserRankRow key={user.userId} user={user} />
