@@ -1,5 +1,14 @@
-export { getUserQueryKey, getUserQueryOptions, useUser, useMyPageBanner } from './api';
+export {
+  getUserQueryKey,
+  getUserQueryOptions,
+  useUser,
+  useMyPageBanner,
+  useMyPageSummary,
+  useMyPageLearningHistory,
+} from './api';
 export type { MyPageBannerResponse } from '@/shared/api/generated/model/myPageBannerResponse';
+export type { LearningSummaryResponse } from '@/shared/api/generated/model/learningSummaryResponse';
+export type { LearningHistoryResponse } from '@/shared/api/generated/model/learningHistoryResponse';
 export {
   FIRST_PROFILE_COLOR_NUMBER,
   getNextProfileColorNumber,

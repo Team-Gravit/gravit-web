@@ -19,9 +19,15 @@ function AppShell() {
       .headerVariant ?? 'solid';
 
   return (
-    // 앱 캔버스 배경은 셸이 소유한다. 고정 헤더 뒤 영역까지 한 색으로 덮어 흰/회색 seam을 없앤다.
-    // full-bleed 배경을 까는 페이지(리그)는 자기 배경으로 이 위를 덮으므로 영향 없다.
-    <div className="h-svh overflow-hidden bg-bg-2">
+    <div className="h-svh overflow-hidden">
+      {/*
+        앱 캔버스 배경. 블록 배경색(bg-bg-2)이 아니라 전용 -z-20 레이어로 둔다.
+        - 일반 페이지: 이 회색이 콘텐츠 뒤(고정 헤더 뒤 영역 포함)로 비쳐 흰/회색 seam을 없앤다.
+        - full-bleed 배경 페이지(리그): 자기 배경(-z-10)이 이 위를 덮는다.
+        블록 배경으로 칠하면 -z-10 리그 배경을 가려버리므로 레이어로 분리한다.
+      */}
+      <div aria-hidden className="fixed inset-0 -z-20 bg-bg-2" />
+
       <div className="hidden md:block">
         <Header variant={headerVariant} />
       </div>

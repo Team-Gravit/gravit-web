@@ -127,6 +127,23 @@
   --radius-20: 20px;
   --radius-24: 24px;
 
+  /* ================================
+        ELEVATION (shadow)
+    ================================ */
+  /*
+    깊이를 표현하는 그림자. 디자인 시스템의 Effect Style(Figma 13284-5409)을 옮긴 것으로,
+    변수가 아니라 역할(카드·모달·툴팁)에 레벨을 고정해서 쓴다. raw 그림자를 하드코딩하지 않는다.
+      elevation-1 → 카드·리스트·배너   elevation-2 → 드롭다운·셀렉트·메뉴·팝오버·툴팁
+      elevation-3 → 모달·다이얼로그·바텀시트(+딤)   elevation-4 → 긴급 알림·최상위(+딤)
+    한 화면에 떠 있는 층은 2개까지. 위계는 그림자보다 색·구분선을 먼저 쓴다.
+    전부 #000 2겹. glass-modal 은 스케일 밖의 앱 축하·보상 모달 전용이다.
+  */
+  --shadow-elevation-1: 0 1px 2px -1px rgb(0 0 0 / 0.06), 0 1px 3px 0 rgb(0 0 0 / 0.1);
+  --shadow-elevation-2: 0 2px 4px -2px rgb(0 0 0 / 0.06), 0 4px 8px -2px rgb(0 0 0 / 0.1);
+  --shadow-elevation-3: 0 4px 8px -4px rgb(0 0 0 / 0.08), 0 12px 24px -4px rgb(0 0 0 / 0.14);
+  --shadow-elevation-4: 0 8px 16px -6px rgb(0 0 0 / 0.1), 0 24px 48px -8px rgb(0 0 0 / 0.2);
+  --shadow-glass-modal: 0 0 30px 5px rgb(0 0 0 / 0.2);
+
   /* TODO :  밑의 토큰들은 앞으로 이전 디자인을 제거하면서 같이 제거해야 하는 토큰들입니다.*/
   /*기본 색상 비활성화*/
   --color-gray-*: initial;
