@@ -38,7 +38,7 @@ legacy는 위 조건이 모두 충족될 때 한 번에 제거한다. 중간에 
 | 공용 기반           |              3 |   12 | 인증·Query 기반 미이전       |
 | 이전 제외·폐기 대상 |              4 |    4 | 없음                         |
 
-`apps/web`이 현재 제공하는 제품 라우트는 `/terms`, `/privacy`, `/`(로그인)다.
+`apps/web`이 현재 제공하는 제품 라우트는 `/terms`, `/privacy`, `/`(로그인), `/league`다.
 
 ## 3. 사용자 라우트 대체 현황
 
@@ -67,7 +67,7 @@ legacy는 위 조건이 모두 충족될 때 한 번에 제거한다. 중간에 
 | 학습        | `/learning/$chapterId/$unitId/$lessonId`                                                   |   ⬜   |    ⬜     |    ⬜     | —       |
 | 학습        | `/learning/$chapterId/$unitId/bookmarked-problems`                                         |   ⬜   |    ⬜     |    ⬜     | —       |
 | 학습        | `/learning/$chapterId/$unitId/incorrect-problems`                                          |   ⬜   |    ⬜     |    ⬜     | —       |
-| 리그        | `/league`                                                                                  |   ⬜   |    ⬜     |    ⬜     | —       |
+| 리그        | `/league`                                                                                  |   ✅   |    ✅     |    ✅     | MIG-023 |
 | 마이페이지  | `/my`, `/my/summary`, `/my/learning`, `/my/league`, `/my/social`, `/my/edit`, `/my/follow` |   ⬜   |    ⬜     |    ⬜     | —       |
 | 사용자·공지 | `/user`, `/user/edit`, `/user/addfriend`, `/user/privacy`                                  |   ⬜   |    ⬜     |    ⬜     | —       |
 | 사용자·공지 | `/user/notice`, `/user/notice/$page`, `/user/notice/$page/$noticeId`                       |   ⬜   |    ⬜     |    ⬜     | —       |

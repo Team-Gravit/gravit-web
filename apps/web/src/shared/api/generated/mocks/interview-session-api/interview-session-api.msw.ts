@@ -10,9 +10,41 @@ import { faker } from '@faker-js/faker';
 import { HttpResponse, delay, http } from 'msw';
 import type { RequestHandlerOptions } from 'msw';
 
-import type { InterviewSessionStatusResponse } from '../../model';
+import type {
+  InterviewAudioUploadResponse,
+  InterviewSessionCreateResponse,
+  InterviewSessionQuestionsResponse,
+  InterviewSessionStatusResponse,
+} from '../../model';
+
+export const getCreateResponseMock = (
+  overrideResponse: Partial<Extract<InterviewSessionCreateResponse, object>> = {},
+): InterviewSessionCreateResponse => ({ sessionId: faker.number.int(), ...overrideResponse });
+
+export const getIssueUploadUrlResponseMock = (
+  overrideResponse: Partial<Extract<InterviewAudioUploadResponse, object>> = {},
+): InterviewAudioUploadResponse => ({
+  audioKey: faker.string.alpha({ length: { min: 10, max: 20 } }),
+  uploadUrl: faker.string.alpha({ length: { min: 10, max: 20 } }),
+  expiresAt: faker.date.past().toISOString().slice(0, 19) + 'Z',
+  ...overrideResponse,
+});
 
 export const getSubmitResponseMock = (
+  overrideResponse: Partial<Extract<InterviewSessionStatusResponse, object>> = {},
+): InterviewSessionStatusResponse => ({
+  sessionId: faker.number.int(),
+  status: faker.helpers.arrayElement([
+    'IN_PROGRESS',
+    'GRADING',
+    'GRADING_FAILED',
+    'COMPLETED',
+    'ABANDONED',
+  ] as const),
+  ...overrideResponse,
+});
+
+export const getAbandonResponseMock = (
   overrideResponse: Partial<Extract<InterviewSessionStatusResponse, object>> = {},
 ): InterviewSessionStatusResponse => ({
   sessionId: faker.number.int(),
@@ -40,6 +72,71 @@ export const getGetStatusResponseMock = (
   ...overrideResponse,
 });
 
+export const getGetQuestionsResponseMock = (
+  overrideResponse: Partial<Extract<InterviewSessionQuestionsResponse, object>> = {},
+): InterviewSessionQuestionsResponse => ({
+  sessionId: faker.number.int(),
+  questions: Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, (_, i) => i + 1).map(
+    () => ({
+      displayOrder: faker.number.int(),
+      content: faker.string.alpha({ length: { min: 10, max: 20 } }),
+    }),
+  ),
+  ...overrideResponse,
+});
+
+export const getCreateMockHandler = (
+  overrideResponse?:
+    | InterviewSessionCreateResponse
+    | ((
+        info: Parameters<Parameters<typeof http.post>[1]>[0],
+      ) => Promise<InterviewSessionCreateResponse> | InterviewSessionCreateResponse),
+  options?: RequestHandlerOptions,
+) => {
+  return http.post(
+    '*/api/v1/interview-sessions',
+    async (info: Parameters<Parameters<typeof http.post>[1]>[0]) => {
+      await delay(600);
+
+      return HttpResponse.json(
+        overrideResponse !== undefined
+          ? typeof overrideResponse === 'function'
+            ? await overrideResponse(info)
+            : overrideResponse
+          : getCreateResponseMock(),
+        { status: 201 },
+      );
+    },
+    options,
+  );
+};
+
+export const getIssueUploadUrlMockHandler = (
+  overrideResponse?:
+    | InterviewAudioUploadResponse
+    | ((
+        info: Parameters<Parameters<typeof http.post>[1]>[0],
+      ) => Promise<InterviewAudioUploadResponse> | InterviewAudioUploadResponse),
+  options?: RequestHandlerOptions,
+) => {
+  return http.post(
+    '*/api/v1/interview-sessions/:sessionId/audio-uploads',
+    async (info: Parameters<Parameters<typeof http.post>[1]>[0]) => {
+      await delay(600);
+
+      return HttpResponse.json(
+        overrideResponse !== undefined
+          ? typeof overrideResponse === 'function'
+            ? await overrideResponse(info)
+            : overrideResponse
+          : getIssueUploadUrlResponseMock(),
+        { status: 200 },
+      );
+    },
+    options,
+  );
+};
+
 export const getSubmitMockHandler = (
   overrideResponse?:
     | InterviewSessionStatusResponse
@@ -60,6 +157,32 @@ export const getSubmitMockHandler = (
             : overrideResponse
           : getSubmitResponseMock(),
         { status: 202 },
+      );
+    },
+    options,
+  );
+};
+
+export const getAbandonMockHandler = (
+  overrideResponse?:
+    | InterviewSessionStatusResponse
+    | ((
+        info: Parameters<Parameters<typeof http.patch>[1]>[0],
+      ) => Promise<InterviewSessionStatusResponse> | InterviewSessionStatusResponse),
+  options?: RequestHandlerOptions,
+) => {
+  return http.patch(
+    '*/api/v1/interview-sessions/:sessionId/abandon',
+    async (info: Parameters<Parameters<typeof http.patch>[1]>[0]) => {
+      await delay(600);
+
+      return HttpResponse.json(
+        overrideResponse !== undefined
+          ? typeof overrideResponse === 'function'
+            ? await overrideResponse(info)
+            : overrideResponse
+          : getAbandonResponseMock(),
+        { status: 200 },
       );
     },
     options,
@@ -91,4 +214,37 @@ export const getGetStatusMockHandler = (
     options,
   );
 };
-export const getInterviewSessionApiMock = () => [getSubmitMockHandler(), getGetStatusMockHandler()];
+
+export const getGetQuestionsMockHandler = (
+  overrideResponse?:
+    | InterviewSessionQuestionsResponse
+    | ((
+        info: Parameters<Parameters<typeof http.get>[1]>[0],
+      ) => Promise<InterviewSessionQuestionsResponse> | InterviewSessionQuestionsResponse),
+  options?: RequestHandlerOptions,
+) => {
+  return http.get(
+    '*/api/v1/interview-sessions/:sessionId/questions',
+    async (info: Parameters<Parameters<typeof http.get>[1]>[0]) => {
+      await delay(600);
+
+      return HttpResponse.json(
+        overrideResponse !== undefined
+          ? typeof overrideResponse === 'function'
+            ? await overrideResponse(info)
+            : overrideResponse
+          : getGetQuestionsResponseMock(),
+        { status: 200 },
+      );
+    },
+    options,
+  );
+};
+export const getInterviewSessionApiMock = () => [
+  getCreateMockHandler(),
+  getIssueUploadUrlMockHandler(),
+  getSubmitMockHandler(),
+  getAbandonMockHandler(),
+  getGetStatusMockHandler(),
+  getGetQuestionsMockHandler(),
+];

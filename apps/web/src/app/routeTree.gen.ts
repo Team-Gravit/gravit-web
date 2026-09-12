@@ -14,6 +14,7 @@ import { Route as ProtectedRouteImport } from './routes/_protected'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as RestoreRouteImport } from './routes/restore'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as ProtectedLeagueRouteImport } from './routes/_protected.league'
 import { Route as ProtectedMainRouteImport } from './routes/_protected.main'
 import { Route as ProtectedOnboardingRouteImport } from './routes/_protected.onboarding'
 import { Route as ProtectedOnboardingIndexRouteImport } from './routes/_protected.onboarding.index'
@@ -43,6 +44,11 @@ const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
   getParentRoute: () => rootRouteImport,
+} as any)
+const ProtectedLeagueRoute = ProtectedLeagueRouteImport.update({
+  id: '/league',
+  path: '/league',
+  getParentRoute: () => ProtectedRoute,
 } as any)
 const ProtectedMainRoute = ProtectedMainRouteImport.update({
   id: '/main',
@@ -77,6 +83,7 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/restore': typeof RestoreRoute
   '/terms': typeof TermsRoute
+  '/league': typeof ProtectedLeagueRoute
   '/main': typeof ProtectedMainRoute
   '/onboarding': typeof ProtectedOnboardingRouteWithChildren
   '/onboarding/success': typeof ProtectedOnboardingSuccessRoute
@@ -88,6 +95,7 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/restore': typeof RestoreRoute
   '/terms': typeof TermsRoute
+  '/league': typeof ProtectedLeagueRoute
   '/main': typeof ProtectedMainRoute
   '/onboarding/success': typeof ProtectedOnboardingSuccessRoute
   '/onboarding': typeof ProtectedOnboardingIndexRoute
@@ -100,6 +108,7 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/restore': typeof RestoreRoute
   '/terms': typeof TermsRoute
+  '/_protected/league': typeof ProtectedLeagueRoute
   '/_protected/main': typeof ProtectedMainRoute
   '/_protected/onboarding': typeof ProtectedOnboardingRouteWithChildren
   '/_protected/onboarding/success': typeof ProtectedOnboardingSuccessRoute
@@ -113,6 +122,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/restore'
     | '/terms'
+    | '/league'
     | '/main'
     | '/onboarding'
     | '/onboarding/success'
@@ -124,6 +134,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/restore'
     | '/terms'
+    | '/league'
     | '/main'
     | '/onboarding/success'
     | '/onboarding'
@@ -135,6 +146,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/restore'
     | '/terms'
+    | '/_protected/league'
     | '/_protected/main'
     | '/_protected/onboarding'
     | '/_protected/onboarding/success'
@@ -188,6 +200,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_protected/league': {
+      id: '/_protected/league'
+      path: '/league'
+      fullPath: '/league'
+      preLoaderRoute: typeof ProtectedLeagueRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
     '/_protected/main': {
       id: '/_protected/main'
       path: '/main'
@@ -240,11 +259,13 @@ const ProtectedOnboardingRouteWithChildren =
   ProtectedOnboardingRoute._addFileChildren(ProtectedOnboardingRouteChildren)
 
 interface ProtectedRouteChildren {
+  ProtectedLeagueRoute: typeof ProtectedLeagueRoute
   ProtectedMainRoute: typeof ProtectedMainRoute
   ProtectedOnboardingRoute: typeof ProtectedOnboardingRouteWithChildren
 }
 
 const ProtectedRouteChildren: ProtectedRouteChildren = {
+  ProtectedLeagueRoute: ProtectedLeagueRoute,
   ProtectedMainRoute: ProtectedMainRoute,
   ProtectedOnboardingRoute: ProtectedOnboardingRouteWithChildren,
 }

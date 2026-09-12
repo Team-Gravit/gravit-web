@@ -8,6 +8,7 @@
 
 export interface LastSeasonPopupDto {
   rank?: number;
+  finalLp?: number;
   leagueName: string;
   profileImgNumber?: number;
   nextLeagueName: string;

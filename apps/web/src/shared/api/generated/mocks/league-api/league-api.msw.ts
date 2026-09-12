@@ -30,6 +30,7 @@ export const getEnterHomeResponseMock = (
   lastSeasonPopupDto: faker.helpers.arrayElement([
     {
       rank: faker.helpers.arrayElement([faker.number.int(), undefined]),
+      finalLp: faker.helpers.arrayElement([faker.number.int(), undefined]),
       leagueName: faker.string.alpha({ length: { min: 10, max: 20 } }),
       profileImgNumber: faker.helpers.arrayElement([faker.number.int(), undefined]),
       nextLeagueName: faker.string.alpha({ length: { min: 10, max: 20 } }),

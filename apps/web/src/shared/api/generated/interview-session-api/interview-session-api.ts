@@ -23,6 +23,11 @@ import type {
 
 import type {
   ErrorResponse,
+  InterviewAudioUploadRequest,
+  InterviewAudioUploadResponse,
+  InterviewSessionCreateRequest,
+  InterviewSessionCreateResponse,
+  InterviewSessionQuestionsResponse,
   InterviewSessionStatusResponse,
   InterviewSubmitRequest,
 } from '../model';
@@ -47,6 +52,186 @@ const withQueryKey = <T extends object, K>(query: T, queryKey: K): T & { queryKe
   return result;
 };
 
+/**
+ * 선택한 모드와 난이도로 세션을 만들고 5문항을 확정합니다.<br>
+ * 공통 CS(COMMON_CS) 모드는 topics에 중복 없는 CS 주제 1~5개를 담고 stack은 비웁니다.<br>
+ * 직군(JOB_SPECIFIC) 모드는 stack 하나를 담고 topics는 비웁니다.<br>
+ * 확정된 문제는 문제 목록 조회 API로 받습니다.<br>
+ * 🔐 <strong>Jwt 필요</strong>
+ * @summary 면접 세션 생성
+ */
+export const create = (
+  interviewSessionCreateRequest: BodyType<InterviewSessionCreateRequest>,
+  options?: SecondParameter<typeof customInstance>,
+  signal?: AbortSignal,
+) => {
+  return customInstance<InterviewSessionCreateResponse>(
+    {
+      url: `/api/v1/interview-sessions`,
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      data: interviewSessionCreateRequest,
+      signal,
+    },
+    options,
+  );
+};
+
+export const getCreateMutationOptions = <
+  TError = ErrorType<unknown>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof create>>,
+    TError,
+    CreateMutationVariables,
+    TContext
+  >;
+  request?: SecondParameter<typeof customInstance>;
+}): UseMutationOptions<
+  Awaited<ReturnType<typeof create>>,
+  TError,
+  CreateMutationVariables,
+  TContext
+> => {
+  const mutationKey = ['create'];
+  const { mutation: mutationOptions, request: requestOptions } = options
+    ? options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey
+      ? options
+      : { ...options, mutation: { ...options.mutation, mutationKey } }
+    : { mutation: { mutationKey }, request: undefined };
+
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof create>>,
+    CreateMutationVariables
+  > = (props) => {
+    const { data } = props ?? {};
+
+    return create(data, requestOptions);
+  };
+
+  return { mutationFn, ...mutationOptions };
+};
+
+export type CreateMutationResult = NonNullable<Awaited<ReturnType<typeof create>>>;
+export type CreateMutationBody = BodyType<InterviewSessionCreateRequest>;
+export type CreateMutationError = ErrorType<unknown>;
+export type CreateMutationVariables = { data: BodyType<InterviewSessionCreateRequest> };
+
+/**
+ * @summary 면접 세션 생성
+ */
+export const useCreate = <TError = ErrorType<unknown>, TContext = unknown>(
+  options?: {
+    mutation?: UseMutationOptions<
+      Awaited<ReturnType<typeof create>>,
+      TError,
+      CreateMutationVariables,
+      TContext
+    >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): UseMutationResult<
+  Awaited<ReturnType<typeof create>>,
+  TError,
+  CreateMutationVariables,
+  TContext
+> => {
+  return useMutation(getCreateMutationOptions(options), queryClient);
+};
+/**
+ * 진행 중(IN_PROGRESS)인 음성(VOICE) 세션의 문항 하나에 대해 업로드용 presigned URL을 발급합니다.<br>
+ * 응답의 uploadUrl로 PUT 요청을 보내 음성 원본을 올리고, 함께 받은 audioKey를 답안 제출 본문에 담습니다.<br>
+ * PUT 요청의 Content-Type은 발급 시 보낸 contentType과 같아야 합니다.<br>
+ * URL은 10분 뒤 만료되며, 문항마다 필요한 시점에 각각 발급받습니다.<br>
+ * 🔐 <strong>Jwt 필요</strong>
+ * @summary 면접 음성 업로드 URL 발급
+ */
+export const issueUploadUrl = (
+  sessionId: number,
+  interviewAudioUploadRequest: BodyType<InterviewAudioUploadRequest>,
+  options?: SecondParameter<typeof customInstance>,
+  signal?: AbortSignal,
+) => {
+  return customInstance<InterviewAudioUploadResponse>(
+    {
+      url: `/api/v1/interview-sessions/${sessionId}/audio-uploads`,
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      data: interviewAudioUploadRequest,
+      signal,
+    },
+    options,
+  );
+};
+
+export const getIssueUploadUrlMutationOptions = <
+  TError = ErrorType<unknown>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof issueUploadUrl>>,
+    TError,
+    IssueUploadUrlMutationVariables,
+    TContext
+  >;
+  request?: SecondParameter<typeof customInstance>;
+}): UseMutationOptions<
+  Awaited<ReturnType<typeof issueUploadUrl>>,
+  TError,
+  IssueUploadUrlMutationVariables,
+  TContext
+> => {
+  const mutationKey = ['issueUploadUrl'];
+  const { mutation: mutationOptions, request: requestOptions } = options
+    ? options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey
+      ? options
+      : { ...options, mutation: { ...options.mutation, mutationKey } }
+    : { mutation: { mutationKey }, request: undefined };
+
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof issueUploadUrl>>,
+    IssueUploadUrlMutationVariables
+  > = (props) => {
+    const { sessionId, data } = props ?? {};
+
+    return issueUploadUrl(sessionId, data, requestOptions);
+  };
+
+  return { mutationFn, ...mutationOptions };
+};
+
+export type IssueUploadUrlMutationResult = NonNullable<Awaited<ReturnType<typeof issueUploadUrl>>>;
+export type IssueUploadUrlMutationBody = BodyType<InterviewAudioUploadRequest>;
+export type IssueUploadUrlMutationError = ErrorType<unknown>;
+export type IssueUploadUrlMutationVariables = {
+  sessionId: number;
+  data: BodyType<InterviewAudioUploadRequest>;
+};
+
+/**
+ * @summary 면접 음성 업로드 URL 발급
+ */
+export const useIssueUploadUrl = <TError = ErrorType<unknown>, TContext = unknown>(
+  options?: {
+    mutation?: UseMutationOptions<
+      Awaited<ReturnType<typeof issueUploadUrl>>,
+      TError,
+      IssueUploadUrlMutationVariables,
+      TContext
+    >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): UseMutationResult<
+  Awaited<ReturnType<typeof issueUploadUrl>>,
+  TError,
+  IssueUploadUrlMutationVariables,
+  TContext
+> => {
+  return useMutation(getIssueUploadUrlMutationOptions(options), queryClient);
+};
 /**
  * 진행 중(IN_PROGRESS)인 세션의 답안 5건을 한 번에 제출합니다.<br>
  * 문항 번호(displayOrder) 1~5를 각각 정확히 한 번씩 담아야 하며, 재제출은 불가능합니다.<br>
@@ -137,6 +322,86 @@ export const useSubmit = <TError = ErrorType<ErrorResponse>, TContext = unknown>
   TContext
 > => {
   return useMutation(getSubmitMutationOptions(options), queryClient);
+};
+/**
+ * 진행 중(IN_PROGRESS)인 세션을 취소(ABANDONED)합니다.<br>
+ * 제출 이후에는 취소할 수 없으며, 취소된 세션은 채점하지 않고 결과와 통계에도 포함하지 않습니다.<br>
+ * 🔐 <strong>Jwt 필요</strong>
+ * @summary 면접 세션 중단
+ */
+export const abandon = (
+  sessionId: number,
+  options?: SecondParameter<typeof customInstance>,
+  signal?: AbortSignal,
+) => {
+  return customInstance<InterviewSessionStatusResponse>(
+    { url: `/api/v1/interview-sessions/${sessionId}/abandon`, method: 'PATCH', signal },
+    options,
+  );
+};
+
+export const getAbandonMutationOptions = <
+  TError = ErrorType<unknown>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof abandon>>,
+    TError,
+    AbandonMutationVariables,
+    TContext
+  >;
+  request?: SecondParameter<typeof customInstance>;
+}): UseMutationOptions<
+  Awaited<ReturnType<typeof abandon>>,
+  TError,
+  AbandonMutationVariables,
+  TContext
+> => {
+  const mutationKey = ['abandon'];
+  const { mutation: mutationOptions, request: requestOptions } = options
+    ? options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey
+      ? options
+      : { ...options, mutation: { ...options.mutation, mutationKey } }
+    : { mutation: { mutationKey }, request: undefined };
+
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof abandon>>,
+    AbandonMutationVariables
+  > = (props) => {
+    const { sessionId } = props ?? {};
+
+    return abandon(sessionId, requestOptions);
+  };
+
+  return { mutationFn, ...mutationOptions };
+};
+
+export type AbandonMutationResult = NonNullable<Awaited<ReturnType<typeof abandon>>>;
+
+export type AbandonMutationError = ErrorType<unknown>;
+export type AbandonMutationVariables = { sessionId: number };
+
+/**
+ * @summary 면접 세션 중단
+ */
+export const useAbandon = <TError = ErrorType<unknown>, TContext = unknown>(
+  options?: {
+    mutation?: UseMutationOptions<
+      Awaited<ReturnType<typeof abandon>>,
+      TError,
+      AbandonMutationVariables,
+      TContext
+    >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): UseMutationResult<
+  Awaited<ReturnType<typeof abandon>>,
+  TError,
+  AbandonMutationVariables,
+  TContext
+> => {
+  return useMutation(getAbandonMutationOptions(options), queryClient);
 };
 /**
  * 면접 세션의 현재 상태를 조회합니다. 답안 제출 후 채점 완료 여부를 확인할 때 사용합니다.<br>
@@ -255,6 +520,130 @@ export function useGetStatus<
   queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
   const queryOptions = getGetStatusQueryOptions(sessionId, options);
+
+  const query = useQuery(queryOptions, queryClient) as UseQueryResult<TData, TError> & {
+    queryKey: DataTag<QueryKey, TData, TError>;
+  };
+
+  return withQueryKey(query, queryOptions.queryKey);
+}
+
+/**
+ * 세션에 확정된 5문항을 문항 번호 오름차순으로 반환합니다.<br>
+ * 진행 중, 채점 중, 완료, 채점 실패, 취소 어느 상태에서도 조회할 수 있습니다.<br>
+ * 🔐 <strong>Jwt 필요</strong>
+ * @summary 면접 세션 문제 목록 조회
+ */
+export const getQuestions = (
+  sessionId: number,
+  options?: SecondParameter<typeof customInstance>,
+  signal?: AbortSignal,
+) => {
+  return customInstance<InterviewSessionQuestionsResponse>(
+    { url: `/api/v1/interview-sessions/${sessionId}/questions`, method: 'GET', signal },
+    options,
+  );
+};
+
+export const getGetQuestionsQueryKey = (sessionId: number) => {
+  return [`/api/v1/interview-sessions/${sessionId}/questions`] as const;
+};
+
+export const getGetQuestionsQueryOptions = <
+  TData = Awaited<ReturnType<typeof getQuestions>>,
+  TError = ErrorType<unknown>,
+>(
+  sessionId: number,
+  options?: {
+    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getQuestions>>, TError, TData>>;
+    request?: SecondParameter<typeof customInstance>;
+  },
+) => {
+  const { query: queryOptions, request: requestOptions } = options ?? {};
+
+  const queryKey = queryOptions?.queryKey ?? getGetQuestionsQueryKey(sessionId);
+
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof getQuestions>>> = ({ signal }) =>
+    getQuestions(sessionId, requestOptions, signal);
+
+  return {
+    queryKey,
+    queryFn,
+    enabled: sessionId !== null && sessionId !== undefined,
+    ...queryOptions,
+  } as UseQueryOptions<Awaited<ReturnType<typeof getQuestions>>, TError, TData> & {
+    queryKey: DataTag<QueryKey, TData, TError>;
+  };
+};
+
+export type GetQuestionsQueryResult = NonNullable<Awaited<ReturnType<typeof getQuestions>>>;
+export type GetQuestionsQueryError = ErrorType<unknown>;
+
+export function useGetQuestions<
+  TData = Awaited<ReturnType<typeof getQuestions>>,
+  TError = ErrorType<unknown>,
+>(
+  sessionId: number,
+  options: {
+    query: Partial<UseQueryOptions<Awaited<ReturnType<typeof getQuestions>>, TError, TData>> &
+      Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getQuestions>>,
+          TError,
+          Awaited<ReturnType<typeof getQuestions>>
+        >,
+        'initialData'
+      >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+export function useGetQuestions<
+  TData = Awaited<ReturnType<typeof getQuestions>>,
+  TError = ErrorType<unknown>,
+>(
+  sessionId: number,
+  options?: {
+    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getQuestions>>, TError, TData>> &
+      Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getQuestions>>,
+          TError,
+          Awaited<ReturnType<typeof getQuestions>>
+        >,
+        'initialData'
+      >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+export function useGetQuestions<
+  TData = Awaited<ReturnType<typeof getQuestions>>,
+  TError = ErrorType<unknown>,
+>(
+  sessionId: number,
+  options?: {
+    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getQuestions>>, TError, TData>>;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+/**
+ * @summary 면접 세션 문제 목록 조회
+ */
+
+export function useGetQuestions<
+  TData = Awaited<ReturnType<typeof getQuestions>>,
+  TError = ErrorType<unknown>,
+>(
+  sessionId: number,
+  options?: {
+    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getQuestions>>, TError, TData>>;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+  const queryOptions = getGetQuestionsQueryOptions(sessionId, options);
 
   const query = useQuery(queryOptions, queryClient) as UseQueryResult<TData, TError> & {
     queryKey: DataTag<QueryKey, TData, TError>;
