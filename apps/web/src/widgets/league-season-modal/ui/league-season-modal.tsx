@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { ReactNode } from 'react';
 
 import type { LastSeasonPopupDto } from '@/entities/league';
+import { cn } from '@/shared/lib/cn';
 import { useIsWideViewport } from '@/shared/lib/use-is-wide-viewport';
 import { Button } from '@/shared/ui/button';
 import { Modal, ModalDescription, ModalTitle } from '@/shared/ui/modal';
@@ -50,6 +51,8 @@ interface SeasonModalLayoutProps {
   description: string;
   /** 하단 stat 칸(결과=2칸, 시작=1칸). */
   stats: ReactNode;
+  /** stat 그리드 열 수. stats 개수에 맞춘다(기본 2). */
+  statsColumns?: 1 | 2;
   onNext: () => void;
 }
 
@@ -66,8 +69,10 @@ function SeasonModalLayout({
   children,
   description,
   stats,
+  statsColumns = 2,
   onNext,
 }: SeasonModalLayoutProps) {
+  const statsGridClass = statsColumns === 1 ? 'grid-cols-1' : 'grid-cols-2';
   const isWide = useIsWideViewport();
 
   return (
@@ -93,7 +98,7 @@ function SeasonModalLayout({
             <ModalDescription className="text-[18px] font-semibold text-text-2-w">
               {description}
             </ModalDescription>
-            <div className="grid h-23 w-full grid-cols-2 gap-3">{stats}</div>
+            <div className={cn('grid h-23 w-full gap-3', statsGridClass)}>{stats}</div>
           </div>
           <Button size="cta" onClick={onNext}>
             다음으로
@@ -114,7 +119,7 @@ function SeasonModalLayout({
               </div>
             </div>
           </div>
-          <div className="grid w-full grid-cols-2 gap-3">{stats}</div>
+          <div className={cn('grid w-full gap-3', statsGridClass)}>{stats}</div>
           <Button size="cta" onClick={onNext}>
             다음으로
           </Button>
@@ -164,6 +169,7 @@ function SeasonStartModal({ popup, open, onNext }: SeasonModalProps) {
       label="시작 티어"
       description="직전 티어 기준으로 시작 위치가 정해져요!"
       stats={<ModalStatBox value={String(popup.nextStartLp ?? 0)} label="시작 LP" />}
+      statsColumns={1}
       onNext={onNext}
     >
       <div className="flex items-center justify-center gap-1.5">
