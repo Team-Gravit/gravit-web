@@ -12,6 +12,7 @@ export {
   normalizeNickname,
 } from './model/nickname';
 export { ProfileAvatar, type ProfileAvatarProps } from './ui/profile-avatar';
+export { LevelProgressAvatar, type LevelProgressAvatarProps } from './ui/level-progress-avatar';
 export { ProfileColorPicker, type ProfileColorPickerProps } from './ui/profile-color-picker';
 export {
   NicknameField,

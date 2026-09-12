@@ -1,4 +1,5 @@
-import { LevelProgressAvatar, type LeagueUser } from '@/entities/league';
+import type { LeagueUser } from '@/entities/league';
+import { LevelProgressAvatar } from '@/entities/user';
 import { cn } from '@/shared/lib/cn';
 import { useIsWideViewport } from '@/shared/lib/use-is-wide-viewport';
 

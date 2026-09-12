@@ -1,9 +1,7 @@
 import { useId } from 'react';
 
-import { getLevelInfo } from '@/shared/lib/level-table';
-import { getProfileColor } from '@/shared/lib/profile-color';
-
-import ProfileAvatar from './profile-avatar.svg?react';
+import { getLevelInfo } from '../model/level';
+import { ProfileAvatar } from './profile-avatar';
 
 export interface LevelProgressAvatarProps {
   xp: number;
@@ -11,8 +9,8 @@ export interface LevelProgressAvatarProps {
   /** 아바타 지름(px). */
   size?: number;
   /**
-   * 레벨 진행 링 표시 여부. 시안상 **데스크톱만** 링을 두르고 모바일은 링 없는 아바타다.
-   * 링 디자인은 리그 전용이라(트랙 없음·strokeWidth 4·꽉 찬 콘텐츠) 공통 컴포넌트로 빼지 않고 여기서 그린다.
+   * 레벨 진행 링 표시 여부. 리그 랭킹 시안상 **데스크톱만** 링을 두르고 모바일은 링 없는 아바타다.
+   * 링 디자인(트랙 없음·strokeWidth 4·꽉 찬 콘텐츠)은 별도 컴포넌트로 빼지 않고 여기서 그린다.
    */
   showRing?: boolean;
 }
@@ -27,9 +25,7 @@ export function LevelProgressAvatar({
   const gradientId = useId();
   const { progress } = getLevelInfo(xp);
 
-  const avatar = (
-    <ProfileAvatar style={{ color: getProfileColor(profileImgNumber) }} className="size-full" />
-  );
+  const avatar = <ProfileAvatar colorNumber={profileImgNumber} className="size-full" />;
 
   if (!showRing) {
     return (

@@ -11,5 +11,3 @@ export { useLeagueInfo } from './api/use-league-info';
 export { useMyLeagueProfile } from './api/use-my-league-profile';
 export { useLeagueRanking } from './api/use-league-ranking';
 export { useMyLeagueRanking } from './api/use-my-league-ranking';
-
-export { LevelProgressAvatar, type LevelProgressAvatarProps } from './ui/level-progress-avatar';

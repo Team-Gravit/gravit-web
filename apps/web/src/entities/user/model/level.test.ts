@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { getLevelInfo } from './level-table';
+import { getLevelInfo } from './level';
 
 describe('getLevelInfo', () => {
   it('구간 시작 xp면 progress가 0이다', () => {
