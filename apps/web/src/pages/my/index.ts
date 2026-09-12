@@ -1,1 +1,2 @@
-export { MyPage } from './ui/my-page';
+export { MyPageLayout } from './ui/my-page-layout';
+export { MyTabPlaceholder } from './ui/my-tab-placeholder';
