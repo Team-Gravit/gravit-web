@@ -1,5 +1,7 @@
 import type { FunctionComponent, SVGProps } from 'react';
 
+import type { NavItem } from '@/shared/config';
+
 import HomeIcon from '../ui/assets/home.svg?react';
 import HomeFillIcon from '../ui/assets/home-fill.svg?react';
 import LeagueIcon from '../ui/assets/league.svg?react';
@@ -11,17 +13,16 @@ import MyFillIcon from '../ui/assets/my-fill.svg?react';
 
 type SvgIcon = FunctionComponent<SVGProps<SVGSVGElement>>;
 
-export interface BottomTabItem {
-  label: string;
-  to: '/main' | '/learning' | '/league' | '/my';
-  icon: SvgIcon;
-  /** 활성 상태 아이콘(채움). */
-  activeIcon: SvgIcon;
+interface TabIcons {
+  idle: SvgIcon;
+
+  active: SvgIcon;
 }
 
-export const BOTTOM_TAB_ITEMS: BottomTabItem[] = [
-  { label: '홈', to: '/main', icon: HomeIcon, activeIcon: HomeFillIcon },
-  { label: '학습', to: '/learning', icon: LearningIcon, activeIcon: LearningFillIcon },
-  { label: '리그', to: '/league', icon: LeagueIcon, activeIcon: LeagueFillIcon },
-  { label: '마이그래빗', to: '/my', icon: MyIcon, activeIcon: MyFillIcon },
-];
+// 경로와 레이블은 `NAV_ITEMS`에서 공유하고, 탭바는 아이콘만 연결한다.
+export const TAB_ICONS: Record<NavItem['to'], TabIcons> = {
+  '/main': { idle: HomeIcon, active: HomeFillIcon },
+  '/learning': { idle: LearningIcon, active: LearningFillIcon },
+  '/league': { idle: LeagueIcon, active: LeagueFillIcon },
+  '/my': { idle: MyIcon, active: MyFillIcon },
+};
