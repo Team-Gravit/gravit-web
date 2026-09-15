@@ -38,13 +38,13 @@ const USER = {
 };
 const WEEKLY_RECORD = {
   consecutiveSolvedDays: 1,
-  MONDAY: false,
-  TUESDAY: false,
-  WEDNESDAY: false,
-  THURSDAY: false,
-  FRIDAY: false,
-  SATURDAY: false,
-  SUNDAY: false,
+  MONDAY: { dayTiming: 'PAST', isCompleted: false },
+  TUESDAY: { dayTiming: 'PAST', isCompleted: false },
+  WEDNESDAY: { dayTiming: 'TODAY', isCompleted: false },
+  THURSDAY: { dayTiming: 'FUTURE', isCompleted: false },
+  FRIDAY: { dayTiming: 'FUTURE', isCompleted: false },
+  SATURDAY: { dayTiming: 'FUTURE', isCompleted: false },
+  SUNDAY: { dayTiming: 'FUTURE', isCompleted: false },
 };
 const MISSION = {
   missionType: 'COMPLETE_LESSON_ONE',

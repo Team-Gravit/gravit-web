@@ -9,15 +9,13 @@ const WEEKDAY_COUNT = 7;
 
 export interface WeeklyStreakProps {
   record: WeeklyLearningRecordResponse;
-  /** 「오늘」 기준. 테스트에서 고정할 때 넘긴다. */
-  today?: Date;
   className?: string;
 }
 
-export function WeeklyStreak({ record, today = new Date(), className }: WeeklyStreakProps) {
+export function WeeklyStreak({ record, className }: WeeklyStreakProps) {
   return (
     <ul data-slot="weekly-streak" className={cn('flex gap-3 md:gap-2', className)}>
-      {getWeekdayStreaks(record, today).map(({ label, status }) => (
+      {getWeekdayStreaks(record).map(({ label, status }) => (
         <li key={label}>
           <WeekdayBadge label={label} status={status} />
         </li>

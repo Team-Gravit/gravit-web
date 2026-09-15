@@ -1,26 +1,27 @@
 import { describe, expect, it } from 'vitest';
 
+import type { WeeklyLearningRecordResponse } from '@/shared/api/generated/model';
+
 import { getWeekdayStreaks } from './weekly-streak';
 
 const RECORD = {
   consecutiveSolvedDays: 3,
-  MONDAY: true,
-  TUESDAY: true,
-  WEDNESDAY: true,
-  THURSDAY: false,
-  FRIDAY: false,
-  SATURDAY: false,
-  SUNDAY: false,
-};
+  MONDAY: { dayTiming: 'PAST', isCompleted: true },
+  TUESDAY: { dayTiming: 'PAST', isCompleted: false },
+  WEDNESDAY: { dayTiming: 'TODAY', isCompleted: true },
+  THURSDAY: { dayTiming: 'FUTURE', isCompleted: false },
+  FRIDAY: { dayTiming: 'FUTURE', isCompleted: false },
+  SATURDAY: { dayTiming: 'FUTURE', isCompleted: false },
+  SUNDAY: { dayTiming: 'FUTURE', isCompleted: false },
+} satisfies WeeklyLearningRecordResponse;
 
 describe('getWeekdayStreaks', () => {
-  it('오늘이 수요일이면 월·화 = completed, 수 = today, 목~일 = upcoming 이다 (AC-18)', () => {
-    // 2026-09-09는 수요일이다.
-    const statuses = getWeekdayStreaks(RECORD, new Date(2026, 8, 9)).map((d) => d.status);
+  it('서버의 시점과 완료 여부를 네 가지 화면 상태로 변환한다 (AC-18)', () => {
+    const statuses = getWeekdayStreaks(RECORD).map((day) => day.status);
 
     expect(statuses).toEqual([
       'completed',
-      'completed',
+      'uncompleted',
       'today',
       'upcoming',
       'upcoming',
@@ -29,32 +30,24 @@ describe('getWeekdayStreaks', () => {
     ]);
   });
 
-  it('오늘은 기록이 있어도 today다', () => {
-    const [, , wednesday] = getWeekdayStreaks(RECORD, new Date(2026, 8, 9));
+  it('오늘은 완료 여부와 관계없이 today다', () => {
+    const [, , wednesday] = getWeekdayStreaks({
+      ...RECORD,
+      WEDNESDAY: { dayTiming: 'TODAY', isCompleted: false },
+    });
 
     expect(wednesday.status).toBe('today');
   });
 
-  it('지난 날은 기록에 따라 completed와 uncompleted로 구분한다', () => {
-    // 2026-09-13은 일요일이다.
-    const statuses = getWeekdayStreaks(
-      { ...RECORD, THURSDAY: true, FRIDAY: false, SATURDAY: true },
-      new Date(2026, 8, 13),
-    ).map((d) => d.status);
+  it('지난 요일은 완료 여부에 따라 completed와 uncompleted로 구분한다', () => {
+    const [monday, tuesday] = getWeekdayStreaks(RECORD);
 
-    expect(statuses).toEqual([
-      'completed',
-      'completed',
-      'completed',
-      'completed',
-      'uncompleted',
-      'completed',
-      'today',
-    ]);
+    expect(monday.status).toBe('completed');
+    expect(tuesday.status).toBe('uncompleted');
   });
 
   it('레이블은 월~일 순서다', () => {
-    expect(getWeekdayStreaks(RECORD, new Date(2026, 8, 9)).map((d) => d.label)).toEqual([
+    expect(getWeekdayStreaks(RECORD).map((day) => day.label)).toEqual([
       '월',
       '화',
       '수',
