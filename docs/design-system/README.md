@@ -18,7 +18,7 @@ UI·스타일 작업의 진입점.
 | 색 팔레트 · 토큰 이름 | Storybook `Foundations/Colors` (`src/stories/colors.mdx`) |
 | 타입 스케일 17종      | Storybook `Foundations/Typography` (`typography.mdx`)     |
 | radius 8종            | Storybook `Foundations/Radius` (`radius.mdx`)             |
-| 아이콘 87종 목록      | Storybook `Iconography` (`Iconography.mdx`)               |
+| 아이콘 89종 목록      | Storybook `Iconography` (`Iconography.mdx`)               |
 | **정의 원본**         | `apps/web/src/app/styles/tokens.css`                      |
 
 ```bash
@@ -46,15 +46,16 @@ pnpm --filter @repo/web storybook
 
 **대조일 2026-09-01** — 디자이너의 **Alias Token 페이지**(`8240:13750`)를 기준으로 `tokens.css`와 기계 비교했다.
 
-| 토큰 그룹  | 상태              | 근거                                            |
-| ---------- | ----------------- | ----------------------------------------------- |
-| Color      | ✅ **29/29 일치** | Alias Token 페이지의 색상 칩과 전부 같다 (§3-1) |
-| Typography | ✅ 확정           | 17종. `typography.mdx`                          |
-| Radius     | ✅ 확정           | 8종. **DX를 위해 우리가 정한 것** (§3-2)        |
-| Breakpoint | ✅ 확정           | 코드 기준. Figma에 정의 없음                    |
-| Spacing    | ⬜ **없음**       | Figma 디자인 시스템에 정의되지 않았다 (§3-3)    |
-| Shadow     | ⬜ **없음**       | 〃 (§3-3)                                       |
-| Grid       | ⬜ **없음**       | 〃                                              |
+| 토큰 그룹  | 상태              | 근거                                                                                     |
+| ---------- | ----------------- | ---------------------------------------------------------------------------------------- |
+| Color      | ✅ **29/29 일치** | Alias Token 페이지의 색상 칩과 전부 같다 (§3-1). 2026-09-11 `purple-50` 별칭 추가 (§3-4) |
+| Gradient   | ✅ 1종            | `brand-gradient` — Figma 스타일 `main/gr` (§3-4)                                         |
+| Typography | ✅ 확정           | 17종. `typography.mdx`                                                                   |
+| Radius     | ✅ 확정           | 8종. **DX를 위해 우리가 정한 것** (§3-2)                                                 |
+| Breakpoint | ✅ 확정           | 코드 기준. Figma에 정의 없음                                                             |
+| Spacing    | ⬜ **없음**       | Figma 디자인 시스템에 정의되지 않았다 (§3-3)                                             |
+| Shadow     | ⬜ **토큰 없음**  | `Card`는 확정 전까지 Figma 값을 컴포넌트에 직접 적용 (§3-3·3-4)                          |
+| Grid       | ⬜ **없음**       | 〃                                                                                       |
 
 ### 3-1. ⚠️ 대조는 **색상 칩**을 기준으로 한다
 
@@ -96,7 +97,17 @@ Figma 디자인 시스템에 radius 정의가 없다. **DX를 위해 숫자 토�
 레이아웃 값이다. 디자이너가 관리하는 토큰이 아니므로 **이식 대상이 아니다.**
 
 - spacing이 필요하면 **Tailwind 기본 스케일**을 쓴다
-- **그림자는 임의로 추가하지 않는다.** 필요해지면 디자이너에게 정의를 요청한다
+- 그림자는 확인된 화면 값만 컴포넌트에 직접 적용하고, 공용 토큰이 확정되면 교체한다
+
+### 3-4. MIG-025 (2026-09-11) 에서 추가·판정한 것
+
+| 항목                                 | 결정                                                                                                       |
+| ------------------------------------ | ---------------------------------------------------------------------------------------------------------- |
+| `--color-purple-50`                  | primitive만 있고 별칭이 빠져 있었다. Figma `color/purple/50`(게이지 트랙·완료 뱃지)이 쓰므로 별칭 승격     |
+| `--background-image-brand-gradient`  | Figma 스타일 `main/gr` = `#8100b3 → #dd00ff`(Dev Mode 확인). 호환 `main-gr`와 색은 같고 이름·각도만 정식화 |
+| `brand/Main/2`                       | 화면 노드의 변수값은 **#9b00cf = `cta`** 다. 호환 `main-2`(#8100b3)와 다르므로 새 코드는 `cta`를 쓴다      |
+| `schemes/secondary` (탭바 비활성)    | 토큰 없음. `text-3`으로 대체. **디자이너 확정 필요**                                                       |
+| 카드 그림자 `0 4px 32px 0 #00000006` | `Card`에 컴포넌트 값으로 적용. 공용 shadow 토큰 확정 후 교체 (§3-3)                                        |
 
 ## 4. 정리 대상 토큰 대장 — **51개**
 
@@ -110,22 +121,22 @@ Figma 디자인 시스템에 radius 정의가 없다. **DX를 위해 숫자 토�
 > 더 아래 223행부터의 **`--text-*` 타이포 토큰 17종(선언 68개 = 17스타일 × 4속성)은 정식 스케일이다.**
 > 경계를 착각하면 살아 있는 토큰을 지우게 된다.
 
-| 묶음                                                   |   개수 | 현재 사용처                                 |
-| ------------------------------------------------------ | -----: | ------------------------------------------- |
-| `--color-gray-*: initial` + `--color-gray-100~900`     |     10 | `privacy-page` · `terms-page`               |
-| 배경·버튼 (`bg-gray` `kakao-btn` `black`)              |      3 | 미사용                                      |
-| `--background-image-main-gr`                           |      1 | 미사용                                      |
-| **죽은 텍스트 토큰** (`--color-text1` `--color-text2`) |      2 | **미사용 — 새 코드에서 쓰지 않는다**        |
-| 티어 (`bronze`~`diamond`)                              |      5 | 미사용                                      |
-| main 계열 (`main-1` `main-hover` `main-2` `main-end`)  |      4 | 홈 스캐폴드가 `main-1` 사용                 |
-| 학습 헤더 (`neutral-20/60/100`)                        |      3 | 미사용                                      |
-| 학습 문제영역 (`correct` `error` `error-info`)         |      3 | 미사용                                      |
-| 프로필 (`profile-1`~`10`)                              |     10 | 미사용                                      |
-| 번호 (`--color-3`)                                     |      1 | 미사용                                      |
-| `--font-mbc`                                           |      1 | 미사용                                      |
-| 헤더·탭 높이 (`header-height` 외 3)                    |      4 | **`privacy-page` · `terms-page` (MIG-004)** |
-| 애니메이션 (skeleton 2 · fade 2)                       |      4 | fade 2종만 `utilities.css`                  |
-| **합계**                                               | **51** |                                             |
+| 묶음                                                   |   개수 | 현재 사용처                                         |
+| ------------------------------------------------------ | -----: | --------------------------------------------------- |
+| `--color-gray-*: initial` + `--color-gray-100~900`     |     10 | `privacy-page` · `terms-page`                       |
+| 배경·버튼 (`bg-gray` `kakao-btn` `black`)              |      3 | 미사용                                              |
+| `--background-image-main-gr`                           |      1 | 미사용 — **정식 `brand-gradient`가 대체** (MIG-025) |
+| **죽은 텍스트 토큰** (`--color-text1` `--color-text2`) |      2 | **미사용 — 새 코드에서 쓰지 않는다**                |
+| 티어 (`bronze`~`diamond`)                              |      5 | 미사용                                              |
+| main 계열 (`main-1` `main-hover` `main-2` `main-end`)  |      4 | 홈 스캐폴드가 `main-1` 사용                         |
+| 학습 헤더 (`neutral-20/60/100`)                        |      3 | 미사용                                              |
+| 학습 문제영역 (`correct` `error` `error-info`)         |      3 | 미사용                                              |
+| 프로필 (`profile-1`~`10`)                              |     10 | 미사용                                              |
+| 번호 (`--color-3`)                                     |      1 | 미사용                                              |
+| `--font-mbc`                                           |      1 | 미사용                                              |
+| 헤더·탭 높이 (`header-height` 외 3)                    |      4 | **`privacy-page` · `terms-page` (MIG-004)**         |
+| 애니메이션 (skeleton 2 · fade 2)                       |      4 | fade 2종만 `utilities.css`                          |
+| **합계**                                               | **51** |                                                     |
 
 **규칙**
 
