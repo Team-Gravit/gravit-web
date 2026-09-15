@@ -51,3 +51,12 @@
     }
   }
 }
+
+/* 터치 전용 기기에서는 hover를 비활성화하고, 입력 장치 중 하나라도 hover를 지원하면 활성화한다. */
+@custom-variant hover {
+  @media (any-hover: hover) {
+    &:hover {
+      @slot;
+    }
+  }
+}

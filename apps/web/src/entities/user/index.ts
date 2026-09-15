@@ -1,4 +1,11 @@
-export { getUserQueryKey, getUserQueryOptions, useUser } from './api';
+export {
+  getUserProfileQueryKey,
+  getUserQueryKey,
+  getUserQueryOptions,
+  useUser,
+  useUserProfile,
+} from './api';
+export type { UserProfile } from './model/types';
 export {
   FIRST_PROFILE_COLOR_NUMBER,
   getNextProfileColorNumber,

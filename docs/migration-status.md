@@ -59,7 +59,7 @@ legacy는 위 조건이 모두 충족될 때 한 번에 제거한다. 중간에 
 
 | 영역        | Legacy URL                                                                                 | 기준선 | 대체 구현 | 동작 검증 | 작업    |
 | ----------- | ------------------------------------------------------------------------------------------ | :----: | :-------: | :-------: | ------- |
-| 메인        | `/main`, `/mains`                                                                          |   ⬜   |    ⬜     |    ⬜     | —       |
+| 메인        | `/main` (`/mains`는 폐기, §5)                                                              |   ✅   |    ✅     |    🚧     | MIG-025 |
 | 학습        | `/learning`                                                                                |   ⬜   |    ⬜     |    ⬜     | —       |
 | 학습        | `/learning/$chapterId`                                                                     |   ⬜   |    ⬜     |    ⬜     | —       |
 | 학습        | `/learning/$chapterId/$unitId`                                                             |   ⬜   |    ⬜     |    ⬜     | —       |
@@ -80,38 +80,43 @@ legacy는 위 조건이 모두 충족될 때 한 번에 제거한다. 중간에 
 
 파일명이 아니라 기능을 식별자로 삼는다. 경로가 바뀌어도 기능의 대체 여부를 추적하기 위해서다.
 
-| 기능           | Legacy 근거                           | 새 소유 위치                         | 기준선 | 대체 구현 | 동작 검증 | 작업    | 영향                                        |
-| -------------- | ------------------------------------- | ------------------------------------ | :----: | :-------: | :-------: | ------- | ------------------------------------------- |
-| Footer         | `widgets/Footer/Footer.tsx`           | `widgets/footer/`                    |   ✅   |    ✅     |    ✅     | MIG-004 | 전체 공개 화면                              |
-| Gravit 로고    | 로고 SVG 2종                          | `shared/ui/logo/`                    |   ✅   |    ✅     |    ✅     | MIG-004 | Header·Footer                               |
-| 인증 세션      | `shared/api/config.ts`                | 미정                                 |   ✅   |    ⬜     |    ⬜     | MIG-005 | 인증 화면 전체                              |
-| OAuth callback | callback route                        | `app/routes/`                        |   ✅   |    ⬜     |    ⬜     | MIG-005 | 로그인                                      |
-| 반응형 판정    | `shared/model/use-responsive.ts`      | `shared/lib/use-is-wide-viewport.ts` |   ✅   |    ✅     |    ✅     | MIG-018 | 15개 사용처 — 로그인 외는 화면 이전 시 전환 |
-| Toast          | `shared/lib/toast/`                   | `shared/ui`+`shared/lib`             |   ⬜   |    ⬜     |    ⬜     | —       | 6개 사용처                                  |
-| Query 초기화   | `shared/lib/query/`                   | `app/query/`                         |   ⬜   |    ⬜     |    ⬜     | —       | API 화면 전체                               |
-| 무한 스크롤    | `shared/model/use-infinite-scroll.ts` | `shared/lib/`                        |   ⬜   |    ⬜     |    ⬜     | —       | 3개 사용처                                  |
-| Planet 유틸    | `shared/lib/planet/`                  | 소비자 slice                         |   ⬜   |    ⬜     |    ⬜     | —       | 2개 사용처                                  |
-| 공용 Button    | `features/button/`                    | `shared/ui/button/`                  |   ⬜   |    ✅     |    ⬜     | —       | 사용처 전환 필요                            |
-| 메인 위젯      | `widgets/main`, `widgets/main-page`   | `widgets/main/`                      |   ⬜   |    ⬜     |    ⬜     | —       | 병합 판정 필요                              |
-| Sidebar        | `entities/sidebar`, `widgets/sidebar` | 미정                                 |   ⬜   |    ⬜     |    ⬜     | —       | 소유권 판정 필요                            |
+| 기능                | Legacy 근거                                                                                        | 새 소유 위치                                                                                               | 기준선 | 대체 구현 | 동작 검증 | 작업    | 영향                                           |
+| ------------------- | -------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | :----: | :-------: | :-------: | ------- | ---------------------------------------------- |
+| Footer              | `widgets/Footer/Footer.tsx`                                                                        | `widgets/footer/`                                                                                          |   ✅   |    ✅     |    ✅     | MIG-004 | 전체 공개 화면                                 |
+| Gravit 로고         | 로고 SVG 2종                                                                                       | `shared/ui/logo/`                                                                                          |   ✅   |    ✅     |    ✅     | MIG-004 | Header·Footer                                  |
+| 인증 세션           | `shared/api/config.ts`                                                                             | 미정                                                                                                       |   ✅   |    ⬜     |    ⬜     | MIG-005 | 인증 화면 전체                                 |
+| OAuth callback      | callback route                                                                                     | `app/routes/`                                                                                              |   ✅   |    ⬜     |    ⬜     | MIG-005 | 로그인                                         |
+| 반응형 판정         | `shared/model/use-responsive.ts`                                                                   | `shared/lib/use-is-wide-viewport.ts`                                                                       |   ✅   |    ✅     |    ✅     | MIG-018 | 15개 사용처 — 로그인 외는 화면 이전 시 전환    |
+| Toast               | `shared/lib/toast/`                                                                                | `shared/ui`+`shared/lib`                                                                                   |   ⬜   |    ⬜     |    ⬜     | —       | 6개 사용처                                     |
+| Query 초기화        | `shared/lib/query/`                                                                                | `app/query/`                                                                                               |   ⬜   |    ⬜     |    ⬜     | —       | API 화면 전체                                  |
+| 무한 스크롤         | `shared/model/use-infinite-scroll.ts`                                                              | `shared/lib/`                                                                                              |   ⬜   |    ⬜     |    ⬜     | —       | 3개 사용처                                     |
+| Planet 유틸         | `shared/lib/planet/`                                                                               | 소비자 slice                                                                                               |   ⬜   |    ⬜     |    ⬜     | —       | 2개 사용처                                     |
+| 공용 Button         | `features/button/`                                                                                 | `shared/ui/button/`                                                                                        |   ⬜   |    ✅     |    ⬜     | —       | 사용처 전환 필요                               |
+| 메인 위젯           | `widgets/main`, `widgets/main-page`                                                                | `widgets/{hero-greeting,growth-summary,continue-learning,recommended-units,learning-streak,daily-mission}` |   ✅   |    ✅     |    🚧     | MIG-025 | 섹션마다 widget 하나 (ADR-1)                   |
+| 헤더 · 탭바         | `widgets/header`, `widgets/bottom-tab-bar`                                                         | `widgets/header` · `widgets/bottom-tab-bar`                                                                |   ✅   |    ✅     |    🚧     | MIG-025 | 인증 화면 전체. 벨·AI면접은 미구현             |
+| 학습·미션·리그 표시 | `entities/{learning,mission,league}` · `shared/ui/{card,chip,progress-bar,skeleton,weekly-streak}` | `entities/{learning,mission,league}` · `shared/ui/{card,chip,progress-bar,skeleton}`                       |   ✅   |    ✅     |    🚧     | MIG-025 | zod 스키마는 이전하지 않음                     |
+| Sidebar             | `entities/sidebar`, `widgets/sidebar`                                                              | `useUserInfo`는 `entities/user`의 `useUser`로 대체 (ADR-2). 사이드바 UI는 미정                             |   ✅   |     △     |    ⬜     | MIG-025 | 헤더 프로필만 대체. 마이페이지 사이드바는 별도 |
 
 ## 5. 이전 제외·폐기 대상
 
-| 대상                                                 | 판정      | 대체 수단 또는 근거                             | 작업    |
-| ---------------------------------------------------- | --------- | ----------------------------------------------- | ------- |
-| `shared/api/@generated/`                             | 이전 제외 | Orval `generate:api`가 대체                     | MIG-005 |
-| `features/auth/use-refresh-token.tsx`                | 폐기      | 전체가 주석 처리됐고 실제 갱신 로직은 다른 파일 | MIG-005 |
-| `shared/lib/test/`                                   | 폐기      | 개발용 잔재                                     | —       |
-| `pages/_authenticated/_fixed-header-layout/test.tsx` | 폐기      | 운영 대상이 아닌 테스트 화면                    | —       |
+| 대상                                                                                  | 판정        | 대체 수단 또는 근거                                       | 작업    |
+| ------------------------------------------------------------------------------------- | ----------- | --------------------------------------------------------- | ------- |
+| `shared/api/@generated/`                                                              | 이전 제외   | Orval `generate:api`가 대체                               | MIG-005 |
+| `features/auth/use-refresh-token.tsx`                                                 | 폐기        | 전체가 주석 처리됐고 실제 갱신 로직은 다른 파일           | MIG-005 |
+| `shared/lib/test/`                                                                    | 폐기        | 개발용 잔재                                               | —       |
+| `pages/_authenticated/_fixed-header-layout/test.tsx`                                  | 폐기        | 운영 대상이 아닌 테스트 화면                              | —       |
+| `pages/_authenticated/_fixed-header-layout/mains.tsx` + `widgets/main/model/hooks.ts` | 폐기        | 구버전 메인. 어디서도 링크되지 않는다 (MIG-025 기준선 B8) | MIG-025 |
+| `entities/sidebar/api/useUserInfo.ts`                                                 | 폐기        | `entities/user` `useUser`가 대체                          | MIG-025 |
+| `/user/*` · `/user/me/delete/page` 라우트                                             | 폐기 (경로) | `docs/routes.md` §4 — 새 앱은 `/my/*` · `/settings/*`     | MIG-025 |
 
 ## 6. 폐기 차단 항목
 
 상세 판단은 해당 `work/{ID}/spec.md`에 두고 여기에는 폐기를 막는 항목만 남긴다.
 
-| 항목                                  | 영향                       | 작업           |
-| ------------------------------------- | -------------------------- | -------------- |
-| `/main`과 `/mains`의 제품상 관계 미정 | 메인 라우트 목표 결정 불가 | 신규 작업 필요 |
-| 인증 갱신·게이트 계약 미확정          | 인증 화면 전체             | MIG-005        |
+| 항목                                                              | 영향                                    | 작업                      |
+| ----------------------------------------------------------------- | --------------------------------------- | ------------------------- |
+| 메인 실서버 응답 확인 (유닛 번호 · 추천 제목 · 진행률 단위 · 404) | 값이 틀리면 게이지·번호 표기가 어긋난다 | MIG-025 `checklist.md` §2 |
+| 인증 갱신·게이트 계약 미확정                                      | 인증 화면 전체                          | MIG-005                   |
 
 ## 7. 갱신 규칙
 
@@ -123,9 +128,10 @@ legacy는 위 조건이 모두 충족될 때 한 번에 제거한다. 중간에 
 
 ## 갱신 이력
 
-| 날짜       | 내용                                                                                                  |
-| ---------- | ----------------------------------------------------------------------------------------------------- |
-| 2026-09-10 | MIG-024 반영. 온보딩 2화면 대체 구현. **완료 화면 경로가 `/success` → `/onboarding/success` 로 바뀜** |
-| 2026-09-10 | MIG-018 반영. `/` 로그인 화면과 반응형 판정 기반을 대체 구현으로 표시                                 |
-| 2026-09-01 | 역할 재정의. 제품 구현·토큰 상태를 분리하고 legacy 폐기 조건 중심으로 개편                            |
-| 2026-08-31 | 최초 작성. MIG-004 완료 반영                                                                          |
+| 날짜       | 내용                                                                                                                                           |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2026-09-11 | MIG-025 반영. 메인 화면·헤더·탭바·섹션 6개 대체 구현. `/mains`·`/user/*` 폐기. `/main`·`/mains` 차단 항목 해소. 라우트 정본은 `docs/routes.md` |
+| 2026-09-10 | MIG-024 반영. 온보딩 2화면 대체 구현. **완료 화면 경로가 `/success` → `/onboarding/success` 로 바뀜**                                          |
+| 2026-09-10 | MIG-018 반영. `/` 로그인 화면과 반응형 판정 기반을 대체 구현으로 표시                                                                          |
+| 2026-09-01 | 역할 재정의. 제품 구현·토큰 상태를 분리하고 legacy 폐기 조건 중심으로 개편                                                                     |
+| 2026-08-31 | 최초 작성. MIG-004 완료 반영                                                                                                                   |

@@ -50,7 +50,7 @@ const withQueryKey = <T extends object, K>(query: T, queryKey: K): T & { queryKe
 };
 
 /**
- * 레슨 완료 후 문제 풀이 결과를 저장하고 사용자 레벨을 업데이트합니다.<br>생성된 레슨 제출 아이디만 반환하며, 결과 화면 정보는 <strong>레슨 결과 조회</strong> API로 받습니다.<br>🔐 <strong>Jwt 필요</strong><br>
+ * 레슨 완료 후 문제 풀이 결과를 저장하고 사용자 레벨을 업데이트합니다.<br>생성된 레슨 제출 아이디와 이번 제출로 인한 레벨업 여부, 리그 승급 여부를 반환하며, 결과 화면 정보는 <strong>레슨 결과 조회</strong> API로 받습니다.<br>레벨업 여부는 레슨 XP 기준이며, 미션 완료 보상 XP로 인한 레벨업은 포함하지 않습니다.<br>리그 점수 지급이 재시도 큐로 넘어갔거나 제출 저장 뒤 승급 여부 조회에 실패한 경우 승급했더라도 <strong>isLeaguePromoted</strong>는 false입니다.<br>재제출은 보상이 없으므로 두 값 모두 false입니다.<br>🔐 <strong>Jwt 필요</strong><br>
  * @summary 레슨 결과 저장
  */
 export const saveLessonSubmission = (

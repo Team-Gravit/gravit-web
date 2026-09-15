@@ -24,6 +24,8 @@ export * from './createChapterAlmostClearUserParams';
 export * from './createUserParams';
 export * from './currentSeasonDto';
 export * from './dailySolvedCountResponse';
+export * from './dayLearningRecordResponse';
+export * from './dayLearningRecordResponseDayTiming';
 export * from './errorResponse';
 export * from './fcmTokenExistsResponse';
 export * from './followCountsResponse';

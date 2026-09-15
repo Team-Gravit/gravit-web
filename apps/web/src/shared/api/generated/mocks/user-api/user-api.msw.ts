@@ -97,13 +97,34 @@ export const getGetMainPageResponseMock = (
   })),
   weeklyLearningRecordResponse: {
     consecutiveSolvedDays: faker.number.int(),
-    MONDAY: faker.datatype.boolean(),
-    TUESDAY: faker.datatype.boolean(),
-    WEDNESDAY: faker.datatype.boolean(),
-    THURSDAY: faker.datatype.boolean(),
-    FRIDAY: faker.datatype.boolean(),
-    SATURDAY: faker.datatype.boolean(),
-    SUNDAY: faker.datatype.boolean(),
+    MONDAY: {
+      dayTiming: faker.helpers.arrayElement(['PAST', 'TODAY', 'FUTURE'] as const),
+      isCompleted: faker.datatype.boolean(),
+    },
+    TUESDAY: {
+      dayTiming: faker.helpers.arrayElement(['PAST', 'TODAY', 'FUTURE'] as const),
+      isCompleted: faker.datatype.boolean(),
+    },
+    WEDNESDAY: {
+      dayTiming: faker.helpers.arrayElement(['PAST', 'TODAY', 'FUTURE'] as const),
+      isCompleted: faker.datatype.boolean(),
+    },
+    THURSDAY: {
+      dayTiming: faker.helpers.arrayElement(['PAST', 'TODAY', 'FUTURE'] as const),
+      isCompleted: faker.datatype.boolean(),
+    },
+    FRIDAY: {
+      dayTiming: faker.helpers.arrayElement(['PAST', 'TODAY', 'FUTURE'] as const),
+      isCompleted: faker.datatype.boolean(),
+    },
+    SATURDAY: {
+      dayTiming: faker.helpers.arrayElement(['PAST', 'TODAY', 'FUTURE'] as const),
+      isCompleted: faker.datatype.boolean(),
+    },
+    SUNDAY: {
+      dayTiming: faker.helpers.arrayElement(['PAST', 'TODAY', 'FUTURE'] as const),
+      isCompleted: faker.datatype.boolean(),
+    },
   },
   missionDetailResponse: {
     missionType: faker.string.alpha({ length: { min: 10, max: 20 } }),

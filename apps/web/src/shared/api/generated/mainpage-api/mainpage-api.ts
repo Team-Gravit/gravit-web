@@ -49,7 +49,7 @@ const withQueryKey = <T extends object, K>(query: T, queryKey: K): T & { queryKe
 };
 
 /**
- * 메인페이지 주간 학습 기록(연속 학습일, 요일별 학습 여부)을 조회합니다<br>🔐 <strong>Jwt 필요</strong><br>
+ * 메인페이지 주간 학습 기록(연속 학습일, 이번 주 요일별 시점과 학습 완료 여부)을 조회합니다<br><strong>dayTiming</strong>은 서버 기준(KST) 오늘 날짜로 판정합니다 (PAST: 지난 요일, TODAY: 오늘, FUTURE: 오늘 이후 요일)<br><strong>isCompleted</strong>는 그날 학습을 완료했는지 여부이며, FUTURE 요일은 항상 false입니다<br>🔐 <strong>Jwt 필요</strong><br>
  * @summary 메인페이지 주간 학습 기록 조회
  */
 export const getWeeklyRecord = (

@@ -50,6 +50,8 @@
   /* ================================
         ALIAS - Purple
     ================================ */
+  /* 게이지 트랙 · 완료 뱃지 배경 (Figma color/purple/50) */
+  --color-purple-50: var(--primitive-purple-50); /* #FBF2FF */
   --color-purple-100: var(--primitive-purple-100);
   --color-purple-200: var(--primitive-purple-200);
   --color-purple-300: var(--primitive-purple-300);
@@ -105,6 +107,12 @@
   --color-cta-secondary-default: var(--primitive-gray-300); /* #DCDCDC */
   --color-cta-secondary-hover: var(--primitive-gray-500); /* #A8A8A8 */
   --color-cta-secondary-text: var(--primitive-gray-600); /* #6D6D6D */
+
+  /* ================================
+        ALIAS - Gradient
+    ================================ */
+  /* Figma 스타일 `main/gr`. 게이지 채움 등 브랜드 그라데이션. 각도는 가로 게이지 기준 좌→우. */
+  --background-image-brand-gradient: linear-gradient(90deg, #8100b3 0%, #dd00ff 100%);
 
   /* ================================
         RADIUS

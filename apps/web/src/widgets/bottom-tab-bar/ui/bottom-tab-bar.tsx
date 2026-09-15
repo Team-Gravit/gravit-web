@@ -1,28 +1,36 @@
 import { Link } from '@tanstack/react-router';
 
+import { NAV_ITEMS } from '@/shared/config';
 import { cn } from '@/shared/lib/cn';
 
-import { BOTTOM_TAB_ITEMS } from '../model/nav';
+import { TAB_ICONS } from '../model/nav';
 
-/** 모바일 하단 네비게이션. 활성 탭은 채움 아이콘 + main 라벨로 표시한다. */
 export function BottomTabBar() {
   return (
-    <nav className="fixed inset-x-0 bottom-0 z-40 h-(--bottom-tab-height) bg-white shadow-[0_4px_3.5px_rgba(0,0,0,0.1)]">
+    <nav
+      data-slot="bottom-tab-bar"
+      aria-label="하단 탭"
+      className="fixed inset-x-0 bottom-0 z-40 h-(--bottom-tab-height) bg-white shadow-[0_4px_7px_rgba(0,0,0,0.1)]"
+    >
       <ul className="flex h-full items-center justify-around">
-        {BOTTOM_TAB_ITEMS.map(({ label, to, icon: Icon, activeIcon: ActiveIcon }) => (
-          <li key={to} className="w-1/4">
-            <Link to={to} className="flex flex-col items-center justify-center gap-1">
-              {({ isActive }) => (
-                <>
-                  {isActive ? <ActiveIcon /> : <Icon />}
-                  <span className={cn('text-caption1', isActive ? 'text-main' : 'text-icon')}>
-                    {label}
-                  </span>
-                </>
-              )}
-            </Link>
-          </li>
-        ))}
+        {NAV_ITEMS.map((item) => {
+          const { idle: Icon, active: ActiveIcon } = TAB_ICONS[item.to];
+
+          return (
+            <li key={item.to} className="w-1/4">
+              <Link to={item.to} className="flex flex-col items-center justify-center gap-1">
+                {({ isActive }) => (
+                  <>
+                    {isActive ? <ActiveIcon /> : <Icon />}
+                    <span className={cn('text-caption1', isActive ? 'text-main' : 'text-icon')}>
+                      {item.label}
+                    </span>
+                  </>
+                )}
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </nav>
   );
