@@ -7,3 +7,4 @@ export {
   type AuthConfig,
 } from './auth-token';
 export type { BodyType, ErrorType } from './axios-instance';
+export { isNotFoundError, nullIfNotFound } from './not-found';
