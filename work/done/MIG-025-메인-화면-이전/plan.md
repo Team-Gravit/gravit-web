@@ -57,7 +57,7 @@ mode: 'migrate'
 | 7   | 히어로 인사말: 닉네임 로딩/실패를 조용히 처리                                         | `[widgets]`              | D2~D4 · AC-7·8        |   1   |
 | 8   | 넓은/좁은 페이지를 조립하고 `/main`에 연결한다                                        | `[pages]` `[app]`        | A2~A6 · AC-1~3        |   1   |
 | 9   | 카드 셸(제목 · 우측 액션 · 본문) · 상태(메시지 + 액션) · 게이지(aria) · 스켈레톤      | `[shared]`               | ADR-3 · AC-24         |   2   |
-| 10  | 주간 기록 조회(404 → null) · 요일 상태 계산(월 시작 · 로컬 오늘)                      | `[entities]`             | I4~I6 · AC-15·18      |   2   |
+| 10  | 주간 기록 조회(404 → null) · 서버 KST 기준 요일 상태 변환                             | `[entities]`             | I4~I6 · AC-15·18      |   2   |
 | 11  | 연속 학습일 위젯: 숫자 · 뱃지 7 · 「자세히 보기」 · 상태 4종                          | `[widgets]`              | I2~I8 · AC-19         |   2   |
 | 12  | 미션 조회 · 목적지 판정 · 진행률 변환 · 완료 상태                                     | `[entities]`             | J3~J7 · AC-20~22      |   2   |
 | 13  | 오늘의 미션 위젯: 넓은 CTA / 좁은 카드 링크 · 완료 시 비활성 · 에러 재시도            | `[widgets]`              | J6 · J8 · AC-21~23    |   2   |
@@ -143,7 +143,7 @@ FSD 위반 **없음**. cross-slice 위험 지점: `widgets/continue-learning`이
 ### Issue 2 — 연속 학습일 · 미션 · 공통 셸
 
 - [x] `[shared]` `ui/card/` — `Card`(`<section data-slot="card">`) · `CardHeader` · `CardTitle`(`h2`) · `CardLink`(`Link` 래퍼) · `CardStatus`(`role="status"` 또는 `role="alert"` + message + action). `ui/progress-bar/` — `ProgressBar`(`role="progressbar"` `aria-valuenow/min/max`, 0~100 clamp) · `LabeledProgressBar`. `ui/skeleton/` — `Skeleton`(`aria-hidden`, variant text/circular/block). 최소 클래스만. 배럴 + 기본 story 껍데기
-- [x] `[entities]` `learning/model/weekly-streak.ts` — `WEEKDAYS` · `getWeekdayStatuses(record, today: Date)` (AC-18 테스트, 일요일 케이스 포함). `learning/api/use-weekly-record.ts` — `useQuery({ ...getGetWeeklyRecordQueryOptions(), queryFn: 404→null })` (ADR-4). `learning/ui/weekday-badge.tsx` · `weekly-streak.tsx` (표시 전용, `today`를 prop 기본값 `new Date()`)
+- [x] `[entities]` `learning/model/weekly-streak.ts` — `WEEKDAYS` · `getWeekdayStreaks(record)` (`dayTiming` + `isCompleted` 변환, AC-18). `learning/api/use-weekly-record.ts` — `useQuery({ ...getGetWeeklyRecordQueryOptions(), queryFn: 404→null })` (ADR-4). `learning/ui/weekday-badge.tsx` · `weekly-streak.tsx` (표시 전용)
 - [x] `[entities]` `mission/model/mission.ts` — `toMissionProgressPercent(rate)` (가정 0~1 ×100, 확인 필요 D 주석). `mission-route.ts` — `getMissionRoute(type)` (AC-20 테스트). `api/use-daily-mission.ts` re-export. `ui/mission-card.tsx` — props `{ mission, route, isWide, isLoading }`: 설명 · 「완료 시 +{xp} XP」 · `LabeledProgressBar` · 넓은 CTA(`Button asChild` `Link`, 완료면 `Button disabled` 「미션 완료」) / 좁은 카드 링크(완료면 링크 없음)
 - [x] `[widgets]` `learning-streak/ui/learning-streak.tsx` — `useWeeklyRecord` → 4상태(pending/error/null/success). 「자세히 보기」→`/league` 항상. `daily-mission/ui/daily-mission.tsx` — `useDailyMission` → error면 `CardStatus` + `refetch`
 - [x] `[pages]` 넓은: 우측 컬럼에 배치. 좁은: 상단 연속학습일 → [미션 | (최근학습 자리)] 배치. 테스트 AC-19 · 23 · 24

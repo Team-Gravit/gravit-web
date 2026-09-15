@@ -42,7 +42,7 @@ mode: 'migrate'
 | AC-15 | 404 → 빈 상태 / 500 → 재시도                               | `continue-learning-card.test.tsx` · `widgets/learning-streak/ui/learning-streak.test.tsx` · `shared/api/not-found.test.ts` | ✅   |
 | AC-16 | 최근 학습 카드 = 첫 유닛, `/learning/7/11`                 | `continue-learning-card.test.tsx` RecentUnitCard                                                                           | ✅   |
 | AC-17 | 추천 카드 2장 · `chapterTitle` · Lesson 21 · 「전체보기」  | `widgets/recommended-units/ui/recommended-units.test.tsx`                                                                  | ✅   |
-| AC-18 | 요일 상태 (수요일 · 일요일 케이스)                         | `entities/learning/model/weekly-streak.test.ts`                                                                            | ✅   |
+| AC-18 | 서버 시점·완료 여부를 네 가지 요일 상태로 변환             | `entities/learning/model/weekly-streak.test.ts`                                                                            | ✅   |
 | AC-19 | 「5」「일 연속」 · 뱃지 7 · 「자세히 보기」 · learning 0회 | `learning-streak.test.tsx` AC-19                                                                                           | ✅   |
 | AC-20 | 미션 목적지                                                | `entities/mission/model/mission.test.ts` · `widgets/daily-mission/ui/daily-mission.test.tsx`                               | ✅   |
 | AC-21 | 미션 문구·진행률·CTA/카드 링크                             | `daily-mission.test.tsx` AC-21 ×2                                                                                          | ✅   |

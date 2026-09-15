@@ -103,7 +103,7 @@ GitHub Issue: 미등록
 
 ### 완료 조건
 
-☑ **AC-18** (단위) 오늘=수, 월·화·수 `true` → 월·화 `completed` · 수 `today` · 목~일 `upcoming`; 일요일 케이스
+☑ **AC-18** (단위) 서버의 KST 기준 `dayTiming`과 `isCompleted`를 `completed` · `uncompleted` · `today` · `upcoming`으로 변환
 ☑ **AC-19** (통합) `{ consecutiveSolvedDays: 5 }` → 「5」「일 연속」 · 뱃지 7 · 「자세히 보기」→`/league` · `learning` 요청 0회
 ☑ **AC-15(연속)** (통합) `weekly-record` 404 → 빈 상태(임시 문구), 500 → 「다시 시도」
 ☑ **AC-20** (단위) `FOLLOW_NEW_FRIEND`→`/my/friends/search`, 그 외·미지 타입→`/learning`

@@ -429,14 +429,14 @@ JSX 안에 흩어져 있었다.
 
 ## 확인이 필요한 제약
 
-| 항목                        | 내용                                                                                                                                                                | 이전 시 처리                                                                         |
-| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| API 계약 변경 (legacy 이후) | legacy 생성물에는 `consecutiveSolvedDays`가 `LearningDetailResponse`에 있었으나 **현재 명세는 `WeeklyLearningRecordResponse`에 있다.** `apps/web` 생성물 기준       | 연속 학습일은 weekly-record **하나만** 조회하면 된다. I1의 2중 조회는 옛 명세의 잔재 |
-| `progressRate` 단위 미기재  | 명세에 설명이 없다. legacy는 미션 `progressRate`는 ×100(0~1 가정), 챕터 `recentSolvedChapterProgressRate`는 그대로(0~100 가정) 쓴다                                 | §확인 필요 3                                                                         |
-| 행성 이미지 8종             | `chapterId` 1~8 ↔ 수성~해왕성 PNG. `apps/web`에 아직 없다                                                                                                          | 소비자 슬라이스에 에셋을 둔다 (`migration-status` §4 「Planet 유틸」)                |
-| 티어 아이콘 15종            | `leagueId` 1~15 ↔ SVG. `apps/web`에 아직 없다                                                                                                                      | `entities/league`에 둔다. 리그 화면도 쓴다                                           |
-| 히어로 배경 이미지 2종      | 넓은/좁은 화면용 PNG. `apps/web`의 `shared/ui/layout/space-background`와 같은 그림인지 확인 필요                                                                    | §확인 필요 4                                                                         |
-| 호환 토큰 사용              | legacy는 `main-1` `main-2` `gray-*` `bg-main-gr`(그라데이션) `#FBF1FF` `#CE4BFF` `#625B71`을 쓴다. 새 화면에서는 호환 토큰을 쓰지 않는다(`design-source-policy` §8) | 시안 대조에서 정식 토큰으로 매핑. 게이지 그라데이션은 web `tokens.css`에 **없다**    |
+| 항목                        | 내용                                                                                                                                                                | 이전 시 처리                                                                                                                                   |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| API 계약 변경 (legacy 이후) | 현재 `WeeklyLearningRecordResponse`가 `consecutiveSolvedDays`와 요일별 `{ dayTiming, isCompleted }`를 함께 제공한다. `dayTiming`은 서버가 KST로 판정한다.           | 연속 학습일은 weekly-record **하나만** 조회하며, 클라이언트 로컬 시간으로 오늘을 계산하지 않는다. I1·I6·C9는 옛 명세와 legacy 동작의 기록이다. |
+| `progressRate` 단위 미기재  | 명세에 설명이 없다. legacy는 미션 `progressRate`는 ×100(0~1 가정), 챕터 `recentSolvedChapterProgressRate`는 그대로(0~100 가정) 쓴다                                 | §확인 필요 3                                                                                                                                   |
+| 행성 이미지 8종             | `chapterId` 1~8 ↔ 수성~해왕성 PNG. `apps/web`에 아직 없다                                                                                                          | 소비자 슬라이스에 에셋을 둔다 (`migration-status` §4 「Planet 유틸」)                                                                          |
+| 티어 아이콘 15종            | `leagueId` 1~15 ↔ SVG. `apps/web`에 아직 없다                                                                                                                      | `entities/league`에 둔다. 리그 화면도 쓴다                                                                                                     |
+| 히어로 배경 이미지 2종      | 넓은/좁은 화면용 PNG. `apps/web`의 `shared/ui/layout/space-background`와 같은 그림인지 확인 필요                                                                    | §확인 필요 4                                                                                                                                   |
+| 호환 토큰 사용              | legacy는 `main-1` `main-2` `gray-*` `bg-main-gr`(그라데이션) `#FBF1FF` `#CE4BFF` `#625B71`을 쓴다. 새 화면에서는 호환 토큰을 쓰지 않는다(`design-source-policy` §8) | 시안 대조에서 정식 토큰으로 매핑. 게이지 그라데이션은 web `tokens.css`에 **없다**                                                              |
 
 ## 동일성 확인 방법
 
@@ -671,9 +671,9 @@ JSX 안에 흩어져 있었다.
 ### 연속 학습일
 
 - [ ] **AC-18** (단위 — 순수 함수)
-      Given 오늘 = 수요일(로컬), `weekly-record` `{ MONDAY: true, TUESDAY: true, WEDNESDAY: true, THURSDAY: false, … }`
-      When 요일 상태를 계산한다
-      Then 월·화 = `completed`, 수 = `today`, 목~일 = `upcoming`. 일요일이면 월~토 = 기록대로, 일 = `today`
+      Given `weekly-record`가 요일마다 서버 KST 기준 `dayTiming`과 `isCompleted`를 제공한다
+      When 요일 상태를 변환한다
+      Then `TODAY` = `today`, `FUTURE` = `upcoming`, `PAST`는 완료 여부에 따라 `completed` 또는 `uncompleted`다
 - [ ] **AC-19** (단위)
       Given `weekly-record` `{ consecutiveSolvedDays: 5, … }`
       When 연속 학습일을 그린다
