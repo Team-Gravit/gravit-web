@@ -1,3 +1,8 @@
+---
+paths:
+  - 'apps/web/src/widgets/**'
+---
+
 # widgets 레이어 (3)
 
 화면의 **독립적인 한 덩어리**. entities와 features를 조합해 "그 자리에 놓으면 동작하는" 블록을 만든다.

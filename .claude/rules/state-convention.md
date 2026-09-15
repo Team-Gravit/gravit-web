@@ -1,3 +1,8 @@
+---
+paths:
+  - 'apps/web/src/**/*.{ts,tsx}'
+---
+
 # 상태 규칙 (Zustand + TanStack Query)
 
 ---

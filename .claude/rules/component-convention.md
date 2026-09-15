@@ -1,3 +1,8 @@
+---
+paths:
+  - 'apps/web/src/**/ui/**'
+---
+
 # 컴포넌트 규칙
 
 `shared/ui/button`, `icon`, `icon-button`, `spinner`가 레퍼런스다. 새 컴포넌트는 그 형태를 따른다.

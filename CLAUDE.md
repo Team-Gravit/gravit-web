@@ -75,6 +75,11 @@ app(5) → pages(4) → widgets(3) → features(2) → entities(1) → shared(0)
 
 규칙 상세는 `.claude/rules/`:
 
+> **레이어·컨벤션 규칙 11종은 `paths` frontmatter로 `apps/web/src/**`에 한정**돼 있어 해당 파일을
+> 읽거나 편집할 때 로드된다 (Claude Code의 path-scoped rules — 키는 `paths`다. Cursor의 `globs`가
+> 아니다). 정책 8종은 frontmatter 없이 항상 로드된다. 계획 단계처럼 파일을 읽기 전이라면 스킬이
+> 명시한 대로 규칙 문서를 직접 읽는다.
+
 **레이어**
 
 | 파일              | 범위                                                            |
