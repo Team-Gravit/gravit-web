@@ -5,14 +5,15 @@
  * 앱센터 16.5기 동계 프로젝트 Gravit API Docs
  * OpenAPI spec version: 1.0.0
  */
+import type { DayLearningRecordResponse } from './dayLearningRecordResponse';
 
 export interface WeeklyLearningRecordResponse {
   consecutiveSolvedDays: number;
-  MONDAY: boolean;
-  TUESDAY: boolean;
-  WEDNESDAY: boolean;
-  THURSDAY: boolean;
-  FRIDAY: boolean;
-  SATURDAY: boolean;
-  SUNDAY: boolean;
+  MONDAY: DayLearningRecordResponse;
+  TUESDAY: DayLearningRecordResponse;
+  WEDNESDAY: DayLearningRecordResponse;
+  THURSDAY: DayLearningRecordResponse;
+  FRIDAY: DayLearningRecordResponse;
+  SATURDAY: DayLearningRecordResponse;
+  SUNDAY: DayLearningRecordResponse;
 }

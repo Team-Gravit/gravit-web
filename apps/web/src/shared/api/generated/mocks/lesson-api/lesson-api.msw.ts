@@ -20,6 +20,8 @@ export const getSaveLessonSubmissionResponseMock = (
   overrideResponse: Partial<Extract<LessonSubmissionSaveResponse, object>> = {},
 ): LessonSubmissionSaveResponse => ({
   lessonSubmissionId: faker.number.int(),
+  isLevelUp: faker.datatype.boolean(),
+  isLeaguePromoted: faker.datatype.boolean(),
   ...overrideResponse,
 });
 
