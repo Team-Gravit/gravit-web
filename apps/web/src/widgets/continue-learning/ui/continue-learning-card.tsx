@@ -12,22 +12,18 @@ import {
 } from '@/shared/ui/card';
 import { LabeledProgressBar } from '@/shared/ui/progress-bar';
 import { Skeleton } from '@/shared/ui/skeleton';
-import {
-  UnitProgressList,
-  UnitProgressListSkeleton,
-  useRecentLearning,
-  type RecentLearning,
-} from '@/entities/learning';
+import { UnitProgressList, UnitProgressListSkeleton, useRecentLearning } from '@/entities/learning';
 
 export interface ContinueLearningCardProps {
   className?: string;
 }
 
-/** 다음 유닛이 있을 때만 이어서 학습 CTA와 전체 학습 화면 링크를 표시한다. */
+/** 최근 챕터는 전체 보기로, 다음 미완료 유닛은 이어서 학습하기로 연결한다. */
 export function ContinueLearningCard({ className }: ContinueLearningCardProps) {
   const { data: learning, isPending, isError, refetch } = useRecentLearning();
   const nextUnit = learning?.nextUnit ?? null;
-  const nextUnitParams = learning && nextUnit ? toUnitParams(learning, nextUnit.unitId) : null;
+  const nextUnitParams = nextUnit ? { unitId: String(nextUnit.unitId) } : null;
+  const chapterParams = learning ? { chapterId: String(learning.chapterId) } : null;
 
   let body: ReactNode;
 
@@ -50,7 +46,7 @@ export function ContinueLearningCard({ className }: ContinueLearningCardProps) {
         <UnitProgressList units={learning.units} />
         {nextUnit && nextUnitParams ? (
           <Button size="cta" asChild>
-            <Link to="/learning/$chapterId/$unitId" params={nextUnitParams}>
+            <Link to="/learning/units/$unitId" params={nextUnitParams}>
               {nextUnit.order}강 이어서 학습하기
             </Link>
           </Button>
@@ -63,8 +59,8 @@ export function ContinueLearningCard({ className }: ContinueLearningCardProps) {
     <Card data-section="continue-learning" className={className}>
       <CardHeader>
         <CardTitle>이어서 학습하기</CardTitle>
-        {nextUnitParams ? (
-          <CardLink to="/learning/$chapterId/$unitId" params={nextUnitParams}>
+        {chapterParams ? (
+          <CardLink to="/learning/chapters/$chapterId" params={chapterParams}>
             전체 학습화면 보기
           </CardLink>
         ) : null}
@@ -72,10 +68,6 @@ export function ContinueLearningCard({ className }: ContinueLearningCardProps) {
       {body}
     </Card>
   );
-}
-
-function toUnitParams(learning: RecentLearning, unitId: number) {
-  return { chapterId: String(learning.chapterId), unitId: String(unitId) };
 }
 
 function ContinueLearningBodySkeleton() {

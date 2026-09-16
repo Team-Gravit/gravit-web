@@ -19,7 +19,7 @@ const LEARNING = {
     { unitId: 13, title: '큐', status: 'NOT_STARTED' },
   ],
 };
-const EXTRA_PATHS = ['/learning', '/learning/$chapterId/$unitId'];
+const EXTRA_PATHS = ['/learning', '/learning/chapters/$chapterId', '/learning/units/$unitId'];
 
 function renderCard() {
   const Target = () => <ContinueLearningCard />;
@@ -27,7 +27,7 @@ function renderCard() {
 }
 
 describe('ContinueLearningCard', () => {
-  it('챕터 제목 · 진행률 · 행 3개(순번 + 칩 3종) · 「2강 이어서 학습하기」→/learning/7/12 (AC-12)', async () => {
+  it('챕터 제목 · 진행률 · 행 3개(순번 + 칩 3종) · 「2강 이어서 학습하기」→/learning/units/12 (AC-12)', async () => {
     server.use(http.get(LEARNING_URL, () => HttpResponse.json(LEARNING)));
     await renderCard();
 
@@ -51,11 +51,11 @@ describe('ContinueLearningCard', () => {
 
     expect(screen.getByRole('link', { name: '2강 이어서 학습하기' })).toHaveAttribute(
       'href',
-      '/learning/7/12',
+      '/learning/units/12',
     );
   });
 
-  it('전부 완료면 CTA 가 없다 (AC-13)', async () => {
+  it('전부 완료면 CTA는 없고 챕터 전체 보기 링크는 남는다 (AC-13)', async () => {
     server.use(
       http.get(LEARNING_URL, () =>
         HttpResponse.json({
@@ -68,15 +68,19 @@ describe('ContinueLearningCard', () => {
 
     await screen.findByText('자료구조');
     expect(screen.queryByRole('link', { name: /이어서 학습하기/ })).not.toBeInTheDocument();
+    expect(screen.getByRole('link', { name: '전체 학습화면 보기' })).toHaveAttribute(
+      'href',
+      '/learning/chapters/7',
+    );
   });
 
-  it('헤더의 「전체 학습화면 보기」가 다음 유닛으로 간다 (AC-14)', async () => {
+  it('헤더의 「전체 학습화면 보기」가 최근 챕터의 유닛 목록으로 간다 (AC-14)', async () => {
     server.use(http.get(LEARNING_URL, () => HttpResponse.json(LEARNING)));
     await renderCard();
 
     expect(await screen.findByRole('link', { name: '전체 학습화면 보기' })).toHaveAttribute(
       'href',
-      '/learning/7/12',
+      '/learning/chapters/7',
     );
   });
 
@@ -111,12 +115,12 @@ describe('ContinueLearningCard', () => {
 });
 
 describe('RecentUnitCard', () => {
-  it('최근 챕터의 첫 유닛 카드 한 장, href /learning/7/11 (AC-16)', async () => {
+  it('최근 챕터의 첫 유닛 카드 한 장, href /learning/units/11 (AC-16)', async () => {
     server.use(http.get(LEARNING_URL, () => HttpResponse.json(LEARNING)));
     await renderWithProviders(RecentUnitCard, { extraPaths: EXTRA_PATHS });
 
     const card = await screen.findByRole('link', { name: '배열 학습하러 가기' });
-    expect(card).toHaveAttribute('href', '/learning/7/11');
+    expect(card).toHaveAttribute('href', '/learning/units/11');
     expect(card).toHaveTextContent('Lesson 11');
     expect(screen.getAllByRole('link')).toHaveLength(1);
   });
