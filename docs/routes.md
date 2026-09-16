@@ -5,8 +5,8 @@
 
 > 2026-09-11 MIG-025에서 메인 화면의 타입 안전한 이동을 위해 현재 경로를 정리했다. 네이티브 셸은
 > 루트 URL만 열고(`apps/native/app/index.tsx`), 서버 응답에 URL 필드가 없으며(`v3/api-docs` 전수 확인),
-> 푸시 딥링크가 없다. 아래 「외부 계약」만 고정이다. `/learning/$chapterId/$unitId`의 평탄화 여부를
-> 포함한 내부 URL은 해당 화면의 `MIG-`에서 사용 흐름과 정보 구조를 검토한 뒤 확정한다.
+> 푸시 딥링크가 없다. 아래 「외부 계약」만 고정이다. 학습 하위 URL은 MIG-027에서 각 리소스가
+> id 하나만 갖도록 평탄화했다.
 
 ## 1. 외부 계약 — 바꾸지 않는다
 
@@ -23,13 +23,13 @@
 | ------------------- | ------------------------------------------------------------ | ----------------------------------------------------------- | -------------------------------- |
 | `MAIN-01`           | `/main`                                                      | 같음 (`/mains`는 폐기)                                      | MIG-025                          |
 | `ONB-01` · `ONB-02` | `/onboarding` · `/onboarding/success`                        | `/onboarding` · `/success`                                  | ✅ MIG-024                       |
-| `LRN-01`            | `/learning`                                                  | 같음                                                        | 학습 화면 MIG에서 재검토         |
-| `LRN-02`            | `/learning/$chapterId`                                       | 같음                                                        | 학습 화면 MIG에서 재검토         |
-| `LRN-03`            | `/learning/$chapterId/$unitId`                               | 같음                                                        | 학습 화면 MIG에서 재검토         |
-| `LRN-04`            | `/learning/$chapterId/$unitId/concept-note`                  | 같음                                                        | 학습 화면 MIG에서 재검토         |
-| `QUIZ-01`~`08`      | `/learning/$chapterId/$unitId/lessons/$lessonId`             | `…/$unitId/$lessonId` — id 3연속을 피한다                   | 학습 화면 MIG에서 재검토         |
-| 오답 노트           | `/learning/$chapterId/$unitId/wrong-answers`                 | `…/incorrect-problems` — API `wrong-answered-notes` 와 맞춤 | 학습 화면 MIG에서 재검토         |
-| 북마크              | `/learning/$chapterId/$unitId/bookmarks`                     | `…/bookmarked-problems` — API `bookmarks` 와 맞춤           | 학습 화면 MIG에서 재검토         |
+| `LRN-01`            | `/learning`                                                  | 같음                                                        | MIG-027                          |
+| `LRN-02`            | `/learning/chapters/$chapterId`                              | `/learning/$chapterId`                                      | MIG-027                          |
+| `LRN-03`            | `/learning/units/$unitId`                                    | `/learning/$chapterId/$unitId`                              | MIG-027                          |
+| `LRN-04`            | `/learning/units/$unitId/concept-note`                       | `/learning/$chapterId/$unitId/concept-note`                 | MIG-027 URL 확정                 |
+| `QUIZ-01`~`08`      | `/learning/units/$unitId/lessons/$lessonId`                  | `…/$unitId/$lessonId`                                       | MIG-027 URL 확정                 |
+| 오답 노트           | `/learning/units/$unitId/wrong-answers`                      | `…/incorrect-problems` — API `wrong-answered-notes` 와 맞춤 | MIG-027 URL 확정                 |
+| 북마크              | `/learning/units/$unitId/bookmarks`                          | `…/bookmarked-problems` — API `bookmarks` 와 맞춤           | MIG-027 URL 확정                 |
 | `LG-01`~`03`        | `/league`                                                    | 같음                                                        |                                  |
 | `MY-01`             | `/my`                                                        | 같음. `/user`는 폐기                                        |                                  |
 | `MY-02`·`03`        | `/my/summary` · `/my/learning` · `/my/league` · `/my/social` | 같음                                                        |                                  |
