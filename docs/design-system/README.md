@@ -121,21 +121,22 @@ Figma 디자인 시스템에 radius 정의가 없다. **DX를 위해 숫자 토�
 > 더 아래 223행부터의 **`--text-*` 타이포 토큰 17종(선언 68개 = 17스타일 × 4속성)은 정식 스케일이다.**
 > 경계를 착각하면 살아 있는 토큰을 지우게 된다.
 
-| 묶음                                                   |   개수 | 현재 사용처                                         |
-| ------------------------------------------------------ | -----: | --------------------------------------------------- |
-| `--color-gray-*: initial` + `--color-gray-100~900`     |     10 | `privacy-page` · `terms-page`                       |
-| 배경·버튼 (`bg-gray` `kakao-btn` `black`)              |      3 | 미사용                                              |
-| `--background-image-main-gr`                           |      1 | 미사용 — **정식 `brand-gradient`가 대체** (MIG-025) |
-| **죽은 텍스트 토큰** (`--color-text1` `--color-text2`) |      2 | **미사용 — 새 코드에서 쓰지 않는다**                |
-| 티어 (`bronze`~`diamond`)                              |      5 | 미사용                                              |
-| main 계열 (`main-1` `main-hover` `main-2` `main-end`)  |      4 | 홈 스캐폴드가 `main-1` 사용                         |
-| 학습 헤더 (`neutral-20/60/100`)                        |      3 | 미사용                                              |
-| 학습 문제영역 (`correct` `error` `error-info`)         |      3 | 미사용                                              |
-| 프로필 (`profile-1`~`10`)                              |     10 | 미사용                                              |
-| `--font-mbc`                                           |      1 | 미사용                                              |
-| 헤더·탭 높이 (`header-height` 외 3)                    |      4 | **`privacy-page` · `terms-page` (MIG-004)**         |
-| 애니메이션 (skeleton 2 · fade 2)                       |      4 | fade 2종만 `utilities.css`                          |
-| **합계**                                               | **50** |                                                     |
+| 묶음                                                   |   개수 | 현재 사용처                                                                                                                                          |
+| ------------------------------------------------------ | -----: | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--color-gray-*: initial` + `--color-gray-100~900`     |     10 | `privacy-page` · `terms-page`                                                                                                                        |
+| 배경·버튼 (`bg-gray` `kakao-btn` `black`)              |      3 | 미사용                                                                                                                                               |
+| `--background-image-main-gr`                           |      1 | 미사용 — **정식 `brand-gradient`가 대체** (MIG-025)                                                                                                  |
+| **죽은 텍스트 토큰** (`--color-text1` `--color-text2`) |      2 | **미사용 — 새 코드에서 쓰지 않는다**                                                                                                                 |
+| 티어 (`bronze`~`diamond`)                              |      5 | 미사용                                                                                                                                               |
+| main 계열 (`main-1` `main-hover` `main-2` `main-end`)  |      4 | 홈 스캐폴드가 `main-1` 사용                                                                                                                          |
+| 학습 헤더 (`neutral-20/60/100`)                        |      3 | 미사용                                                                                                                                               |
+| 학습 문제영역 (`correct` `error` `error-info`)         |      3 | 미사용                                                                                                                                               |
+| 프로필 (`profile-1`~`10`)                              |     10 | 미사용                                                                                                                                               |
+| 번호 (`--color-3`)                                     |      1 | **사용 중** — 유닛 상세의 북마크·오답노트 아이콘 (MIG-030). 시안이 이 값(#ffb608)을 쓴다. 이름이 무엇의 색인지 말하지 않아 정식 이름 확정이 필요하다 |
+| `--font-mbc`                                           |      1 | 미사용                                                                                                                                               |
+| 헤더·탭 높이 (`header-height` 외 3)                    |      4 | **`privacy-page` · `terms-page` (MIG-004)**                                                                                                          |
+| 애니메이션 (skeleton 2 · fade 2)                       |      4 | fade 2종만 `utilities.css`                                                                                                                           |
+| **합계**                                               | **51** |                                                                                                                                                      |
 
 **규칙**
 
