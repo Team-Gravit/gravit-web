@@ -1,6 +1,7 @@
 import { setupWorker } from 'msw/browser';
 
 import { getOauth20ApiMock } from '../generated/mocks/index.msw';
+import { getGetAllLessonInUnitMockHandler } from '../generated/mocks/lesson-api/lesson-api.msw';
 import {
   getGetLeagueMockHandler,
   getGetLearningMockHandler,
@@ -68,4 +69,35 @@ const mainPageHandlers = [
   }),
 ];
 
-export const worker = setupWorker(...getOauth20ApiMock(), ...mainPageHandlers);
+/**
+ * 유닛 상세 시나리오 — 시안(LRN-03)의 예시 값을 그대로 돌려준다.
+ * 레슨 상태 칩 두 가지가 모두 보이도록 `isSolved`를 섞어 둔다.
+ */
+const unitDetailHandlers = [
+  getGetAllLessonInUnitMockHandler({
+    chapterSummary: { chapterId: 3, title: '자료구조' },
+    unitSummaryResponse: {
+      unitId: 1,
+      title: '리스트',
+      description: '리스트에 대한 설명글을 작성해주세요.',
+    },
+    bookmarkAccessible: true,
+    wrongAnsweredNoteAccessible: true,
+    unitId: 1,
+    lessonSummaries: [
+      { lessonId: 1, title: 'Lesson01', totalProblem: 10, isSolved: false },
+      { lessonId: 2, title: 'Lesson02', totalProblem: 10, isSolved: true },
+      { lessonId: 3, title: 'Lesson03', totalProblem: 10, isSolved: false },
+      { lessonId: 4, title: 'Lesson04', totalProblem: 10, isSolved: false },
+      { lessonId: 5, title: 'Lesson05', totalProblem: 10, isSolved: true },
+      { lessonId: 6, title: 'Lesson06', totalProblem: 10, isSolved: false },
+      { lessonId: 7, title: 'Lesson07', totalProblem: 10, isSolved: true },
+    ],
+  }),
+];
+
+export const worker = setupWorker(
+  ...getOauth20ApiMock(),
+  ...mainPageHandlers,
+  ...unitDetailHandlers,
+);
