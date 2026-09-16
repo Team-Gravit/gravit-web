@@ -8,7 +8,16 @@ export {
   useRecommendedUnits,
   useWeeklyRecord,
 } from './api';
+export { getUnitLessonsQueryKey, useUnitLessons } from './api';
 export { toChapterList, type Chapter } from './model/chapter';
+export {
+  toUnitLabel,
+  toUnitLessons,
+  type Lesson,
+  type LessonStatus,
+  type UnitLessons,
+} from './model/lesson';
+export { LessonItem, LessonItemSkeleton, type LessonItemProps } from './ui/lesson-item';
 export {
   toChapterProgressPercent,
   toRecentLearning,

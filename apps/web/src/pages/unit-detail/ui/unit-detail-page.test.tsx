@@ -1,0 +1,134 @@
+import { describe, expect, it, vi } from 'vitest';
+import { screen, waitFor } from '@testing-library/react';
+import { HttpResponse, http } from 'msw';
+
+import { server } from '@/shared/api/mocks/server';
+import { renderWithProviders } from '@/shared/lib/testing';
+
+import { UnitDetailPage } from './unit-detail-page';
+
+const LESSONS_URL = '*/api/v1/lessons/:unitId';
+
+const UNIT_LESSONS = {
+  chapterSummary: { chapterId: 7, title: '자료구조' },
+  unitSummaryResponse: { unitId: 21, title: '리스트', description: '리스트를 학습합니다.' },
+  bookmarkAccessible: true,
+  wrongAnsweredNoteAccessible: true,
+  unitId: 21,
+  lessonSummaries: [
+    { lessonId: 31, title: 'Lesson01', totalProblem: 10, isSolved: false },
+    { lessonId: 32, title: 'Lesson02', totalProblem: 5, isSolved: true },
+  ],
+};
+
+const EXTRA_PATHS = [
+  '/main',
+  '/learning/chapters/$chapterId',
+  '/learning/lessons/$lessonId',
+  '/learning/units/$unitId/concept-note',
+  '/learning/units/$unitId/bookmarked-problems',
+  '/learning/units/$unitId/incorrect-problems',
+];
+
+/** 테스트에서 뷰포트 상태를 고정한다. */
+function stubViewport(isWide: boolean) {
+  vi.stubGlobal(
+    'matchMedia',
+    vi.fn((query: string) => ({
+      media: query,
+      matches: isWide,
+      addEventListener: () => {},
+      removeEventListener: () => {},
+    })),
+  );
+}
+
+async function renderUnitDetail({ isWide = true } = {}) {
+  stubViewport(isWide);
+  const Target = () => <UnitDetailPage unitId="21" />;
+
+  return renderWithProviders(Target, { extraPaths: EXTRA_PATHS });
+}
+
+describe('UnitDetailPage', () => {
+  it('레슨 행을 누르면 그 레슨의 풀이 화면으로 간다 (K2)', async () => {
+    server.use(http.get(LESSONS_URL, () => HttpResponse.json(UNIT_LESSONS)));
+    await renderUnitDetail();
+
+    expect(await screen.findByRole('link', { name: /Lesson01/ })).toHaveAttribute(
+      'href',
+      '/learning/lessons/31',
+    );
+    expect(screen.getByRole('link', { name: /Lesson02/ })).toHaveAttribute(
+      'href',
+      '/learning/lessons/32',
+    );
+  });
+
+  it('목적지 3종 카드가 이 유닛의 경로를 가리킨다', async () => {
+    server.use(http.get(LESSONS_URL, () => HttpResponse.json(UNIT_LESSONS)));
+    await renderUnitDetail();
+
+    expect(await screen.findByRole('link', { name: '개념노트' })).toHaveAttribute(
+      'href',
+      '/learning/units/21/concept-note',
+    );
+    expect(screen.getByRole('link', { name: /북마크/ })).toHaveAttribute(
+      'href',
+      '/learning/units/21/bookmarked-problems',
+    );
+    expect(screen.getByRole('link', { name: /오답노트/ })).toHaveAttribute(
+      'href',
+      '/learning/units/21/incorrect-problems',
+    );
+  });
+
+  it('경로 표시의 챕터 항목이 그 챕터의 유닛 목록으로 돌아간다 (K5)', async () => {
+    server.use(http.get(LESSONS_URL, () => HttpResponse.json(UNIT_LESSONS)));
+    await renderUnitDetail();
+
+    expect(await screen.findByRole('link', { name: '자료구조' })).toHaveAttribute(
+      'href',
+      '/learning/chapters/7',
+    );
+  });
+
+  it('isSolved 에 따라 칩 문구가 「학습 완료」와 「학습 전」으로 갈린다 (K4)', async () => {
+    server.use(http.get(LESSONS_URL, () => HttpResponse.json(UNIT_LESSONS)));
+    await renderUnitDetail();
+
+    expect(await screen.findByText('학습 전')).toBeInTheDocument();
+    expect(screen.getByText('학습 완료')).toBeInTheDocument();
+  });
+
+  it('레슨이 0건이면 섹션 제목만 남고 목록이 비어 있다', async () => {
+    server.use(
+      http.get(LESSONS_URL, () => HttpResponse.json({ ...UNIT_LESSONS, lessonSummaries: [] })),
+    );
+    await renderUnitDetail();
+
+    expect(await screen.findByText('문제 리스트')).toBeInTheDocument();
+    expect(screen.queryAllByRole('listitem')).toHaveLength(0);
+  });
+
+  it('좁은 화면에서는 경로 표시가 없고 상단 바에 챕터명이 보인다', async () => {
+    server.use(http.get(LESSONS_URL, () => HttpResponse.json(UNIT_LESSONS)));
+    await renderUnitDetail({ isWide: false });
+
+    // 본문 제목은 h2 로 내려가 한 화면에 h1 이 둘 생기지 않는다.
+    expect(await screen.findByRole('heading', { level: 2, name: '리스트' })).toBeInTheDocument();
+    expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1);
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('자료구조');
+    expect(screen.queryByRole('navigation', { name: '현재 위치' })).not.toBeInTheDocument();
+  });
+
+  it('조회에 실패하면 화면을 그리지 않는다', async () => {
+    server.use(http.get(LESSONS_URL, () => HttpResponse.json(null, { status: 500 })));
+    const { container } = await renderUnitDetail();
+
+    // 스켈레톤이 걷힌 뒤 본문 대신 아무것도 남지 않는다 (legacy 와 같은 빈 화면).
+    await waitFor(() =>
+      expect(container.querySelector('[data-slot="unit-detail-page"]')).toBeNull(),
+    );
+  });
+});
