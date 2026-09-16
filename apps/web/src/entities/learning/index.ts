@@ -1,11 +1,14 @@
 export {
+  getChaptersQueryKey,
   getRecentLearningQueryKey,
   getRecommendedUnitsQueryKey,
   getWeeklyRecordQueryKey,
+  useChapters,
   useRecentLearning,
   useRecommendedUnits,
   useWeeklyRecord,
 } from './api';
+export { toChapterList, type Chapter } from './model/chapter';
 export {
   toChapterProgressPercent,
   toRecentLearning,
@@ -19,6 +22,7 @@ export {
   type UnitProgressStatus,
 } from './model/unit-progress';
 export { getWeekdayStreaks, type WeekdayStatus, type WeekdayStreak } from './model/weekly-streak';
+export { ChapterCard, ChapterCardSkeleton, type ChapterCardProps } from './ui/chapter-card';
 export { UnitCard, UnitCardSkeleton, type UnitCardProps } from './ui/unit-card';
 export { UnitProgressItem, type UnitProgressItemProps } from './ui/unit-progress-item';
 export {
