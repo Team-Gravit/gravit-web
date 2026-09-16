@@ -37,6 +37,19 @@ export const Labeled: Story = {
   ),
 };
 
+/** 기본 그라데이션과 LRN-01 넓은 화면용 단색 채움을 비교한다. */
+export const Fill: Story = {
+  render: () => (
+    <div className="flex w-80 flex-col gap-6">
+      <LabeledProgressBar label="그라데이션 (기본)" value={30} />
+      <div className="flex flex-col gap-1">
+        <span className="text-headline2 text-text-2">단색</span>
+        <ProgressBar value={30} fill="solid" className="h-4" aria-label="단색" />
+      </div>
+    </div>
+  ),
+};
+
 /** 0% · 100% · 범위 밖(150 → 100) */
 export const Edges: Story = {
   render: () => (

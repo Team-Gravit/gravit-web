@@ -22,6 +22,22 @@ describe('ProgressBar', () => {
       '31',
     );
   });
+
+  // 화면별 채움 스타일은 공개 variant 계약이므로 클래스 조합까지 검증한다.
+  it('fill 을 넘기지 않으면 그라데이션으로 채운다', () => {
+    render(<ProgressBar value={31} aria-label="경험치" />);
+
+    const fill = screen.getByRole('progressbar', { name: '경험치' }).firstElementChild;
+    expect(fill).toHaveClass('bg-brand-gradient');
+  });
+
+  it('fill="solid" 면 그라데이션 대신 단색으로 채운다', () => {
+    render(<ProgressBar value={31} fill="solid" aria-label="경험치" />);
+
+    const fill = screen.getByRole('progressbar', { name: '경험치' }).firstElementChild;
+    expect(fill).toHaveClass('bg-main');
+    expect(fill).not.toHaveClass('bg-brand-gradient');
+  });
 });
 
 describe('LabeledProgressBar', () => {

@@ -16,21 +16,21 @@ const UNITS = [
 
 function renderUnits() {
   return renderWithProviders(RecommendedUnits, {
-    extraPaths: ['/learning', '/learning/$chapterId/$unitId'],
+    extraPaths: ['/learning', '/learning/units/$unitId'],
   });
 }
 
 describe('RecommendedUnits', () => {
-  it('카드 2장 — 챕터명 · Lesson 21 · href /learning/3/21, 「전체보기」→/learning (AC-17)', async () => {
+  it('카드 2장 — 챕터명 · Lesson 21 · href /learning/units/21, 「전체보기」→/learning (AC-17)', async () => {
     server.use(http.get(UNITS_URL, () => HttpResponse.json(UNITS)));
     await renderUnits();
 
     const first = await screen.findByRole('link', { name: '자료구조 학습하러 가기' });
-    expect(first).toHaveAttribute('href', '/learning/3/21');
+    expect(first).toHaveAttribute('href', '/learning/units/21');
     expect(first).toHaveTextContent('Lesson 21');
     expect(screen.getByRole('link', { name: '운영체제 학습하러 가기' })).toHaveAttribute(
       'href',
-      '/learning/5/35',
+      '/learning/units/35',
     );
     expect(screen.getByRole('link', { name: '전체보기' })).toHaveAttribute('href', '/learning');
   });
