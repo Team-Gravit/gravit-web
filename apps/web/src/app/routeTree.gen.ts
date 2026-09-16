@@ -23,8 +23,9 @@ import { Route as AuthenticatedOnboardingSuccessRouteImport } from './routes/_au
 import { Route as AuthenticatedAppShellLearningIndexRouteImport } from './routes/_authenticated/_app-shell/learning.index'
 import { Route as AuthenticatedAppShellMyIndexRouteImport } from './routes/_authenticated/_app-shell/my.index'
 import { Route as LoginOauth2CodeProviderRouteImport } from './routes/login.oauth2.code.$provider'
-import { Route as AuthenticatedAppShellLearningChapterIdUnitIdRouteImport } from './routes/_authenticated/_app-shell/learning.$chapterId.$unitId'
 import { Route as AuthenticatedAppShellMyFriendsSearchRouteImport } from './routes/_authenticated/_app-shell/my.friends.search'
+import { Route as AuthenticatedAppShellLearningChaptersChapterIdIndexRouteImport } from './routes/_authenticated/_app-shell/learning.chapters.$chapterId.index'
+import { Route as AuthenticatedAppShellLearningUnitsUnitIdIndexRouteImport } from './routes/_authenticated/_app-shell/learning.units.$unitId.index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -102,16 +103,22 @@ const LoginOauth2CodeProviderRoute = LoginOauth2CodeProviderRouteImport.update({
   path: '/login/oauth2/code/$provider',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthenticatedAppShellLearningChapterIdUnitIdRoute =
-  AuthenticatedAppShellLearningChapterIdUnitIdRouteImport.update({
-    id: '/learning/$chapterId/$unitId',
-    path: '/learning/$chapterId/$unitId',
-    getParentRoute: () => AuthenticatedAppShellRouteRoute,
-  } as any)
 const AuthenticatedAppShellMyFriendsSearchRoute =
   AuthenticatedAppShellMyFriendsSearchRouteImport.update({
     id: '/my/friends/search',
     path: '/my/friends/search',
+    getParentRoute: () => AuthenticatedAppShellRouteRoute,
+  } as any)
+const AuthenticatedAppShellLearningChaptersChapterIdIndexRoute =
+  AuthenticatedAppShellLearningChaptersChapterIdIndexRouteImport.update({
+    id: '/learning/chapters/$chapterId/',
+    path: '/learning/chapters/$chapterId/',
+    getParentRoute: () => AuthenticatedAppShellRouteRoute,
+  } as any)
+const AuthenticatedAppShellLearningUnitsUnitIdIndexRoute =
+  AuthenticatedAppShellLearningUnitsUnitIdIndexRouteImport.update({
+    id: '/learning/units/$unitId/',
+    path: '/learning/units/$unitId/',
     getParentRoute: () => AuthenticatedAppShellRouteRoute,
   } as any)
 
@@ -128,8 +135,9 @@ export interface FileRoutesByFullPath {
   '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
   '/learning/': typeof AuthenticatedAppShellLearningIndexRoute
   '/my/': typeof AuthenticatedAppShellMyIndexRoute
-  '/learning/$chapterId/$unitId': typeof AuthenticatedAppShellLearningChapterIdUnitIdRoute
   '/my/friends/search': typeof AuthenticatedAppShellMyFriendsSearchRoute
+  '/learning/chapters/$chapterId/': typeof AuthenticatedAppShellLearningChaptersChapterIdIndexRoute
+  '/learning/units/$unitId/': typeof AuthenticatedAppShellLearningUnitsUnitIdIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -143,8 +151,9 @@ export interface FileRoutesByTo {
   '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
   '/learning': typeof AuthenticatedAppShellLearningIndexRoute
   '/my': typeof AuthenticatedAppShellMyIndexRoute
-  '/learning/$chapterId/$unitId': typeof AuthenticatedAppShellLearningChapterIdUnitIdRoute
   '/my/friends/search': typeof AuthenticatedAppShellMyFriendsSearchRoute
+  '/learning/chapters/$chapterId': typeof AuthenticatedAppShellLearningChaptersChapterIdIndexRoute
+  '/learning/units/$unitId': typeof AuthenticatedAppShellLearningUnitsUnitIdIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -162,8 +171,9 @@ export interface FileRoutesById {
   '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
   '/_authenticated/_app-shell/learning/': typeof AuthenticatedAppShellLearningIndexRoute
   '/_authenticated/_app-shell/my/': typeof AuthenticatedAppShellMyIndexRoute
-  '/_authenticated/_app-shell/learning/$chapterId/$unitId': typeof AuthenticatedAppShellLearningChapterIdUnitIdRoute
   '/_authenticated/_app-shell/my/friends/search': typeof AuthenticatedAppShellMyFriendsSearchRoute
+  '/_authenticated/_app-shell/learning/chapters/$chapterId/': typeof AuthenticatedAppShellLearningChaptersChapterIdIndexRoute
+  '/_authenticated/_app-shell/learning/units/$unitId/': typeof AuthenticatedAppShellLearningUnitsUnitIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -180,8 +190,9 @@ export interface FileRouteTypes {
     | '/login/oauth2/code/$provider'
     | '/learning/'
     | '/my/'
-    | '/learning/$chapterId/$unitId'
     | '/my/friends/search'
+    | '/learning/chapters/$chapterId/'
+    | '/learning/units/$unitId/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -195,8 +206,9 @@ export interface FileRouteTypes {
     | '/login/oauth2/code/$provider'
     | '/learning'
     | '/my'
-    | '/learning/$chapterId/$unitId'
     | '/my/friends/search'
+    | '/learning/chapters/$chapterId'
+    | '/learning/units/$unitId'
   id:
     | '__root__'
     | '/'
@@ -213,8 +225,9 @@ export interface FileRouteTypes {
     | '/login/oauth2/code/$provider'
     | '/_authenticated/_app-shell/learning/'
     | '/_authenticated/_app-shell/my/'
-    | '/_authenticated/_app-shell/learning/$chapterId/$unitId'
     | '/_authenticated/_app-shell/my/friends/search'
+    | '/_authenticated/_app-shell/learning/chapters/$chapterId/'
+    | '/_authenticated/_app-shell/learning/units/$unitId/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -326,18 +339,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginOauth2CodeProviderRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_authenticated/_app-shell/learning/$chapterId/$unitId': {
-      id: '/_authenticated/_app-shell/learning/$chapterId/$unitId'
-      path: '/learning/$chapterId/$unitId'
-      fullPath: '/learning/$chapterId/$unitId'
-      preLoaderRoute: typeof AuthenticatedAppShellLearningChapterIdUnitIdRouteImport
-      parentRoute: typeof AuthenticatedAppShellRouteRoute
-    }
     '/_authenticated/_app-shell/my/friends/search': {
       id: '/_authenticated/_app-shell/my/friends/search'
       path: '/my/friends/search'
       fullPath: '/my/friends/search'
       preLoaderRoute: typeof AuthenticatedAppShellMyFriendsSearchRouteImport
+      parentRoute: typeof AuthenticatedAppShellRouteRoute
+    }
+    '/_authenticated/_app-shell/learning/chapters/$chapterId/': {
+      id: '/_authenticated/_app-shell/learning/chapters/$chapterId/'
+      path: '/learning/chapters/$chapterId'
+      fullPath: '/learning/chapters/$chapterId/'
+      preLoaderRoute: typeof AuthenticatedAppShellLearningChaptersChapterIdIndexRouteImport
+      parentRoute: typeof AuthenticatedAppShellRouteRoute
+    }
+    '/_authenticated/_app-shell/learning/units/$unitId/': {
+      id: '/_authenticated/_app-shell/learning/units/$unitId/'
+      path: '/learning/units/$unitId'
+      fullPath: '/learning/units/$unitId/'
+      preLoaderRoute: typeof AuthenticatedAppShellLearningUnitsUnitIdIndexRouteImport
       parentRoute: typeof AuthenticatedAppShellRouteRoute
     }
   }
@@ -348,8 +368,9 @@ interface AuthenticatedAppShellRouteRouteChildren {
   AuthenticatedAppShellMainRoute: typeof AuthenticatedAppShellMainRoute
   AuthenticatedAppShellLearningIndexRoute: typeof AuthenticatedAppShellLearningIndexRoute
   AuthenticatedAppShellMyIndexRoute: typeof AuthenticatedAppShellMyIndexRoute
-  AuthenticatedAppShellLearningChapterIdUnitIdRoute: typeof AuthenticatedAppShellLearningChapterIdUnitIdRoute
   AuthenticatedAppShellMyFriendsSearchRoute: typeof AuthenticatedAppShellMyFriendsSearchRoute
+  AuthenticatedAppShellLearningChaptersChapterIdIndexRoute: typeof AuthenticatedAppShellLearningChaptersChapterIdIndexRoute
+  AuthenticatedAppShellLearningUnitsUnitIdIndexRoute: typeof AuthenticatedAppShellLearningUnitsUnitIdIndexRoute
 }
 
 const AuthenticatedAppShellRouteRouteChildren: AuthenticatedAppShellRouteRouteChildren =
@@ -359,10 +380,12 @@ const AuthenticatedAppShellRouteRouteChildren: AuthenticatedAppShellRouteRouteCh
     AuthenticatedAppShellLearningIndexRoute:
       AuthenticatedAppShellLearningIndexRoute,
     AuthenticatedAppShellMyIndexRoute: AuthenticatedAppShellMyIndexRoute,
-    AuthenticatedAppShellLearningChapterIdUnitIdRoute:
-      AuthenticatedAppShellLearningChapterIdUnitIdRoute,
     AuthenticatedAppShellMyFriendsSearchRoute:
       AuthenticatedAppShellMyFriendsSearchRoute,
+    AuthenticatedAppShellLearningChaptersChapterIdIndexRoute:
+      AuthenticatedAppShellLearningChaptersChapterIdIndexRoute,
+    AuthenticatedAppShellLearningUnitsUnitIdIndexRoute:
+      AuthenticatedAppShellLearningUnitsUnitIdIndexRoute,
   }
 
 const AuthenticatedAppShellRouteRouteWithChildren =
