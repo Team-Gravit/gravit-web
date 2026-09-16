@@ -1,8 +1,11 @@
-/** 학습 화면 자리(스텁). 실제 화면은 이후 이전 작업에서 채운다. */
+import { useIsWideViewport } from '@/shared/lib/use-is-wide-viewport';
+
+import { LearningPageNarrow } from './learning-page-narrow';
+import { LearningPageWide } from './learning-page-wide';
+
 export function LearningPage() {
-  return (
-    <div className="flex flex-1 items-center justify-center py-20 text-body1-normal text-text-4">
-      학습 화면 준비 중
-    </div>
-  );
+  // CSS로 한쪽을 숨기면 두 화면이 함께 마운트되어 데이터 요청이 중복되므로 컴포넌트 단위로 분기한다.
+  const isWide = useIsWideViewport();
+
+  return isWide ? <LearningPageWide /> : <LearningPageNarrow />;
 }
