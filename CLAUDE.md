@@ -69,9 +69,8 @@ app(5) → pages(4) → widgets(3) → features(2) → entities(1) → shared(0)
 - **상향 import 금지** — 아래 레이어가 위 레이어를 import
 - **cross-slice import 금지** — 같은 레이어의 다른 slice를 직접 import. 공통이 필요하면 아래 레이어로 내린다
 
-`apps/web`의 현재 레이어: `app` / `pages` / `widgets` / `shared`.
-`widgets/`는 `footer` 하나뿐이고(MIG-004), **`features/`와 `entities/`는 아직 없다** — 각 레이어의
-첫 슬라이스를 만드는 사람이 위치 컨벤션을 정하게 된다.
+`apps/web`은 **여섯 레이어를 모두 쓴다** — `app` / `pages` / `widgets` / `features` / `entities` / `shared`.
+슬라이스 목록은 여기 적지 않는다. **각 폴더가 기준이다** — 문서에 옮겨 적으면 금방 낡는다.
 
 규칙 상세는 `.claude/rules/`:
 
