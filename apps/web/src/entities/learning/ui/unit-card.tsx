@@ -11,7 +11,7 @@ export interface UnitCardProps {
   title: string;
   unitId: number;
   chapterId: number;
-  /** 좁은 화면 최근 학습 카드의 상단 라벨. 없으면 안 그린다. */
+  /** 제목 위에 표시하는 선택적 보조 라벨. */
   eyebrow?: string;
   className?: string;
 }
@@ -24,8 +24,8 @@ export function UnitCard({ title, unitId, chapterId, eyebrow, className }: UnitC
 
   return (
     <Link
-      to="/learning/$chapterId/$unitId"
-      params={{ chapterId: String(chapterId), unitId: String(unitId) }}
+      to="/learning/units/$unitId"
+      params={{ unitId: String(unitId) }}
       aria-label={`${title} 학습하러 가기`}
       data-slot="unit-card"
       style={{ backgroundImage: `url(${unitCardBackground})` }}
