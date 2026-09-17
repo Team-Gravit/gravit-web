@@ -5,9 +5,9 @@ import { useUnitsInChapter } from '@/entities/learning';
 
 export interface ChapterHeadingProps {
   chapterId: number;
-  /** 경로가 있는 넓은 화면에서 활성화한다. */
+  /** 상위 학습 경로를 제목 위에 표시한다. */
   withBreadcrumb?: boolean;
-  /** 별도 `h1`이 있는 화면에서는 `2`로 낮춘다. */
+  /** 페이지에 별도 `h1`이 있으면 `2`로 낮춘다. */
   headingLevel?: 1 | 2;
   className?: string;
 }
@@ -44,7 +44,7 @@ export function ChapterHeading({
       headingLevel={headingLevel}
       breadcrumbItems={
         withBreadcrumb
-          ? [{ label: '홈', link: { to: '/main' } }, { label: data.chapterTitle }]
+          ? [{ label: '학습', link: { to: '/learning' } }, { label: data.chapterTitle }]
           : undefined
       }
       className={className}

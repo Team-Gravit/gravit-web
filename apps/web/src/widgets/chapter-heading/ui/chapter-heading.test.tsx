@@ -15,13 +15,13 @@ const UNIT_PAGE = {
 };
 
 describe('ChapterHeading', () => {
-  it('withBreadcrumb 이면 「홈」 링크와 현재 위치를 그린다', async () => {
+  it('withBreadcrumb 이면 「학습」 링크와 현재 위치를 그린다', async () => {
     server.use(http.get(UNITS_URL, () => HttpResponse.json(UNIT_PAGE)));
     await renderWithProviders(() => <ChapterHeading chapterId={1} withBreadcrumb />, {
-      extraPaths: ['/main'],
+      extraPaths: ['/learning'],
     });
 
-    expect(await screen.findByRole('link', { name: '홈' })).toHaveAttribute('href', '/main');
+    expect(await screen.findByRole('link', { name: '학습' })).toHaveAttribute('href', '/learning');
     expect(screen.getByRole('navigation', { name: '현재 위치' })).toHaveTextContent('자료구조');
     expect(screen.getByRole('heading', { name: '자료구조' })).toBeInTheDocument();
   });
