@@ -3,24 +3,41 @@ import type { ReactNode } from 'react';
 import { cn } from '@/shared/lib/cn';
 
 import backgroundImage from './assets/background.webp';
+import starfieldImage from './assets/starfield.webp';
+
+export type SpaceBackgroundVariant = 'default' | 'starfield';
+
+const BACKGROUND_IMAGE: Record<SpaceBackgroundVariant, string> = {
+  default: backgroundImage,
+  starfield: starfieldImage,
+};
+
+const VARIANT_CLASS: Record<SpaceBackgroundVariant, string> = {
+  default: 'bg-cover bg-center',
+  // 시안의 상단 구도를 유지하면서 긴 콘텐츠에서도 이미지 경계가 드러나지 않게 채운다.
+  starfield: 'bg-cover bg-top',
+};
 
 export interface SpaceBackgroundProps {
   children: ReactNode;
+  variant?: SpaceBackgroundVariant;
   className?: string;
 }
 
 /**
- * 우주 일러스트를 화면 전체에 까는 배경면. 로그인·온보딩·리그가 함께 쓴다.
- *
- * 안쪽 배치는 정하지 않는다 — 가운데 모달을 놓는 화면과 콘텐츠를 위에서부터 쌓는 화면이
- * 함께 쓰므로, 정렬은 `className`으로 화면이 정한다.
+ * 배경 이미지만 제공하며 내부 정렬과 바탕색은 호출부가 정한다.
  */
-export function SpaceBackground({ children, className }: SpaceBackgroundProps) {
+export function SpaceBackground({
+  children,
+  variant = 'default',
+  className,
+}: SpaceBackgroundProps) {
   return (
     <div
       data-slot="space-background"
-      className={cn('min-h-svh w-full bg-cover bg-center bg-no-repeat', className)}
-      style={{ backgroundImage: `url(${backgroundImage})` }}
+      data-variant={variant}
+      className={cn('min-h-svh w-full bg-no-repeat', VARIANT_CLASS[variant], className)}
+      style={{ backgroundImage: `url(${BACKGROUND_IMAGE[variant]})` }}
     >
       {children}
     </div>
