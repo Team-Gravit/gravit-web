@@ -65,7 +65,7 @@ export function UnitListItem({
         </div>
 
         {/* 좁은 화면은 제목 우측, 넓은 화면은 행 중앙에 맞춘다. */}
-        <Icon name="chevron-right" className="absolute top-0 right-0 text-text-3 md:static" />
+        <Icon name="chevron-right" className="absolute top-3 right-4 text-text-3 md:static" />
       </Link>
     </li>
   );
