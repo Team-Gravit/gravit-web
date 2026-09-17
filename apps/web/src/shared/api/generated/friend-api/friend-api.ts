@@ -57,7 +57,7 @@ const withQueryKey = <T extends object, K>(query: T, queryKey: K): T & { queryKe
  * 다른 사용자에 대한 팔로잉을 취소합니다<br>🔐 <strong>Jwt 필요</strong><br>
  * @summary 언팔로잉
  */
-export const unFollowing = (
+export const unfollow = (
   followeeId: number,
   options?: SecondParameter<typeof customInstance>,
   signal?: AbortSignal,
@@ -68,24 +68,24 @@ export const unFollowing = (
   );
 };
 
-export const getUnFollowingMutationOptions = <
+export const getUnfollowMutationOptions = <
   TError = ErrorType<ErrorResponse>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof unFollowing>>,
+    Awaited<ReturnType<typeof unfollow>>,
     TError,
-    UnFollowingMutationVariables,
+    UnfollowMutationVariables,
     TContext
   >;
   request?: SecondParameter<typeof customInstance>;
 }): UseMutationOptions<
-  Awaited<ReturnType<typeof unFollowing>>,
+  Awaited<ReturnType<typeof unfollow>>,
   TError,
-  UnFollowingMutationVariables,
+  UnfollowMutationVariables,
   TContext
 > => {
-  const mutationKey = ['unFollowing'];
+  const mutationKey = ['unfollow'];
   const { mutation: mutationOptions, request: requestOptions } = options
     ? options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey
       ? options
@@ -93,43 +93,43 @@ export const getUnFollowingMutationOptions = <
     : { mutation: { mutationKey }, request: undefined };
 
   const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof unFollowing>>,
-    UnFollowingMutationVariables
+    Awaited<ReturnType<typeof unfollow>>,
+    UnfollowMutationVariables
   > = (props) => {
     const { followeeId } = props ?? {};
 
-    return unFollowing(followeeId, requestOptions);
+    return unfollow(followeeId, requestOptions);
   };
 
   return { mutationFn, ...mutationOptions };
 };
 
-export type UnFollowingMutationResult = NonNullable<Awaited<ReturnType<typeof unFollowing>>>;
+export type UnfollowMutationResult = NonNullable<Awaited<ReturnType<typeof unfollow>>>;
 
-export type UnFollowingMutationError = ErrorType<ErrorResponse>;
-export type UnFollowingMutationVariables = { followeeId: number };
+export type UnfollowMutationError = ErrorType<ErrorResponse>;
+export type UnfollowMutationVariables = { followeeId: number };
 
 /**
  * @summary 언팔로잉
  */
-export const useUnFollowing = <TError = ErrorType<ErrorResponse>, TContext = unknown>(
+export const useUnfollow = <TError = ErrorType<ErrorResponse>, TContext = unknown>(
   options?: {
     mutation?: UseMutationOptions<
-      Awaited<ReturnType<typeof unFollowing>>,
+      Awaited<ReturnType<typeof unfollow>>,
       TError,
-      UnFollowingMutationVariables,
+      UnfollowMutationVariables,
       TContext
     >;
     request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseMutationResult<
-  Awaited<ReturnType<typeof unFollowing>>,
+  Awaited<ReturnType<typeof unfollow>>,
   TError,
-  UnFollowingMutationVariables,
+  UnfollowMutationVariables,
   TContext
 > => {
-  return useMutation(getUnFollowingMutationOptions(options), queryClient);
+  return useMutation(getUnfollowMutationOptions(options), queryClient);
 };
 /**
  * 다른 사용자가 나에게 보낸 팔로잉을 거절합니다.<br>🔐 <strong>Jwt 필요</strong><br>
@@ -215,7 +215,7 @@ export const useRejectFollowing = <TError = ErrorType<ErrorResponse>, TContext =
  * 다른 사용자를 팔로잉합니다<br>🔐 <strong>Jwt 필요</strong><br>
  * @summary 팔로잉
  */
-export const following = (
+export const follow1 = (
   followeeId: number,
   options?: SecondParameter<typeof customInstance>,
   signal?: AbortSignal,
@@ -226,24 +226,24 @@ export const following = (
   );
 };
 
-export const getFollowingMutationOptions = <
+export const getFollow1MutationOptions = <
   TError = ErrorType<ErrorResponse>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof following>>,
+    Awaited<ReturnType<typeof follow1>>,
     TError,
-    FollowingMutationVariables,
+    Follow1MutationVariables,
     TContext
   >;
   request?: SecondParameter<typeof customInstance>;
 }): UseMutationOptions<
-  Awaited<ReturnType<typeof following>>,
+  Awaited<ReturnType<typeof follow1>>,
   TError,
-  FollowingMutationVariables,
+  Follow1MutationVariables,
   TContext
 > => {
-  const mutationKey = ['following'];
+  const mutationKey = ['follow1'];
   const { mutation: mutationOptions, request: requestOptions } = options
     ? options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey
       ? options
@@ -251,43 +251,43 @@ export const getFollowingMutationOptions = <
     : { mutation: { mutationKey }, request: undefined };
 
   const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof following>>,
-    FollowingMutationVariables
+    Awaited<ReturnType<typeof follow1>>,
+    Follow1MutationVariables
   > = (props) => {
     const { followeeId } = props ?? {};
 
-    return following(followeeId, requestOptions);
+    return follow1(followeeId, requestOptions);
   };
 
   return { mutationFn, ...mutationOptions };
 };
 
-export type FollowingMutationResult = NonNullable<Awaited<ReturnType<typeof following>>>;
+export type Follow1MutationResult = NonNullable<Awaited<ReturnType<typeof follow1>>>;
 
-export type FollowingMutationError = ErrorType<ErrorResponse>;
-export type FollowingMutationVariables = { followeeId: number };
+export type Follow1MutationError = ErrorType<ErrorResponse>;
+export type Follow1MutationVariables = { followeeId: number };
 
 /**
  * @summary 팔로잉
  */
-export const useFollowing = <TError = ErrorType<ErrorResponse>, TContext = unknown>(
+export const useFollow1 = <TError = ErrorType<ErrorResponse>, TContext = unknown>(
   options?: {
     mutation?: UseMutationOptions<
-      Awaited<ReturnType<typeof following>>,
+      Awaited<ReturnType<typeof follow1>>,
       TError,
-      FollowingMutationVariables,
+      Follow1MutationVariables,
       TContext
     >;
     request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseMutationResult<
-  Awaited<ReturnType<typeof following>>,
+  Awaited<ReturnType<typeof follow1>>,
   TError,
-  FollowingMutationVariables,
+  Follow1MutationVariables,
   TContext
 > => {
-  return useMutation(getFollowingMutationOptions(options), queryClient);
+  return useMutation(getFollow1MutationOptions(options), queryClient);
 };
 /**
  * 사용자 핸들&닉네임 으로 팔로우 대상 검색을 수행합니다.<br>

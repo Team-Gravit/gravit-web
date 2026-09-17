@@ -7,5 +7,8 @@
  */
 
 export type RequestParams = {
+  /**
+   * 삭제 확인 링크가 향할 프론트엔드 환경(local, dev, prod)
+   */
   dest: string;
 };

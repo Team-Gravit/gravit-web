@@ -17,6 +17,7 @@ export const getGetAllBookmarkedProblemInUnitResponseMock = (
 ): BookmarkedProblemResponse => ({
   unitSummaryResponse: {
     unitId: faker.number.int(),
+    displayOrder: faker.number.int(),
     title: faker.string.alpha({ length: { min: 10, max: 20 } }),
     description: faker.string.alpha({ length: { min: 10, max: 20 } }),
   },

@@ -7,5 +7,6 @@
  */
 
 export interface AuthCodeRequest {
+  /** OAuth 제공자가 발급한 인가 코드 */
   code: string;
 }

@@ -41,7 +41,7 @@ const withQueryKey = <T extends object, K>(query: T, queryKey: K): T & { queryKe
 };
 
 /**
- * 특정 유저의 시즌별 최종 티어 기록을 조회합니다.
+ * 특정 유저의 시즌별 최종 티어 기록을 조회합니다.<br>🔐 <strong>Jwt 필요</strong><br>
  * @summary 특정 유저 리그 히스토리 조회
  */
 export const getUserLeagueHistory = (
@@ -175,7 +175,7 @@ export function useGetUserLeagueHistory<
 }
 
 /**
- * 현재 로그인한 유저의 시즌별 최종 티어 기록을 조회합니다.
+ * 현재 로그인한 유저의 시즌별 최종 티어 기록을 조회합니다.<br>🔐 <strong>Jwt 필요</strong><br>
  * @summary 내 리그 히스토리 조회
  */
 export const getMyLeagueHistory = (

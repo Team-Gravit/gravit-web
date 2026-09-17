@@ -7,5 +7,8 @@
  */
 
 export type ConfirmParams = {
+  /**
+   * 메일로 발급된 계정 삭제 인증 코드
+   */
   mailAuthCode: string;
 };

@@ -9,6 +9,8 @@
 export interface UnitSummaryResponse {
   /** 유닛 아이디 */
   unitId: number;
+  /** 챕터 안에서의 유닛 순서 (1부터 시작) */
+  displayOrder: number;
   /** 유닛명 */
   title: string;
   /** 유닛 설명 */

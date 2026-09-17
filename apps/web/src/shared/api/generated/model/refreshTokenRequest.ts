@@ -7,5 +7,6 @@
  */
 
 export interface RefreshTokenRequest {
+  /** 리프레시 토큰 */
   refreshToken?: string;
 }

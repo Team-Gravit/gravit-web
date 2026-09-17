@@ -6,12 +6,7 @@
  * OpenAPI spec version: 1.0.0
  */
 
-export interface LeagueRankRowDto {
-  rank?: number;
-  userId?: number;
-  lp?: number;
-  nickname: string;
-  profileImgNumber?: number;
-  xp?: number;
-  level?: number;
+export interface SliceResponse {
+  hasNextPage: boolean;
+  contents: unknown[];
 }

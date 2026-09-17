@@ -1,8 +1,8 @@
-import type { LeagueRankRowDto, LeagueResponse } from '@/shared/api/generated/model';
+import type { LeagueResponse } from '@/shared/api/generated/model';
 
-import type { LeagueTierInfo, LeagueUser } from './types';
+import type { LeagueRankRow, LeagueTierInfo, LeagueUser } from './types';
 
-/** orval `LeagueResponse` → 화면용 `LeagueTierInfo`. 필수 값이 없으면 잘못된 응답으로 본다. */
+/** 생성 응답의 필수 값을 검증하고 화면용 티어 정보로 변환한다. */
 export function mapToTierInfo(raw: LeagueResponse): LeagueTierInfo {
   if (
     raw.leagueId === undefined ||
@@ -20,8 +20,8 @@ export function mapToTierInfo(raw: LeagueResponse): LeagueTierInfo {
   };
 }
 
-/** orval `LeagueRankRowDto` → 화면용 `LeagueUser`. 필수 값이 없으면 잘못된 응답으로 본다. */
-export function mapToLeagueUser(raw: LeagueRankRowDto): LeagueUser {
+/** 랭킹 행의 필수 값을 검증하고 화면용 사용자 정보로 변환한다. */
+export function mapToLeagueUser(raw: LeagueRankRow): LeagueUser {
   if (
     raw.userId === undefined ||
     !raw.nickname ||

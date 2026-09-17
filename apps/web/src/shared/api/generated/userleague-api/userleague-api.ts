@@ -18,12 +18,7 @@ import type {
   UseQueryResult,
 } from '@tanstack/react-query';
 
-import type {
-  ErrorResponse,
-  LeagueRankRowDto,
-  MyLeagueRankWithProfileResponse,
-  SliceResponseLeagueRankRowDto,
-} from '../model';
+import type { ErrorResponse, MyLeagueRankWithProfileResponse, SliceResponse } from '../model';
 
 import { customInstance } from '../../axios-instance';
 import type { ErrorType } from '../../axios-instance';
@@ -48,6 +43,7 @@ const withQueryKey = <T extends object, K>(query: T, queryKey: K): T & { queryKe
 /**
  * 인증된 사용자의 현재 리그를 기준으로 랭킹을 페이지 단위로 조회합니다.
  * - `pageNum`은 0부터 시작하는 페이지 번호(0-based)입니다. <br>
+ * - 사용자의 리그 정보가 없거나 해당 페이지에 순위가 없으면 빈 목록을 반환합니다.<br>
  * 🔐 <strong>Jwt 필요</strong><br>
  * 🔐 <strong>다음 페이지가 존재하면 hasNextPage 가 true, 없으면 false</strong><br>
  * @summary 내 리그 기준 유저 랭킹 조회 (페이지)
@@ -57,7 +53,7 @@ export const getLeagueRankingByUser = (
   options?: SecondParameter<typeof customInstance>,
   signal?: AbortSignal,
 ) => {
-  return customInstance<LeagueRankRowDto[]>(
+  return customInstance<SliceResponse>(
     { url: `/api/v1/ranking/user-leagues/page/${pageNum}`, method: 'GET', signal },
     options,
   );
@@ -69,7 +65,7 @@ export const getGetLeagueRankingByUserQueryKey = (pageNum: number) => {
 
 export const getGetLeagueRankingByUserQueryOptions = <
   TData = Awaited<ReturnType<typeof getLeagueRankingByUser>>,
-  TError = ErrorType<SliceResponseLeagueRankRowDto>,
+  TError = ErrorType<ErrorResponse>,
 >(
   pageNum: number,
   options?: {
@@ -99,11 +95,11 @@ export const getGetLeagueRankingByUserQueryOptions = <
 export type GetLeagueRankingByUserQueryResult = NonNullable<
   Awaited<ReturnType<typeof getLeagueRankingByUser>>
 >;
-export type GetLeagueRankingByUserQueryError = ErrorType<SliceResponseLeagueRankRowDto>;
+export type GetLeagueRankingByUserQueryError = ErrorType<ErrorResponse>;
 
 export function useGetLeagueRankingByUser<
   TData = Awaited<ReturnType<typeof getLeagueRankingByUser>>,
-  TError = ErrorType<SliceResponseLeagueRankRowDto>,
+  TError = ErrorType<ErrorResponse>,
 >(
   pageNum: number,
   options: {
@@ -124,7 +120,7 @@ export function useGetLeagueRankingByUser<
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetLeagueRankingByUser<
   TData = Awaited<ReturnType<typeof getLeagueRankingByUser>>,
-  TError = ErrorType<SliceResponseLeagueRankRowDto>,
+  TError = ErrorType<ErrorResponse>,
 >(
   pageNum: number,
   options?: {
@@ -145,7 +141,7 @@ export function useGetLeagueRankingByUser<
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetLeagueRankingByUser<
   TData = Awaited<ReturnType<typeof getLeagueRankingByUser>>,
-  TError = ErrorType<SliceResponseLeagueRankRowDto>,
+  TError = ErrorType<ErrorResponse>,
 >(
   pageNum: number,
   options?: {
@@ -162,7 +158,7 @@ export function useGetLeagueRankingByUser<
 
 export function useGetLeagueRankingByUser<
   TData = Awaited<ReturnType<typeof getLeagueRankingByUser>>,
-  TError = ErrorType<SliceResponseLeagueRankRowDto>,
+  TError = ErrorType<ErrorResponse>,
 >(
   pageNum: number,
   options?: {
@@ -203,7 +199,7 @@ export const getGetMyLeagueWithProfileQueryKey = () => {
 
 export const getGetMyLeagueWithProfileQueryOptions = <
   TData = Awaited<ReturnType<typeof getMyLeagueWithProfile>>,
-  TError = ErrorType<ErrorResponse | MyLeagueRankWithProfileResponse>,
+  TError = ErrorType<ErrorResponse>,
 >(options?: {
   query?: Partial<
     UseQueryOptions<Awaited<ReturnType<typeof getMyLeagueWithProfile>>, TError, TData>
@@ -227,13 +223,11 @@ export const getGetMyLeagueWithProfileQueryOptions = <
 export type GetMyLeagueWithProfileQueryResult = NonNullable<
   Awaited<ReturnType<typeof getMyLeagueWithProfile>>
 >;
-export type GetMyLeagueWithProfileQueryError = ErrorType<
-  ErrorResponse | MyLeagueRankWithProfileResponse
->;
+export type GetMyLeagueWithProfileQueryError = ErrorType<ErrorResponse>;
 
 export function useGetMyLeagueWithProfile<
   TData = Awaited<ReturnType<typeof getMyLeagueWithProfile>>,
-  TError = ErrorType<ErrorResponse | MyLeagueRankWithProfileResponse>,
+  TError = ErrorType<ErrorResponse>,
 >(
   options: {
     query: Partial<
@@ -253,7 +247,7 @@ export function useGetMyLeagueWithProfile<
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetMyLeagueWithProfile<
   TData = Awaited<ReturnType<typeof getMyLeagueWithProfile>>,
-  TError = ErrorType<ErrorResponse | MyLeagueRankWithProfileResponse>,
+  TError = ErrorType<ErrorResponse>,
 >(
   options?: {
     query?: Partial<
@@ -273,7 +267,7 @@ export function useGetMyLeagueWithProfile<
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetMyLeagueWithProfile<
   TData = Awaited<ReturnType<typeof getMyLeagueWithProfile>>,
-  TError = ErrorType<ErrorResponse | MyLeagueRankWithProfileResponse>,
+  TError = ErrorType<ErrorResponse>,
 >(
   options?: {
     query?: Partial<
@@ -289,7 +283,7 @@ export function useGetMyLeagueWithProfile<
 
 export function useGetMyLeagueWithProfile<
   TData = Awaited<ReturnType<typeof getMyLeagueWithProfile>>,
-  TError = ErrorType<ErrorResponse | MyLeagueRankWithProfileResponse>,
+  TError = ErrorType<ErrorResponse>,
 >(
   options?: {
     query?: Partial<
@@ -311,6 +305,8 @@ export function useGetMyLeagueWithProfile<
 /**
  * 특정 리그의 랭킹을 페이지 단위로 조회합니다.<br>
  * - `pageNum`은 0부터 시작하는 페이지 번호(0-based)입니다.<br>
+ * - ACTIVE 시즌이 없거나 해당 페이지에 순위가 없으면 빈 목록을 반환합니다.<br>
+ * 🔐 <strong>Jwt 필요</strong><br>
  * 🔐 <strong>다음 페이지가 존재하면 hasNextPage 가 true, 없으면 false</strong><br>
  * @summary 티어(리그)별 유저 랭킹 조회 (페이지)
  */
@@ -320,7 +316,7 @@ export const getLeagueRanking = (
   options?: SecondParameter<typeof customInstance>,
   signal?: AbortSignal,
 ) => {
-  return customInstance<LeagueRankRowDto[]>(
+  return customInstance<SliceResponse>(
     { url: `/api/v1/ranking/leagues/${leagueId}/page/${pageNum}`, method: 'GET', signal },
     options,
   );
@@ -332,7 +328,7 @@ export const getGetLeagueRankingQueryKey = (leagueId: number, pageNum: number) =
 
 export const getGetLeagueRankingQueryOptions = <
   TData = Awaited<ReturnType<typeof getLeagueRanking>>,
-  TError = ErrorType<SliceResponseLeagueRankRowDto>,
+  TError = ErrorType<ErrorResponse>,
 >(
   leagueId: number,
   pageNum: number,
@@ -360,11 +356,11 @@ export const getGetLeagueRankingQueryOptions = <
 };
 
 export type GetLeagueRankingQueryResult = NonNullable<Awaited<ReturnType<typeof getLeagueRanking>>>;
-export type GetLeagueRankingQueryError = ErrorType<SliceResponseLeagueRankRowDto>;
+export type GetLeagueRankingQueryError = ErrorType<ErrorResponse>;
 
 export function useGetLeagueRanking<
   TData = Awaited<ReturnType<typeof getLeagueRanking>>,
-  TError = ErrorType<SliceResponseLeagueRankRowDto>,
+  TError = ErrorType<ErrorResponse>,
 >(
   leagueId: number,
   pageNum: number,
@@ -384,7 +380,7 @@ export function useGetLeagueRanking<
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetLeagueRanking<
   TData = Awaited<ReturnType<typeof getLeagueRanking>>,
-  TError = ErrorType<SliceResponseLeagueRankRowDto>,
+  TError = ErrorType<ErrorResponse>,
 >(
   leagueId: number,
   pageNum: number,
@@ -404,7 +400,7 @@ export function useGetLeagueRanking<
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetLeagueRanking<
   TData = Awaited<ReturnType<typeof getLeagueRanking>>,
-  TError = ErrorType<SliceResponseLeagueRankRowDto>,
+  TError = ErrorType<ErrorResponse>,
 >(
   leagueId: number,
   pageNum: number,
@@ -420,7 +416,7 @@ export function useGetLeagueRanking<
 
 export function useGetLeagueRanking<
   TData = Awaited<ReturnType<typeof getLeagueRanking>>,
-  TError = ErrorType<SliceResponseLeagueRankRowDto>,
+  TError = ErrorType<ErrorResponse>,
 >(
   leagueId: number,
   pageNum: number,
