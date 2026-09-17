@@ -10,18 +10,17 @@ import { faker } from '@faker-js/faker';
 import { HttpResponse, delay, http } from 'msw';
 import type { RequestHandlerOptions } from 'msw';
 
-import type { LeagueRankRowDto, MyLeagueRankWithProfileResponse } from '../../model';
+import type { MyLeagueRankWithProfileResponse, SliceResponse } from '../../model';
 
-export const getGetLeagueRankingByUserResponseMock = (): LeagueRankRowDto[] =>
-  Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, (_, i) => i + 1).map(() => ({
-    rank: faker.helpers.arrayElement([faker.number.int(), undefined]),
-    userId: faker.helpers.arrayElement([faker.number.int(), undefined]),
-    lp: faker.helpers.arrayElement([faker.number.int(), undefined]),
-    nickname: faker.string.alpha({ length: { min: 10, max: 20 } }),
-    profileImgNumber: faker.helpers.arrayElement([faker.number.int(), undefined]),
-    xp: faker.helpers.arrayElement([faker.number.int(), undefined]),
-    level: faker.helpers.arrayElement([faker.number.int(), undefined]),
-  }));
+export const getGetLeagueRankingByUserResponseMock = (
+  overrideResponse: Partial<Extract<SliceResponse, object>> = {},
+): SliceResponse => ({
+  hasNextPage: faker.datatype.boolean(),
+  contents: Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, (_, i) => i + 1).map(
+    () => ({}),
+  ),
+  ...overrideResponse,
+});
 
 export const getGetMyLeagueWithProfileResponseMock = (
   overrideResponse: Partial<Extract<MyLeagueRankWithProfileResponse, object>> = {},
@@ -39,23 +38,22 @@ export const getGetMyLeagueWithProfileResponseMock = (
   ...overrideResponse,
 });
 
-export const getGetLeagueRankingResponseMock = (): LeagueRankRowDto[] =>
-  Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, (_, i) => i + 1).map(() => ({
-    rank: faker.helpers.arrayElement([faker.number.int(), undefined]),
-    userId: faker.helpers.arrayElement([faker.number.int(), undefined]),
-    lp: faker.helpers.arrayElement([faker.number.int(), undefined]),
-    nickname: faker.string.alpha({ length: { min: 10, max: 20 } }),
-    profileImgNumber: faker.helpers.arrayElement([faker.number.int(), undefined]),
-    xp: faker.helpers.arrayElement([faker.number.int(), undefined]),
-    level: faker.helpers.arrayElement([faker.number.int(), undefined]),
-  }));
+export const getGetLeagueRankingResponseMock = (
+  overrideResponse: Partial<Extract<SliceResponse, object>> = {},
+): SliceResponse => ({
+  hasNextPage: faker.datatype.boolean(),
+  contents: Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, (_, i) => i + 1).map(
+    () => ({}),
+  ),
+  ...overrideResponse,
+});
 
 export const getGetLeagueRankingByUserMockHandler = (
   overrideResponse?:
-    | LeagueRankRowDto[]
+    | SliceResponse
     | ((
         info: Parameters<Parameters<typeof http.get>[1]>[0],
-      ) => Promise<LeagueRankRowDto[]> | LeagueRankRowDto[]),
+      ) => Promise<SliceResponse> | SliceResponse),
   options?: RequestHandlerOptions,
 ) => {
   return http.get(
@@ -104,10 +102,10 @@ export const getGetMyLeagueWithProfileMockHandler = (
 
 export const getGetLeagueRankingMockHandler = (
   overrideResponse?:
-    | LeagueRankRowDto[]
+    | SliceResponse
     | ((
         info: Parameters<Parameters<typeof http.get>[1]>[0],
-      ) => Promise<LeagueRankRowDto[]> | LeagueRankRowDto[]),
+      ) => Promise<SliceResponse> | SliceResponse),
   options?: RequestHandlerOptions,
 ) => {
   return http.get(

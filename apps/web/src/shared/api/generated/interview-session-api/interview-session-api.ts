@@ -78,7 +78,7 @@ export const create = (
 };
 
 export const getCreateMutationOptions = <
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -115,13 +115,13 @@ export const getCreateMutationOptions = <
 
 export type CreateMutationResult = NonNullable<Awaited<ReturnType<typeof create>>>;
 export type CreateMutationBody = BodyType<InterviewSessionCreateRequest>;
-export type CreateMutationError = ErrorType<unknown>;
+export type CreateMutationError = ErrorType<ErrorResponse>;
 export type CreateMutationVariables = { data: BodyType<InterviewSessionCreateRequest> };
 
 /**
  * @summary 면접 세션 생성
  */
-export const useCreate = <TError = ErrorType<unknown>, TContext = unknown>(
+export const useCreate = <TError = ErrorType<ErrorResponse>, TContext = unknown>(
   options?: {
     mutation?: UseMutationOptions<
       Awaited<ReturnType<typeof create>>,
@@ -167,7 +167,7 @@ export const issueUploadUrl = (
 };
 
 export const getIssueUploadUrlMutationOptions = <
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -204,7 +204,7 @@ export const getIssueUploadUrlMutationOptions = <
 
 export type IssueUploadUrlMutationResult = NonNullable<Awaited<ReturnType<typeof issueUploadUrl>>>;
 export type IssueUploadUrlMutationBody = BodyType<InterviewAudioUploadRequest>;
-export type IssueUploadUrlMutationError = ErrorType<unknown>;
+export type IssueUploadUrlMutationError = ErrorType<ErrorResponse>;
 export type IssueUploadUrlMutationVariables = {
   sessionId: number;
   data: BodyType<InterviewAudioUploadRequest>;
@@ -213,7 +213,7 @@ export type IssueUploadUrlMutationVariables = {
 /**
  * @summary 면접 음성 업로드 URL 발급
  */
-export const useIssueUploadUrl = <TError = ErrorType<unknown>, TContext = unknown>(
+export const useIssueUploadUrl = <TError = ErrorType<ErrorResponse>, TContext = unknown>(
   options?: {
     mutation?: UseMutationOptions<
       Awaited<ReturnType<typeof issueUploadUrl>>,
@@ -341,7 +341,7 @@ export const abandon = (
 };
 
 export const getAbandonMutationOptions = <
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -378,13 +378,13 @@ export const getAbandonMutationOptions = <
 
 export type AbandonMutationResult = NonNullable<Awaited<ReturnType<typeof abandon>>>;
 
-export type AbandonMutationError = ErrorType<unknown>;
+export type AbandonMutationError = ErrorType<ErrorResponse>;
 export type AbandonMutationVariables = { sessionId: number };
 
 /**
  * @summary 면접 세션 중단
  */
-export const useAbandon = <TError = ErrorType<unknown>, TContext = unknown>(
+export const useAbandon = <TError = ErrorType<ErrorResponse>, TContext = unknown>(
   options?: {
     mutation?: UseMutationOptions<
       Awaited<ReturnType<typeof abandon>>,
@@ -551,7 +551,7 @@ export const getGetQuestionsQueryKey = (sessionId: number) => {
 
 export const getGetQuestionsQueryOptions = <
   TData = Awaited<ReturnType<typeof getQuestions>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(
   sessionId: number,
   options?: {
@@ -577,11 +577,11 @@ export const getGetQuestionsQueryOptions = <
 };
 
 export type GetQuestionsQueryResult = NonNullable<Awaited<ReturnType<typeof getQuestions>>>;
-export type GetQuestionsQueryError = ErrorType<unknown>;
+export type GetQuestionsQueryError = ErrorType<ErrorResponse>;
 
 export function useGetQuestions<
   TData = Awaited<ReturnType<typeof getQuestions>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(
   sessionId: number,
   options: {
@@ -600,7 +600,7 @@ export function useGetQuestions<
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetQuestions<
   TData = Awaited<ReturnType<typeof getQuestions>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(
   sessionId: number,
   options?: {
@@ -619,7 +619,7 @@ export function useGetQuestions<
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetQuestions<
   TData = Awaited<ReturnType<typeof getQuestions>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(
   sessionId: number,
   options?: {
@@ -634,7 +634,7 @@ export function useGetQuestions<
 
 export function useGetQuestions<
   TData = Awaited<ReturnType<typeof getQuestions>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(
   sessionId: number,
   options?: {

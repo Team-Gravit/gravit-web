@@ -41,7 +41,7 @@ const withQueryKey = <T extends object, K>(query: T, queryKey: K): T & { queryKe
 };
 
 /**
- * 유저의 유닛 진행도를 포함한 유닛 목록을 조회합니다.<br>🔐 <strong>Jwt 필요</strong><br>
+ * 유저의 유닛 진행도를 포함한 유닛 목록을 조회합니다.<br>유닛 목록은 챕터 내 순서(<strong>displayOrder</strong>) 오름차순입니다.<br>🔐 <strong>Jwt 필요</strong><br>
  * @summary 유닛 조회
  */
 export const getAllUnitInChapter = (

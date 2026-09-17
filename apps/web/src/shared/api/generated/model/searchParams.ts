@@ -8,7 +8,7 @@
 
 export type SearchParams = {
   /**
-   * 검색할 핸들 문자열 (선두 '@' 허용, 대소문자 무시)
+   * 검색어 (선두가 '@'이면 핸들, 그 외에는 닉네임으로 검색)
    */
   queryText: string;
   /**

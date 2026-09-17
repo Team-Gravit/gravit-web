@@ -18,6 +18,8 @@ import type {
   UseQueryResult,
 } from '@tanstack/react-query';
 
+import type { ErrorResponse } from '../model';
+
 import { customInstance } from '../../axios-instance';
 import type { ErrorType } from '../../axios-instance';
 
@@ -59,7 +61,7 @@ export const getGetStackGroupsQueryKey = () => {
 
 export const getGetStackGroupsQueryOptions = <
   TData = Awaited<ReturnType<typeof getStackGroups>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(options?: {
   query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getStackGroups>>, TError, TData>>;
   request?: SecondParameter<typeof customInstance>;
@@ -79,11 +81,11 @@ export const getGetStackGroupsQueryOptions = <
 };
 
 export type GetStackGroupsQueryResult = NonNullable<Awaited<ReturnType<typeof getStackGroups>>>;
-export type GetStackGroupsQueryError = ErrorType<unknown>;
+export type GetStackGroupsQueryError = ErrorType<ErrorResponse>;
 
 export function useGetStackGroups<
   TData = Awaited<ReturnType<typeof getStackGroups>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(
   options: {
     query: Partial<UseQueryOptions<Awaited<ReturnType<typeof getStackGroups>>, TError, TData>> &
@@ -101,7 +103,7 @@ export function useGetStackGroups<
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetStackGroups<
   TData = Awaited<ReturnType<typeof getStackGroups>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getStackGroups>>, TError, TData>> &
@@ -119,7 +121,7 @@ export function useGetStackGroups<
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetStackGroups<
   TData = Awaited<ReturnType<typeof getStackGroups>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getStackGroups>>, TError, TData>>;
@@ -133,7 +135,7 @@ export function useGetStackGroups<
 
 export function useGetStackGroups<
   TData = Awaited<ReturnType<typeof getStackGroups>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getStackGroups>>, TError, TData>>;
@@ -173,7 +175,7 @@ export const getGetStacksQueryKey = (stackGroup: 'SERVER' | 'WEB' | 'AOS' | 'IOS
 
 export const getGetStacksQueryOptions = <
   TData = Awaited<ReturnType<typeof getStacks>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(
   stackGroup: 'SERVER' | 'WEB' | 'AOS' | 'IOS',
   options?: {
@@ -199,11 +201,11 @@ export const getGetStacksQueryOptions = <
 };
 
 export type GetStacksQueryResult = NonNullable<Awaited<ReturnType<typeof getStacks>>>;
-export type GetStacksQueryError = ErrorType<unknown>;
+export type GetStacksQueryError = ErrorType<ErrorResponse>;
 
 export function useGetStacks<
   TData = Awaited<ReturnType<typeof getStacks>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(
   stackGroup: 'SERVER' | 'WEB' | 'AOS' | 'IOS',
   options: {
@@ -222,7 +224,7 @@ export function useGetStacks<
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetStacks<
   TData = Awaited<ReturnType<typeof getStacks>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(
   stackGroup: 'SERVER' | 'WEB' | 'AOS' | 'IOS',
   options?: {
@@ -241,7 +243,7 @@ export function useGetStacks<
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetStacks<
   TData = Awaited<ReturnType<typeof getStacks>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(
   stackGroup: 'SERVER' | 'WEB' | 'AOS' | 'IOS',
   options?: {
@@ -256,7 +258,7 @@ export function useGetStacks<
 
 export function useGetStacks<
   TData = Awaited<ReturnType<typeof getStacks>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(
   stackGroup: 'SERVER' | 'WEB' | 'AOS' | 'IOS',
   options?: {

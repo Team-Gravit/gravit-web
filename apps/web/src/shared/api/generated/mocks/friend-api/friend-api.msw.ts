@@ -18,7 +18,7 @@ import type {
   SliceResponseFollowingResponse,
 } from '../../model';
 
-export const getFollowingResponseMock = (
+export const getFollow1ResponseMock = (
   overrideResponse: Partial<Extract<FriendResponse, object>> = {},
 ): FriendResponse => ({
   followeeId: faker.number.int(),
@@ -87,7 +87,7 @@ export const getGetFollowAndFollowingCountResponseMock = (
   ...overrideResponse,
 });
 
-export const getUnFollowingMockHandler = (
+export const getUnfollowMockHandler = (
   overrideResponse?:
     | void
     | ((info: Parameters<Parameters<typeof http.post>[1]>[0]) => Promise<void> | void),
@@ -127,7 +127,7 @@ export const getRejectFollowingMockHandler = (
   );
 };
 
-export const getFollowingMockHandler = (
+export const getFollow1MockHandler = (
   overrideResponse?:
     | FriendResponse
     | ((
@@ -145,7 +145,7 @@ export const getFollowingMockHandler = (
           ? typeof overrideResponse === 'function'
             ? await overrideResponse(info)
             : overrideResponse
-          : getFollowingResponseMock(),
+          : getFollow1ResponseMock(),
         { status: 200 },
       );
     },
@@ -257,9 +257,9 @@ export const getGetFollowAndFollowingCountMockHandler = (
   );
 };
 export const getFriendApiMock = () => [
-  getUnFollowingMockHandler(),
+  getUnfollowMockHandler(),
   getRejectFollowingMockHandler(),
-  getFollowingMockHandler(),
+  getFollow1MockHandler(),
   getSearchMockHandler(),
   getGetFollowingsMockHandler(),
   getGetFollowersMockHandler(),

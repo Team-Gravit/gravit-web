@@ -459,6 +459,12 @@ export function useGetFeed<
   return withQueryKey(query, queryOptions.queryKey);
 }
 
+/**
+ * 친구 활동 피드에서 해당 피드 항목을 숨깁니다.<br>
+ * 숨긴 항목은 이후 피드 조회에서 제외됩니다.<br>
+ * 🔐 <strong>Jwt 필요</strong>
+ * @summary 피드 항목 숨기기
+ */
 export const hideFeed = (
   feedId: number,
   options?: SecondParameter<typeof customInstance>,
@@ -471,7 +477,7 @@ export const hideFeed = (
 };
 
 export const getHideFeedMutationOptions = <
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -508,10 +514,13 @@ export const getHideFeedMutationOptions = <
 
 export type HideFeedMutationResult = NonNullable<Awaited<ReturnType<typeof hideFeed>>>;
 
-export type HideFeedMutationError = ErrorType<unknown>;
+export type HideFeedMutationError = ErrorType<ErrorResponse>;
 export type HideFeedMutationVariables = { feedId: number };
 
-export const useHideFeed = <TError = ErrorType<unknown>, TContext = unknown>(
+/**
+ * @summary 피드 항목 숨기기
+ */
+export const useHideFeed = <TError = ErrorType<ErrorResponse>, TContext = unknown>(
   options?: {
     mutation?: UseMutationOptions<
       Awaited<ReturnType<typeof hideFeed>>,

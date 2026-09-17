@@ -7,5 +7,6 @@
  */
 
 export interface IdTokenRequest {
+  /** OAuth 제공자가 발급한 ID 토큰 */
   idToken?: string;
 }

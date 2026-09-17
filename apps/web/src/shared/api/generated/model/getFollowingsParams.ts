@@ -7,5 +7,8 @@
  */
 
 export type GetFollowingsParams = {
+  /**
+   * 0부터 시작하는 페이지 인덱스
+   */
   page?: number;
 };

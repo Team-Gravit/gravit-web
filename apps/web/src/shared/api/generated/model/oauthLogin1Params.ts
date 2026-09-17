@@ -7,5 +7,8 @@
  */
 
 export type OauthLogin1Params = {
+  /**
+   * OAuth 제공자 이름(google, kakao)
+   */
   provider: string;
 };

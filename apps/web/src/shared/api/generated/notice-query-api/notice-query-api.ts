@@ -41,7 +41,7 @@ const withQueryKey = <T extends object, K>(query: T, queryKey: K): T & { queryKe
 };
 
 /**
- * 공지의 상세 내용을 조회합니다.
+ * 공지의 상세 내용을 조회합니다.<br>🔐 <strong>Jwt 필요</strong><br>
  * @summary 공지 상세 조회
  */
 export const getNoticeSummary = (
@@ -163,7 +163,7 @@ export function useGetNoticeSummary<
 }
 
 /**
- * 최신 공지의 요약 리스트를 페이지 단위(0-based)로 조회합니다.
+ * 최신 공지의 요약 리스트를 페이지 단위(1-based)로 조회합니다.<br>🔐 <strong>Jwt 필요</strong><br>
  * @summary 공지 요약 목록 조회
  */
 export const getNoticeSummaries = (
@@ -183,7 +183,7 @@ export const getGetNoticeSummariesQueryKey = (page: number) => {
 
 export const getGetNoticeSummariesQueryOptions = <
   TData = Awaited<ReturnType<typeof getNoticeSummaries>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(
   page: number,
   options?: {
@@ -211,11 +211,11 @@ export const getGetNoticeSummariesQueryOptions = <
 export type GetNoticeSummariesQueryResult = NonNullable<
   Awaited<ReturnType<typeof getNoticeSummaries>>
 >;
-export type GetNoticeSummariesQueryError = ErrorType<unknown>;
+export type GetNoticeSummariesQueryError = ErrorType<ErrorResponse>;
 
 export function useGetNoticeSummaries<
   TData = Awaited<ReturnType<typeof getNoticeSummaries>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(
   page: number,
   options: {
@@ -234,7 +234,7 @@ export function useGetNoticeSummaries<
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetNoticeSummaries<
   TData = Awaited<ReturnType<typeof getNoticeSummaries>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(
   page: number,
   options?: {
@@ -255,7 +255,7 @@ export function useGetNoticeSummaries<
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetNoticeSummaries<
   TData = Awaited<ReturnType<typeof getNoticeSummaries>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(
   page: number,
   options?: {
@@ -270,7 +270,7 @@ export function useGetNoticeSummaries<
 
 export function useGetNoticeSummaries<
   TData = Awaited<ReturnType<typeof getNoticeSummaries>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(
   page: number,
   options?: {

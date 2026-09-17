@@ -8,12 +8,14 @@
 
 export interface OnboardingRequest {
   /**
+   * 닉네임 (2~8자, 한글, 영문, 숫자)
    * @minLength 2
    * @maxLength 8
    * @pattern ^[가-힣a-zA-Z0-9]+$
    */
   nickname: string;
   /**
+   * 프로필 사진 번호
    * @minimum 1
    * @maximum 19
    */

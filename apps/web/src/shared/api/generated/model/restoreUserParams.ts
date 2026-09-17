@@ -7,5 +7,8 @@
  */
 
 export type RestoreUserParams = {
+  /**
+   * 복구할 계정의 소셜 providerId
+   */
   providerId: string;
 };

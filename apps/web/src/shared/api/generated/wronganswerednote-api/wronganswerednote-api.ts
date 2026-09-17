@@ -206,7 +206,7 @@ export const deleteWrongAnsweredProblem = (
 };
 
 export const getDeleteWrongAnsweredProblemMutationOptions = <
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -245,7 +245,7 @@ export type DeleteWrongAnsweredProblemMutationResult = NonNullable<
   Awaited<ReturnType<typeof deleteWrongAnsweredProblem>>
 >;
 export type DeleteWrongAnsweredProblemMutationBody = BodyType<WrongAnsweredNoteDeleteRequest>;
-export type DeleteWrongAnsweredProblemMutationError = ErrorType<unknown>;
+export type DeleteWrongAnsweredProblemMutationError = ErrorType<ErrorResponse>;
 export type DeleteWrongAnsweredProblemMutationVariables = {
   data: BodyType<WrongAnsweredNoteDeleteRequest>;
 };
@@ -253,7 +253,10 @@ export type DeleteWrongAnsweredProblemMutationVariables = {
 /**
  * @summary 오답노트 삭제
  */
-export const useDeleteWrongAnsweredProblem = <TError = ErrorType<unknown>, TContext = unknown>(
+export const useDeleteWrongAnsweredProblem = <
+  TError = ErrorType<ErrorResponse>,
+  TContext = unknown,
+>(
   options?: {
     mutation?: UseMutationOptions<
       Awaited<ReturnType<typeof deleteWrongAnsweredProblem>>,

@@ -18,7 +18,7 @@ import type {
   UseQueryResult,
 } from '@tanstack/react-query';
 
-import type { NotificationResponse } from '../model';
+import type { ErrorResponse, NotificationResponse } from '../model';
 
 import { customInstance } from '../../axios-instance';
 import type { ErrorType } from '../../axios-instance';
@@ -54,6 +54,8 @@ const withQueryKey = <T extends object, K>(query: T, queryKey: K): T & { queryKe
  * - FRIEND_ACTIVITY 타입에서만 값이 있으며(targetId=feedId), 그 외 타입은 null
  * - 해당 피드를 이미 축하했으면 true → 소셜 피드와 동일하게 '축하 완료' 상태로 노출
  * - 알림함/소셜 피드 어느 쪽에서 축하하든 동일 피드로 동기화됨(actionType은 `CONGRATULATE` 유지)
+ *
+ * 🔐 <strong>Jwt 필요</strong>
  * @summary 알림 인박스 조회
  */
 export const getInbox = (
@@ -72,7 +74,7 @@ export const getGetInboxQueryKey = () => {
 
 export const getGetInboxQueryOptions = <
   TData = Awaited<ReturnType<typeof getInbox>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(options?: {
   query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getInbox>>, TError, TData>>;
   request?: SecondParameter<typeof customInstance>;
@@ -92,11 +94,11 @@ export const getGetInboxQueryOptions = <
 };
 
 export type GetInboxQueryResult = NonNullable<Awaited<ReturnType<typeof getInbox>>>;
-export type GetInboxQueryError = ErrorType<unknown>;
+export type GetInboxQueryError = ErrorType<ErrorResponse>;
 
 export function useGetInbox<
   TData = Awaited<ReturnType<typeof getInbox>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(
   options: {
     query: Partial<UseQueryOptions<Awaited<ReturnType<typeof getInbox>>, TError, TData>> &
@@ -114,7 +116,7 @@ export function useGetInbox<
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetInbox<
   TData = Awaited<ReturnType<typeof getInbox>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getInbox>>, TError, TData>> &
@@ -132,7 +134,7 @@ export function useGetInbox<
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetInbox<
   TData = Awaited<ReturnType<typeof getInbox>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getInbox>>, TError, TData>>;
@@ -146,7 +148,7 @@ export function useGetInbox<
 
 export function useGetInbox<
   TData = Awaited<ReturnType<typeof getInbox>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getInbox>>, TError, TData>>;

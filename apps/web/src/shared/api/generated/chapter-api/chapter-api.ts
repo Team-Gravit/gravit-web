@@ -18,7 +18,7 @@ import type {
   UseQueryResult,
 } from '@tanstack/react-query';
 
-import type { ChapterDetailResponse } from '../model';
+import type { ChapterDetailResponse, ErrorResponse } from '../model';
 
 import { customInstance } from '../../axios-instance';
 import type { ErrorType } from '../../axios-instance';
@@ -60,7 +60,7 @@ export const getGetAllChapterQueryKey = () => {
 
 export const getGetAllChapterQueryOptions = <
   TData = Awaited<ReturnType<typeof getAllChapter>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(options?: {
   query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllChapter>>, TError, TData>>;
   request?: SecondParameter<typeof customInstance>;
@@ -80,11 +80,11 @@ export const getGetAllChapterQueryOptions = <
 };
 
 export type GetAllChapterQueryResult = NonNullable<Awaited<ReturnType<typeof getAllChapter>>>;
-export type GetAllChapterQueryError = ErrorType<unknown>;
+export type GetAllChapterQueryError = ErrorType<ErrorResponse>;
 
 export function useGetAllChapter<
   TData = Awaited<ReturnType<typeof getAllChapter>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(
   options: {
     query: Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllChapter>>, TError, TData>> &
@@ -102,7 +102,7 @@ export function useGetAllChapter<
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetAllChapter<
   TData = Awaited<ReturnType<typeof getAllChapter>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllChapter>>, TError, TData>> &
@@ -120,7 +120,7 @@ export function useGetAllChapter<
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetAllChapter<
   TData = Awaited<ReturnType<typeof getAllChapter>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllChapter>>, TError, TData>>;
@@ -134,7 +134,7 @@ export function useGetAllChapter<
 
 export function useGetAllChapter<
   TData = Awaited<ReturnType<typeof getAllChapter>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllChapter>>, TError, TData>>;

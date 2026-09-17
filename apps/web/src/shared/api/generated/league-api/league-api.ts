@@ -41,7 +41,7 @@ const withQueryKey = <T extends object, K>(query: T, queryKey: K): T & { queryKe
 };
 
 /**
- * 리그 ID로 리그 정보를 조회합니다<br> <strong>리그 단건 조회는 현재 디자인상 사용하지 않아도 됩니다</strong>
+ * 리그 ID로 리그 정보를 조회합니다<br> <strong>리그 단건 조회는 현재 디자인상 사용하지 않아도 됩니다</strong><br>🔐 <strong>Jwt 필요</strong><br>
  * @summary 리그 단건 조회
  */
 export const getLeague1 = (
@@ -163,7 +163,7 @@ export function useGetLeague1<
 }
 
 /**
- * 리그 페이지에 필요한 시즌 정보 및 팝업 데이터를 리턴합니다.<br> 시즌 정보는 필수적으로 포함합니다<br> containsPopup 필드가 true 면, lastSeasonPopup 에 팝업 정보를 포함합니다. <br> containsPopup 필드가 false 면, lastSeasonPopup 은 null 값을 가집니다.
+ * 리그 페이지에 필요한 시즌 정보 및 팝업 데이터를 리턴합니다.<br> 시즌 정보는 필수적으로 포함합니다<br> containsPopup 필드가 true 면, lastSeasonPopup 에 팝업 정보를 포함합니다. <br> containsPopup 필드가 false 면, lastSeasonPopup 은 null 값을 가집니다.<br>🔐 <strong>Jwt 필요</strong><br>
  * @summary 리그 페이지 home 조회
  */
 export const enterHome = (

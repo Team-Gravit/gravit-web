@@ -18,6 +18,8 @@ import type {
   UseQueryResult,
 } from '@tanstack/react-query';
 
+import type { ErrorResponse } from '../model';
+
 import { customInstance } from '../../axios-instance';
 import type { ErrorType } from '../../axios-instance';
 
@@ -60,7 +62,7 @@ export const getGetCsTopicsQueryKey = () => {
 
 export const getGetCsTopicsQueryOptions = <
   TData = Awaited<ReturnType<typeof getCsTopics>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(options?: {
   query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getCsTopics>>, TError, TData>>;
   request?: SecondParameter<typeof customInstance>;
@@ -80,11 +82,11 @@ export const getGetCsTopicsQueryOptions = <
 };
 
 export type GetCsTopicsQueryResult = NonNullable<Awaited<ReturnType<typeof getCsTopics>>>;
-export type GetCsTopicsQueryError = ErrorType<unknown>;
+export type GetCsTopicsQueryError = ErrorType<ErrorResponse>;
 
 export function useGetCsTopics<
   TData = Awaited<ReturnType<typeof getCsTopics>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(
   options: {
     query: Partial<UseQueryOptions<Awaited<ReturnType<typeof getCsTopics>>, TError, TData>> &
@@ -102,7 +104,7 @@ export function useGetCsTopics<
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetCsTopics<
   TData = Awaited<ReturnType<typeof getCsTopics>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getCsTopics>>, TError, TData>> &
@@ -120,7 +122,7 @@ export function useGetCsTopics<
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetCsTopics<
   TData = Awaited<ReturnType<typeof getCsTopics>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getCsTopics>>, TError, TData>>;
@@ -134,7 +136,7 @@ export function useGetCsTopics<
 
 export function useGetCsTopics<
   TData = Awaited<ReturnType<typeof getCsTopics>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getCsTopics>>, TError, TData>>;

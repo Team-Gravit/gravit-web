@@ -70,7 +70,7 @@ export const getGetMyInquiriesQueryKey = (params?: GetMyInquiriesParams) => {
 
 export const getGetMyInquiriesQueryOptions = <
   TData = Awaited<ReturnType<typeof getMyInquiries>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(
   params?: GetMyInquiriesParams,
   options?: {
@@ -93,11 +93,11 @@ export const getGetMyInquiriesQueryOptions = <
 };
 
 export type GetMyInquiriesQueryResult = NonNullable<Awaited<ReturnType<typeof getMyInquiries>>>;
-export type GetMyInquiriesQueryError = ErrorType<unknown>;
+export type GetMyInquiriesQueryError = ErrorType<ErrorResponse>;
 
 export function useGetMyInquiries<
   TData = Awaited<ReturnType<typeof getMyInquiries>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(
   params: undefined | GetMyInquiriesParams,
   options: {
@@ -116,7 +116,7 @@ export function useGetMyInquiries<
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetMyInquiries<
   TData = Awaited<ReturnType<typeof getMyInquiries>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(
   params?: GetMyInquiriesParams,
   options?: {
@@ -135,7 +135,7 @@ export function useGetMyInquiries<
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetMyInquiries<
   TData = Awaited<ReturnType<typeof getMyInquiries>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(
   params?: GetMyInquiriesParams,
   options?: {
@@ -150,7 +150,7 @@ export function useGetMyInquiries<
 
 export function useGetMyInquiries<
   TData = Awaited<ReturnType<typeof getMyInquiries>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(
   params?: GetMyInquiriesParams,
   options?: {

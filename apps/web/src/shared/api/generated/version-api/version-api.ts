@@ -18,7 +18,7 @@ import type {
   UseQueryResult,
 } from '@tanstack/react-query';
 
-import type { VersionResponse } from '../model';
+import type { ErrorResponse, VersionResponse } from '../model';
 
 import { customInstance } from '../../axios-instance';
 import type { ErrorType } from '../../axios-instance';
@@ -60,7 +60,7 @@ export const getGetLatestVersionQueryKey = () => {
 
 export const getGetLatestVersionQueryOptions = <
   TData = Awaited<ReturnType<typeof getLatestVersion>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(options?: {
   query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getLatestVersion>>, TError, TData>>;
   request?: SecondParameter<typeof customInstance>;
@@ -80,11 +80,11 @@ export const getGetLatestVersionQueryOptions = <
 };
 
 export type GetLatestVersionQueryResult = NonNullable<Awaited<ReturnType<typeof getLatestVersion>>>;
-export type GetLatestVersionQueryError = ErrorType<unknown>;
+export type GetLatestVersionQueryError = ErrorType<ErrorResponse>;
 
 export function useGetLatestVersion<
   TData = Awaited<ReturnType<typeof getLatestVersion>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(
   options: {
     query: Partial<UseQueryOptions<Awaited<ReturnType<typeof getLatestVersion>>, TError, TData>> &
@@ -102,7 +102,7 @@ export function useGetLatestVersion<
 ): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetLatestVersion<
   TData = Awaited<ReturnType<typeof getLatestVersion>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getLatestVersion>>, TError, TData>> &
@@ -120,7 +120,7 @@ export function useGetLatestVersion<
 ): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 export function useGetLatestVersion<
   TData = Awaited<ReturnType<typeof getLatestVersion>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getLatestVersion>>, TError, TData>>;
@@ -134,7 +134,7 @@ export function useGetLatestVersion<
 
 export function useGetLatestVersion<
   TData = Awaited<ReturnType<typeof getLatestVersion>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
 >(
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getLatestVersion>>, TError, TData>>;

@@ -147,7 +147,7 @@ export const getHideFeedMockHandler = (
         await overrideResponse(info);
       }
 
-      return new HttpResponse(null, { status: 200 });
+      return new HttpResponse(null, { status: 204 });
     },
     options,
   );

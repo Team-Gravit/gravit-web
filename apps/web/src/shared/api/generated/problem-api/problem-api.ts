@@ -65,7 +65,7 @@ export const saveProblemSubmission = (
 };
 
 export const getSaveProblemSubmissionMutationOptions = <
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ErrorResponse>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -104,7 +104,7 @@ export type SaveProblemSubmissionMutationResult = NonNullable<
   Awaited<ReturnType<typeof saveProblemSubmission>>
 >;
 export type SaveProblemSubmissionMutationBody = BodyType<ProblemSubmissionSaveRequest>;
-export type SaveProblemSubmissionMutationError = ErrorType<unknown>;
+export type SaveProblemSubmissionMutationError = ErrorType<ErrorResponse>;
 export type SaveProblemSubmissionMutationVariables = {
   data: BodyType<ProblemSubmissionSaveRequest>;
 };
@@ -112,7 +112,7 @@ export type SaveProblemSubmissionMutationVariables = {
 /**
  * @summary 문제 결과 저장
  */
-export const useSaveProblemSubmission = <TError = ErrorType<unknown>, TContext = unknown>(
+export const useSaveProblemSubmission = <TError = ErrorType<ErrorResponse>, TContext = unknown>(
   options?: {
     mutation?: UseMutationOptions<
       Awaited<ReturnType<typeof saveProblemSubmission>>,
