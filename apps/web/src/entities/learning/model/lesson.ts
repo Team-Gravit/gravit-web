@@ -20,6 +20,10 @@ export interface UnitLessons {
   chapterTitle: string;
   unitLabel: string;
   unitDescription: string;
+  /** 북마크한 문제가 없으면 `false`다. */
+  isBookmarkAccessible: boolean;
+  /** 틀린 문제가 없으면 `false`다. */
+  isIncorrectNoteAccessible: boolean;
   lessons: Lesson[];
 }
 
@@ -33,6 +37,8 @@ export function toUnitLessons(response: LessonDetailResponse): UnitLessons {
     chapterTitle: response.chapterSummary.title,
     unitLabel: toUnitLabel(response.unitSummaryResponse),
     unitDescription: response.unitSummaryResponse.description,
+    isBookmarkAccessible: response.bookmarkAccessible,
+    isIncorrectNoteAccessible: response.wrongAnsweredNoteAccessible,
     lessons: response.lessonSummaries.map((lesson) => ({
       lessonId: lesson.lessonId,
       title: lesson.title,

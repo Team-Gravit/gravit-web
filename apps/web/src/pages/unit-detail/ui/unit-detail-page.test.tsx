@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 import { screen, waitForElementToBeRemoved } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { HttpResponse, http } from 'msw';
 
 import { server } from '@/shared/api/mocks/server';
@@ -134,5 +135,35 @@ describe('UnitDetailPage', () => {
     );
 
     expect(screen.queryByText('문제 리스트')).not.toBeInTheDocument();
+  });
+  it('북마크할 문제가 없으면 이동하지 않고 안내를 띄운다 (FIX-036 AC-1)', async () => {
+    const alertSpy = vi.spyOn(window, 'alert').mockImplementation(() => {});
+    server.use(
+      http.get(LESSONS_URL, () =>
+        HttpResponse.json({ ...UNIT_LESSONS, bookmarkAccessible: false }),
+      ),
+    );
+    await renderUnitDetail();
+
+    await userEvent.click(await screen.findByRole('button', { name: /북마크/ }));
+
+    expect(alertSpy).toHaveBeenCalledWith('아직 북마크한 문제가 없어요.');
+    expect(screen.queryByRole('link', { name: /북마크/ })).not.toBeInTheDocument();
+    expect(screen.getByRole('link', { name: '개념노트' })).toBeInTheDocument();
+  });
+
+  it('틀린 문제가 없으면 오답노트로 이동하지 않고 안내를 띄운다 (FIX-036 AC-2)', async () => {
+    const alertSpy = vi.spyOn(window, 'alert').mockImplementation(() => {});
+    server.use(
+      http.get(LESSONS_URL, () =>
+        HttpResponse.json({ ...UNIT_LESSONS, wrongAnsweredNoteAccessible: false }),
+      ),
+    );
+    await renderUnitDetail();
+
+    await userEvent.click(await screen.findByRole('button', { name: /오답노트/ }));
+
+    expect(alertSpy).toHaveBeenCalledWith('아직 틀린 문제가 없어요.');
+    expect(screen.queryByRole('link', { name: /오답노트/ })).not.toBeInTheDocument();
   });
 });
