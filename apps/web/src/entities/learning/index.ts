@@ -2,16 +2,25 @@ export {
   getChaptersQueryKey,
   getRecentLearningQueryKey,
   getRecommendedUnitsQueryKey,
+  getUnitLessonsQueryKey,
   getUnitsInChapterQueryKey,
   getWeeklyRecordQueryKey,
   useChapters,
   useRecentLearning,
   useRecommendedUnits,
+  useUnitLessons,
   useUnitsInChapter,
   useWeeklyRecord,
 } from './api';
 export { toChapterList, type Chapter } from './model/chapter';
 export { toChapterUnitPage, type ChapterUnit, type ChapterUnitPage } from './model/chapter-unit';
+export {
+  toUnitLabel,
+  toUnitLessons,
+  type Lesson,
+  type LessonStatus,
+  type UnitLessons,
+} from './model/lesson';
 export {
   toChapterProgressPercent,
   toRecentLearning,
@@ -26,6 +35,7 @@ export {
 } from './model/unit-progress';
 export { getWeekdayStreaks, type WeekdayStatus, type WeekdayStreak } from './model/weekly-streak';
 export { ChapterCard, ChapterCardSkeleton, type ChapterCardProps } from './ui/chapter-card';
+export { LessonItem, LessonItemSkeleton, type LessonItemProps } from './ui/lesson-item';
 export { UnitCard, UnitCardSkeleton, type UnitCardProps } from './ui/unit-card';
 export { UnitListItem, UnitListItemSkeleton, type UnitListItemProps } from './ui/unit-list-item';
 export { UnitProgressItem, type UnitProgressItemProps } from './ui/unit-progress-item';

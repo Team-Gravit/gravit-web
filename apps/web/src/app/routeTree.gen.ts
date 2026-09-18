@@ -15,6 +15,7 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as RestoreRouteImport } from './routes/restore'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as AuthenticatedAppShellRouteRouteImport } from './routes/_authenticated/_app-shell/route'
+import { Route as AuthenticatedFocusRouteRouteImport } from './routes/_authenticated/_focus/route'
 import { Route as AuthenticatedOnboardingRouteRouteImport } from './routes/_authenticated/onboarding/route'
 import { Route as AuthenticatedAppShellLeagueRouteImport } from './routes/_authenticated/_app-shell/league'
 import { Route as AuthenticatedAppShellMainRouteImport } from './routes/_authenticated/_app-shell/main'
@@ -24,8 +25,12 @@ import { Route as AuthenticatedAppShellLearningIndexRouteImport } from './routes
 import { Route as AuthenticatedAppShellMyIndexRouteImport } from './routes/_authenticated/_app-shell/my.index'
 import { Route as LoginOauth2CodeProviderRouteImport } from './routes/login.oauth2.code.$provider'
 import { Route as AuthenticatedAppShellMyFriendsSearchRouteImport } from './routes/_authenticated/_app-shell/my.friends.search'
+import { Route as AuthenticatedFocusLearningLessonsLessonIdRouteImport } from './routes/_authenticated/_focus/learning.lessons.$lessonId'
 import { Route as AuthenticatedAppShellLearningChaptersChapterIdIndexRouteImport } from './routes/_authenticated/_app-shell/learning.chapters.$chapterId.index'
 import { Route as AuthenticatedAppShellLearningUnitsUnitIdIndexRouteImport } from './routes/_authenticated/_app-shell/learning.units.$unitId.index'
+import { Route as AuthenticatedAppShellLearningUnitsUnitIdConceptNoteRouteImport } from './routes/_authenticated/_app-shell/learning.units.$unitId.concept-note'
+import { Route as AuthenticatedFocusLearningUnitsUnitIdBookmarkedProblemsRouteImport } from './routes/_authenticated/_focus/learning.units.$unitId.bookmarked-problems'
+import { Route as AuthenticatedFocusLearningUnitsUnitIdIncorrectProblemsRouteImport } from './routes/_authenticated/_focus/learning.units.$unitId.incorrect-problems'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -56,6 +61,10 @@ const AuthenticatedAppShellRouteRoute =
     id: '/_app-shell',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedFocusRouteRoute = AuthenticatedFocusRouteRouteImport.update({
+  id: '/_focus',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedOnboardingRouteRoute =
   AuthenticatedOnboardingRouteRouteImport.update({
     id: '/onboarding',
@@ -109,6 +118,12 @@ const AuthenticatedAppShellMyFriendsSearchRoute =
     path: '/my/friends/search',
     getParentRoute: () => AuthenticatedAppShellRouteRoute,
   } as any)
+const AuthenticatedFocusLearningLessonsLessonIdRoute =
+  AuthenticatedFocusLearningLessonsLessonIdRouteImport.update({
+    id: '/learning/lessons/$lessonId',
+    path: '/learning/lessons/$lessonId',
+    getParentRoute: () => AuthenticatedFocusRouteRoute,
+  } as any)
 const AuthenticatedAppShellLearningChaptersChapterIdIndexRoute =
   AuthenticatedAppShellLearningChaptersChapterIdIndexRouteImport.update({
     id: '/learning/chapters/$chapterId/',
@@ -120,6 +135,24 @@ const AuthenticatedAppShellLearningUnitsUnitIdIndexRoute =
     id: '/learning/units/$unitId/',
     path: '/learning/units/$unitId/',
     getParentRoute: () => AuthenticatedAppShellRouteRoute,
+  } as any)
+const AuthenticatedAppShellLearningUnitsUnitIdConceptNoteRoute =
+  AuthenticatedAppShellLearningUnitsUnitIdConceptNoteRouteImport.update({
+    id: '/learning/units/$unitId/concept-note',
+    path: '/learning/units/$unitId/concept-note',
+    getParentRoute: () => AuthenticatedAppShellRouteRoute,
+  } as any)
+const AuthenticatedFocusLearningUnitsUnitIdBookmarkedProblemsRoute =
+  AuthenticatedFocusLearningUnitsUnitIdBookmarkedProblemsRouteImport.update({
+    id: '/learning/units/$unitId/bookmarked-problems',
+    path: '/learning/units/$unitId/bookmarked-problems',
+    getParentRoute: () => AuthenticatedFocusRouteRoute,
+  } as any)
+const AuthenticatedFocusLearningUnitsUnitIdIncorrectProblemsRoute =
+  AuthenticatedFocusLearningUnitsUnitIdIncorrectProblemsRouteImport.update({
+    id: '/learning/units/$unitId/incorrect-problems',
+    path: '/learning/units/$unitId/incorrect-problems',
+    getParentRoute: () => AuthenticatedFocusRouteRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
@@ -136,6 +169,10 @@ export interface FileRoutesByFullPath {
   '/learning/': typeof AuthenticatedAppShellLearningIndexRoute
   '/my/': typeof AuthenticatedAppShellMyIndexRoute
   '/my/friends/search': typeof AuthenticatedAppShellMyFriendsSearchRoute
+  '/learning/lessons/$lessonId': typeof AuthenticatedFocusLearningLessonsLessonIdRoute
+  '/learning/units/$unitId/concept-note': typeof AuthenticatedAppShellLearningUnitsUnitIdConceptNoteRoute
+  '/learning/units/$unitId/bookmarked-problems': typeof AuthenticatedFocusLearningUnitsUnitIdBookmarkedProblemsRoute
+  '/learning/units/$unitId/incorrect-problems': typeof AuthenticatedFocusLearningUnitsUnitIdIncorrectProblemsRoute
   '/learning/chapters/$chapterId/': typeof AuthenticatedAppShellLearningChaptersChapterIdIndexRoute
   '/learning/units/$unitId/': typeof AuthenticatedAppShellLearningUnitsUnitIdIndexRoute
 }
@@ -152,6 +189,10 @@ export interface FileRoutesByTo {
   '/learning': typeof AuthenticatedAppShellLearningIndexRoute
   '/my': typeof AuthenticatedAppShellMyIndexRoute
   '/my/friends/search': typeof AuthenticatedAppShellMyFriendsSearchRoute
+  '/learning/lessons/$lessonId': typeof AuthenticatedFocusLearningLessonsLessonIdRoute
+  '/learning/units/$unitId/concept-note': typeof AuthenticatedAppShellLearningUnitsUnitIdConceptNoteRoute
+  '/learning/units/$unitId/bookmarked-problems': typeof AuthenticatedFocusLearningUnitsUnitIdBookmarkedProblemsRoute
+  '/learning/units/$unitId/incorrect-problems': typeof AuthenticatedFocusLearningUnitsUnitIdIncorrectProblemsRoute
   '/learning/chapters/$chapterId': typeof AuthenticatedAppShellLearningChaptersChapterIdIndexRoute
   '/learning/units/$unitId': typeof AuthenticatedAppShellLearningUnitsUnitIdIndexRoute
 }
@@ -163,6 +204,7 @@ export interface FileRoutesById {
   '/restore': typeof RestoreRoute
   '/terms': typeof TermsRoute
   '/_authenticated/_app-shell': typeof AuthenticatedAppShellRouteRouteWithChildren
+  '/_authenticated/_focus': typeof AuthenticatedFocusRouteRouteWithChildren
   '/_authenticated/onboarding': typeof AuthenticatedOnboardingRouteRouteWithChildren
   '/_authenticated/_app-shell/league': typeof AuthenticatedAppShellLeagueRoute
   '/_authenticated/_app-shell/main': typeof AuthenticatedAppShellMainRoute
@@ -172,6 +214,10 @@ export interface FileRoutesById {
   '/_authenticated/_app-shell/learning/': typeof AuthenticatedAppShellLearningIndexRoute
   '/_authenticated/_app-shell/my/': typeof AuthenticatedAppShellMyIndexRoute
   '/_authenticated/_app-shell/my/friends/search': typeof AuthenticatedAppShellMyFriendsSearchRoute
+  '/_authenticated/_focus/learning/lessons/$lessonId': typeof AuthenticatedFocusLearningLessonsLessonIdRoute
+  '/_authenticated/_app-shell/learning/units/$unitId/concept-note': typeof AuthenticatedAppShellLearningUnitsUnitIdConceptNoteRoute
+  '/_authenticated/_focus/learning/units/$unitId/bookmarked-problems': typeof AuthenticatedFocusLearningUnitsUnitIdBookmarkedProblemsRoute
+  '/_authenticated/_focus/learning/units/$unitId/incorrect-problems': typeof AuthenticatedFocusLearningUnitsUnitIdIncorrectProblemsRoute
   '/_authenticated/_app-shell/learning/chapters/$chapterId/': typeof AuthenticatedAppShellLearningChaptersChapterIdIndexRoute
   '/_authenticated/_app-shell/learning/units/$unitId/': typeof AuthenticatedAppShellLearningUnitsUnitIdIndexRoute
 }
@@ -191,6 +237,10 @@ export interface FileRouteTypes {
     | '/learning/'
     | '/my/'
     | '/my/friends/search'
+    | '/learning/lessons/$lessonId'
+    | '/learning/units/$unitId/concept-note'
+    | '/learning/units/$unitId/bookmarked-problems'
+    | '/learning/units/$unitId/incorrect-problems'
     | '/learning/chapters/$chapterId/'
     | '/learning/units/$unitId/'
   fileRoutesByTo: FileRoutesByTo
@@ -207,6 +257,10 @@ export interface FileRouteTypes {
     | '/learning'
     | '/my'
     | '/my/friends/search'
+    | '/learning/lessons/$lessonId'
+    | '/learning/units/$unitId/concept-note'
+    | '/learning/units/$unitId/bookmarked-problems'
+    | '/learning/units/$unitId/incorrect-problems'
     | '/learning/chapters/$chapterId'
     | '/learning/units/$unitId'
   id:
@@ -217,6 +271,7 @@ export interface FileRouteTypes {
     | '/restore'
     | '/terms'
     | '/_authenticated/_app-shell'
+    | '/_authenticated/_focus'
     | '/_authenticated/onboarding'
     | '/_authenticated/_app-shell/league'
     | '/_authenticated/_app-shell/main'
@@ -226,6 +281,10 @@ export interface FileRouteTypes {
     | '/_authenticated/_app-shell/learning/'
     | '/_authenticated/_app-shell/my/'
     | '/_authenticated/_app-shell/my/friends/search'
+    | '/_authenticated/_focus/learning/lessons/$lessonId'
+    | '/_authenticated/_app-shell/learning/units/$unitId/concept-note'
+    | '/_authenticated/_focus/learning/units/$unitId/bookmarked-problems'
+    | '/_authenticated/_focus/learning/units/$unitId/incorrect-problems'
     | '/_authenticated/_app-shell/learning/chapters/$chapterId/'
     | '/_authenticated/_app-shell/learning/units/$unitId/'
   fileRoutesById: FileRoutesById
@@ -281,6 +340,13 @@ declare module '@tanstack/react-router' {
       path: ''
       fullPath: '/'
       preLoaderRoute: typeof AuthenticatedAppShellRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/_focus': {
+      id: '/_authenticated/_focus'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedFocusRouteRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/onboarding': {
@@ -346,6 +412,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAppShellMyFriendsSearchRouteImport
       parentRoute: typeof AuthenticatedAppShellRouteRoute
     }
+    '/_authenticated/_focus/learning/lessons/$lessonId': {
+      id: '/_authenticated/_focus/learning/lessons/$lessonId'
+      path: '/learning/lessons/$lessonId'
+      fullPath: '/learning/lessons/$lessonId'
+      preLoaderRoute: typeof AuthenticatedFocusLearningLessonsLessonIdRouteImport
+      parentRoute: typeof AuthenticatedFocusRouteRoute
+    }
     '/_authenticated/_app-shell/learning/chapters/$chapterId/': {
       id: '/_authenticated/_app-shell/learning/chapters/$chapterId/'
       path: '/learning/chapters/$chapterId'
@@ -360,6 +433,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAppShellLearningUnitsUnitIdIndexRouteImport
       parentRoute: typeof AuthenticatedAppShellRouteRoute
     }
+    '/_authenticated/_app-shell/learning/units/$unitId/concept-note': {
+      id: '/_authenticated/_app-shell/learning/units/$unitId/concept-note'
+      path: '/learning/units/$unitId/concept-note'
+      fullPath: '/learning/units/$unitId/concept-note'
+      preLoaderRoute: typeof AuthenticatedAppShellLearningUnitsUnitIdConceptNoteRouteImport
+      parentRoute: typeof AuthenticatedAppShellRouteRoute
+    }
+    '/_authenticated/_focus/learning/units/$unitId/bookmarked-problems': {
+      id: '/_authenticated/_focus/learning/units/$unitId/bookmarked-problems'
+      path: '/learning/units/$unitId/bookmarked-problems'
+      fullPath: '/learning/units/$unitId/bookmarked-problems'
+      preLoaderRoute: typeof AuthenticatedFocusLearningUnitsUnitIdBookmarkedProblemsRouteImport
+      parentRoute: typeof AuthenticatedFocusRouteRoute
+    }
+    '/_authenticated/_focus/learning/units/$unitId/incorrect-problems': {
+      id: '/_authenticated/_focus/learning/units/$unitId/incorrect-problems'
+      path: '/learning/units/$unitId/incorrect-problems'
+      fullPath: '/learning/units/$unitId/incorrect-problems'
+      preLoaderRoute: typeof AuthenticatedFocusLearningUnitsUnitIdIncorrectProblemsRouteImport
+      parentRoute: typeof AuthenticatedFocusRouteRoute
+    }
   }
 }
 
@@ -369,6 +463,7 @@ interface AuthenticatedAppShellRouteRouteChildren {
   AuthenticatedAppShellLearningIndexRoute: typeof AuthenticatedAppShellLearningIndexRoute
   AuthenticatedAppShellMyIndexRoute: typeof AuthenticatedAppShellMyIndexRoute
   AuthenticatedAppShellMyFriendsSearchRoute: typeof AuthenticatedAppShellMyFriendsSearchRoute
+  AuthenticatedAppShellLearningUnitsUnitIdConceptNoteRoute: typeof AuthenticatedAppShellLearningUnitsUnitIdConceptNoteRoute
   AuthenticatedAppShellLearningChaptersChapterIdIndexRoute: typeof AuthenticatedAppShellLearningChaptersChapterIdIndexRoute
   AuthenticatedAppShellLearningUnitsUnitIdIndexRoute: typeof AuthenticatedAppShellLearningUnitsUnitIdIndexRoute
 }
@@ -382,6 +477,8 @@ const AuthenticatedAppShellRouteRouteChildren: AuthenticatedAppShellRouteRouteCh
     AuthenticatedAppShellMyIndexRoute: AuthenticatedAppShellMyIndexRoute,
     AuthenticatedAppShellMyFriendsSearchRoute:
       AuthenticatedAppShellMyFriendsSearchRoute,
+    AuthenticatedAppShellLearningUnitsUnitIdConceptNoteRoute:
+      AuthenticatedAppShellLearningUnitsUnitIdConceptNoteRoute,
     AuthenticatedAppShellLearningChaptersChapterIdIndexRoute:
       AuthenticatedAppShellLearningChaptersChapterIdIndexRoute,
     AuthenticatedAppShellLearningUnitsUnitIdIndexRoute:
@@ -391,6 +488,27 @@ const AuthenticatedAppShellRouteRouteChildren: AuthenticatedAppShellRouteRouteCh
 const AuthenticatedAppShellRouteRouteWithChildren =
   AuthenticatedAppShellRouteRoute._addFileChildren(
     AuthenticatedAppShellRouteRouteChildren,
+  )
+
+interface AuthenticatedFocusRouteRouteChildren {
+  AuthenticatedFocusLearningLessonsLessonIdRoute: typeof AuthenticatedFocusLearningLessonsLessonIdRoute
+  AuthenticatedFocusLearningUnitsUnitIdBookmarkedProblemsRoute: typeof AuthenticatedFocusLearningUnitsUnitIdBookmarkedProblemsRoute
+  AuthenticatedFocusLearningUnitsUnitIdIncorrectProblemsRoute: typeof AuthenticatedFocusLearningUnitsUnitIdIncorrectProblemsRoute
+}
+
+const AuthenticatedFocusRouteRouteChildren: AuthenticatedFocusRouteRouteChildren =
+  {
+    AuthenticatedFocusLearningLessonsLessonIdRoute:
+      AuthenticatedFocusLearningLessonsLessonIdRoute,
+    AuthenticatedFocusLearningUnitsUnitIdBookmarkedProblemsRoute:
+      AuthenticatedFocusLearningUnitsUnitIdBookmarkedProblemsRoute,
+    AuthenticatedFocusLearningUnitsUnitIdIncorrectProblemsRoute:
+      AuthenticatedFocusLearningUnitsUnitIdIncorrectProblemsRoute,
+  }
+
+const AuthenticatedFocusRouteRouteWithChildren =
+  AuthenticatedFocusRouteRoute._addFileChildren(
+    AuthenticatedFocusRouteRouteChildren,
   )
 
 interface AuthenticatedOnboardingRouteRouteChildren {
@@ -411,11 +529,13 @@ const AuthenticatedOnboardingRouteRouteWithChildren =
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAppShellRouteRoute: typeof AuthenticatedAppShellRouteRouteWithChildren
+  AuthenticatedFocusRouteRoute: typeof AuthenticatedFocusRouteRouteWithChildren
   AuthenticatedOnboardingRouteRoute: typeof AuthenticatedOnboardingRouteRouteWithChildren
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAppShellRouteRoute: AuthenticatedAppShellRouteRouteWithChildren,
+  AuthenticatedFocusRouteRoute: AuthenticatedFocusRouteRouteWithChildren,
   AuthenticatedOnboardingRouteRoute:
     AuthenticatedOnboardingRouteRouteWithChildren,
 }

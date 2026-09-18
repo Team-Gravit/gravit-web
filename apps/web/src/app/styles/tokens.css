@@ -79,6 +79,7 @@
     ================================ */
   --color-icon: #6f6f6f;
   --color-icon-color: var(--primitive-purple-600); /* #BA00FF */
+  --color-icon-accent: #ffb608;
   --color-icon-disabled: var(--primitive-gray-500); /* #A8A8A8 */
   --color-icon-w: var(--primitive-gray-0); /* #FFFFFF */
 
@@ -87,6 +88,11 @@
     ================================ */
   --color-divider-1: var(--primitive-gray-300); /* #DCDCDC */
   --color-divider-2: var(--primitive-gray-400); /* #C6C6C6 */
+
+  /* ================================
+        ALIAS - Card
+    ================================ */
+  --color-card-border: rgb(251 241 255 / 60%);
 
   /* ================================
         ALIAS - Semantic

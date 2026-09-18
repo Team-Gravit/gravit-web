@@ -1,6 +1,7 @@
 import { setupWorker } from 'msw/browser';
 
 import { getOauth20ApiMock } from '../generated/mocks/index.msw';
+import { getGetAllLessonInUnitMockHandler } from '../generated/mocks/lesson-api/lesson-api.msw';
 import {
   getGetLeagueMockHandler,
   getGetLearningMockHandler,
@@ -11,10 +12,8 @@ import {
 } from '../generated/mocks/mainpage-api/mainpage-api.msw';
 import { getGetUserMockHandler } from '../generated/mocks/user-api/user-api.msw';
 
-/**
- * 메인 화면 시나리오 — 시안(MAIN-01)의 예시 값을 그대로 돌려준다.
- * faker 기본값은 매 요청 값이 바뀌고 범위가 무의미해(예: 진행률 3만%) 화면 확인에 쓸 수 없다.
- */
+// MAIN-01 시안 검토에 필요한 응답을 고정한다.
+// faker 기본값은 매 요청 값이 바뀌고 범위가 무의미해(예: 진행률 3만%) 화면 확인에 쓸 수 없다.
 const mainPageHandlers = [
   getGetUserMockHandler({
     userId: 1,
@@ -68,4 +67,33 @@ const mainPageHandlers = [
   }),
 ];
 
-export const worker = setupWorker(...getOauth20ApiMock(), ...mainPageHandlers);
+// LRN-03에서 완료·미완료 칩을 함께 검토할 수 있도록 `isSolved`를 고정한다.
+const unitDetailHandlers = [
+  getGetAllLessonInUnitMockHandler({
+    chapterSummary: { chapterId: 3, title: '자료구조' },
+    unitSummaryResponse: {
+      unitId: 1,
+      displayOrder: 1,
+      title: '리스트',
+      description: '리스트에 대한 설명글을 작성해주세요.',
+    },
+    bookmarkAccessible: true,
+    wrongAnsweredNoteAccessible: true,
+    unitId: 1,
+    lessonSummaries: [
+      { lessonId: 1, title: 'Lesson01', totalProblem: 10, isSolved: false },
+      { lessonId: 2, title: 'Lesson02', totalProblem: 10, isSolved: true },
+      { lessonId: 3, title: 'Lesson03', totalProblem: 10, isSolved: false },
+      { lessonId: 4, title: 'Lesson04', totalProblem: 10, isSolved: false },
+      { lessonId: 5, title: 'Lesson05', totalProblem: 10, isSolved: true },
+      { lessonId: 6, title: 'Lesson06', totalProblem: 10, isSolved: false },
+      { lessonId: 7, title: 'Lesson07', totalProblem: 10, isSolved: true },
+    ],
+  }),
+];
+
+export const worker = setupWorker(
+  ...getOauth20ApiMock(),
+  ...mainPageHandlers,
+  ...unitDetailHandlers,
+);
