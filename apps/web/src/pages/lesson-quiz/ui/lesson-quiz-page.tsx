@@ -128,6 +128,21 @@ function QuizFooter({ problem, isWide }: { problem: Problem; isWide: boolean }) 
   const shouldSubmitAnswer = problem.type === 'subjective' && !isAnswerSubmitted;
   const isLastProblem = currentProblemIndex === totalProblemCount - 1;
 
+  // 브라우저는 클릭 전파가 끝난 뒤 버튼의 type을 다시 읽는다. 전파 도중 리렌더로 type이
+  // submit이 되면 그 클릭이 방금 마운트된 주관식 폼까지 제출하므로 type을 고정해 둔다.
+  const handleNext = () => {
+    if (!shouldSubmitAnswer) {
+      goToNext();
+      return;
+    }
+
+    const answerForm = document.getElementById(QUIZ_ANSWER_FORM_ID);
+
+    if (answerForm instanceof HTMLFormElement) {
+      answerForm.requestSubmit();
+    }
+  };
+
   return (
     <div
       data-slot="quiz-footer"
@@ -149,9 +164,8 @@ function QuizFooter({ problem, isWide }: { problem: Problem; isWide: boolean }) 
       </Button>
       <Button
         size={{ base: 'md', md: 'lg' }}
-        type={shouldSubmitAnswer ? 'submit' : 'button'}
-        form={shouldSubmitAnswer ? QUIZ_ANSWER_FORM_ID : undefined}
-        onClick={shouldSubmitAnswer ? undefined : goToNext}
+        type="button"
+        onClick={handleNext}
         disabled={isLastProblem && isAnswerSubmitted}
         className={isWide ? 'md:w-40' : 'flex-1'}
       >

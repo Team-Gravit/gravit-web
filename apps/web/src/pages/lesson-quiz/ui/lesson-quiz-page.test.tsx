@@ -385,3 +385,59 @@ describe('LessonQuizPage 이동과 진행 패널', () => {
     expect(screen.getAllByRole('button', { name: '다음' })).toHaveLength(1);
   });
 });
+
+const MIXED_PROBLEMS = {
+  ...LESSON_PROBLEMS,
+  totalProblems: 3,
+  problems: [
+    createObjectiveProblem(101, '1번 발문'),
+    {
+      problemId: 102,
+      problemType: 'SUBJECTIVE',
+      instruction: '2번 발문',
+      content: '그래프를 깊이 우선으로 순회하는 알고리즘은?',
+      isBookmarked: false,
+      answerResponse: { contents: ['DFS'], explanation: '깊이를 우선한다' },
+    },
+    createObjectiveProblem(103, '3번 발문'),
+  ],
+};
+
+describe('LessonQuizPage 문제 유형이 섞인 이동', () => {
+  it('객관식을 제출하고 다음으로 가면 주관식 문제를 건너뛰지 않는다', async () => {
+    server.use(http.get(PROBLEMS_URL, () => HttpResponse.json(MIXED_PROBLEMS)));
+    await renderLessonQuiz();
+
+    await userEvent.click(await screen.findByRole('button', { name: /^정답/ }));
+    await userEvent.click(screen.getByRole('button', { name: '다음 문제' }));
+
+    expect(screen.getByText('2번 발문')).toBeInTheDocument();
+    expect(screen.getByRole('textbox', { name: '답 입력' })).toBeInTheDocument();
+  });
+
+  // act가 리렌더를 클릭 처리 뒤로 미뤄 건너뛰기 자체는 jsdom에서 재현되지 않는다. 원인을 고정한다.
+  it('다음 버튼은 문제 유형이 바뀌어도 폼 제출 버튼이 되지 않는다', async () => {
+    server.use(http.get(PROBLEMS_URL, () => HttpResponse.json(MIXED_PROBLEMS)));
+    await renderLessonQuiz();
+
+    const nextOnObjective = await screen.findByRole('button', { name: '다음 문제' });
+    expect(nextOnObjective).toHaveAttribute('type', 'button');
+    expect(nextOnObjective).not.toHaveAttribute('form');
+
+    await userEvent.click(screen.getByRole('button', { name: /^정답/ }));
+    await userEvent.click(screen.getByRole('button', { name: '다음 문제' }));
+
+    const nextOnSubjective = screen.getByRole('button', { name: '다음 문제' });
+    expect(nextOnSubjective).toHaveAttribute('type', 'button');
+    expect(nextOnSubjective).not.toHaveAttribute('form');
+  });
+
+  it('제출하지 않고 다음으로 가도 주관식 문제를 건너뛰지 않는다', async () => {
+    server.use(http.get(PROBLEMS_URL, () => HttpResponse.json(MIXED_PROBLEMS)));
+    await renderLessonQuiz();
+
+    await userEvent.click(await screen.findByRole('button', { name: '다음 문제' }));
+
+    expect(screen.getByText('2번 발문')).toBeInTheDocument();
+  });
+});
