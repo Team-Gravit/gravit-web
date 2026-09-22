@@ -10,6 +10,12 @@ import {
   getGetUnitsMockHandler,
   getGetWeeklyRecordMockHandler,
 } from '../generated/mocks/mainpage-api/mainpage-api.msw';
+import {
+  getGetMyPageBannerMockHandler,
+  getGetMyPageTopChaptersMockHandler,
+  getGetMyPageWeakConceptsMockHandler,
+  getGetMyPageWeeklyReportMockHandler,
+} from '../generated/mocks/mypage-api/mypage-api.msw';
 import { getGetUserMockHandler } from '../generated/mocks/user-api/user-api.msw';
 
 // MAIN-01 시안 검토에 필요한 응답을 고정한다.
@@ -92,8 +98,63 @@ const unitDetailHandlers = [
   }),
 ];
 
+// MIG-025 마이페이지(프로필 배너 + 학습 탭) 시안 검토용 고정값.
+const myPageHandlers = [
+  getGetMyPageBannerMockHandler({
+    profileImageNumber: 3,
+    nickname: '한준서',
+    handle: '4p9nfz5t',
+    level: 3,
+    currentLeague: '브론즈 3',
+    consecutiveSolvedDays: 7,
+  }),
+  getGetMyPageWeeklyReportMockHandler({
+    MONDAY: 6,
+    TUESDAY: 0,
+    WEDNESDAY: 4,
+    THURSDAY: 3,
+    FRIDAY: 2,
+    SATURDAY: 1,
+    SUNDAY: 5,
+    thisWeekCompletedLessonCount: 30,
+    weekOverWeekDeltas: [4, -4, -4],
+  }),
+  getGetMyPageTopChaptersMockHandler([
+    { rank: 1, chapterTitle: '자료구조', solvedLessonCount: 14, ratio: 100 },
+    { rank: 2, chapterTitle: '알고리즘', solvedLessonCount: 8, ratio: 60 },
+    { rank: 3, chapterTitle: '네트워크', solvedLessonCount: 4, ratio: 30 },
+  ]),
+  getGetMyPageWeakConceptsMockHandler([
+    {
+      rank: 1,
+      unitId: 30,
+      unitTitle: '해시 테이블 충돌 처리',
+      chapterTitle: '자료구조',
+      wrongAnswerCount: 8,
+      wrongAnswerRate: 32,
+    },
+    {
+      rank: 2,
+      unitId: 87,
+      unitTitle: '이진 탐색 트리',
+      chapterTitle: '자료구조',
+      wrongAnswerCount: 5,
+      wrongAnswerRate: 28,
+    },
+    {
+      rank: 3,
+      unitId: 66,
+      unitTitle: '최소 신장 트리',
+      chapterTitle: '알고리즘',
+      wrongAnswerCount: 7,
+      wrongAnswerRate: 25,
+    },
+  ]),
+];
+
 export const worker = setupWorker(
   ...getOauth20ApiMock(),
   ...mainPageHandlers,
   ...unitDetailHandlers,
+  ...myPageHandlers,
 );

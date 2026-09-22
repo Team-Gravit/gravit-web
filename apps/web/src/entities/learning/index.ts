@@ -13,9 +13,15 @@ export {
   useWeeklyRecord,
   useMyPageSummary,
   useMyPageLearningHistory,
+  useMyPageWeeklyReport,
+  useMyPageTopChapters,
+  useMyPageWeakConcepts,
 } from './api';
 export type { LearningSummaryResponse } from '@/shared/api/generated/model/learningSummaryResponse';
 export type { LearningHistoryResponse } from '@/shared/api/generated/model/learningHistoryResponse';
+export type { WeeklyLearningReportResponse } from '@/shared/api/generated/model/weeklyLearningReportResponse';
+export type { TopChapterResponse } from '@/shared/api/generated/model/topChapterResponse';
+export type { WeakConceptResponse } from '@/shared/api/generated/model/weakConceptResponse';
 export { transformLearningHistoryToHeatmap } from './lib/transform-learning-history';
 export { toChapterList, type Chapter } from './model/chapter';
 export { toChapterUnitPage, type ChapterUnit, type ChapterUnitPage } from './model/chapter-unit';

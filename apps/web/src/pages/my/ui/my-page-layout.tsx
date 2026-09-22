@@ -16,7 +16,7 @@ export function MyPageLayout() {
   const showSkeleton = useDelayedFlag(isPending);
 
   return (
-    <div className="min-h-full md:px-8 md:pt-10">
+    <div className="min-h-full md:px-8 md:py-10">
       <div className="mx-auto flex h-full max-w-[1200px] flex-col">
         {/* 로딩·성공에서는 카드 프레임을 유지하고 슬롯만 바뀐다. 에러(로딩 끝+데이터 없음)면 렌더하지 않는다. */}
         {(isPending || data) && <ProfileCard data={data} isLoading={showSkeleton} />}
