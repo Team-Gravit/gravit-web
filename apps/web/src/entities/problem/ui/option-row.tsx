@@ -28,8 +28,14 @@ export function OptionRow({ number, content, result, message }: OptionRowProps) 
   return (
     <span className="flex min-w-0 flex-1 flex-wrap items-center gap-x-3 gap-y-1 md:gap-x-4">
       <OptionMarker number={number} result={result} />
-      <span className={cn('text-label2 md:text-body1-normal', textClass)}>{content}</span>
-      {message ? <span className={cn('text-label2', textClass)}>{message}</span> : null}
+      <span className="min-w-0 flex-1">
+        <span className={cn('text-label2 md:text-body1-normal', textClass)}>{content}</span>
+        {message ? (
+          <span className={cn('text-body1-normal ml-3 md:ml-4 md:text-headline1', textClass)}>
+            {message}
+          </span>
+        ) : null}
+      </span>
     </span>
   );
 }
