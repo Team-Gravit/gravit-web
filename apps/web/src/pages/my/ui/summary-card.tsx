@@ -1,6 +1,6 @@
 import type { LearningSummaryResponse } from '@/entities/learning';
-import { cn } from '@/shared/lib/cn';
 import { Card } from '@/shared/ui/card';
+import { StatItem } from '@/shared/ui/stat-item';
 
 import CrownIcon from './assets/crown.svg?react';
 
@@ -36,51 +36,31 @@ export function SummaryCard({ learningSummary }: SummaryCardProps) {
 
       <div className="flex w-full items-center px-4 py-3 md:px-0 md:py-0">
         {/* 학습률 상위: 데스크톱 첫 지표라 구분선 없음. 모바일에서는 숨긴다 */}
-        <SummaryCardItem
-          className="hidden md:flex md:border-l-0"
-          value={topPercent}
-          unit="%"
-          label="학습률 상위"
-        />
+        <StatItem className="hidden md:flex" value={`${topPercent}%`} label="학습률 상위" />
         {/* 완료 레슨: 모바일 첫 지표라 구분선 없음, 데스크톱에서만 구분선 */}
-        <SummaryCardItem
-          className="border-l-0 md:border-l"
-          value={completedLessonCount}
-          subValue={totalLessonCount}
+        <StatItem
+          className="border-l border-divider-1 border-l-0 md:border-l"
+          value={
+            <>
+              {completedLessonCount}개
+              <span className="text-caption1 text-text-4 md:text-title3">
+                / {totalLessonCount}개
+              </span>
+            </>
+          }
           label="완료 레슨"
         />
-        <SummaryCardItem value={totalLearningHours} unit="h" label="총 학습시간" />
-        <SummaryCardItem value={averageAccuracy} unit="%" label="평균 정답률" />
+        <StatItem
+          className="border-l border-divider-1"
+          value={`${totalLearningHours}h`}
+          label="총 학습시간"
+        />
+        <StatItem
+          className="border-l border-divider-1"
+          value={`${averageAccuracy}%`}
+          label="평균 정답률"
+        />
       </div>
     </Card>
-  );
-}
-
-interface SummaryCardItemProps {
-  value: string | number;
-  subValue?: string | number;
-  label: string;
-  unit?: string;
-  className?: string;
-}
-
-function SummaryCardItem({ value, subValue, label, unit = '개', className }: SummaryCardItemProps) {
-  return (
-    <div
-      className={cn('flex flex-1 flex-col items-center gap-1 border-l border-divider-1', className)}
-    >
-      <h3 className="flex items-baseline gap-1 text-headline2 text-text-1 md:text-title1">
-        {value}
-        {unit}
-        {subValue !== undefined && (
-          <span className="text-caption1 text-text-4 md:text-title3">
-            / {subValue}
-            {unit}
-          </span>
-        )}
-      </h3>
-
-      <div className="text-caption1 text-text-4 md:text-body1-normal">{label}</div>
-    </div>
   );
 }

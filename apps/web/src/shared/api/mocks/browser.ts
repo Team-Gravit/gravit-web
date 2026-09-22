@@ -10,6 +10,7 @@ import {
   getGetUnitsMockHandler,
   getGetWeeklyRecordMockHandler,
 } from '../generated/mocks/mainpage-api/mainpage-api.msw';
+import { getGetMyLeagueHistoryMockHandler } from '../generated/mocks/league-history-api/league-history-api.msw';
 import {
   getGetMyPageBannerMockHandler,
   getGetMyPageTopChaptersMockHandler,
@@ -150,6 +151,20 @@ const myPageHandlers = [
       wrongAnswerRate: 25,
     },
   ]),
+  getGetMyLeagueHistoryMockHandler({
+    currentSeasonRank: 12,
+    totalSeasonCount: 5,
+    top3SeasonCount: 14,
+    bestLeagueName: '실버 1',
+    // sortOrder는 티어 순위(클수록 상위 티어): 브론즈3=1, 브론즈2=2, 실버1=3
+    seasonHistory: [
+      { seasonKey: 's1', displayKey: 'S1', leagueName: '브론즈 3', sortOrder: 1, isCurrent: false },
+      { seasonKey: 's2', displayKey: 'S2', leagueName: '실버 1', sortOrder: 3, isCurrent: false },
+      { seasonKey: 's3', displayKey: 'S3', leagueName: '브론즈 2', sortOrder: 2, isCurrent: false },
+      { seasonKey: 's4', displayKey: 'S4', leagueName: '브론즈 2', sortOrder: 2, isCurrent: false },
+      { seasonKey: 's5', displayKey: '현재', leagueName: '실버 1', sortOrder: 3, isCurrent: true },
+    ],
+  }),
 ];
 
 export const worker = setupWorker(
