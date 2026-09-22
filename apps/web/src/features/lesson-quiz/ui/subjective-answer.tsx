@@ -12,11 +12,11 @@ export interface SubjectiveAnswerProps {
 }
 
 /**
- * 하단의 `정답 확인` 버튼이 `form` 속성으로 이 폼을 제출한다. 입력이 비어 있으면
- * 답을 기록하지 않고 미완료 상태로 남긴다.
+ * 입력값이 있으면 답안만 기록해 결과를 보여주고, 다음 클릭에서 문제를 이동한다.
+ * 빈 입력은 기록하지 않고 바로 다음 문제로 넘긴다.
  */
 export function SubjectiveAnswer({ problem }: SubjectiveAnswerProps) {
-  const { answersByProblemId, submitAnswer } = useQuizSession();
+  const { answersByProblemId, submitAnswer, goToNext } = useQuizSession();
   const [draft, setDraft] = useState('');
   const answer = answersByProblemId[problem.problemId];
 
@@ -34,16 +34,19 @@ export function SubjectiveAnswer({ problem }: SubjectiveAnswerProps) {
   const handleSubmit = (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (draft.trim()) {
-      submitAnswer({
-        problemId: problem.problemId,
-        answer: {
-          kind: 'subjective',
-          submittedContent: draft,
-          isCorrect: gradeSubjective(problem.answer.contents, draft),
-        },
-      });
+    if (!draft.trim()) {
+      goToNext();
+      return;
     }
+
+    submitAnswer({
+      problemId: problem.problemId,
+      answer: {
+        kind: 'subjective',
+        submittedContent: draft,
+        isCorrect: gradeSubjective(problem.answer.contents, draft),
+      },
+    });
   };
 
   return (

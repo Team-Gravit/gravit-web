@@ -12,7 +12,7 @@ import { OPTION_ROW_CLASS, OptionRow } from './option-row';
 const RESULT_BORDER_CLASS: Record<OptionResult, string> = {
   correct: 'border-semantic-success',
   incorrect: 'border-semantic-error',
-  neutral: 'border-divider-2',
+  neutral: '',
 };
 
 export interface OptionResultListProps {
@@ -53,7 +53,7 @@ export function OptionResultList({ options, selectedOptionId }: OptionResultList
                 />
               }
             >
-              <p className="text-label2 text-text-3 rounded-8 bg-bg-1 px-4 py-3 whitespace-pre-line md:text-body2-normal">
+              <p className="text-body2-reading text-text-1 rounded-8 bg-bg-1 px-4 py-3 whitespace-pre-line md:text-body2-normal">
                 {option.explanation}
               </p>
             </Accordion>
