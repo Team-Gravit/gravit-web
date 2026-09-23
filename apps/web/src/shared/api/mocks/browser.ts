@@ -1,5 +1,10 @@
 import { setupWorker } from 'msw/browser';
 
+import {
+  getGetFollowAndFollowingCountMockHandler,
+  getGetFollowersMockHandler,
+  getGetFollowingsMockHandler,
+} from '../generated/mocks/friend-api/friend-api.msw';
 import { getOauth20ApiMock } from '../generated/mocks/index.msw';
 import { getGetAllLessonInUnitMockHandler } from '../generated/mocks/lesson-api/lesson-api.msw';
 import {
@@ -17,6 +22,13 @@ import {
   getGetMyPageWeakConceptsMockHandler,
   getGetMyPageWeeklyReportMockHandler,
 } from '../generated/mocks/mypage-api/mypage-api.msw';
+import {
+  getCongratulateFeedMockHandler,
+  getFollowMockHandler,
+  getGetFeedMockHandler,
+  getGetRecommendedUsersMockHandler,
+  getHideFeedMockHandler,
+} from '../generated/mocks/social-api/social-api.msw';
 import { getGetUserMockHandler } from '../generated/mocks/user-api/user-api.msw';
 
 // MAIN-01 시안 검토에 필요한 응답을 고정한다.
@@ -167,9 +179,93 @@ const myPageHandlers = [
   }),
 ];
 
+// 팔로우/팔로잉 시안 검토용 고정값. isFollowing 으로 팔로우/취소 상태를 섞는다.
+const followHandlers = [
+  getGetFollowAndFollowingCountMockHandler({ followerCount: 12, followingCount: 8 }),
+  getGetFollowersMockHandler({
+    hasNextPage: false,
+    contents: [
+      { id: 1, nickname: '김나영', profileImgNumber: 3, handle: '1235cws', isFollowing: true },
+      { id: 2, nickname: '이철수', profileImgNumber: 5, handle: 'chulsoo22', isFollowing: false },
+      { id: 3, nickname: '박민지', profileImgNumber: 7, handle: 'minji_p', isFollowing: true },
+      { id: 4, nickname: '최유진', profileImgNumber: 2, handle: 'yujin99', isFollowing: false },
+      { id: 5, nickname: '정하윤', profileImgNumber: 9, handle: 'hayoon', isFollowing: true },
+    ],
+  }),
+  getGetFollowingsMockHandler({
+    hasNextPage: false,
+    contents: [
+      { id: 11, nickname: '강도현', profileImgNumber: 4, handle: 'dohyun_k' },
+      { id: 12, nickname: '윤서아', profileImgNumber: 6, handle: 'seoa_y' },
+      { id: 13, nickname: '임건우', profileImgNumber: 8, handle: 'gunwoo' },
+    ],
+  }),
+];
+
+// 친구 활동 피드 시안 검토용 고정값. congratulated/canCongratulate 로 축하 상태를 섞는다.
+const friendFeedHandlers = [
+  getGetFeedMockHandler({
+    hasNextPage: false,
+    contents: [
+      {
+        feedId: 1,
+        actorId: 11,
+        actorNickname: '강도현',
+        actorProfileImgNumber: 4,
+        actorHandle: 'dohyun_k',
+        message: '자료구조 챕터를 완료했어요',
+        timeAgo: '5분 전',
+        congratulated: false,
+        canCongratulate: true,
+        createdAt: '2026-09-23T09:00:00Z',
+      },
+      {
+        feedId: 2,
+        actorId: 12,
+        actorNickname: '윤서아',
+        actorProfileImgNumber: 6,
+        actorHandle: 'seoa_y',
+        message: '7일 연속 학습을 달성했어요',
+        timeAgo: '3시간 전',
+        congratulated: true,
+        canCongratulate: false,
+        createdAt: '2026-09-23T06:00:00Z',
+      },
+      {
+        feedId: 3,
+        actorId: 13,
+        actorNickname: '임건우',
+        actorProfileImgNumber: 8,
+        actorHandle: 'gunwoo',
+        message: '실버 리그로 승급했어요',
+        timeAgo: '1일 전',
+        congratulated: false,
+        canCongratulate: false,
+        createdAt: '2026-09-22T09:00:00Z',
+      },
+    ],
+  }),
+  getCongratulateFeedMockHandler(),
+  getHideFeedMockHandler(),
+];
+
+// 추천 친구 시안 검토용 고정값. mutualFollowCount 로 함께 아는 친구 표기 유무를 섞는다.
+const recommendFriendHandlers = [
+  getGetRecommendedUsersMockHandler([
+    { userId: 21, nickname: '한소희', profileImgNumber: 2, mutualFollowCount: 3 },
+    { userId: 22, nickname: '오지훈', profileImgNumber: 5, mutualFollowCount: 0 },
+    { userId: 23, nickname: '배수민', profileImgNumber: 7, mutualFollowCount: 1 },
+    { userId: 24, nickname: '신예린', profileImgNumber: 9, mutualFollowCount: 0 },
+  ]),
+  getFollowMockHandler(),
+];
+
 export const worker = setupWorker(
   ...getOauth20ApiMock(),
   ...mainPageHandlers,
   ...unitDetailHandlers,
   ...myPageHandlers,
+  ...followHandlers,
+  ...friendFeedHandlers,
+  ...recommendFriendHandlers,
 );

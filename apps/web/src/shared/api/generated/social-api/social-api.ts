@@ -5,16 +5,20 @@
  * 앱센터 16.5기 동계 프로젝트 Gravit API Docs
  * OpenAPI spec version: 1.0.0
  */
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useMutation, useQuery } from '@tanstack/react-query';
 import type {
   DataTag,
   DefinedInitialDataOptions,
+  DefinedUseInfiniteQueryResult,
   DefinedUseQueryResult,
+  InfiniteData,
   MutationFunction,
   QueryClient,
   QueryFunction,
   QueryKey,
   UndefinedInitialDataOptions,
+  UseInfiniteQueryOptions,
+  UseInfiniteQueryResult,
   UseMutationOptions,
   UseMutationResult,
   UseQueryOptions,
@@ -355,9 +359,162 @@ export const getFeed = (
   );
 };
 
+export const getGetFeedInfiniteQueryKey = (params?: GetFeedParams) => {
+  return ['infinite', `/api/v1/social/feed`, ...(params ? [params] : [])] as const;
+};
+
 export const getGetFeedQueryKey = (params?: GetFeedParams) => {
   return [`/api/v1/social/feed`, ...(params ? [params] : [])] as const;
 };
+
+export const getGetFeedInfiniteQueryOptions = <
+  TData = InfiniteData<Awaited<ReturnType<typeof getFeed>>, GetFeedParams['page']>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  params?: GetFeedParams,
+  options?: {
+    query?: Partial<
+      UseInfiniteQueryOptions<
+        Awaited<ReturnType<typeof getFeed>>,
+        TError,
+        TData,
+        QueryKey,
+        GetFeedParams['page']
+      >
+    >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+) => {
+  const { query: queryOptions, request: requestOptions } = options ?? {};
+
+  const queryKey = queryOptions?.queryKey ?? getGetFeedInfiniteQueryKey(params);
+
+  const queryFn: QueryFunction<
+    Awaited<ReturnType<typeof getFeed>>,
+    QueryKey,
+    GetFeedParams['page']
+  > = ({ signal, pageParam }) =>
+    getFeed({ ...params, page: pageParam ?? params?.['page'] }, requestOptions, signal);
+
+  return { queryKey, queryFn, ...queryOptions } as UseInfiniteQueryOptions<
+    Awaited<ReturnType<typeof getFeed>>,
+    TError,
+    TData,
+    QueryKey,
+    GetFeedParams['page']
+  > & { queryKey: DataTag<QueryKey, TData, TError> };
+};
+
+export type GetFeedInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getFeed>>>;
+export type GetFeedInfiniteQueryError = ErrorType<ErrorResponse>;
+
+export function useGetFeedInfinite<
+  TData = InfiniteData<Awaited<ReturnType<typeof getFeed>>, GetFeedParams['page']>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  params: undefined | GetFeedParams,
+  options: {
+    query: Partial<
+      UseInfiniteQueryOptions<
+        Awaited<ReturnType<typeof getFeed>>,
+        TError,
+        TData,
+        QueryKey,
+        GetFeedParams['page']
+      >
+    > &
+      Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getFeed>>,
+          TError,
+          Awaited<ReturnType<typeof getFeed>>,
+          QueryKey
+        >,
+        'initialData'
+      >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+export function useGetFeedInfinite<
+  TData = InfiniteData<Awaited<ReturnType<typeof getFeed>>, GetFeedParams['page']>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  params?: GetFeedParams,
+  options?: {
+    query?: Partial<
+      UseInfiniteQueryOptions<
+        Awaited<ReturnType<typeof getFeed>>,
+        TError,
+        TData,
+        QueryKey,
+        GetFeedParams['page']
+      >
+    > &
+      Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getFeed>>,
+          TError,
+          Awaited<ReturnType<typeof getFeed>>,
+          QueryKey
+        >,
+        'initialData'
+      >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+export function useGetFeedInfinite<
+  TData = InfiniteData<Awaited<ReturnType<typeof getFeed>>, GetFeedParams['page']>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  params?: GetFeedParams,
+  options?: {
+    query?: Partial<
+      UseInfiniteQueryOptions<
+        Awaited<ReturnType<typeof getFeed>>,
+        TError,
+        TData,
+        QueryKey,
+        GetFeedParams['page']
+      >
+    >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+/**
+ * @summary 친구 활동 피드 조회
+ */
+
+export function useGetFeedInfinite<
+  TData = InfiniteData<Awaited<ReturnType<typeof getFeed>>, GetFeedParams['page']>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  params?: GetFeedParams,
+  options?: {
+    query?: Partial<
+      UseInfiniteQueryOptions<
+        Awaited<ReturnType<typeof getFeed>>,
+        TError,
+        TData,
+        QueryKey,
+        GetFeedParams['page']
+      >
+    >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+  const queryOptions = getGetFeedInfiniteQueryOptions(params, options);
+
+  const query = useInfiniteQuery(queryOptions, queryClient) as UseInfiniteQueryResult<
+    TData,
+    TError
+  > & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return withQueryKey(query, queryOptions.queryKey);
+}
 
 export const getGetFeedQueryOptions = <
   TData = Awaited<ReturnType<typeof getFeed>>,
