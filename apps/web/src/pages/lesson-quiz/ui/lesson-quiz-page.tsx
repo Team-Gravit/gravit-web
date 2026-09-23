@@ -1,4 +1,5 @@
 import { cn } from '@/shared/lib/cn';
+import { useInitialMinimumDuration } from '@/shared/lib/use-initial-minimum-duration';
 import { useIsWideViewport } from '@/shared/lib/use-is-wide-viewport';
 import { Button } from '@/shared/ui/button';
 import { CardRetryStatus, CardStatus } from '@/shared/ui/card';
@@ -19,6 +20,7 @@ import { QuizTimer } from './quiz-timer';
 import { QuizTopBar } from './quiz-top-bar';
 
 const SURFACE_CLASS = 'flex h-dvh flex-col bg-bg-1';
+const MINIMUM_LOADING_DURATION_MS = 2500;
 const PANEL_CLASS = 'w-70 shrink-0 overflow-y-auto';
 
 export interface LessonQuizPageProps {
@@ -27,8 +29,10 @@ export interface LessonQuizPageProps {
 
 export function LessonQuizPage({ lessonId }: LessonQuizPageProps) {
   const { data, isPending, isError, refetch } = useLessonProblems(lessonId);
+  // 응답이 바로 오더라도 화면이 깜빡이지 않도록 로딩 화면을 최소 2.5초 유지한다.
+  const shouldShowLoadingScreen = useInitialMinimumDuration(isPending, MINIMUM_LOADING_DURATION_MS);
 
-  if (isPending) {
+  if (shouldShowLoadingScreen) {
     return (
       <div data-slot="lesson-quiz-page" className={SURFACE_CLASS}>
         <LoadingScreen />

@@ -5,10 +5,17 @@ import { HttpResponse, http } from 'msw';
 
 import { server } from '@/shared/api/mocks/server';
 import { renderWithProviders } from '@/shared/lib/testing';
+import { useInitialMinimumDuration } from '@/shared/lib/use-initial-minimum-duration';
 
 import { LessonQuizPage } from './lesson-quiz-page';
 
+// 시간 흐름은 훅 테스트에서 검증하고, 여기서는 페이지와 훅의 연결만 확인한다.
+vi.mock('@/shared/lib/use-initial-minimum-duration', () => ({
+  useInitialMinimumDuration: vi.fn((isActive: boolean) => isActive),
+}));
+
 const PROBLEMS_URL = '*/api/v1/problems/:lessonId';
+const MINIMUM_LOADING_DURATION_MS = 2500;
 const EXTRA_PATHS = ['/learning/units/$unitId'];
 
 const LESSON_PROBLEMS = {
@@ -140,6 +147,13 @@ describe('LessonQuizPage', () => {
 
     // 테스트에서 풀이 화면은 `/`에 마운트된다. replace라 해당 기록으로 돌아가지 않는다.
     await waitFor(() => expect(router.state.location.pathname).not.toBe('/'));
+  });
+
+  it('초기 로딩 상태와 최소 표시 시간을 훅에 전달한다', async () => {
+    server.use(http.get(PROBLEMS_URL, () => HttpResponse.json(LESSON_PROBLEMS)));
+    await renderLessonQuiz();
+
+    expect(useInitialMinimumDuration).toHaveBeenCalledWith(true, MINIMUM_LOADING_DURATION_MS);
   });
 
   it('조회가 실패하면 문구와 다시 시도 버튼을 보여준다', async () => {
