@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { Link } from '@tanstack/react-router';
 
 import { cn } from '@/shared/lib/cn';
 import { Button } from '@/shared/ui/button';
@@ -152,7 +153,7 @@ function LabelRow({ data, isLoading }: SlotProps) {
 
 /**
  * 편집·설정·알림 액션. 데이터와 무관해 항상 렌더한다.
- * 대상 라우트/기능이 아직 없어 현재는 시각 요소만 두고 연결은 별도 작업에서 한다.
+ * 설정은 `/settings`로 연결한다. 편집·알림 대상은 아직 없어 시각 요소만 둔다.
  */
 function ProfileActions() {
   return (
@@ -160,9 +161,9 @@ function ProfileActions() {
       {/* 데스크톱: 프로필 편집 + 설정 */}
       <div className="flex items-center gap-3 text-text-1-w max-md:hidden">
         <Button className="h-[37px] px-5 text-body1-normal">프로필 편집</Button>
-        <button type="button" aria-label="설정" className="flex items-center">
+        <Link to="/settings" aria-label="설정" className="flex items-center">
           <Icon name="settings" size={32} />
-        </button>
+        </Link>
       </div>
 
       {/* 모바일: 알림 + 설정 */}
@@ -170,9 +171,9 @@ function ProfileActions() {
         <button type="button" aria-label="알림" className="flex items-center">
           <Icon name="bell" size={24} />
         </button>
-        <button type="button" aria-label="설정" className="flex items-center">
+        <Link to="/settings" aria-label="설정" className="flex items-center">
           <Icon name="settings" size={24} />
-        </button>
+        </Link>
       </div>
     </>
   );
