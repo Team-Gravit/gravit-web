@@ -11,7 +11,12 @@ export {
   useUnitLessons,
   useUnitsInChapter,
   useWeeklyRecord,
+  useMyPageSummary,
+  useMyPageLearningHistory,
 } from './api';
+export type { LearningSummaryResponse } from '@/shared/api/generated/model/learningSummaryResponse';
+export type { LearningHistoryResponse } from '@/shared/api/generated/model/learningHistoryResponse';
+export { transformLearningHistoryToHeatmap } from './lib/transform-learning-history';
 export { toChapterList, type Chapter } from './model/chapter';
 export { toChapterUnitPage, type ChapterUnit, type ChapterUnitPage } from './model/chapter-unit';
 export {

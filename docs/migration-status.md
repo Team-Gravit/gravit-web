@@ -71,7 +71,7 @@ legacy는 위 조건이 모두 충족될 때 한 번에 제거한다. 중간에 
 | 학습        | `/learning/$chapterId/$unitId/bookmarked-problems` → `/learning/units/$unitId/bookmarked-problems` |   ⬜   |    ⬜     |    ⬜     | — (빈 라우트만 MIG-030) |
 | 학습        | `/learning/$chapterId/$unitId/incorrect-problems` → `/learning/units/$unitId/incorrect-problems`   |   ⬜   |    ⬜     |    ⬜     | — (빈 라우트만 MIG-030) |
 | 리그        | `/league`                                                                                          |   ✅   |    ✅     |    ✅     | MIG-023                 |
-| 마이페이지  | `/my`, `/my/summary`, `/my/learning`, `/my/league`, `/my/social`, `/my/edit`, `/my/follow`         |   ⬜   |    ⬜     |    ⬜     | MIG-025 (P1: 레이아웃·카드·탭 이전 완, 탭 내용 P2~5) |
+| 마이페이지  | `/my`, `/my/summary`, `/my/learning`, `/my/league`, `/my/social`, `/my/edit`, `/my/follow`         |   ⬜   |    ⬜     |    ⬜     | MIG-025 (P1: 레이아웃·카드·탭, P2: 요약 탭 이전 완 / 학습·리그·소셜 P3~5) |
 | 사용자·공지 | `/user`, `/user/edit`, `/user/addfriend`, `/user/privacy`                                          |   ⬜   |    ⬜     |    ⬜     | —                       |
 | 사용자·공지 | `/user/notice`, `/user/notice/$page`, `/user/notice/$page/$noticeId`                               |   ⬜   |    ⬜     |    ⬜     | —                       |
 | 설정·문의   | `/settings`, `/settings/inquiry`, `/settings/inquiry/new`                                          |   ⬜   |    ⬜     |    ⬜     | —                       |
