@@ -14,3 +14,8 @@ export { useMyLeagueRanking } from './api/use-my-league-ranking';
 
 export { getLeagueSummaryQueryKey, useLeagueSummary } from './api/use-league-summary';
 export { TierBadge, type TierBadgeProps } from './ui/tier-badge';
+
+// 마이페이지 리그 시즌 히스토리. 변환 없이 이름만 도메인 어휘로 노출한다.
+export { useGetMyLeagueHistory as useMyLeagueHistory } from '@/shared/api/generated/league-history-api/league-history-api';
+export { LeagueHistoryChart } from './ui/league-history-chart';
+export { formatLeagueTier, formatShortLeagueTier } from './lib/format-league-tier';
