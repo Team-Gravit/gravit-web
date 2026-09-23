@@ -8,6 +8,8 @@
     "sourceMap": true,
     "resolveJsonModule": true,
     "noEmit": true,
+    "declaration": false,
+    "declarationMap": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,

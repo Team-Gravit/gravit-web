@@ -8,6 +8,19 @@ export const getNextMonday = (): Date => {
   return nextMonday;
 };
 
+/**
+ * 경과 초를 `mm:ss` 로 작성하도록 포맷팅하는 함수
+ */
+export const formatElapsedTime = (totalSeconds: number): string => {
+  const safeSeconds = Math.max(Math.floor(totalSeconds), 0); // 음수 / 소수 방어
+
+  const minutes = Math.floor(safeSeconds / 60);
+  const seconds = safeSeconds % 60;
+
+  const pad = (n: number) => n.toString().padStart(2, '0');
+  return `${pad(minutes)}:${pad(seconds)}`;
+};
+
 export const getRemainingTime = (targetTimeMs: number): string => {
   const diff = targetTimeMs - Date.now();
   if (diff <= 0) return '00시간 00분 00초';
