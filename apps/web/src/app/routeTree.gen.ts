@@ -17,6 +17,7 @@ import { Route as TermsRouteImport } from './routes/terms'
 import { Route as AuthenticatedAppShellRouteRouteImport } from './routes/_authenticated/_app-shell/route'
 import { Route as AuthenticatedFocusRouteRouteImport } from './routes/_authenticated/_focus/route'
 import { Route as AuthenticatedOnboardingRouteRouteImport } from './routes/_authenticated/onboarding/route'
+import { Route as AuthenticatedAppShellFriendsRouteImport } from './routes/_authenticated/_app-shell/friends'
 import { Route as AuthenticatedAppShellLeagueRouteImport } from './routes/_authenticated/_app-shell/league'
 import { Route as AuthenticatedAppShellMainRouteImport } from './routes/_authenticated/_app-shell/main'
 import { Route as AuthenticatedAppShellMyRouteRouteImport } from './routes/_authenticated/_app-shell/my/route'
@@ -75,6 +76,12 @@ const AuthenticatedOnboardingRouteRoute =
     id: '/onboarding',
     path: '/onboarding',
     getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAppShellFriendsRoute =
+  AuthenticatedAppShellFriendsRouteImport.update({
+    id: '/friends',
+    path: '/friends',
+    getParentRoute: () => AuthenticatedAppShellRouteRoute,
   } as any)
 const AuthenticatedAppShellLeagueRoute =
   AuthenticatedAppShellLeagueRouteImport.update({
@@ -197,6 +204,7 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/onboarding': typeof AuthenticatedOnboardingRouteRouteWithChildren
   '/my': typeof AuthenticatedAppShellMyRouteRouteWithChildren
+  '/friends': typeof AuthenticatedAppShellFriendsRoute
   '/league': typeof AuthenticatedAppShellLeagueRoute
   '/main': typeof AuthenticatedAppShellMainRoute
   '/onboarding/success': typeof AuthenticatedOnboardingSuccessRoute
@@ -221,6 +229,7 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/restore': typeof RestoreRoute
   '/terms': typeof TermsRoute
+  '/friends': typeof AuthenticatedAppShellFriendsRoute
   '/league': typeof AuthenticatedAppShellLeagueRoute
   '/main': typeof AuthenticatedAppShellMainRoute
   '/onboarding/success': typeof AuthenticatedOnboardingSuccessRoute
@@ -251,6 +260,7 @@ export interface FileRoutesById {
   '/_authenticated/_focus': typeof AuthenticatedFocusRouteRouteWithChildren
   '/_authenticated/onboarding': typeof AuthenticatedOnboardingRouteRouteWithChildren
   '/_authenticated/_app-shell/my': typeof AuthenticatedAppShellMyRouteRouteWithChildren
+  '/_authenticated/_app-shell/friends': typeof AuthenticatedAppShellFriendsRoute
   '/_authenticated/_app-shell/league': typeof AuthenticatedAppShellLeagueRoute
   '/_authenticated/_app-shell/main': typeof AuthenticatedAppShellMainRoute
   '/_authenticated/onboarding/success': typeof AuthenticatedOnboardingSuccessRoute
@@ -279,6 +289,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/onboarding'
     | '/my'
+    | '/friends'
     | '/league'
     | '/main'
     | '/onboarding/success'
@@ -303,6 +314,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/restore'
     | '/terms'
+    | '/friends'
     | '/league'
     | '/main'
     | '/onboarding/success'
@@ -332,6 +344,7 @@ export interface FileRouteTypes {
     | '/_authenticated/_focus'
     | '/_authenticated/onboarding'
     | '/_authenticated/_app-shell/my'
+    | '/_authenticated/_app-shell/friends'
     | '/_authenticated/_app-shell/league'
     | '/_authenticated/_app-shell/main'
     | '/_authenticated/onboarding/success'
@@ -418,6 +431,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/onboarding'
       preLoaderRoute: typeof AuthenticatedOnboardingRouteRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/_app-shell/friends': {
+      id: '/_authenticated/_app-shell/friends'
+      path: '/friends'
+      fullPath: '/friends'
+      preLoaderRoute: typeof AuthenticatedAppShellFriendsRouteImport
+      parentRoute: typeof AuthenticatedAppShellRouteRoute
     }
     '/_authenticated/_app-shell/league': {
       id: '/_authenticated/_app-shell/league'
@@ -582,6 +602,7 @@ const AuthenticatedAppShellMyRouteRouteWithChildren =
 
 interface AuthenticatedAppShellRouteRouteChildren {
   AuthenticatedAppShellMyRouteRoute: typeof AuthenticatedAppShellMyRouteRouteWithChildren
+  AuthenticatedAppShellFriendsRoute: typeof AuthenticatedAppShellFriendsRoute
   AuthenticatedAppShellLeagueRoute: typeof AuthenticatedAppShellLeagueRoute
   AuthenticatedAppShellMainRoute: typeof AuthenticatedAppShellMainRoute
   AuthenticatedAppShellLearningIndexRoute: typeof AuthenticatedAppShellLearningIndexRoute
@@ -594,6 +615,7 @@ const AuthenticatedAppShellRouteRouteChildren: AuthenticatedAppShellRouteRouteCh
   {
     AuthenticatedAppShellMyRouteRoute:
       AuthenticatedAppShellMyRouteRouteWithChildren,
+    AuthenticatedAppShellFriendsRoute: AuthenticatedAppShellFriendsRoute,
     AuthenticatedAppShellLeagueRoute: AuthenticatedAppShellLeagueRoute,
     AuthenticatedAppShellMainRoute: AuthenticatedAppShellMainRoute,
     AuthenticatedAppShellLearningIndexRoute:
