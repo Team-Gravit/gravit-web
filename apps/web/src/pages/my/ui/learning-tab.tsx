@@ -15,12 +15,12 @@ export function LearningTab() {
     navigate({ to: '/learning/units/$unitId', params: { unitId: String(unitId) } });
 
   return (
-    <div className="flex flex-col gap-4 md:gap-6">
+    <section aria-label="학습" className="flex flex-col gap-4 md:gap-6">
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
         <WeeklyReport />
         <TopChapters onGoToLearning={goToLearning} />
       </div>
       <WeakConcepts onGoToLearning={goToLearning} onSelectConcept={goToUnit} />
-    </div>
+    </section>
   );
 }
