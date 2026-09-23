@@ -16,4 +16,8 @@ export interface UserLevelResponse {
   nextLevel: number;
   /** 경험치 */
   xp: number;
+  /** 현재 레벨 시작 경험치 */
+  minXp: number;
+  /** 다음 레벨 시작 경험치 (최고 레벨이면 현재 경험치와 동일) */
+  maxXp: number;
 }

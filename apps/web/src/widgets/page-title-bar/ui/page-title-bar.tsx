@@ -30,13 +30,13 @@ export function PageTitleBar({ title, backTo, rightSlot, className }: PageTitleB
     <header
       data-slot="page-title-bar"
       className={cn(
-        'sticky top-0 z-50 flex h-12 shrink-0 items-center justify-center border-b border-divider-1 bg-white px-5',
+        'sticky top-0 z-50 flex h-12 shrink-0 items-center justify-center border-b border-divider-1 bg-white',
         className,
       )}
     >
       {/* 좌우 액션의 너비와 관계없이 제목을 가운데에 두기 위해 액션을 흐름에서 분리합니다. */}
       {backTo ? (
-        <Link {...backTo} aria-label="뒤로 가기" className="absolute left-5 inline-flex">
+        <Link {...backTo} aria-label="뒤로 가기" className="absolute left-0 inline-flex p-3 ">
           <Icon name="chevron-left" className="text-text-3" />
         </Link>
       ) : null}

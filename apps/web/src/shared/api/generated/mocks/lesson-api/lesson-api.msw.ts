@@ -61,6 +61,8 @@ export const getGetLessonResultResponseMock = (
     currentLevel: faker.number.int(),
     nextLevel: faker.number.int(),
     xp: faker.number.int(),
+    minXp: faker.number.int(),
+    maxXp: faker.number.int(),
   },
   unitSummaryResponse: {
     unitId: faker.number.int(),
@@ -68,6 +70,8 @@ export const getGetLessonResultResponseMock = (
     title: faker.string.alpha({ length: { min: 10, max: 20 } }),
     description: faker.string.alpha({ length: { min: 10, max: 20 } }),
   },
+  accuracy: faker.number.int(),
+  learningTime: faker.number.int(),
   ...overrideResponse,
 });
 

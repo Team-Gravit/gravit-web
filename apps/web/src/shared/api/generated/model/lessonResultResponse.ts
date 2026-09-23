@@ -18,4 +18,8 @@ export interface LessonResultResponse {
   userLevelResponse: UserLevelResponse;
   /** 유닛 요약 정보 */
   unitSummaryResponse: UnitSummaryResponse;
+  /** 정답률(단위 : 정수, 0~100) */
+  accuracy: number;
+  /** 풀이 시간(단위 : 정수 초) / 1분 20초가 걸렸다면 80 */
+  learningTime: number;
 }

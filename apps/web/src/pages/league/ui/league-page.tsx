@@ -26,8 +26,10 @@ export function LeaguePage() {
   const shouldShowSeasonModal =
     home.containsPopup && Boolean(home.lastSeasonPopupDto) && !modalChecked;
 
+  // overlay 헤더(투명)가 배경 위에 겹치되 아레나 콘텐츠는 가리지 않도록, 데스크톱에서 헤더 높이만큼
+  // 상단 여백을 둔다. 배경은 fixed 라 이 padding 에 영향받지 않고 헤더 뒤까지 full-bleed 유지된다.
   return (
-    <div className="relative flex h-full w-full flex-col overflow-hidden md:px-10 md:py-16">
+    <main className="relative flex h-full w-full flex-col overflow-hidden md:px-10 md:pb-16 md:pt-[calc(var(--desktop-header-height)+100px)]">
       <div
         aria-hidden
         className="fixed inset-0 -z-10"
@@ -54,7 +56,7 @@ export function LeaguePage() {
           onComplete={() => setModalChecked(true)}
         />
       )}
-    </div>
+    </main>
   );
 }
 

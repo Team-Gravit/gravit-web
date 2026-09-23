@@ -6,7 +6,7 @@ import { useDelayedFlag } from '@/shared/lib/use-delayed-flag';
 import { RankingRowSkeleton } from './ranking-row-skeleton';
 import { UserRankRow } from './user-rank-row';
 
-const SKELETON_ROW_COUNT = 8;
+const SKELETON_ROW_COUNT = 7;
 // 이 시간(ms) 이상 로딩이 지속될 때만 스켈레톤을 띄운다. 빠른 응답의 깜빡임 방지.
 const SKELETON_DELAY_MS = 300;
 
@@ -54,7 +54,7 @@ export function RankingList({
 
   if (showSkeleton) {
     return (
-      <div className="flex w-full flex-col gap-3 md:gap-6">
+      <div className="flex w-full flex-col pt-6 md:px-5.5 md:py-1 gap-3 md:gap-6">
         {Array.from({ length: SKELETON_ROW_COUNT }).map((_, index) => (
           <RankingRowSkeleton key={index} />
         ))}

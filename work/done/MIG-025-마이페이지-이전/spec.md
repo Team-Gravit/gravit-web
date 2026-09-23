@@ -244,6 +244,38 @@ legacy-web의 마이페이지를 `apps/web`으로 FSD 구조에 맞춰 이전한
 - **컴포넌트 배치**: ProfileCard·섹션 탭은 마이페이지 전용이므로 `pages/my/ui/`에 co-locate. 탭 프리미티브만 `shared/ui/tab`. (fsd-widgets §1)
 - **편집·설정 범위**: 프로필 편집 모달·편집 페이지·설정 페이지는 **별도 MIG 항목**으로 분리. Phase 1은 카드 시각 + 탭 + 레이아웃까지만. 카드의 편집/설정 액션은 대상 라우트가 아직 없으므로 연결을 보류(마커)하고, 시각 요소는 시안대로 렌더한다.
 
+### 결정 (Phase 5 소셜, 2026-09-23) — 토스트: sonner 대신 직접 구현
+
+축하 한도(`SOCIAL_4001`) 안내용 공용 토스트가 필요했고(`unit-detail`에 공용 토스트 대기 alert(FEAT-017)도 있음), **sonner 도입 대신 `shared/ui/toast`에 직접 구현**하기로 결정.
+
+구현: `toast-store.ts`(Zustand 단일 토스트) · `toast.ts`(`toast(message, {position,duration})`, 컴포넌트 밖 호출) · `toaster.tsx`(포털·`aria-live`·enter/exit·자동소멸) · `<Toaster/>`는 `main.tsx`에 1회 마운트.
+
+근거:
+
+1. sonner의 핵심 가치(다중 스택·스와이프·promise/loading·다방향 위치·hover 정지)를 우리 요구(단일·스택 없음·상태색/아이콘 없음)에서 **안 씀**
+2. 우리가 필요한 부분(컴포넌트 밖 호출·자동소멸·`aria-live`·enter/exit)은 store+포털 ~100줄. sonner를 써도 커스텀 렌더러는 어차피 직접 짜야 함
+3. 시안이 다크 필 + 우리 토큰(`bg-text-1`·`rounded-6/8`·`text-headline1`)이라 sonner 기본 테마를 대량 override하며 싸우게 됨. 직접 구현은 `cn()`·cva·토큰 규칙을 처음부터 지킴
+4. `component-convention.md` §3: 완성형 UI 라이브러리를 컴포넌트 하나 때문에 추가하지 않는다. 토스트는 비상호작용 알림이라 접근성 난이도가 `aria-live` 하나
+5. FEAT-017 대기 수요 — 투기적 컴포넌트가 아니라 공유 인프라
+
+**재검토 신호**: 다중 스택·스와이프·promise/loading·다방향 위치+상태색(error/success/info)이 실수요가 되면 그때 sonner 재검토(지금은 YAGNI).
+
+### 결정 (Phase 5 소셜, 2026-09-23) — 추천 팔로우 버튼: shared Button 2개로 반응형 분기
+
+추천 친구 팔로우 버튼(`features/friend-recommend-follow/ui/recommend-follow-button.tsx`)이 브레이크포인트마다 **다른 종류**의 버튼이라(모바일: cta 채움·아이콘 없음 = `default` / 데스크톱: 흰 배경·cta 테두리·add 아이콘 = `stroke-default`), **shared Button 2개를 `md:hidden`·`hidden md:flex`로 분기**해 렌더한다. 둘 다 같은 mutation(`useFollowRecommendedUser`, 1회 호출)을 공유한다.
+
+왜 1개로 안 되나:
+
+- variant 는 cva 정적 클래스라 `md:` 를 런타임에 못 붙임(`component-convention.md` §5). JS 뷰포트 분기는 CSS로 되는 걸 JS로 끌고 오고 FOUC 위험(`fsd-pages.md` 반응형 CSS 우선)
+- `variant` + className 으로 색을 override 하면 cva 가 소유한 hover/active/disabled 시각 상태와 충돌(`className-convention.md` §5 금지)
+- native `<button>` 은 공용 컴포넌트 회피 + 아이콘·disabled·포커스 링 재구현 ([[feedback-prefer-shared-button-over-native]])
+
+비용은 마크업 약간의 중복. `display:none` 쪽은 스크린리더가 무시해 접근성 문제 없음.
+
+**재검토 신호**: "채움↔테두리+아이콘"처럼 반응형으로 갈리는 버튼이 더 나오면 Button 에 반응형 variant 정식 지원을 검토(지금 하나 때문에 미리 만들지 않음).
+
+**미세차 유지**: 데스크톱 버튼 테두리·글자색은 `stroke-default`의 `main`(#BA00FF)이고 Figma 는 `cta`(#9b00cf) — 공용 variant 재사용 원칙에 따라 유지. 정확히 맞추려면 Button 에 cta 계열 stroke variant 추가 필요(별도 판단).
+
 ### 확인 필요
 
 - design-diff 단계에서 채운다.
@@ -260,3 +292,7 @@ legacy-web의 마이페이지를 `apps/web`으로 FSD 구조에 맞춰 이전한
 | ---------- | ----------------------------- | ------------- | --------- |
 | 2026-09-12 | 작업 생성 · Phase 1 기준선 기록 | 마이페이지 이전 착수 | MIG-025   |
 | 2026-09-12 | 앱셸 캔버스 배경 `bg-bg-2` 소유로 이전 | 고정 헤더 뒤 영역에 배경이 없어 흰/회색 seam 발생(각 페이지가 배경을 따로 칠하던 구조). 셸이 캔버스 배경을 소유하도록 고침. my-layout 중복 배경 제거. 리그는 자체 full-bleed 배경이라 영향 없음 | `_app-shell/route.tsx`, `my-page-layout.tsx` |
+| 2026-09-23 | 토스트 sonner 대신 직접 구현 결정 | Phase 5 축하 한도 안내용 공용 토스트. 단일 토스트 요구 + 다크 필 시안이라 라이브러리 override 비용이 큼. 상세는 「결정 (Phase 5 소셜)」 | `shared/ui/toast/*`, `main.tsx` |
+| 2026-09-23 | 추천 팔로우 버튼 shared Button 2개로 반응형 분기 | 모바일(채운 CTA)·데스크톱(테두리+아이콘)이 다른 variant라 단일 Button으로 표현 불가. cva override·JS 뷰포트 분기 회피. 상세는 「결정 (Phase 5 소셜)」 | `features/friend-recommend-follow/ui/recommend-follow-button.tsx` |
+| 2026-09-23 | Phase 5 소셜 탭 구현 완료 | 팔로우/팔로잉(조회·모달·`/friends`·팔로우/언팔), 친구 활동 피드(무한스크롤·축하·한도 토스트), 추천 친구(즉시 제거 팔로우). 소셜 3섹션 Figma 대조 완료. 공용 토스트 신규(`shared/ui/toast`). 팔로우 시 추천 캐시 setQueryData 제거로 동기화 | `entities/{follow,friend-feed,friend-recommendation}`, `features/{follow,friend-feed-congratulate,friend-recommend-follow}`, `widgets/social/*`, `pages/friends`, `pages/my/ui/social-tab.tsx`, `shared/ui/toast` |
+| 2026-09-23 | 부수: 페이지 시맨틱 태그 · 리그 헤더 여백 · tier-icon 번들 최적화 | my/league/friends `<main>`, 탭 패널 `<section>`. 리그 overlay 헤더 콘텐츠 겹침 → pt 보정. tier-icon 15개 SVG를 `?react`→`?url`(`<img>`)로 전환해 516KB JS 청크 제거 | `pages/my/*`, `pages/league`, `pages/friends`, `entities/league/ui/tier-icon.tsx` |

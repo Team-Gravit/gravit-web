@@ -18,9 +18,9 @@ export function SummaryTab() {
   }
 
   return (
-    <div className="flex flex-col gap-3 md:gap-6">
+    <section aria-label="요약" className="flex flex-col gap-3 md:gap-6">
       <SummaryCard learningSummary={summary} />
       <StudyHeatmap />
-    </div>
+    </section>
   );
 }

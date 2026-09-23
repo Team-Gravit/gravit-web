@@ -34,6 +34,18 @@ export default defineConfig({
           path: './src/shared/api/axios-instance.ts',
           name: 'customInstance',
         },
+        // 팔로우 목록·친구 피드는 page 기반 무한스크롤이라 Infinite 훅을 함께 생성한다.
+        operations: {
+          getFollowers: {
+            query: { useInfinite: true, useInfiniteQueryParam: 'page' },
+          },
+          getFollowings: {
+            query: { useInfinite: true, useInfiniteQueryParam: 'page' },
+          },
+          getFeed: {
+            query: { useInfinite: true, useInfiniteQueryParam: 'page' },
+          },
+        },
       },
     },
   },

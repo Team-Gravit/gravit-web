@@ -5,6 +5,7 @@ import { RouterProvider } from '@tanstack/react-router';
 import { AuthProvider } from '@/app/auth/auth-provider';
 import { QueryProvider } from '@/app/query/query-provider';
 import { router } from '@/app/router/router';
+import { Toaster } from '@/shared/ui/toast';
 import '@/app/styles/index.css';
 
 const rootElement = document.getElementById('app');
@@ -26,6 +27,7 @@ void enableMocking().then(() => {
       <QueryProvider>
         <AuthProvider>
           <RouterProvider router={router} />
+          <Toaster />
         </AuthProvider>
       </QueryProvider>
     </StrictMode>,

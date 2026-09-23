@@ -5,16 +5,20 @@
  * 앱센터 16.5기 동계 프로젝트 Gravit API Docs
  * OpenAPI spec version: 1.0.0
  */
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useMutation, useQuery } from '@tanstack/react-query';
 import type {
   DataTag,
   DefinedInitialDataOptions,
+  DefinedUseInfiniteQueryResult,
   DefinedUseQueryResult,
+  InfiniteData,
   MutationFunction,
   QueryClient,
   QueryFunction,
   QueryKey,
   UndefinedInitialDataOptions,
+  UseInfiniteQueryOptions,
+  UseInfiniteQueryResult,
   UseMutationOptions,
   UseMutationResult,
   UseQueryOptions,
@@ -433,9 +437,164 @@ export const getFollowings = (
   );
 };
 
+export const getGetFollowingsInfiniteQueryKey = (params?: GetFollowingsParams) => {
+  return ['infinite', `/api/v1/friends/following`, ...(params ? [params] : [])] as const;
+};
+
 export const getGetFollowingsQueryKey = (params?: GetFollowingsParams) => {
   return [`/api/v1/friends/following`, ...(params ? [params] : [])] as const;
 };
+
+export const getGetFollowingsInfiniteQueryOptions = <
+  TData = InfiniteData<Awaited<ReturnType<typeof getFollowings>>, GetFollowingsParams['page']>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  params?: GetFollowingsParams,
+  options?: {
+    query?: Partial<
+      UseInfiniteQueryOptions<
+        Awaited<ReturnType<typeof getFollowings>>,
+        TError,
+        TData,
+        QueryKey,
+        GetFollowingsParams['page']
+      >
+    >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+) => {
+  const { query: queryOptions, request: requestOptions } = options ?? {};
+
+  const queryKey = queryOptions?.queryKey ?? getGetFollowingsInfiniteQueryKey(params);
+
+  const queryFn: QueryFunction<
+    Awaited<ReturnType<typeof getFollowings>>,
+    QueryKey,
+    GetFollowingsParams['page']
+  > = ({ signal, pageParam }) =>
+    getFollowings({ ...params, page: pageParam ?? params?.['page'] }, requestOptions, signal);
+
+  return { queryKey, queryFn, ...queryOptions } as UseInfiniteQueryOptions<
+    Awaited<ReturnType<typeof getFollowings>>,
+    TError,
+    TData,
+    QueryKey,
+    GetFollowingsParams['page']
+  > & { queryKey: DataTag<QueryKey, TData, TError> };
+};
+
+export type GetFollowingsInfiniteQueryResult = NonNullable<
+  Awaited<ReturnType<typeof getFollowings>>
+>;
+export type GetFollowingsInfiniteQueryError = ErrorType<ErrorResponse>;
+
+export function useGetFollowingsInfinite<
+  TData = InfiniteData<Awaited<ReturnType<typeof getFollowings>>, GetFollowingsParams['page']>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  params: undefined | GetFollowingsParams,
+  options: {
+    query: Partial<
+      UseInfiniteQueryOptions<
+        Awaited<ReturnType<typeof getFollowings>>,
+        TError,
+        TData,
+        QueryKey,
+        GetFollowingsParams['page']
+      >
+    > &
+      Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getFollowings>>,
+          TError,
+          Awaited<ReturnType<typeof getFollowings>>,
+          QueryKey
+        >,
+        'initialData'
+      >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+export function useGetFollowingsInfinite<
+  TData = InfiniteData<Awaited<ReturnType<typeof getFollowings>>, GetFollowingsParams['page']>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  params?: GetFollowingsParams,
+  options?: {
+    query?: Partial<
+      UseInfiniteQueryOptions<
+        Awaited<ReturnType<typeof getFollowings>>,
+        TError,
+        TData,
+        QueryKey,
+        GetFollowingsParams['page']
+      >
+    > &
+      Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getFollowings>>,
+          TError,
+          Awaited<ReturnType<typeof getFollowings>>,
+          QueryKey
+        >,
+        'initialData'
+      >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+export function useGetFollowingsInfinite<
+  TData = InfiniteData<Awaited<ReturnType<typeof getFollowings>>, GetFollowingsParams['page']>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  params?: GetFollowingsParams,
+  options?: {
+    query?: Partial<
+      UseInfiniteQueryOptions<
+        Awaited<ReturnType<typeof getFollowings>>,
+        TError,
+        TData,
+        QueryKey,
+        GetFollowingsParams['page']
+      >
+    >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+/**
+ * @summary 팔로잉 목록 조회
+ */
+
+export function useGetFollowingsInfinite<
+  TData = InfiniteData<Awaited<ReturnType<typeof getFollowings>>, GetFollowingsParams['page']>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  params?: GetFollowingsParams,
+  options?: {
+    query?: Partial<
+      UseInfiniteQueryOptions<
+        Awaited<ReturnType<typeof getFollowings>>,
+        TError,
+        TData,
+        QueryKey,
+        GetFollowingsParams['page']
+      >
+    >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+  const queryOptions = getGetFollowingsInfiniteQueryOptions(params, options);
+
+  const query = useInfiniteQuery(queryOptions, queryClient) as UseInfiniteQueryResult<
+    TData,
+    TError
+  > & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return withQueryKey(query, queryOptions.queryKey);
+}
 
 export const getGetFollowingsQueryOptions = <
   TData = Awaited<ReturnType<typeof getFollowings>>,
@@ -552,9 +711,162 @@ export const getFollowers = (
   );
 };
 
+export const getGetFollowersInfiniteQueryKey = (params?: GetFollowersParams) => {
+  return ['infinite', `/api/v1/friends/follower`, ...(params ? [params] : [])] as const;
+};
+
 export const getGetFollowersQueryKey = (params?: GetFollowersParams) => {
   return [`/api/v1/friends/follower`, ...(params ? [params] : [])] as const;
 };
+
+export const getGetFollowersInfiniteQueryOptions = <
+  TData = InfiniteData<Awaited<ReturnType<typeof getFollowers>>, GetFollowersParams['page']>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  params?: GetFollowersParams,
+  options?: {
+    query?: Partial<
+      UseInfiniteQueryOptions<
+        Awaited<ReturnType<typeof getFollowers>>,
+        TError,
+        TData,
+        QueryKey,
+        GetFollowersParams['page']
+      >
+    >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+) => {
+  const { query: queryOptions, request: requestOptions } = options ?? {};
+
+  const queryKey = queryOptions?.queryKey ?? getGetFollowersInfiniteQueryKey(params);
+
+  const queryFn: QueryFunction<
+    Awaited<ReturnType<typeof getFollowers>>,
+    QueryKey,
+    GetFollowersParams['page']
+  > = ({ signal, pageParam }) =>
+    getFollowers({ ...params, page: pageParam ?? params?.['page'] }, requestOptions, signal);
+
+  return { queryKey, queryFn, ...queryOptions } as UseInfiniteQueryOptions<
+    Awaited<ReturnType<typeof getFollowers>>,
+    TError,
+    TData,
+    QueryKey,
+    GetFollowersParams['page']
+  > & { queryKey: DataTag<QueryKey, TData, TError> };
+};
+
+export type GetFollowersInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getFollowers>>>;
+export type GetFollowersInfiniteQueryError = ErrorType<ErrorResponse>;
+
+export function useGetFollowersInfinite<
+  TData = InfiniteData<Awaited<ReturnType<typeof getFollowers>>, GetFollowersParams['page']>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  params: undefined | GetFollowersParams,
+  options: {
+    query: Partial<
+      UseInfiniteQueryOptions<
+        Awaited<ReturnType<typeof getFollowers>>,
+        TError,
+        TData,
+        QueryKey,
+        GetFollowersParams['page']
+      >
+    > &
+      Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getFollowers>>,
+          TError,
+          Awaited<ReturnType<typeof getFollowers>>,
+          QueryKey
+        >,
+        'initialData'
+      >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+export function useGetFollowersInfinite<
+  TData = InfiniteData<Awaited<ReturnType<typeof getFollowers>>, GetFollowersParams['page']>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  params?: GetFollowersParams,
+  options?: {
+    query?: Partial<
+      UseInfiniteQueryOptions<
+        Awaited<ReturnType<typeof getFollowers>>,
+        TError,
+        TData,
+        QueryKey,
+        GetFollowersParams['page']
+      >
+    > &
+      Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getFollowers>>,
+          TError,
+          Awaited<ReturnType<typeof getFollowers>>,
+          QueryKey
+        >,
+        'initialData'
+      >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+export function useGetFollowersInfinite<
+  TData = InfiniteData<Awaited<ReturnType<typeof getFollowers>>, GetFollowersParams['page']>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  params?: GetFollowersParams,
+  options?: {
+    query?: Partial<
+      UseInfiniteQueryOptions<
+        Awaited<ReturnType<typeof getFollowers>>,
+        TError,
+        TData,
+        QueryKey,
+        GetFollowersParams['page']
+      >
+    >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+/**
+ * @summary 팔로워 목록 조회
+ */
+
+export function useGetFollowersInfinite<
+  TData = InfiniteData<Awaited<ReturnType<typeof getFollowers>>, GetFollowersParams['page']>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  params?: GetFollowersParams,
+  options?: {
+    query?: Partial<
+      UseInfiniteQueryOptions<
+        Awaited<ReturnType<typeof getFollowers>>,
+        TError,
+        TData,
+        QueryKey,
+        GetFollowersParams['page']
+      >
+    >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+  const queryOptions = getGetFollowersInfiniteQueryOptions(params, options);
+
+  const query = useInfiniteQuery(queryOptions, queryClient) as UseInfiniteQueryResult<
+    TData,
+    TError
+  > & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return withQueryKey(query, queryOptions.queryKey);
+}
 
 export const getGetFollowersQueryOptions = <
   TData = Awaited<ReturnType<typeof getFollowers>>,
