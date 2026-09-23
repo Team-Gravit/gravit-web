@@ -17,4 +17,7 @@ export { useWeeklyRecord } from './use-weekly-record';
 export {
   useGetMyPageSummary as useMyPageSummary,
   useGetMyPageLearningHistory as useMyPageLearningHistory,
+  useGetMyPageWeeklyReport as useMyPageWeeklyReport,
+  useGetMyPageTopChapters as useMyPageTopChapters,
+  useGetMyPageWeakConcepts as useMyPageWeakConcepts,
 } from '@/shared/api/generated/mypage-api/mypage-api';
