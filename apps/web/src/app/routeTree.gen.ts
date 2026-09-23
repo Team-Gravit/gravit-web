@@ -19,10 +19,15 @@ import { Route as AuthenticatedFocusRouteRouteImport } from './routes/_authentic
 import { Route as AuthenticatedOnboardingRouteRouteImport } from './routes/_authenticated/onboarding/route'
 import { Route as AuthenticatedAppShellLeagueRouteImport } from './routes/_authenticated/_app-shell/league'
 import { Route as AuthenticatedAppShellMainRouteImport } from './routes/_authenticated/_app-shell/main'
+import { Route as AuthenticatedAppShellMyRouteRouteImport } from './routes/_authenticated/_app-shell/my/route'
 import { Route as AuthenticatedOnboardingIndexRouteImport } from './routes/_authenticated/onboarding/index'
 import { Route as AuthenticatedOnboardingSuccessRouteImport } from './routes/_authenticated/onboarding/success'
 import { Route as AuthenticatedAppShellLearningIndexRouteImport } from './routes/_authenticated/_app-shell/learning.index'
-import { Route as AuthenticatedAppShellMyIndexRouteImport } from './routes/_authenticated/_app-shell/my.index'
+import { Route as AuthenticatedAppShellMyIndexRouteImport } from './routes/_authenticated/_app-shell/my/index'
+import { Route as AuthenticatedAppShellMyLeagueRouteImport } from './routes/_authenticated/_app-shell/my/league'
+import { Route as AuthenticatedAppShellMyLearningRouteImport } from './routes/_authenticated/_app-shell/my/learning'
+import { Route as AuthenticatedAppShellMySocialRouteImport } from './routes/_authenticated/_app-shell/my/social'
+import { Route as AuthenticatedAppShellMySummaryRouteImport } from './routes/_authenticated/_app-shell/my/summary'
 import { Route as LoginOauth2CodeProviderRouteImport } from './routes/login.oauth2.code.$provider'
 import { Route as AuthenticatedAppShellMyFriendsSearchRouteImport } from './routes/_authenticated/_app-shell/my.friends.search'
 import { Route as AuthenticatedFocusLearningLessonsLessonIdRouteImport } from './routes/_authenticated/_focus/learning.lessons.$lessonId'
@@ -83,6 +88,12 @@ const AuthenticatedAppShellMainRoute =
     path: '/main',
     getParentRoute: () => AuthenticatedAppShellRouteRoute,
   } as any)
+const AuthenticatedAppShellMyRouteRoute =
+  AuthenticatedAppShellMyRouteRouteImport.update({
+    id: '/my',
+    path: '/my',
+    getParentRoute: () => AuthenticatedAppShellRouteRoute,
+  } as any)
 const AuthenticatedOnboardingIndexRoute =
   AuthenticatedOnboardingIndexRouteImport.update({
     id: '/',
@@ -103,9 +114,33 @@ const AuthenticatedAppShellLearningIndexRoute =
   } as any)
 const AuthenticatedAppShellMyIndexRoute =
   AuthenticatedAppShellMyIndexRouteImport.update({
-    id: '/my/',
-    path: '/my/',
-    getParentRoute: () => AuthenticatedAppShellRouteRoute,
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedAppShellMyRouteRoute,
+  } as any)
+const AuthenticatedAppShellMyLeagueRoute =
+  AuthenticatedAppShellMyLeagueRouteImport.update({
+    id: '/league',
+    path: '/league',
+    getParentRoute: () => AuthenticatedAppShellMyRouteRoute,
+  } as any)
+const AuthenticatedAppShellMyLearningRoute =
+  AuthenticatedAppShellMyLearningRouteImport.update({
+    id: '/learning',
+    path: '/learning',
+    getParentRoute: () => AuthenticatedAppShellMyRouteRoute,
+  } as any)
+const AuthenticatedAppShellMySocialRoute =
+  AuthenticatedAppShellMySocialRouteImport.update({
+    id: '/social',
+    path: '/social',
+    getParentRoute: () => AuthenticatedAppShellMyRouteRoute,
+  } as any)
+const AuthenticatedAppShellMySummaryRoute =
+  AuthenticatedAppShellMySummaryRouteImport.update({
+    id: '/summary',
+    path: '/summary',
+    getParentRoute: () => AuthenticatedAppShellMyRouteRoute,
   } as any)
 const LoginOauth2CodeProviderRoute = LoginOauth2CodeProviderRouteImport.update({
   id: '/login/oauth2/code/$provider',
@@ -114,9 +149,9 @@ const LoginOauth2CodeProviderRoute = LoginOauth2CodeProviderRouteImport.update({
 } as any)
 const AuthenticatedAppShellMyFriendsSearchRoute =
   AuthenticatedAppShellMyFriendsSearchRouteImport.update({
-    id: '/my/friends/search',
-    path: '/my/friends/search',
-    getParentRoute: () => AuthenticatedAppShellRouteRoute,
+    id: '/friends/search',
+    path: '/friends/search',
+    getParentRoute: () => AuthenticatedAppShellMyRouteRoute,
   } as any)
 const AuthenticatedFocusLearningLessonsLessonIdRoute =
   AuthenticatedFocusLearningLessonsLessonIdRouteImport.update({
@@ -161,10 +196,15 @@ export interface FileRoutesByFullPath {
   '/restore': typeof RestoreRoute
   '/terms': typeof TermsRoute
   '/onboarding': typeof AuthenticatedOnboardingRouteRouteWithChildren
+  '/my': typeof AuthenticatedAppShellMyRouteRouteWithChildren
   '/league': typeof AuthenticatedAppShellLeagueRoute
   '/main': typeof AuthenticatedAppShellMainRoute
   '/onboarding/success': typeof AuthenticatedOnboardingSuccessRoute
   '/onboarding/': typeof AuthenticatedOnboardingIndexRoute
+  '/my/league': typeof AuthenticatedAppShellMyLeagueRoute
+  '/my/learning': typeof AuthenticatedAppShellMyLearningRoute
+  '/my/social': typeof AuthenticatedAppShellMySocialRoute
+  '/my/summary': typeof AuthenticatedAppShellMySummaryRoute
   '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
   '/learning/': typeof AuthenticatedAppShellLearningIndexRoute
   '/my/': typeof AuthenticatedAppShellMyIndexRoute
@@ -185,6 +225,10 @@ export interface FileRoutesByTo {
   '/main': typeof AuthenticatedAppShellMainRoute
   '/onboarding/success': typeof AuthenticatedOnboardingSuccessRoute
   '/onboarding': typeof AuthenticatedOnboardingIndexRoute
+  '/my/league': typeof AuthenticatedAppShellMyLeagueRoute
+  '/my/learning': typeof AuthenticatedAppShellMyLearningRoute
+  '/my/social': typeof AuthenticatedAppShellMySocialRoute
+  '/my/summary': typeof AuthenticatedAppShellMySummaryRoute
   '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
   '/learning': typeof AuthenticatedAppShellLearningIndexRoute
   '/my': typeof AuthenticatedAppShellMyIndexRoute
@@ -206,10 +250,15 @@ export interface FileRoutesById {
   '/_authenticated/_app-shell': typeof AuthenticatedAppShellRouteRouteWithChildren
   '/_authenticated/_focus': typeof AuthenticatedFocusRouteRouteWithChildren
   '/_authenticated/onboarding': typeof AuthenticatedOnboardingRouteRouteWithChildren
+  '/_authenticated/_app-shell/my': typeof AuthenticatedAppShellMyRouteRouteWithChildren
   '/_authenticated/_app-shell/league': typeof AuthenticatedAppShellLeagueRoute
   '/_authenticated/_app-shell/main': typeof AuthenticatedAppShellMainRoute
   '/_authenticated/onboarding/success': typeof AuthenticatedOnboardingSuccessRoute
   '/_authenticated/onboarding/': typeof AuthenticatedOnboardingIndexRoute
+  '/_authenticated/_app-shell/my/league': typeof AuthenticatedAppShellMyLeagueRoute
+  '/_authenticated/_app-shell/my/learning': typeof AuthenticatedAppShellMyLearningRoute
+  '/_authenticated/_app-shell/my/social': typeof AuthenticatedAppShellMySocialRoute
+  '/_authenticated/_app-shell/my/summary': typeof AuthenticatedAppShellMySummaryRoute
   '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
   '/_authenticated/_app-shell/learning/': typeof AuthenticatedAppShellLearningIndexRoute
   '/_authenticated/_app-shell/my/': typeof AuthenticatedAppShellMyIndexRoute
@@ -229,10 +278,15 @@ export interface FileRouteTypes {
     | '/restore'
     | '/terms'
     | '/onboarding'
+    | '/my'
     | '/league'
     | '/main'
     | '/onboarding/success'
     | '/onboarding/'
+    | '/my/league'
+    | '/my/learning'
+    | '/my/social'
+    | '/my/summary'
     | '/login/oauth2/code/$provider'
     | '/learning/'
     | '/my/'
@@ -253,6 +307,10 @@ export interface FileRouteTypes {
     | '/main'
     | '/onboarding/success'
     | '/onboarding'
+    | '/my/league'
+    | '/my/learning'
+    | '/my/social'
+    | '/my/summary'
     | '/login/oauth2/code/$provider'
     | '/learning'
     | '/my'
@@ -273,10 +331,15 @@ export interface FileRouteTypes {
     | '/_authenticated/_app-shell'
     | '/_authenticated/_focus'
     | '/_authenticated/onboarding'
+    | '/_authenticated/_app-shell/my'
     | '/_authenticated/_app-shell/league'
     | '/_authenticated/_app-shell/main'
     | '/_authenticated/onboarding/success'
     | '/_authenticated/onboarding/'
+    | '/_authenticated/_app-shell/my/league'
+    | '/_authenticated/_app-shell/my/learning'
+    | '/_authenticated/_app-shell/my/social'
+    | '/_authenticated/_app-shell/my/summary'
     | '/login/oauth2/code/$provider'
     | '/_authenticated/_app-shell/learning/'
     | '/_authenticated/_app-shell/my/'
@@ -370,6 +433,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAppShellMainRouteImport
       parentRoute: typeof AuthenticatedAppShellRouteRoute
     }
+    '/_authenticated/_app-shell/my': {
+      id: '/_authenticated/_app-shell/my'
+      path: '/my'
+      fullPath: '/my'
+      preLoaderRoute: typeof AuthenticatedAppShellMyRouteRouteImport
+      parentRoute: typeof AuthenticatedAppShellRouteRoute
+    }
     '/_authenticated/onboarding/': {
       id: '/_authenticated/onboarding/'
       path: '/'
@@ -393,10 +463,38 @@ declare module '@tanstack/react-router' {
     }
     '/_authenticated/_app-shell/my/': {
       id: '/_authenticated/_app-shell/my/'
-      path: '/my'
+      path: '/'
       fullPath: '/my/'
       preLoaderRoute: typeof AuthenticatedAppShellMyIndexRouteImport
-      parentRoute: typeof AuthenticatedAppShellRouteRoute
+      parentRoute: typeof AuthenticatedAppShellMyRouteRoute
+    }
+    '/_authenticated/_app-shell/my/league': {
+      id: '/_authenticated/_app-shell/my/league'
+      path: '/league'
+      fullPath: '/my/league'
+      preLoaderRoute: typeof AuthenticatedAppShellMyLeagueRouteImport
+      parentRoute: typeof AuthenticatedAppShellMyRouteRoute
+    }
+    '/_authenticated/_app-shell/my/learning': {
+      id: '/_authenticated/_app-shell/my/learning'
+      path: '/learning'
+      fullPath: '/my/learning'
+      preLoaderRoute: typeof AuthenticatedAppShellMyLearningRouteImport
+      parentRoute: typeof AuthenticatedAppShellMyRouteRoute
+    }
+    '/_authenticated/_app-shell/my/social': {
+      id: '/_authenticated/_app-shell/my/social'
+      path: '/social'
+      fullPath: '/my/social'
+      preLoaderRoute: typeof AuthenticatedAppShellMySocialRouteImport
+      parentRoute: typeof AuthenticatedAppShellMyRouteRoute
+    }
+    '/_authenticated/_app-shell/my/summary': {
+      id: '/_authenticated/_app-shell/my/summary'
+      path: '/summary'
+      fullPath: '/my/summary'
+      preLoaderRoute: typeof AuthenticatedAppShellMySummaryRouteImport
+      parentRoute: typeof AuthenticatedAppShellMyRouteRoute
     }
     '/login/oauth2/code/$provider': {
       id: '/login/oauth2/code/$provider'
@@ -407,10 +505,10 @@ declare module '@tanstack/react-router' {
     }
     '/_authenticated/_app-shell/my/friends/search': {
       id: '/_authenticated/_app-shell/my/friends/search'
-      path: '/my/friends/search'
+      path: '/friends/search'
       fullPath: '/my/friends/search'
       preLoaderRoute: typeof AuthenticatedAppShellMyFriendsSearchRouteImport
-      parentRoute: typeof AuthenticatedAppShellRouteRoute
+      parentRoute: typeof AuthenticatedAppShellMyRouteRoute
     }
     '/_authenticated/_focus/learning/lessons/$lessonId': {
       id: '/_authenticated/_focus/learning/lessons/$lessonId'
@@ -457,12 +555,36 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AuthenticatedAppShellMyRouteRouteChildren {
+  AuthenticatedAppShellMyLeagueRoute: typeof AuthenticatedAppShellMyLeagueRoute
+  AuthenticatedAppShellMyLearningRoute: typeof AuthenticatedAppShellMyLearningRoute
+  AuthenticatedAppShellMySocialRoute: typeof AuthenticatedAppShellMySocialRoute
+  AuthenticatedAppShellMySummaryRoute: typeof AuthenticatedAppShellMySummaryRoute
+  AuthenticatedAppShellMyIndexRoute: typeof AuthenticatedAppShellMyIndexRoute
+  AuthenticatedAppShellMyFriendsSearchRoute: typeof AuthenticatedAppShellMyFriendsSearchRoute
+}
+
+const AuthenticatedAppShellMyRouteRouteChildren: AuthenticatedAppShellMyRouteRouteChildren =
+  {
+    AuthenticatedAppShellMyLeagueRoute: AuthenticatedAppShellMyLeagueRoute,
+    AuthenticatedAppShellMyLearningRoute: AuthenticatedAppShellMyLearningRoute,
+    AuthenticatedAppShellMySocialRoute: AuthenticatedAppShellMySocialRoute,
+    AuthenticatedAppShellMySummaryRoute: AuthenticatedAppShellMySummaryRoute,
+    AuthenticatedAppShellMyIndexRoute: AuthenticatedAppShellMyIndexRoute,
+    AuthenticatedAppShellMyFriendsSearchRoute:
+      AuthenticatedAppShellMyFriendsSearchRoute,
+  }
+
+const AuthenticatedAppShellMyRouteRouteWithChildren =
+  AuthenticatedAppShellMyRouteRoute._addFileChildren(
+    AuthenticatedAppShellMyRouteRouteChildren,
+  )
+
 interface AuthenticatedAppShellRouteRouteChildren {
+  AuthenticatedAppShellMyRouteRoute: typeof AuthenticatedAppShellMyRouteRouteWithChildren
   AuthenticatedAppShellLeagueRoute: typeof AuthenticatedAppShellLeagueRoute
   AuthenticatedAppShellMainRoute: typeof AuthenticatedAppShellMainRoute
   AuthenticatedAppShellLearningIndexRoute: typeof AuthenticatedAppShellLearningIndexRoute
-  AuthenticatedAppShellMyIndexRoute: typeof AuthenticatedAppShellMyIndexRoute
-  AuthenticatedAppShellMyFriendsSearchRoute: typeof AuthenticatedAppShellMyFriendsSearchRoute
   AuthenticatedAppShellLearningUnitsUnitIdConceptNoteRoute: typeof AuthenticatedAppShellLearningUnitsUnitIdConceptNoteRoute
   AuthenticatedAppShellLearningChaptersChapterIdIndexRoute: typeof AuthenticatedAppShellLearningChaptersChapterIdIndexRoute
   AuthenticatedAppShellLearningUnitsUnitIdIndexRoute: typeof AuthenticatedAppShellLearningUnitsUnitIdIndexRoute
@@ -470,13 +592,12 @@ interface AuthenticatedAppShellRouteRouteChildren {
 
 const AuthenticatedAppShellRouteRouteChildren: AuthenticatedAppShellRouteRouteChildren =
   {
+    AuthenticatedAppShellMyRouteRoute:
+      AuthenticatedAppShellMyRouteRouteWithChildren,
     AuthenticatedAppShellLeagueRoute: AuthenticatedAppShellLeagueRoute,
     AuthenticatedAppShellMainRoute: AuthenticatedAppShellMainRoute,
     AuthenticatedAppShellLearningIndexRoute:
       AuthenticatedAppShellLearningIndexRoute,
-    AuthenticatedAppShellMyIndexRoute: AuthenticatedAppShellMyIndexRoute,
-    AuthenticatedAppShellMyFriendsSearchRoute:
-      AuthenticatedAppShellMyFriendsSearchRoute,
     AuthenticatedAppShellLearningUnitsUnitIdConceptNoteRoute:
       AuthenticatedAppShellLearningUnitsUnitIdConceptNoteRoute,
     AuthenticatedAppShellLearningChaptersChapterIdIndexRoute:

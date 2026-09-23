@@ -4,8 +4,10 @@ export {
   getUserQueryOptions,
   useUser,
   useUserProfile,
+  useMyPageBanner,
 } from './api';
 export type { UserProfile } from './model/types';
+export type { MyPageBannerResponse } from '@/shared/api/generated/model/myPageBannerResponse';
 export {
   FIRST_PROFILE_COLOR_NUMBER,
   getNextProfileColorNumber,
