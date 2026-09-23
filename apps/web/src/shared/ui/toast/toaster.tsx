@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type ReactPortal } from 'react';
 import { createPortal } from 'react-dom';
 import { cva } from 'class-variance-authority';
 
@@ -34,7 +34,7 @@ const POSITION_CLASS = {
 } as const;
 
 /** 전역 단일 토스트 렌더러. 앱 셸에 한 번 마운트한다. */
-export function Toaster() {
+export function Toaster(): ReactPortal | null {
   const toast = useToastStore((state) => state.toast);
   const dismiss = useToastStore((state) => state.dismiss);
 
