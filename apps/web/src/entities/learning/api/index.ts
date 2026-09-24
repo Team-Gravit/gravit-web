@@ -9,6 +9,7 @@ export { getGetAllLessonInUnitQueryKey as getUnitLessonsQueryKey } from '@/share
 export { getGetAllUnitInChapterQueryKey as getUnitsInChapterQueryKey } from '@/shared/api/generated/unit-api/unit-api';
 export { useChapters } from './use-chapters';
 export { useRecentLearning } from './use-recent-learning';
+export { useLessonResult } from './use-lesson-result';
 export { useUnitLessons } from './use-unit-lessons';
 export { useUnitsInChapter } from './use-units-in-chapter';
 export { useWeeklyRecord } from './use-weekly-record';
