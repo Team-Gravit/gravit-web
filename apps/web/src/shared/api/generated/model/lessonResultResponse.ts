@@ -22,4 +22,6 @@ export interface LessonResultResponse {
   accuracy: number;
   /** 풀이 시간(단위 : 정수 초) / 1분 20초가 걸렸다면 80 */
   learningTime: number;
+  /** 레슨이 속한 챕터 아이디 */
+  chapterId: number;
 }
