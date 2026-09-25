@@ -9,7 +9,7 @@ export type { LastSeasonPopupDto } from '@/shared/api/generated/model';
 export { useLeagueHome } from './api/use-league-home';
 export { useLeagueInfo } from './api/use-league-info';
 export { useMyLeagueProfile } from './api/use-my-league-profile';
-export { useLeagueRanking } from './api/use-league-ranking';
+export { LEAGUE_RANKING_QUERY_KEY, useLeagueRanking } from './api/use-league-ranking';
 export { useMyLeagueRanking } from './api/use-my-league-ranking';
 
 export { getLeagueSummaryQueryKey, useLeagueSummary } from './api/use-league-summary';
