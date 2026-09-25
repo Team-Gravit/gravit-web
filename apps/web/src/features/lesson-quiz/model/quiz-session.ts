@@ -16,10 +16,13 @@ export interface QuizSessionState {
   /** 일괄 제출 시 풀이 시간을 계산할 기준 시각(ms). */
   startedAt: number;
   totalProblemCount: number;
+  /** 현재 주관식 문제에 입력했지만 제출하지 않은 답안. */
+  subjectiveAnswerDraft: string;
 }
 
 export type QuizSessionAction =
   | ({ type: 'submitAnswer' } & SubmitAnswerInput)
+  | { type: 'setSubjectiveAnswerDraft'; subjectiveAnswerDraft: string }
   | { type: 'goToNext' }
   | { type: 'goToPrevious' }
   | { type: 'goTo'; problemIndex: number };
@@ -34,6 +37,7 @@ export function createInitialQuizSessionState(
     answersByProblemId: {},
     startedAt,
     totalProblemCount,
+    subjectiveAnswerDraft: '',
   };
 }
 
@@ -57,6 +61,8 @@ export function quizSessionReducer(
         },
       };
     }
+    case 'setSubjectiveAnswerDraft':
+      return { ...state, subjectiveAnswerDraft: action.subjectiveAnswerDraft };
     case 'goToNext':
       return moveToProblem(state, state.currentProblemIndex + 1);
     case 'goToPrevious':
@@ -79,5 +85,6 @@ function moveToProblem(state: QuizSessionState, problemIndex: number): QuizSessi
     return state;
   }
 
-  return { ...state, currentProblemIndex: problemIndex };
+  // 주관식 초안은 현재 문제에서만 유효하다.
+  return { ...state, currentProblemIndex: problemIndex, subjectiveAnswerDraft: '' };
 }

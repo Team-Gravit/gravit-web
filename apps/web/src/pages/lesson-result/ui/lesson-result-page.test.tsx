@@ -100,6 +100,15 @@ describe('LessonResultPage', () => {
     expect(screen.getByRole('progressbar')).toHaveAttribute('aria-valuenow', '45');
   });
 
+  it('리그 이름은 응답에 있어도 화면에 없다', async () => {
+    // 시안에 자리가 없다(D19). 응답이 주는 값을 그리지 않는 것이 의도임을 고정한다.
+    server.use(http.get(LESSON_RESULT_URL, () => HttpResponse.json(LESSON_RESULT_FIXTURE)));
+    await renderLessonResult();
+
+    await screen.findByText('789XP');
+    expect(screen.queryByText('브론즈')).not.toBeInTheDocument();
+  });
+
   it('다음 행동 두 가지를 각각의 목적지로 연결한다', async () => {
     server.use(http.get(LESSON_RESULT_URL, () => HttpResponse.json(LESSON_RESULT_FIXTURE)));
     await renderLessonResult();

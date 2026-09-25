@@ -56,6 +56,28 @@ describe('quizSessionReducer 답안 제출', () => {
   });
 });
 
+describe('quizSessionReducer 주관식 답안 입력', () => {
+  it('setSubjectiveAnswerDraft 하면 입력 중인 답안을 저장한다', () => {
+    const next = quizSessionReducer(createInitialQuizSessionState(3, STARTED_AT), {
+      type: 'setSubjectiveAnswerDraft',
+      subjectiveAnswerDraft: 'DFS',
+    });
+
+    expect(next.subjectiveAnswerDraft).toBe('DFS');
+  });
+
+  it('다른 문제로 이동하면 입력 중인 답안을 비운다', () => {
+    const state = quizSessionReducer(createInitialQuizSessionState(3, STARTED_AT), {
+      type: 'setSubjectiveAnswerDraft',
+      subjectiveAnswerDraft: 'DFS',
+    });
+
+    const next = quizSessionReducer(state, { type: 'goToNext' });
+
+    expect(next.subjectiveAnswerDraft).toBe('');
+  });
+});
+
 describe('quizSessionReducer 문제 이동', () => {
   it('goToNext 하면 currentProblemIndex가 1 증가한다', () => {
     const next = quizSessionReducer(createInitialQuizSessionState(3, STARTED_AT), {

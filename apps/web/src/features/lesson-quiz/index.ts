@@ -1,9 +1,4 @@
-export {
-  PROBLEM_NAV_LABELS,
-  PROGRESS_PANEL_LABELS,
-  QUIZ_ANSWER_FORM_ID,
-  QUIZ_SUBMIT_LABEL,
-} from './model/constants';
+export { PROBLEM_NAV_LABELS, PROGRESS_PANEL_LABELS, QUIZ_SUBMIT_LABEL } from './model/constants';
 export { toAccuracy } from './model/accuracy';
 export {
   clearStoredQuizSession,
@@ -21,6 +16,7 @@ export {
 export {
   QuizSessionProvider,
   useQuizSession,
+  type AdvanceAction,
   type QuizSessionContextValue,
   type QuizSessionProviderProps,
 } from './model/quiz-session-context';

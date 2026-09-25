@@ -15,7 +15,6 @@ import {
   clearStoredQuizSession,
   ObjectiveSolver,
   PROBLEM_NAV_LABELS,
-  QUIZ_ANSWER_FORM_ID,
   QUIZ_SUBMIT_LABEL,
   QuizSessionProvider,
   SubjectiveAnswer,
@@ -39,14 +38,14 @@ export interface LessonQuizPageProps {
 }
 
 export function LessonQuizPage({ lessonId }: LessonQuizPageProps) {
-  const { data, isPending, isError, refetch } = useLessonProblems(lessonId);
+  const { data: lessonProblems, isPending, isError, refetch } = useLessonProblems(lessonId);
 
-  // 문제 목록이 바뀔 때만 세션 저장 작업이 실행되도록 배열 참조를 유지
+  // 문제 목록이 바뀔 때만 세션 저장 작업이 실행되도록 배열 참조를 유지한다.
   const problemIds = useMemo(
-    () => (data?.problems ?? []).map((problem) => problem.problemId),
-    [data],
+    () => (lessonProblems?.problems ?? []).map((problem) => problem.problemId),
+    [lessonProblems?.problems],
   );
-  // 응답이 바로 오더라도 화면이 깜빡이지 않도록 로딩 화면을 최소 2.5초 유지
+  // 응답이 바로 오더라도 화면이 깜빡이지 않도록 로딩 화면을 최소 2.5초 유지한다.
   const shouldShowLoadingScreen = useInitialMinimumDuration(isPending, MINIMUM_LOADING_DURATION_MS);
 
   if (shouldShowLoadingScreen) {
@@ -57,7 +56,7 @@ export function LessonQuizPage({ lessonId }: LessonQuizPageProps) {
     );
   }
 
-  if (isError || !data) {
+  if (isError || !lessonProblems) {
     return (
       <div data-slot="lesson-quiz-page" className={cn(SURFACE_CLASS, 'justify-center p-4')}>
         <CardRetryStatus sectionName="문제" onRetry={() => void refetch()} />
@@ -65,15 +64,16 @@ export function LessonQuizPage({ lessonId }: LessonQuizPageProps) {
     );
   }
 
-  const unitLabel = toUnitLabel(data.unitSummary);
+  const unitLabel = toUnitLabel(lessonProblems.unitSummary);
+  const quizSessionKey = `${lessonId}:${problemIds.join(',')}`;
 
   return (
-    <QuizSessionProvider key={lessonId} lessonId={lessonId} problemIds={problemIds}>
+    <QuizSessionProvider key={quizSessionKey} lessonId={lessonId} problemIds={problemIds}>
       <QuizScreen
         lessonId={lessonId}
-        title={`${unitLabel} - ${data.unitSummary.title}`}
-        unitId={data.unitSummary.unitId}
-        problems={data.problems}
+        title={`${unitLabel} - ${lessonProblems.unitSummary.title}`}
+        unitId={lessonProblems.unitSummary.unitId}
+        problems={lessonProblems.problems}
       />
     </QuizSessionProvider>
   );
@@ -89,9 +89,10 @@ interface QuizScreenProps {
 function QuizScreen({ lessonId, title, unitId, problems }: QuizScreenProps) {
   const navigate = useNavigate();
   const isWide = useIsWideViewport();
-  const { currentProblemIndex, answersByProblemId, startedAt } = useQuizSession();
+  const { currentProblemIndex, answersByProblemId, startedAt, advance, getAdvanceAction } =
+    useQuizSession();
   const currentProblem = problems[currentProblemIndex];
-  const { submit, isPending: isSubmitting } = useSubmitLesson({
+  const { submit: submitLesson, isPending: isSubmitting } = useSubmitLesson({
     // 실패 후에도 풀이 화면을 유지하므로 토스트로 제출 결과를 알린다.
     onError: () => toast(SUBMIT_FAILURE_MESSAGE),
     onSuccess: async ({ lessonSubmissionId }) => {
@@ -110,12 +111,21 @@ function QuizScreen({ lessonId, title, unitId, problems }: QuizScreenProps) {
   });
 
   const handleSubmitLesson = () =>
-    submit({
+    submitLesson({
       lessonId,
       problems,
       answersByProblemId,
       learningTime: Math.round((Date.now() - startedAt) / 1000),
     });
+
+  const handleAdvance = () => {
+    if (!currentProblem) return;
+
+    const action = advance(currentProblem);
+    if (action === 'submitLesson') {
+      handleSubmitLesson();
+    }
+  };
 
   if (!currentProblem) {
     return (
@@ -130,10 +140,7 @@ function QuizScreen({ lessonId, title, unitId, problems }: QuizScreenProps) {
       {/* 제출 중에는 풀이 상태를 유지하고 inert로 뒤쪽 상호작용을 막는다. */}
       <div data-slot="quiz-surface" inert={isSubmitting} className="flex min-h-0 flex-1 flex-col">
         <QuizTopBar title={title} unitId={unitId} />
-        {/*
-        문제 영역만 스크롤하려면 상위 flex 자식마다 min-h-0이 필요
-        하나라도 빠지면 overflow가 적용되지 않고 컨테이너가 내용만큼 늘어날 수 있음
-      */}
+        {/* 문제 영역의 상위 flex 자식에 min-h-0이 없으면 컨테이너가 내용만큼 늘어난다. */}
         <div className="flex min-h-0 w-full flex-1">
           {isWide ? <QuizProgressPanel problems={problems} className={PANEL_CLASS} /> : null}
           <main className="flex min-h-0 min-w-0 flex-1 flex-col">
@@ -144,12 +151,16 @@ function QuizScreen({ lessonId, title, unitId, problems }: QuizScreenProps) {
                   <QuizTimer startedAt={startedAt} />
                 </div>
                 <ProblemCard problem={currentProblem} number={currentProblemIndex + 1}>
-                  <ProblemSolver key={currentProblem.problemId} problem={currentProblem} />
+                  <ProblemSolver
+                    key={currentProblem.problemId}
+                    problem={currentProblem}
+                    onAdvance={handleAdvance}
+                  />
                 </ProblemCard>
                 <QuizFooter
-                  problems={problems}
                   isWide={isWide}
-                  onSubmitLesson={handleSubmitLesson}
+                  onAdvance={handleAdvance}
+                  shouldSubmitLesson={getAdvanceAction(currentProblem) === 'submitLesson'}
                 />
               </div>
             </div>
@@ -161,7 +172,7 @@ function QuizScreen({ lessonId, title, unitId, problems }: QuizScreenProps) {
   );
 }
 
-/** 제출 중에는 풀이 맥락이 남도록 반투명 덮개로 상호작용만 방지*/
+/** 제출 중에는 풀이 맥락이 남도록 반투명 덮개로 상호작용을 막는다. */
 function SubmittingOverlay() {
   return (
     <div
@@ -173,54 +184,30 @@ function SubmittingOverlay() {
   );
 }
 
-function ProblemSolver({ problem }: { problem: Problem }) {
+interface ProblemSolverProps {
+  problem: Problem;
+  onAdvance: () => void;
+}
+
+function ProblemSolver({ problem, onAdvance }: ProblemSolverProps) {
   if (problem.type === 'objective') {
     return <ObjectiveSolver problem={problem} />;
   }
 
-  return <SubjectiveAnswer problem={problem} />;
+  return <SubjectiveAnswer problem={problem} onAdvance={onAdvance} />;
 }
 
-/** 주관식 답안 제출과 문제 이동, 마지막 레슨 제출을 연결한다. */
-function QuizFooter({
-  problems,
-  isWide,
-  onSubmitLesson,
-}: {
-  problems: Problem[];
+interface QuizFooterProps {
   isWide: boolean;
-  onSubmitLesson: () => void;
-}) {
-  const { answersByProblemId, currentProblemIndex, totalProblemCount, goToPrevious, goToNext } =
-    useQuizSession();
+  onAdvance: () => void;
+  shouldSubmitLesson: boolean;
+}
 
-  const problem = problems[currentProblemIndex];
-  const labels = isWide ? PROBLEM_NAV_LABELS.wide : PROBLEM_NAV_LABELS.narrow;
-  const isAnswerSubmitted =
-    problem !== undefined && answersByProblemId[problem.problemId] !== undefined;
-  const shouldSubmitAnswer = problem?.type === 'subjective' && !isAnswerSubmitted;
-  const isLastProblem = currentProblemIndex === totalProblemCount - 1;
-  const canSubmitLesson = isLastProblem && isAnswerSubmitted;
+/** 문제 이동과 마지막 레슨 제출을 연결한다. */
+function QuizFooter({ isWide, onAdvance, shouldSubmitLesson }: QuizFooterProps) {
+  const { currentProblemIndex, goToPrevious } = useQuizSession();
 
-  // 브라우저는 클릭 전파가 끝난 뒤 버튼의 type을 다시 읽는다. 전파 도중 리렌더로 type이
-  // submit이 되면 그 클릭이 방금 마운트된 주관식 폼까지 제출하므로 type을 고정해 둔다.
-  const handleNext = () => {
-    if (canSubmitLesson) {
-      onSubmitLesson();
-      return;
-    }
-
-    if (!shouldSubmitAnswer) {
-      goToNext();
-      return;
-    }
-
-    const answerForm = document.getElementById(QUIZ_ANSWER_FORM_ID);
-
-    if (answerForm instanceof HTMLFormElement) {
-      answerForm.requestSubmit();
-    }
-  };
+  const navigationLabels = isWide ? PROBLEM_NAV_LABELS.wide : PROBLEM_NAV_LABELS.narrow;
 
   return (
     <div
@@ -239,15 +226,15 @@ function QuizFooter({
         onClick={goToPrevious}
         disabled={currentProblemIndex === 0}
       >
-        {labels.prev}
+        {navigationLabels.prev}
       </Button>
       <Button
         size={{ base: 'md', md: 'lg' }}
         type="button"
-        onClick={handleNext}
+        onClick={onAdvance}
         className={isWide ? 'md:w-40' : 'flex-1'}
       >
-        {canSubmitLesson ? QUIZ_SUBMIT_LABEL : labels.next}
+        {shouldSubmitLesson ? QUIZ_SUBMIT_LABEL : navigationLabels.next}
       </Button>
     </div>
   );

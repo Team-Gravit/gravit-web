@@ -71,14 +71,14 @@ function stubViewport(isWide: boolean) {
 async function renderLessonQuiz({ isWide = true, extraPaths = EXTRA_PATHS } = {}) {
   stubViewport(isWide);
   // 앱에서는 main.tsx가 렌더링하는 Toaster를 테스트 트리에 추가한다.
-  const Target = () => (
+  const TestPage = () => (
     <>
       <LessonQuizPage lessonId={7} />
       <Toaster />
     </>
   );
 
-  return renderWithProviders(Target, { extraPaths });
+  return renderWithProviders(TestPage, { extraPaths });
 }
 
 afterEach(() => {
@@ -349,12 +349,12 @@ function createObjectiveProblem(problemId: number, instruction: string) {
   };
 }
 
-function createLesson(count: number) {
-  const problems = Array.from({ length: count }, (_, index) =>
+function createLesson(problemCount: number) {
+  const problems = Array.from({ length: problemCount }, (_, index) =>
     createObjectiveProblem(101 + index, `${index + 1}번 발문`),
   );
 
-  return { ...LESSON_PROBLEMS, totalProblems: count, problems };
+  return { ...LESSON_PROBLEMS, totalProblems: problemCount, problems };
 }
 
 describe('LessonQuizPage 이동과 진행 패널', () => {
@@ -469,11 +469,11 @@ const SUBMIT_URL = '*/api/v1/lessons/results';
 const RESULT_PATH = '/learning/lessons/$lessonId/result/$submissionId';
 const RESULT_URL = '*/api/v1/lessons/results/:lessonSubmissionId';
 
-async function solveAllProblems(count: number) {
-  for (let index = 0; index < count; index += 1) {
+async function solveAllProblems(problemCount: number) {
+  for (let index = 0; index < problemCount; index += 1) {
     await userEvent.click(await screen.findByRole('button', { name: /^정답/ }));
 
-    if (index < count - 1) {
+    if (index < problemCount - 1) {
       await userEvent.click(screen.getByRole('button', { name: '다음 문제' }));
     }
   }
@@ -487,6 +487,81 @@ describe('LessonQuizPage 레슨 제출', () => {
 
     expect(screen.getByRole('button', { name: '제출하기' })).toBeInTheDocument();
     expect(screen.queryByRole('button', { name: '다음 문제' })).not.toBeInTheDocument();
+  });
+
+  it('마지막 문제를 풀지 않아도 제출할 수 있다', async () => {
+    // 마지막 문제를 몰라도 풀이를 끝낼 수 있어야 하며, 미완료는 오답으로 계산한다.
+    let submittedAccuracy: number | undefined;
+    server.use(
+      http.get(PROBLEMS_URL, () => HttpResponse.json(createLesson(2))),
+      http.post(SUBMIT_URL, async ({ request }) => {
+        const body = (await request.json()) as {
+          lessonSubmissionSaveRequest: { accuracy: number };
+        };
+        submittedAccuracy = body.lessonSubmissionSaveRequest.accuracy;
+
+        return HttpResponse.json({
+          lessonSubmissionId: 345,
+          isLevelUp: false,
+          isLeaguePromoted: false,
+        });
+      }),
+      http.get(RESULT_URL, () => HttpResponse.json({})),
+    );
+    const { router } = await renderLessonQuiz({ extraPaths: [...EXTRA_PATHS, RESULT_PATH] });
+
+    await userEvent.click(await screen.findByRole('button', { name: /^정답/ }));
+    await userEvent.click(screen.getByRole('button', { name: '다음 문제' }));
+    // 2번 문제는 건드리지 않고 바로 끝낸다.
+    await userEvent.click(screen.getByRole('button', { name: '제출하기' }));
+
+    await waitFor(() =>
+      expect(router.state.location.pathname).toBe('/learning/lessons/7/result/345'),
+    );
+    // 2문제 중 1개 정답, 1개 미완료 → 50%
+    expect(submittedAccuracy).toBe(50);
+  });
+
+  it('주관식 마지막 문제를 비워 둬도 제출할 수 있다', async () => {
+    server.use(
+      http.get(PROBLEMS_URL, () => HttpResponse.json(SUBJECTIVE_PROBLEMS)),
+      http.post(SUBMIT_URL, () =>
+        HttpResponse.json({ lessonSubmissionId: 345, isLevelUp: false, isLeaguePromoted: false }),
+      ),
+      http.get(RESULT_URL, () => HttpResponse.json({})),
+    );
+    const { router } = await renderLessonQuiz({ extraPaths: [...EXTRA_PATHS, RESULT_PATH] });
+
+    await screen.findByRole('textbox', { name: '답 입력' });
+    await userEvent.click(screen.getByRole('button', { name: '제출하기' }));
+
+    await waitFor(() =>
+      expect(router.state.location.pathname).toBe('/learning/lessons/7/result/345'),
+    );
+  });
+
+  it('주관식 마지막 문제에 답을 쓰면 먼저 채점하고 그다음 제출한다', async () => {
+    server.use(
+      http.get(PROBLEMS_URL, () => HttpResponse.json(SUBJECTIVE_PROBLEMS)),
+      http.post(SUBMIT_URL, () =>
+        HttpResponse.json({ lessonSubmissionId: 345, isLevelUp: false, isLeaguePromoted: false }),
+      ),
+      http.get(RESULT_URL, () => HttpResponse.json({})),
+    );
+    const { router } = await renderLessonQuiz({ extraPaths: [...EXTRA_PATHS, RESULT_PATH] });
+
+    await userEvent.type(await screen.findByRole('textbox', { name: '답 입력' }), 'DFS');
+    // 입력한 답을 먼저 채점하므로 첫 클릭에서는 결과 화면으로 이동하지 않는다.
+    await userEvent.click(screen.getByRole('button', { name: '다음 문제' }));
+
+    expect(screen.getByText('👏🏻 정답입니다!')).toBeInTheDocument();
+    expect(router.state.location.pathname).not.toContain('/result/');
+
+    await userEvent.click(screen.getByRole('button', { name: '제출하기' }));
+
+    await waitFor(() =>
+      expect(router.state.location.pathname).toBe('/learning/lessons/7/result/345'),
+    );
   });
 
   it('제출 중에는 덮개가 화면을 가리고 뒤쪽 조작을 막는다', async () => {
@@ -606,7 +681,7 @@ describe('LessonQuizPage 풀이 중 답안 보존', () => {
   it('새로고침처럼 다시 마운트되면 저장된 시작 시각부터 타이머를 이어간다', async () => {
     vi.useFakeTimers({ shouldAdvanceTime: true });
     server.use(http.get(PROBLEMS_URL, () => HttpResponse.json(createLesson(3))));
-    const first = await renderLessonQuiz();
+    const initialRender = await renderLessonQuiz();
 
     const timer = await screen.findByRole('timer', { name: '경과 시간' });
 
@@ -616,7 +691,7 @@ describe('LessonQuizPage 풀이 중 답안 보존', () => {
 
     expect(timer).toHaveTextContent('01:05');
 
-    first.unmount();
+    initialRender.unmount();
     await renderLessonQuiz();
 
     expect(await screen.findByRole('timer', { name: '경과 시간' })).toHaveTextContent('01:05');
@@ -624,14 +699,14 @@ describe('LessonQuizPage 풀이 중 답안 보존', () => {
 
   it('새로고침처럼 다시 마운트되면 풀던 답이 복원된다', async () => {
     server.use(http.get(PROBLEMS_URL, () => HttpResponse.json(createLesson(3))));
-    const first = await renderLessonQuiz();
+    const initialRender = await renderLessonQuiz();
 
     await userEvent.click(await screen.findByRole('button', { name: /^정답/ }));
     await userEvent.click(screen.getByRole('button', { name: '다음 문제' }));
     await userEvent.click(screen.getByRole('button', { name: /^정답/ }));
 
     // 새로고침과 달리 sessionStorage는 그대로 둔 채 컴포넌트만 다시 마운트한다.
-    first.unmount();
+    initialRender.unmount();
     const { container } = await renderLessonQuiz();
 
     await screen.findByText('2번 발문');
@@ -640,11 +715,11 @@ describe('LessonQuizPage 풀이 중 답안 보존', () => {
 
   it('레슨을 떠나 저장본이 지워졌으면 처음부터 시작한다', async () => {
     server.use(http.get(PROBLEMS_URL, () => HttpResponse.json(createLesson(3))));
-    const first = await renderLessonQuiz();
+    const initialRender = await renderLessonQuiz();
 
     await userEvent.click(await screen.findByRole('button', { name: /^정답/ }));
 
-    first.unmount();
+    initialRender.unmount();
     // 라우트의 onLeave와 같은 조건을 만든다.
     clearStoredQuizSession(7);
     const { container } = await renderLessonQuiz();
