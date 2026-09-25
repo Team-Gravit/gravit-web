@@ -1,5 +1,14 @@
-import { createContext, useCallback, useContext, useMemo, useReducer, type ReactNode } from 'react';
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useReducer,
+  type ReactNode,
+} from 'react';
 
+import { readStoredQuizSession, writeStoredQuizSession } from './quiz-session-storage';
 import {
   createInitialQuizSessionState,
   quizSessionReducer,
@@ -21,21 +30,25 @@ export interface QuizSessionContextValue {
 const QuizSessionContext = createContext<QuizSessionContextValue | null>(null);
 
 export interface QuizSessionProviderProps {
-  totalProblemCount: number;
+  lessonId: number;
+  problemIds: number[];
   children: ReactNode;
 }
 
 /**
- * 레슨 하나를 푸는 동안의 상태를 담는다.
- *
- * 매초 바뀌는 경과 시간은 구독자 전체를 다시 그리지 않도록 Context에 저장하지 않는다.
+ * 레슨 풀이 상태를 `sessionStorage`에서 복원하고 변경될 때마다 저장한다.
+ * 라우트 이탈 시 저장본 삭제는 `onLeave`가 담당한다.
  */
-export function QuizSessionProvider({ totalProblemCount, children }: QuizSessionProviderProps) {
-  const [state, dispatch] = useReducer(
-    quizSessionReducer,
-    totalProblemCount,
-    createInitialQuizSessionState,
-  );
+export function QuizSessionProvider({ lessonId, problemIds, children }: QuizSessionProviderProps) {
+  const [state, dispatch] = useReducer(quizSessionReducer, undefined, () => {
+    const storedSession = readStoredQuizSession(lessonId, problemIds);
+
+    return storedSession ?? createInitialQuizSessionState(problemIds.length);
+  });
+
+  useEffect(() => {
+    writeStoredQuizSession(lessonId, problemIds, state);
+  }, [lessonId, problemIds, state]);
 
   const submitAnswer = useCallback((input: SubmitAnswerInput) => {
     dispatch({ type: 'submitAnswer', ...input });
