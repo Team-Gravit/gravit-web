@@ -1,3 +1,11 @@
+import type { ReactNode } from 'react';
+import {
+  RouterProvider,
+  createMemoryHistory,
+  createRootRoute,
+  createRoute,
+  createRouter,
+} from '@tanstack/react-router';
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
@@ -12,9 +20,26 @@ const BANNER = {
   consecutiveSolvedDays: 7,
 };
 
+// ProfileCard의 설정 버튼이 <Link to="/settings">이므로 라우터 컨텍스트가 필요하다.
+async function renderWithRouter(ui: ReactNode) {
+  const rootRoute = createRootRoute({ component: () => ui });
+  const settings = createRoute({
+    getParentRoute: () => rootRoute,
+    path: '/settings',
+    component: () => null,
+  });
+  const router = createRouter({
+    routeTree: rootRoute.addChildren([settings]),
+    history: createMemoryHistory({ initialEntries: ['/'] }),
+  });
+
+  await router.load();
+  render(<RouterProvider router={router as never} />);
+}
+
 describe('ProfileCard', () => {
-  it('data 가 있으면 닉네임·핸들·레벨·리그·연속학습 라벨을 표시한다', () => {
-    render(<ProfileCard data={BANNER} />);
+  it('data 가 있으면 닉네임·핸들·레벨·리그·연속학습 라벨을 표시한다', async () => {
+    await renderWithRouter(<ProfileCard data={BANNER} />);
 
     expect(screen.getByRole('heading', { name: '한준서' })).toBeInTheDocument();
     // 핸들은 데스크톱·모바일 두 곳에 렌더된다.
@@ -24,8 +49,8 @@ describe('ProfileCard', () => {
     expect(screen.getByText('7일 연속 학습중')).toBeInTheDocument();
   });
 
-  it('data 없이 isLoading 이면 데이터 텍스트 없이 정적 프레임(편집 버튼)만 렌더한다', () => {
-    render(<ProfileCard isLoading />);
+  it('data 없이 isLoading 이면 데이터 텍스트 없이 정적 프레임(편집 버튼)만 렌더한다', async () => {
+    await renderWithRouter(<ProfileCard isLoading />);
 
     expect(screen.queryByText('한준서')).not.toBeInTheDocument();
     expect(screen.queryByText('LV. 3')).not.toBeInTheDocument();
