@@ -33,7 +33,11 @@ export function LeagueTab() {
       {data.seasonHistory.length > 0 ? (
         <div className="flex flex-col gap-11">
           <div className="flex items-center">
-            <StatItem highlight value={`${data.currentSeasonRank}위`} label="현재 시즌 순위" />
+            <StatItem
+              valueTone="accent"
+              value={`${data.currentSeasonRank}위`}
+              label="현재 시즌 순위"
+            />
             <StatItem
               className="border-l border-divider-1"
               value={`${data.top3SeasonCount}회`}

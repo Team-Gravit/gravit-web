@@ -2,12 +2,14 @@ import { formatElapsedTime } from '@/shared/lib/date';
 import { useElapsedSeconds } from '@/shared/lib/use-elapsed-seconds';
 import { Icon } from '@/shared/ui/icon';
 
-/**
- * 매초 갱신되는 상태를 이 컴포넌트 안에 가둬 문제 영역의 불필요한 렌더를 피한다.
- * 제출용 시간은 세션의 시작 시각으로 별도 계산한다.
- */
-export function QuizTimer() {
-  const elapsedSeconds = useElapsedSeconds();
+export interface QuizTimerProps {
+  /** 새로고침 후에도 유지되는 세션 시작 시각(ms). */
+  startedAt: number;
+}
+
+/** 매초 갱신되는 상태를 이 컴포넌트 안에 가둬 문제 영역의 리렌더를 막는다. */
+export function QuizTimer({ startedAt }: QuizTimerProps) {
+  const elapsedSeconds = useElapsedSeconds(startedAt);
 
   return (
     // role="timer"는 암묵적으로 aria-live="off"라 매초 변경을 읽지 않는다.

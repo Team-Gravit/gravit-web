@@ -28,5 +28,7 @@ declare module '@tanstack/history' {
   interface HistoryState {
     /** 온보딩 제출 직후 완료 화면으로 이동했는지 여부. */
     fromOnboarding?: boolean;
+    /** 레슨 제출 직후 결과 화면으로 이동했는지 여부. */
+    fromLessonSubmission?: boolean;
   }
 }

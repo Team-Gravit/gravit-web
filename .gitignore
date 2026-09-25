@@ -13,6 +13,7 @@ public/dist
 
 # Local agent and planning files
 .agents/
+.codex/agents/
 skills-lock.json
 local-docs/
 

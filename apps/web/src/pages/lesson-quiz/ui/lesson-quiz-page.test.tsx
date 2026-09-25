@@ -6,6 +6,8 @@ import { HttpResponse, http } from 'msw';
 import { server } from '@/shared/api/mocks/server';
 import { renderWithProviders } from '@/shared/lib/testing';
 import { useInitialMinimumDuration } from '@/shared/lib/use-initial-minimum-duration';
+import { Toaster } from '@/shared/ui/toast';
+import { clearStoredQuizSession } from '@/features/lesson-quiz';
 
 import { LessonQuizPage } from './lesson-quiz-page';
 
@@ -66,16 +68,23 @@ function stubViewport(isWide: boolean) {
   );
 }
 
-async function renderLessonQuiz({ isWide = true } = {}) {
+async function renderLessonQuiz({ isWide = true, extraPaths = EXTRA_PATHS } = {}) {
   stubViewport(isWide);
-  const Target = () => <LessonQuizPage lessonId={7} />;
+  // 앱에서는 main.tsx가 렌더링하는 Toaster를 테스트 트리에 추가한다.
+  const TestPage = () => (
+    <>
+      <LessonQuizPage lessonId={7} />
+      <Toaster />
+    </>
+  );
 
-  return renderWithProviders(Target, { extraPaths: EXTRA_PATHS });
+  return renderWithProviders(TestPage, { extraPaths });
 }
 
 afterEach(() => {
   vi.useRealTimers();
   vi.unstubAllGlobals();
+  window.sessionStorage.clear();
 });
 
 describe('LessonQuizPage', () => {
@@ -340,12 +349,12 @@ function createObjectiveProblem(problemId: number, instruction: string) {
   };
 }
 
-function createLesson(count: number) {
-  const problems = Array.from({ length: count }, (_, index) =>
+function createLesson(problemCount: number) {
+  const problems = Array.from({ length: problemCount }, (_, index) =>
     createObjectiveProblem(101 + index, `${index + 1}번 발문`),
   );
 
-  return { ...LESSON_PROBLEMS, totalProblems: count, problems };
+  return { ...LESSON_PROBLEMS, totalProblems: problemCount, problems };
 }
 
 describe('LessonQuizPage 이동과 진행 패널', () => {
@@ -453,5 +462,269 @@ describe('LessonQuizPage 문제 유형이 섞인 이동', () => {
     await userEvent.click(await screen.findByRole('button', { name: '다음 문제' }));
 
     expect(screen.getByText('2번 발문')).toBeInTheDocument();
+  });
+});
+
+const SUBMIT_URL = '*/api/v1/lessons/results';
+const RESULT_PATH = '/learning/lessons/$lessonId/result/$submissionId';
+const RESULT_URL = '*/api/v1/lessons/results/:lessonSubmissionId';
+
+async function solveAllProblems(problemCount: number) {
+  for (let index = 0; index < problemCount; index += 1) {
+    await userEvent.click(await screen.findByRole('button', { name: /^정답/ }));
+
+    if (index < problemCount - 1) {
+      await userEvent.click(screen.getByRole('button', { name: '다음 문제' }));
+    }
+  }
+}
+
+describe('LessonQuizPage 레슨 제출', () => {
+  it('마지막 문제의 답을 확인하면 다음 버튼이 제출하기로 바뀐다', async () => {
+    server.use(http.get(PROBLEMS_URL, () => HttpResponse.json(createLesson(2))));
+    await renderLessonQuiz();
+    await solveAllProblems(2);
+
+    expect(screen.getByRole('button', { name: '제출하기' })).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: '다음 문제' })).not.toBeInTheDocument();
+  });
+
+  it('마지막 문제를 풀지 않아도 제출할 수 있다', async () => {
+    // 마지막 문제를 몰라도 풀이를 끝낼 수 있어야 하며, 미완료는 오답으로 계산한다.
+    let submittedAccuracy: number | undefined;
+    server.use(
+      http.get(PROBLEMS_URL, () => HttpResponse.json(createLesson(2))),
+      http.post(SUBMIT_URL, async ({ request }) => {
+        const body = (await request.json()) as {
+          lessonSubmissionSaveRequest: { accuracy: number };
+        };
+        submittedAccuracy = body.lessonSubmissionSaveRequest.accuracy;
+
+        return HttpResponse.json({
+          lessonSubmissionId: 345,
+          isLevelUp: false,
+          isLeaguePromoted: false,
+        });
+      }),
+      http.get(RESULT_URL, () => HttpResponse.json({})),
+    );
+    const { router } = await renderLessonQuiz({ extraPaths: [...EXTRA_PATHS, RESULT_PATH] });
+
+    await userEvent.click(await screen.findByRole('button', { name: /^정답/ }));
+    await userEvent.click(screen.getByRole('button', { name: '다음 문제' }));
+    // 2번 문제는 건드리지 않고 바로 끝낸다.
+    await userEvent.click(screen.getByRole('button', { name: '제출하기' }));
+
+    await waitFor(() =>
+      expect(router.state.location.pathname).toBe('/learning/lessons/7/result/345'),
+    );
+    // 2문제 중 1개 정답, 1개 미완료 → 50%
+    expect(submittedAccuracy).toBe(50);
+  });
+
+  it('주관식 마지막 문제를 비워 둬도 제출할 수 있다', async () => {
+    server.use(
+      http.get(PROBLEMS_URL, () => HttpResponse.json(SUBJECTIVE_PROBLEMS)),
+      http.post(SUBMIT_URL, () =>
+        HttpResponse.json({ lessonSubmissionId: 345, isLevelUp: false, isLeaguePromoted: false }),
+      ),
+      http.get(RESULT_URL, () => HttpResponse.json({})),
+    );
+    const { router } = await renderLessonQuiz({ extraPaths: [...EXTRA_PATHS, RESULT_PATH] });
+
+    await screen.findByRole('textbox', { name: '답 입력' });
+    await userEvent.click(screen.getByRole('button', { name: '제출하기' }));
+
+    await waitFor(() =>
+      expect(router.state.location.pathname).toBe('/learning/lessons/7/result/345'),
+    );
+  });
+
+  it('주관식 마지막 문제에 답을 쓰면 먼저 채점하고 그다음 제출한다', async () => {
+    server.use(
+      http.get(PROBLEMS_URL, () => HttpResponse.json(SUBJECTIVE_PROBLEMS)),
+      http.post(SUBMIT_URL, () =>
+        HttpResponse.json({ lessonSubmissionId: 345, isLevelUp: false, isLeaguePromoted: false }),
+      ),
+      http.get(RESULT_URL, () => HttpResponse.json({})),
+    );
+    const { router } = await renderLessonQuiz({ extraPaths: [...EXTRA_PATHS, RESULT_PATH] });
+
+    await userEvent.type(await screen.findByRole('textbox', { name: '답 입력' }), 'DFS');
+    // 입력한 답을 먼저 채점하므로 첫 클릭에서는 결과 화면으로 이동하지 않는다.
+    await userEvent.click(screen.getByRole('button', { name: '다음 문제' }));
+
+    expect(screen.getByText('👏🏻 정답입니다!')).toBeInTheDocument();
+    expect(router.state.location.pathname).not.toContain('/result/');
+
+    await userEvent.click(screen.getByRole('button', { name: '제출하기' }));
+
+    await waitFor(() =>
+      expect(router.state.location.pathname).toBe('/learning/lessons/7/result/345'),
+    );
+  });
+
+  it('제출 중에는 덮개가 화면을 가리고 뒤쪽 조작을 막는다', async () => {
+    server.use(
+      http.get(PROBLEMS_URL, () => HttpResponse.json(createLesson(2))),
+      http.post(SUBMIT_URL, () => new Promise(() => {})),
+    );
+    const { container } = await renderLessonQuiz();
+    await solveAllProblems(2);
+
+    await userEvent.click(screen.getByRole('button', { name: '제출하기' }));
+
+    // 숨긴 라벨로 화면 낭독기에도 제출 상태를 전달한다.
+    expect(await screen.findByText('제출하고 있어요')).toBeInTheDocument();
+    expect(container.querySelector('[data-slot="submitting-overlay"]')).not.toBeNull();
+    // 푼 자리는 유지하지만 inert로 뒤쪽 상호작용을 막는다.
+    expect(screen.getByText('2번 발문')).toBeInTheDocument();
+    expect(container.querySelector('[data-slot="quiz-surface"]')).toHaveAttribute('inert');
+  });
+
+  it('결과를 받아올 때까지 덮개가 유지되어 로딩이 한 번만 보인다', async () => {
+    server.use(
+      http.get(PROBLEMS_URL, () => HttpResponse.json(createLesson(2))),
+      http.post(SUBMIT_URL, () =>
+        HttpResponse.json({ lessonSubmissionId: 345, isLevelUp: false, isLeaguePromoted: false }),
+      ),
+      // 제출은 끝났지만 결과 조회가 아직이다. 여기서 덮개가 걷히면 결과 화면에서 또 로딩이 뜬다.
+      http.get(RESULT_URL, () => new Promise(() => {})),
+    );
+    const { container, router } = await renderLessonQuiz({
+      extraPaths: [...EXTRA_PATHS, RESULT_PATH],
+    });
+    await solveAllProblems(2);
+
+    await userEvent.click(screen.getByRole('button', { name: '제출하기' }));
+
+    await waitFor(() =>
+      expect(container.querySelector('[data-slot="submitting-overlay"]')).not.toBeNull(),
+    );
+    // 결과가 오기 전에는 이동하지 않는다.
+    expect(router.state.location.pathname).not.toContain('/result/');
+    expect(container.querySelector('[data-slot="submitting-overlay"]')).not.toBeNull();
+  });
+
+  it('제출에 실패하면 덮개만 걷히고 화면은 그대로다', async () => {
+    server.use(
+      http.get(PROBLEMS_URL, () => HttpResponse.json(createLesson(2))),
+      http.post(SUBMIT_URL, () => new HttpResponse(null, { status: 500 })),
+    );
+    const { container } = await renderLessonQuiz();
+    await solveAllProblems(2);
+
+    await userEvent.click(screen.getByRole('button', { name: '제출하기' }));
+
+    await waitFor(() =>
+      expect(container.querySelector('[data-slot="submitting-overlay"]')).toBeNull(),
+    );
+    expect(container.querySelector('[data-slot="quiz-surface"]')).not.toHaveAttribute('inert');
+    expect(screen.getByRole('button', { name: '제출하기' })).toBeInTheDocument();
+  });
+
+  it('제출에 실패하면 이유를 토스트로 알린다', async () => {
+    server.use(
+      http.get(PROBLEMS_URL, () => HttpResponse.json(createLesson(2))),
+      http.post(SUBMIT_URL, () => new HttpResponse(null, { status: 500 })),
+    );
+    await renderLessonQuiz();
+    await solveAllProblems(2);
+
+    await userEvent.click(screen.getByRole('button', { name: '제출하기' }));
+
+    expect(await screen.findByText('제출에 실패했어요. 다시 시도해 주세요.')).toBeInTheDocument();
+  });
+
+  it('제출에 성공하면 결과 라우트로 이동하고 풀이 화면을 기록에 남기지 않는다', async () => {
+    server.use(
+      http.get(PROBLEMS_URL, () => HttpResponse.json(createLesson(2))),
+      http.post(SUBMIT_URL, () =>
+        HttpResponse.json({ lessonSubmissionId: 345, isLevelUp: false, isLeaguePromoted: false }),
+      ),
+      http.get(RESULT_URL, () => HttpResponse.json({})),
+    );
+    const { router } = await renderLessonQuiz({ extraPaths: [...EXTRA_PATHS, RESULT_PATH] });
+    await solveAllProblems(2);
+
+    await userEvent.click(screen.getByRole('button', { name: '제출하기' }));
+
+    await waitFor(() =>
+      expect(router.state.location.pathname).toBe('/learning/lessons/7/result/345'),
+    );
+
+    router.history.back();
+    // 테스트에서 풀이 화면은 `/`에 마운트된다. replace라 해당 기록으로 돌아가지 않는다.
+    await waitFor(() => expect(router.state.location.pathname).not.toBe('/'));
+  });
+
+  it('제출에 실패하면 풀이 화면에 남고 제출한 답을 잃지 않는다', async () => {
+    server.use(
+      http.get(PROBLEMS_URL, () => HttpResponse.json(createLesson(3))),
+      http.post(SUBMIT_URL, () => new HttpResponse(null, { status: 500 })),
+    );
+    const { container } = await renderLessonQuiz();
+    await solveAllProblems(3);
+
+    await userEvent.click(screen.getByRole('button', { name: '제출하기' }));
+
+    await waitFor(() =>
+      expect(screen.getByRole('button', { name: '제출하기' })).not.toHaveAttribute('aria-busy'),
+    );
+    expect(screen.getByText('3번 발문')).toBeInTheDocument();
+    // 현재 문제는 제출 후에도 `current` 상태이므로 완료 수는 진행률로 확인한다.
+    expect(container.querySelector('[data-slot="progress-count"]')).toHaveTextContent('3/3');
+  });
+});
+
+describe('LessonQuizPage 풀이 중 답안 보존', () => {
+  it('새로고침처럼 다시 마운트되면 저장된 시작 시각부터 타이머를 이어간다', async () => {
+    vi.useFakeTimers({ shouldAdvanceTime: true });
+    server.use(http.get(PROBLEMS_URL, () => HttpResponse.json(createLesson(3))));
+    const initialRender = await renderLessonQuiz();
+
+    const timer = await screen.findByRole('timer', { name: '경과 시간' });
+
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(65_000);
+    });
+
+    expect(timer).toHaveTextContent('01:05');
+
+    initialRender.unmount();
+    await renderLessonQuiz();
+
+    expect(await screen.findByRole('timer', { name: '경과 시간' })).toHaveTextContent('01:05');
+  });
+
+  it('새로고침처럼 다시 마운트되면 풀던 답이 복원된다', async () => {
+    server.use(http.get(PROBLEMS_URL, () => HttpResponse.json(createLesson(3))));
+    const initialRender = await renderLessonQuiz();
+
+    await userEvent.click(await screen.findByRole('button', { name: /^정답/ }));
+    await userEvent.click(screen.getByRole('button', { name: '다음 문제' }));
+    await userEvent.click(screen.getByRole('button', { name: /^정답/ }));
+
+    // 새로고침과 달리 sessionStorage는 그대로 둔 채 컴포넌트만 다시 마운트한다.
+    initialRender.unmount();
+    const { container } = await renderLessonQuiz();
+
+    await screen.findByText('2번 발문');
+    expect(container.querySelector('[data-slot="progress-count"]')).toHaveTextContent('2/3');
+  });
+
+  it('레슨을 떠나 저장본이 지워졌으면 처음부터 시작한다', async () => {
+    server.use(http.get(PROBLEMS_URL, () => HttpResponse.json(createLesson(3))));
+    const initialRender = await renderLessonQuiz();
+
+    await userEvent.click(await screen.findByRole('button', { name: /^정답/ }));
+
+    initialRender.unmount();
+    // 라우트의 onLeave와 같은 조건을 만든다.
+    clearStoredQuizSession(7);
+    const { container } = await renderLessonQuiz();
+
+    await screen.findByText('1번 발문');
+    expect(container.querySelector('[data-slot="progress-count"]')).toHaveTextContent('0/3');
   });
 });

@@ -72,6 +72,7 @@ export const getGetLessonResultResponseMock = (
   },
   accuracy: faker.number.int(),
   learningTime: faker.number.int(),
+  chapterId: faker.number.int(),
   ...overrideResponse,
 });
 

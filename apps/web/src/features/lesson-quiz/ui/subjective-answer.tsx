@@ -1,23 +1,18 @@
-import { useState, type SubmitEvent } from 'react';
+import type { SubmitEvent } from 'react';
 
 import { TextField } from '@/shared/ui/text-field';
 import { AnswerResult, type SubjectiveProblem } from '@/entities/problem';
 
-import { QUIZ_ANSWER_FORM_ID } from '../model/constants';
-import { gradeSubjective } from '../model/grade-subjective';
 import { useQuizSession } from '../model/quiz-session-context';
 
 export interface SubjectiveAnswerProps {
   problem: SubjectiveProblem;
+  onAdvance: () => void;
 }
 
-/**
- * 입력값이 있으면 답안만 기록해 결과를 보여주고, 다음 클릭에서 문제를 이동한다.
- * 빈 입력은 기록하지 않고 바로 다음 문제로 넘긴다.
- */
-export function SubjectiveAnswer({ problem }: SubjectiveAnswerProps) {
-  const { answersByProblemId, submitAnswer, goToNext } = useQuizSession();
-  const [draft, setDraft] = useState('');
+/** 주관식 답안을 입력하고 채점 결과를 표시한다. 진행 동작은 상위 화면이 결정한다. */
+export function SubjectiveAnswer({ problem, onAdvance }: SubjectiveAnswerProps) {
+  const { answersByProblemId, subjectiveAnswerDraft, setSubjectiveAnswerDraft } = useQuizSession();
   const answer = answersByProblemId[problem.problemId];
 
   if (answer?.kind === 'subjective') {
@@ -33,27 +28,14 @@ export function SubjectiveAnswer({ problem }: SubjectiveAnswerProps) {
 
   const handleSubmit = (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    if (!draft.trim()) {
-      goToNext();
-      return;
-    }
-
-    submitAnswer({
-      problemId: problem.problemId,
-      answer: {
-        kind: 'subjective',
-        submittedContent: draft,
-        isCorrect: gradeSubjective(problem.answer.contents, draft),
-      },
-    });
+    onAdvance();
   };
 
   return (
-    <form id={QUIZ_ANSWER_FORM_ID} onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <TextField
-        value={draft}
-        onChange={(event) => setDraft(event.target.value)}
+        value={subjectiveAnswerDraft}
+        onChange={(event) => setSubjectiveAnswerDraft(event.target.value)}
         aria-label="답 입력"
         placeholder="답을 입력하세요"
       />

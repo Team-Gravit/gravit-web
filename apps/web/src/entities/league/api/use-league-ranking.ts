@@ -4,6 +4,8 @@ import { getLeagueRanking } from '@/shared/api/generated/userleague-api/userleag
 
 import { normalizeRankingPage } from './normalize-ranking-page';
 
+export const LEAGUE_RANKING_QUERY_KEY = ['league', 'ranking'] as const;
+
 /**
  * 선택한 티어의 랭킹(무한 스크롤).
  *
@@ -13,7 +15,7 @@ import { normalizeRankingPage } from './normalize-ranking-page';
  */
 export function useLeagueRanking(leagueId: number, enabled = true) {
   return useInfiniteQuery({
-    queryKey: ['league', 'ranking', 'tier', leagueId],
+    queryKey: [...LEAGUE_RANKING_QUERY_KEY, 'tier', leagueId],
     queryFn: async ({ pageParam }) =>
       normalizeRankingPage(await getLeagueRanking(leagueId, pageParam)),
     initialPageParam: 0,

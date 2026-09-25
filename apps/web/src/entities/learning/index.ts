@@ -6,6 +6,7 @@ export {
   getUnitsInChapterQueryKey,
   getWeeklyRecordQueryKey,
   useChapters,
+  useLessonResult,
   useRecentLearning,
   useRecommendedUnits,
   useUnitLessons,
@@ -17,6 +18,7 @@ export {
   useMyPageTopChapters,
   useMyPageWeakConcepts,
 } from './api';
+export type { LessonResultResponse } from './api';
 export type { LearningSummaryResponse } from '@/shared/api/generated/model/learningSummaryResponse';
 export type { LearningHistoryResponse } from '@/shared/api/generated/model/learningHistoryResponse';
 export type { WeeklyLearningReportResponse } from '@/shared/api/generated/model/weeklyLearningReportResponse';
@@ -45,6 +47,7 @@ export {
   type UnitProgressStatus,
 } from './model/unit-progress';
 export { getWeekdayStreaks, type WeekdayStatus, type WeekdayStreak } from './model/weekly-streak';
+export { getPlanetImage, getPlanetName } from './ui/planets';
 export { ChapterCard, ChapterCardSkeleton, type ChapterCardProps } from './ui/chapter-card';
 export { LessonItem, LessonItemSkeleton, type LessonItemProps } from './ui/lesson-item';
 export { UnitCard, UnitCardSkeleton, type UnitCardProps } from './ui/unit-card';

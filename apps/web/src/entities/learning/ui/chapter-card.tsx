@@ -6,7 +6,7 @@ import { Icon } from '@/shared/ui/icon';
 import { ProgressBar } from '@/shared/ui/progress-bar';
 import { Skeleton } from '@/shared/ui/skeleton';
 
-import { getPlanetImage } from './planet-images';
+import { getPlanetImage } from './planets';
 import cardBackground from './assets/unit-card-background.webp';
 
 const SIZE_STYLE = {
