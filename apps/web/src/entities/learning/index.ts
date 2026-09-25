@@ -18,6 +18,7 @@ export {
   useMyPageTopChapters,
   useMyPageWeakConcepts,
 } from './api';
+export type { LessonResultResponse } from './api';
 export type { LearningSummaryResponse } from '@/shared/api/generated/model/learningSummaryResponse';
 export type { LearningHistoryResponse } from '@/shared/api/generated/model/learningHistoryResponse';
 export type { WeeklyLearningReportResponse } from '@/shared/api/generated/model/weeklyLearningReportResponse';
