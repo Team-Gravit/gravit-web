@@ -41,6 +41,7 @@ import { Route as AuthenticatedAppShellLearningUnitsUnitIdIndexRouteImport } fro
 import { Route as AuthenticatedAppShellLearningUnitsUnitIdConceptNoteRouteImport } from './routes/_authenticated/_app-shell/learning.units.$unitId.concept-note'
 import { Route as AuthenticatedFocusLearningUnitsUnitIdBookmarkedProblemsRouteImport } from './routes/_authenticated/_focus/learning.units.$unitId.bookmarked-problems'
 import { Route as AuthenticatedFocusLearningUnitsUnitIdIncorrectProblemsRouteImport } from './routes/_authenticated/_focus/learning.units.$unitId.incorrect-problems'
+import { Route as AuthenticatedFocusLearningLessonsLessonIdResultSubmissionIdRouteImport } from './routes/_authenticated/_focus/learning.lessons.$lessonId_.result.$submissionId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -224,6 +225,14 @@ const AuthenticatedFocusLearningUnitsUnitIdIncorrectProblemsRoute =
     path: '/learning/units/$unitId/incorrect-problems',
     getParentRoute: () => AuthenticatedFocusRouteRoute,
   } as any)
+const AuthenticatedFocusLearningLessonsLessonIdResultSubmissionIdRoute =
+  AuthenticatedFocusLearningLessonsLessonIdResultSubmissionIdRouteImport.update(
+    {
+      id: '/learning/lessons/$lessonId_/result/$submissionId',
+      path: '/learning/lessons/$lessonId/result/$submissionId',
+      getParentRoute: () => AuthenticatedFocusRouteRoute,
+    } as any,
+  )
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -255,6 +264,7 @@ export interface FileRoutesByFullPath {
   '/learning/units/$unitId/incorrect-problems': typeof AuthenticatedFocusLearningUnitsUnitIdIncorrectProblemsRoute
   '/learning/chapters/$chapterId/': typeof AuthenticatedAppShellLearningChaptersChapterIdIndexRoute
   '/learning/units/$unitId/': typeof AuthenticatedAppShellLearningUnitsUnitIdIndexRoute
+  '/learning/lessons/$lessonId/result/$submissionId': typeof AuthenticatedFocusLearningLessonsLessonIdResultSubmissionIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -283,6 +293,7 @@ export interface FileRoutesByTo {
   '/learning/units/$unitId/incorrect-problems': typeof AuthenticatedFocusLearningUnitsUnitIdIncorrectProblemsRoute
   '/learning/chapters/$chapterId': typeof AuthenticatedAppShellLearningChaptersChapterIdIndexRoute
   '/learning/units/$unitId': typeof AuthenticatedAppShellLearningUnitsUnitIdIndexRoute
+  '/learning/lessons/$lessonId/result/$submissionId': typeof AuthenticatedFocusLearningLessonsLessonIdResultSubmissionIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -318,6 +329,7 @@ export interface FileRoutesById {
   '/_authenticated/_focus/learning/units/$unitId/incorrect-problems': typeof AuthenticatedFocusLearningUnitsUnitIdIncorrectProblemsRoute
   '/_authenticated/_app-shell/learning/chapters/$chapterId/': typeof AuthenticatedAppShellLearningChaptersChapterIdIndexRoute
   '/_authenticated/_app-shell/learning/units/$unitId/': typeof AuthenticatedAppShellLearningUnitsUnitIdIndexRoute
+  '/_authenticated/_focus/learning/lessons/$lessonId_/result/$submissionId': typeof AuthenticatedFocusLearningLessonsLessonIdResultSubmissionIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -351,6 +363,7 @@ export interface FileRouteTypes {
     | '/learning/units/$unitId/incorrect-problems'
     | '/learning/chapters/$chapterId/'
     | '/learning/units/$unitId/'
+    | '/learning/lessons/$lessonId/result/$submissionId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -379,6 +392,7 @@ export interface FileRouteTypes {
     | '/learning/units/$unitId/incorrect-problems'
     | '/learning/chapters/$chapterId'
     | '/learning/units/$unitId'
+    | '/learning/lessons/$lessonId/result/$submissionId'
   id:
     | '__root__'
     | '/'
@@ -413,6 +427,7 @@ export interface FileRouteTypes {
     | '/_authenticated/_focus/learning/units/$unitId/incorrect-problems'
     | '/_authenticated/_app-shell/learning/chapters/$chapterId/'
     | '/_authenticated/_app-shell/learning/units/$unitId/'
+    | '/_authenticated/_focus/learning/lessons/$lessonId_/result/$submissionId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -650,6 +665,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedFocusLearningUnitsUnitIdIncorrectProblemsRouteImport
       parentRoute: typeof AuthenticatedFocusRouteRoute
     }
+    '/_authenticated/_focus/learning/lessons/$lessonId_/result/$submissionId': {
+      id: '/_authenticated/_focus/learning/lessons/$lessonId_/result/$submissionId'
+      path: '/learning/lessons/$lessonId/result/$submissionId'
+      fullPath: '/learning/lessons/$lessonId/result/$submissionId'
+      preLoaderRoute: typeof AuthenticatedFocusLearningLessonsLessonIdResultSubmissionIdRouteImport
+      parentRoute: typeof AuthenticatedFocusRouteRoute
+    }
   }
 }
 
@@ -715,6 +737,7 @@ interface AuthenticatedFocusRouteRouteChildren {
   AuthenticatedFocusLearningLessonsLessonIdRoute: typeof AuthenticatedFocusLearningLessonsLessonIdRoute
   AuthenticatedFocusLearningUnitsUnitIdBookmarkedProblemsRoute: typeof AuthenticatedFocusLearningUnitsUnitIdBookmarkedProblemsRoute
   AuthenticatedFocusLearningUnitsUnitIdIncorrectProblemsRoute: typeof AuthenticatedFocusLearningUnitsUnitIdIncorrectProblemsRoute
+  AuthenticatedFocusLearningLessonsLessonIdResultSubmissionIdRoute: typeof AuthenticatedFocusLearningLessonsLessonIdResultSubmissionIdRoute
 }
 
 const AuthenticatedFocusRouteRouteChildren: AuthenticatedFocusRouteRouteChildren =
@@ -725,6 +748,8 @@ const AuthenticatedFocusRouteRouteChildren: AuthenticatedFocusRouteRouteChildren
       AuthenticatedFocusLearningUnitsUnitIdBookmarkedProblemsRoute,
     AuthenticatedFocusLearningUnitsUnitIdIncorrectProblemsRoute:
       AuthenticatedFocusLearningUnitsUnitIdIncorrectProblemsRoute,
+    AuthenticatedFocusLearningLessonsLessonIdResultSubmissionIdRoute:
+      AuthenticatedFocusLearningLessonsLessonIdResultSubmissionIdRoute,
   }
 
 const AuthenticatedFocusRouteRouteWithChildren =
