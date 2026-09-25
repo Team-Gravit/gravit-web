@@ -4,7 +4,7 @@ import { cn } from '@/shared/lib/cn';
 import { Skeleton } from '@/shared/ui/skeleton';
 
 import { formatUnitNumber } from '../model/unit-progress';
-import { getPlanetImage } from './planet-images';
+import { getPlanetImage } from './planets';
 import unitCardBackground from './assets/unit-card-background.webp';
 
 export interface UnitCardProps {

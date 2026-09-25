@@ -46,7 +46,7 @@ export {
   type UnitProgressStatus,
 } from './model/unit-progress';
 export { getWeekdayStreaks, type WeekdayStatus, type WeekdayStreak } from './model/weekly-streak';
-export { getPlanetImage } from './ui/planet-images';
+export { getPlanetImage, getPlanetName } from './ui/planets';
 export { ChapterCard, ChapterCardSkeleton, type ChapterCardProps } from './ui/chapter-card';
 export { LessonItem, LessonItemSkeleton, type LessonItemProps } from './ui/lesson-item';
 export { UnitCard, UnitCardSkeleton, type UnitCardProps } from './ui/unit-card';
