@@ -7,14 +7,10 @@ export interface ObjectiveSolverProps {
   problem: ObjectiveProblem;
 }
 
-/**
- * 객관식 선지의 클릭을 채점과 세션에 잇는다.
- *
- * 선지 표시는 다른 풀이 화면에서도 재사용할 수 있도록 `entities/problem`에 두고,
- * 제출 여부에 따른 전환만 이 기능에서 결정한다.
- */
+/** 객관식 선지 선택을 채점·세션 기록에 연결하고 제출 전후 표시를 전환한다. */
 export function ObjectiveSolver({ problem }: ObjectiveSolverProps) {
-  const { answersByProblemId, submitAnswer } = useQuizSession();
+  const { answersByProblemId, submitAnswer, hiddenOptionIdsByProblemId, toggleHiddenOption } =
+    useQuizSession();
   const answer = answersByProblemId[problem.problemId];
 
   if (answer?.kind === 'objective') {
@@ -34,5 +30,12 @@ export function ObjectiveSolver({ problem }: ObjectiveSolverProps) {
     });
   };
 
-  return <OptionChoiceList options={problem.options} onSelect={handleOptionSelect} />;
+  return (
+    <OptionChoiceList
+      options={problem.options}
+      onSelect={handleOptionSelect}
+      hiddenOptionIds={hiddenOptionIdsByProblemId[problem.problemId]}
+      onToggleHide={(optionId) => toggleHiddenOption(problem.problemId, optionId)}
+    />
+  );
 }

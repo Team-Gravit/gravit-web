@@ -18,11 +18,14 @@ export interface QuizSessionState {
   totalProblemCount: number;
   /** 현재 주관식 문제에 입력했지만 제출하지 않은 답안. */
   subjectiveAnswerDraft: string;
+  /** 문제별로 가려 둔 객관식 선지 ID. */
+  hiddenOptionIdsByProblemId: Partial<Record<number, number[]>>;
 }
 
 export type QuizSessionAction =
   | ({ type: 'submitAnswer' } & SubmitAnswerInput)
   | { type: 'setSubjectiveAnswerDraft'; subjectiveAnswerDraft: string }
+  | { type: 'toggleHiddenOption'; problemId: number; optionId: number }
   | { type: 'goToNext' }
   | { type: 'goToPrevious' }
   | { type: 'goTo'; problemIndex: number };
@@ -38,6 +41,7 @@ export function createInitialQuizSessionState(
     startedAt,
     totalProblemCount,
     subjectiveAnswerDraft: '',
+    hiddenOptionIdsByProblemId: {},
   };
 }
 
@@ -53,16 +57,34 @@ export function quizSessionReducer(
         return state;
       }
 
+      const hiddenOptionIdsByProblemId = { ...state.hiddenOptionIdsByProblemId };
+      delete hiddenOptionIdsByProblemId[action.problemId];
+
       return {
         ...state,
         answersByProblemId: {
           ...state.answersByProblemId,
           [action.problemId]: action.answer,
         },
+        hiddenOptionIdsByProblemId,
       };
     }
     case 'setSubjectiveAnswerDraft':
       return { ...state, subjectiveAnswerDraft: action.subjectiveAnswerDraft };
+    case 'toggleHiddenOption': {
+      const hiddenOptionIds = state.hiddenOptionIdsByProblemId[action.problemId] ?? [];
+      const nextHiddenOptionIds = hiddenOptionIds.includes(action.optionId)
+        ? hiddenOptionIds.filter((optionId) => optionId !== action.optionId)
+        : [...hiddenOptionIds, action.optionId];
+
+      return {
+        ...state,
+        hiddenOptionIdsByProblemId: {
+          ...state.hiddenOptionIdsByProblemId,
+          [action.problemId]: nextHiddenOptionIds,
+        },
+      };
+    }
     case 'goToNext':
       return moveToProblem(state, state.currentProblemIndex + 1);
     case 'goToPrevious':

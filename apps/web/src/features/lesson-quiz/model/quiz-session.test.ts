@@ -78,6 +78,82 @@ describe('quizSessionReducer 주관식 답안 입력', () => {
   });
 });
 
+describe('quizSessionReducer 선지 가리기', () => {
+  it('toggleHiddenOption 하면 해당 문제의 가린 선지에 추가한다', () => {
+    const next = quizSessionReducer(createInitialQuizSessionState(3, STARTED_AT), {
+      type: 'toggleHiddenOption',
+      problemId: 101,
+      optionId: 11,
+    });
+
+    expect(next.hiddenOptionIdsByProblemId[101]).toEqual([11]);
+  });
+
+  it('이미 가린 선지에 다시 toggleHiddenOption 하면 되돌린다', () => {
+    const stateWithHiddenOption = quizSessionReducer(createInitialQuizSessionState(3, STARTED_AT), {
+      type: 'toggleHiddenOption',
+      problemId: 101,
+      optionId: 11,
+    });
+
+    const next = quizSessionReducer(stateWithHiddenOption, {
+      type: 'toggleHiddenOption',
+      problemId: 101,
+      optionId: 11,
+    });
+
+    expect(next.hiddenOptionIdsByProblemId[101]).toEqual([]);
+  });
+
+  it('문제를 옮겨도 가린 선지는 남는다', () => {
+    const stateWithHiddenOption = quizSessionReducer(createInitialQuizSessionState(3, STARTED_AT), {
+      type: 'toggleHiddenOption',
+      problemId: 101,
+      optionId: 11,
+    });
+
+    const next = quizSessionReducer(stateWithHiddenOption, { type: 'goToNext' });
+
+    expect(next.hiddenOptionIdsByProblemId[101]).toEqual([11]);
+  });
+
+  it('가리기는 문제별로 따로 관리한다', () => {
+    const stateWithFirstProblemHiddenOption = quizSessionReducer(
+      createInitialQuizSessionState(3, STARTED_AT),
+      {
+        type: 'toggleHiddenOption',
+        problemId: 101,
+        optionId: 11,
+      },
+    );
+
+    const next = quizSessionReducer(stateWithFirstProblemHiddenOption, {
+      type: 'toggleHiddenOption',
+      problemId: 102,
+      optionId: 21,
+    });
+
+    expect(next.hiddenOptionIdsByProblemId[101]).toEqual([11]);
+    expect(next.hiddenOptionIdsByProblemId[102]).toEqual([21]);
+  });
+
+  it('답을 제출하면 해당 문제의 가린 선지를 비운다', () => {
+    const stateWithHiddenOption = quizSessionReducer(createInitialQuizSessionState(3, STARTED_AT), {
+      type: 'toggleHiddenOption',
+      problemId: 101,
+      optionId: 11,
+    });
+
+    const next = quizSessionReducer(stateWithHiddenOption, {
+      type: 'submitAnswer',
+      problemId: 101,
+      answer: { kind: 'objective', selectedOptionId: 10, isCorrect: true },
+    });
+
+    expect(next.hiddenOptionIdsByProblemId[101]).toBeUndefined();
+  });
+});
+
 describe('quizSessionReducer 문제 이동', () => {
   it('goToNext 하면 currentProblemIndex가 1 증가한다', () => {
     const next = quizSessionReducer(createInitialQuizSessionState(3, STARTED_AT), {

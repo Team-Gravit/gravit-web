@@ -357,6 +357,50 @@ function createLesson(problemCount: number) {
   return { ...LESSON_PROBLEMS, totalProblems: problemCount, problems };
 }
 
+describe('LessonQuizPage 선지 가리기', () => {
+  it('가리기를 눌러도 답이 제출되지 않는다', async () => {
+    // 선지 본체가 버튼이라 가리기 버튼이 그 안에 있으면 같은 클릭으로 답이 확정된다.
+    // 제출은 되돌릴 수 없으므로(R3) 이 경계가 깨지면 복구 수단이 없다.
+    server.use(http.get(PROBLEMS_URL, () => HttpResponse.json(createLesson(2))));
+    await renderLessonQuiz();
+
+    await userEvent.click(await screen.findByRole('button', { name: '1번 선지 가리기' }));
+
+    expect(screen.queryByText('👏🏻 정답입니다!')).not.toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /^정답/ })).toBeInTheDocument();
+  });
+
+  it('가린 선지는 고를 수 없다', async () => {
+    server.use(http.get(PROBLEMS_URL, () => HttpResponse.json(createLesson(2))));
+    await renderLessonQuiz();
+
+    await userEvent.click(await screen.findByRole('button', { name: '1번 선지 가리기' }));
+
+    expect(screen.getByRole('button', { name: /^정답/ })).toBeDisabled();
+  });
+
+  it('다시 누르면 가린 선지를 되돌린다', async () => {
+    server.use(http.get(PROBLEMS_URL, () => HttpResponse.json(createLesson(2))));
+    await renderLessonQuiz();
+
+    await userEvent.click(await screen.findByRole('button', { name: '1번 선지 가리기' }));
+    await userEvent.click(screen.getByRole('button', { name: '1번 선지 다시 보기' }));
+
+    expect(screen.getByRole('button', { name: /^정답/ })).toBeEnabled();
+  });
+
+  it('문제를 옮겼다 돌아와도 가린 선지가 남는다', async () => {
+    server.use(http.get(PROBLEMS_URL, () => HttpResponse.json(createLesson(2))));
+    await renderLessonQuiz();
+
+    await userEvent.click(await screen.findByRole('button', { name: '1번 선지 가리기' }));
+    await userEvent.click(screen.getByRole('button', { name: '다음 문제' }));
+    await userEvent.click(screen.getByRole('button', { name: '이전 문제' }));
+
+    expect(await screen.findByRole('button', { name: '1번 선지 다시 보기' })).toBeInTheDocument();
+  });
+});
+
 describe('LessonQuizPage 이동과 진행 패널', () => {
   it('제출하지 않고 다음으로 가면 그 문제가 미완료로 남는다', async () => {
     server.use(http.get(PROBLEMS_URL, () => HttpResponse.json(createLesson(3))));
