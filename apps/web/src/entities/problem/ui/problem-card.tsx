@@ -7,15 +7,20 @@ import type { Problem } from '../model/problem';
 
 export interface ProblemCardProps extends Omit<ComponentProps<'section'>, 'children'> {
   problem: Problem;
-  /**
-   * 목록에서의 순번
-   */
   number: number;
+  /** 문제 번호 오른쪽에 표시할 조작. */
+  headerAction?: ReactNode;
   children?: ReactNode;
 }
 
-/** 문제 하나를 표시하는 컴포넌트 */
-export function ProblemCard({ problem, number, children, className, ...props }: ProblemCardProps) {
+export function ProblemCard({
+  problem,
+  number,
+  headerAction,
+  children,
+  className,
+  ...props
+}: ProblemCardProps) {
   const displayNumber = String(number).padStart(2, '0');
 
   return (
@@ -27,10 +32,13 @@ export function ProblemCard({ problem, number, children, className, ...props }: 
         {...props}
       >
         <div className="flex flex-col gap-5">
-          <span className="flex flex-col gap-2">
-            <span className="text-heading1 text-text-1 md:text-title2">{displayNumber}</span>
+          <div className="flex flex-col gap-2">
+            <div className="flex items-center justify-between gap-3">
+              <span className="text-heading1 text-text-1 md:text-title2">{displayNumber}</span>
+              {headerAction}
+            </div>
             <p className="text-headline1 text-text-1 md:text-heading1">{problem.instruction}</p>
-          </span>
+          </div>
           <p className="text-body2-reading text-text-1 whitespace-pre-line md:text-body1-reading">
             {problem.content}
           </p>

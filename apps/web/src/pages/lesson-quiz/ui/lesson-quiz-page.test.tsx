@@ -357,6 +357,147 @@ function createLesson(problemCount: number) {
   return { ...LESSON_PROBLEMS, totalProblems: problemCount, problems };
 }
 
+const BOOKMARK_URL = '*/api/v1/bookmarks';
+
+function createBookmarkedLesson() {
+  const lesson = createLesson(1);
+
+  return {
+    ...lesson,
+    problems: lesson.problems.map((problem) => ({ ...problem, isBookmarked: true })),
+  };
+}
+
+describe('LessonQuizPage 북마크', () => {
+  it('북마크를 누르면 추가 문구를 알리고 상태가 켜진다', async () => {
+    server.use(
+      http.get(PROBLEMS_URL, () => HttpResponse.json(createLesson(1))),
+      http.post(BOOKMARK_URL, () => new HttpResponse(null, { status: 200 })),
+    );
+    await renderLessonQuiz();
+
+    await userEvent.click(await screen.findByRole('button', { name: '북마크에 추가' }));
+
+    expect(await screen.findByText('북마크에 추가되었습니다')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: '북마크에서 삭제' })).toHaveAttribute(
+      'aria-pressed',
+      'true',
+    );
+  });
+
+  it('북마크 요청 중에는 상태를 먼저 바꾸고 버튼을 비활성화한다', async () => {
+    let requestCount = 0;
+    server.use(
+      http.get(PROBLEMS_URL, () => HttpResponse.json(createLesson(1))),
+      http.post(BOOKMARK_URL, () => {
+        requestCount += 1;
+        return new Promise(() => {});
+      }),
+    );
+    await renderLessonQuiz();
+
+    await userEvent.click(await screen.findByRole('button', { name: '북마크에 추가' }));
+
+    const pendingButton = await screen.findByRole('button', { name: '북마크에서 삭제' });
+    expect(pendingButton).toBeDisabled();
+
+    await userEvent.click(pendingButton);
+    await waitFor(() => expect(requestCount).toBe(1));
+  });
+
+  it('이미 북마크한 문제는 삭제 문구를 알린다', async () => {
+    server.use(
+      http.get(PROBLEMS_URL, () => HttpResponse.json(createBookmarkedLesson())),
+      http.delete(BOOKMARK_URL, () => new HttpResponse(null, { status: 200 })),
+    );
+    await renderLessonQuiz();
+
+    await userEvent.click(await screen.findByRole('button', { name: '북마크에서 삭제' }));
+
+    expect(await screen.findByText('북마크가 삭제되었습니다')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: '북마크에 추가' })).toBeInTheDocument();
+  });
+
+  it('추가가 실패하면 상태를 되돌리고 추가 실패를 알린다', async () => {
+    let requestCount = 0;
+    server.use(
+      http.get(PROBLEMS_URL, () => HttpResponse.json(createLesson(1))),
+      http.post(BOOKMARK_URL, () => {
+        requestCount += 1;
+        return new HttpResponse(null, { status: 500 });
+      }),
+    );
+    await renderLessonQuiz();
+
+    await userEvent.click(await screen.findByRole('button', { name: '북마크에 추가' }));
+
+    expect(
+      await screen.findByText('북마크 추가에 실패했어요. 다시 시도해 주세요.'),
+    ).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: '북마크에 추가' })).toBeInTheDocument();
+    expect(requestCount).toBe(1);
+  });
+
+  it('삭제가 실패하면 추가가 아니라 삭제 실패를 알린다', async () => {
+    server.use(
+      http.get(PROBLEMS_URL, () => HttpResponse.json(createBookmarkedLesson())),
+      http.delete(BOOKMARK_URL, () => new HttpResponse(null, { status: 500 })),
+    );
+    await renderLessonQuiz();
+
+    await userEvent.click(await screen.findByRole('button', { name: '북마크에서 삭제' }));
+
+    expect(
+      await screen.findByText('북마크 삭제에 실패했어요. 다시 시도해 주세요.'),
+    ).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: '북마크에서 삭제' })).toBeInTheDocument();
+  });
+});
+
+describe('LessonQuizPage 선지 가리기', () => {
+  it('가리기를 눌러도 답이 제출되지 않는다', async () => {
+    // 선지 본체가 버튼이라 가리기 버튼이 그 안에 있으면 같은 클릭으로 답이 확정된다.
+    // 제출은 되돌릴 수 없으므로(R3) 이 경계가 깨지면 복구 수단이 없다.
+    server.use(http.get(PROBLEMS_URL, () => HttpResponse.json(createLesson(2))));
+    await renderLessonQuiz();
+
+    await userEvent.click(await screen.findByRole('button', { name: '1번 선지 가리기' }));
+
+    expect(screen.queryByText('👏🏻 정답입니다!')).not.toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /^정답/ })).toBeInTheDocument();
+  });
+
+  it('가린 선지는 고를 수 없다', async () => {
+    server.use(http.get(PROBLEMS_URL, () => HttpResponse.json(createLesson(2))));
+    await renderLessonQuiz();
+
+    await userEvent.click(await screen.findByRole('button', { name: '1번 선지 가리기' }));
+
+    expect(screen.getByRole('button', { name: /^정답/ })).toBeDisabled();
+  });
+
+  it('다시 누르면 가린 선지를 되돌린다', async () => {
+    server.use(http.get(PROBLEMS_URL, () => HttpResponse.json(createLesson(2))));
+    await renderLessonQuiz();
+
+    await userEvent.click(await screen.findByRole('button', { name: '1번 선지 가리기' }));
+    await userEvent.click(screen.getByRole('button', { name: '1번 선지 다시 보기' }));
+
+    expect(screen.getByRole('button', { name: /^정답/ })).toBeEnabled();
+  });
+
+  it('문제를 옮겼다 돌아와도 가린 선지가 남는다', async () => {
+    server.use(http.get(PROBLEMS_URL, () => HttpResponse.json(createLesson(2))));
+    await renderLessonQuiz();
+
+    await userEvent.click(await screen.findByRole('button', { name: '1번 선지 가리기' }));
+    await userEvent.click(screen.getByRole('button', { name: '다음 문제' }));
+    await userEvent.click(screen.getByRole('button', { name: '이전 문제' }));
+
+    expect(await screen.findByRole('button', { name: '1번 선지 다시 보기' })).toBeInTheDocument();
+  });
+});
+
 describe('LessonQuizPage 이동과 진행 패널', () => {
   it('제출하지 않고 다음으로 가면 그 문제가 미완료로 남는다', async () => {
     server.use(http.get(PROBLEMS_URL, () => HttpResponse.json(createLesson(3))));

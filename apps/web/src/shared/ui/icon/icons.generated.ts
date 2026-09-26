@@ -24,6 +24,8 @@ import ChevronUp from './assets/chevron-up.svg?react';
 import CloseLg from './assets/close-lg.svg?react';
 import CloseMd from './assets/close-md.svg?react';
 import CloseSm from './assets/close-sm.svg?react';
+import EyeOff from './assets/eye-off.svg?react';
+import Eye from './assets/eye.svg?react';
 import HamburgerLg from './assets/hamburger-lg.svg?react';
 import HamburgerMd from './assets/hamburger-md.svg?react';
 import Heart from './assets/heart.svg?react';
@@ -114,6 +116,8 @@ export const ICONS = {
   'close-lg': CloseLg,
   'close-md': CloseMd,
   'close-sm': CloseSm,
+  'eye-off': EyeOff,
+  eye: Eye,
   'hamburger-lg': HamburgerLg,
   'hamburger-md': HamburgerMd,
   heart: Heart,

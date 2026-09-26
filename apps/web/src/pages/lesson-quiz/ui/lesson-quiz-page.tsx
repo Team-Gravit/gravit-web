@@ -11,6 +11,7 @@ import { Spinner } from '@/shared/ui/spinner';
 import { toast } from '@/shared/ui/toast';
 import { toUnitLabel } from '@/entities/learning';
 import { ProblemCard, useLessonProblems, type Problem } from '@/entities/problem';
+import { BookmarkToggle } from '@/features/problem-bookmark';
 import {
   clearStoredQuizSession,
   ObjectiveSolver,
@@ -150,7 +151,17 @@ function QuizScreen({ lessonId, title, unitId, problems }: QuizScreenProps) {
                 <div className="flex justify-end">
                   <QuizTimer startedAt={startedAt} />
                 </div>
-                <ProblemCard problem={currentProblem} number={currentProblemIndex + 1}>
+                <ProblemCard
+                  problem={currentProblem}
+                  number={currentProblemIndex + 1}
+                  headerAction={
+                    <BookmarkToggle
+                      lessonId={lessonId}
+                      problemId={currentProblem.problemId}
+                      isBookmarked={currentProblem.isBookmarked}
+                    />
+                  }
+                >
                   <ProblemSolver
                     key={currentProblem.problemId}
                     problem={currentProblem}

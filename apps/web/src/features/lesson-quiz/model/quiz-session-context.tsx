@@ -29,6 +29,8 @@ export interface QuizSessionContextValue {
   startedAt: number;
   subjectiveAnswerDraft: string;
   setSubjectiveAnswerDraft: (subjectiveAnswerDraft: string) => void;
+  hiddenOptionIdsByProblemId: Partial<Record<number, number[]>>;
+  toggleHiddenOption: (problemId: number, optionId: number) => void;
   submitAnswer: (input: SubmitAnswerInput) => void;
   /** 상태를 바꾸지 않고 다음 동작을 계산한다. */
   getAdvanceAction: (problem: Problem) => AdvanceAction;
@@ -59,9 +61,11 @@ export function QuizSessionProvider({ lessonId, problemIds, children }: QuizSess
       return createInitialQuizSessionState(problemIds.length);
     }
 
+    // 이전 버전의 저장본에는 새 필드가 없을 수 있어 기본값을 채운다.
     return {
       ...storedSession,
       subjectiveAnswerDraft: storedSession.subjectiveAnswerDraft ?? '',
+      hiddenOptionIdsByProblemId: storedSession.hiddenOptionIdsByProblemId ?? {},
     };
   });
 
@@ -76,6 +80,12 @@ export function QuizSessionProvider({ lessonId, problemIds, children }: QuizSess
   const setSubjectiveAnswerDraft = useCallback(
     (subjectiveAnswerDraft: string) =>
       dispatch({ type: 'setSubjectiveAnswerDraft', subjectiveAnswerDraft }),
+    [],
+  );
+
+  const toggleHiddenOption = useCallback(
+    (problemId: number, optionId: number) =>
+      dispatch({ type: 'toggleHiddenOption', problemId, optionId }),
     [],
   );
 
@@ -135,6 +145,8 @@ export function QuizSessionProvider({ lessonId, problemIds, children }: QuizSess
       startedAt: state.startedAt,
       subjectiveAnswerDraft: state.subjectiveAnswerDraft,
       setSubjectiveAnswerDraft,
+      hiddenOptionIdsByProblemId: state.hiddenOptionIdsByProblemId,
+      toggleHiddenOption,
       submitAnswer,
       getAdvanceAction,
       advance,
@@ -145,6 +157,7 @@ export function QuizSessionProvider({ lessonId, problemIds, children }: QuizSess
     [
       state,
       setSubjectiveAnswerDraft,
+      toggleHiddenOption,
       submitAnswer,
       getAdvanceAction,
       advance,
