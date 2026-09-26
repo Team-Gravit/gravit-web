@@ -14,6 +14,7 @@ interface ProblemBase {
   instruction: string;
   /** 본문 — 문제의 내용. */
   content: string;
+  isBookmarked: boolean;
 }
 
 export interface ObjectiveProblem extends ProblemBase {
@@ -34,7 +35,7 @@ export interface LessonProblems {
   totalProblems: number;
 }
 
-/** 정답 정보가 빠진 주관식 응답을 받은 경우 처리*/
+/** 정답 정보가 빠진 주관식 응답의 기본값. */
 const EMPTY_ANSWER: AnswerResponse = { contents: [], explanation: '' };
 
 function toProblem(problem: ProblemResponse): Problem {
@@ -42,6 +43,7 @@ function toProblem(problem: ProblemResponse): Problem {
     problemId: problem.problemId,
     instruction: problem.instruction,
     content: problem.content,
+    isBookmarked: problem.isBookmarked,
   };
 
   if (problem.problemType === 'OBJECTIVE') {

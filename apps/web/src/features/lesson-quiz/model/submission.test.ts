@@ -10,6 +10,7 @@ function objectiveProblem(problemId: number): Problem {
     type: 'objective',
     instruction: '발문',
     content: '본문',
+    isBookmarked: false,
     options: [],
   };
 }
@@ -20,6 +21,7 @@ function subjectiveProblem(problemId: number): Problem {
     type: 'subjective',
     instruction: '발문',
     content: '본문',
+    isBookmarked: false,
     answer: { contents: ['DFS'], explanation: '해설' },
   };
 }

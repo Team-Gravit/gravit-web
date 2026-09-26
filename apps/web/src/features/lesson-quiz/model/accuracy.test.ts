@@ -11,6 +11,7 @@ function objectiveProblem(problemId: number): Problem {
     type: 'objective',
     instruction: '발문',
     content: '본문',
+    isBookmarked: false,
     options: [],
   };
 }
