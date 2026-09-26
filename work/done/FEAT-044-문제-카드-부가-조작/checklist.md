@@ -53,8 +53,9 @@ mode: 'feature' # feature | migrate | refactor | design-fix | fix | infra
 
 | 대상                            | 갱신 내용                                               | 상태 |
 | ------------------------------- | ------------------------------------------------------- | ---- |
-| `docs/implementation-status.md` | 레슨 문제 풀이 행에 FEAT-044(선지 가리기 · 북마크) 반영 | ⬜   |
+| `docs/implementation-status.md` | 레슨 문제 풀이 행에 FEAT-044(선지 가리기 · 북마크) 반영 | ✅   |
 | `docs/migration-status.md`      | 해당 없음                                               | ✅   |
 | 그 외 `docs/`                   | 해당 없음                                               | ✅   |
 
-- `implementation-status.md` 갱신은 `done/` 이동 시점에 함께 한다.
+- `implementation-status.md` 는 `done/` 이동 시점(2026-09-26, PR #257 머지 후)에 갱신했다.
+  §2의 ⚠️ 수동 확인 2건이 남아 있어 기능 검증은 `△`로 둔다.
