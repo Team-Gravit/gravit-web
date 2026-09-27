@@ -34,12 +34,12 @@ legacy는 위 조건이 모두 충족될 때 한 번에 제거한다. 중간에 
 
 | 영역                | 동작 검증 완료 | 전체 | 폐기 차단 요소               |
 | ------------------- | -------------: | ---: | ---------------------------- |
-| 사용자 라우트       |              7 |   35 | 인증 기반과 주요 화면 미이전 |
+| 사용자 라우트       |              8 |   35 | 인증 기반과 주요 화면 미이전 |
 | 공용 기반           |              4 |   15 | 인증·Query 기반 미이전       |
 | 이전 제외·폐기 대상 |              4 |    4 | 없음                         |
 
 동작 검증까지 끝난 라우트는 `/terms`, `/privacy`, `/`(로그인), `/league`, `/learning`,
-`/learning/$chapterId`, `/settings`이다.
+`/learning/$chapterId`, `/settings`, `/settings/inquiry`이다.
 `/main`과 `/onboarding`·`/success`는 대체 구현이 끝났지만 동작 검증 기록이 남아 있지 않다
 (MIG-025 · MIG-024).
 
@@ -75,7 +75,9 @@ legacy는 위 조건이 모두 충족될 때 한 번에 제거한다. 중간에 
 | 사용자·공지 | `/user`, `/user/edit`, `/user/addfriend`, `/user/privacy`                                          |   ⬜   |    ⬜     |    ⬜     | —                       |
 | 사용자·공지 | `/user/notice`, `/user/notice/$page`, `/user/notice/$page/$noticeId`                               |   ⬜   |    ⬜     |    ⬜     | —                       |
 | 설정·문의   | `/settings` (환경설정 목록)                                                                        |   ✅   |    ✅     |    ✅     | MIG-042                 |
-| 설정·문의   | `/settings/inquiry`, `/settings/notice`                                                            |   ⬜   |    ⬜     |    ⬜     | 빈 라우트만 MIG-042 (문의·공지 화면 본체 후속) |
+| 설정·문의   | `/settings/inquiry` (문의 내역 확인)                                                               |   ✅   |    ✅     |    ✅     | MIG-043 (무한스크롤→페이지네이션) |
+| 설정·문의   | `/settings/inquiry/new` (문의 작성)                                                                |   ✅   |    ✅     |    ✅     | MIG-043 (floating 입력 필드 공통화) |
+| 설정·문의   | `/settings/notice`                                                                                 |   ⬜   |    ⬜     |    ⬜     | 빈 라우트만 (공지 화면 본체 후속) |
 | 온보딩      | `/onboarding`, `/success`                                                                          |   ✅   |    ✅     |    ⬜     | MIG-024                 |
 
 한 행에 여러 URL이 묶인 경우 작업을 만들 때 사용자에게 관찰 가능한 단위로 행을 분리한다.
@@ -139,6 +141,7 @@ legacy는 위 조건이 모두 충족될 때 한 번에 제거한다. 중간에 
 
 | 날짜       | 내용                                                                                                                                           |
 | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2026-09-27 | MIG-043 반영. `/settings/inquiry`(내역)·`/settings/inquiry/new`(작성) 대체 구현·동작 검증 완료. 무한스크롤→페이지네이션, floating 입력 필드 공통화(`shared/ui/pagination`·`text-field`·`select`) |
 | 2026-09-23 | MIG-042 반영. `/settings` 환경설정 목록 대체 구현·동작 검증 완료. `/settings/inquiry`·`/settings/notice`는 빈 라우트만. 공지사항 링크는 화면 미비로 보류 |
 | 2026-09-18 | MIG-029 반영. `/learning/$chapterId`를 `/learning/chapters/$chapterId`로 대체하고 동작 검증 완료                                               |
 | 2026-09-16 | MIG-028 반영. 학습 상세 제목·경로 셸의 기준선·대체 구현·동작 검증 완료. L.2·L.3 화면 본체는 후속 작업으로 유지                                 |
