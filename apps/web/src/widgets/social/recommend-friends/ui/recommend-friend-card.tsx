@@ -1,13 +1,22 @@
 import type { RecommendedUser } from '@/entities/friend-recommendation';
 import { ProfileAvatar } from '@/entities/user';
+import { UnFollowButton } from '@/features/follow';
 import { RecommendFollowButton } from '@/features/friend-recommend-follow';
 
 interface RecommendFriendCardProps {
   user: RecommendedUser;
+  isFollowing: boolean;
+  onFollowed: () => void;
+  onUnfollowed: () => void;
 }
 
-/** 추천 친구 한 명 카드. 아바타·닉네임·함께 아는 친구 수 + 팔로우 버튼. 팔로우 시 목록에서 즉시 사라진다. */
-export function RecommendFriendCard({ user }: RecommendFriendCardProps) {
+/** 추천 친구 한 명 카드. 팔로우해도 카드는 유지되고 버튼만 팔로우↔팔로잉으로 토글된다. */
+export function RecommendFriendCard({
+  user,
+  isFollowing,
+  onFollowed,
+  onUnfollowed,
+}: RecommendFriendCardProps) {
   const { userId, nickname, profileImgNumber, mutualFollowCount } = user;
 
   return (
@@ -22,7 +31,11 @@ export function RecommendFriendCard({ user }: RecommendFriendCardProps) {
         </div>
       </div>
 
-      <RecommendFollowButton userId={userId} />
+      {isFollowing ? (
+        <UnFollowButton followeeId={userId} onSuccess={onUnfollowed} />
+      ) : (
+        <RecommendFollowButton userId={userId} onFollowed={onFollowed} />
+      )}
     </li>
   );
 }
