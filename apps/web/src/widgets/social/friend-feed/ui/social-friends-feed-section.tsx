@@ -35,8 +35,8 @@ export function SocialFriendsFeedSection() {
       {feeds.length > 0 ? (
         <ScrollArea
           viewportRef={setViewport}
-          className="max-h-[312px] md:max-h-[368px]"
-          viewportClassName="md:pr-4"
+          className="max-h-[234px] md:max-h-[368px]"
+          viewportClassName="pr-4 md:pr-6"
         >
           <ul className="flex flex-col md:gap-4">
             {feeds.map((feed) => (
