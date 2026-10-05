@@ -1,6 +1,11 @@
-import { useGetAllProblemInLesson } from '@/shared/api/generated/problem-api/problem-api';
+import {
+  getGetAllProblemInLessonQueryKey,
+  useGetAllProblemInLesson,
+} from '@/shared/api/generated/problem-api/problem-api';
 
 import { toLessonProblems, type LessonProblems } from '../model/problem';
+
+export { getGetAllProblemInLessonQueryKey as getLessonProblemsQueryKey };
 
 export function useLessonProblems(lessonId: number) {
   return useGetAllProblemInLesson<LessonProblems>(lessonId, {

@@ -1,4 +1,9 @@
-export { useLessonProblems } from './api/use-lesson-problems';
+export { getLessonProblemsQueryKey, useLessonProblems } from './api/use-lesson-problems';
+export {
+  getReviewProblemsQueryKey,
+  useReviewProblems,
+  type ReviewProblemsKind,
+} from './api/use-review-problems';
 export {
   CORRECT_ANSWER_MESSAGE,
   INCORRECT_ANSWER_MESSAGE,
