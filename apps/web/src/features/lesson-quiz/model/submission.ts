@@ -41,7 +41,11 @@ export function toSubmissionBody({
   };
 }
 
-function toProblemSubmission(problemId: number, answer: QuizAnswer): ProblemSubmissionSaveRequest {
+/** 문제 하나의 답을 서버 요청 형식으로 바꾼다. 레슨 일괄 제출과 복습 풀이의 단건 제출이 같은 형식을 쓴다. */
+export function toProblemSubmission(
+  problemId: number,
+  answer: QuizAnswer,
+): ProblemSubmissionSaveRequest {
   if (answer.kind === 'objective') {
     return { problemId, isCorrect: answer.isCorrect, selectedOptionId: answer.selectedOptionId };
   }

@@ -1,4 +1,9 @@
-export { PROBLEM_NAV_LABELS, PROGRESS_PANEL_LABELS, QUIZ_SUBMIT_LABEL } from './model/constants';
+export {
+  PROBLEM_NAV_LABELS,
+  PROGRESS_PANEL_LABELS,
+  QUIZ_FINISH_LABEL,
+  QUIZ_SUBMIT_LABEL,
+} from './model/constants';
 export { toAccuracy } from './model/accuracy';
 export {
   clearStoredQuizSession,
@@ -30,7 +35,8 @@ export {
   type QuizSessionState,
   type SubmitAnswerInput,
 } from './model/quiz-session';
-export { toSubmissionBody, type SubmissionInput } from './model/submission';
+export { toProblemSubmission, toSubmissionBody, type SubmissionInput } from './model/submission';
 export { useSubmitLesson, type UseSubmitLessonOptions } from './api/use-submit-lesson';
+export { useSubmitProblemResult } from './api/use-submit-problem-result';
 export { ObjectiveSolver, type ObjectiveSolverProps } from './ui/objective-solver';
 export { SubjectiveAnswer, type SubjectiveAnswerProps } from './ui/subjective-answer';

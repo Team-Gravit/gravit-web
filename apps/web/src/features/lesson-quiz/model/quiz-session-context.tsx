@@ -5,6 +5,7 @@ import {
   useEffect,
   useMemo,
   useReducer,
+  useState,
   type ReactNode,
 } from 'react';
 
@@ -36,6 +37,8 @@ export interface QuizSessionContextValue {
   hiddenOptionIdsByProblemId: Partial<Record<number, number[]>>;
   toggleHiddenOption: (problemId: number, optionId: number) => void;
   submitAnswer: (input: SubmitAnswerInput) => void;
+  /** 답을 서버에 보내는 중인 문제. 그동안 그 문제의 답을 바꿀 수 없다. */
+  pendingProblemId: number | null;
   /** 상태를 바꾸지 않고 다음 동작을 계산한다. */
   getAdvanceAction: (problem: Problem) => AdvanceAction;
   /** 다음 동작을 실행하고 화면이 이어서 처리할 동작을 반환한다. */
@@ -51,6 +54,11 @@ export interface QuizSessionProviderProps {
   /** 새로고침 저장본을 구분한다. 레슨은 레슨 ID 를 넘긴다. */
   sessionKey: QuizSessionKey;
   problemIds: number[];
+  /**
+   * 주면 답을 이 함수로 먼저 보내고, 성공한 뒤에만 기록한다. 실패하면 기록하지 않아 다시 고를 수 있다.
+   * 레슨처럼 마지막에 한꺼번에 제출하는 화면은 넘기지 않는다.
+   */
+  submitAnswerRemotely?: (input: SubmitAnswerInput) => Promise<void>;
   children: ReactNode;
 }
 
@@ -61,6 +69,7 @@ export interface QuizSessionProviderProps {
 export function QuizSessionProvider({
   sessionKey,
   problemIds,
+  submitAnswerRemotely,
   children,
 }: QuizSessionProviderProps) {
   const [state, dispatch] = useReducer(quizSessionReducer, undefined, () => {
@@ -82,9 +91,29 @@ export function QuizSessionProvider({
     writeStoredQuizSession(sessionKey, problemIds, state);
   }, [sessionKey, problemIds, state]);
 
-  const submitAnswer = useCallback((input: SubmitAnswerInput) => {
-    dispatch({ type: 'submitAnswer', ...input });
-  }, []);
+  const [pendingProblemId, setPendingProblemId] = useState<number | null>(null);
+
+  const submitAnswer = useCallback(
+    (input: SubmitAnswerInput) => {
+      if (!submitAnswerRemotely) {
+        dispatch({ type: 'submitAnswer', ...input });
+        return;
+      }
+
+      // 이미 기록했거나 보내는 중인 답은 다시 보내지 않는다.
+      if (pendingProblemId !== null || state.answersByProblemId[input.problemId]) {
+        return;
+      }
+
+      setPendingProblemId(input.problemId);
+      submitAnswerRemotely(input)
+        .then(() => dispatch({ type: 'submitAnswer', ...input }))
+        // 실패 안내는 전송 함수가 맡는다. 여기서는 기록하지 않는 것으로 처리를 끝낸다.
+        .catch(() => undefined)
+        .finally(() => setPendingProblemId(null));
+    },
+    [pendingProblemId, state.answersByProblemId, submitAnswerRemotely],
+  );
   const goToNext = useCallback(() => dispatch({ type: 'goToNext' }), []);
   const setSubjectiveAnswerDraft = useCallback(
     (subjectiveAnswerDraft: string) =>
@@ -122,8 +151,7 @@ export function QuizSessionProvider({
       const action = getAdvanceAction(problem);
 
       if (action === 'recordAnswer' && problem.type === 'subjective') {
-        dispatch({
-          type: 'submitAnswer',
+        submitAnswer({
           problemId: problem.problemId,
           answer: {
             kind: 'subjective',
@@ -139,7 +167,7 @@ export function QuizSessionProvider({
 
       return action;
     },
-    [getAdvanceAction, state.subjectiveAnswerDraft],
+    [getAdvanceAction, state.subjectiveAnswerDraft, submitAnswer],
   );
   const goToPrevious = useCallback(() => dispatch({ type: 'goToPrevious' }), []);
   const goTo = useCallback((problemIndex: number) => dispatch({ type: 'goTo', problemIndex }), []);
@@ -155,6 +183,7 @@ export function QuizSessionProvider({
       hiddenOptionIdsByProblemId: state.hiddenOptionIdsByProblemId,
       toggleHiddenOption,
       submitAnswer,
+      pendingProblemId,
       getAdvanceAction,
       advance,
       goToNext,
@@ -163,6 +192,7 @@ export function QuizSessionProvider({
     }),
     [
       state,
+      pendingProblemId,
       setSubjectiveAnswerDraft,
       toggleHiddenOption,
       submitAnswer,
