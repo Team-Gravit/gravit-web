@@ -60,25 +60,25 @@ legacy는 위 조건이 모두 충족될 때 한 번에 제거한다. 중간에 
 
 아래 라우트는 모두 MIG-005 인증 기반이 선행돼야 한다.
 
-| 영역        | Legacy URL                                                                                         | 기준선 | 대체 구현 | 동작 검증 | 작업                    |
-| ----------- | -------------------------------------------------------------------------------------------------- | :----: | :-------: | :-------: | ----------------------- |
-| 메인        | `/main` (`/mains`는 폐기, §5)                                                                      |   ✅   |    ✅     |    🚧     | MIG-025                 |
-| 학습        | `/learning`                                                                                        |   ✅   |    ✅     |    ✅     | MIG-027                 |
-| 학습        | `/learning/$chapterId` → `/learning/chapters/$chapterId`                                           |   ✅   |    ✅     |    ✅     | MIG-029                 |
-| 학습        | `/learning/$chapterId/$unitId` → `/learning/units/$unitId`                                         |   ✅   |    ✅     |    ✅     | MIG-030                 |
-| 학습        | `/learning/$chapterId/$unitId/concept-note` → `/learning/units/$unitId/concept-note`               |   ⬜   |    ⬜     |    ⬜     | — (빈 라우트만 MIG-030) |
-| 학습        | `/learning/$chapterId/$unitId/$lessonId` → `/learning/lessons/$lessonId`                           |   ⬜   |    ⬜     |    ⬜     | — (빈 라우트만 MIG-030) |
-| 학습        | `/learning/$chapterId/$unitId/bookmarked-problems` → `/learning/units/$unitId/bookmarked-problems` |   ⬜   |    ⬜     |    ⬜     | — (빈 라우트만 MIG-030) |
-| 학습        | `/learning/$chapterId/$unitId/incorrect-problems` → `/learning/units/$unitId/incorrect-problems`   |   ⬜   |    ⬜     |    ⬜     | — (빈 라우트만 MIG-030) |
-| 리그        | `/league`                                                                                          |   ✅   |    ✅     |    ✅     | MIG-023                 |
+| 영역        | Legacy URL                                                                                         | 기준선 | 대체 구현 | 동작 검증 | 작업                                                                      |
+| ----------- | -------------------------------------------------------------------------------------------------- | :----: | :-------: | :-------: | ------------------------------------------------------------------------- |
+| 메인        | `/main` (`/mains`는 폐기, §5)                                                                      |   ✅   |    ✅     |    🚧     | MIG-025                                                                   |
+| 학습        | `/learning`                                                                                        |   ✅   |    ✅     |    ✅     | MIG-027                                                                   |
+| 학습        | `/learning/$chapterId` → `/learning/chapters/$chapterId`                                           |   ✅   |    ✅     |    ✅     | MIG-029                                                                   |
+| 학습        | `/learning/$chapterId/$unitId` → `/learning/units/$unitId`                                         |   ✅   |    ✅     |    ✅     | MIG-030                                                                   |
+| 학습        | `/learning/$chapterId/$unitId/concept-note` → `/learning/units/$unitId/concept-note`               |   ⬜   |    ⬜     |    ⬜     | — (빈 라우트만 MIG-030)                                                   |
+| 학습        | `/learning/$chapterId/$unitId/$lessonId` → `/learning/lessons/$lessonId`                           |   ⬜   |    ⬜     |    ⬜     | — (빈 라우트만 MIG-030)                                                   |
+| 학습        | `/learning/$chapterId/$unitId/bookmarked-problems` → `/learning/units/$unitId/bookmarked-problems` |   ✅   |    ✅     |    🚧     | MIG-048 A (#268)                                                          |
+| 학습        | `/learning/$chapterId/$unitId/incorrect-problems` → `/learning/units/$unitId/incorrect-problems`   |   ✅   |    ⬜     |    ⬜     | MIG-048 B (#269)                                                          |
+| 리그        | `/league`                                                                                          |   ✅   |    ✅     |    ✅     | MIG-023                                                                   |
 | 마이페이지  | `/my`, `/my/summary`, `/my/learning`, `/my/league`, `/my/social`, `/my/edit`, `/my/follow`         |   ⬜   |    ⬜     |    ⬜     | MIG-025 (P1: 레이아웃·카드·탭, P2: 요약 탭 이전 완 / 학습·리그·소셜 P3~5) |
-| 사용자·공지 | `/user`, `/user/edit`, `/user/addfriend`, `/user/privacy`                                          |   ⬜   |    ⬜     |    ⬜     | —                       |
-| 사용자·공지 | `/user/notice`, `/user/notice/$page`, `/user/notice/$page/$noticeId`                               |   ⬜   |    ⬜     |    ⬜     | —                       |
-| 설정·문의   | `/settings` (환경설정 목록)                                                                        |   ✅   |    ✅     |    ✅     | MIG-042                 |
-| 설정·문의   | `/settings/inquiry` (문의 내역 확인)                                                               |   ✅   |    ✅     |    ✅     | MIG-043 (무한스크롤→페이지네이션) |
-| 설정·문의   | `/settings/inquiry/new` (문의 작성)                                                                |   ✅   |    ✅     |    ✅     | MIG-043 (floating 입력 필드 공통화) |
-| 설정·문의   | `/settings/notice`                                                                                 |   ⬜   |    ⬜     |    ⬜     | 빈 라우트만 (공지 화면 본체 후속) |
-| 온보딩      | `/onboarding`, `/success`                                                                          |   ✅   |    ✅     |    ⬜     | MIG-024                 |
+| 사용자·공지 | `/user`, `/user/edit`, `/user/addfriend`, `/user/privacy`                                          |   ⬜   |    ⬜     |    ⬜     | —                                                                         |
+| 사용자·공지 | `/user/notice`, `/user/notice/$page`, `/user/notice/$page/$noticeId`                               |   ⬜   |    ⬜     |    ⬜     | —                                                                         |
+| 설정·문의   | `/settings` (환경설정 목록)                                                                        |   ✅   |    ✅     |    ✅     | MIG-042                                                                   |
+| 설정·문의   | `/settings/inquiry` (문의 내역 확인)                                                               |   ✅   |    ✅     |    ✅     | MIG-043 (무한스크롤→페이지네이션)                                         |
+| 설정·문의   | `/settings/inquiry/new` (문의 작성)                                                                |   ✅   |    ✅     |    ✅     | MIG-043 (floating 입력 필드 공통화)                                       |
+| 설정·문의   | `/settings/notice`                                                                                 |   ⬜   |    ⬜     |    ⬜     | 빈 라우트만 (공지 화면 본체 후속)                                         |
+| 온보딩      | `/onboarding`, `/success`                                                                          |   ✅   |    ✅     |    ⬜     | MIG-024                                                                   |
 
 한 행에 여러 URL이 묶인 경우 작업을 만들 때 사용자에게 관찰 가능한 단위로 행을 분리한다.
 
@@ -139,15 +139,16 @@ legacy는 위 조건이 모두 충족될 때 한 번에 제거한다. 중간에 
 
 ## 갱신 이력
 
-| 날짜       | 내용                                                                                                                                           |
-| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| 날짜       | 내용                                                                                                                                                                                             |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | 2026-09-27 | MIG-043 반영. `/settings/inquiry`(내역)·`/settings/inquiry/new`(작성) 대체 구현·동작 검증 완료. 무한스크롤→페이지네이션, floating 입력 필드 공통화(`shared/ui/pagination`·`text-field`·`select`) |
-| 2026-09-23 | MIG-042 반영. `/settings` 환경설정 목록 대체 구현·동작 검증 완료. `/settings/inquiry`·`/settings/notice`는 빈 라우트만. 공지사항 링크는 화면 미비로 보류 |
-| 2026-09-18 | MIG-029 반영. `/learning/$chapterId`를 `/learning/chapters/$chapterId`로 대체하고 동작 검증 완료                                               |
-| 2026-09-16 | MIG-028 반영. 학습 상세 제목·경로 셸의 기준선·대체 구현·동작 검증 완료. L.2·L.3 화면 본체는 후속 작업으로 유지                                 |
-| 2026-09-11 | MIG-025 반영. 메인 화면·헤더·탭바·섹션 6개 대체 구현. `/mains`·`/user/*` 폐기. `/main`·`/mains` 차단 항목 해소. 라우트 정본은 `docs/routes.md` |
-| 2026-09-10 | MIG-024 반영. 온보딩 2화면 대체 구현. **완료 화면 경로가 `/success` → `/onboarding/success` 로 바뀜**                                          |
-| 2026-09-10 | MIG-018 반영. `/` 로그인 화면과 반응형 판정 기반을 대체 구현으로 표시                                                                          |
-| 2026-09-01 | 역할 재정의. 제품 구현·토큰 상태를 분리하고 legacy 폐기 조건 중심으로 개편                                                                     |
-| 2026-08-31 | 최초 작성. MIG-004 완료 반영                                                                                                                   |
-| 2026-09-16 | MIG-030 반영. 유닛 상세(`/learning/units/$unitId`) 기준선·대체 구현·동작 검증 완료. 목적지 4종은 경로 계약과 빈 라우트만 확정                  |
+| 2026-09-23 | MIG-042 반영. `/settings` 환경설정 목록 대체 구현·동작 검증 완료. `/settings/inquiry`·`/settings/notice`는 빈 라우트만. 공지사항 링크는 화면 미비로 보류                                         |
+| 2026-09-18 | MIG-029 반영. `/learning/$chapterId`를 `/learning/chapters/$chapterId`로 대체하고 동작 검증 완료                                                                                                 |
+| 2026-09-16 | MIG-028 반영. 학습 상세 제목·경로 셸의 기준선·대체 구현·동작 검증 완료. L.2·L.3 화면 본체는 후속 작업으로 유지                                                                                   |
+| 2026-09-11 | MIG-025 반영. 메인 화면·헤더·탭바·섹션 6개 대체 구현. `/mains`·`/user/*` 폐기. `/main`·`/mains` 차단 항목 해소. 라우트 정본은 `docs/routes.md`                                                   |
+| 2026-09-10 | MIG-024 반영. 온보딩 2화면 대체 구현. **완료 화면 경로가 `/success` → `/onboarding/success` 로 바뀜**                                                                                            |
+| 2026-09-10 | MIG-018 반영. `/` 로그인 화면과 반응형 판정 기반을 대체 구현으로 표시                                                                                                                            |
+| 2026-09-01 | 역할 재정의. 제품 구현·토큰 상태를 분리하고 legacy 폐기 조건 중심으로 개편                                                                                                                       |
+| 2026-08-31 | 최초 작성. MIG-004 완료 반영                                                                                                                                                                     |
+| 2026-09-16 | MIG-030 반영. 유닛 상세(`/learning/units/$unitId`) 기준선·대체 구현·동작 검증 완료. 목적지 4종은 경로 계약과 빈 라우트만 확정                                                                    |
+| 2026-10-05 | MIG-048 A 반영. 북마크 풀이 기준선·대체 구현 완료. 자동 AC 통과, 실제 계정 수동 스모크 대기로 동작 검증 `🚧`. 오답노트 풀이는 기준선만                                                           |
