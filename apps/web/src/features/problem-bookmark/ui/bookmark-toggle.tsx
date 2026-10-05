@@ -1,3 +1,5 @@
+import type { QueryKey } from '@tanstack/react-query';
+
 import { cn } from '@/shared/lib/cn';
 import { Icon } from '@/shared/ui/icon';
 
@@ -5,19 +7,22 @@ import { useToggleProblemBookmark } from '../api/use-toggle-problem-bookmark';
 import { BOOKMARK_ADD_LABEL, BOOKMARK_REMOVE_LABEL } from '../model/constants';
 
 export interface BookmarkToggleProps {
-  lessonId: number;
+  /** 표시를 함께 바꿀 문제 목록 캐시의 키. */
+  problemsQueryKey: QueryKey;
+  unitId: number;
   problemId: number;
   isBookmarked: boolean;
   className?: string;
 }
 
 export function BookmarkToggle({
-  lessonId,
+  problemsQueryKey,
+  unitId,
   problemId,
   isBookmarked,
   className,
 }: BookmarkToggleProps) {
-  const { toggleBookmark, isPending } = useToggleProblemBookmark({ lessonId });
+  const { toggleBookmark, isPending } = useToggleProblemBookmark({ problemsQueryKey, unitId });
 
   return (
     <button

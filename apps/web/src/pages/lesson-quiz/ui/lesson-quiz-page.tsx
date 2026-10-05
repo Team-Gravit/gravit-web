@@ -7,7 +7,7 @@ import { useInitialMinimumDuration } from '@/shared/lib/use-initial-minimum-dura
 import { CardRetryStatus } from '@/shared/ui/card';
 import { toast } from '@/shared/ui/toast';
 import { toUnitLabel } from '@/entities/learning';
-import { useLessonProblems, type Problem } from '@/entities/problem';
+import { getLessonProblemsQueryKey, useLessonProblems, type Problem } from '@/entities/problem';
 import { BookmarkToggle } from '@/features/problem-bookmark';
 import {
   clearStoredQuizSession,
@@ -116,7 +116,8 @@ function LessonQuizScreen({ lessonId, title, unitId, problems }: LessonQuizScree
       isFinishing={isSubmitting}
       renderProblemAction={(problem) => (
         <BookmarkToggle
-          lessonId={lessonId}
+          problemsQueryKey={getLessonProblemsQueryKey(lessonId)}
+          unitId={unitId}
           problemId={problem.problemId}
           isBookmarked={problem.isBookmarked}
         />
