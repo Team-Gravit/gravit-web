@@ -4,6 +4,7 @@ export {
   clearStoredQuizSession,
   readStoredQuizSession,
   writeStoredQuizSession,
+  type QuizSessionKey,
 } from './model/quiz-session-storage';
 export { gradeObjective } from './model/grade-objective';
 export { gradeSubjective } from './model/grade-subjective';
