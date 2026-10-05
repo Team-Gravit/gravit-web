@@ -25,7 +25,7 @@ import { Route as AuthenticatedAppShellMyRouteRouteImport } from './routes/_auth
 import { Route as AuthenticatedOnboardingIndexRouteImport } from './routes/_authenticated/onboarding/index'
 import { Route as AuthenticatedOnboardingSuccessRouteImport } from './routes/_authenticated/onboarding/success'
 import { Route as AuthenticatedSettingsIndexRouteImport } from './routes/_authenticated/settings/index'
-import { Route as AuthenticatedSettingsInquiryRouteImport } from './routes/_authenticated/settings/inquiry'
+import { Route as AuthenticatedSettingsInquiryRouteRouteImport } from './routes/_authenticated/settings/inquiry/route'
 import { Route as AuthenticatedSettingsNoticeRouteImport } from './routes/_authenticated/settings/notice'
 import { Route as AuthenticatedAppShellLearningIndexRouteImport } from './routes/_authenticated/_app-shell/learning.index'
 import { Route as AuthenticatedAppShellMyIndexRouteImport } from './routes/_authenticated/_app-shell/my/index'
@@ -33,6 +33,8 @@ import { Route as AuthenticatedAppShellMyLeagueRouteImport } from './routes/_aut
 import { Route as AuthenticatedAppShellMyLearningRouteImport } from './routes/_authenticated/_app-shell/my/learning'
 import { Route as AuthenticatedAppShellMySocialRouteImport } from './routes/_authenticated/_app-shell/my/social'
 import { Route as AuthenticatedAppShellMySummaryRouteImport } from './routes/_authenticated/_app-shell/my/summary'
+import { Route as AuthenticatedSettingsInquiryIndexRouteImport } from './routes/_authenticated/settings/inquiry/index'
+import { Route as AuthenticatedSettingsInquiryNewRouteImport } from './routes/_authenticated/settings/inquiry/new'
 import { Route as LoginOauth2CodeProviderRouteImport } from './routes/login.oauth2.code.$provider'
 import { Route as AuthenticatedAppShellMyFriendsSearchRouteImport } from './routes/_authenticated/_app-shell/my.friends.search'
 import { Route as AuthenticatedFocusLearningLessonsLessonIdRouteImport } from './routes/_authenticated/_focus/learning.lessons.$lessonId'
@@ -130,8 +132,8 @@ const AuthenticatedSettingsIndexRoute =
     path: '/',
     getParentRoute: () => AuthenticatedSettingsRouteRoute,
   } as any)
-const AuthenticatedSettingsInquiryRoute =
-  AuthenticatedSettingsInquiryRouteImport.update({
+const AuthenticatedSettingsInquiryRouteRoute =
+  AuthenticatedSettingsInquiryRouteRouteImport.update({
     id: '/inquiry',
     path: '/inquiry',
     getParentRoute: () => AuthenticatedSettingsRouteRoute,
@@ -177,6 +179,18 @@ const AuthenticatedAppShellMySummaryRoute =
     id: '/summary',
     path: '/summary',
     getParentRoute: () => AuthenticatedAppShellMyRouteRoute,
+  } as any)
+const AuthenticatedSettingsInquiryIndexRoute =
+  AuthenticatedSettingsInquiryIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedSettingsInquiryRouteRoute,
+  } as any)
+const AuthenticatedSettingsInquiryNewRoute =
+  AuthenticatedSettingsInquiryNewRouteImport.update({
+    id: '/new',
+    path: '/new',
+    getParentRoute: () => AuthenticatedSettingsInquiryRouteRoute,
   } as any)
 const LoginOauth2CodeProviderRoute = LoginOauth2CodeProviderRouteImport.update({
   id: '/login/oauth2/code/$provider',
@@ -242,11 +256,11 @@ export interface FileRoutesByFullPath {
   '/onboarding': typeof AuthenticatedOnboardingRouteRouteWithChildren
   '/settings': typeof AuthenticatedSettingsRouteRouteWithChildren
   '/my': typeof AuthenticatedAppShellMyRouteRouteWithChildren
+  '/settings/inquiry': typeof AuthenticatedSettingsInquiryRouteRouteWithChildren
   '/friends': typeof AuthenticatedAppShellFriendsRoute
   '/league': typeof AuthenticatedAppShellLeagueRoute
   '/main': typeof AuthenticatedAppShellMainRoute
   '/onboarding/success': typeof AuthenticatedOnboardingSuccessRoute
-  '/settings/inquiry': typeof AuthenticatedSettingsInquiryRoute
   '/settings/notice': typeof AuthenticatedSettingsNoticeRoute
   '/onboarding/': typeof AuthenticatedOnboardingIndexRoute
   '/settings/': typeof AuthenticatedSettingsIndexRoute
@@ -254,9 +268,11 @@ export interface FileRoutesByFullPath {
   '/my/learning': typeof AuthenticatedAppShellMyLearningRoute
   '/my/social': typeof AuthenticatedAppShellMySocialRoute
   '/my/summary': typeof AuthenticatedAppShellMySummaryRoute
+  '/settings/inquiry/new': typeof AuthenticatedSettingsInquiryNewRoute
   '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
   '/learning/': typeof AuthenticatedAppShellLearningIndexRoute
   '/my/': typeof AuthenticatedAppShellMyIndexRoute
+  '/settings/inquiry/': typeof AuthenticatedSettingsInquiryIndexRoute
   '/my/friends/search': typeof AuthenticatedAppShellMyFriendsSearchRoute
   '/learning/lessons/$lessonId': typeof AuthenticatedFocusLearningLessonsLessonIdRoute
   '/learning/units/$unitId/concept-note': typeof AuthenticatedAppShellLearningUnitsUnitIdConceptNoteRoute
@@ -275,7 +291,6 @@ export interface FileRoutesByTo {
   '/league': typeof AuthenticatedAppShellLeagueRoute
   '/main': typeof AuthenticatedAppShellMainRoute
   '/onboarding/success': typeof AuthenticatedOnboardingSuccessRoute
-  '/settings/inquiry': typeof AuthenticatedSettingsInquiryRoute
   '/settings/notice': typeof AuthenticatedSettingsNoticeRoute
   '/onboarding': typeof AuthenticatedOnboardingIndexRoute
   '/settings': typeof AuthenticatedSettingsIndexRoute
@@ -283,9 +298,11 @@ export interface FileRoutesByTo {
   '/my/learning': typeof AuthenticatedAppShellMyLearningRoute
   '/my/social': typeof AuthenticatedAppShellMySocialRoute
   '/my/summary': typeof AuthenticatedAppShellMySummaryRoute
+  '/settings/inquiry/new': typeof AuthenticatedSettingsInquiryNewRoute
   '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
   '/learning': typeof AuthenticatedAppShellLearningIndexRoute
   '/my': typeof AuthenticatedAppShellMyIndexRoute
+  '/settings/inquiry': typeof AuthenticatedSettingsInquiryIndexRoute
   '/my/friends/search': typeof AuthenticatedAppShellMyFriendsSearchRoute
   '/learning/lessons/$lessonId': typeof AuthenticatedFocusLearningLessonsLessonIdRoute
   '/learning/units/$unitId/concept-note': typeof AuthenticatedAppShellLearningUnitsUnitIdConceptNoteRoute
@@ -307,11 +324,11 @@ export interface FileRoutesById {
   '/_authenticated/onboarding': typeof AuthenticatedOnboardingRouteRouteWithChildren
   '/_authenticated/settings': typeof AuthenticatedSettingsRouteRouteWithChildren
   '/_authenticated/_app-shell/my': typeof AuthenticatedAppShellMyRouteRouteWithChildren
+  '/_authenticated/settings/inquiry': typeof AuthenticatedSettingsInquiryRouteRouteWithChildren
   '/_authenticated/_app-shell/friends': typeof AuthenticatedAppShellFriendsRoute
   '/_authenticated/_app-shell/league': typeof AuthenticatedAppShellLeagueRoute
   '/_authenticated/_app-shell/main': typeof AuthenticatedAppShellMainRoute
   '/_authenticated/onboarding/success': typeof AuthenticatedOnboardingSuccessRoute
-  '/_authenticated/settings/inquiry': typeof AuthenticatedSettingsInquiryRoute
   '/_authenticated/settings/notice': typeof AuthenticatedSettingsNoticeRoute
   '/_authenticated/onboarding/': typeof AuthenticatedOnboardingIndexRoute
   '/_authenticated/settings/': typeof AuthenticatedSettingsIndexRoute
@@ -319,9 +336,11 @@ export interface FileRoutesById {
   '/_authenticated/_app-shell/my/learning': typeof AuthenticatedAppShellMyLearningRoute
   '/_authenticated/_app-shell/my/social': typeof AuthenticatedAppShellMySocialRoute
   '/_authenticated/_app-shell/my/summary': typeof AuthenticatedAppShellMySummaryRoute
+  '/_authenticated/settings/inquiry/new': typeof AuthenticatedSettingsInquiryNewRoute
   '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
   '/_authenticated/_app-shell/learning/': typeof AuthenticatedAppShellLearningIndexRoute
   '/_authenticated/_app-shell/my/': typeof AuthenticatedAppShellMyIndexRoute
+  '/_authenticated/settings/inquiry/': typeof AuthenticatedSettingsInquiryIndexRoute
   '/_authenticated/_app-shell/my/friends/search': typeof AuthenticatedAppShellMyFriendsSearchRoute
   '/_authenticated/_focus/learning/lessons/$lessonId': typeof AuthenticatedFocusLearningLessonsLessonIdRoute
   '/_authenticated/_app-shell/learning/units/$unitId/concept-note': typeof AuthenticatedAppShellLearningUnitsUnitIdConceptNoteRoute
@@ -341,11 +360,11 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/settings'
     | '/my'
+    | '/settings/inquiry'
     | '/friends'
     | '/league'
     | '/main'
     | '/onboarding/success'
-    | '/settings/inquiry'
     | '/settings/notice'
     | '/onboarding/'
     | '/settings/'
@@ -353,9 +372,11 @@ export interface FileRouteTypes {
     | '/my/learning'
     | '/my/social'
     | '/my/summary'
+    | '/settings/inquiry/new'
     | '/login/oauth2/code/$provider'
     | '/learning/'
     | '/my/'
+    | '/settings/inquiry/'
     | '/my/friends/search'
     | '/learning/lessons/$lessonId'
     | '/learning/units/$unitId/concept-note'
@@ -374,7 +395,6 @@ export interface FileRouteTypes {
     | '/league'
     | '/main'
     | '/onboarding/success'
-    | '/settings/inquiry'
     | '/settings/notice'
     | '/onboarding'
     | '/settings'
@@ -382,9 +402,11 @@ export interface FileRouteTypes {
     | '/my/learning'
     | '/my/social'
     | '/my/summary'
+    | '/settings/inquiry/new'
     | '/login/oauth2/code/$provider'
     | '/learning'
     | '/my'
+    | '/settings/inquiry'
     | '/my/friends/search'
     | '/learning/lessons/$lessonId'
     | '/learning/units/$unitId/concept-note'
@@ -405,11 +427,11 @@ export interface FileRouteTypes {
     | '/_authenticated/onboarding'
     | '/_authenticated/settings'
     | '/_authenticated/_app-shell/my'
+    | '/_authenticated/settings/inquiry'
     | '/_authenticated/_app-shell/friends'
     | '/_authenticated/_app-shell/league'
     | '/_authenticated/_app-shell/main'
     | '/_authenticated/onboarding/success'
-    | '/_authenticated/settings/inquiry'
     | '/_authenticated/settings/notice'
     | '/_authenticated/onboarding/'
     | '/_authenticated/settings/'
@@ -417,9 +439,11 @@ export interface FileRouteTypes {
     | '/_authenticated/_app-shell/my/learning'
     | '/_authenticated/_app-shell/my/social'
     | '/_authenticated/_app-shell/my/summary'
+    | '/_authenticated/settings/inquiry/new'
     | '/login/oauth2/code/$provider'
     | '/_authenticated/_app-shell/learning/'
     | '/_authenticated/_app-shell/my/'
+    | '/_authenticated/settings/inquiry/'
     | '/_authenticated/_app-shell/my/friends/search'
     | '/_authenticated/_focus/learning/lessons/$lessonId'
     | '/_authenticated/_app-shell/learning/units/$unitId/concept-note'
@@ -557,7 +581,7 @@ declare module '@tanstack/react-router' {
       id: '/_authenticated/settings/inquiry'
       path: '/inquiry'
       fullPath: '/settings/inquiry'
-      preLoaderRoute: typeof AuthenticatedSettingsInquiryRouteImport
+      preLoaderRoute: typeof AuthenticatedSettingsInquiryRouteRouteImport
       parentRoute: typeof AuthenticatedSettingsRouteRoute
     }
     '/_authenticated/settings/notice': {
@@ -608,6 +632,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/my/summary'
       preLoaderRoute: typeof AuthenticatedAppShellMySummaryRouteImport
       parentRoute: typeof AuthenticatedAppShellMyRouteRoute
+    }
+    '/_authenticated/settings/inquiry/': {
+      id: '/_authenticated/settings/inquiry/'
+      path: '/'
+      fullPath: '/settings/inquiry/'
+      preLoaderRoute: typeof AuthenticatedSettingsInquiryIndexRouteImport
+      parentRoute: typeof AuthenticatedSettingsInquiryRouteRoute
+    }
+    '/_authenticated/settings/inquiry/new': {
+      id: '/_authenticated/settings/inquiry/new'
+      path: '/new'
+      fullPath: '/settings/inquiry/new'
+      preLoaderRoute: typeof AuthenticatedSettingsInquiryNewRouteImport
+      parentRoute: typeof AuthenticatedSettingsInquiryRouteRoute
     }
     '/login/oauth2/code/$provider': {
       id: '/login/oauth2/code/$provider'
@@ -773,15 +811,33 @@ const AuthenticatedOnboardingRouteRouteWithChildren =
     AuthenticatedOnboardingRouteRouteChildren,
   )
 
+interface AuthenticatedSettingsInquiryRouteRouteChildren {
+  AuthenticatedSettingsInquiryNewRoute: typeof AuthenticatedSettingsInquiryNewRoute
+  AuthenticatedSettingsInquiryIndexRoute: typeof AuthenticatedSettingsInquiryIndexRoute
+}
+
+const AuthenticatedSettingsInquiryRouteRouteChildren: AuthenticatedSettingsInquiryRouteRouteChildren =
+  {
+    AuthenticatedSettingsInquiryNewRoute: AuthenticatedSettingsInquiryNewRoute,
+    AuthenticatedSettingsInquiryIndexRoute:
+      AuthenticatedSettingsInquiryIndexRoute,
+  }
+
+const AuthenticatedSettingsInquiryRouteRouteWithChildren =
+  AuthenticatedSettingsInquiryRouteRoute._addFileChildren(
+    AuthenticatedSettingsInquiryRouteRouteChildren,
+  )
+
 interface AuthenticatedSettingsRouteRouteChildren {
-  AuthenticatedSettingsInquiryRoute: typeof AuthenticatedSettingsInquiryRoute
+  AuthenticatedSettingsInquiryRouteRoute: typeof AuthenticatedSettingsInquiryRouteRouteWithChildren
   AuthenticatedSettingsNoticeRoute: typeof AuthenticatedSettingsNoticeRoute
   AuthenticatedSettingsIndexRoute: typeof AuthenticatedSettingsIndexRoute
 }
 
 const AuthenticatedSettingsRouteRouteChildren: AuthenticatedSettingsRouteRouteChildren =
   {
-    AuthenticatedSettingsInquiryRoute: AuthenticatedSettingsInquiryRoute,
+    AuthenticatedSettingsInquiryRouteRoute:
+      AuthenticatedSettingsInquiryRouteRouteWithChildren,
     AuthenticatedSettingsNoticeRoute: AuthenticatedSettingsNoticeRoute,
     AuthenticatedSettingsIndexRoute: AuthenticatedSettingsIndexRoute,
   }

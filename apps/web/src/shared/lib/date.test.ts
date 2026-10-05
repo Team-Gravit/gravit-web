@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { formatElapsedTime, getRemainingTime } from './date';
+import { formatElapsedTime, formatISODate, getRemainingTime } from './date';
 
 afterEach(() => {
   vi.useRealTimers();
@@ -38,5 +38,15 @@ describe('getRemainingTime', () => {
 
     const target = new Date('2026-01-01T01:02:03Z').getTime();
     expect(getRemainingTime(target)).toBe('01시간 02분 03초');
+  });
+});
+
+describe('formatISODate', () => {
+  it('ISO 날짜의 날짜 부분만 마침표로 이어 붙인다', () => {
+    expect(formatISODate('2026-06-21T12:30:00Z')).toBe('2026.06.21');
+  });
+
+  it('시간 정보가 없어도 동작한다', () => {
+    expect(formatISODate('2026-06-21')).toBe('2026.06.21');
   });
 });

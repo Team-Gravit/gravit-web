@@ -33,3 +33,11 @@ export const getRemainingTime = (targetTimeMs: number): string => {
 
   return `${pad(hours)}시간 ${pad(minutes)}분 ${pad(seconds)}초`;
 };
+
+/**
+ * ISO 날짜 문자열을 `YYYY.MM.DD`로 표기한다. 시간·타임존은 버린다.
+ * 예: `2026-06-21T12:30:00Z` → `2026.06.21`
+ */
+export const formatISODate = (isoDate: string): string => {
+  return isoDate.split('T')[0].replace(/-/g, '.');
+};
