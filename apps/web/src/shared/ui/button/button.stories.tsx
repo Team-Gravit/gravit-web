@@ -8,6 +8,7 @@ const BUTTON_VARIANTS = [
   'default',
   'secondary',
   'stroke-default',
+  'stroke-error',
   'stroke-secondary',
   'ghost',
 ] as const;
@@ -130,6 +131,9 @@ export const WithIcons: Story = {
       </Button>
       <Button {...args} variant="stroke-default" endIcon={<Icon name="chevron-right" size={16} />}>
         다음으로
+      </Button>
+      <Button {...args} variant="stroke-error" startIcon={<Icon name="learning-fill" size={16} />}>
+        오답노트에서 제외
       </Button>
     </div>
   ),
