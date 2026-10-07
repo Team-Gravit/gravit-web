@@ -153,7 +153,7 @@ function LabelRow({ data, isLoading }: SlotProps) {
 
 /**
  * 편집·설정·알림 액션. 데이터와 무관해 항상 렌더한다.
- * 설정은 `/settings`로 연결한다. 편집·알림 대상은 아직 없어 시각 요소만 둔다.
+ * 설정은 `/settings`, 알림은 `/notifications`로 연결한다. 편집 대상은 아직 없어 시각 요소만 둔다.
  */
 function ProfileActions() {
   return (
@@ -168,9 +168,9 @@ function ProfileActions() {
 
       {/* 모바일: 알림 + 설정 */}
       <div className="flex items-center gap-4 text-text-1-w md:hidden">
-        <button type="button" aria-label="알림" className="flex items-center">
+        <Link to="/notifications" aria-label="알림" className="flex items-center">
           <Icon name="bell" size={24} />
-        </button>
+        </Link>
         <Link to="/settings" aria-label="설정" className="flex items-center">
           <Icon name="settings" size={24} />
         </Link>
