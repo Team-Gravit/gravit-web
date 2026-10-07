@@ -3,6 +3,8 @@
 @import './base.css';
 @import './utilities.css';
 
+@plugin '@tailwindcss/typography';
+
 /*
   세로가 좁은 화면.
 

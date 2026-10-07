@@ -25,6 +25,16 @@ describe('PageTitleBar', () => {
     expect(screen.getByRole('heading', { name: '학습' })).toBeInTheDocument();
   });
 
+  it('backIcon이 close이면 탐색 링크를 「닫기」로 알린다', async () => {
+    await renderWithProviders(
+      () => <PageTitleBar title="개념노트" backTo={{ to: '/learning' }} backIcon="close" />,
+      { extraPaths: ['/learning'] },
+    );
+
+    expect(screen.getByRole('link', { name: '닫기' })).toHaveAttribute('href', '/learning');
+    expect(screen.queryByRole('link', { name: '뒤로 가기' })).not.toBeInTheDocument();
+  });
+
   it('backTo와 rightSlot을 함께 넘기면 두 액션을 모두 표시한다', async () => {
     await renderWithProviders(
       () => (

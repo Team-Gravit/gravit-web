@@ -20,6 +20,8 @@ declare module '@tanstack/react-router' {
   interface StaticDataRouteOption {
     /** 데스크톱 헤더 표면. 기본 `solid`. */
     headerVariant?: 'overlay' | 'solid';
+    /** 좁은 화면에서 하단 탭 바와 콘텐츠 여백을 숨긴다. */
+    hideBottomTabBar?: boolean;
   }
 }
 

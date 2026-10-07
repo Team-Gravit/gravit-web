@@ -18,6 +18,8 @@ function AppShell() {
   const headerVariant: HeaderVariant =
     [...matches].reverse().find((match) => match.staticData.headerVariant)?.staticData
       .headerVariant ?? 'solid';
+  // 일부 자식 화면은 앱 셸 안에서도 모바일 전체 화면으로 동작한다.
+  const isBottomTabBarHidden = matches.some((match) => match.staticData.hideBottomTabBar);
 
   return (
     <div className="h-dvh overflow-hidden">
@@ -39,16 +41,19 @@ function AppShell() {
       */}
       <div
         className={cn(
-          'h-full overflow-y-auto pb-(--bottom-tab-height) md:pb-0',
+          'h-full overflow-y-auto md:pb-0',
+          !isBottomTabBarHidden && 'pb-(--bottom-tab-height)',
           headerVariant === 'solid' && 'md:pt-(--desktop-header-height)',
         )}
       >
         <Outlet />
       </div>
 
-      <div className="md:hidden">
-        <BottomTabBar />
-      </div>
+      {isBottomTabBarHidden ? null : (
+        <div className="md:hidden">
+          <BottomTabBar />
+        </div>
+      )}
     </div>
   );
 }
