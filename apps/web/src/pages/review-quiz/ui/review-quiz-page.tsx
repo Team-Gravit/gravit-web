@@ -122,8 +122,7 @@ function ReviewQuizScreen({ kind, unitId, title, problems }: ReviewQuizScreenPro
       <ExcludeWrongAnswerButton
         problemId={problem.problemId}
         onExcluded={handleExcluded}
-        // 좁은 화면은 해설 안의 작은 버튼, 넓은 화면은 이동 버튼과 같은 높이 (시안 QUIZ-08/A).
-        size={{ base: 'sm', md: 'lg' }}
+        size="sm"
       />
     );
   };

@@ -36,8 +36,9 @@ export interface QuizScreenProps {
   /** 문제 카드 머리 오른쪽에 둘 조작. */
   renderProblemAction?: (problem: Problem) => ReactNode;
   /**
-   * 답을 낸 뒤 보일 조작. 넓은 화면은 하단 이동 버튼 왼쪽, 좁은 화면은 맞힌 정답 해설 안에 둔다 (시안 QUIZ-08/A).
-   * 보일 조건(예: 맞혔을 때만)은 화면이 정해 `null` 을 돌려준다.
+   * 정답을 맞혔을 때 정답 해설 안에 둘 조작. 화면 폭과 관계없이 같은 자리다 —
+   * 하단 이동 버튼 줄에 두면 태블릿 폭에서 가려져 모바일 배치로 통일했다 (2026-10-07 디자이너 결정).
+   * 보일 조건은 화면이 정해 `null` 을 돌려준다.
    */
   renderResultAction?: (problem: Problem) => ReactNode;
 }
@@ -103,13 +104,12 @@ export function QuizScreen({
                     key={currentProblem.problemId}
                     problem={currentProblem}
                     onAdvance={handleAdvance}
-                    correctAction={isWide ? null : resultAction}
+                    correctAction={resultAction}
                   />
                 </ProblemCard>
                 <QuizFooter
                   isWide={isWide}
                   onAdvance={handleAdvance}
-                  startAction={isWide ? resultAction : null}
                   finishLabel={
                     getAdvanceAction(currentProblem) === 'finish' ? finishLabel : undefined
                   }
@@ -155,12 +155,10 @@ interface QuizFooterProps {
   onAdvance: () => void;
   /** 마지막 문제일 때만 넘긴다. 없으면 다음 문제 문구를 쓴다. */
   finishLabel?: string;
-  /** 이동 버튼 왼쪽에 둘 조작. */
-  startAction: ReactNode;
 }
 
 /** 문제 이동과 마지막 끝내기를 연결한다. */
-function QuizFooter({ isWide, onAdvance, finishLabel, startAction }: QuizFooterProps) {
+function QuizFooter({ isWide, onAdvance, finishLabel }: QuizFooterProps) {
   const { currentProblemIndex, goToPrevious } = useQuizSession();
 
   const navigationLabels = isWide ? PROBLEM_NAV_LABELS.wide : PROBLEM_NAV_LABELS.narrow;
@@ -174,7 +172,6 @@ function QuizFooter({ isWide, onAdvance, finishLabel, startAction }: QuizFooterP
         isWide ? 'justify-end' : null,
       )}
     >
-      {startAction}
       <Button
         size={{ base: 'md', md: 'lg' }}
         type="button"

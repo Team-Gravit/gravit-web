@@ -397,17 +397,18 @@ describe('오답노트 풀이', () => {
   const WRONG_ANSWER_PATH = '/learning/units/7/incorrect-problems';
   const EXCLUDE_BUTTON = { name: '오답노트에서 제외' };
 
-  it('넓은 화면에서 객관식을 맞히면 하단 이전 문제 왼쪽에 제외 버튼이 하나 보인다 (AC-11)', async () => {
+  it('넓은 화면에서도 객관식을 맞히면 정답 선지 해설 안에 제외 버튼이 하나 보인다 (AC-11)', async () => {
     useHandlers();
     await renderAt(WRONG_ANSWER_PATH);
 
     await chooseOption('Queue');
 
     const excludeButton = await screen.findByRole('button', EXCLUDE_BUTTON);
-    const footer = document.querySelector('[data-slot="quiz-footer"]');
     expect(screen.getAllByRole('button', EXCLUDE_BUTTON)).toHaveLength(1);
-    expect(footer).toContainElement(excludeButton);
-    expect(footer?.firstElementChild).toBe(excludeButton);
+    expect(document.querySelector('[data-slot="option-result-list"]')).toContainElement(
+      excludeButton,
+    );
+    expect(document.querySelector('[data-slot="quiz-footer"]')).not.toContainElement(excludeButton);
   });
 
   it('좁은 화면에서 객관식을 맞히면 정답 선지 해설 안에 제외 버튼이 하나 보인다 (AC-11)', async () => {
