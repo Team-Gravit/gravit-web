@@ -3,6 +3,7 @@ import { Outlet, createFileRoute, useMatches } from '@tanstack/react-router';
 import { cn } from '@/shared/lib/cn';
 import { BottomTabBar } from '@/widgets/bottom-tab-bar';
 import { Header, type HeaderVariant } from '@/widgets/header';
+import { NotificationPopover } from '@/widgets/notification';
 
 export const Route = createFileRoute('/_authenticated/_app-shell')({
   component: AppShell,
@@ -29,7 +30,7 @@ function AppShell() {
       <div aria-hidden className="fixed inset-0 -z-20 bg-bg-2" />
 
       <div className="hidden md:block">
-        <Header variant={headerVariant} />
+        <Header variant={headerVariant} notificationSlot={<NotificationPopover />} />
       </div>
 
       {/*

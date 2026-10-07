@@ -18,6 +18,10 @@ export default defineConfig([
   {
     rules: {
       'fsd/insignificant-slice': 'off',
+      // widgets 가 앱 성장으로 20 슬라이스를 넘겼다(FEAT-047 알림 위젯 추가 시점). 이 규칙은
+      // v0.7.0 에서 임계값이 하드코딩이라 옵션으로 올릴 수 없어, 다른 맞지 않는 규칙들처럼 끈다.
+      // 위젯 그룹화(learning/main/league 등)는 별도 REF 로 다룬다.
+      'fsd/excessive-slicing': 'off',
     },
   },
 ]);
