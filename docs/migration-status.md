@@ -66,7 +66,7 @@ legacy는 위 조건이 모두 충족될 때 한 번에 제거한다. 중간에 
 | 학습        | `/learning`                                                                                        |   ✅   |    ✅     |    ✅     | MIG-027                                                                   |
 | 학습        | `/learning/$chapterId` → `/learning/chapters/$chapterId`                                           |   ✅   |    ✅     |    ✅     | MIG-029                                                                   |
 | 학습        | `/learning/$chapterId/$unitId` → `/learning/units/$unitId`                                         |   ✅   |    ✅     |    ✅     | MIG-030                                                                   |
-| 학습        | `/learning/$chapterId/$unitId/concept-note` → `/learning/units/$unitId/concept-note`               |   ⬜   |    ⬜     |    ⬜     | — (빈 라우트만 MIG-030)                                                   |
+| 학습        | `/learning/$chapterId/$unitId/concept-note` → `/learning/units/$unitId/concept-note`               |   ✅   |    ✅     |    🚧     | MIG-046 (자동 검증 완료, 실제 노트·실기기 수동 확인 대기)                 |
 | 학습        | `/learning/$chapterId/$unitId/$lessonId` → `/learning/lessons/$lessonId`                           |   ⬜   |    ⬜     |    ⬜     | — (빈 라우트만 MIG-030)                                                   |
 | 학습        | `/learning/$chapterId/$unitId/bookmarked-problems` → `/learning/units/$unitId/bookmarked-problems` |   ✅   |    ✅     |    🚧     | MIG-048 A (#268)                                                          |
 | 학습        | `/learning/$chapterId/$unitId/incorrect-problems` → `/learning/units/$unitId/incorrect-problems`   |   ✅   |    ✅     |    🚧     | MIG-048 B (#269)                                                          |
@@ -153,3 +153,4 @@ legacy는 위 조건이 모두 충족될 때 한 번에 제거한다. 중간에 
 | 2026-09-16 | MIG-030 반영. 유닛 상세(`/learning/units/$unitId`) 기준선·대체 구현·동작 검증 완료. 목적지 4종은 경로 계약과 빈 라우트만 확정                                                                    |
 | 2026-10-05 | MIG-048 A 반영. 북마크 풀이 기준선·대체 구현 완료. 자동 AC 통과, 실제 계정 수동 스모크 대기로 동작 검증 `🚧`. 오답노트 풀이는 기준선만                                                           |
 | 2026-10-07 | MIG-048 B 반영. 오답노트 풀이 대체 구현 완료. 자동 AC 통과, 실제 계정 수동 스모크 대기로 동작 검증 `🚧`                                                                                          |
+| 2026-10-07 | MIG-046 반영. 개념노트 기준선·대체 구현 완료. 동작 검증은 자동 AC 통과, 실제 노트·Android WebView 수동 확인 대기로 `🚧`                                                                          |
