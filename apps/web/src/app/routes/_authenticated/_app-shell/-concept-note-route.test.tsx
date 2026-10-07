@@ -131,6 +131,15 @@ describe('개념노트 — 좁은 화면', () => {
     ).toBeInTheDocument();
     expect(within(card).getByText('본문 문단')).toBeInTheDocument();
   });
+
+  it('유닛 머리(Unit01 · 유닛 설명)를 그리지 않는다 (시안 LRN-04-MOB)', async () => {
+    registerNoteHandler();
+    await renderAt('/learning/units/7/concept-note');
+
+    await screen.findByText('본문 문단');
+    expect(screen.queryByText('Unit01')).not.toBeInTheDocument();
+    expect(screen.queryByText('배열을 배워요.')).not.toBeInTheDocument();
+  });
 });
 
 describe('개념노트 — 넓은 화면', () => {
