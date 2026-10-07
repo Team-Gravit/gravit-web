@@ -20,16 +20,14 @@ const BANNER = {
   consecutiveSolvedDays: 7,
 };
 
-// ProfileCard의 설정 버튼이 <Link to="/settings">이므로 라우터 컨텍스트가 필요하다.
+// ProfileCard의 설정·알림 버튼이 <Link>이므로 라우터 컨텍스트가 필요하다.
 async function renderWithRouter(ui: ReactNode) {
   const rootRoute = createRootRoute({ component: () => ui });
-  const settings = createRoute({
-    getParentRoute: () => rootRoute,
-    path: '/settings',
-    component: () => null,
-  });
+  const routes = ['/settings', '/notifications'].map((path) =>
+    createRoute({ getParentRoute: () => rootRoute, path, component: () => null }),
+  );
   const router = createRouter({
-    routeTree: rootRoute.addChildren([settings]),
+    routeTree: rootRoute.addChildren(routes),
     history: createMemoryHistory({ initialEntries: ['/'] }),
   });
 
@@ -47,6 +45,12 @@ describe('ProfileCard', () => {
     expect(screen.getByText('LV. 3')).toBeInTheDocument();
     expect(screen.getByText('브론즈 3')).toBeInTheDocument();
     expect(screen.getByText('7일 연속 학습중')).toBeInTheDocument();
+  });
+
+  it('모바일 알림 버튼은 /notifications 로 가는 링크다 (FEAT-047 AC-4)', async () => {
+    await renderWithRouter(<ProfileCard data={BANNER} />);
+
+    expect(screen.getByRole('link', { name: '알림' })).toHaveAttribute('href', '/notifications');
   });
 
   it('data 없이 isLoading 이면 데이터 텍스트 없이 정적 프레임(편집 버튼)만 렌더한다', async () => {

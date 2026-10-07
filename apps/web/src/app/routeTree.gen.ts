@@ -22,6 +22,7 @@ import { Route as AuthenticatedAppShellFriendsRouteImport } from './routes/_auth
 import { Route as AuthenticatedAppShellLeagueRouteImport } from './routes/_authenticated/_app-shell/league'
 import { Route as AuthenticatedAppShellMainRouteImport } from './routes/_authenticated/_app-shell/main'
 import { Route as AuthenticatedAppShellMyRouteRouteImport } from './routes/_authenticated/_app-shell/my/route'
+import { Route as AuthenticatedAppShellNotificationsRouteImport } from './routes/_authenticated/_app-shell/notifications'
 import { Route as AuthenticatedOnboardingIndexRouteImport } from './routes/_authenticated/onboarding/index'
 import { Route as AuthenticatedOnboardingSuccessRouteImport } from './routes/_authenticated/onboarding/success'
 import { Route as AuthenticatedSettingsIndexRouteImport } from './routes/_authenticated/settings/index'
@@ -112,6 +113,12 @@ const AuthenticatedAppShellMyRouteRoute =
   AuthenticatedAppShellMyRouteRouteImport.update({
     id: '/my',
     path: '/my',
+    getParentRoute: () => AuthenticatedAppShellRouteRoute,
+  } as any)
+const AuthenticatedAppShellNotificationsRoute =
+  AuthenticatedAppShellNotificationsRouteImport.update({
+    id: '/notifications',
+    path: '/notifications',
     getParentRoute: () => AuthenticatedAppShellRouteRoute,
   } as any)
 const AuthenticatedOnboardingIndexRoute =
@@ -260,6 +267,7 @@ export interface FileRoutesByFullPath {
   '/friends': typeof AuthenticatedAppShellFriendsRoute
   '/league': typeof AuthenticatedAppShellLeagueRoute
   '/main': typeof AuthenticatedAppShellMainRoute
+  '/notifications': typeof AuthenticatedAppShellNotificationsRoute
   '/onboarding/success': typeof AuthenticatedOnboardingSuccessRoute
   '/settings/notice': typeof AuthenticatedSettingsNoticeRoute
   '/onboarding/': typeof AuthenticatedOnboardingIndexRoute
@@ -290,6 +298,7 @@ export interface FileRoutesByTo {
   '/friends': typeof AuthenticatedAppShellFriendsRoute
   '/league': typeof AuthenticatedAppShellLeagueRoute
   '/main': typeof AuthenticatedAppShellMainRoute
+  '/notifications': typeof AuthenticatedAppShellNotificationsRoute
   '/onboarding/success': typeof AuthenticatedOnboardingSuccessRoute
   '/settings/notice': typeof AuthenticatedSettingsNoticeRoute
   '/onboarding': typeof AuthenticatedOnboardingIndexRoute
@@ -328,6 +337,7 @@ export interface FileRoutesById {
   '/_authenticated/_app-shell/friends': typeof AuthenticatedAppShellFriendsRoute
   '/_authenticated/_app-shell/league': typeof AuthenticatedAppShellLeagueRoute
   '/_authenticated/_app-shell/main': typeof AuthenticatedAppShellMainRoute
+  '/_authenticated/_app-shell/notifications': typeof AuthenticatedAppShellNotificationsRoute
   '/_authenticated/onboarding/success': typeof AuthenticatedOnboardingSuccessRoute
   '/_authenticated/settings/notice': typeof AuthenticatedSettingsNoticeRoute
   '/_authenticated/onboarding/': typeof AuthenticatedOnboardingIndexRoute
@@ -364,6 +374,7 @@ export interface FileRouteTypes {
     | '/friends'
     | '/league'
     | '/main'
+    | '/notifications'
     | '/onboarding/success'
     | '/settings/notice'
     | '/onboarding/'
@@ -394,6 +405,7 @@ export interface FileRouteTypes {
     | '/friends'
     | '/league'
     | '/main'
+    | '/notifications'
     | '/onboarding/success'
     | '/settings/notice'
     | '/onboarding'
@@ -431,6 +443,7 @@ export interface FileRouteTypes {
     | '/_authenticated/_app-shell/friends'
     | '/_authenticated/_app-shell/league'
     | '/_authenticated/_app-shell/main'
+    | '/_authenticated/_app-shell/notifications'
     | '/_authenticated/onboarding/success'
     | '/_authenticated/settings/notice'
     | '/_authenticated/onboarding/'
@@ -554,6 +567,13 @@ declare module '@tanstack/react-router' {
       path: '/my'
       fullPath: '/my'
       preLoaderRoute: typeof AuthenticatedAppShellMyRouteRouteImport
+      parentRoute: typeof AuthenticatedAppShellRouteRoute
+    }
+    '/_authenticated/_app-shell/notifications': {
+      id: '/_authenticated/_app-shell/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof AuthenticatedAppShellNotificationsRouteImport
       parentRoute: typeof AuthenticatedAppShellRouteRoute
     }
     '/_authenticated/onboarding/': {
@@ -743,6 +763,7 @@ interface AuthenticatedAppShellRouteRouteChildren {
   AuthenticatedAppShellFriendsRoute: typeof AuthenticatedAppShellFriendsRoute
   AuthenticatedAppShellLeagueRoute: typeof AuthenticatedAppShellLeagueRoute
   AuthenticatedAppShellMainRoute: typeof AuthenticatedAppShellMainRoute
+  AuthenticatedAppShellNotificationsRoute: typeof AuthenticatedAppShellNotificationsRoute
   AuthenticatedAppShellLearningIndexRoute: typeof AuthenticatedAppShellLearningIndexRoute
   AuthenticatedAppShellLearningUnitsUnitIdConceptNoteRoute: typeof AuthenticatedAppShellLearningUnitsUnitIdConceptNoteRoute
   AuthenticatedAppShellLearningChaptersChapterIdIndexRoute: typeof AuthenticatedAppShellLearningChaptersChapterIdIndexRoute
@@ -756,6 +777,8 @@ const AuthenticatedAppShellRouteRouteChildren: AuthenticatedAppShellRouteRouteCh
     AuthenticatedAppShellFriendsRoute: AuthenticatedAppShellFriendsRoute,
     AuthenticatedAppShellLeagueRoute: AuthenticatedAppShellLeagueRoute,
     AuthenticatedAppShellMainRoute: AuthenticatedAppShellMainRoute,
+    AuthenticatedAppShellNotificationsRoute:
+      AuthenticatedAppShellNotificationsRoute,
     AuthenticatedAppShellLearningIndexRoute:
       AuthenticatedAppShellLearningIndexRoute,
     AuthenticatedAppShellLearningUnitsUnitIdConceptNoteRoute:

@@ -1,8 +1,8 @@
+import type { ReactNode } from 'react';
 import { Link, useNavigate } from '@tanstack/react-router';
 
 import { NAV_ITEMS } from '@/shared/config';
 import { cn } from '@/shared/lib/cn';
-import { Icon } from '@/shared/ui/icon';
 import { GravitLogo } from '@/shared/ui/logo';
 import { ProfileAvatar, useUser } from '@/entities/user';
 import { LogoutButton } from '@/features/auth-logout';
@@ -11,6 +11,8 @@ export type HeaderVariant = 'overlay' | 'solid';
 
 export interface HeaderProps {
   variant?: HeaderVariant;
+  /** 알림 트리거 슬롯. 위젯 간 cross-slice 를 피하려 app 이 NotificationPopover 를 주입한다. */
+  notificationSlot?: ReactNode;
 }
 
 const VARIANT_CLASS: Record<HeaderVariant, { bar: string; text: string }> = {
@@ -18,7 +20,7 @@ const VARIANT_CLASS: Record<HeaderVariant, { bar: string; text: string }> = {
   solid: { bar: 'bg-bg-1 backdrop-blur-[66px]', text: 'text-text-1' },
 };
 
-export function Header({ variant = 'solid' }: HeaderProps) {
+export function Header({ variant = 'solid', notificationSlot }: HeaderProps) {
   const style = VARIANT_CLASS[variant];
   const navigate = useNavigate();
 
@@ -58,24 +60,30 @@ export function Header({ variant = 'solid' }: HeaderProps) {
           </ul>
         </nav>
 
-        <HeaderUserMenu onLoggedOut={handleLoggedOut} />
+        <HeaderUserMenu onLoggedOut={handleLoggedOut} notificationSlot={notificationSlot} />
       </div>
     </header>
   );
 }
 
-function HeaderUserMenu({ onLoggedOut }: { onLoggedOut: () => void }) {
+function HeaderUserMenu({
+  onLoggedOut,
+  notificationSlot,
+}: {
+  onLoggedOut: () => void;
+  notificationSlot?: ReactNode;
+}) {
   const { data: user } = useUser();
 
   return (
     <div className="flex items-center gap-4">
-      {/* 프로필 표시 여부와 무관하게 로그아웃은 항상 렌더링한다. */}
-      {user ? (
+      {/* 알림과 로그아웃은 프로필 표시 여부와 무관하게 항상 렌더링한다. 아바타만 user 가 있을 때 */}
+      {user && (
         <div className="flex items-center gap-5">
-          <Icon name="bell" />
+          {notificationSlot}
           <ProfileAvatar colorNumber={user.profileImgNumber} className="size-8" />
         </div>
-      ) : null}
+      )}
       <LogoutButton onLoggedOut={onLoggedOut} className="text-heading2 font-medium" />
     </div>
   );

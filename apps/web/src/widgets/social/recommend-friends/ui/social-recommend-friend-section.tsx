@@ -1,8 +1,8 @@
-import { useRecommendedUsersQuery } from '@/entities/friend-recommendation';
+import { useSessionFollowState } from '@/shared/lib/use-session-follow-state';
 import { Card } from '@/shared/ui/card';
 import { ScrollArea } from '@/shared/ui/scroll';
+import { useRecommendedUsersQuery } from '@/entities/friend-recommendation';
 
-import { useSessionFollowState } from '../model/use-session-follow-state';
 import { RecommendFriendCard } from './recommend-friend-card';
 
 /** 추천 친구 섹션. 가로 스크롤로 추천 목록을 보여준다. */
