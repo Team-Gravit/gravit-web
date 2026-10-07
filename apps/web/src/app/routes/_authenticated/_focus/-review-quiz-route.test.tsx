@@ -18,7 +18,7 @@ import { useUnitLessons } from '@/entities/learning';
 import { ReviewQuizPage } from '@/pages/review-quiz';
 
 import type { RouterContext } from '../../__root';
-import { createReviewQuizLeaveHandler, parseReviewQuizUnitId } from './-review-quiz-route';
+import { createReviewQuizLeaveHandler, validateReviewQuizUnitId } from './-review-quiz-route';
 
 // 로딩 최소 시간은 훅 테스트가 검증한다. 여기서는 화면 흐름만 본다.
 vi.mock('@/shared/lib/use-initial-minimum-duration', () => ({
@@ -184,14 +184,14 @@ async function renderAt(initialPath: string, { isWide = true } = {}) {
       createRoute({
         getParentRoute: () => rootRoute,
         path: '/learning/units/$unitId/bookmarked-problems',
-        beforeLoad: parseReviewQuizUnitId,
+        beforeLoad: validateReviewQuizUnitId,
         component: BookmarkQuizRoute,
         onLeave: createReviewQuizLeaveHandler('bookmark'),
       }),
       createRoute({
         getParentRoute: () => rootRoute,
         path: '/learning/units/$unitId/incorrect-problems',
-        beforeLoad: parseReviewQuizUnitId,
+        beforeLoad: validateReviewQuizUnitId,
         component: WrongAnswerQuizRoute,
         onLeave: createReviewQuizLeaveHandler('wrongAnswer'),
       }),

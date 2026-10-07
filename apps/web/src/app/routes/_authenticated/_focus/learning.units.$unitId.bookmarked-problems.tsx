@@ -2,12 +2,12 @@ import { createFileRoute } from '@tanstack/react-router';
 
 import { ReviewQuizPage } from '@/pages/review-quiz';
 
-import { createReviewQuizLeaveHandler, parseReviewQuizUnitId } from './-review-quiz-route';
+import { createReviewQuizLeaveHandler, validateReviewQuizUnitId } from './-review-quiz-route';
 
 export const Route = createFileRoute(
   '/_authenticated/_focus/learning/units/$unitId/bookmarked-problems',
 )({
-  beforeLoad: parseReviewQuizUnitId,
+  beforeLoad: validateReviewQuizUnitId,
   component: BookmarkQuizRoute,
   onLeave: createReviewQuizLeaveHandler('bookmark'),
 });

@@ -8,7 +8,7 @@ import { toReviewQuizSessionKey } from '@/pages/review-quiz';
 import type { RouterContext } from '../../__root';
 
 /** 북마크·오답 풀이 라우트가 함께 쓰는 진입 검증. 유효하지 않은 ID 는 조회를 시작하지 못해 막는다. */
-export function parseReviewQuizUnitId({ params }: { params: { unitId: string } }) {
+export function validateReviewQuizUnitId({ params }: { params: { unitId: string } }) {
   const unitId = Number(params.unitId);
 
   if (!Number.isInteger(unitId) || unitId <= 0) {
