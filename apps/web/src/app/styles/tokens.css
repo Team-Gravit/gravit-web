@@ -133,10 +133,6 @@
   --color-code-string: #0a3069;
   --color-code-constant: #0550ae;
   --color-code-comment: #6e7781;
-  /* 한글 주석까지 고정폭으로 맞춘다. 글꼴은 shared/ui/markdown 이 @fontsource 로 불러온다 (FEAT-051). */
-  --font-code:
-    'Nanum Gothic Coding', ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', monospace;
-
   /* ================================
         ALIAS - Gradient
     ================================ */

@@ -1,8 +1,5 @@
 import { Children, isValidElement, useState, type ComponentProps, type ReactNode } from 'react';
 
-// 한글 글리프는 unicode-range로 나뉘어 필요한 조각만 내려받는다.
-import '@fontsource/nanum-gothic-coding/400.css';
-
 import ReactMarkdown, { type Components, type ExtraProps } from 'react-markdown';
 import remarkCjkFriendly from 'remark-cjk-friendly/parseOnly';
 import remarkCjkFriendlyGfmStrikethrough from 'remark-cjk-friendly-gfm-strikethrough/parseOnly';
@@ -17,7 +14,7 @@ import { rehypeHighlightCode } from './highlight-code';
 // 코드 블록은 `not-prose`로 분리하고, 이 클래스는 인라인 코드에만 적용한다.
 const INLINE_CODE_CLASS = [
   'prose-code:rounded-4 prose-code:border prose-code:border-code-border prose-code:bg-code-bg prose-code:px-1 prose-code:py-0.5',
-  'prose-code:font-code prose-code:text-code-text prose-code:[font-variant-ligatures:none]',
+  'prose-code:font-mono prose-code:text-code-text prose-code:[font-variant-ligatures:none]',
   // Typography가 인라인 코드 앞뒤에 추가하는 백틱을 제거한다.
   'prose-code:before:content-none prose-code:after:content-none',
 ];
@@ -135,7 +132,7 @@ function MarkdownCodeBlock({ children, className, ...props }: MarkdownCodeBlockP
       className="not-prose my-6 min-w-0 max-w-full overflow-hidden rounded-8 border border-code-border bg-code-bg"
     >
       <div className="flex items-center justify-between border-b border-code-border px-4 py-2 text-caption1 text-code-muted">
-        <span className="font-code">{languageLabel}</span>
+        <span className="font-mono">{languageLabel}</span>
         <button
           type="button"
           className="cursor-pointer rounded-4 px-2 py-1 hover:bg-code-border/50 focus-visible:ring-2 focus-visible:ring-main focus-visible:outline-none"
@@ -148,9 +145,9 @@ function MarkdownCodeBlock({ children, className, ...props }: MarkdownCodeBlockP
         tabIndex={0}
         aria-label={`${languageLabel} 코드`}
         className={cn(
-          'w-full min-w-0 max-w-full overflow-x-auto overscroll-x-contain whitespace-pre p-4 font-code text-label1 font-normal text-code-text [font-variant-ligatures:none]',
+          'w-full min-w-0 max-w-full overflow-x-auto overscroll-x-contain whitespace-pre p-4 font-mono text-label1 font-normal text-code-text [font-variant-ligatures:none]',
           'focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-main focus-visible:outline-none',
-          '[&>code]:block [&>code]:min-w-max [&>code]:font-code',
+          '[&>code]:block [&>code]:min-w-max [&>code]:font-mono',
           PRISM_TOKEN_CLASS,
           className,
         )}
