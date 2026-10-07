@@ -4,7 +4,9 @@ import {
   getGetFollowAndFollowingCountMockHandler,
   getGetFollowersMockHandler,
   getGetFollowingsMockHandler,
+  getUnfollowMockHandler,
 } from '../generated/mocks/friend-api/friend-api.msw';
+import { getGetInboxMockHandler } from '../generated/mocks/notification-api/notification-api.msw';
 import { getOauth20ApiMock } from '../generated/mocks/index.msw';
 import { getGetAllLessonInUnitMockHandler } from '../generated/mocks/lesson-api/lesson-api.msw';
 import {
@@ -260,6 +262,105 @@ const recommendFriendHandlers = [
   getFollowMockHandler(),
 ];
 
+// 알림 인박스 시안 검토용 고정값. actionType 전 종류를 한 번에 확인할 수 있게 구성한다.
+// targetId 1·2 는 friendFeedHandlers 의 feedId 와 맞춰 축하 동기화를 확인할 수 있게 한다.
+const notificationHandlers = [
+  getGetInboxMockHandler([
+    // FOLLOW_BACK: 맞팔로우 버튼
+    {
+      id: 1,
+      type: 'FOLLOW',
+      message: '김나영님이 친구신청을 보냈어요.',
+      actionType: 'FOLLOW_BACK',
+      actor: { profileId: 5, nickname: '김나영', profileImgNumber: 1 },
+      read: false,
+      createdAt: '2026-05-22T10:00:00Z',
+      timeAgo: '2시간 전',
+    },
+    // FOLLOW + NONE: 이미 팔로우 중 → 팔로우 취소 버튼
+    {
+      id: 2,
+      type: 'FOLLOW',
+      message: '이도윤님이 친구신청을 보냈어요.',
+      actionType: 'NONE',
+      actor: { profileId: 6, nickname: '이도윤', profileImgNumber: 4 },
+      read: false,
+      createdAt: '2026-05-22T09:30:00Z',
+      timeAgo: '3시간 전',
+    },
+    // GO_TO_LEARNING: 학습하러 가기
+    {
+      id: 3,
+      type: 'INACTIVITY',
+      message: '연속학습이 깨져요.',
+      subText: '다음날까지 2시간 남았어요.',
+      actionType: 'GO_TO_LEARNING',
+      read: false,
+      createdAt: '2026-05-22T08:00:00Z',
+      timeAgo: '5시간 전',
+    },
+    // GO_TO_NOTICE: 공지 보러가기
+    {
+      id: 4,
+      type: 'NOTICE',
+      message: '[공지] 새 시즌이 시작됐어요.',
+      subText: '5월 업데이트 안내',
+      actionType: 'GO_TO_NOTICE',
+      read: true,
+      createdAt: '2026-05-22T07:00:00Z',
+      timeAgo: '6시간 전',
+    },
+    // GO_TO_INQUIRY: 문의 보러가기
+    {
+      id: 5,
+      type: 'INQUIRY_ANSWERED',
+      message: '문의하신 내용에 답변이 달렸어요.',
+      actionType: 'GO_TO_INQUIRY',
+      read: true,
+      createdAt: '2026-05-21T15:00:00Z',
+      timeAgo: '어제',
+    },
+    // CONGRATULATE(미완료): 축하하기 버튼 (targetId=feedId 1)
+    {
+      id: 6,
+      type: 'FRIEND_ACTIVITY',
+      message: '강도현님이 활동했어요.',
+      subText: '자료구조 챕터를 완료했어요.',
+      actionType: 'CONGRATULATE',
+      targetId: 1,
+      congratulated: false,
+      read: false,
+      createdAt: '2026-05-21T12:00:00Z',
+      timeAgo: '어제',
+    },
+    // CONGRATULATE(완료): 축하 완료 비활성 (targetId=feedId 2)
+    {
+      id: 7,
+      type: 'FRIEND_ACTIVITY',
+      message: '윤서아님이 활동했어요.',
+      subText: '7일 연속 학습을 달성했어요.',
+      actionType: 'CONGRATULATE',
+      targetId: 2,
+      congratulated: true,
+      read: true,
+      createdAt: '2026-05-21T10:00:00Z',
+      timeAgo: '어제',
+    },
+    // NONE(비-FOLLOW): 버튼 없는 정보성 알림
+    {
+      id: 8,
+      type: 'FRIEND_ACTIVITY',
+      message: '임건우님이 축하해줬어요! 🎉',
+      subText: '[자료구조 챕터 완료]에 축하했어요.',
+      actionType: 'NONE',
+      read: true,
+      createdAt: '2026-05-20T10:00:00Z',
+      timeAgo: '2일 전',
+    },
+  ]),
+  getUnfollowMockHandler(),
+];
+
 export const worker = setupWorker(
   ...getOauth20ApiMock(),
   ...mainPageHandlers,
@@ -268,4 +369,5 @@ export const worker = setupWorker(
   ...followHandlers,
   ...friendFeedHandlers,
   ...recommendFriendHandlers,
+  ...notificationHandlers,
 );
