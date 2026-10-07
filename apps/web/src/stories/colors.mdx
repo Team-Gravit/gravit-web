@@ -175,3 +175,34 @@ import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks';
     }}
   />
 </ColorPalette>
+
+## Code (잠정)
+
+마크다운 코드 블록과 문법 강조 색이다. Figma 에 정의가 없어 **GitHub Light 테마 값을 그대로** 쓴다 (FEAT-051).
+디자인 시스템에 코드 색이 생기면 그 값으로 바꾼다.
+
+<ColorPalette>
+  <ColorItem
+    title="code surface"
+    subtitle="--color-code-bg · border · text · muted"
+    colors={{
+      bg: '#f6f8fa',
+      border: '#d0d7de',
+      text: '#1f2328',
+      muted: '#59636e',
+    }}
+  />
+  <ColorItem
+    title="code syntax"
+    subtitle="--color-code-*"
+    colors={{
+      keyword: '#cf222e',
+      function: '#8250df',
+      type: '#953800',
+      tag: '#116329',
+      string: '#0a3069',
+      constant: '#0550ae',
+      comment: '#6e7781',
+    }}
+  />
+</ColorPalette>
