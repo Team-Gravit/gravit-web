@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 
 import { useNavigate } from '@tanstack/react-router';
 
@@ -16,8 +16,10 @@ import { BookmarkToggle } from '@/features/problem-bookmark';
 import {
   QUIZ_FINISH_LABEL,
   QuizSessionProvider,
+  useQuizSession,
   useSubmitProblemResult,
 } from '@/features/lesson-quiz';
+import { ExcludeWrongAnswerButton } from '@/features/wrong-answer-exclude';
 import { QUIZ_SURFACE_CLASS, QuizLoadingScreen, QuizScreen } from '@/widgets/quiz-screen';
 
 const MINIMUM_LOADING_DURATION_MS = 2500;
@@ -100,6 +102,31 @@ interface ReviewQuizScreenProps {
 
 function ReviewQuizScreen({ kind, unitId, title, problems }: ReviewQuizScreenProps) {
   const navigate = useNavigate();
+  const { answersByProblemId } = useQuizSession();
+  // 제외해도 문제는 이번 풀이에 남는다(P8). 버튼만 숨기려고 이 화면에 있는 동안 기억한다.
+  const [excludedProblemIds, setExcludedProblemIds] = useState<ReadonlySet<number>>(new Set());
+
+  const handleExcluded = (problemId: number) => {
+    setExcludedProblemIds((previous) => new Set(previous).add(problemId));
+  };
+
+  // 오답노트 제외는 오답노트 풀이에서, 맞힌 문제에만 보인다 (동작 계약 K3).
+  const renderExcludeButton = (problem: Problem) => {
+    const answer = answersByProblemId[problem.problemId];
+
+    if (!answer?.isCorrect || excludedProblemIds.has(problem.problemId)) {
+      return null;
+    }
+
+    return (
+      <ExcludeWrongAnswerButton
+        problemId={problem.problemId}
+        onExcluded={handleExcluded}
+        // 좁은 화면은 해설 안의 작은 버튼, 넓은 화면은 이동 버튼과 같은 높이 (시안 QUIZ-08/A).
+        size={{ base: 'sm', md: 'lg' }}
+      />
+    );
+  };
 
   const handleFinish = () => {
     // 풀이 화면으로 돌아오지 않도록 기록을 교체한다. 목록 무효화는 라우트 이탈이 맡는다.
@@ -114,6 +141,7 @@ function ReviewQuizScreen({ kind, unitId, title, problems }: ReviewQuizScreenPro
       emptyMessage={EMPTY_MESSAGES[kind]}
       finishLabel={QUIZ_FINISH_LABEL}
       onFinish={handleFinish}
+      renderResultAction={kind === 'wrongAnswer' ? renderExcludeButton : undefined}
       renderProblemAction={(problem) => (
         <BookmarkToggle
           problemsQueryKey={getReviewProblemsQueryKey(kind, unitId)}

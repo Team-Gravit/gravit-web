@@ -30,6 +30,8 @@ const SUBMISSION_URL = '*/api/v1/problems/results';
 const LESSON_SUBMISSION_URL = '*/api/v1/lessons/results';
 const BOOKMARK_URL = '*/api/v1/bookmarks';
 const UNIT_LESSONS_URL = '*/api/v1/lessons/:unitId';
+const WRONG_ANSWERS_URL = '*/api/v1/wrong-answered-notes/:unitId';
+const WRONG_ANSWER_URL = '*/api/v1/wrong-answered-notes';
 
 const UNIT_LESSONS = {
   chapterSummary: { chapterId: 3, title: '자료구조' },
@@ -95,15 +97,22 @@ function stubViewport(isWide: boolean) {
 
 interface RequestLog {
   bookmarkLists: number;
+  wrongAnswerLists: number;
+  exclusions: unknown[];
   unitLessons: number;
   submissions: unknown[];
   lessonSubmissions: number;
 }
 
 /** 요청 횟수와 본문을 기록하는 기본 핸들러를 등록한다. */
-function useHandlers({ submissionStatus = 200 }: { submissionStatus?: number } = {}) {
+function useHandlers({
+  submissionStatus = 200,
+  exclusionStatus = 200,
+}: { submissionStatus?: number; exclusionStatus?: number } = {}) {
   const requestLog: RequestLog = {
     bookmarkLists: 0,
+    wrongAnswerLists: 0,
+    exclusions: [],
     unitLessons: 0,
     submissions: [],
     lessonSubmissions: 0,
@@ -123,6 +132,14 @@ function useHandlers({ submissionStatus = 200 }: { submissionStatus?: number } =
       return HttpResponse.json({});
     }),
     http.delete(BOOKMARK_URL, () => new HttpResponse(null, { status: 200 })),
+    http.get(WRONG_ANSWERS_URL, () => {
+      requestLog.wrongAnswerLists += 1;
+      return HttpResponse.json(BOOKMARKED_PROBLEMS);
+    }),
+    http.delete(WRONG_ANSWER_URL, async ({ request }) => {
+      requestLog.exclusions.push(await request.json());
+      return new HttpResponse(null, { status: exclusionStatus });
+    }),
     http.get(UNIT_LESSONS_URL, () => {
       requestLog.unitLessons += 1;
       return HttpResponse.json(UNIT_LESSONS);
@@ -145,6 +162,11 @@ function BookmarkQuizRoute() {
   return <ReviewQuizPage kind="bookmark" unitId={Number(unitId)} />;
 }
 
+function WrongAnswerQuizRoute() {
+  const { unitId = '' } = useParams({ strict: false });
+  return <ReviewQuizPage kind="wrongAnswer" unitId={Number(unitId)} />;
+}
+
 async function renderAt(initialPath: string, { isWide = true } = {}) {
   stubViewport(isWide);
   // 앱과 같은 staleTime 을 둬야 '돌아오면 어차피 다시 받는다'가 무효화를 가리지 않는다.
@@ -165,6 +187,13 @@ async function renderAt(initialPath: string, { isWide = true } = {}) {
         beforeLoad: parseReviewQuizUnitId,
         component: BookmarkQuizRoute,
         onLeave: createReviewQuizLeaveHandler('bookmark'),
+      }),
+      createRoute({
+        getParentRoute: () => rootRoute,
+        path: '/learning/units/$unitId/incorrect-problems',
+        beforeLoad: parseReviewQuizUnitId,
+        component: WrongAnswerQuizRoute,
+        onLeave: createReviewQuizLeaveHandler('wrongAnswer'),
       }),
     ]),
     history: createMemoryHistory({ initialEntries: [initialPath] }),
@@ -361,5 +390,124 @@ describe('북마크 풀이 — 북마크 해제', () => {
       expect(document.querySelector('[data-slot="option-result-list"]')).not.toBeNull(),
     );
     expect(screen.queryByRole('button', { name: '오답노트에서 제외' })).not.toBeInTheDocument();
+  });
+});
+
+describe('오답노트 풀이', () => {
+  const WRONG_ANSWER_PATH = '/learning/units/7/incorrect-problems';
+  const EXCLUDE_BUTTON = { name: '오답노트에서 제외' };
+
+  it('넓은 화면에서 객관식을 맞히면 하단 이전 문제 왼쪽에 제외 버튼이 하나 보인다 (AC-11)', async () => {
+    useHandlers();
+    await renderAt(WRONG_ANSWER_PATH);
+
+    await chooseOption('Queue');
+
+    const excludeButton = await screen.findByRole('button', EXCLUDE_BUTTON);
+    const footer = document.querySelector('[data-slot="quiz-footer"]');
+    expect(screen.getAllByRole('button', EXCLUDE_BUTTON)).toHaveLength(1);
+    expect(footer).toContainElement(excludeButton);
+    expect(footer?.firstElementChild).toBe(excludeButton);
+  });
+
+  it('좁은 화면에서 객관식을 맞히면 정답 선지 해설 안에 제외 버튼이 하나 보인다 (AC-11)', async () => {
+    useHandlers();
+    await renderAt(WRONG_ANSWER_PATH, { isWide: false });
+
+    await chooseOption('Queue');
+
+    const excludeButton = await screen.findByRole('button', EXCLUDE_BUTTON);
+    expect(screen.getAllByRole('button', EXCLUDE_BUTTON)).toHaveLength(1);
+    expect(document.querySelector('[data-slot="option-result-list"]')).toContainElement(
+      excludeButton,
+    );
+    expect(document.querySelector('[data-slot="quiz-footer"]')).not.toContainElement(excludeButton);
+  });
+
+  it('제외를 누르면 problemId 로 한 번 요청하고, 성공하면 토스트와 함께 버튼만 사라진다 (AC-12)', async () => {
+    const requestLog = useHandlers();
+    await renderAt(WRONG_ANSWER_PATH);
+
+    await chooseOption('Queue');
+    await userEvent.click(await screen.findByRole('button', EXCLUDE_BUTTON));
+
+    expect(await screen.findByText('오답노트에서 제외했어요.')).toBeInTheDocument();
+    expect(requestLog.exclusions).toEqual([{ problemId: 201 }]);
+    expect(screen.queryByRole('button', EXCLUDE_BUTTON)).not.toBeInTheDocument();
+    expect(document.querySelector('[data-slot="option-result-list"]')).not.toBeNull();
+  });
+
+  it('제외한 문제로 다시 돌아와도 버튼이 다시 생기지 않는다 (AC-12)', async () => {
+    useHandlers();
+    await renderAt(WRONG_ANSWER_PATH);
+
+    await chooseOption('Queue');
+    await userEvent.click(await screen.findByRole('button', EXCLUDE_BUTTON));
+    await screen.findByText('오답노트에서 제외했어요.');
+    await userEvent.click(screen.getByRole('button', { name: '다음 문제' }));
+    await userEvent.click(await screen.findByRole('button', { name: '이전 문제' }));
+
+    await waitFor(() =>
+      expect(document.querySelector('[data-slot="option-result-list"]')).not.toBeNull(),
+    );
+    expect(screen.queryByRole('button', EXCLUDE_BUTTON)).not.toBeInTheDocument();
+  });
+
+  it('틀리면 제외 버튼이 없다 (AC-13)', async () => {
+    useHandlers();
+    await renderAt(WRONG_ANSWER_PATH);
+
+    await chooseOption('Stack');
+
+    await waitFor(() =>
+      expect(document.querySelector('[data-slot="option-result-list"]')).not.toBeNull(),
+    );
+    expect(screen.queryByRole('button', EXCLUDE_BUTTON)).not.toBeInTheDocument();
+  });
+
+  it('주관식을 맞혀도 제외 버튼이 보인다 (AC-11)', async () => {
+    useHandlers();
+    await renderAt(WRONG_ANSWER_PATH);
+
+    await chooseOption('Stack');
+    await userEvent.click(await screen.findByRole('button', { name: '다음 문제' }));
+    await userEvent.type(await screen.findByRole('textbox', { name: '답 입력' }), 'queue');
+    await userEvent.click(screen.getByRole('button', { name: '다음 문제' }));
+
+    expect(await screen.findByRole('button', EXCLUDE_BUTTON)).toBeInTheDocument();
+  });
+
+  it('제외 요청이 실패하면 토스트를 보이고 버튼이 남아 다시 누를 수 있다 (AC-14)', async () => {
+    useHandlers({ exclusionStatus: 500 });
+    await renderAt(WRONG_ANSWER_PATH);
+
+    await chooseOption('Queue');
+    await userEvent.click(await screen.findByRole('button', EXCLUDE_BUTTON));
+
+    expect(await screen.findByText('오답노트에서 제외하지 못했어요.')).toBeInTheDocument();
+    await waitFor(() => expect(screen.getByRole('button', EXCLUDE_BUTTON)).toBeEnabled());
+  });
+
+  it('제외하고 풀이를 떠나면 다음 진입 때 오답 목록과 유닛 상세를 다시 받는다 (AC-15)', async () => {
+    const requestLog = useHandlers();
+    const router = await renderAt('/learning/units/7');
+
+    await screen.findByText('유닛 상세');
+    await router.navigate({
+      to: '/learning/units/$unitId/incorrect-problems',
+      params: { unitId: '7' },
+    });
+    await chooseOption('Queue');
+    await userEvent.click(await screen.findByRole('button', EXCLUDE_BUTTON));
+    await screen.findByText('오답노트에서 제외했어요.');
+    await userEvent.click(screen.getByRole('link', { name: '풀이 닫기' }));
+
+    await screen.findByText('유닛 상세');
+    await waitFor(() => expect(requestLog.unitLessons).toBe(2));
+    await router.navigate({
+      to: '/learning/units/$unitId/incorrect-problems',
+      params: { unitId: '7' },
+    });
+    await waitFor(() => expect(requestLog.wrongAnswerLists).toBe(2));
   });
 });
