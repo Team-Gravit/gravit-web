@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
 /**
- * 추천 섹션이 세션 동안 '이번에 팔로우한 userId' 집합을 들고 있다가, 추천 목록이 refetch 되면
- * (dataUpdatedAt 변화) 비운다. 추천 응답에 isFollowing 이 없어 생기는 임시 우회다(FIX-044).
- * 서버가 isFollowing 을 제공하면 이 훅과 로컬 set 을 제거하고 캐시 기반으로 단순화한다.
+ * 서버 응답에 isFollowing 이 없어 '이번 세션에 팔로우한 userId' 집합을 로컬로 들고, 목록이 refetch
+ * 되면(dataUpdatedAt 변화) 비워 서버 기준으로 되돌리는 공용 훅. 추천 친구 섹션(FIX-044)과 알림
+ * 인박스(FEAT-047)가 공유한다. 서버가 팔로우 상태를 제공하면 이 훅을 제거하고 캐시 기반으로 단순화한다.
  */
 export function useSessionFollowState(dataUpdatedAt: number) {
   const [followedIds, setFollowedIds] = useState<ReadonlySet<number>>(() => new Set());
