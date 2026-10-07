@@ -112,13 +112,13 @@ mode: 'migrate'
 
 ### Issue B — 오답노트 풀이 (선행: A 머지)
 
-- [ ] `[shared]` `Button` `stroke-error` variant — `border-semantic-error bg-bg-0 text-semantic-error` + hover·disabled. story 추가 (P10)
-- [ ] `[entities]` `OptionResultList` · `AnswerResult` — 정답을 맞혔을 때 해설 줄에 넣는 `correctAction?: ReactNode` 슬롯. 슬롯이 없으면 지금과 같다
-- [ ] `[features]` `wrong-answer-exclude` — `useExcludeWrongAnswer()` (`deleteWrongAnsweredProblem`, `retry: false`). 성공 토스트 `오답노트에서 제외했어요.` · 실패 토스트 `오답노트에서 제외하지 못했어요.` (P11). `ExcludeWrongAnswerButton({ problemId, size })` — 성공하면 렌더하지 않는다 (P8). 제외한 문제 ID 는 page 세션 동안만 기억한다
-- [ ] `[widgets]` `quiz-screen` — 하단 왼쪽 슬롯(넓은 화면) · 해설 슬롯(좁은 화면) 연결. 「현재 문제를 맞혔을 때만」 조건은 page 가 정한다
-- [ ] `[pages]` `review-quiz` — `kind: 'wrongAnswer'` 분기: 목록 훅 교체, 맞힌 문제에 제외 버튼 (넓은 화면 하단 왼쪽, 좁은 화면 정답 해설 안 — P1 · AC-11)
-- [ ] `[app]` `…incorrect-problems.tsx` — `beforeLoad` · `component` · `onLeave` 에서 오답 목록 무효화 + 저장본 삭제 (AC-15)
-- [ ] 테스트 — 통합: AC-11 · 12 · 13 · 14 · 15. `Button` variant 는 기존 button 테스트 방식에 맞춘다
+- [x] `[shared]` `Button` `stroke-error` variant — `border-semantic-error bg-bg-0 text-semantic-error` + hover·disabled. story 추가 (P10)
+- [x] `[entities]` `OptionResultList` · `AnswerResult` — 정답을 맞혔을 때 해설 줄에 넣는 `correctAction?: ReactNode` 슬롯. 슬롯이 없으면 지금과 같다
+- [x] `[features]` `wrong-answer-exclude` — `useExcludeWrongAnswer()` (`deleteWrongAnsweredProblem`, `retry: false`). 성공 토스트 `오답노트에서 제외했어요.` · 실패 토스트 `오답노트에서 제외하지 못했어요.` (P11). `ExcludeWrongAnswerButton({ problemId, size })` — 성공하면 렌더하지 않는다 (P8). 제외한 문제 ID 는 page 세션 동안만 기억한다
+- [x] `[widgets]` `quiz-screen` — 하단 왼쪽 슬롯(넓은 화면) · 해설 슬롯(좁은 화면) 연결. 「현재 문제를 맞혔을 때만」 조건은 page 가 정한다
+- [x] `[pages]` `review-quiz` — `kind: 'wrongAnswer'` 분기: 목록 훅 교체, 맞힌 문제에 제외 버튼 (넓은 화면 하단 왼쪽, 좁은 화면 정답 해설 안 — P1 · AC-11)
+- [x] `[app]` `…incorrect-problems.tsx` — `beforeLoad` · `component` · `onLeave` 에서 오답 목록 무효화 + 저장본 삭제 (AC-15)
+- [x] 테스트 — 통합: AC-11 · 12 · 13 · 14 · 15. `Button` variant 는 기존 button 테스트 방식에 맞춘다
 
 ---
 

@@ -69,7 +69,7 @@ legacy는 위 조건이 모두 충족될 때 한 번에 제거한다. 중간에 
 | 학습        | `/learning/$chapterId/$unitId/concept-note` → `/learning/units/$unitId/concept-note`               |   ⬜   |    ⬜     |    ⬜     | — (빈 라우트만 MIG-030)                                                   |
 | 학습        | `/learning/$chapterId/$unitId/$lessonId` → `/learning/lessons/$lessonId`                           |   ⬜   |    ⬜     |    ⬜     | — (빈 라우트만 MIG-030)                                                   |
 | 학습        | `/learning/$chapterId/$unitId/bookmarked-problems` → `/learning/units/$unitId/bookmarked-problems` |   ✅   |    ✅     |    🚧     | MIG-048 A (#268)                                                          |
-| 학습        | `/learning/$chapterId/$unitId/incorrect-problems` → `/learning/units/$unitId/incorrect-problems`   |   ✅   |    ⬜     |    ⬜     | MIG-048 B (#269)                                                          |
+| 학습        | `/learning/$chapterId/$unitId/incorrect-problems` → `/learning/units/$unitId/incorrect-problems`   |   ✅   |    ✅     |    🚧     | MIG-048 B (#269)                                                          |
 | 리그        | `/league`                                                                                          |   ✅   |    ✅     |    ✅     | MIG-023                                                                   |
 | 마이페이지  | `/my`, `/my/summary`, `/my/learning`, `/my/league`, `/my/social`, `/my/edit`, `/my/follow`         |   ⬜   |    ⬜     |    ⬜     | MIG-025 (P1: 레이아웃·카드·탭, P2: 요약 탭 이전 완 / 학습·리그·소셜 P3~5) |
 | 사용자·공지 | `/user`, `/user/edit`, `/user/addfriend`, `/user/privacy`                                          |   ⬜   |    ⬜     |    ⬜     | —                                                                         |
@@ -152,3 +152,4 @@ legacy는 위 조건이 모두 충족될 때 한 번에 제거한다. 중간에 
 | 2026-08-31 | 최초 작성. MIG-004 완료 반영                                                                                                                                                                     |
 | 2026-09-16 | MIG-030 반영. 유닛 상세(`/learning/units/$unitId`) 기준선·대체 구현·동작 검증 완료. 목적지 4종은 경로 계약과 빈 라우트만 확정                                                                    |
 | 2026-10-05 | MIG-048 A 반영. 북마크 풀이 기준선·대체 구현 완료. 자동 AC 통과, 실제 계정 수동 스모크 대기로 동작 검증 `🚧`. 오답노트 풀이는 기준선만                                                           |
+| 2026-10-07 | MIG-048 B 반영. 오답노트 풀이 대체 구현 완료. 자동 AC 통과, 실제 계정 수동 스모크 대기로 동작 검증 `🚧`                                                                                          |
