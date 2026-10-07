@@ -1,5 +1,3 @@
-import { useEffect, useRef } from 'react';
-
 import { type FollowType, useFollowCount } from '@/entities/follow';
 import { PageTitleBar } from '@/widgets/page-title-bar';
 import { FollowListContainer, FollowListTab } from '@/widgets/social/follow';
@@ -15,15 +13,9 @@ interface FriendsPageProps {
  */
 export function FriendsPage({ activeTab, onChangeTab }: FriendsPageProps) {
   const { data } = useFollowCount();
-  const mainRef = useRef<HTMLElement>(null);
-
-  // 탭을 바꾸면 다른 목록으로 교체되므로 앱 셸 스크롤을 맨 위로 되돌린다.
-  useEffect(() => {
-    mainRef.current?.closest('.overflow-y-auto')?.scrollTo({ top: 0 });
-  }, [activeTab]);
 
   return (
-    <main ref={mainRef} className="flex min-h-full flex-col bg-bg-1">
+    <main className="flex min-h-full flex-col bg-bg-1">
       <PageTitleBar title="친구" backTo={{ to: '/my/social' }} />
 
       {data && (

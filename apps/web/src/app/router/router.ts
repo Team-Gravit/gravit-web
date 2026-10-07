@@ -2,12 +2,17 @@ import { createRouter } from '@tanstack/react-router';
 
 import { queryClient } from '../query/query-client';
 import { routeTree } from '../routeTree.gen';
+import { SCROLL_TO_TOP_SELECTORS } from './scroll-restoration';
 
 export const router = createRouter({
   routeTree,
   context: {
     queryClient,
   },
+  // 새 이동은 맨 위, 뒤로·앞으로는 떠날 때 위치로 복원한다 (sessionStorage 에 저장).
+  scrollRestoration: true,
+  // 라우터는 기본으로 window 만 맨 위로 올린다. 이 앱은 레이아웃의 상자가 스크롤하므로 함께 지정한다.
+  scrollToTopSelectors: SCROLL_TO_TOP_SELECTORS,
   defaultPreloadStaleTime: 0,
 });
 
