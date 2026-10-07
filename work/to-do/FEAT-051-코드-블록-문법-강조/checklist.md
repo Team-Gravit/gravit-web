@@ -40,7 +40,7 @@ mode: 'feature'
 ## 메모
 
 - 전체 검증 중 lint 가 한 번 실패했다. 동시에 돌던 Vite 가 만든 `vite.config.ts.timestamp-*.mjs` 를 eslint 가 읽는 사이 지워졌다. 코드 문제가 아니며 재실행에서 통과했다.
-- 코드 글꼴은 Codex 초안(D2Coding 자체 호스팅)을 사용자 요청으로 나눔고딕코딩(`@fontsource`)으로 바꿨다.
+- 코드 글꼴은 별도 웹폰트 없이 Tailwind 기본 `font-mono` 스택을 사용한다 (2026-10-08 사용자 결정).
 
 - 등록 언어를 추가하면 `highlight-code.ts` 의 목록과 번들 크기를 함께 본다.
 - 코드 블록 머리의 언어 표시 이름(`LANGUAGE_LABELS`)에 vue · http · yaml 등이 없어 대문자(`VUE`)로 나온다. 필요하면 표에 추가한다.
