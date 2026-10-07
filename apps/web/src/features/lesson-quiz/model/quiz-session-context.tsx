@@ -11,7 +11,11 @@ import {
 import type { Problem } from '@/entities/problem';
 
 import { gradeSubjective } from './grade-subjective';
-import { readStoredQuizSession, writeStoredQuizSession } from './quiz-session-storage';
+import {
+  readStoredQuizSession,
+  writeStoredQuizSession,
+  type QuizSessionKey,
+} from './quiz-session-storage';
 import {
   createInitialQuizSessionState,
   quizSessionReducer,
@@ -20,7 +24,7 @@ import {
 } from './quiz-session';
 
 /** 다음 버튼을 눌렀을 때 수행할 동작. */
-export type AdvanceAction = 'recordAnswer' | 'goToNext' | 'submitLesson';
+export type AdvanceAction = 'recordAnswer' | 'goToNext' | 'finish';
 
 export interface QuizSessionContextValue {
   answersByProblemId: QuizAnswersByProblemId;
@@ -44,18 +48,23 @@ export interface QuizSessionContextValue {
 const QuizSessionContext = createContext<QuizSessionContextValue | null>(null);
 
 export interface QuizSessionProviderProps {
-  lessonId: number;
+  /** 새로고침 저장본을 구분한다. 레슨은 레슨 ID 를 넘긴다. */
+  sessionKey: QuizSessionKey;
   problemIds: number[];
   children: ReactNode;
 }
 
 /**
- * 레슨 풀이 상태를 `sessionStorage`에서 복원하고 변경될 때마다 저장한다.
+ * 풀이 상태를 `sessionStorage`에서 복원하고 변경될 때마다 저장한다.
  * 라우트 이탈 시 저장본 삭제는 `onLeave`가 담당한다.
  */
-export function QuizSessionProvider({ lessonId, problemIds, children }: QuizSessionProviderProps) {
+export function QuizSessionProvider({
+  sessionKey,
+  problemIds,
+  children,
+}: QuizSessionProviderProps) {
   const [state, dispatch] = useReducer(quizSessionReducer, undefined, () => {
-    const storedSession = readStoredQuizSession(lessonId, problemIds);
+    const storedSession = readStoredQuizSession(sessionKey, problemIds);
 
     if (!storedSession) {
       return createInitialQuizSessionState(problemIds.length);
@@ -70,8 +79,8 @@ export function QuizSessionProvider({ lessonId, problemIds, children }: QuizSess
   });
 
   useEffect(() => {
-    writeStoredQuizSession(lessonId, problemIds, state);
-  }, [lessonId, problemIds, state]);
+    writeStoredQuizSession(sessionKey, problemIds, state);
+  }, [sessionKey, problemIds, state]);
 
   const submitAnswer = useCallback((input: SubmitAnswerInput) => {
     dispatch({ type: 'submitAnswer', ...input });
@@ -98,9 +107,7 @@ export function QuizSessionProvider({ lessonId, problemIds, children }: QuizSess
       }
 
       // 마지막 문제에서는 넘어갈 곳이 없다. 답을 비워 두고 끝내는 것도 허용한다(R14).
-      return state.currentProblemIndex === state.totalProblemCount - 1
-        ? 'submitLesson'
-        : 'goToNext';
+      return state.currentProblemIndex === state.totalProblemCount - 1 ? 'finish' : 'goToNext';
     },
     [
       state.answersByProblemId,

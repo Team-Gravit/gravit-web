@@ -8,14 +8,18 @@ import staticMascot from './assets/loading-mascot-static.webp';
 const LOADING_MESSAGE = '로딩중...';
 const DEFAULT_TIP = '시즌은 매주 월요일 자정에 초기화돼요.';
 
-export interface LoadingScreenProps extends Omit<ComponentProps<'div'>, 'children'> {
+export interface QuizLoadingScreenProps extends Omit<ComponentProps<'div'>, 'children'> {
   tip?: string;
 }
 
-export function LoadingScreen({ tip = DEFAULT_TIP, className, ...props }: LoadingScreenProps) {
+export function QuizLoadingScreen({
+  tip = DEFAULT_TIP,
+  className,
+  ...props
+}: QuizLoadingScreenProps) {
   return (
     <div
-      data-slot="loading-screen"
+      data-slot="quiz-loading-screen"
       className={cn(
         'flex min-h-full flex-1 flex-col items-center justify-center px-4 text-center',
         className,

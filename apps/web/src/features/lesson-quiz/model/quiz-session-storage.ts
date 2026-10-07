@@ -2,13 +2,16 @@ import type { QuizSessionState } from './quiz-session';
 
 const QUIZ_SESSION_KEY_PREFIX = 'gravit.quiz-session.';
 
+/** 풀이 세션을 구분하는 키. 레슨은 레슨 ID 를 그대로 써서 기존 저장본과 같은 키를 만든다. */
+export type QuizSessionKey = number | string;
+
 interface StoredQuizSession {
   problemIdsKey: string;
   state: QuizSessionState;
 }
 
-function toQuizSessionStorageKey(lessonId: number): string {
-  return `${QUIZ_SESSION_KEY_PREFIX}${lessonId}`;
+function toQuizSessionStorageKey(sessionKey: QuizSessionKey): string {
+  return `${QUIZ_SESSION_KEY_PREFIX}${sessionKey}`;
 }
 
 // 문제 순서는 저장본의 유효성에 영향이 없으므로 정렬한 ID로 비교 키를 만든다.
@@ -31,11 +34,11 @@ function withSessionStorage<T>(operation: (storage: Storage) => T): T | undefine
  * 문제 ID 구성이 달라졌으면 오래된 저장본도 함께 삭제한다.
  */
 export function readStoredQuizSession(
-  lessonId: number,
+  sessionKey: QuizSessionKey,
   problemIds: number[],
 ): QuizSessionState | undefined {
   return withSessionStorage((storage) => {
-    const storageKey = toQuizSessionStorageKey(lessonId);
+    const storageKey = toQuizSessionStorageKey(sessionKey);
     const storedSessionJson = storage.getItem(storageKey);
 
     if (!storedSessionJson) {
@@ -54,7 +57,7 @@ export function readStoredQuizSession(
 }
 
 export function writeStoredQuizSession(
-  lessonId: number,
+  sessionKey: QuizSessionKey,
   problemIds: number[],
   state: QuizSessionState,
 ): void {
@@ -64,10 +67,10 @@ export function writeStoredQuizSession(
       state,
     };
 
-    storage.setItem(toQuizSessionStorageKey(lessonId), JSON.stringify(storedSession));
+    storage.setItem(toQuizSessionStorageKey(sessionKey), JSON.stringify(storedSession));
   });
 }
 
-export function clearStoredQuizSession(lessonId: number): void {
-  withSessionStorage((storage) => storage.removeItem(toQuizSessionStorageKey(lessonId)));
+export function clearStoredQuizSession(sessionKey: QuizSessionKey): void {
+  withSessionStorage((storage) => storage.removeItem(toQuizSessionStorageKey(sessionKey)));
 }
