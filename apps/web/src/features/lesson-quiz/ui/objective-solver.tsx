@@ -9,8 +9,13 @@ export interface ObjectiveSolverProps {
 
 /** 객관식 선지 선택을 채점·세션 기록에 연결하고 제출 전후 표시를 전환한다. */
 export function ObjectiveSolver({ problem }: ObjectiveSolverProps) {
-  const { answersByProblemId, submitAnswer, hiddenOptionIdsByProblemId, toggleHiddenOption } =
-    useQuizSession();
+  const {
+    answersByProblemId,
+    submitAnswer,
+    pendingProblemId,
+    hiddenOptionIdsByProblemId,
+    toggleHiddenOption,
+  } = useQuizSession();
   const answer = answersByProblemId[problem.problemId];
 
   if (answer?.kind === 'objective') {
@@ -36,6 +41,7 @@ export function ObjectiveSolver({ problem }: ObjectiveSolverProps) {
       onSelect={handleOptionSelect}
       hiddenOptionIds={hiddenOptionIdsByProblemId[problem.problemId]}
       onToggleHide={(optionId) => toggleHiddenOption(problem.problemId, optionId)}
+      isSubmitting={pendingProblemId === problem.problemId}
     />
   );
 }

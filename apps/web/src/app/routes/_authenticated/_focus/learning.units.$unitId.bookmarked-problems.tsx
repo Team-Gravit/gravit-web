@@ -1,8 +1,19 @@
 import { createFileRoute } from '@tanstack/react-router';
 
-// 북마크 문제 풀이 화면을 이전할 때까지 유닛 상세에서 사용할 경로 계약만 유지한다.
+import { ReviewQuizPage } from '@/pages/review-quiz';
+
+import { createReviewQuizLeaveHandler, parseReviewQuizUnitId } from './-review-quiz-route';
+
 export const Route = createFileRoute(
   '/_authenticated/_focus/learning/units/$unitId/bookmarked-problems',
 )({
-  component: () => null,
+  beforeLoad: parseReviewQuizUnitId,
+  component: BookmarkQuizRoute,
+  onLeave: createReviewQuizLeaveHandler('bookmark'),
 });
+
+function BookmarkQuizRoute() {
+  const { unitId } = Route.useRouteContext();
+
+  return <ReviewQuizPage kind="bookmark" unitId={unitId} />;
+}

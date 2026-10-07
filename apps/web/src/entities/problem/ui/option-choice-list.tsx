@@ -11,6 +11,8 @@ export interface OptionChoiceListProps {
   hiddenOptionIds?: number[];
   /** 없으면 가리기 버튼을 렌더하지 않는다. */
   onToggleHide?: (optionId: number) => void;
+  /** 고른 답을 보내는 중이면 다른 선지를 고를 수 없다. */
+  isSubmitting?: boolean;
 }
 
 /** 제출 전 객관식 선지의 선택과 가리기 동작을 분리해 렌더링한다. */
@@ -19,9 +21,14 @@ export function OptionChoiceList({
   onSelect,
   hiddenOptionIds = [],
   onToggleHide,
+  isSubmitting = false,
 }: OptionChoiceListProps) {
   return (
-    <ul data-slot="option-choice-list" className="flex flex-col gap-3">
+    <ul
+      data-slot="option-choice-list"
+      aria-busy={isSubmitting || undefined}
+      className="flex flex-col gap-3"
+    >
       {options.map((option, index) => {
         const optionNumber = index + 1;
         const isHidden = hiddenOptionIds.includes(option.optionId);
@@ -30,7 +37,7 @@ export function OptionChoiceList({
           <li key={option.optionId} className="relative">
             <button
               type="button"
-              disabled={isHidden}
+              disabled={isHidden || isSubmitting}
               onClick={() => onSelect(option.optionId)}
               className={cn(
                 OPTION_ROW_CLASS,
