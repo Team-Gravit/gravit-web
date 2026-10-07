@@ -9,9 +9,10 @@ import { Icon } from '@/shared/ui/icon';
 import { SpaceBackground } from '@/shared/ui/layout';
 import { PageHeading } from '@/shared/ui/page-heading';
 import { Skeleton } from '@/shared/ui/skeleton';
+import { toast } from '@/shared/ui/toast';
 import { PageTitleBar } from '@/widgets/page-title-bar';
 
-// 공용 Toast가 준비되기 전까지 접근 차단 안내는 alert로 표시한다 (FEAT-017).
+// 풀 문제가 없어 진입을 막을 때 띄우는 안내 (FIX-036).
 const BOOKMARK_BLOCKED_MESSAGE = '아직 북마크한 문제가 없어요.';
 const INCORRECT_NOTE_BLOCKED_MESSAGE = '아직 틀린 문제가 없어요.';
 
@@ -225,7 +226,7 @@ function ShortcutCard({
       <button
         type="button"
         data-slot="shortcut-card"
-        onClick={() => window.alert(blockedMessage)}
+        onClick={() => toast(blockedMessage)}
         className={cardClassName}
       >
         {content}
