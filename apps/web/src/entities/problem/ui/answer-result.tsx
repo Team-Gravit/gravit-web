@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react';
+
 import { cn } from '@/shared/lib/cn';
 import { TextField } from '@/shared/ui/text-field';
 
@@ -10,6 +12,8 @@ export interface AnswerResultProps {
   /** 오답일 때 알려줄 정답 */
   correctAnswers: string[];
   explanation: string;
+  /** 정답을 맞혔을 때 해설 아래에 둘 조작. 틀렸으면 그리지 않는다. */
+  correctAction?: ReactNode;
 }
 
 /**
@@ -20,6 +24,7 @@ export function AnswerResult({
   isCorrect,
   correctAnswers,
   explanation,
+  correctAction,
 }: AnswerResultProps) {
   const tone = isCorrect ? 'success' : 'error';
 
@@ -42,6 +47,9 @@ export function AnswerResult({
         <p className="text-text-1 rounded-8 bg-bg-2 p-4 whitespace-pre-line text-body2-reading">
           {explanation}
         </p>
+        {correctAction && isCorrect ? (
+          <div className="flex justify-end">{correctAction}</div>
+        ) : null}
       </div>
     </div>
   );

@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react';
+
 import { OptionChoiceList, OptionResultList, type ObjectiveProblem } from '@/entities/problem';
 
 import { gradeObjective } from '../model/grade-objective';
@@ -5,10 +7,12 @@ import { useQuizSession } from '../model/quiz-session-context';
 
 export interface ObjectiveSolverProps {
   problem: ObjectiveProblem;
+  /** 정답을 맞혔을 때 정답 선지 해설 아래에 둘 조작. */
+  correctAction?: ReactNode;
 }
 
 /** 객관식 선지 선택을 채점·세션 기록에 연결하고 제출 전후 표시를 전환한다. */
-export function ObjectiveSolver({ problem }: ObjectiveSolverProps) {
+export function ObjectiveSolver({ problem, correctAction }: ObjectiveSolverProps) {
   const {
     answersByProblemId,
     submitAnswer,
@@ -20,7 +24,11 @@ export function ObjectiveSolver({ problem }: ObjectiveSolverProps) {
 
   if (answer?.kind === 'objective') {
     return (
-      <OptionResultList options={problem.options} selectedOptionId={answer.selectedOptionId} />
+      <OptionResultList
+        options={problem.options}
+        selectedOptionId={answer.selectedOptionId}
+        correctAction={correctAction}
+      />
     );
   }
 

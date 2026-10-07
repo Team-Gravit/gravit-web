@@ -1,4 +1,4 @@
-import type { SubmitEvent } from 'react';
+import type { ReactNode, SubmitEvent } from 'react';
 
 import { TextField } from '@/shared/ui/text-field';
 import { AnswerResult, type SubjectiveProblem } from '@/entities/problem';
@@ -8,10 +8,12 @@ import { useQuizSession } from '../model/quiz-session-context';
 export interface SubjectiveAnswerProps {
   problem: SubjectiveProblem;
   onAdvance: () => void;
+  /** 정답을 맞혔을 때 해설 아래에 둘 조작. */
+  correctAction?: ReactNode;
 }
 
 /** 주관식 답안을 입력하고 채점 결과를 표시한다. 진행 동작은 상위 화면이 결정한다. */
-export function SubjectiveAnswer({ problem, onAdvance }: SubjectiveAnswerProps) {
+export function SubjectiveAnswer({ problem, onAdvance, correctAction }: SubjectiveAnswerProps) {
   const { answersByProblemId, pendingProblemId, subjectiveAnswerDraft, setSubjectiveAnswerDraft } =
     useQuizSession();
   const answer = answersByProblemId[problem.problemId];
@@ -23,6 +25,7 @@ export function SubjectiveAnswer({ problem, onAdvance }: SubjectiveAnswerProps) 
         isCorrect={answer.isCorrect}
         correctAnswers={problem.answer.contents}
         explanation={problem.answer.explanation}
+        correctAction={correctAction}
       />
     );
   }

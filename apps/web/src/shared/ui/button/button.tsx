@@ -50,6 +50,12 @@ const buttonVariants = cva(
           'hover:bg-purple-100 active:bg-purple-100',
           'disabled:border-divider-1 disabled:text-text-4',
         ],
+        // 되돌리기 어려운 동작(예: 오답노트에서 제외). 시안 QUIZ-08/A — 흰 바탕에 status/error 테두리·글자.
+        'stroke-error': [
+          'border-semantic-error bg-bg-0 text-semantic-error',
+          'hover:bg-semantic-error/5 active:bg-semantic-error/5',
+          'disabled:border-divider-1 disabled:text-text-4',
+        ],
         'stroke-secondary': [
           'border-divider-1 bg-bg-1 text-text-2',
           'hover:bg-bg-2 active:bg-bg-2',

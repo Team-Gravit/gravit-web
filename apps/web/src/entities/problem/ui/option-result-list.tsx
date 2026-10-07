@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react';
+
 import type { OptionResponse } from '@/shared/api/generated/model';
 import { Accordion } from '@/shared/ui/accordion';
 
@@ -18,12 +20,18 @@ const RESULT_BORDER_CLASS: Record<OptionResult, string> = {
 export interface OptionResultListProps {
   options: OptionResponse[];
   selectedOptionId: number;
+  /** 정답을 맞혔을 때 그 선지의 해설 아래에 둘 조작. 틀렸으면 그리지 않는다. */
+  correctAction?: ReactNode;
 }
 
 /**
  * 제출한 객관식 선지와 해설
  */
-export function OptionResultList({ options, selectedOptionId }: OptionResultListProps) {
+export function OptionResultList({
+  options,
+  selectedOptionId,
+  correctAction,
+}: OptionResultListProps) {
   return (
     <ul data-slot="option-result-list" className="flex flex-col gap-3">
       {options.map((option, index) => {
@@ -56,6 +64,9 @@ export function OptionResultList({ options, selectedOptionId }: OptionResultList
               <p className="text-body2-reading text-text-1 rounded-8 bg-bg-1 px-4 py-3 whitespace-pre-line md:text-body2-normal">
                 {option.explanation}
               </p>
+              {correctAction && isSelected && option.isAnswer ? (
+                <div className="mt-2 flex justify-end">{correctAction}</div>
+              ) : null}
             </Accordion>
           </li>
         );

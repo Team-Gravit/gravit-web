@@ -35,6 +35,12 @@ export interface QuizScreenProps {
   isFinishing?: boolean;
   /** 문제 카드 머리 오른쪽에 둘 조작. */
   renderProblemAction?: (problem: Problem) => ReactNode;
+  /**
+   * 정답을 맞혔을 때 정답 해설 안에 둘 조작. 화면 폭과 관계없이 같은 자리다 —
+   * 하단 이동 버튼 줄에 두면 태블릿 폭에서 가려져 모바일 배치로 통일했다 (2026-10-07 디자이너 결정).
+   * 보일 조건은 화면이 정해 `null` 을 돌려준다.
+   */
+  renderResultAction?: (problem: Problem) => ReactNode;
 }
 
 /**
@@ -50,10 +56,12 @@ export function QuizScreen({
   onFinish,
   isFinishing = false,
   renderProblemAction,
+  renderResultAction,
 }: QuizScreenProps) {
   const isWide = useIsWideViewport();
   const { currentProblemIndex, startedAt, advance, getAdvanceAction } = useQuizSession();
   const currentProblem = problems[currentProblemIndex];
+  const resultAction = currentProblem ? renderResultAction?.(currentProblem) : null;
 
   const handleAdvance = () => {
     if (!currentProblem) return;
@@ -96,6 +104,7 @@ export function QuizScreen({
                     key={currentProblem.problemId}
                     problem={currentProblem}
                     onAdvance={handleAdvance}
+                    correctAction={resultAction}
                   />
                 </ProblemCard>
                 <QuizFooter
@@ -130,14 +139,15 @@ function SubmittingOverlay() {
 interface ProblemSolverProps {
   problem: Problem;
   onAdvance: () => void;
+  correctAction: ReactNode;
 }
 
-function ProblemSolver({ problem, onAdvance }: ProblemSolverProps) {
+function ProblemSolver({ problem, onAdvance, correctAction }: ProblemSolverProps) {
   if (problem.type === 'objective') {
-    return <ObjectiveSolver problem={problem} />;
+    return <ObjectiveSolver problem={problem} correctAction={correctAction} />;
   }
 
-  return <SubjectiveAnswer problem={problem} onAdvance={onAdvance} />;
+  return <SubjectiveAnswer problem={problem} onAdvance={onAdvance} correctAction={correctAction} />;
 }
 
 interface QuizFooterProps {

@@ -1,8 +1,19 @@
 import { createFileRoute } from '@tanstack/react-router';
 
-// 오답 문제 풀이 화면을 이전할 때까지 유닛 상세에서 사용할 경로 계약만 유지한다.
+import { ReviewQuizPage } from '@/pages/review-quiz';
+
+import { createReviewQuizLeaveHandler, validateReviewQuizUnitId } from './-review-quiz-route';
+
 export const Route = createFileRoute(
   '/_authenticated/_focus/learning/units/$unitId/incorrect-problems',
 )({
-  component: () => null,
+  beforeLoad: validateReviewQuizUnitId,
+  component: WrongAnswerQuizRoute,
+  onLeave: createReviewQuizLeaveHandler('wrongAnswer'),
 });
+
+function WrongAnswerQuizRoute() {
+  const { unitId } = Route.useRouteContext();
+
+  return <ReviewQuizPage kind="wrongAnswer" unitId={unitId} />;
+}
