@@ -1,5 +1,6 @@
 import { Outlet, createFileRoute } from '@tanstack/react-router';
 
+import { SETTINGS_SCROLL_RESTORATION_ID } from '@/app/router/scroll-restoration';
 import { Header } from '@/widgets/header';
 
 export const Route = createFileRoute('/_authenticated/settings')({
@@ -21,7 +22,10 @@ function SettingsShell() {
         <Header variant="solid" />
       </div>
 
-      <div className="h-full overflow-y-auto md:pt-(--desktop-header-height)">
+      <div
+        data-scroll-restoration-id={SETTINGS_SCROLL_RESTORATION_ID}
+        className="h-full overflow-y-auto md:pt-(--desktop-header-height)"
+      >
         <Outlet />
       </div>
     </div>

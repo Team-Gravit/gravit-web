@@ -1,5 +1,6 @@
 import { Outlet, createFileRoute, useMatches } from '@tanstack/react-router';
 
+import { APP_SHELL_SCROLL_RESTORATION_ID } from '@/app/router/scroll-restoration';
 import { cn } from '@/shared/lib/cn';
 import { BottomTabBar } from '@/widgets/bottom-tab-bar';
 import { Header, type HeaderVariant } from '@/widgets/header';
@@ -40,6 +41,7 @@ function AppShell() {
         콘텐츠가 가리지 않게 하며, overlay 헤더는 히어로와 겹치도록 상단 패딩을 두지 않는다.
       */}
       <div
+        data-scroll-restoration-id={APP_SHELL_SCROLL_RESTORATION_ID}
         className={cn(
           'h-full overflow-y-auto md:pb-0',
           !isBottomTabBarHidden && 'pb-(--bottom-tab-height)',
