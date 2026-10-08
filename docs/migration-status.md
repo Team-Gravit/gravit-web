@@ -1,0 +1,156 @@
+# Legacy 폐기 현황 (`apps/legacy-web` → `apps/web`)
+
+**legacy 기능이 새 앱으로 대체·검증됐는지, `apps/legacy-web`을 안전하게 폐기할 수 있는지 판단하는 대장이다.**
+
+제품 화면의 플랫폼별 구현률은 [`implementation-status.md`](./implementation-status.md), 토큰 상태는
+[`design-system/README.md`](./design-system/README.md)에서 관리한다. 이 문서에 둘을 중복 기록하지 않는다.
+
+> 기준 문서이므로 상태가 바뀌면 덮어쓴다. `MIG-` 작업 완료 시 `ai-validate`가 갱신한다.
+
+## 1. 완료 정의
+
+코드나 라우트가 존재하는 것만으로 이전 완료로 보지 않는다.
+
+| 단계      | 완료 조건                                                       |
+| --------- | --------------------------------------------------------------- |
+| 기준선    | legacy의 관찰 가능한 동작과 계약이 `work/{ID}/spec.md`에 기록됨 |
+| 대체 구현 | 새 앱에 대응 코드와 라우트가 있고 legacy 없이 실행 가능         |
+| 동작 검증 | 자동 테스트 또는 명시된 수동 검증으로 기준선과 동일성을 확인    |
+
+상태: `✅` 완료 · `🚧` 진행 중 · `⬜` 미착수 · `—` 해당 없음.
+
+### legacy 전체 폐기 조건
+
+- [ ] 모든 이전 대상 라우트가 대체 구현되고 동작 검증됨
+- [ ] 인증·API·Query 등 공용 런타임 기반이 대체됨
+- [ ] 이전하지 않을 코드는 대체 또는 폐기 근거가 기록됨
+- [ ] 운영 진입점이 `apps/web`으로 전환됨
+- [ ] legacy만 참조하는 런타임 경로가 없음
+
+legacy는 위 조건이 모두 충족될 때 한 번에 제거한다. 중간에 파일별로 삭제하지 않는다.
+`apps/legacy-web`은 pnpm 워크스페이스 밖이라 부분 삭제로 깨져도 CI가 발견하지 못하기 때문이다.
+
+## 2. 요약
+
+| 영역                | 동작 검증 완료 | 전체 | 폐기 차단 요소               |
+| ------------------- | -------------: | ---: | ---------------------------- |
+| 사용자 라우트       |              8 |   35 | 인증 기반과 주요 화면 미이전 |
+| 공용 기반           |              4 |   15 | 인증·Query 기반 미이전       |
+| 이전 제외·폐기 대상 |              4 |    4 | 없음                         |
+
+동작 검증까지 끝난 라우트는 `/terms`, `/privacy`, `/`(로그인), `/league`, `/learning`,
+`/learning/$chapterId`, `/settings`, `/settings/inquiry`이다.
+`/main`과 `/onboarding`·`/success`는 대체 구현이 끝났지만 동작 검증 기록이 남아 있지 않다
+(MIG-025 · MIG-024).
+
+## 3. 사용자 라우트 대체 현황
+
+### 공개 라우트
+
+| Legacy URL                     | 새 경로        | 기준선 | 대체 구현 | 동작 검증 | 작업    | 비고              |
+| ------------------------------ | -------------- | :----: | :-------: | :-------: | ------- | ----------------- |
+| `/terms`                       | `/terms`       |   ✅   |    ✅     |    ✅     | MIG-004 | Figma 시안 미확인 |
+| `/privacy`                     | `/privacy`     |   ✅   |    ✅     |    ✅     | MIG-004 | Figma 시안 미확인 |
+| `/`                            | `/`            |   ✅   |    ✅     |    ✅     | MIG-018 | 로그인 화면 (O.1) |
+| `/restore`                     | 미정           |   ⬜   |    ⬜     |    ⬜     | —       | 계정 복구         |
+| `/user/me/delete/page`         | 미정           |   ⬜   |    ⬜     |    ⬜     | —       | 회원 탈퇴         |
+| `/login/oauth2/code/$provider` | 동일 경로 예정 |   ✅   |    ⬜     |    ⬜     | MIG-005 | 인증 기반 라우트  |
+
+### 인증 필요 라우트
+
+아래 라우트는 모두 MIG-005 인증 기반이 선행돼야 한다.
+
+| 영역        | Legacy URL                                                                                         | 기준선 | 대체 구현 | 동작 검증 | 작업                                                                      |
+| ----------- | -------------------------------------------------------------------------------------------------- | :----: | :-------: | :-------: | ------------------------------------------------------------------------- |
+| 메인        | `/main` (`/mains`는 폐기, §5)                                                                      |   ✅   |    ✅     |    🚧     | MIG-025                                                                   |
+| 학습        | `/learning`                                                                                        |   ✅   |    ✅     |    ✅     | MIG-027                                                                   |
+| 학습        | `/learning/$chapterId` → `/learning/chapters/$chapterId`                                           |   ✅   |    ✅     |    ✅     | MIG-029                                                                   |
+| 학습        | `/learning/$chapterId/$unitId` → `/learning/units/$unitId`                                         |   ✅   |    ✅     |    ✅     | MIG-030                                                                   |
+| 학습        | `/learning/$chapterId/$unitId/concept-note` → `/learning/units/$unitId/concept-note`               |   ✅   |    ✅     |    🚧     | MIG-046 (자동 검증 완료, 실제 노트·실기기 수동 확인 대기)                 |
+| 학습        | `/learning/$chapterId/$unitId/$lessonId` → `/learning/lessons/$lessonId`                           |   ⬜   |    ⬜     |    ⬜     | — (빈 라우트만 MIG-030)                                                   |
+| 학습        | `/learning/$chapterId/$unitId/bookmarked-problems` → `/learning/units/$unitId/bookmarked-problems` |   ✅   |    ✅     |    🚧     | MIG-048 A (#268)                                                          |
+| 학습        | `/learning/$chapterId/$unitId/incorrect-problems` → `/learning/units/$unitId/incorrect-problems`   |   ✅   |    ✅     |    🚧     | MIG-048 B (#269)                                                          |
+| 리그        | `/league`                                                                                          |   ✅   |    ✅     |    ✅     | MIG-023                                                                   |
+| 마이페이지  | `/my`, `/my/summary`, `/my/learning`, `/my/league`, `/my/social`, `/my/edit`, `/my/follow`         |   ⬜   |    ⬜     |    ⬜     | MIG-025 (P1: 레이아웃·카드·탭, P2: 요약 탭 이전 완 / 학습·리그·소셜 P3~5) |
+| 사용자·공지 | `/user`, `/user/edit`, `/user/addfriend`, `/user/privacy`                                          |   ⬜   |    ⬜     |    ⬜     | —                                                                         |
+| 사용자·공지 | `/user/notice`, `/user/notice/$page`, `/user/notice/$page/$noticeId`                               |   ⬜   |    ⬜     |    ⬜     | —                                                                         |
+| 설정·문의   | `/settings` (환경설정 목록)                                                                        |   ✅   |    ✅     |    ✅     | MIG-042                                                                   |
+| 설정·문의   | `/settings/inquiry` (문의 내역 확인)                                                               |   ✅   |    ✅     |    ✅     | MIG-043 (무한스크롤→페이지네이션)                                         |
+| 설정·문의   | `/settings/inquiry/new` (문의 작성)                                                                |   ✅   |    ✅     |    ✅     | MIG-043 (floating 입력 필드 공통화)                                       |
+| 설정·문의   | `/settings/notice`                                                                                 |   ⬜   |    ⬜     |    ⬜     | 빈 라우트만 (공지 화면 본체 후속)                                         |
+| 온보딩      | `/onboarding`, `/success`                                                                          |   ✅   |    ✅     |    ⬜     | MIG-024                                                                   |
+
+한 행에 여러 URL이 묶인 경우 작업을 만들 때 사용자에게 관찰 가능한 단위로 행을 분리한다.
+
+`→` 는 `apps/web` 에서 경로가 바뀐 것을 뜻한다. `develop` 이 유닛 학습 경로를 단일 ID 로
+통일했고, 목적지 4종도 같은 형태로 맞췄다 (MIG-030 `spec.md` 라우트 계약).
+**빈 라우트만** 표시된 행은 경로와 레이아웃 그룹만 확정했고 화면 본체는 후속 작업이다.
+
+## 4. 공용 기반 대체 현황
+
+파일명이 아니라 기능을 식별자로 삼는다. 경로가 바뀌어도 기능의 대체 여부를 추적하기 위해서다.
+
+| 기능                   | Legacy 근거                                                                                        | 새 소유 위치                                                                                               | 기준선 | 대체 구현 | 동작 검증 | 작업    | 영향                                           |
+| ---------------------- | -------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | :----: | :-------: | :-------: | ------- | ---------------------------------------------- |
+| Footer                 | `widgets/Footer/Footer.tsx`                                                                        | `widgets/footer/`                                                                                          |   ✅   |    ✅     |    ✅     | MIG-004 | 전체 공개 화면                                 |
+| Gravit 로고            | 로고 SVG 2종                                                                                       | `shared/ui/logo/`                                                                                          |   ✅   |    ✅     |    ✅     | MIG-004 | Header·Footer                                  |
+| 인증 세션              | `shared/api/config.ts`                                                                             | 미정                                                                                                       |   ✅   |    ⬜     |    ⬜     | MIG-005 | 인증 화면 전체                                 |
+| OAuth callback         | callback route                                                                                     | `app/routes/`                                                                                              |   ✅   |    ⬜     |    ⬜     | MIG-005 | 로그인                                         |
+| 반응형 판정            | `shared/model/use-responsive.ts`                                                                   | `shared/lib/use-is-wide-viewport.ts`                                                                       |   ✅   |    ✅     |    ✅     | MIG-018 | 15개 사용처 — 로그인 외는 화면 이전 시 전환    |
+| 학습 상세 제목·경로 셸 | `shared/ui/bread-crumb/` · `entities/learning/ui/summary-header.tsx`                               | `shared/ui/{breadcrumb,page-heading}/` · `widgets/page-title-bar/`                                         |   ✅   |    ✅     |    ✅     | MIG-028 | L.2·L.3 공통 셸. 화면 본체는 MIG-029·MIG-030   |
+| Toast                  | `shared/lib/toast/`                                                                                | `shared/ui`+`shared/lib`                                                                                   |   ⬜   |    ⬜     |    ⬜     | —       | 6개 사용처                                     |
+| Query 초기화           | `shared/lib/query/`                                                                                | `app/query/`                                                                                               |   ⬜   |    ⬜     |    ⬜     | —       | API 화면 전체                                  |
+| 무한 스크롤            | `shared/model/use-infinite-scroll.ts`                                                              | `shared/lib/`                                                                                              |   ⬜   |    ⬜     |    ⬜     | —       | 3개 사용처                                     |
+| Planet 유틸            | `shared/lib/planet/`                                                                               | 소비자 slice                                                                                               |   ⬜   |    ⬜     |    ⬜     | —       | 2개 사용처                                     |
+| 공용 Button            | `features/button/`                                                                                 | `shared/ui/button/`                                                                                        |   ⬜   |    ✅     |    ⬜     | —       | 사용처 전환 필요                               |
+| 메인 위젯              | `widgets/main`, `widgets/main-page`                                                                | `widgets/{hero-greeting,growth-summary,continue-learning,recommended-units,learning-streak,daily-mission}` |   ✅   |    ✅     |    🚧     | MIG-025 | 섹션마다 widget 하나 (ADR-1)                   |
+| 헤더 · 탭바            | `widgets/header`, `widgets/bottom-tab-bar`                                                         | `widgets/header` · `widgets/bottom-tab-bar`                                                                |   ✅   |    ✅     |    🚧     | MIG-025 | 인증 화면 전체. 벨·AI면접은 미구현             |
+| 학습·미션·리그 표시    | `entities/{learning,mission,league}` · `shared/ui/{card,chip,progress-bar,skeleton,weekly-streak}` | `entities/{learning,mission,league}` · `shared/ui/{card,chip,progress-bar,skeleton}`                       |   ✅   |    ✅     |    🚧     | MIG-025 | zod 스키마는 이전하지 않음                     |
+| Sidebar                | `entities/sidebar`, `widgets/sidebar`                                                              | `useUserInfo`는 `entities/user`의 `useUser`로 대체 (ADR-2). 사이드바 UI는 미정                             |   ✅   |     △     |    ⬜     | MIG-025 | 헤더 프로필만 대체. 마이페이지 사이드바는 별도 |
+
+## 5. 이전 제외·폐기 대상
+
+| 대상                                                                                  | 판정        | 대체 수단 또는 근거                                       | 작업    |
+| ------------------------------------------------------------------------------------- | ----------- | --------------------------------------------------------- | ------- |
+| `shared/api/@generated/`                                                              | 이전 제외   | Orval `generate:api`가 대체                               | MIG-005 |
+| `features/auth/use-refresh-token.tsx`                                                 | 폐기        | 전체가 주석 처리됐고 실제 갱신 로직은 다른 파일           | MIG-005 |
+| `shared/lib/test/`                                                                    | 폐기        | 개발용 잔재                                               | —       |
+| `pages/_authenticated/_fixed-header-layout/test.tsx`                                  | 폐기        | 운영 대상이 아닌 테스트 화면                              | —       |
+| `pages/_authenticated/_fixed-header-layout/mains.tsx` + `widgets/main/model/hooks.ts` | 폐기        | 구버전 메인. 어디서도 링크되지 않는다 (MIG-025 기준선 B8) | MIG-025 |
+| `entities/sidebar/api/useUserInfo.ts`                                                 | 폐기        | `entities/user` `useUser`가 대체                          | MIG-025 |
+| `/user/*` · `/user/me/delete/page` 라우트                                             | 폐기 (경로) | `docs/routes.md` §4 — 새 앱은 `/my/*` · `/settings/*`     | MIG-025 |
+
+## 6. 폐기 차단 항목
+
+상세 판단은 해당 `work/{ID}/spec.md`에 두고 여기에는 폐기를 막는 항목만 남긴다.
+
+| 항목                                                              | 영향                                    | 작업                      |
+| ----------------------------------------------------------------- | --------------------------------------- | ------------------------- |
+| 메인 실서버 응답 확인 (유닛 번호 · 추천 제목 · 진행률 단위 · 404) | 값이 틀리면 게이지·번호 표기가 어긋난다 | MIG-025 `checklist.md` §2 |
+| 인증 갱신·게이트 계약 미확정                                      | 인증 화면 전체                          | MIG-005                   |
+
+## 7. 갱신 규칙
+
+- 기준선만 작성했으면 `기준선`만 완료 처리한다
+- 코드가 있어도 동작을 검증하기 전에는 `동작 검증`을 완료 처리하지 않는다
+- `MIG-` 완료 시 라우트와 공용 기반 중 해당 행을 모두 갱신한다
+- 토큰 부채와 Figma 구현 상태는 이 문서에 기록하지 않는다
+- 사용자 판정이 필요한 항목을 AI가 임의로 완료 처리하지 않는다
+
+## 갱신 이력
+
+| 날짜       | 내용                                                                                                                                                                                             |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 2026-09-27 | MIG-043 반영. `/settings/inquiry`(내역)·`/settings/inquiry/new`(작성) 대체 구현·동작 검증 완료. 무한스크롤→페이지네이션, floating 입력 필드 공통화(`shared/ui/pagination`·`text-field`·`select`) |
+| 2026-09-23 | MIG-042 반영. `/settings` 환경설정 목록 대체 구현·동작 검증 완료. `/settings/inquiry`·`/settings/notice`는 빈 라우트만. 공지사항 링크는 화면 미비로 보류                                         |
+| 2026-09-18 | MIG-029 반영. `/learning/$chapterId`를 `/learning/chapters/$chapterId`로 대체하고 동작 검증 완료                                                                                                 |
+| 2026-09-16 | MIG-028 반영. 학습 상세 제목·경로 셸의 기준선·대체 구현·동작 검증 완료. L.2·L.3 화면 본체는 후속 작업으로 유지                                                                                   |
+| 2026-09-11 | MIG-025 반영. 메인 화면·헤더·탭바·섹션 6개 대체 구현. `/mains`·`/user/*` 폐기. `/main`·`/mains` 차단 항목 해소. 라우트 정본은 `docs/routes.md`                                                   |
+| 2026-09-10 | MIG-024 반영. 온보딩 2화면 대체 구현. **완료 화면 경로가 `/success` → `/onboarding/success` 로 바뀜**                                                                                            |
+| 2026-09-10 | MIG-018 반영. `/` 로그인 화면과 반응형 판정 기반을 대체 구현으로 표시                                                                                                                            |
+| 2026-09-01 | 역할 재정의. 제품 구현·토큰 상태를 분리하고 legacy 폐기 조건 중심으로 개편                                                                                                                       |
+| 2026-08-31 | 최초 작성. MIG-004 완료 반영                                                                                                                                                                     |
+| 2026-09-16 | MIG-030 반영. 유닛 상세(`/learning/units/$unitId`) 기준선·대체 구현·동작 검증 완료. 목적지 4종은 경로 계약과 빈 라우트만 확정                                                                    |
+| 2026-10-05 | MIG-048 A 반영. 북마크 풀이 기준선·대체 구현 완료. 자동 AC 통과, 실제 계정 수동 스모크 대기로 동작 검증 `🚧`. 오답노트 풀이는 기준선만                                                           |
+| 2026-10-07 | MIG-048 B 반영. 오답노트 풀이 대체 구현 완료. 자동 AC 통과, 실제 계정 수동 스모크 대기로 동작 검증 `🚧`                                                                                          |
+| 2026-10-07 | MIG-046 반영. 개념노트 기준선·대체 구현 완료. 동작 검증은 자동 AC 통과, 실제 노트·Android WebView 수동 확인 대기로 `🚧`                                                                          |

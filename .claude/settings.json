@@ -1,0 +1,64 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm dev)",
+      "Bash(pnpm dev:*)",
+      "Bash(pnpm build)",
+      "Bash(pnpm lint)",
+      "Bash(pnpm check-types)",
+      "Bash(pnpm test)",
+      "Bash(pnpm format)",
+      "Bash(pnpm format:check)",
+      "Bash(pnpm generate:icons)",
+      "Bash(pnpm --filter *)",
+      "Bash(pnpm install)",
+      "Bash(pnpm add *)",
+      "Bash(pnpm remove *)",
+      "Bash(pnpm dlx *)",
+      "Bash(npx tsc --noEmit*)",
+      "Bash(npx prettier *)",
+      "Bash(node scripts/*)",
+      "Bash(node .claude/hooks/*)",
+      "Bash(git status*)",
+      "Bash(git log*)",
+      "Bash(git diff*)",
+      "Bash(git show*)",
+      "Bash(git branch*)",
+      "Bash(git switch*)",
+      "Bash(git checkout*)",
+      "Bash(git stash*)",
+      "Bash(git add *)",
+      "Bash(git mv *)",
+      "Bash(git restore*)",
+      "Bash(git fetch*)",
+      "Bash(git pull*)",
+      "Bash(git remote*)",
+      "Bash(gh pr view*)",
+      "Bash(gh pr list*)",
+      "Bash(gh issue view*)",
+      "Bash(gh issue list*)",
+      "Bash(ls *)",
+      "Bash(find *)",
+      "Bash(grep *)",
+      "Bash(rg *)",
+      "Bash(cat .claude/*)",
+      "Bash(cat work/*)"
+    ],
+    "deny": []
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/fsd-layer-check.mjs",
+            "timeout": 10,
+            "statusMessage": "FSD 경계 검사"
+          }
+        ]
+      }
+    ]
+  }
+}

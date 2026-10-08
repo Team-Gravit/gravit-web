@@ -1,0 +1,26 @@
+# 빌드 산출물
+dist
+build
+.turbo
+.expo
+.expo-shared
+
+# 네이티브 프로젝트 (prebuild 산출물)
+apps/native/android
+apps/native/ios
+
+# 별도 워크스페이스
+apps/legacy-web
+
+# 의존성
+node_modules
+pnpm-lock.yaml
+
+# TanStack Router generated source (committed, but not edited manually)
+apps/web/src/app/routeTree.gen.ts
+
+# MSW generated worker
+apps/web/public/mockServiceWorker.js
+
+# 다른 프로젝트에서 가져온 참조용 하네스 (우리가 포맷할 대상이 아님)
+docs/_reference

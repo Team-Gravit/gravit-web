@@ -1,0 +1,7 @@
+@layer lottie-react;
+
+@import 'tailwindcss';
+@import './tokens.css';
+@import './base.css';
+@import './utilities.css';
+@plugin "@tailwindcss/typography";

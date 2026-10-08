@@ -1,0 +1,63 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Foundations/Radius" />
+
+# Radius
+
+`app/styles/tokens.css`의 `@theme static`에 정의된 radius 토큰입니다.
+값의 단일 소스는 `tokens.css`입니다.
+
+> 컴포넌트에서는 임의의 값을 하드코딩하지 말고 `rounded-8`, `rounded-12`처럼 토큰 기반 Tailwind class를 사용합니다.
+
+export const radiusTokens = [
+  { token: '4', value: '4px' },
+  { token: '6', value: '6px' },
+  { token: '8', value: '8px' },
+  { token: '10', value: '10px' },
+  { token: '12', value: '12px' },
+  { token: '16', value: '16px' },
+  { token: '20', value: '20px' },
+  { token: '24', value: '24px' },
+];
+
+export const Row = ({ name, value, radius }) => (
+  <div
+    style={{
+      display: 'grid',
+      gridTemplateColumns: 'minmax(120px, 1fr) 96px 72px',
+      alignItems: 'center',
+      gap: '24px',
+      padding: '16px 0',
+      borderBottom: '1px solid var(--color-divider-1)',
+    }}
+  >
+    <code>{name}</code>
+    <div
+      aria-label={`${name} radius preview`}
+      style={{
+        width: '96px',
+        height: '64px',
+        background: 'var(--color-purple-500)',
+        borderRadius: radius,
+      }}
+    />
+    <span>{value}</span>
+  </div>
+);
+
+## Scale
+
+모든 미리보기는 radius 차이만 비교할 수 있도록 `96 × 64px`로 고정합니다.
+
+<div>
+  {radiusTokens.map(({ token, value }) => (
+    <Row key={token} name={`rounded-${token}`} value={value} radius={`var(--radius-${token})`} />
+  ))}
+</div>
+
+## Static
+
+`rounded-none`과 `rounded-full`은 숫자 스케일과 별개로 제공되는 Tailwind 정적 유틸리티입니다.
+
+<Row name="rounded-none" value="0px" radius="0" />
+<Row name="rounded-full" value="9999px" radius="9999px" />

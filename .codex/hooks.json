@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/fsd-layer-check.mjs",
+            "timeout": 10,
+            "statusMessage": "FSD 경계 검사"
+          }
+        ]
+      }
+    ]
+  }
+}
