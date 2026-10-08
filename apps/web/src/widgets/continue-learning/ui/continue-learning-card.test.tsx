@@ -41,12 +41,12 @@ describe('ContinueLearningCard', () => {
     expect(rows.map((row) => row.textContent)).toEqual([
       'Unit 01배열학습 완료',
       'Unit 02스택학습 중',
-      'Unit 03큐잠김',
+      'Unit 03큐학습 전',
     ]);
     expect(rows.map((row) => row.getAttribute('data-status'))).toEqual([
       'completed',
       'inProgress',
-      'locked',
+      'notStarted',
     ]);
 
     expect(screen.getByRole('link', { name: '2강 이어서 학습하기' })).toHaveAttribute(

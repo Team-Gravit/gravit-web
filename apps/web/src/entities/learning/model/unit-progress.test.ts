@@ -13,7 +13,7 @@ describe('toUnitProgressList', () => {
     expect(UNITS.map((unit) => [unit.order, unit.status])).toEqual([
       [1, 'completed'],
       [2, 'inProgress'],
-      [3, 'locked'],
+      [3, 'notStarted'],
     ]);
   });
 });
