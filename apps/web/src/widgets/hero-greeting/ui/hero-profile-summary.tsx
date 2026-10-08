@@ -1,14 +1,20 @@
 import { useId, type ReactNode } from 'react';
 
+import { Link } from '@tanstack/react-router';
+
 import { ProfileAvatar, useUserProfile } from '@/entities/user';
 import { TierIcon, useLeagueSummary } from '@/entities/league';
 import { cn } from '@/shared/lib/cn';
+import { Icon } from '@/shared/ui/icon';
 
 export interface HeroProfileSummaryProps {
   className?: string;
 }
 
-/** 두 조회를 독립적으로 렌더링해 한쪽 실패가 다른 항목을 숨기지 않게 한다. */
+/**
+ * 두 조회를 독립적으로 렌더링해 한쪽 실패가 다른 항목을 숨기지 않게 한다.
+ * 오른쪽 끝의 알림은 좁은 화면 전체 화면 알림(`/notifications`)으로 간다 (시안 MAIN-01-MOB).
+ */
 export function HeroProfileSummary({ className }: HeroProfileSummaryProps) {
   const { data: profile } = useUserProfile();
   const { data: league } = useLeagueSummary();
@@ -16,25 +22,31 @@ export function HeroProfileSummary({ className }: HeroProfileSummaryProps) {
   return (
     <div
       data-slot="hero-profile-summary"
-      className={cn('flex items-center gap-4 text-label1 text-text-1-w', className)}
+      className={cn('flex items-center justify-between text-label1 text-text-1-w', className)}
     >
-      {profile ? (
-        <div data-slot="hero-profile-level" className="flex items-center gap-2">
-          <HeroProgressRing value={profile.currentXp} max={profile.maxXp}>
-            <ProfileAvatar colorNumber={profile.profileImageNumber} className="size-6" />
-          </HeroProgressRing>
-          <span>LV {profile.level}</span>
-        </div>
-      ) : null}
+      <div className="flex items-center gap-4">
+        {profile ? (
+          <div data-slot="hero-profile-level" className="flex items-center gap-2">
+            <HeroProgressRing value={profile.currentXp} max={profile.maxXp}>
+              <ProfileAvatar colorNumber={profile.profileImageNumber} className="size-6" />
+            </HeroProgressRing>
+            <span>LV {profile.level}</span>
+          </div>
+        ) : null}
 
-      {league ? (
-        <div data-slot="hero-profile-tier" className="flex items-center gap-2">
-          <HeroProgressRing value={league.currentLP} min={league.minLP} max={league.maxLP}>
-            <TierIcon tierId={league.leagueId} aria-hidden className="size-6" />
-          </HeroProgressRing>
-          <span>{league.leagueName}</span>
-        </div>
-      ) : null}
+        {league ? (
+          <div data-slot="hero-profile-tier" className="flex items-center gap-2">
+            <HeroProgressRing value={league.currentLP} min={league.minLP} max={league.maxLP}>
+              <TierIcon tierId={league.leagueId} aria-hidden className="size-6" />
+            </HeroProgressRing>
+            <span>{league.leagueName}</span>
+          </div>
+        ) : null}
+      </div>
+
+      <Link to="/notifications" aria-label="알림" className="inline-flex p-1">
+        <Icon name="bell" size={24} />
+      </Link>
     </div>
   );
 }
