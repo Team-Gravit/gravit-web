@@ -1,4 +1,12 @@
-import { Children, isValidElement, useState, type ComponentProps, type ReactNode } from 'react';
+import {
+  Children,
+  createContext,
+  isValidElement,
+  useContext,
+  useState,
+  type ComponentProps,
+  type ReactNode,
+} from 'react';
 
 import ReactMarkdown, { type Components, type ExtraProps } from 'react-markdown';
 import remarkCjkFriendly from 'remark-cjk-friendly/parseOnly';
@@ -25,8 +33,49 @@ const markdownVariants = cva(['prose max-w-none break-words', INLINE_CODE_CLASS]
       md: 'prose-base',
       sm: 'prose-sm',
     },
+    variant: {
+      default: '',
+      plain:
+        'prose-code:border-0 prose-blockquote:border-0 prose-thead:border-0 prose-tr:border-0 prose-th:border-0 prose-td:border-0',
+    },
   },
-  defaultVariants: { size: 'md' },
+  defaultVariants: { size: 'md', variant: 'default' },
+});
+
+const codeBlockVariants = cva(
+  'not-prose my-6 min-w-0 max-w-full overflow-hidden rounded-8 bg-code-bg',
+  {
+    variants: {
+      variant: {
+        default: 'border border-code-border',
+        plain: '',
+      },
+    },
+    defaultVariants: { variant: 'default' },
+  },
+);
+
+const codeBlockHeaderVariants = cva(
+  'flex items-center justify-between px-4 text-caption1 text-code-muted',
+  {
+    variants: {
+      variant: {
+        default: 'border-b border-code-border py-2',
+        plain: 'pt-3',
+      },
+    },
+    defaultVariants: { variant: 'default' },
+  },
+);
+
+interface CodeBlockOptions {
+  variant: NonNullable<VariantProps<typeof markdownVariants>['variant']>;
+  showCopyButton: boolean;
+}
+
+const CodeBlockContext = createContext<CodeBlockOptions>({
+  variant: 'default',
+  showCopyButton: true,
 });
 
 // react-markdown의 HAST `node`가 DOM 속성으로 전달되지 않게 제거한다.
@@ -97,13 +146,14 @@ function getCodeBlockInfo(children: ReactNode) {
   );
 
   if (!isValidElement<CodeElementProps>(codeElement)) {
-    return { languageLabel: 'Text', source: toPlainText(children) };
+    return { languageLabel: 'Text', hasLanguage: false, source: toPlainText(children) };
   }
 
   const language = codeElement.props.className?.match(/(?:^|\s)language-([\w-]+)/)?.[1];
 
   return {
     languageLabel: language ? (LANGUAGE_LABELS[language] ?? language.toUpperCase()) : 'Text',
+    hasLanguage: Boolean(language),
     source: toPlainText(codeElement.props.children).replace(/\n$/, ''),
   };
 }
@@ -111,8 +161,10 @@ function getCodeBlockInfo(children: ReactNode) {
 type MarkdownCodeBlockProps = ComponentProps<'pre'> & ExtraProps;
 
 function MarkdownCodeBlock({ children, className, ...props }: MarkdownCodeBlockProps) {
+  const { variant, showCopyButton } = useContext(CodeBlockContext);
   const [copyStatus, setCopyStatus] = useState<'idle' | 'copied' | 'failed'>('idle');
-  const { languageLabel, source } = getCodeBlockInfo(children);
+  const { languageLabel, hasLanguage, source } = getCodeBlockInfo(children);
+  const showHeader = variant === 'default' || hasLanguage || showCopyButton;
 
   const handleCopy = async () => {
     try {
@@ -127,20 +179,23 @@ function MarkdownCodeBlock({ children, className, ...props }: MarkdownCodeBlockP
     copyStatus === 'copied' ? '복사됨' : copyStatus === 'failed' ? '복사 실패' : '복사';
 
   return (
-    <div
-      data-slot="markdown-code-block"
-      className="not-prose my-6 min-w-0 max-w-full overflow-hidden rounded-8 border border-code-border bg-code-bg"
-    >
-      <div className="flex items-center justify-between border-b border-code-border px-4 py-2 text-caption1 text-code-muted">
-        <span className="font-mono">{languageLabel}</span>
-        <button
-          type="button"
-          className="cursor-pointer rounded-4 px-2 py-1 hover:bg-code-border/50 focus-visible:ring-2 focus-visible:ring-main focus-visible:outline-none"
-          onClick={() => void handleCopy()}
-        >
-          <span aria-live="polite">{copyLabel}</span>
-        </button>
-      </div>
+    <div data-slot="markdown-code-block" className={codeBlockVariants({ variant })}>
+      {showHeader ? (
+        <div className={codeBlockHeaderVariants({ variant })}>
+          <span className="font-mono">
+            {hasLanguage || variant === 'default' ? languageLabel : null}
+          </span>
+          {showCopyButton ? (
+            <button
+              type="button"
+              className="cursor-pointer rounded-4 px-2 py-1 hover:bg-code-border/50 focus-visible:ring-2 focus-visible:ring-main focus-visible:outline-none"
+              onClick={() => void handleCopy()}
+            >
+              <span aria-live="polite">{copyLabel}</span>
+            </button>
+          ) : null}
+        </div>
+      ) : null}
       <pre
         tabIndex={0}
         aria-label={`${languageLabel} 코드`}
@@ -173,29 +228,38 @@ const MARKDOWN_COMPONENTS: Components = {
 export interface MarkdownProps extends VariantProps<typeof markdownVariants> {
   children: string;
   className?: string;
+  showCopyButton?: boolean;
 }
 
 /**
  * Markdown을 Typography prose 스타일로 렌더링한다.
  * GFM과 한글 강조 문법을 지원하며, 원시 HTML은 `<br>`과 `<img>`만 허용한다.
  */
-export function Markdown({ children, size, className }: MarkdownProps) {
+export function Markdown({
+  children,
+  size,
+  variant = 'default',
+  showCopyButton = true,
+  className,
+}: MarkdownProps) {
   return (
     <div
       data-slot="markdown"
       className={cn(
         'w-full min-w-0 max-w-full overflow-x-hidden',
-        markdownVariants({ size }),
+        markdownVariants({ size, variant }),
         className,
       )}
     >
-      <ReactMarkdown
-        remarkPlugins={REMARK_PLUGINS}
-        rehypePlugins={REHYPE_PLUGINS}
-        components={MARKDOWN_COMPONENTS}
-      >
-        {children}
-      </ReactMarkdown>
+      <CodeBlockContext.Provider value={{ variant: variant ?? 'default', showCopyButton }}>
+        <ReactMarkdown
+          remarkPlugins={REMARK_PLUGINS}
+          rehypePlugins={REHYPE_PLUGINS}
+          components={MARKDOWN_COMPONENTS}
+        >
+          {children}
+        </ReactMarkdown>
+      </CodeBlockContext.Provider>
     </div>
   );
 }
