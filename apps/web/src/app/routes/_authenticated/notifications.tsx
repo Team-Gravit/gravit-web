@@ -4,7 +4,7 @@ import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { useIsWideViewport } from '@/shared/lib/use-is-wide-viewport';
 import { NotificationsPage } from '@/pages/notifications';
 
-export const Route = createFileRoute('/_authenticated/_app-shell/notifications')({
+export const Route = createFileRoute('/_authenticated/notifications')({
   component: NotificationsRoute,
 });
 
