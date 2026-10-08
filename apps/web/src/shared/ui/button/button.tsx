@@ -56,6 +56,11 @@ const buttonVariants = cva(
           'hover:bg-semantic-error/5 active:bg-semantic-error/5',
           'disabled:border-divider-1 disabled:text-text-4',
         ],
+        'stroke-neutral': [
+          'border-divider-1 bg-bg-0 text-main',
+          'hover:bg-bg-2 active:bg-bg-2',
+          'disabled:text-text-4',
+        ],
         'stroke-secondary': [
           'border-divider-1 bg-bg-1 text-text-2',
           'hover:bg-bg-2 active:bg-bg-2',
