@@ -1,12 +1,11 @@
 import { describe, expect, it } from 'vitest';
-import { screen, waitFor, within } from '@testing-library/react';
+import { screen, within } from '@testing-library/react';
 import { HttpResponse, http } from 'msw';
 
 import { server } from '@/shared/api/mocks/server';
 import { renderWithProviders } from '@/shared/lib/testing';
 
 import { ContinueLearningCard } from './continue-learning-card';
-import { RecentUnitCard } from './recent-unit-card';
 
 const LEARNING_URL = '*/api/v1/main-pages/learning';
 const LEARNING = {
@@ -41,12 +40,12 @@ describe('ContinueLearningCard', () => {
     expect(rows.map((row) => row.textContent)).toEqual([
       'Unit 01배열학습 완료',
       'Unit 02스택학습 중',
-      'Unit 03큐잠김',
+      'Unit 03큐학습 전',
     ]);
     expect(rows.map((row) => row.getAttribute('data-status'))).toEqual([
       'completed',
       'inProgress',
-      'locked',
+      'notStarted',
     ]);
 
     expect(screen.getByRole('link', { name: '2강 이어서 학습하기' })).toHaveAttribute(
@@ -111,26 +110,5 @@ describe('ContinueLearningCard', () => {
       'aria-busy',
       'true',
     );
-  });
-});
-
-describe('RecentUnitCard', () => {
-  it('최근 챕터의 첫 유닛 카드 한 장, href /learning/units/11 (AC-16)', async () => {
-    server.use(http.get(LEARNING_URL, () => HttpResponse.json(LEARNING)));
-    await renderWithProviders(RecentUnitCard, { extraPaths: EXTRA_PATHS });
-
-    const card = await screen.findByRole('link', { name: '배열 학습하러 가기' });
-    expect(card).toHaveAttribute('href', '/learning/units/11');
-    expect(card).toHaveTextContent('Lesson 11');
-    expect(screen.getAllByRole('link')).toHaveLength(1);
-  });
-
-  it('유닛이 없으면 아무것도 그리지 않는다 (기준선 H3)', async () => {
-    server.use(http.get(LEARNING_URL, () => HttpResponse.json({ ...LEARNING, units: [] })));
-    const { container } = await renderWithProviders(RecentUnitCard, { extraPaths: EXTRA_PATHS });
-
-    // 로딩 중에도 카드가 없으므로 응답 처리가 끝난 뒤 빈 상태인지 확인한다.
-    await waitFor(() => expect(container.querySelector('[aria-busy="true"]')).toBeNull());
-    expect(container.querySelector('[data-slot="unit-card"]')).toBeNull();
   });
 });

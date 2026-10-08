@@ -1,11 +1,12 @@
 import { describe, expect, it } from 'vitest';
-import { screen, within } from '@testing-library/react';
+import { screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { HttpResponse, http } from 'msw';
 
 import { server } from '@/shared/api/mocks/server';
 import { renderWithProviders } from '@/shared/lib/testing';
 
+import { RecommendedUnitCard } from './recommended-unit-card';
 import { RecommendedUnits } from './recommended-units';
 
 const UNITS_URL = '*/api/v1/main-pages/units';
@@ -51,5 +52,29 @@ describe('RecommendedUnits', () => {
 
     expect(await screen.findByRole('link', { name: '자료구조 학습하러 가기' })).toBeInTheDocument();
     expect(requests).toBe(2);
+  });
+});
+
+describe('RecommendedUnitCard', () => {
+  it('넓은 화면과 같은 추천 유닛 중 첫 항목 한 장만 「새 주제 시작하기」로 보인다', async () => {
+    server.use(http.get(UNITS_URL, () => HttpResponse.json(UNITS)));
+    await renderWithProviders(RecommendedUnitCard, {
+      extraPaths: ['/learning/units/$unitId'],
+    });
+
+    const card = await screen.findByRole('link', { name: '자료구조 학습하러 가기' });
+    expect(card).toHaveAttribute('href', '/learning/units/21');
+    expect(card).toHaveTextContent('새 주제 시작하기');
+    expect(screen.getAllByRole('link')).toHaveLength(1);
+  });
+
+  it('추천 유닛이 없으면 아무것도 그리지 않는다', async () => {
+    server.use(http.get(UNITS_URL, () => HttpResponse.json([])));
+    const { container } = await renderWithProviders(RecommendedUnitCard, {
+      extraPaths: ['/learning/units/$unitId'],
+    });
+
+    await waitFor(() => expect(container.querySelector('[aria-busy="true"]')).toBeNull());
+    expect(container.querySelector('[data-slot="unit-card"]')).toBeNull();
   });
 });

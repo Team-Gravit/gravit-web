@@ -22,11 +22,11 @@ const RECORD = {
 };
 
 function renderStreak() {
-  return renderWithProviders(LearningStreak, { extraPaths: ['/league', '/learning'] });
+  return renderWithProviders(LearningStreak, { extraPaths: ['/my/learning', '/learning'] });
 }
 
 describe('LearningStreak', () => {
-  it('연속 일수 · 뱃지 7개 · 「자세히 보기」→/league 를 그리고 learning 은 부르지 않는다 (AC-19)', async () => {
+  it('연속 일수 · 뱃지 7개 · 「자세히 보기」→/my/learning 을 그리고 learning 은 부르지 않는다 (AC-19)', async () => {
     let learningRequests = 0;
     server.use(
       http.get(WEEKLY_RECORD_URL, () => HttpResponse.json(RECORD)),
@@ -52,7 +52,10 @@ describe('LearningStreak', () => {
       'upcoming',
     ]);
 
-    expect(screen.getByRole('link', { name: '자세히 보기' })).toHaveAttribute('href', '/league');
+    expect(screen.getByRole('link', { name: '자세히 보기' })).toHaveAttribute(
+      'href',
+      '/my/learning',
+    );
     expect(learningRequests).toBe(0);
   });
 

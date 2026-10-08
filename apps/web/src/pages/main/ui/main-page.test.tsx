@@ -172,7 +172,6 @@ describe('MainPage — 넓은 화면', () => {
     const requestCounts = useSuccessHandlers();
     await renderMainPage();
 
-    // 마지막 섹션까지 렌더링된 뒤 모든 요청 횟수를 확인한다.
     await screen.findByRole('link', { name: '자료구조 학습하러 가기' });
     await screen.findByText('실버 3');
     // 페이지 단위 테스트에는 앱 셸 헤더가 없으므로 users 요청은 발생하지 않는다.
@@ -206,7 +205,6 @@ describe('MainPage — 넓은 화면', () => {
     await renderMainPage();
 
     const heading = screen.getByRole('heading', { level: 1 });
-    // 로딩 자리표시자가 사라진 뒤 최종 문구를 확인한다.
     await waitFor(() => expect(heading.querySelector('[aria-busy="true"]')).toBeNull());
     expect(heading).toHaveTextContent(/^어서오세요,\s*$/);
     // 같은 프로필 오류를 사용하는 성장 현황은 오류 UI를 표시하므로 히어로 범위만 확인한다.
@@ -230,13 +228,12 @@ describe('MainPage — 좁은 화면', () => {
     expect(within(hero as HTMLElement).getByText('LV 1')).toBeInTheDocument();
   });
 
-  it('좁은 화면은 users · units 를 부르지 않고 learning 은 두 카드가 공유해 1회다 (AC-1 · H1)', async () => {
+  it('좁은 화면은 users 를 부르지 않고, 새 주제 카드는 넓은 화면과 같은 units 를 1회 부른다 (AC-1 · FIX-053)', async () => {
     const requestCounts = useSuccessHandlers();
     await renderMainPage();
 
     await screen.findByText('LV 1');
-    // 쿼리를 공유하는 두 카드가 모두 렌더링된 뒤 요청 횟수를 확인한다.
-    await screen.findByRole('link', { name: '배열 학습하러 가기' });
+    await screen.findByRole('link', { name: '자료구조 학습하러 가기' });
     await screen.findByRole('link', { name: '1강 이어서 학습하기' });
     expect(requestCounts).toEqual({
       profile: 1,
@@ -245,7 +242,7 @@ describe('MainPage — 좁은 화면', () => {
       weeklyRecord: 1,
       mission: 1,
       learning: 1,
-      units: 0,
+      units: 1,
     });
   });
 });

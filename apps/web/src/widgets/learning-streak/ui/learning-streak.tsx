@@ -55,7 +55,7 @@ export function LearningStreak({ className }: LearningStreakProps) {
     <Card data-section="learning-streak" className={cn('p-4 md:p-5', className)}>
       <CardHeader>
         <CardTitle>연속 학습일</CardTitle>
-        <CardLink to="/league">자세히 보기</CardLink>
+        <CardLink to="/my/learning">자세히 보기</CardLink>
       </CardHeader>
       {body}
     </Card>

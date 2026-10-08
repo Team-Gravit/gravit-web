@@ -3,7 +3,7 @@ import type {
   UnitProgressSummaryResponseStatus,
 } from '@/shared/api/generated/model';
 
-export type UnitProgressStatus = 'completed' | 'inProgress' | 'locked';
+export type UnitProgressStatus = 'completed' | 'inProgress' | 'notStarted';
 
 export interface UnitProgress {
   unitId: number;
@@ -16,7 +16,7 @@ export interface UnitProgress {
 const STATUS_MAP: Record<UnitProgressSummaryResponseStatus, UnitProgressStatus> = {
   COMPLETED: 'completed',
   IN_PROGRESS: 'inProgress',
-  NOT_STARTED: 'locked',
+  NOT_STARTED: 'notStarted',
 };
 
 export function toUnitProgressList(units: UnitProgressSummaryResponse[]): UnitProgress[] {

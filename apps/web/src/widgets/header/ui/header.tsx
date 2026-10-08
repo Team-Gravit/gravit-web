@@ -37,12 +37,18 @@ export function Header({ variant = 'solid', notificationSlot }: HeaderProps) {
           style.text,
         )}
       >
-        <GravitLogo
-          variant={variant === 'overlay' ? 'mono' : 'gradient'}
-          aria-label="Gravit"
-          role="img"
-          className="h-6 w-auto"
-        />
+        <Link
+          to="/main"
+          aria-label="홈으로 이동"
+          className="inline-flex rounded-4 outline-none focus-visible:ring-3 focus-visible:ring-purple-200"
+        >
+          <GravitLogo
+            variant={variant === 'overlay' ? 'mono' : 'gradient'}
+            aria-label="Gravit"
+            role="img"
+            className="h-6 w-auto"
+          />
+        </Link>
 
         <nav aria-label="주요 메뉴">
           <ul className="flex items-center gap-20 text-heading2">
