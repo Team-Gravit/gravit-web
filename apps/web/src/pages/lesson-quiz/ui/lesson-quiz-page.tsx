@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { useNavigate } from '@tanstack/react-router';
+import { useLocation, useNavigate } from '@tanstack/react-router';
 
 import { cn } from '@/shared/lib/cn';
 import { useInitialMinimumDuration } from '@/shared/lib/use-initial-minimum-duration';
@@ -78,6 +78,9 @@ interface LessonQuizScreenProps {
 /** 풀이 화면에 레슨 전용 동작(일괄 제출 · 결과 이동 · 북마크)을 연결한다. */
 function LessonQuizScreen({ lessonId, title, unitId, problems }: LessonQuizScreenProps) {
   const navigate = useNavigate();
+  const launchedFromUnitId = useLocation({
+    select: (location) => location.state.launchedFromUnitId,
+  });
   const { answersByProblemId, startedAt } = useQuizSession();
   const { submit: submitLesson, isPending: isSubmitting } = useSubmitLesson({
     // 실패 후에도 풀이 화면을 유지하므로 토스트로 제출 결과를 알린다.
@@ -91,7 +94,7 @@ function LessonQuizScreen({ lessonId, title, unitId, problems }: LessonQuizScree
         to: RESULT_ROUTE,
         params: { lessonId: String(lessonId), submissionId: String(lessonSubmissionId) },
         // 결과 라우트는 제출 직후의 이동만 허용한다.
-        state: { fromLessonSubmission: true },
+        state: { fromLessonSubmission: true, launchedFromUnitId },
         replace: true,
       });
     },

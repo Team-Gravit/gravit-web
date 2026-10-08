@@ -1,6 +1,7 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import { renderWithProviders } from '@/shared/lib/testing';
 
@@ -16,6 +17,32 @@ describe('PageTitleBar', () => {
     );
 
     expect(screen.getByRole('link', { name: '뒤로 가기' })).toHaveAttribute('href', '/learning');
+  });
+
+  it('앱 안에 이전 화면이 있으면 「뒤로 가기」가 backTo 대신 이전 화면으로 돌아간다', async () => {
+    const user = userEvent.setup();
+    const { router } = await renderWithProviders(
+      () => <PageTitleBar title="알림" backTo={{ to: '/my' }} />,
+      { path: '/notifications', extraPaths: ['/main', '/my'] },
+    );
+    await router.navigate({ to: '/main' });
+    await router.navigate({ to: '/notifications' });
+
+    await user.click(await screen.findByRole('link', { name: '뒤로 가기' }));
+
+    await vi.waitFor(() => expect(router.state.location.pathname).toBe('/main'));
+  });
+
+  it('이전 화면이 없으면(직접 진입) 「뒤로 가기」가 backTo 로 이동한다', async () => {
+    const user = userEvent.setup();
+    const { router } = await renderWithProviders(
+      () => <PageTitleBar title="알림" backTo={{ to: '/my' }} />,
+      { path: '/notifications', extraPaths: ['/my'] },
+    );
+
+    await user.click(screen.getByRole('link', { name: '뒤로 가기' }));
+
+    await vi.waitFor(() => expect(router.state.location.pathname).toBe('/my'));
   });
 
   it('backTo가 없으면 링크를 표시하지 않는다', async () => {

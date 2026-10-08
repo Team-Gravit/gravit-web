@@ -147,6 +147,7 @@ export function UnitDetailPage({ unitId }: UnitDetailPageProps) {
                       <Link
                         to="/learning/lessons/$lessonId"
                         params={{ lessonId: String(lesson.lessonId) }}
+                        state={{ launchedFromUnitId: Number(unitId) }}
                         className="block rounded-8 outline-none focus-visible:ring-3 focus-visible:ring-purple-200"
                       >
                         <LessonItem lesson={lesson} />

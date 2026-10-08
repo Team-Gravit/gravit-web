@@ -1,8 +1,8 @@
 import { Link } from '@tanstack/react-router';
 
+import { useHistoryBackClick } from '@/shared/lib/use-history-back-click';
 import { Icon } from '@/shared/ui/icon';
 
-// 풀이를 닫으면 현재 레슨이 속한 유닛 상세로 돌아간다.
 const EXIT_ROUTE = '/learning/units/$unitId';
 
 export interface QuizTopBarProps {
@@ -12,9 +12,11 @@ export interface QuizTopBarProps {
 
 /**
  * `_focus` 레이아웃은 앱 셸을 숨기므로 화면 크기와 관계없이 이 상단바를 사용한다.
- * 닫을 때는 풀이 화면을 방문 기록에 남기지 않는다.
+ * 이전 기록이 없는 직접 진입에서는 유닛 상세로 현재 기록을 교체한다.
  */
 export function QuizTopBar({ title, unitId }: QuizTopBarProps) {
+  const handleCloseClick = useHistoryBackClick();
+
   return (
     <header
       data-slot="quiz-top-bar"
@@ -25,6 +27,7 @@ export function QuizTopBar({ title, unitId }: QuizTopBarProps) {
         to={EXIT_ROUTE}
         params={{ unitId: String(unitId) }}
         replace
+        onClick={handleCloseClick}
         aria-label="풀이 닫기"
         className="absolute left-5 inline-flex"
       >
