@@ -11,7 +11,6 @@ export interface UnitCardProps {
   title: string;
   unitId: number;
   chapterId: number;
-  /** 제목 위에 표시하는 선택적 보조 라벨. */
   eyebrow?: string;
   className?: string;
 }
@@ -45,11 +44,12 @@ export function UnitCard({ title, unitId, chapterId, eyebrow, className }: UnitC
         </span>
       </span>
       {planet ? (
+        // 화면 폭에 따라 행성 크기가 달라지지 않도록 고정된 카드 높이를 기준으로 맞춘다.
         <img
           src={planet}
           alt=""
           aria-hidden
-          className="pointer-events-none absolute right-0 bottom-0 h-[70%] translate-x-1/6 translate-y-1/6 object-contain md:h-auto md:w-1/2"
+          className="pointer-events-none absolute right-0 bottom-0 h-[70%] w-auto translate-x-1/6 translate-y-1/6 object-contain md:h-4/5"
         />
       ) : null}
       <span className="relative z-10 mt-auto text-label1 text-purple-50 underline underline-offset-3 md:text-body1-normal">
