@@ -1,8 +1,9 @@
 import { useCallback, useState } from 'react';
 
-import { Link } from '@tanstack/react-router';
+import { Link, useLocation } from '@tanstack/react-router';
 
 import { cn } from '@/shared/lib/cn';
+import { useHistoryBackClick } from '@/shared/lib/use-history-back-click';
 import { Button } from '@/shared/ui/button';
 import { CardRetryStatus, CardStatus } from '@/shared/ui/card';
 import { useLessonResult } from '@/entities/learning';
@@ -29,6 +30,15 @@ export function LessonResultPage({ lessonSubmissionId }: LessonResultPageProps) 
 
   const isArtworkVisible = isBackgroundReady && isHeroReady;
 
+  const launchedFromUnitId = useLocation({
+    select: (location) => location.state.launchedFromUnitId,
+  });
+  const resultUnitId = lessonResult?.unitSummaryResponse.unitId;
+  // 같은 유닛에서 시작했다면 기존 화면으로 돌아가 유닛 상세가 방문 기록에 중복되지 않게 한다.
+  const handleContinueClick = useHistoryBackClick({
+    isEnabled: resultUnitId !== undefined && launchedFromUnitId === resultUnitId,
+  });
+
   const handleBackgroundReady = useCallback(() => setIsBackgroundReady(true), []);
   const handleHeroReady = useCallback(() => setIsHeroReady(true), []);
 
@@ -47,7 +57,9 @@ export function LessonResultPage({ lessonSubmissionId }: LessonResultPageProps) 
             className="z-10"
             action={
               <Button asChild variant="stroke-default">
-                <Link to={HOME_ROUTE}>홈으로</Link>
+                <Link to={HOME_ROUTE} replace>
+                  홈으로
+                </Link>
               </Button>
             }
           />
@@ -86,12 +98,17 @@ export function LessonResultPage({ lessonSubmissionId }: LessonResultPageProps) 
                 size="cta"
                 className="flex-1 basis-0 bg-bg-0"
               >
-                <Link to={HOME_ROUTE}>홈으로</Link>
+                {/* 뒤로가기로 제출 결과에 재진입하지 않도록 현재 기록을 교체한다. */}
+                <Link to={HOME_ROUTE} replace>
+                  홈으로
+                </Link>
               </Button>
               <Button asChild size="cta" className="flex-1 basis-0">
                 <Link
                   to={CONTINUE_ROUTE}
                   params={{ unitId: String(lessonResult.unitSummaryResponse.unitId) }}
+                  replace
+                  onClick={handleContinueClick}
                 >
                   이어서 학습하기
                 </Link>

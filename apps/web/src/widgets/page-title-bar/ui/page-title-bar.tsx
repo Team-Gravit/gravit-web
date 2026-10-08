@@ -3,14 +3,13 @@ import type { ReactNode } from 'react';
 import { Link, type LinkProps } from '@tanstack/react-router';
 
 import { cn } from '@/shared/lib/cn';
+import { useHistoryBackClick } from '@/shared/lib/use-history-back-click';
 import { Icon } from '@/shared/ui/icon';
 
 export interface PageTitleBarProps {
   title: string;
   /**
-   * 왼쪽 탐색 링크의 목적지. 전달하지 않으면 링크를 표시하지 않는다.
-   *
-   * 직접 진입해도 서비스 안의 상위 화면으로 이동하도록 브라우저 히스토리 대신 경로를 받는다.
+   * 이전 방문 기록이 없을 때 이동할 경로. 생략하면 탐색 링크를 숨긴다.
    */
   backTo?: LinkProps;
   /** 왼쪽 탐색의 의미와 아이콘. `close`는 전체 화면에서 빠져나갈 때 사용한다. */
@@ -31,6 +30,8 @@ export function PageTitleBar({
   rightSlot,
   className,
 }: PageTitleBarProps) {
+  const handleBackClick = useHistoryBackClick();
+
   return (
     <header
       data-slot="page-title-bar"
@@ -43,6 +44,7 @@ export function PageTitleBar({
       {backTo ? (
         <Link
           {...backTo}
+          onClick={handleBackClick}
           aria-label={backIcon === 'close' ? '닫기' : '뒤로 가기'}
           className="absolute left-0 inline-flex p-3"
         >

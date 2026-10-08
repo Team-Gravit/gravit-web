@@ -37,5 +37,7 @@ declare module '@tanstack/history' {
     fromOnboarding?: boolean;
     /** 레슨 제출 직후 결과 화면으로 이동했는지 여부. */
     fromLessonSubmission?: boolean;
+    /** 결과 화면에서 출발한 유닛으로 돌아갈 수 있는지 판단하는 데 사용한다. */
+    launchedFromUnitId?: number;
   }
 }
