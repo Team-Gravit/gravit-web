@@ -1,14 +1,17 @@
-import type { ReactNode } from 'react';
+import { useEffect, useRef, type ReactNode } from 'react';
 
 import { cn } from '@/shared/lib/cn';
 import { useIsWideViewport } from '@/shared/lib/use-is-wide-viewport';
 import { Button } from '@/shared/ui/button';
 import { CardStatus } from '@/shared/ui/card';
+import { ProgressBar } from '@/shared/ui/progress-bar';
 import { Spinner } from '@/shared/ui/spinner';
 import { ProblemCard, type Problem } from '@/entities/problem';
 import {
+  countCompletedProblems,
   ObjectiveSolver,
   PROBLEM_NAV_LABELS,
+  PROGRESS_PANEL_LABELS,
   SubjectiveAnswer,
   useQuizSession,
 } from '@/features/lesson-quiz';
@@ -62,6 +65,14 @@ export function QuizScreen({
   const { currentProblemIndex, startedAt, advance, getAdvanceAction } = useQuizSession();
   const currentProblem = problems[currentProblemIndex];
   const resultAction = currentProblem ? renderResultAction?.(currentProblem) : null;
+  const problemScrollRef = useRef<HTMLDivElement>(null);
+
+  // 문제를 바꿔도 같은 라우트라 라우터의 스크롤 복원이 동작하지 않는다. 새 문제는 맨 위부터 보여 준다.
+  useEffect(() => {
+    if (problemScrollRef.current) {
+      problemScrollRef.current.scrollTop = 0;
+    }
+  }, [currentProblemIndex]);
 
   const handleAdvance = () => {
     if (!currentProblem) return;
@@ -85,11 +96,15 @@ export function QuizScreen({
       {/* 제출 중에는 풀이 상태를 유지하고 inert로 뒤쪽 상호작용을 막는다. */}
       <div data-slot="quiz-surface" inert={isFinishing} className="flex min-h-0 flex-1 flex-col">
         <QuizTopBar title={title} unitId={unitId} />
+        {isWide ? null : <QuizProgressLine problems={problems} />}
         {/* 문제 영역의 상위 flex 자식에 min-h-0이 없으면 컨테이너가 내용만큼 늘어난다. */}
         <div className="flex min-h-0 w-full flex-1">
           {isWide ? <QuizProgressPanel problems={problems} className={PANEL_CLASS} /> : null}
           <main className="flex min-h-0 min-w-0 flex-1 flex-col">
-            <div className="scrollbar-gutter-stable min-h-0 flex-1 overflow-y-auto">
+            <div
+              ref={problemScrollRef}
+              className="scrollbar-gutter-stable min-h-0 flex-1 overflow-y-auto"
+            >
               {/* 내용이 짧을 때도 이동 버튼을 바닥에 두기 위해 최소 높이를 채운다. */}
               <div className="mx-auto flex min-h-full w-full max-w-300 flex-col gap-6 px-4 pt-5 md:px-8 md:pt-8">
                 <div className="flex justify-end">
@@ -121,6 +136,21 @@ export function QuizScreen({
       </div>
       {isFinishing ? <SubmittingOverlay /> : null}
     </div>
+  );
+}
+
+/** 좁은 화면에는 진행 패널이 없어 상단바 아래에 같은 진행률을 얇은 막대로 보인다. */
+function QuizProgressLine({ problems }: { problems: Problem[] }) {
+  const { answersByProblemId } = useQuizSession();
+  const completedProblemCount = countCompletedProblems(problems, answersByProblemId);
+
+  return (
+    <ProgressBar
+      fill="solid"
+      value={(completedProblemCount / problems.length) * 100}
+      aria-label={PROGRESS_PANEL_LABELS.progress}
+      className="h-0.75 shrink-0 rounded-none bg-purple-100"
+    />
   );
 }
 

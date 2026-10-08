@@ -62,6 +62,9 @@ export default function WebviewPage() {
         // 기본 UA 뒤에 덧붙인다. `userAgent`로 통째로 바꾸면 WebKit 정보가 사라져 네이버·구글 로그인이
         // 알 수 없는 브라우저로 판단해 차단한다. 웹은 `GravitNative/` 포함 여부로 앱 환경을 판별한다.
         applicationNameForUserAgent="GravitNative/1.0"
+        // 웹 화면이 스크롤을 직접 관리한다. WebView 가 튕기면 고정 헤더 · 바텀탭까지 함께 끌려간다.
+        bounces={false}
+        overScrollMode="never"
         cacheEnabled={!__DEV__}
         cacheMode={__DEV__ ? 'LOAD_NO_CACHE' : 'LOAD_DEFAULT'}
         originWhitelist={['*']}

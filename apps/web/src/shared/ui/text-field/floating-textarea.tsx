@@ -34,10 +34,7 @@ export function FloatingTextArea({
       {hasValue && <span className={FLOATING_LABEL_CLASS}>{label}</span>}
       <textarea
         value={value}
-        className={cn(
-          'h-full flex-1 resize-none text-body2-reading md:text-body1-normal',
-          FLOATING_INPUT_CLASS,
-        )}
+        className={cn('h-full flex-1 resize-none text-body1-normal', FLOATING_INPUT_CLASS)}
         {...props}
       />
     </div>

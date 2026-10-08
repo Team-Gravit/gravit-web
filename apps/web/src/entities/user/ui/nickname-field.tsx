@@ -56,7 +56,7 @@ export function NicknameField({ value, status, onChange, className }: NicknameFi
         aria-describedby={messageId}
         className={cn(
           'h-[54px] rounded-8 border border-divider-1 p-4 outline-none transition-colors w-full',
-          'text-label1 text-text-1 placeholder:text-text-4',
+          'text-body1-normal font-semibold text-text-1 placeholder:text-text-4 md:font-normal',
           'md:h-[50px] md:border-2 bg-white md:text-body1-normal',
           'data-[status=valid]:border-semantic-success data-[status=invalid]:border-semantic-error',
           'focus-visible:ring-3 focus-visible:ring-purple-200 focus-visible:ring-offset-2',

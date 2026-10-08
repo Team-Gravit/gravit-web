@@ -40,7 +40,7 @@ export function FloatingTextField({
       {hasValue && <span className={FLOATING_LABEL_CLASS}>{label}</span>}
       <input
         value={value}
-        className={cn('text-label1 md:text-headline2', FLOATING_INPUT_CLASS)}
+        className={cn('text-body1-normal font-semibold md:text-headline2', FLOATING_INPUT_CLASS)}
         {...props}
       />
     </div>

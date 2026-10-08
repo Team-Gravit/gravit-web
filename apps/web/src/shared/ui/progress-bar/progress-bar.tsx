@@ -3,15 +3,19 @@ import { cva, type VariantProps } from 'class-variance-authority';
 
 import { cn } from '@/shared/lib/cn';
 
-const progressBarFillVariants = cva('absolute inset-y-0 left-0 rounded-full', {
-  variants: {
-    fill: {
-      gradient: 'bg-brand-gradient',
-      solid: 'bg-main',
+// 채움 폭을 inline width 로 바꾸므로 width 를 전환 대상으로 지정해야 값이 바뀔 때 늘어나며 보인다.
+const progressBarFillVariants = cva(
+  'absolute inset-y-0 left-0 rounded-full transition-[width] duration-200 ease-in-out motion-reduce:transition-none',
+  {
+    variants: {
+      fill: {
+        gradient: 'bg-brand-gradient',
+        solid: 'bg-main',
+      },
     },
+    defaultVariants: { fill: 'gradient' },
   },
-  defaultVariants: { fill: 'gradient' },
-});
+);
 
 export interface ProgressBarProps
   extends Omit<ComponentProps<'div'>, 'children'>,

@@ -46,7 +46,7 @@ export function TextField({ tone, className, ref, ...props }: TextFieldProps) {
       aria-invalid={tone === 'error' || undefined}
       className={cn(
         textFieldVariants({ size: 'default', tone }),
-        'text-body2-reading outline-none placeholder:text-text-4',
+        'text-body1-normal outline-none placeholder:text-text-4 md:text-body2-reading',
         'focus-visible:border-main-1 disabled:cursor-not-allowed read-only:cursor-default',
         className,
       )}

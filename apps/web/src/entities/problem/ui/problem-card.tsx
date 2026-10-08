@@ -44,7 +44,7 @@ export function ProblemCard({
             size="sm"
             variant="plain"
             showCopyButton={false}
-            className="md:prose-base prose-p:whitespace-pre-line"
+            className="md:prose-base prose-p:whitespace-pre-line prose-p:text-body2-reading prose-p:text-text-1 md:prose-p:text-body1-reading"
           >
             {problem.content}
           </Markdown>
