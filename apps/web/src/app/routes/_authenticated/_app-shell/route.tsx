@@ -43,7 +43,7 @@ function AppShell() {
       <div
         data-scroll-restoration-id={APP_SHELL_SCROLL_RESTORATION_ID}
         className={cn(
-          'h-full overflow-y-auto md:pb-0',
+          'h-full overflow-y-auto overscroll-y-contain md:pb-0',
           !isBottomTabBarHidden && 'pb-(--bottom-tab-height)',
           headerVariant === 'solid' && 'md:pt-(--desktop-header-height)',
         )}

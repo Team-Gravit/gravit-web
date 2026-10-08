@@ -24,7 +24,7 @@ function SettingsShell() {
 
       <div
         data-scroll-restoration-id={SETTINGS_SCROLL_RESTORATION_ID}
-        className="h-full overflow-y-auto md:pt-(--desktop-header-height)"
+        className="h-full overflow-y-auto overscroll-y-contain md:pt-(--desktop-header-height)"
       >
         <Outlet />
       </div>

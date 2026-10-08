@@ -26,6 +26,13 @@
     box-sizing: border-box;
   }
 
+  /* 문서 끝에서 더 당길 때 페이지 전체(고정 헤더 · 바텀탭 포함)가 튕기지 않게 한다.
+     스크롤은 앱 셸 안쪽 영역이 맡으므로 문서 자체는 움직일 필요가 없다. */
+  html,
+  body {
+    overscroll-behavior: none;
+  }
+
   body {
     min-width: 320px;
     min-height: 100vh;
