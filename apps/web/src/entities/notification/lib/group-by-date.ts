@@ -8,7 +8,7 @@ export interface NotificationDateGroup {
 
 const WEEKDAYS = ['일', '월', '화', '수', '목', '금', '토'] as const;
 
-function formatDateLabel(createdAt: string): string {
+export function formatDateLabel(createdAt: string): string {
   const date = new Date(createdAt);
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
