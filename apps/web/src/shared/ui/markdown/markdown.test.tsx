@@ -37,6 +37,30 @@ function renderMarkdown(markdown: string) {
 }
 
 describe('Markdown', () => {
+  it('복사를 숨겨도 언어 표시와 코드 본문은 유지한다', () => {
+    render(
+      <Markdown variant="plain" showCopyButton={false}>
+        {'```python\nprint(1)\n```'}
+      </Markdown>,
+    );
+
+    expect(screen.getByText('Python')).toBeInTheDocument();
+    expect(screen.getByLabelText('Python 코드')).toHaveTextContent('print(1)');
+    expect(screen.queryByRole('button', { name: '복사' })).not.toBeInTheDocument();
+  });
+
+  it('간결한 코드 블록에 언어가 없으면 헤더 없이 본문만 표시한다', () => {
+    render(
+      <Markdown variant="plain" showCopyButton={false}>
+        {'```\nA -> B\n```'}
+      </Markdown>,
+    );
+
+    expect(screen.queryByText('Text')).not.toBeInTheDocument();
+    expect(screen.getByLabelText('Text 코드')).toHaveTextContent('A -> B');
+    expect(screen.queryByRole('button')).not.toBeInTheDocument();
+  });
+
   it('노트 원본이 쓰는 문법을 각각의 요소로 렌더링한다', () => {
     const container = renderMarkdown(NOTE_SYNTAX);
 
