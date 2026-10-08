@@ -48,6 +48,15 @@ describe('Header', () => {
     expect(screen.getByRole('button', { name: '로그아웃' })).toBeInTheDocument();
   });
 
+  it('로고를 누르면 홈(/main)으로 간다', async () => {
+    await renderHeader();
+
+    expect(await screen.findByRole('link', { name: '홈으로 이동' })).toHaveAttribute(
+      'href',
+      '/main',
+    );
+  });
+
   it('/main 에서는 「홈」만 aria-current="page" 다 (AC-4)', async () => {
     await renderHeader();
 
