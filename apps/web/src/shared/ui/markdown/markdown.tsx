@@ -36,7 +36,8 @@ const markdownVariants = cva(['prose max-w-none break-words', INLINE_CODE_CLASS]
     variant: {
       default: '',
       plain:
-        'prose-code:border-0 prose-blockquote:border-0 prose-thead:border-0 prose-tr:border-0 prose-th:border-0 prose-td:border-0',
+        // 표는 칸이 여러 줄이 되어도 행 경계가 보이도록 가로 구분선만 남긴다.
+        'prose-code:border-0 prose-blockquote:border-0 prose-thead:border-divider-1 prose-tr:border-divider-1 prose-th:border-0 prose-td:border-0',
     },
   },
   defaultVariants: { size: 'md', variant: 'default' },
@@ -217,9 +218,15 @@ function MarkdownCodeBlock({ children, className, ...props }: MarkdownCodeBlockP
 const MARKDOWN_COMPONENTS: Components = {
   a: (props) => <a target="_blank" rel="noopener noreferrer" {...withoutNode(props)} />,
   pre: MarkdownCodeBlock,
+  // 한글은 글자 사이 어디서나 줄을 바꿀 수 있어 좁은 화면에서 열이 한 글자 폭까지 줄어든다.
+  // 단어 단위로만 줄을 바꾸게 하고, 열이 5개 이상이면 표에 최소 폭을 줘 칸이 세로로 길어지지 않게 한다.
+  // 넘치는 폭은 감싼 상자의 가로 스크롤이 받는다.
   table: ({ className, ...props }) => (
     <div className="min-w-0 max-w-full overflow-x-auto">
-      <table className={className} {...withoutNode(props)} />
+      <table
+        className={cn('break-keep has-[th:nth-child(5)]:min-w-140', className)}
+        {...withoutNode(props)}
+      />
     </div>
   ),
   img: ({ alt = '', ...props }) => <img alt={alt} {...withoutNode(props)} />,
