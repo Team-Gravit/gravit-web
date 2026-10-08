@@ -2,6 +2,7 @@ import type { ComponentProps, ReactNode } from 'react';
 
 import { cn } from '@/shared/lib/cn';
 import { Card } from '@/shared/ui/card';
+import { Markdown } from '@/shared/ui/markdown';
 
 import type { Problem } from '../model/problem';
 
@@ -39,9 +40,14 @@ export function ProblemCard({
             </div>
             <p className="text-headline1 text-text-1 md:text-heading1">{problem.instruction}</p>
           </div>
-          <p className="text-body2-reading text-text-1 whitespace-pre-line md:text-body1-reading">
+          <Markdown
+            size="sm"
+            variant="plain"
+            showCopyButton={false}
+            className="md:prose-base prose-p:whitespace-pre-line"
+          >
             {problem.content}
-          </p>
+          </Markdown>
         </div>
       </Card>
       {children}
