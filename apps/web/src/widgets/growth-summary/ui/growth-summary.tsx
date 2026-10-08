@@ -38,10 +38,11 @@ export function GrowthSummary({ className }: GrowthSummaryProps) {
     <Card
       data-section="growth-summary"
       aria-busy={isPending || undefined}
-      className={cn('flex-row items-center gap-5', className)}
+      // 태블릿 폭에서는 세로 배치
+      className={cn('flex-col items-stretch gap-4 lg:flex-row lg:items-center lg:gap-5', className)}
     >
       {profile.data ? <LevelGauge profile={profile.data} /> : <GaugeSkeleton />}
-      <span aria-hidden className="w-px self-stretch bg-divider-1" />
+      <span aria-hidden className="h-px w-full bg-divider-1 lg:h-auto lg:w-px lg:self-stretch" />
       {league.data ? (
         <Gauge
           label={<TierBadge leagueId={league.data.leagueId} leagueName={league.data.leagueName} />}
@@ -91,7 +92,7 @@ function Gauge({ label, name, value, max, unit }: GaugeProps) {
   return (
     <div data-slot="gauge" className="flex min-w-0 flex-1 flex-col gap-2">
       <div className="flex min-w-0 items-center justify-between gap-2">
-        <div className="min-w-0">{label}</div>
+        <div className="flex min-w-0">{label}</div>
         <span className="shrink-0 whitespace-nowrap text-body1-normal text-text-4">
           <span className="text-main">{value}</span> / {max} {unit}
         </span>
