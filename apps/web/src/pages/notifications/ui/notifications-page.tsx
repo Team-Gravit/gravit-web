@@ -1,4 +1,9 @@
-import { groupByDate, NotificationItem, useInboxQuery } from '@/entities/notification';
+import {
+  groupByDate,
+  NotificationFallback,
+  NotificationItem,
+  useInboxQuery,
+} from '@/entities/notification';
 import { ProfileAvatar } from '@/entities/user';
 import { NotificationAction } from '@/widgets/notification';
 import { PageTitleBar } from '@/widgets/page-title-bar';
@@ -13,41 +18,45 @@ export function NotificationsPage() {
   const groups = groupByDate(notifications ?? []);
 
   return (
-    <div className="flex h-full flex-col">
+    <div className="flex h-svh flex-col bg-bg-2">
       <PageTitleBar title="알림" backTo={{ to: '/my' }} className="md:hidden" />
 
-      <div className="flex flex-col gap-6 px-4 py-5 overflow-scroll">
-        {groups.map((group) => (
-          <section key={group.label} className="flex flex-col gap-4">
-            <p className="text-label2 text-text-4">{group.label}</p>
-            <ul className="flex flex-col gap-3">
-              {group.items.map((notification) => (
-                <li key={notification.id}>
-                  <NotificationItem
-                    layout="card"
-                    leading={
-                      notification.actor ? (
-                        <ProfileAvatar
-                          colorNumber={notification.actor.profileImgNumber}
-                          className="size-[38px]"
-                        />
-                      ) : undefined
-                    }
-                    // 모바일 FOLLOW 는 닉네임을 헤드라인, 안내 문구를 서브로 분리한다(시안).
-                    // message 가 닉네임을 포함하면 중복되므로 백엔드 실데이터로 확인 필요.
-                    headline={
-                      notification.actor ? notification.actor.nickname : notification.message
-                    }
-                    timeAgo={notification.timeAgo}
-                    subText={notification.actor ? notification.message : notification.subText}
-                    action={<NotificationAction notification={notification} layout="card" />}
-                  />
-                </li>
-              ))}
-            </ul>
-          </section>
-        ))}
-      </div>
+      {notifications && notifications.length > 0 ? (
+        <div className="flex flex-col gap-6 px-4 py-5 overflow-scroll">
+          {groups.map((group) => (
+            <section key={group.label} className="flex flex-col gap-4">
+              <p className="text-label2 text-text-4">{group.label}</p>
+              <ul className="flex flex-col gap-3">
+                {group.items.map((notification) => (
+                  <li key={notification.id}>
+                    <NotificationItem
+                      layout="card"
+                      leading={
+                        notification.actor ? (
+                          <ProfileAvatar
+                            colorNumber={notification.actor.profileImgNumber}
+                            className="size-[38px]"
+                          />
+                        ) : undefined
+                      }
+                      // 모바일 FOLLOW 는 닉네임을 헤드라인, 안내 문구를 서브로 분리한다(시안).
+                      // message 가 닉네임을 포함하면 중복되므로 백엔드 실데이터로 확인 필요.
+                      headline={
+                        notification.actor ? notification.actor.nickname : notification.message
+                      }
+                      timeAgo={notification.timeAgo}
+                      subText={notification.actor ? notification.message : notification.subText}
+                      action={<NotificationAction notification={notification} layout="card" />}
+                    />
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
+        </div>
+      ) : (
+        <NotificationFallback />
+      )}
     </div>
   );
 }

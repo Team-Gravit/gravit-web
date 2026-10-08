@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 
 import { IconButton } from '@/shared/ui/icon-button';
 import { ScrollArea } from '@/shared/ui/scroll';
-import { NotificationItem, useInboxQuery } from '@/entities/notification';
+import { NotificationFallback, NotificationItem, useInboxQuery } from '@/entities/notification';
 import { ProfileAvatar } from '@/entities/user';
 
 import { usePopoverDismiss } from '../lib/use-popover-dismiss';
@@ -35,36 +35,42 @@ export function NotificationPopover() {
       {/* pr-4: Radix 스크롤바는 Root 우측 끝에 붙으므로, 컨테이너 우측 거터(16px)로 Root 를 좁혀
           스크롤바를 시안 위치(우측 끝에서 16px 안쪽)에 맞춘다. */}
       {isOpen && (
-        <div className="absolute top-full -right-12 z-50 mt-8 w-[500px] rounded-12 bg-white py-7 pr-4 shadow-elevation-1">
-          <ScrollArea className="max-h-[595px]" viewportClassName="pl-8 pr-4">
-            <ul className="flex flex-col gap-4">
-              {notifications?.map((notification) => (
-                <li key={notification.id}>
-                  <NotificationItem
-                    layout="popover"
-                    leading={
-                      notification.actor ? (
-                        <ProfileAvatar
-                          colorNumber={notification.actor.profileImgNumber}
-                          className="size-12"
+        <div className="h-[595px] max-h-[calc(100vh-10rem)] flex flex-col absolute top-full -right-12 z-50 mt-8 w-[500px] rounded-12 bg-white py-7 pr-4 shadow-elevation-1">
+          {notifications && notifications.length > 0 ? (
+            <ScrollArea className="min-h-0 flex-1" viewportClassName="pl-8 pr-4">
+              <ul className="flex flex-col gap-4">
+                {notifications.map((notification) => (
+                  <li key={notification.id}>
+                    <NotificationItem
+                      layout="popover"
+                      leading={
+                        notification.actor ? (
+                          <ProfileAvatar
+                            colorNumber={notification.actor.profileImgNumber}
+                            className="size-12"
+                          />
+                        ) : undefined
+                      }
+                      headline={notification.message}
+                      timeAgo={notification.timeAgo}
+                      subText={notification.subText}
+                      action={
+                        <NotificationAction
+                          notification={notification}
+                          layout="popover"
+                          onNavigate={() => setIsOpen(false)}
                         />
-                      ) : undefined
-                    }
-                    headline={notification.message}
-                    timeAgo={notification.timeAgo}
-                    subText={notification.subText}
-                    action={
-                      <NotificationAction
-                        notification={notification}
-                        layout="popover"
-                        onNavigate={() => setIsOpen(false)}
-                      />
-                    }
-                  />
-                </li>
-              ))}
-            </ul>
-          </ScrollArea>
+                      }
+                    />
+                  </li>
+                ))}
+              </ul>
+            </ScrollArea>
+          ) : (
+            <div className="flex flex-1 flex-col pl-8 pr-4">
+              <NotificationFallback />
+            </div>
+          )}
         </div>
       )}
     </div>
