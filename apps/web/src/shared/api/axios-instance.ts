@@ -14,7 +14,7 @@ declare module 'axios' {
   export interface AxiosRequestConfig {
     /** 재발급 요청임을 표시한다. 토큰 부착과 갱신 재시도를 건너뛴다. */
     skipAuthRefresh?: boolean;
-    /** 갱신 후 재시도한 요청임을 표시한다. 재시도는 1회로 제한한다. (기준선 C3) */
+    /** 갱신 후 요청이 다시 실패해도 재발급을 반복하지 않는다. */
     isRetried?: boolean;
   }
 }
@@ -54,16 +54,24 @@ AXIOS_INSTANCE.interceptors.response.use(
 
     config.isRetried = true;
 
+    let accessToken: string;
     try {
-      const accessToken = await refreshAccessToken();
-      config.headers.set('Authorization', `Bearer ${accessToken}`);
+      accessToken = await refreshAccessToken();
+    } catch (refreshError) {
+      if (isRefreshRejected(refreshError)) {
+        notifyUnauthorized();
+      }
 
+      throw refreshError;
+    }
+
+    config.headers.set('Authorization', `Bearer ${accessToken}`);
+
+    try {
       return await AXIOS_INSTANCE.request(config);
     } catch (retryError) {
-      const isForbidden = isAxiosError(retryError) && retryError.response?.status === 403;
-
-      // 403이면 토큰은 유효하고 권한만 없는 것이다. 세션을 지우지 않는다. (기준선 C4)
-      if (!isForbidden) {
+      // 새 토큰도 거절된 경우에만 세션을 지운다. 권한 오류나 일시 장애는 로그아웃시키지 않는다.
+      if (isAxiosError(retryError) && retryError.response?.status === 401) {
         notifyUnauthorized();
       }
 
@@ -71,6 +79,17 @@ AXIOS_INSTANCE.interceptors.response.use(
     }
   },
 );
+
+// 재발급 거절 코드가 명세에 없어 4xx를 거절로 취급하고, 5xx·네트워크 오류는 세션을 유지한다.
+function isRefreshRejected(error: unknown): boolean {
+  if (!isAxiosError(error)) {
+    // 재발급할 토큰이 없거나 응답에 새 토큰이 없으면 재발급을 이어갈 수 없다.
+    return true;
+  }
+
+  const status = error.response?.status;
+  return status !== undefined && status >= 400 && status < 500;
+}
 
 export async function customInstance<T>(
   config: AxiosRequestConfig,

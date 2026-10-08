@@ -185,7 +185,20 @@ describe('토큰 갱신', () => {
     expect(onUnauthorized).not.toHaveBeenCalled();
   });
 
-  it('재발급이 500 으로 실패하면 onUnauthorized 를 1회 호출한다', async () => {
+  it('재발급이 401 로 거절되면 onUnauthorized 를 1회 호출한다', async () => {
+    const onUnauthorized = vi.fn();
+    configureExpiredSession({ onUnauthorized });
+
+    server.use(
+      http.post(REISSUE_URL, () => new HttpResponse(null, { status: 401 })),
+      http.get(TEST_URL, () => new HttpResponse(null, { status: 401 })),
+    );
+
+    await expect(AXIOS_INSTANCE.get(TEST_URL)).rejects.toThrow();
+    expect(onUnauthorized).toHaveBeenCalledTimes(1);
+  });
+
+  it('재발급이 500 으로 실패하면 세션을 유지한다 (onUnauthorized 호출 없음)', async () => {
     const onUnauthorized = vi.fn();
     configureExpiredSession({ onUnauthorized });
 
@@ -195,7 +208,37 @@ describe('토큰 갱신', () => {
     );
 
     await expect(AXIOS_INSTANCE.get(TEST_URL)).rejects.toThrow();
-    expect(onUnauthorized).toHaveBeenCalledTimes(1);
+    expect(onUnauthorized).not.toHaveBeenCalled();
+  });
+
+  it('재발급이 네트워크 오류로 실패하면 세션을 유지한다', async () => {
+    const onUnauthorized = vi.fn();
+    configureExpiredSession({ onUnauthorized });
+
+    server.use(
+      http.post(REISSUE_URL, () => HttpResponse.error()),
+      http.get(TEST_URL, () => new HttpResponse(null, { status: 401 })),
+    );
+
+    await expect(AXIOS_INSTANCE.get(TEST_URL)).rejects.toThrow();
+    expect(onUnauthorized).not.toHaveBeenCalled();
+  });
+
+  it('재시도한 요청이 500 이면 세션을 유지한다', async () => {
+    const onUnauthorized = vi.fn();
+    configureExpiredSession({ onUnauthorized });
+
+    let pingCount = 0;
+    server.use(
+      http.post(REISSUE_URL, () => HttpResponse.json({ accessToken: 'tok_new' })),
+      http.get(TEST_URL, () => {
+        pingCount += 1;
+        return new HttpResponse(null, { status: pingCount === 1 ? 401 : 500 });
+      }),
+    );
+
+    await expect(AXIOS_INSTANCE.get(TEST_URL)).rejects.toThrow();
+    expect(onUnauthorized).not.toHaveBeenCalled();
   });
 
   it('재발급 요청 자체가 401 을 받아도 재발급을 다시 호출하지 않는다', async () => {
