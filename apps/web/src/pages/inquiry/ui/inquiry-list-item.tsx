@@ -71,7 +71,7 @@ function InquiryDetail({ detail }: { detail: InquiryDetailResponse }) {
     <div className="space-y-3">
       <div className="flex min-h-[130px] flex-col gap-1 rounded-12 border border-divider-1 p-4 md:p-6">
         <span className="text-caption1 text-text-4">문의 내용</span>
-        <p className="flex-1 overflow-scroll text-body2-normal text-text-1 md:text-body1-normal">
+        <p className="flex-1 overflow-scroll scrollbar-hide text-body2-normal text-text-1 md:text-body1-normal">
           {detail.content}
         </p>
       </div>
@@ -79,7 +79,7 @@ function InquiryDetail({ detail }: { detail: InquiryDetailResponse }) {
       {detail.answer && (
         <div className="flex min-h-[130px] flex-col gap-1 rounded-12 border border-purple-200 bg-purple-50 p-4 md:p-6">
           <span className="text-caption1 text-main-1">답변</span>
-          <p className="flex-1 overflow-scroll text-body2-reading text-text-1 md:text-body1-normal">
+          <p className="flex-1 overflow-scroll scrollbar-hide text-body2-reading text-text-1 md:text-body1-normal">
             {detail.answer.content}
           </p>
         </div>
