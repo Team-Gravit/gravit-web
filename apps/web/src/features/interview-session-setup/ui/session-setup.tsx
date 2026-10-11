@@ -54,8 +54,10 @@ const PREVIOUS_BUTTON_CLASS = 'w-auto min-w-21 shrink-0 md:w-[158px]';
 
 export interface SessionSetupProps {
   step: SessionSetupStep;
-  /** 이동할 단계를 전달한다. URL 변환은 페이지에서 처리한다. */
-  onStepChange: (step: SessionSetupStep) => void;
+  /** 다음 단계. 페이지에서 경로로 바꿔 이동한다. */
+  onNext: (step: SessionSetupStep) => void;
+  /** 이전 단계. 방문 기록을 되돌리는 처리는 페이지에서 맡는다. */
+  onPrevious: (step: SessionSetupStep) => void;
   /** 홈 버튼의 이동 처리. 초안 초기화는 부모 라우트의 onLeave가 담당한다. */
   onExit: () => void;
   /** 생성된 세션으로 이동한다. 반환한 Promise가 끝날 때까지 시작 버튼은 로딩 상태다. */
@@ -63,7 +65,7 @@ export interface SessionSetupProps {
 }
 
 /** 선택 초안을 공유하는 설정 화면. 현재 단계의 본문과 이전/다음/생성 버튼을 연결한다. */
-export function SessionSetup({ step, onStepChange, onExit, onCreated }: SessionSetupProps) {
+export function SessionSetup({ step, onNext, onPrevious, onExit, onCreated }: SessionSetupProps) {
   const mode = useSessionSetupStore((state) => state.mode);
   const isProceedable = useSessionSetupStore((state) => canProceed(step, state));
 
@@ -79,7 +81,7 @@ export function SessionSetup({ step, onStepChange, onExit, onCreated }: SessionS
           size="cta"
           variant="stroke-neutral"
           className={PREVIOUS_BUTTON_CLASS}
-          onClick={() => onStepChange(previousStep)}
+          onClick={() => onPrevious(previousStep)}
         >
           이전
         </Button>
@@ -92,7 +94,7 @@ export function SessionSetup({ step, onStepChange, onExit, onCreated }: SessionS
           size="cta"
           className={PRIMARY_BUTTON_CLASS}
           disabled={!isProceedable || nextStep === null}
-          onClick={() => nextStep && onStepChange(nextStep)}
+          onClick={() => nextStep && onNext(nextStep)}
         >
           다음
         </Button>
