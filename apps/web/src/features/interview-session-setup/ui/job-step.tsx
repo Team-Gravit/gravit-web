@@ -1,13 +1,41 @@
-import { INTERVIEW_STACK_GROUP_LABEL, type InterviewStackGroup } from '@/entities/interview';
+import {
+  INTERVIEW_STACK_GROUP_LABEL,
+  usePrefetchInterviewStacks,
+  type InterviewStackGroup,
+} from '@/entities/interview';
 
 import { useSessionSetupStore } from '../model/session-setup-store';
-import { ChoiceGroup, type ChoiceOption } from './choice-group';
+import androidIcon from './assets/android-icon.png';
+import iosIcon from './assets/ios-icon.png';
+import serverIcon from './assets/server-icon.png';
+import webIcon from './assets/web-icon.png';
+import { ChoiceCardGroup, type ChoiceCardOption } from './choice-card-group';
 
-const STACK_GROUP_OPTIONS: ChoiceOption<InterviewStackGroup>[] = [
-  { value: 'SERVER', title: INTERVIEW_STACK_GROUP_LABEL.SERVER, description: 'Spring · Java 등' },
-  { value: 'WEB', title: INTERVIEW_STACK_GROUP_LABEL.WEB, description: 'React · TypeScript 등' },
-  { value: 'AOS', title: INTERVIEW_STACK_GROUP_LABEL.AOS, description: 'Jetpack · Kotlin' },
-  { value: 'IOS', title: INTERVIEW_STACK_GROUP_LABEL.IOS, description: 'SwiftUI · Swift' },
+const STACK_GROUP_OPTIONS: ChoiceCardOption<InterviewStackGroup>[] = [
+  {
+    value: 'SERVER',
+    title: INTERVIEW_STACK_GROUP_LABEL.SERVER,
+    description: 'Spring · Java 등',
+    iconSrcs: [serverIcon],
+  },
+  {
+    value: 'WEB',
+    title: INTERVIEW_STACK_GROUP_LABEL.WEB,
+    description: 'React · TypeScript 등',
+    iconSrcs: [webIcon],
+  },
+  {
+    value: 'AOS',
+    title: INTERVIEW_STACK_GROUP_LABEL.AOS,
+    description: 'Jetpack · Kotlin',
+    iconSrcs: [androidIcon],
+  },
+  {
+    value: 'IOS',
+    title: INTERVIEW_STACK_GROUP_LABEL.IOS,
+    description: 'SwiftUI · Swift',
+    iconSrcs: [iosIcon],
+  },
 ];
 
 /**
@@ -17,14 +45,23 @@ const STACK_GROUP_OPTIONS: ChoiceOption<InterviewStackGroup>[] = [
 export function JobStep() {
   const selectedStackGroup = useSessionSetupStore((state) => state.stackGroup);
   const selectStackGroup = useSessionSetupStore((state) => state.selectStackGroup);
+  const prefetchStacks = usePrefetchInterviewStacks();
+
+  // 직군을 누르는 시점에 조회를 시작해 다음 화면의 대기 시간을 줄인다.
+  function handleStackGroupSelect(stackGroup: InterviewStackGroup) {
+    prefetchStacks(stackGroup);
+    selectStackGroup(stackGroup);
+  }
 
   return (
-    <ChoiceGroup
+    <ChoiceCardGroup
       label="직군"
       name="interview-stack-group"
       options={STACK_GROUP_OPTIONS}
       selectedValue={selectedStackGroup}
-      onSelect={selectStackGroup}
+      onSelect={handleStackGroupSelect}
+      layout="inline"
+      className="md:grid md:grid-cols-2 md:gap-6"
     />
   );
 }

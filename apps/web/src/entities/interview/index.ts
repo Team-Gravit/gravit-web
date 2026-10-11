@@ -1,5 +1,5 @@
 export { useCsTopics } from './api/use-cs-topics';
-export { useInterviewStacks } from './api/use-interview-stacks';
+export { useInterviewStacks, usePrefetchInterviewStacks } from './api/use-interview-stacks';
 export {
   INTERVIEW_DIFFICULTY_LABEL,
   INTERVIEW_INPUT_TYPE_LABEL,
