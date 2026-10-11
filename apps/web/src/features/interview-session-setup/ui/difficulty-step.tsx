@@ -1,7 +1,8 @@
 import { INTERVIEW_DIFFICULTY_LABEL, type InterviewDifficulty } from '@/entities/interview';
 
 import { useSessionSetupStore } from '../model/session-setup-store';
-import { ChoiceGroup, type ChoiceOption } from './choice-group';
+import type { ChoiceOption } from './choice-group';
+import { ChoiceRadioList } from './choice-radio-list';
 
 const DIFFICULTY_OPTIONS: ChoiceOption<InterviewDifficulty>[] = [
   {
@@ -30,7 +31,7 @@ export function DifficultyStep() {
   const selectDifficulty = useSessionSetupStore((state) => state.selectDifficulty);
 
   return (
-    <ChoiceGroup
+    <ChoiceRadioList
       label="난이도"
       name="interview-difficulty"
       options={DIFFICULTY_OPTIONS}

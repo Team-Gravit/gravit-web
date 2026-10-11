@@ -1,17 +1,21 @@
 import { INTERVIEW_MODE_LABEL, type InterviewMode } from '@/entities/interview';
 
 import { useSessionSetupStore } from '../model/session-setup-store';
-import { ChoiceGroup, type ChoiceOption } from './choice-group';
+import csIcon from './assets/cs-icon.png';
+import jobIcon from './assets/job-icon.png';
+import { ChoiceCardGroup, type ChoiceCardOption } from './choice-card-group';
 
-const MODE_OPTIONS: ChoiceOption<InterviewMode>[] = [
+const MODE_OPTIONS: ChoiceCardOption<InterviewMode>[] = [
   {
     value: 'COMMON_CS',
     title: INTERVIEW_MODE_LABEL.COMMON_CS,
+    iconSrcs: [csIcon],
     description: '자료구조, 알고리즘 등 CS 5개 분야 중 원하는 주제를 골라 연습해요',
   },
   {
     value: 'JOB_SPECIFIC',
     title: INTERVIEW_MODE_LABEL.JOB_SPECIFIC,
+    iconSrcs: [jobIcon],
     description: '지원하는 직군에 맞춰 프레임워크·언어까지 깊이 있게 물어봐요',
   },
 ];
@@ -25,7 +29,7 @@ export function TopicStep() {
   const selectMode = useSessionSetupStore((state) => state.selectMode);
 
   return (
-    <ChoiceGroup
+    <ChoiceCardGroup
       label="면접 주제"
       name="interview-mode"
       options={MODE_OPTIONS}
