@@ -26,7 +26,8 @@ function renderSessionSetup({ step, onCreated = vi.fn(async () => {}) }: RenderO
       <>
         <SessionSetup
           step={step}
-          onStepChange={vi.fn()}
+          onNext={vi.fn()}
+          onPrevious={vi.fn()}
           onExit={vi.fn(async () => {})}
           onCreated={onCreated}
         />

@@ -15,9 +15,19 @@ export function InterviewSetupPage({ step, entryHistoryIndex }: InterviewSetupPa
   const navigate = useNavigate();
   const router = useRouter();
 
-  // 단계 이동은 push로 기록해 브라우저 뒤로가기로도 이전 단계에 갈 수 있게 한다.
-  function handleStepChange(nextStep: SessionSetupStep) {
+  // 다음 단계는 방문 기록에 남겨 브라우저 뒤로가기로도 돌아올 수 있게 한다.
+  function handleNext(nextStep: SessionSetupStep) {
     void navigate({ to: '/interview/new/$step', params: { step: nextStep } });
+  }
+
+  // 이전 버튼은 새 기록을 쌓지 않고 한 단계 되돌린다.
+  // 설정 진입 위치라 되돌릴 기록이 없으면 현재 경로를 이전 단계로 바꾼다.
+  function handlePrevious(previousStep: SessionSetupStep) {
+    if (router.history.location.state.__TSR_index > entryHistoryIndex) {
+      router.history.back();
+      return;
+    }
+    void navigate({ to: '/interview/new/$step', params: { step: previousStep }, replace: true });
   }
 
   // 생성 후 뒤로가기가 초기화된 설정 단계로 돌아가지 않도록 첫 진입 위치를 세션 화면으로 교체한다.
@@ -33,7 +43,8 @@ export function InterviewSetupPage({ step, entryHistoryIndex }: InterviewSetupPa
   return (
     <SessionSetup
       step={step}
-      onStepChange={handleStepChange}
+      onNext={handleNext}
+      onPrevious={handlePrevious}
       onExit={() => void navigate({ to: '/interview' })}
       onCreated={handleSessionCreated}
     />
