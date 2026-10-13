@@ -22,7 +22,7 @@ export function NotificationsPage() {
       <PageTitleBar title="알림" backTo={{ to: '/my' }} className="md:hidden" />
 
       {notifications && notifications.length > 0 ? (
-        <div className="flex flex-col gap-6 px-4 py-5 overflow-scroll">
+        <div className="flex flex-col gap-6 px-4 py-5 overflow-scroll scrollbar-hide">
           {groups.map((group) => (
             <section key={group.label} className="flex flex-col gap-4">
               <p className="text-label2 text-text-4">{group.label}</p>
