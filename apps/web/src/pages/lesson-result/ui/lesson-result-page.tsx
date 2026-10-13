@@ -71,9 +71,10 @@ export function LessonResultPage({ lessonSubmissionId }: LessonResultPageProps) 
   }
 
   return (
+    // 달이 넘쳐도 페이지 안에 스크롤이 생기지 않도록 clip을 쓴다.
     <div
       data-slot="lesson-result-page"
-      className={cn(PAGE_LAYOUT_CLASS, 'bg-space-gradient overflow-x-hidden')}
+      className={cn(PAGE_LAYOUT_CLASS, 'bg-space-gradient overflow-clip')}
     >
       {/* 로딩 중 받아 둔 배경 이미지를 재사용하도록 같은 인스턴스를 유지한다. */}
       <ResultBackground isVisible={isArtworkVisible} onReady={handleBackgroundReady} />
