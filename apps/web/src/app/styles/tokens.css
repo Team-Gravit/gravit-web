@@ -267,6 +267,9 @@
   --animate-fade-in-y: fadeInWithTransformY 0.5s forwards;
   --animate-fade-out-y: fadeOutWithTransformY 0.5s forwards;
 
+  /* 당겨서 새로고침 로고 */
+  --animate-pull-refresh-hop: pullRefreshHop 0.7s cubic-bezier(0.3, 0, 0.4, 1) infinite;
+
   --text-display1: 40px;
   --text-display1--line-height: 1.25;
   --text-display1--letter-spacing: -0.6px;
@@ -390,6 +393,16 @@
     to {
       opacity: 0;
       transform: translateY(20px);
+    }
+  }
+
+  @keyframes pullRefreshHop {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    45% {
+      transform: translateY(-6px);
     }
   }
 }
