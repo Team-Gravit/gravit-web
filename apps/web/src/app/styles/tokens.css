@@ -256,6 +256,8 @@
   --header-height: 74px;
   --desktop-header-height: 112px;
   --mobile-header-height: 47px;
+  /* 화면이 상태 표시줄과 겹칠 때만 0보다 크다. 앱이 WebView를 상태 표시줄 뒤까지 펼칠 때 켜진다. */
+  --safe-area-top: env(safe-area-inset-top, 0px);
   /* 모바일 탭 */
   --bottom-tab-height: 60px;
 

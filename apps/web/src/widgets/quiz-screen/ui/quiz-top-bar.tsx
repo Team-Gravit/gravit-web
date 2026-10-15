@@ -20,7 +20,8 @@ export function QuizTopBar({ title, unitId }: QuizTopBarProps) {
   return (
     <header
       data-slot="quiz-top-bar"
-      className="sticky top-0 z-50 flex h-12 shrink-0 items-center justify-center border-b border-divider-1 bg-white px-5 md:h-16"
+      // box-content: 내용 높이는 그대로 두고 상태 표시줄 여백만큼 막대를 위로 늘린다.
+      className="sticky top-0 z-50 box-content flex h-12 shrink-0 items-center justify-center border-b border-divider-1 bg-white px-5 pt-(--safe-area-top) md:h-16"
     >
       {/* 좌우 액션 너비와 무관하게 제목을 가운데 두기 위해 액션을 흐름에서 분리한다. */}
       <Link
