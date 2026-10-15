@@ -27,6 +27,8 @@ declare module '@tanstack/react-router' {
     headerVariant?: 'overlay' | 'solid';
     /** 좁은 화면에서 하단 탭 바와 콘텐츠 여백을 숨긴다. */
     hideBottomTabBar?: boolean;
+    /** 앱의 시계·배터리 글자색. 맨 위 배경이 어두우면 `light`. 기본 `dark`. */
+    statusBarStyle?: 'light' | 'dark';
   }
 }
 

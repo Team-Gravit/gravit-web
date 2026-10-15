@@ -70,13 +70,16 @@ sticky 막대는 스크롤해도 맨 위에 붙어 있으므로 상태 표시줄
 
 ### Issue 3 — 네이티브 전환 + 시계 글자색
 
-- [ ] `[native]` `apps/native/app/index.tsx`: iOS에서 `paddingTop: insets.top` 제거.
+- [x] `[native]` `apps/native/app/index.tsx`: iOS에서 `paddingTop: insets.top` 제거(Android는 유지).
       WebView에 `contentInsetAdjustmentBehavior="never"` 명시 (iOS가 안전 영역을 한 번 더 넣지 않게)
-- [ ] `[native]` `expo-status-bar`로 시계 글자색 전환. 리그·학습 완료처럼 어두운 화면에서 검은 글자는 안 보인다
-- [ ] `[app]` 라우트 `staticData`에 시계 글자색(`statusBarStyle: 'light' | 'dark'`)을 선언하고,
-      `__root`가 바뀔 때마다 `window.ReactNativeWebView.postMessage`로 네이티브에 알린다.
-      웹→네이티브 메시지는 지금 없다. 이번에 처음 만든다
-- [ ] `[native]` `onMessage`에서 그 메시지를 받아 `StatusBar` 스타일 변경
+- [x] `[native]` `expo-status-bar`의 `StatusBar`로 시계 글자색 전환. `onMessage`에서 글자색 메시지만 골라 읽고,
+      나머지(웹 진단 메시지)는 기존처럼 로그로 남긴다
+- [x] `[app]` 라우트 `staticData.statusBarStyle` 선언: 메인 · 리그 · 마이 · 학습 완료 = `light`, 나머지 기본 `dark`.
+      메인 히어로 이미지 위쪽도 어두운 보라라 `light`로 둔다
+- [x] `[app]` `app/viewport/native-status-bar.ts`: 이동이 끝날 때(`router.subscribe('onResolved')`) 글자색이 바뀌었으면
+      `window.ReactNativeWebView.postMessage`로 알린다. `__root`를 건드리지 않도록 `main.tsx`에서 부팅 시 한 번 호출한다.
+      메시지 형식: `{ "type": "statusBarStyle", "style": "light" | "dark" }`
+- [ ] 실기기: 앱 재빌드 후 §2 화면 전체 확인 (§7)
 
 ### Issue 4 — Safari
 
