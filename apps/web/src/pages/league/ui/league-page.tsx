@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { type ReactNode, useState } from 'react';
 
 import { useLeagueHome, useMyLeagueProfile } from '@/entities/league';
 import { LeagueArena } from '@/widgets/league-arena';
@@ -14,17 +14,24 @@ export function LeaguePage() {
   const homeQuery = useLeagueHome();
   const profileQuery = useMyLeagueProfile();
 
-  const [modalChecked, setModalChecked] = useState(false);
+  const [hasClosedSeasonModal, setHasClosedSeasonModal] = useState(false);
 
-  if (profileQuery.isFetching || homeQuery.isLoading) return <StatusScreen>로딩중</StatusScreen>;
-  if (profileQuery.isError || homeQuery.isError) return <StatusScreen>에러 발생</StatusScreen>;
-  if (!profileQuery.data || !homeQuery.data) return <StatusScreen>데이터 없음</StatusScreen>;
+  // isPending은 성공한 데이터가 없을 때만 참이다. 재조회 중에는 기존 화면을 유지한다.
+  if (profileQuery.isPending || homeQuery.isPending) {
+    return <StatusScreen>로딩중</StatusScreen>;
+  }
+  if (profileQuery.isError || homeQuery.isError) {
+    return <StatusScreen>에러 발생</StatusScreen>;
+  }
 
   const home = homeQuery.data;
   const profile = profileQuery.data;
+  const seasonPopup =
+    home.containsPopup && !hasClosedSeasonModal ? home.lastSeasonPopupDto : undefined;
 
-  const shouldShowSeasonModal =
-    home.containsPopup && Boolean(home.lastSeasonPopupDto) && !modalChecked;
+  function handleSeasonModalComplete() {
+    setHasClosedSeasonModal(true);
+  }
 
   // overlay 헤더(투명)가 배경 위에 겹치되 아레나 콘텐츠는 가리지 않도록, 데스크톱에서 헤더 높이만큼
   // 상단 여백을 둔다. 배경은 fixed 라 이 padding 에 영향받지 않고 헤더 뒤까지 full-bleed 유지된다.
@@ -50,17 +57,14 @@ export function LeaguePage() {
         <LeagueArena seasonName={home.currentSeason.nowSeason} myLeagueId={profile.leagueId} />
       </div>
 
-      {shouldShowSeasonModal && home.lastSeasonPopupDto && (
-        <LeagueSeasonModal
-          popup={home.lastSeasonPopupDto}
-          onComplete={() => setModalChecked(true)}
-        />
+      {seasonPopup && (
+        <LeagueSeasonModal popup={seasonPopup} onComplete={handleSeasonModalComplete} />
       )}
     </main>
   );
 }
 
-function StatusScreen({ children }: { children: React.ReactNode }) {
+function StatusScreen({ children }: { children: ReactNode }) {
   return (
     <div className="flex min-h-screen w-full items-center justify-center text-body1-normal text-text-1-w">
       {children}
