@@ -17,25 +17,24 @@ import { TierSelector } from './tier-selector';
 
 export interface LeagueArenaProps {
   seasonName: string;
-  /** 내가 속한 티어의 leagueId. 초기 선택값이자 내 티어 랭킹 조회 분기 기준. */
+  /** 내가 속한 티어의 leagueId. 직접 고른 티어가 없을 때의 선택값이자 내 티어 랭킹 조회 분기 기준. */
   myLeagueId: number;
 }
 
-/**
- * 시즌 헤더·티어 셀렉터·랭킹 리스트를 조립한 리그 아레나.
- * 모바일: 헤더(pt-40 pb-24) 아래 상단 divider 랭킹(pt-24 px-16). 데스크톱: 좌우 2단.
- */
+/** 내 티어를 기본으로 보여 주고, 직접 고른 티어는 내 리그가 바뀌어도 유지한다. */
 export function LeagueArena({ seasonName, myLeagueId }: LeagueArenaProps) {
-  const [selectedTierId, setSelectedTierId] = useState(myLeagueId);
+  // 기본 티어를 state에 복사하면 프로필 재조회 후에도 이전 티어에 머문다.
+  const [pickedTierId, setPickedTierId] = useState<number | null>(null);
+  const selectedTierId = pickedTierId ?? myLeagueId;
   const isMyTier = selectedTierId === myLeagueId;
 
   const tierInfoQuery = useLeagueInfo(selectedTierId);
-  const myRanking = useMyLeagueRanking(isMyTier);
-  const tierRanking = useLeagueRanking(selectedTierId, !isMyTier);
-  const ranking = isMyTier ? myRanking : tierRanking;
+  const myRankingQuery = useMyLeagueRanking(isMyTier);
+  const tierRankingQuery = useLeagueRanking(selectedTierId, !isMyTier);
+  const rankingQuery = isMyTier ? myRankingQuery : tierRankingQuery;
 
   const users: LeagueUser[] =
-    ranking.data?.pages.flatMap((page) => page.contents.map(mapToLeagueUser)) ?? [];
+    rankingQuery.data?.pages.flatMap((page) => page.contents.map(mapToLeagueUser)) ?? [];
   const selectedTierInfo = tierInfoQuery.data ? mapToTierInfo(tierInfoQuery.data) : undefined;
 
   // ponytail: 아레나(좌측 컬럼 + 랭킹)를 한 덩어리로 가용 높이에 맞춰 통째 균일 축소. 좌측 콘텐츠 자연높이가
@@ -54,7 +53,7 @@ export function LeagueArena({ seasonName, myLeagueId }: LeagueArenaProps) {
             <TierSelector
               tiers={tiers}
               selectedTierId={selectedTierId}
-              onSelectTier={setSelectedTierId}
+              onSelectTier={setPickedTierId}
               selectedTierInfo={selectedTierInfo}
             />
           </div>
@@ -64,10 +63,10 @@ export function LeagueArena({ seasonName, myLeagueId }: LeagueArenaProps) {
         <section className="flex min-h-0 flex-1 flex-col border-t border-bg-4 px-4 md:w-[664px] md:flex-none md:border-0 md:px-0 md:pt-0">
           <RankingList
             users={users}
-            hasNextPage={Boolean(ranking.hasNextPage)}
-            isFetchingNextPage={ranking.isFetchingNextPage}
-            onLoadMore={ranking.fetchNextPage}
-            isLoading={ranking.isLoading}
+            hasNextPage={Boolean(rankingQuery.hasNextPage)}
+            isFetchingNextPage={rankingQuery.isFetchingNextPage}
+            onLoadMore={rankingQuery.fetchNextPage}
+            isLoading={rankingQuery.isLoading}
           />
         </section>
       </div>
