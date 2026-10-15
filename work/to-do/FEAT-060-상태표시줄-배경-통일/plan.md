@@ -63,9 +63,10 @@ sticky 막대는 스크롤해도 맨 위에 붙어 있으므로 상태 표시줄
 
 ### Issue 2 — 이미지·그라데이션 화면
 
-- [ ] `[widgets]` `hero-greeting`: 상단 여백 + 높이 보정
-- [ ] `[pages]` `profile-card`, `league-page`, `lesson-result-page`, `onboarding-success`, `error` 상단 여백
-- [ ] (확인 필요 1의 판정에 따라) 스크롤했을 때 상태 표시줄 뒤를 덮는 처리
+- [x] `[widgets]` `hero-greeting`: `box-content` + 상단 여백으로 이미지를 상태 표시줄 뒤까지 늘림. 위에 겹치는 요약은 여백만큼 내림
+- [x] `[pages]` `profile-card`(`box-content` + 상단 여백), `league-page` main · `lesson-result-page` main(기존 상단 여백에 더함)
+- [x] `onboarding-success` · `error`는 고치지 않는다. 내용이 세로 가운데 정렬이고 배경이 이미 맨 위부터 칠해져 시계와 겹치지 않는다
+- [x] 스크롤했을 때 덮는 처리: 확인 필요 1 판정 (가)로 하지 않음
 
 ### Issue 3 — 네이티브 전환 + 시계 글자색
 
