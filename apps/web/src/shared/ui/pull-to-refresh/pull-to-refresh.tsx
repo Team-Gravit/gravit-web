@@ -27,6 +27,10 @@ function handleRefreshError() {
  * 요청이 실패하면 토스트로 알리고, 진행 중에는 상태 문구를 스크린 리더에 제공한다.
  *
  * 당기는 동안 콘텐츠에 transform이 걸려 안쪽의 `position: fixed` 요소도 함께 움직인다.
+ *
+ * 감싼 콘텐츠는 세로 flex 안에서 남은 높이를 채운다. 화면 최소 높이는 `className`으로
+ * 이 컴포넌트에 주고, 안쪽 루트는 `min-h-full` 대신 `flex-1`로 늘린다.
+ * 높이가 정해진 영역 안에서 안쪽 목록이 스스로 스크롤해도 된다 (`min-h-0`).
  */
 export function PullToRefresh({ onRefresh, children, className }: PullToRefreshProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -61,7 +65,7 @@ export function PullToRefresh({ onRefresh, children, className }: PullToRefreshP
       ref={containerRef}
       data-slot="pull-to-refresh"
       data-status={status}
-      className={cn('relative', className)}
+      className={cn('relative flex flex-col', className)}
     >
       <div
         aria-hidden="true"
@@ -79,7 +83,7 @@ export function PullToRefresh({ onRefresh, children, className }: PullToRefreshP
       </div>
       <div
         className={cn(
-          'relative',
+          'relative flex min-h-0 flex-1 flex-col',
           shouldAnimatePosition && ['transition-transform', SETTLE_TRANSITION_CLASS],
         )}
         style={{ transform: distance > 0 ? `translate3d(0, ${distance}px, 0)` : undefined }}
