@@ -16,7 +16,7 @@ mode: 'feature'
 | --- | --------------- | -------------------------------------------------- | ------------------------------------ |
 | 1   | 린트 + FSD 경계 | `pnpm lint` (web) · `expo lint` (native)           | ✅                                   |
 | 2   | 타입            | `pnpm check-types`                                 | ✅ web · native                      |
-| 3   | 테스트          | `pnpm test`                                        | ✅ 106 파일 · 575개                  |
+| 3   | 테스트          | `pnpm test`                                        | ✅ 107 파일 · 579개                  |
 | 4   | 빌드            | `pnpm build`                                       | ✅ 빌드 CSS에 `--safe-area-top` 확인 |
 | 5   | 포맷            | `pnpm exec prettier --check <이번 변경 파일...>`   | ✅                                   |
 | 6   | generated 경계  | `pages`/`widgets`가 생성 경로를 직접 참조하지 않음 | ✅ 추가된 참조 0                     |
@@ -31,7 +31,7 @@ spec에 AC가 없어 GitHub #308의 완료 조건으로 대조한다.
 | 2   | 메인 · 마이 · 리그 · 학습 완료 · 온보딩 완료 · 에러 배경 이어짐 | `HeroGreeting` · `ProfileCard`(`box-content`), `LeaguePage` · `LessonResultPage` main 여백. 온보딩 완료 · 에러는 변경 불필요 | ⬜ 실기기                         |
 | 3   | 어두운 화면에서 시계 글자 흰색                                  | 라우트 `staticData.statusBarStyle`, `app/viewport/native-status-bar.ts`, native `StatusBar` + `onMessage`                    | ✅ 메시지 전송 테스트 · ⬜ 실기기 |
 | 4   | 네이티브 변경 전 웹만 배포 시 화면이 지금과 같음                | `--safe-area-top`이 0이면 모든 여백이 0. `native-app-zoom`이 `viewport-fit=cover`를 지우지 않음                              | ✅ 테스트 · ⬜ Safari             |
-| 5   | Safari 상단 영역 색이 화면과 어울림                             | Issue 4 — 실기기 확인 전이라 미착수                                                                                          | ⬜                                |
+| 5   | Safari 상단 영역 색이 화면과 어울림                             | `app/viewport/browser-top-color.ts` + 라우트 `staticData.browserTopColor` (메인·리그·마이 `#1a0a4f`, 학습 완료 `#17034e`)    | ✅ 테스트 · ⬜ 실기기             |
 | 6   | lint · check-types · test · build 통과                          | §1                                                                                                                           | ✅                                |
 
 ## 3. 남은 확인 (실기기)
