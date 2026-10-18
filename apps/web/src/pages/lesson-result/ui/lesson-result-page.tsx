@@ -79,7 +79,7 @@ export function LessonResultPage({ lessonSubmissionId }: LessonResultPageProps) 
       {/* 로딩 중 받아 둔 배경 이미지를 재사용하도록 같은 인스턴스를 유지한다. */}
       <ResultBackground isVisible={isArtworkVisible} onReady={handleBackgroundReady} />
       {lessonResult ? (
-        <main className="z-10 mx-auto flex w-full max-w-[39.375rem] flex-1 flex-col px-4 pt-[4.6875rem] pb-5 md:justify-center md:px-0 md:py-10">
+        <main className="z-10 mx-auto flex w-full max-w-[39.375rem] flex-1 flex-col px-4 pt-[calc(4.6875rem+var(--safe-area-top))] pb-5 md:justify-center md:px-0 md:py-10">
           <div className="md:glass-morphism-border relative flex min-h-0 flex-1 flex-col gap-4 rounded-12 md:flex-none md:gap-10 md:bg-linear-[107deg,rgba(255,255,255,0.24),rgba(255,255,255,0.06)] md:p-8 md:shadow-[0_4px_32px_0_rgba(0,0,0,0.02)] md:backdrop-blur-md md:after:rounded-12">
             <div className="flex min-h-0 flex-1 flex-col gap-6 md:flex-none md:gap-8 md:pt-6">
               <div className="flex min-h-0 flex-1 flex-col justify-end md:flex-none">

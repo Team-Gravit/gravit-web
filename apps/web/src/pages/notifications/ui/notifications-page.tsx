@@ -22,7 +22,7 @@ export function NotificationsPage() {
 
   return (
     // 앱 셸 밖 화면이라 목록이 직접 스크롤한다. 당긴 목록이 화면 아래로 넘치지 않게 자른다.
-    <div className="flex h-svh flex-col overflow-hidden bg-bg-2">
+    <div className="flex h-dvh flex-col overflow-hidden bg-bg-2">
       <PageTitleBar title="알림" backTo={{ to: '/my' }} className="md:hidden" />
 
       {/* 제목 막대는 두고 그 아래만 내려간다. 빈 상태에서도 당겨서 다시 불러올 수 있다. */}

@@ -1,14 +1,38 @@
 import { StyleSheet, View, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRef, useState } from 'react';
-import { WebView } from 'react-native-webview';
+import { WebView, type WebViewMessageEvent } from 'react-native-webview';
 import Constants from 'expo-constants';
+import { StatusBar, type StatusBarStyle } from 'expo-status-bar';
 
 const devHost = Constants.expoConfig?.hostUri?.split(':')[0];
 
 const WEB_URL =
   process.env.EXPO_PUBLIC_WEB_URL ??
   (__DEV__ && devHost ? `http://${devHost}:5173` : 'https://dev.gravit.inuappcenter.kr/');
+
+/** 웹의 `native-status-bar.ts`에서 보내는 메시지 타입과 일치해야 한다. */
+const STATUS_BAR_STYLE_MESSAGE_TYPE = 'statusBarStyle';
+
+/** 웹 메시지에서 상태 표시줄 스타일을 읽는다. 형식이 다르거나 값이 `light`·`dark`가 아니면 `null`. */
+function readStatusBarStyle(data: string): StatusBarStyle | null {
+  try {
+    const message: unknown = JSON.parse(data);
+    if (
+      typeof message === 'object' &&
+      message !== null &&
+      'type' in message &&
+      message.type === STATUS_BAR_STYLE_MESSAGE_TYPE &&
+      'style' in message &&
+      (message.style === 'light' || message.style === 'dark')
+    ) {
+      return message.style;
+    }
+  } catch {
+    // JSON으로 읽을 수 없는 메시지는 상태 표시줄 스타일로 처리하지 않는다.
+  }
+  return null;
+}
 
 /** 웹이 `dest=local`로 인가 URL을 받으면 제공자가 이 origin으로 돌려보낸다. */
 const LOCAL_DEV_ORIGIN = 'http://localhost:5173';
@@ -32,6 +56,7 @@ export default function WebviewPage() {
   const insets = useSafeAreaInsets();
   const webViewRef = useRef<WebView>(null);
   const [webUri, setWebUri] = useState(WEB_URL);
+  const [statusBarStyle, setStatusBarStyle] = useState<StatusBarStyle>('dark');
 
   const handleShouldStartLoad = ({ url }: { url: string }) => {
     const rewrittenUrl = rewriteLocalDevCallback(url);
@@ -44,16 +69,28 @@ export default function WebviewPage() {
     return false;
   };
 
+  const handleMessage = (event: WebViewMessageEvent) => {
+    const nextStatusBarStyle = readStatusBarStyle(event.nativeEvent.data);
+    if (nextStatusBarStyle) {
+      setStatusBarStyle(nextStatusBarStyle);
+      return;
+    }
+
+    console.log('[WebView] browser event', event.nativeEvent.data);
+  };
+
   return (
     <View
       style={[
         styles.safeArea,
         {
-          paddingTop: insets.top,
+          // iOS에서는 WebView를 상태 표시줄까지 확장하고, 상단 여백은 웹에서 처리한다.
+          paddingTop: Platform.OS === 'android' ? insets.top : 0,
           paddingBottom: Platform.OS === 'android' ? insets.bottom : 0,
         },
       ]}
     >
+      <StatusBar style={statusBarStyle} />
       <WebView
         ref={webViewRef}
         style={styles.container}
@@ -64,6 +101,8 @@ export default function WebviewPage() {
         applicationNameForUserAgent="GravitNative/1.0"
         // 웹 화면이 스크롤을 직접 관리한다. WebView 가 튕기면 고정 헤더 · 바텀탭까지 함께 끌려간다.
         bounces={false}
+        // WebView의 자동 inset 보정을 꺼 웹의 상단 여백과 중복되지 않게 한다.
+        contentInsetAdjustmentBehavior="never"
         overScrollMode="never"
         cacheEnabled={!__DEV__}
         cacheMode={__DEV__ ? 'LOAD_NO_CACHE' : 'LOAD_DEFAULT'}
@@ -103,7 +142,7 @@ export default function WebviewPage() {
         }
         onError={(event) => console.error('[WebView] error', event.nativeEvent)}
         onHttpError={(event) => console.error('[WebView] HTTP error', event.nativeEvent)}
-        onMessage={(event) => console.log('[WebView] browser event', event.nativeEvent.data)}
+        onMessage={handleMessage}
       />
     </View>
   );

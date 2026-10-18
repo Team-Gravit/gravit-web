@@ -42,7 +42,8 @@ export function ProfileCard({ data, isLoading = false }: ProfileCardProps) {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
-      className="relative w-full min-h-[196px] overflow-hidden md:min-h-[204px] md:rounded-12"
+      // box-content: 카드 최소 높이는 그대로 두고 배너를 상태 표시줄 뒤까지 늘린다.
+      className="relative box-content w-full min-h-[196px] overflow-hidden pt-(--safe-area-top) md:min-h-[204px] md:rounded-12"
     >
       {/* 모바일: 균일한 어둠 오버레이 / 데스크톱: 우측으로 짙어지는 그라데이션 */}
       <div aria-hidden className="pointer-events-none absolute inset-0 bg-black/40 md:hidden" />
