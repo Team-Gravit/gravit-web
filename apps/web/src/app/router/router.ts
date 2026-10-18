@@ -29,6 +29,8 @@ declare module '@tanstack/react-router' {
     hideBottomTabBar?: boolean;
     /** 앱의 시계·배터리 글자색. 맨 위 배경이 어두우면 `light`. 기본 `dark`. */
     statusBarStyle?: 'light' | 'dark';
+    /** 브라우저 상단 색. 기본은 흰색이며, `null`이면 색 지정을 해제한다. */
+    browserTopColor?: string | null;
   }
 }
 
