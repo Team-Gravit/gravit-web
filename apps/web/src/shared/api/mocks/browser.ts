@@ -6,6 +6,7 @@ import {
   getGetFollowingsMockHandler,
   getUnfollowMockHandler,
 } from '../generated/mocks/friend-api/friend-api.msw';
+import { getGetDashboardMockHandler } from '../generated/mocks/interview-feedback-api/interview-feedback-api.msw';
 import { getGetInboxMockHandler } from '../generated/mocks/notification-api/notification-api.msw';
 import { getOauth20ApiMock } from '../generated/mocks/index.msw';
 import { getGetAllLessonInUnitMockHandler } from '../generated/mocks/lesson-api/lesson-api.msw';
@@ -361,6 +362,58 @@ const notificationHandlers = [
   getUnfollowMockHandler(),
 ];
 
+// AI-HOME-01 시안 검토용 고정값. 데이터 5개 프레임(DATA4)에 맞춘다. 빈 상태는 페이지 테스트가 확인한다.
+const interviewHomeHandlers = [
+  getGetDashboardMockHandler({
+    completedSessionCount: 12,
+    recentAverageScore: 68,
+    weakestTopics: [
+      { topic: { topic: 'ALGORITHM', displayName: '알고리즘' }, accuracyRate: 30 },
+      { topic: { topic: 'NETWORK', displayName: '네트워크' }, accuracyRate: 60 },
+      { topic: { topic: 'DATABASE', displayName: '데이터베이스' }, accuracyRate: 80 },
+    ],
+    recentSessions: [
+      {
+        sessionId: 12,
+        sequence: 12,
+        mode: 'COMMON_CS',
+        topics: [
+          { topic: 'DATA_STRUCTURE', displayName: '자료구조' },
+          { topic: 'ALGORITHM', displayName: '알고리즘' },
+        ],
+        startedAt: '2026-07-28T10:00:00',
+        score: 68,
+        maxScore: 100,
+      },
+      {
+        sessionId: 11,
+        sequence: 11,
+        mode: 'COMMON_CS',
+        topics: [{ topic: 'DATA_STRUCTURE', displayName: '자료구조' }],
+        startedAt: '2026-07-27T10:00:00',
+        score: 50,
+        maxScore: 100,
+      },
+      {
+        sessionId: 10,
+        sequence: 10,
+        mode: 'JOB_SPECIFIC',
+        topics: [{ topic: 'REACT', displayName: 'React' }],
+        startedAt: '2026-07-20T10:00:00',
+        score: 42,
+        maxScore: 100,
+      },
+    ],
+    scoreTrends: [
+      { sequence: 8, score: 20 },
+      { sequence: 9, score: 68 },
+      { sequence: 10, score: 42 },
+      { sequence: 11, score: 50 },
+      { sequence: 12, score: 68 },
+    ],
+  }),
+];
+
 export const worker = setupWorker(
   ...getOauth20ApiMock(),
   ...mainPageHandlers,
@@ -370,4 +423,5 @@ export const worker = setupWorker(
   ...friendFeedHandlers,
   ...recommendFriendHandlers,
   ...notificationHandlers,
+  ...interviewHomeHandlers,
 );
