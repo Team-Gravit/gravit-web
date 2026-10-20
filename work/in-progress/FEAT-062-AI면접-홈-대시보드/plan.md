@@ -97,3 +97,23 @@ mode: 'feature'
 - [x] `[widgets]` 약한 분야 항목 · 응시 이력 항목(`RankBadge` · `Chip` 재사용) · 점수 추이 차트
 - [x] `[widgets]` 세 카드 본문 연결
 - [x] `[pages]` 페이지 테스트에 데이터 상태 · 점 선택 추가
+
+---
+
+# 3단계 계획 — 약한 분야 전체 보기 모달 (2026-10-20 사용자 지시로 착수)
+
+| 구분 | 파일                                                                                      |
+| ---- | ----------------------------------------------------------------------------------------- |
+| 수정 | `entities/interview/api/index.ts` · `index.ts` — `useInterviewWeakTopics` re-export       |
+| 신규 | `widgets/interview-dashboard/ui/weak-topics-modal.tsx` — 공용 `Modal` · `ScrollArea` 사용 |
+| 신규 | `widgets/interview-dashboard/model/weak-topics.ts` — 카드·모달 공용 제목·빈 문구          |
+| 수정 | `weak-topics-card.tsx` — 헤더 「전체 보기」 버튼 + 모달 상태                              |
+| 수정 | `shared/api/mocks/browser.ts` — 전체 목록 고정 목(7개)                                    |
+
+- 「전체 보기」는 이동이 아니라 모달 열기라 `CardLink` 대신 같은 모양의 `button`을 위젯에 둔다.
+  공용 컴포넌트로 올리는 일은 shared 변경이라 #270 규칙상 `develop` 선반영이 필요해 미룬다
+- 조회는 모달 본문이 렌더될 때 시작한다(Radix `Dialog.Content`는 닫혀 있으면 마운트되지 않음)
+
+- [x] `[entities]` 전체 목록 조회 노출
+- [x] `[widgets]` 모달 · 카드 헤더 버튼
+- [x] `[pages]` 테스트 — 열기·닫기, 열기 전 미조회, 조회 실패
