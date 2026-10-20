@@ -1,6 +1,6 @@
 export { useCsTopics } from './api/use-cs-topics';
 export { useInterviewStacks, usePrefetchInterviewStacks } from './api/use-interview-stacks';
-export { useInterviewDashboard } from './api';
+export { useInterviewDashboard, useInterviewWeakTopics } from './api';
 export {
   INTERVIEW_HISTORY_MODE_LABEL,
   formatSessionSummary,

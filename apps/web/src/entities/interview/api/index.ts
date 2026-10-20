@@ -1,1 +1,4 @@
-export { useGetDashboard as useInterviewDashboard } from '@/shared/api/generated/interview-feedback-api/interview-feedback-api';
+export {
+  useGetDashboard as useInterviewDashboard,
+  useGetWeakTopics as useInterviewWeakTopics,
+} from '@/shared/api/generated/interview-feedback-api/interview-feedback-api';

@@ -6,7 +6,10 @@ import {
   getGetFollowingsMockHandler,
   getUnfollowMockHandler,
 } from '../generated/mocks/friend-api/friend-api.msw';
-import { getGetDashboardMockHandler } from '../generated/mocks/interview-feedback-api/interview-feedback-api.msw';
+import {
+  getGetDashboardMockHandler,
+  getGetWeakTopicsMockHandler,
+} from '../generated/mocks/interview-feedback-api/interview-feedback-api.msw';
 import { getGetInboxMockHandler } from '../generated/mocks/notification-api/notification-api.msw';
 import { getOauth20ApiMock } from '../generated/mocks/index.msw';
 import { getGetAllLessonInUnitMockHandler } from '../generated/mocks/lesson-api/lesson-api.msw';
@@ -412,6 +415,16 @@ const interviewHomeHandlers = [
       { sequence: 12, score: 68 },
     ],
   }),
+  // 「전체 보기」 모달(AI-HOME-01-MODAL)이 스크롤되도록 대시보드의 하위 3개보다 길게 둔다.
+  getGetWeakTopicsMockHandler([
+    { topic: { topic: 'ALGORITHM', displayName: '알고리즘' }, accuracyRate: 30 },
+    { topic: { topic: 'NETWORK', displayName: '네트워크' }, accuracyRate: 60 },
+    { topic: { topic: 'DATABASE', displayName: '데이터베이스' }, accuracyRate: 80 },
+    { topic: { topic: 'OPERATING_SYSTEM', displayName: '운영체제' }, accuracyRate: 82 },
+    { topic: { topic: 'DATA_STRUCTURE', displayName: '자료구조' }, accuracyRate: 85 },
+    { topic: { topic: 'JAVA', displayName: 'Java' }, accuracyRate: 88 },
+    { topic: { topic: 'REACT', displayName: 'React' }, accuracyRate: 91 },
+  ]),
 ];
 
 export const worker = setupWorker(
