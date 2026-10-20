@@ -10,6 +10,8 @@ import type { InterviewAnswerDetailResponse } from './interviewAnswerDetailRespo
 export interface InterviewSessionAnswersResponse {
   /** 세션 ID */
   sessionId: number;
+  /** 세션 시작 시각 */
+  startedAt: string;
   /** 문항별 상세 (문항 순서대로) */
   answers: InterviewAnswerDetailResponse[];
 }
