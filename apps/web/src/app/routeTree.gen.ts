@@ -39,6 +39,8 @@ import { Route as AuthenticatedFocusInterviewNewRouteImport } from './routes/_au
 import { Route as AuthenticatedSettingsInquiryIndexRouteImport } from './routes/_authenticated/settings/inquiry/index'
 import { Route as AuthenticatedSettingsInquiryNewRouteImport } from './routes/_authenticated/settings/inquiry/new'
 import { Route as LoginOauth2CodeProviderRouteImport } from './routes/login.oauth2.code.$provider'
+import { Route as AuthenticatedAppShellInterviewHistoryIndexRouteImport } from './routes/_authenticated/_app-shell/interview.history.index'
+import { Route as AuthenticatedAppShellInterviewHistorySessionIdRouteImport } from './routes/_authenticated/_app-shell/interview.history.$sessionId'
 import { Route as AuthenticatedAppShellMyFriendsSearchRouteImport } from './routes/_authenticated/_app-shell/my.friends.search'
 import { Route as AuthenticatedFocusInterviewNewStepRouteImport } from './routes/_authenticated/_focus/interview.new.$step'
 import { Route as AuthenticatedFocusInterviewSessionsSessionIdRouteImport } from './routes/_authenticated/_focus/interview.sessions.$sessionId'
@@ -220,6 +222,18 @@ const LoginOauth2CodeProviderRoute = LoginOauth2CodeProviderRouteImport.update({
   path: '/login/oauth2/code/$provider',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedAppShellInterviewHistoryIndexRoute =
+  AuthenticatedAppShellInterviewHistoryIndexRouteImport.update({
+    id: '/interview/history/',
+    path: '/interview/history/',
+    getParentRoute: () => AuthenticatedAppShellRouteRoute,
+  } as any)
+const AuthenticatedAppShellInterviewHistorySessionIdRoute =
+  AuthenticatedAppShellInterviewHistorySessionIdRouteImport.update({
+    id: '/interview/history/$sessionId',
+    path: '/interview/history/$sessionId',
+    getParentRoute: () => AuthenticatedAppShellRouteRoute,
+  } as any)
 const AuthenticatedAppShellMyFriendsSearchRoute =
   AuthenticatedAppShellMyFriendsSearchRouteImport.update({
     id: '/friends/search',
@@ -311,10 +325,12 @@ export interface FileRoutesByFullPath {
   '/learning/': typeof AuthenticatedAppShellLearningIndexRoute
   '/my/': typeof AuthenticatedAppShellMyIndexRoute
   '/settings/inquiry/': typeof AuthenticatedSettingsInquiryIndexRoute
+  '/interview/history/$sessionId': typeof AuthenticatedAppShellInterviewHistorySessionIdRoute
   '/my/friends/search': typeof AuthenticatedAppShellMyFriendsSearchRoute
   '/interview/new/$step': typeof AuthenticatedFocusInterviewNewStepRoute
   '/interview/sessions/$sessionId': typeof AuthenticatedFocusInterviewSessionsSessionIdRoute
   '/learning/lessons/$lessonId': typeof AuthenticatedFocusLearningLessonsLessonIdRoute
+  '/interview/history/': typeof AuthenticatedAppShellInterviewHistoryIndexRoute
   '/learning/units/$unitId/concept-note': typeof AuthenticatedAppShellLearningUnitsUnitIdConceptNoteRoute
   '/learning/units/$unitId/bookmarked-problems': typeof AuthenticatedFocusLearningUnitsUnitIdBookmarkedProblemsRoute
   '/learning/units/$unitId/incorrect-problems': typeof AuthenticatedFocusLearningUnitsUnitIdIncorrectProblemsRoute
@@ -346,10 +362,12 @@ export interface FileRoutesByTo {
   '/learning': typeof AuthenticatedAppShellLearningIndexRoute
   '/my': typeof AuthenticatedAppShellMyIndexRoute
   '/settings/inquiry': typeof AuthenticatedSettingsInquiryIndexRoute
+  '/interview/history/$sessionId': typeof AuthenticatedAppShellInterviewHistorySessionIdRoute
   '/my/friends/search': typeof AuthenticatedAppShellMyFriendsSearchRoute
   '/interview/new/$step': typeof AuthenticatedFocusInterviewNewStepRoute
   '/interview/sessions/$sessionId': typeof AuthenticatedFocusInterviewSessionsSessionIdRoute
   '/learning/lessons/$lessonId': typeof AuthenticatedFocusLearningLessonsLessonIdRoute
+  '/interview/history': typeof AuthenticatedAppShellInterviewHistoryIndexRoute
   '/learning/units/$unitId/concept-note': typeof AuthenticatedAppShellLearningUnitsUnitIdConceptNoteRoute
   '/learning/units/$unitId/bookmarked-problems': typeof AuthenticatedFocusLearningUnitsUnitIdBookmarkedProblemsRoute
   '/learning/units/$unitId/incorrect-problems': typeof AuthenticatedFocusLearningUnitsUnitIdIncorrectProblemsRoute
@@ -389,10 +407,12 @@ export interface FileRoutesById {
   '/_authenticated/_app-shell/learning/': typeof AuthenticatedAppShellLearningIndexRoute
   '/_authenticated/_app-shell/my/': typeof AuthenticatedAppShellMyIndexRoute
   '/_authenticated/settings/inquiry/': typeof AuthenticatedSettingsInquiryIndexRoute
+  '/_authenticated/_app-shell/interview/history/$sessionId': typeof AuthenticatedAppShellInterviewHistorySessionIdRoute
   '/_authenticated/_app-shell/my/friends/search': typeof AuthenticatedAppShellMyFriendsSearchRoute
   '/_authenticated/_focus/interview/new/$step': typeof AuthenticatedFocusInterviewNewStepRoute
   '/_authenticated/_focus/interview/sessions/$sessionId': typeof AuthenticatedFocusInterviewSessionsSessionIdRoute
   '/_authenticated/_focus/learning/lessons/$lessonId': typeof AuthenticatedFocusLearningLessonsLessonIdRoute
+  '/_authenticated/_app-shell/interview/history/': typeof AuthenticatedAppShellInterviewHistoryIndexRoute
   '/_authenticated/_app-shell/learning/units/$unitId/concept-note': typeof AuthenticatedAppShellLearningUnitsUnitIdConceptNoteRoute
   '/_authenticated/_focus/learning/units/$unitId/bookmarked-problems': typeof AuthenticatedFocusLearningUnitsUnitIdBookmarkedProblemsRoute
   '/_authenticated/_focus/learning/units/$unitId/incorrect-problems': typeof AuthenticatedFocusLearningUnitsUnitIdIncorrectProblemsRoute
@@ -430,10 +450,12 @@ export interface FileRouteTypes {
     | '/learning/'
     | '/my/'
     | '/settings/inquiry/'
+    | '/interview/history/$sessionId'
     | '/my/friends/search'
     | '/interview/new/$step'
     | '/interview/sessions/$sessionId'
     | '/learning/lessons/$lessonId'
+    | '/interview/history/'
     | '/learning/units/$unitId/concept-note'
     | '/learning/units/$unitId/bookmarked-problems'
     | '/learning/units/$unitId/incorrect-problems'
@@ -465,10 +487,12 @@ export interface FileRouteTypes {
     | '/learning'
     | '/my'
     | '/settings/inquiry'
+    | '/interview/history/$sessionId'
     | '/my/friends/search'
     | '/interview/new/$step'
     | '/interview/sessions/$sessionId'
     | '/learning/lessons/$lessonId'
+    | '/interview/history'
     | '/learning/units/$unitId/concept-note'
     | '/learning/units/$unitId/bookmarked-problems'
     | '/learning/units/$unitId/incorrect-problems'
@@ -507,10 +531,12 @@ export interface FileRouteTypes {
     | '/_authenticated/_app-shell/learning/'
     | '/_authenticated/_app-shell/my/'
     | '/_authenticated/settings/inquiry/'
+    | '/_authenticated/_app-shell/interview/history/$sessionId'
     | '/_authenticated/_app-shell/my/friends/search'
     | '/_authenticated/_focus/interview/new/$step'
     | '/_authenticated/_focus/interview/sessions/$sessionId'
     | '/_authenticated/_focus/learning/lessons/$lessonId'
+    | '/_authenticated/_app-shell/interview/history/'
     | '/_authenticated/_app-shell/learning/units/$unitId/concept-note'
     | '/_authenticated/_focus/learning/units/$unitId/bookmarked-problems'
     | '/_authenticated/_focus/learning/units/$unitId/incorrect-problems'
@@ -740,6 +766,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginOauth2CodeProviderRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/_app-shell/interview/history/': {
+      id: '/_authenticated/_app-shell/interview/history/'
+      path: '/interview/history'
+      fullPath: '/interview/history/'
+      preLoaderRoute: typeof AuthenticatedAppShellInterviewHistoryIndexRouteImport
+      parentRoute: typeof AuthenticatedAppShellRouteRoute
+    }
+    '/_authenticated/_app-shell/interview/history/$sessionId': {
+      id: '/_authenticated/_app-shell/interview/history/$sessionId'
+      path: '/interview/history/$sessionId'
+      fullPath: '/interview/history/$sessionId'
+      preLoaderRoute: typeof AuthenticatedAppShellInterviewHistorySessionIdRouteImport
+      parentRoute: typeof AuthenticatedAppShellRouteRoute
+    }
     '/_authenticated/_app-shell/my/friends/search': {
       id: '/_authenticated/_app-shell/my/friends/search'
       path: '/friends/search'
@@ -845,6 +885,8 @@ interface AuthenticatedAppShellRouteRouteChildren {
   AuthenticatedAppShellMainRoute: typeof AuthenticatedAppShellMainRoute
   AuthenticatedAppShellInterviewIndexRoute: typeof AuthenticatedAppShellInterviewIndexRoute
   AuthenticatedAppShellLearningIndexRoute: typeof AuthenticatedAppShellLearningIndexRoute
+  AuthenticatedAppShellInterviewHistorySessionIdRoute: typeof AuthenticatedAppShellInterviewHistorySessionIdRoute
+  AuthenticatedAppShellInterviewHistoryIndexRoute: typeof AuthenticatedAppShellInterviewHistoryIndexRoute
   AuthenticatedAppShellLearningUnitsUnitIdConceptNoteRoute: typeof AuthenticatedAppShellLearningUnitsUnitIdConceptNoteRoute
   AuthenticatedAppShellLearningChaptersChapterIdIndexRoute: typeof AuthenticatedAppShellLearningChaptersChapterIdIndexRoute
   AuthenticatedAppShellLearningUnitsUnitIdIndexRoute: typeof AuthenticatedAppShellLearningUnitsUnitIdIndexRoute
@@ -861,6 +903,10 @@ const AuthenticatedAppShellRouteRouteChildren: AuthenticatedAppShellRouteRouteCh
       AuthenticatedAppShellInterviewIndexRoute,
     AuthenticatedAppShellLearningIndexRoute:
       AuthenticatedAppShellLearningIndexRoute,
+    AuthenticatedAppShellInterviewHistorySessionIdRoute:
+      AuthenticatedAppShellInterviewHistorySessionIdRoute,
+    AuthenticatedAppShellInterviewHistoryIndexRoute:
+      AuthenticatedAppShellInterviewHistoryIndexRoute,
     AuthenticatedAppShellLearningUnitsUnitIdConceptNoteRoute:
       AuthenticatedAppShellLearningUnitsUnitIdConceptNoteRoute,
     AuthenticatedAppShellLearningChaptersChapterIdIndexRoute:

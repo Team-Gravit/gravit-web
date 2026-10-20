@@ -1,4 +1,6 @@
 import { cn } from '@/shared/lib/cn';
+import { CardLink } from '@/shared/ui/card';
+import { INTERVIEW_HISTORY_EMPTY_MESSAGE } from '@/entities/interview';
 
 import { DashboardSectionCard } from './dashboard-section-card';
 import { RecentSessionItem } from './recent-session-item';
@@ -12,7 +14,7 @@ export function RecentSessionsCard({ className }: RecentSessionsCardProps) {
     <DashboardSectionCard
       title="최근 응시 이력"
       isEmpty={(dashboard) => dashboard.recentSessions.length === 0}
-      emptyMessage={'아직 응시한 세션이 없어요.\n첫 세션을 시작해볼까요?'}
+      emptyMessage={INTERVIEW_HISTORY_EMPTY_MESSAGE}
       renderContent={(dashboard) => (
         <ol className="flex flex-col gap-3">
           {dashboard.recentSessions.map((session) => (
@@ -20,6 +22,11 @@ export function RecentSessionsCard({ className }: RecentSessionsCardProps) {
           ))}
         </ol>
       )}
+      headerAction={
+        <CardLink to="/interview/history" search={{ page: 1, sort: 'LATEST' }}>
+          전체 보기
+        </CardLink>
+      }
       className={cn('min-h-66.25 md:min-h-87.5', className)}
     />
   );
