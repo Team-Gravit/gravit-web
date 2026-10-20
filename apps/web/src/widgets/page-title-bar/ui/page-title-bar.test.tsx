@@ -78,4 +78,18 @@ describe('PageTitleBar', () => {
     expect(screen.getByRole('button', { name: '알림' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: '자료구조' })).toBeInTheDocument();
   });
+
+  it('backIcon이 home이면 이전 화면이 있어도 backTo 로 이동한다', async () => {
+    const user = userEvent.setup();
+    const { router } = await renderWithProviders(
+      () => <PageTitleBar title="최근 응시 이력" backTo={{ to: '/my' }} backIcon="home" />,
+      { path: '/notifications', extraPaths: ['/main', '/my'] },
+    );
+    await router.navigate({ to: '/main' });
+    await router.navigate({ to: '/notifications' });
+
+    await user.click(await screen.findByRole('link', { name: '홈으로 이동' }));
+
+    await vi.waitFor(() => expect(router.state.location.pathname).toBe('/my'));
+  });
 });

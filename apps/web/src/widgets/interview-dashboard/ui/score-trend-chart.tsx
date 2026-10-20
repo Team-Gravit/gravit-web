@@ -56,11 +56,7 @@ export function ScoreTrendChart({ trends }: ScoreTrendChartProps) {
           >
             <defs>
               <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
-                <stop
-                  offset="0%"
-                  stopColor="var(--color-cta)"
-                  className="[stop-opacity:0.7] md:[stop-opacity:0.25]"
-                />
+                <stop offset="0%" stopColor="var(--color-cta)" stopOpacity="0.25" />
                 <stop offset="100%" stopColor="var(--color-cta)" stopOpacity="0" />
               </linearGradient>
             </defs>
