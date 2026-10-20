@@ -117,3 +117,43 @@ mode: 'feature'
 - [x] `[entities]` 전체 목록 조회 노출
 - [x] `[widgets]` 모달 · 카드 헤더 버튼
 - [x] `[pages]` 테스트 — 열기·닫기, 열기 전 미조회, 조회 실패
+
+---
+
+# 4단계 — 최근 응시 이력 페이지 (2026-10-20 사용자 지시로 착수)
+
+| 구분   | 파일                                                                                             |
+| ------ | ------------------------------------------------------------------------------------------------ |
+| 재생성 | `shared/api/generated/` — orval (`totalPages` · `audioUrl` 반영)                                 |
+| 신규   | `entities/interview/api/use-interview-session-history.ts` — 1부터 세는 페이지를 API 0부터로 변환 |
+| 신규   | `entities/interview/model/interview-history.ts` (+ 테스트) — 정렬 라벨 · 날짜 · 부제 · 빈 문구   |
+| 신규   | `pages/interview-history/` — 페이지 · 정렬 토글 · 항목 (+ 테스트)                                |
+| 신규   | `app/routes/_authenticated/_app-shell/interview.history.tsx` — `page` · `sort` search 검증       |
+| 수정   | `widgets/page-title-bar` — `backIcon="home"` (이전 화면 대신 항상 `backTo`로 이동)               |
+| 수정   | `widgets/interview-dashboard/ui/recent-sessions-card.tsx` — 「전체 보기」 링크                   |
+| 수정   | `shared/api/mocks/browser.ts` — 3페이지 고정 목                                                  |
+
+- [x] API 재생성 · 영향 확인 (타입 오류 없음)
+- [x] 엔티티 조회 · 표시 함수 + 테스트
+- [x] 페이지 · 라우트 · 대시보드 연결 + 테스트
+
+---
+
+# 5단계 — 피드백 리포트 (2026-10-20 사용자 지시로 착수)
+
+| 구분 | 파일                                                                                                             |
+| ---- | ---------------------------------------------------------------------------------------------------------------- |
+| 신규 | `entities/interview/model/interview-report.ts` (+ 테스트) — 평균 대비 문구 · 3칸 구간 · 문항 제목                |
+| 수정 | `entities/interview` — 종합 · 문항 상세 조회 노출, 날짜 형식 `compact`                                           |
+| 신규 | `pages/interview-report/` — 페이지 · 게이지 · 비교 줄 · 누적 막대 · 약점 분야 · 문항 상세 · 녹음 재생 (+ 테스트) |
+| 신규 | `app/routes/.../interview.history.$sessionId.tsx` — `tab` · `question` search                                    |
+| 이동 | `interview.history.tsx` → `interview.history.index.tsx` (리포트 라우트와 형제가 되도록)                          |
+| 수정 | 응시 이력 항목 · 대시보드 응시 이력 항목 → 리포트 링크                                                           |
+| 수정 | `shared/api/mocks/browser.ts` — 리포트 고정 목                                                                   |
+
+- 차트는 이 화면에서만 쓰여 페이지 슬라이스 안에 둔다. 공용 차트로 올리는 일은 사용처가 늘 때 판단한다
+- 탭은 공용 `Tabs`(링크 탭)를 쓴다. 웹 문항 탭과 모바일 펼치기는 시안 고유 모양이라 페이지 안에서 만든다
+
+- [x] 엔티티 조회 · 표시 계산 + 테스트
+- [x] 세션 종합 · 문항별 상세 (웹 · 모바일)
+- [x] 라우트 · 항목 링크 · 테스트
