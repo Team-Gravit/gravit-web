@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { screen } from '@testing-library/react';
+import { screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { HttpResponse, http } from 'msw';
 
@@ -9,6 +9,7 @@ import { renderWithProviders } from '@/shared/lib/testing';
 import { InterviewPage } from './interview-page';
 
 const DASHBOARD_URL = '*/api/v1/interview-sessions/dashboard';
+const WEAK_TOPICS_URL = '*/api/v1/interview-sessions/weak-topics';
 const EMPTY_DASHBOARD = {
   completedSessionCount: 0,
   recentAverageScore: 0,
@@ -42,6 +43,13 @@ const DASHBOARD = {
     { sequence: 12, score: 68 },
   ],
 };
+
+// 대시보드에 없는 주제도 모달에 표시되는지 확인한다.
+const ALL_WEAK_TOPICS = [
+  ...DASHBOARD.weakestTopics,
+  { topic: { topic: 'OPERATING_SYSTEM', displayName: '운영체제' }, accuracyRate: 70 },
+  { topic: { topic: 'DATABASE', displayName: '데이터베이스' }, accuracyRate: 85 },
+];
 
 // jsdom은 matchMedia를 제공하지 않으므로 넓은 화면 여부를 직접 고정한다.
 function stubViewport(isWide: boolean) {
@@ -141,5 +149,65 @@ describe.each([
     expect(screen.getByText('가장 약한 분야를 불러오지 못했어요.')).toBeInTheDocument();
     expect(screen.getByText('최근 응시 이력을 불러오지 못했어요.')).toBeInTheDocument();
     expect(screen.getByText('점수 추이를 불러오지 못했어요.')).toBeInTheDocument();
+  });
+
+  it('약한 분야가 있으면 「전체 보기」로 전체 목록 모달을 열고, 닫기로 닫는다', async () => {
+    stubViewport(isWide);
+    let weakTopicsRequestCount = 0;
+    server.use(
+      http.get(DASHBOARD_URL, () => HttpResponse.json(DASHBOARD)),
+      http.get(WEAK_TOPICS_URL, () => {
+        weakTopicsRequestCount += 1;
+        return HttpResponse.json(ALL_WEAK_TOPICS);
+      }),
+    );
+    const user = userEvent.setup();
+    await renderInterviewPage();
+
+    await user.click(await screen.findByRole('button', { name: '전체 보기' }));
+
+    const dialog = await screen.findByRole('dialog', { name: '가장 약한 분야' });
+    expect(await within(dialog).findByText('운영체제')).toBeInTheDocument();
+    expect(within(dialog).getByText('데이터베이스')).toBeInTheDocument();
+    expect(within(dialog).getAllByRole('listitem')).toHaveLength(ALL_WEAK_TOPICS.length);
+    expect(weakTopicsRequestCount).toBe(1);
+
+    await user.click(within(dialog).getByRole('button', { name: '닫기' }));
+
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  });
+
+  it('모달을 열기 전에는 전체 목록을 조회하지 않는다', async () => {
+    stubViewport(isWide);
+    let weakTopicsRequestCount = 0;
+    server.use(
+      http.get(DASHBOARD_URL, () => HttpResponse.json(DASHBOARD)),
+      http.get(WEAK_TOPICS_URL, () => {
+        weakTopicsRequestCount += 1;
+        return HttpResponse.json(ALL_WEAK_TOPICS);
+      }),
+    );
+    await renderInterviewPage();
+
+    expect(await screen.findByRole('button', { name: '전체 보기' })).toBeInTheDocument();
+    expect(weakTopicsRequestCount).toBe(0);
+  });
+
+  it('전체 목록 조회에 실패하면 모달 안에 다시 시도를 보여준다', async () => {
+    stubViewport(isWide);
+    server.use(
+      http.get(DASHBOARD_URL, () => HttpResponse.json(DASHBOARD)),
+      http.get(WEAK_TOPICS_URL, () => new HttpResponse(null, { status: 500 })),
+    );
+    const user = userEvent.setup();
+    await renderInterviewPage();
+
+    await user.click(await screen.findByRole('button', { name: '전체 보기' }));
+
+    const dialog = await screen.findByRole('dialog', { name: '가장 약한 분야' });
+    expect(
+      await within(dialog).findByText('가장 약한 분야를 불러오지 못했어요.'),
+    ).toBeInTheDocument();
+    expect(within(dialog).getByRole('button', { name: '다시 시도' })).toBeInTheDocument();
   });
 });
