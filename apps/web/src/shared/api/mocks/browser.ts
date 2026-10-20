@@ -8,6 +8,9 @@ import {
 } from '../generated/mocks/friend-api/friend-api.msw';
 import {
   getGetDashboardMockHandler,
+  getGetSessionAnswersMockHandler,
+  getGetSessionHistoryMockHandler,
+  getGetSessionSummaryMockHandler,
   getGetWeakTopicsMockHandler,
 } from '../generated/mocks/interview-feedback-api/interview-feedback-api.msw';
 import { getGetInboxMockHandler } from '../generated/mocks/notification-api/notification-api.msw';
@@ -427,6 +430,161 @@ const interviewHomeHandlers = [
   ]),
 ];
 
+// 최근 응시 이력(AI-HOME-01 응시 이력 페이지) 시안 검토용. 번호형 페이지 이동을 보도록 3페이지로 둔다.
+const HISTORY_TOPIC_SETS = [
+  [
+    { topic: 'DATA_STRUCTURE', displayName: '자료구조' },
+    { topic: 'DATABASE', displayName: '데이터베이스' },
+    { topic: 'ALGORITHM', displayName: '알고리즘' },
+  ],
+  [{ topic: 'DATA_STRUCTURE', displayName: '자료구조' }],
+  [{ topic: 'NETWORK', displayName: '네트워크' }],
+] as const;
+
+const interviewHistoryHandlers = [
+  getGetSessionHistoryMockHandler(({ request }) => {
+    const url = new URL(request.url);
+    const page = Number(url.searchParams.get('page') ?? 0);
+    const isOldestFirst = url.searchParams.get('sort') === 'OLDEST';
+    const totalCount = 25;
+
+    return {
+      hasNextPage: page < 2,
+      totalPages: 3,
+      contents: Array.from({ length: Math.min(10, totalCount - page * 10) }, (_, index) => {
+        const order = page * 10 + index;
+        const sequence = isOldestFirst ? order + 1 : totalCount - order;
+        return {
+          sessionId: sequence,
+          sequence,
+          mode: sequence % 4 === 0 ? 'JOB_SPECIFIC' : 'COMMON_CS',
+          topics: [...HISTORY_TOPIC_SETS[sequence % HISTORY_TOPIC_SETS.length]],
+          startedAt: `2026-07-${String(sequence).padStart(2, '0')}T10:00:00`,
+          score: 40 + ((sequence * 7) % 50),
+          maxScore: 100,
+        };
+      }),
+    };
+  }),
+];
+
+// 피드백 리포트(AI-HOME-01 리포트) 시안 검토용. 모든 세션이 같은 리포트를 돌려준다.
+// 2번은 낮은 정확도로 막대 위 라벨을, 5번은 무응답 문항을 확인하도록 둔다.
+const REPORT_ANSWER_SCORES = [
+  { accuracyScore: 12, structureScore: 3, clarityScore: 2 },
+  { accuracyScore: 1, structureScore: 1, clarityScore: 1 },
+  { accuracyScore: 9, structureScore: 2, clarityScore: 3 },
+  { accuracyScore: 14, structureScore: 3, clarityScore: 3 },
+  { accuracyScore: 0, structureScore: 0, clarityScore: 0 },
+];
+const REPORT_TOPICS = [
+  { topic: 'ALGORITHM', displayName: '알고리즘' },
+  { topic: 'DATA_STRUCTURE', displayName: '자료구조' },
+  { topic: 'NETWORK', displayName: '네트워크' },
+  { topic: 'OPERATING_SYSTEM', displayName: '운영체제' },
+  { topic: 'ALGORITHM', displayName: '알고리즘' },
+] as const;
+
+// 문항 탭을 바꿨을 때 내용이 달라지는지 볼 수 있도록 문항마다 다른 글을 둔다. 5번은 무응답이다.
+const REPORT_ANSWER_CONTENTS = [
+  {
+    question: '퀵소트의 평균 및 최악 시간복잡도를 설명해주세요.',
+    answer: '퀵소트는 평균적으로 O(n log n)이에요.\n피벗이 한쪽으로 치우치면 O(n²)까지 늘어나요.',
+    modelAnswer:
+      '평균은 **O(n log n)**, 최악은 **O(n²)**입니다. 피벗을 무작위로 고르면 최악을 피하기 쉽습니다.',
+    concepts: ['평균 시간복잡도는 O(n log n)이다', '피벗이 치우치면 최악 O(n²)이 된다'],
+    improvement: '- 최악의 경우가 생기는 **입력 조건**을 함께 말해 보세요.',
+  },
+  {
+    question: '배열과 연결 리스트의 차이를 설명해주세요.',
+    answer: '배열은 인덱스로 바로 접근해요.',
+    modelAnswer:
+      '배열은 **임의 접근이 O(1)**이지만 중간 삽입이 느리고, 연결 리스트는 삽입·삭제가 빠르지만 탐색이 **O(n)**입니다.',
+    concepts: ['배열은 연속된 메모리에 저장된다', '연결 리스트는 삽입·삭제가 O(1)이다'],
+    improvement:
+      '- 연결 리스트의 장점까지 비교해 말해 보세요.\n- 메모리 배치 차이를 함께 언급하면 좋아요.',
+  },
+  {
+    question: 'TCP와 UDP의 차이를 설명해주세요.',
+    answer: 'TCP는 연결 지향이고 신뢰성을 보장해요.\nUDP는 빠르지만 순서를 보장하지 않아요.',
+    modelAnswer:
+      'TCP는 **3-way handshake**로 연결을 맺고 재전송·순서 보장을 합니다. UDP는 비연결형으로 오버헤드가 작습니다.',
+    concepts: ['TCP는 연결 지향 프로토콜이다', 'UDP는 순서와 도착을 보장하지 않는다'],
+    improvement: '- 각각을 쓰는 **예시 서비스**를 들어 보세요.',
+  },
+  {
+    question: '프로세스와 스레드의 차이를 설명해주세요.',
+    answer: '프로세스는 독립된 메모리를 갖고, 스레드는 프로세스 안에서 메모리를 공유해요.',
+    modelAnswer:
+      '프로세스는 **독립된 주소 공간**을, 스레드는 같은 프로세스의 **힙·데이터 영역을 공유**합니다.',
+    concepts: ['스레드는 스택을 따로 갖는다', '스레드는 힙 영역을 공유한다'],
+    improvement: '좋은 답변이에요. 지금처럼 핵심을 짧게 짚어 주세요.',
+  },
+  {
+    question: '이진 탐색의 동작 조건과 시간복잡도를 설명해주세요.',
+    answer: undefined,
+    modelAnswer: '이진 탐색은 **정렬된 배열**에서 범위를 절반씩 줄여 **O(log n)**에 찾습니다.',
+    concepts: ['정렬된 데이터에서만 동작한다', '시간복잡도는 O(log n)이다'],
+    improvement: undefined,
+  },
+];
+
+const interviewReportHandlers = [
+  getGetSessionSummaryMockHandler(() => ({
+    sessionId: 25,
+    sequence: 25,
+    startedAt: '2026-06-21T10:00:00',
+    score: 68,
+    maxScore: 100,
+    accuracyScore: 48,
+    accuracyMaxScore: 70,
+    deliveryScore: 20,
+    deliveryMaxScore: 30,
+    averageAccuracyScore: 28,
+    averageDeliveryScore: 22,
+    recentSessions: [
+      { sessionId: 21, sequence: 21, accuracyScore: 30, deliveryScore: 18 },
+      { sessionId: 22, sequence: 22, accuracyScore: 26, deliveryScore: 24 },
+      { sessionId: 23, sequence: 23, accuracyScore: 35, deliveryScore: 21 },
+      { sessionId: 24, sequence: 24, accuracyScore: 44, deliveryScore: 23 },
+      { sessionId: 25, sequence: 25, accuracyScore: 48, deliveryScore: 20 },
+    ],
+    answers: REPORT_ANSWER_SCORES.map((score, index) => ({
+      displayOrder: index + 1,
+      topic: { ...REPORT_TOPICS[index] },
+      accuracyScore: score.accuracyScore,
+      deliveryScore: score.structureScore + score.clarityScore,
+    })),
+    weakTopics: [
+      { unitId: 1, topic: { topic: 'DATA_STRUCTURE', displayName: '자료구조' } },
+      { unitId: 7, topic: { topic: 'ALGORITHM', displayName: '알고리즘' } },
+    ],
+  })),
+  getGetSessionAnswersMockHandler(() => ({
+    sessionId: 25,
+    startedAt: '2026-06-21T10:00:00',
+    answers: REPORT_ANSWER_SCORES.map((score, index) => {
+      const content = REPORT_ANSWER_CONTENTS[index];
+      return {
+        displayOrder: index + 1,
+        topic: { ...REPORT_TOPICS[index] },
+        questionContent: content.question,
+        answerContent: content.answer,
+        audioUrl: undefined,
+        modelAnswer: content.modelAnswer,
+        concepts: content.concepts.map((name) => ({ name, type: 'ESSENTIAL' as const })),
+        improvementSuggestion: content.improvement,
+        accuracyScore: score.accuracyScore,
+        accuracyMaxScore: 14,
+        structureScore: score.structureScore,
+        structureMaxScore: 3,
+        clarityScore: score.clarityScore,
+        clarityMaxScore: 3,
+      };
+    }),
+  })),
+];
+
 export const worker = setupWorker(
   ...getOauth20ApiMock(),
   ...mainPageHandlers,
@@ -437,4 +595,6 @@ export const worker = setupWorker(
   ...recommendFriendHandlers,
   ...notificationHandlers,
   ...interviewHomeHandlers,
+  ...interviewHistoryHandlers,
+  ...interviewReportHandlers,
 );
