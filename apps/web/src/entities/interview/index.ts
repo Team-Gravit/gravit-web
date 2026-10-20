@@ -1,5 +1,13 @@
 export { useCsTopics } from './api/use-cs-topics';
 export { useInterviewStacks, usePrefetchInterviewStacks } from './api/use-interview-stacks';
+export { useInterviewDashboard } from './api';
+export {
+  INTERVIEW_HISTORY_MODE_LABEL,
+  formatSessionSummary,
+  getAccuracyLevel,
+  getRecentAverageScore,
+  type AccuracyLevel,
+} from './model/interview-dashboard';
 export {
   INTERVIEW_DIFFICULTY_LABEL,
   INTERVIEW_INPUT_TYPE_LABEL,
@@ -13,9 +21,12 @@ export {
   type InterviewTopic,
 } from './model/interview-options';
 
-// 생성 타입을 도메인 경계에서 노출한다. 화면은 generated 경로를 직접 참조하지 않는다.
 export type {
+  InterviewDashboardResponse,
+  InterviewScoreTrendResponse,
   InterviewSessionCreateRequest,
+  InterviewSessionHistoryResponse,
   InterviewStackResponse,
+  InterviewTopicAccuracyResponse,
   InterviewTopicResponse,
 } from '@/shared/api/generated/model';
