@@ -15,7 +15,7 @@ importers:
         specifier: ^9.39.1
         version: 9.39.5
       prettier:
-        specifier: ^3.2.5
+        specifier: 3.5.3
         version: 3.5.3
       turbo:
         specifier: ^2.10.12

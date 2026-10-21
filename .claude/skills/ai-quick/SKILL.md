@@ -116,8 +116,7 @@ pnpm --filter @repo/web exec vitest run -t "테스트 이름"   # 단건
 빌드 설정·엔트리·패키지 계약처럼 결과물 생성에 직접 영향을 주는 작은 변경은 관련 build도
 실행한다. 검증 범위가 여러 앱으로 퍼지면 quick을 중단하고 정식 작업으로 승격한다.
 
-> `pnpm format:check`는 전체를 보므로 여기서 쓰지 않는다.
-> 커밋된 6개 파일이 이미 실패 중이다 (`REF-003`). 이번 요청이 변경한 파일만
+> `pnpm format:check`는 저장소 전체를 보므로 여기서 쓰지 않는다. 이번 요청이 변경한 파일만
 > `pnpm exec prettier --check`로 본다.
 
 ### 4. 보고
