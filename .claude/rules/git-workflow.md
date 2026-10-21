@@ -106,17 +106,17 @@ GIT_SEQUENCE_EDITOR=true GIT_EDITOR=true git rebase --autosquash -i <base>
 > **husky / lint-staged도 없다** — 커밋 시점 자동 검사도 없다.
 > 즉 **깨진 코드가 PR을 통과할 수 있다.** 검증은 전적으로 사람과 이 하네스의 몫이다.
 
-그래서 PR을 올리기 전에 **네 개를 아래 순서대로 직접 돌린다.** 묶음 스크립트(`pnpm ci`)는 없다.
+그래서 PR을 올리기 전에 **다섯 개를 아래 순서대로 직접 돌린다.** 묶음 스크립트(`pnpm ci`)는 없다.
 
 ```bash
+pnpm format:check
 pnpm lint
 pnpm check-types
 pnpm test
 pnpm build
 ```
 
-`pnpm format:check`는 현재 기존 사유로 실패한다(`REF-003`). 해결 전까지는 이번에 변경한 파일만
-`pnpm exec prettier --check <파일...>`로 검사한다. 기존 실패와 새로 생긴 실패를 구분한다.
+`format:check`가 실패하면 `pnpm format`으로 고친다. 완료된 작업 기록(`work/done/`)은 검사 대상이 아니다.
 
 ## 4. AI가 지킬 것
 

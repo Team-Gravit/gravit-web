@@ -36,8 +36,7 @@ pnpm --filter @repo/web exec vitest run -t "테스트 이름"   # 단건 테스�
 
 **패키지 매니저는 pnpm 8.15.6 고정.** `npm` / `yarn` 명령을 쓰지 않는다.
 `pnpm ci`나 `pnpm verify` 같은 묶음 스크립트는 **없다.** 정식 작업을 마칠 때는
-`lint` → `check-types` → `test` → `build`를 각각 실행한다. `format:check`는 기존 파일의
-포맷 문제(`REF-003`)를 해결하기 전까지 변경한 파일만 `pnpm exec prettier --check <파일>`로 검사한다.
+`format:check` → `lint` → `check-types` → `test` → `build`를 각각 실행한다.
 
 ## Tech Stack
 
@@ -74,7 +73,7 @@ app(5) → pages(4) → widgets(3) → features(2) → entities(1) → shared(0)
 
 규칙 상세는 `.claude/rules/`:
 
-> **레이어·컨벤션 규칙 11종은 `paths` frontmatter로 `apps/web/src/**`에 한정**돼 있어 해당 파일을
+> **레이어·컨벤션 규칙 11종**은 `paths` frontmatter로 `apps/web/src/**`에 한정돼 있어 해당 파일을
 > 읽거나 편집할 때 로드된다 (Claude Code의 path-scoped rules — 키는 `paths`다. Cursor의 `globs`가
 > 아니다). 정책 8종은 frontmatter 없이 항상 로드된다. 계획 단계처럼 파일을 읽기 전이라면 스킬이
 > 명시한 대로 규칙 문서를 직접 읽는다.
@@ -186,7 +185,7 @@ import { cn } from '../../../shared/lib/cn';
 8. **`src/stories/`는 Foundations 문서가 사는 곳**이다 — `colors` · `typography` · `radius` · `Iconography` MDX 4종. 스캐폴드 잔재가 아니라 **디자인 토큰의 표시처**이므로 지우지 않는다. 토큰을 바꾸면 여기도 갱신한다. 단 **기능 코드는 얹지 않는다.**
 9. **환경변수는 `VITE_` 접두사** (Vite). `import.meta.env.VITE_*`.
 10. **native는 web을 WebView로 로드한다.** 웹 화면 변경이 앱 동작에 직결된다.
-11. **`pnpm format:check`가 현재 실패한다** — 커밋된 6개 파일이 prettier 설정과 어긋나 있다 (`work/to-do/REF-003-*`). 새 코드 때문이 아니니 놀라지 않는다. 단, **네가 만든 파일은 반드시 포맷을 맞춘다.**
+11. **`work/done/`은 포맷 검사에서 빠져 있다** (`.prettierignore`). 완료된 작업 기록은 동결 문서라 고치지 않는다. 그 밖의 파일은 전부 `pnpm format:check`를 통과해야 한다 (`REF-003`).
 12. **`<Button asChild>`와 `isLoading`은 함께 쓸 수 없다** (타입 에러). 로딩 표시가 레이블을 `<span>`으로 감싸면 `Slottable`이 Slot의 직속 자식에서 사라지고, `asChild`의 대상인 `<a>`에는 「진행 중」이 성립하지도 않는다. 링크를 CTA 모양으로 쓸 때는 `<Button asChild><Link …/></Button>`이 정상 동작한다 (`FIX-001`에서 수정).
 
 13. **제품 구현과 legacy 폐기를 구분한다.** 플랫폼별 화면 구현·검증은 `docs/implementation-status.md`, legacy 대체·폐기는 `docs/migration-status.md`에서 본다. legacy에는 이전 여부 표시를 남기지 않고, 폐기 조건이 모두 충족된 뒤 한 번에 제거한다.

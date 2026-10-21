@@ -289,12 +289,10 @@ pnpm test
 pnpm build
 ```
 
-포맷은 현재 저장소 전체가 아니라 이번에 변경한 파일을 검사한다. 커밋된 기존 파일 6개가 포맷
-검사에 실패하는 상태이기 때문이다(`REF-003`). 이 문제가 해결되면 `pnpm format:check`도 전체
-검증에 포함한다.
+포맷도 저장소 전체를 검사한다. 완료된 작업 기록(`work/done/`)만 동결 문서라 제외한다(`REF-003`).
 
 ```bash
-pnpm exec prettier --check <이번에 변경한 파일>
+pnpm format:check
 ```
 
 ### 묶음 명령은 언제 만드나
