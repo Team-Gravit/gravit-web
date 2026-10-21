@@ -95,28 +95,27 @@ GIT_SEQUENCE_EDITOR=true GIT_EDITOR=true git rebase --autosquash -i <base>
 
 ## 3. CI — 무엇이 자동으로 돌고 무엇이 안 도는가
 
-**`.github/workflows/storybook.yml` 하나뿐이다.**
+| 시점                       | 수단                                           | 동작                                                      |
+| -------------------------- | ---------------------------------------------- | --------------------------------------------------------- |
+| 커밋 직전                  | `.husky/pre-commit` → `lint-staged.config.mjs` | staged 파일만 prettier·eslint로 검사 (`--max-warnings=0`) |
+| 커밋 메시지 저장 시        | `.husky/commit-msg` → `commitlint.config.mjs`  | Conventional Commits 형식 검사                            |
+| `develop` · `main` 대상 PR | `.github/workflows/verify.yml`                 | `pnpm verify` 전체                                        |
+| `develop`에 push           | `.github/workflows/storybook.yml`              | Storybook 빌드 → GitHub Pages 배포                        |
 
-| 시점               | 동작                               |
-| ------------------ | ---------------------------------- |
-| `develop`에 push   | Storybook 빌드 → GitHub Pages 배포 |
-| **PR을 열었을 때** | **아무것도 안 돈다**               |
+커밋 훅은 `pnpm install`의 `prepare`(husky)로 설치된다. 커밋 훅은 빠른 검사만 한다 — steiger · 타입 ·
+테스트 · 빌드는 파일 단위로 돌릴 수 없거나 오래 걸려 PR 검사와 `pnpm verify`의 몫이다.
 
-> ⚠️ **PR 자동 검사 파이프라인이 없다.** lint·type·test·build 중 무엇도 PR에서 안 돈다.
-> **husky / lint-staged도 없다** — 커밋 시점 자동 검사도 없다.
-> 즉 **깨진 코드가 PR을 통과할 수 있다.** 검증은 전적으로 사람과 이 하네스의 몫이다.
+**커밋 메시지는 콜론 앞에 공백을 두지 않는다.** `feat(web): 설명` ✅ · `feat(web) : 설명` ❌
 
-그래서 PR을 올리기 전에 **다섯 개를 아래 순서대로 직접 돌린다.** 묶음 스크립트(`pnpm ci`)는 없다.
+PR을 올리기 전에 로컬에서도 같은 검사를 돌린다.
 
 ```bash
-pnpm format:check
-pnpm lint
-pnpm check-types
-pnpm test
-pnpm build
+pnpm verify   # format:check → lint → check-types → test → build
 ```
 
 `format:check`가 실패하면 `pnpm format`으로 고친다. 완료된 작업 기록(`work/done/`)은 검사 대상이 아니다.
+
+> `--no-verify`로 커밋 훅을 건너뛰지 않는다. 훅이 막으면 사유대로 고친다.
 
 ## 4. AI가 지킬 것
 
@@ -178,8 +177,7 @@ hotfix에는 해당 운영 결함 수정만 넣는다. `main` 반영과 태그 �
 태그는 브랜치를 대신하지 않는다. 배포 대상으로 승인된 `main`의 정확한 커밋을 가리키는
 출시 기록이며, 이동하거나 같은 버전으로 다시 만들지 않는다.
 
-### 5-4. PR 자동 검사 도입 전후
+### 5-4. PR 필수 검사
 
-현재 자동화는 `develop` push 시 Storybook을 배포하는 워크플로 하나뿐이다. PR 품질 검사는
-§3의 네 명령을 사람이 실행해 결과를 남긴다. PR 검사 워크플로를 도입하면 같은 네 명령을
-필수 통과 조건으로 설정하고, 이 수동 절차를 자동 검사 확인으로 대체한다.
+PR 검사 워크플로(`verify.yml`)는 `INFRA-010`에서 도입했다. 저장소 branch protection에서 `verify`
+check를 `develop` · `main`의 필수 통과 조건으로 지정하면, 실패한 PR은 머지할 수 없다.
