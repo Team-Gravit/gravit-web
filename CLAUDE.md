@@ -24,6 +24,7 @@ pnpm check-types    # tsc --noEmit
 pnpm test           # vitest run
 pnpm format         # prettier --write
 pnpm format:check   # prettier --check
+pnpm verify         # format:check → lint → check-types → test → build (실패하면 그 단계에서 멈춘다)
 pnpm generate:icons # svg → shared/ui/icon/icons.generated.ts
 
 # 특정 앱만
@@ -35,8 +36,8 @@ pnpm --filter @repo/web exec vitest run -t "테스트 이름"   # 단건 테스�
 ```
 
 **패키지 매니저는 pnpm 8.15.6 고정.** `npm` / `yarn` 명령을 쓰지 않는다.
-`pnpm ci`나 `pnpm verify` 같은 묶음 스크립트는 **없다.** 정식 작업을 마칠 때는
-`format:check` → `lint` → `check-types` → `test` → `build`를 각각 실행한다.
+정식 작업을 마칠 때는 `pnpm verify`를 실행한다. PR에서도 같은 명령이 돈다(`.github/workflows/verify.yml`).
+커밋할 때는 husky가 staged 파일만 prettier · eslint로 검사하고, 커밋 메시지 형식을 commitlint로 검사한다.
 
 ## Tech Stack
 
@@ -109,18 +110,20 @@ app(5) → pages(4) → widgets(3) → features(2) → entities(1) → shared(0)
 | `i18n-policy.md`          | 한국어 단일 언어. i18n 제안 금지                          |
 | `legacy-web-policy.md`    | `apps/legacy-web` 참조 전용 · 편집 금지                   |
 | `work-management.md`      | `work/` 작업 폴더 · ID prefix · 상태 이동                 |
-| `git-workflow.md`         | 브랜치 · 머지 · **PR 자동 검사가 없다는 사실**            |
+| `git-workflow.md`         | 브랜치 · 머지 · **커밋 훅과 PR 검사가 무엇을 보는가**     |
 | `test-policy.md`          | 무엇에 테스트를 쓰고 무엇에 안 쓰는가                     |
 
-## 세 가지 검사 층
+## 검사 층
 
-같은 규칙을 세 층에서 본다. 중복이 아니라 깊이 방어다.
+같은 규칙을 여러 층에서 본다. 중복이 아니라 깊이 방어다. 위 둘은 AI 작업에만, 아래 셋은 사람과 AI 모두에 적용된다.
 
-| 층            | 수단                                | 시점          | 범위                  |
-| ------------- | ----------------------------------- | ------------- | --------------------- |
-| 소프트        | `.claude/rules/*.md`                | 작업 전       | 안내                  |
-| **하드 차단** | `.claude/hooks/fsd-layer-check.mjs` | **편집 직전** | 새로 쓰는 import 구문 |
-| 사후 전수     | `steiger ./src` (`pnpm lint`)       | 검증 단계     | 기존 코드 포함 전체   |
+| 층            | 수단                                          | 시점          | 범위                                |
+| ------------- | --------------------------------------------- | ------------- | ----------------------------------- |
+| 소프트        | `.claude/rules/*.md`                          | 작업 전       | 안내                                |
+| **하드 차단** | `.claude/hooks/fsd-layer-check.mjs`           | **편집 직전** | 새로 쓰는 import 구문               |
+| 커밋 훅       | husky + lint-staged · commitlint              | 커밋 직전     | staged 파일의 포맷 · eslint, 메시지 |
+| 사후 전수     | `steiger ./src` (`pnpm lint`) · `pnpm verify` | 검증 단계     | 기존 코드 포함 전체                 |
+| PR 검사       | `.github/workflows/verify.yml`                | PR            | `pnpm verify` 전체                  |
 
 **훅(`PreToolUse`, matcher `Edit\|Write\|MultiEdit`)이 차단하는 것**
 
