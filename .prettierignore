@@ -24,3 +24,6 @@ apps/web/public/mockServiceWorker.js
 
 # 다른 프로젝트에서 가져온 참조용 하네스 (우리가 포맷할 대상이 아님)
 docs/_reference
+
+# 완료된 작업 기록 — 끝나면 수정하지 않는 동결 문서다 (work-management.md §5)
+work/done
