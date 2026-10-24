@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import {
   RouterProvider,
@@ -219,6 +219,9 @@ afterEach(() => {
   vi.unstubAllGlobals();
   window.sessionStorage.clear();
 });
+
+// 첫 모듈 변환 시간이 테스트 제한 시간에 포함되지 않도록 미리 로드한다.
+beforeAll(() => import('@/shared/ui/markdown/markdown'));
 
 describe('북마크 풀이 — 공통 흐름', () => {
   it('들어오면 북마크 목록을 한 번 받고 1번 문제와 진행률 0/3 을 보인다 (AC-1)', async () => {

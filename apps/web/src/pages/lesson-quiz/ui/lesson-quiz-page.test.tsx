@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { HttpResponse, http } from 'msw';
@@ -87,6 +87,9 @@ afterEach(() => {
   window.sessionStorage.clear();
 });
 
+// 첫 모듈 변환 시간이 테스트 제한 시간에 포함되지 않도록 미리 로드한다.
+beforeAll(() => import('@/shared/ui/markdown/markdown'));
+
 describe('LessonQuizPage', () => {
   it('응답을 기다리는 동안 로딩중... 만 보이고 발문은 없다', async () => {
     server.use(http.get(PROBLEMS_URL, () => new Promise(() => {})));
@@ -103,7 +106,7 @@ describe('LessonQuizPage', () => {
     expect(await screen.findByRole('heading', { name: 'Unit01 - 연결리스트' })).toBeInTheDocument();
     expect(screen.getByText('01')).toBeInTheDocument();
     expect(screen.getByText('다음 중 옳은 것은?')).toBeInTheDocument();
-    expect(screen.getByText('연결리스트 맨 앞 삽입의 시간복잡도는?')).toBeInTheDocument();
+    expect(await screen.findByText('연결리스트 맨 앞 삽입의 시간복잡도는?')).toBeInTheDocument();
   });
 
   it('7초가 지나면 타이머가 00:07이 된다', async () => {

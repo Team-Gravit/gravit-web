@@ -1,16 +1,15 @@
 import type { Element, ElementContent, Root, RootContent } from 'hast';
 
 /*
-  개념노트에서 사용하는 `<br>`과 `<img>`만 HAST 요소로 변환한다.
-  그 밖의 HTML은 파싱하지 않고 제거해 DOM에 들어오지 않게 한다.
+  마크다운 안의 원시 HTML 중 개념노트에 필요한 `<br>`과 `<img>`만 요소로 만든다.
+  전체 HTML을 파싱하지 않고, 허용한 태그와 속성만 새로 구성한다.
 */
 
 const ALLOWED_TAG_PATTERN = /<br\s*\/?>|<img\b[^>]*>/gi;
 const ATTRIBUTE_PATTERN = /([a-z-]+)\s*=\s*(?:"([^"]*)"|'([^']*)')/gi;
 const IMAGE_WIDTH_PATTERN = /^\d+(?:\.\d+)?(?:%|px)?$/;
 
-/** 원시 HTML 조각에서 허용한 태그만 안전한 HAST 요소로 변환한다. */
-export function toAllowedElements(html: string): Element[] {
+function toAllowedElements(html: string): Element[] {
   const elements: Element[] = [];
 
   for (const [tag] of html.matchAll(ALLOWED_TAG_PATTERN)) {
@@ -26,6 +25,7 @@ export function toAllowedElements(html: string): Element[] {
 
 /** `raw` 노드를 허용 요소로 교체하고 나머지는 제거하는 rehype 플러그인. */
 export function rehypeAllowedHtml() {
+  // 플러그인을 연결할 때 이 함수를 반환하고, 문서를 처리할 때 tree를 전달받는다.
   return (tree: Root) => {
     replaceRawNodes(tree);
   };
@@ -36,6 +36,7 @@ function replaceRawNodes(parent: Root | Element) {
 
   for (const child of parent.children) {
     if (child.type === 'raw') {
+      // raw는 아직 요소로 해석하지 않은 HTML 문자열이다. 허용 태그가 없으면 빈 배열로 대체한다.
       nextChildren.push(...toAllowedElements(child.value));
       continue;
     }
@@ -63,6 +64,7 @@ function toImage(tag: string): Element | null {
     return null;
   }
 
+  // 읽어 낸 속성을 그대로 넘기지 않아 onerror 같은 이벤트 속성이 요소에 남지 않는다.
   const properties: Element['properties'] = { src, alt: attributes.get('alt') ?? '' };
   const width = attributes.get('width');
 
