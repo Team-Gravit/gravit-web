@@ -3,9 +3,9 @@ import type { ReactNode } from 'react';
 import { cn } from '@/shared/lib/cn';
 import { Icon } from '@/shared/ui/icon';
 import { Markdown } from '@/shared/ui/markdown';
+import { RecordingPlayer, formatPlaybackTime } from '@/shared/ui/recording-player';
 import type { InterviewAnswerDetailResponse } from '@/entities/interview';
 
-import { AnswerAudioPlayer } from './answer-audio-player';
 import { ItemScoreCard } from './item-score-card';
 
 // 무응답 문항은 답변과 개선 제안이 null로 온다(API 설명). 시안에 무응답 화면이 없어 FEAT-062 spec에 기록했다.
@@ -39,7 +39,23 @@ export function AnswerDetail({ answer, layout, className }: AnswerDetailProps) {
                 {answer.answerContent ?? NO_ANSWER_MESSAGE}
               </p>
             </div>
-            {answer.audioUrl ? <AnswerAudioPlayer audioUrl={answer.audioUrl} /> : null}
+            {answer.audioUrl ? (
+              <RecordingPlayer
+                size="md"
+                audioUrl={answer.audioUrl}
+                className="h-12 border-0 py-3 pl-3"
+                renderLabel={({ duration, remaining }) => (
+                  <div className="flex shrink-0 flex-col items-center gap-0.5">
+                    <span className="text-caption1 text-text-1">
+                      {formatPlaybackTime(duration)}
+                    </span>
+                    <span className="text-caption2 hidden text-text-4 md:inline">
+                      남은시간 {formatPlaybackTime(remaining)}
+                    </span>
+                  </div>
+                )}
+              />
+            ) : null}
           </div>
           <div className="flex flex-col gap-1 rounded-6 border border-purple-200 bg-purple-50 p-4 md:rounded-12 md:p-6">
             <span className="text-caption1 text-main-1">모범답안</span>
