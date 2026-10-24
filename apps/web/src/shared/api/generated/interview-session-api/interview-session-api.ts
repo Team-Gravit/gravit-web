@@ -59,6 +59,7 @@ const withQueryKey = <T extends object, K>(query: T, queryKey: K): T & { queryKe
  * 공통 CS(COMMON_CS) 모드는 topics에 중복 없는 CS 주제 1~5개를 담고 stack은 비웁니다.<br>
  * 직군(JOB_SPECIFIC) 모드는 stack 하나를 담고 topics는 비웁니다.<br>
  * 확정된 문제는 문제 목록 조회 API로 받습니다.<br>
+ * 같은 사용자의 진행 중(IN_PROGRESS) 세션이 있으면 모두 취소(ABANDONED)한 뒤 새 세션을 만듭니다.<br>
  * 🔐 <strong>Jwt 필요</strong>
  * @summary 면접 세션 생성
  */
@@ -279,6 +280,7 @@ export function useGetTranscriptions<
  * 결과는 음성 변환 조회 API로 확인합니다.<br>
  * 업로드된 파일이 0바이트면 변환을 접수하지 않고 거부합니다.<br>
  * 변환에 실패(FAILED)했거나 요청 후 5분이 지나도 변환 중(PENDING)이면 다시 요청할 수 있습니다.<br>
+ * 취소된 세션은 INTERVIEW_4025, 제출 이후 세션은 INTERVIEW_4026으로 거부됩니다.<br>
  * 🔐 <strong>Jwt 필요</strong>
  * @summary 면접 음성 변환 요청
  */
@@ -373,6 +375,7 @@ export const useRequestTranscription = <TError = ErrorType<ErrorResponse>, TCont
  * 응답의 uploadUrl로 PUT 요청을 보내 음성 원본을 올리고, 함께 받은 audioKey를 답안 제출 본문에 담습니다.<br>
  * PUT 요청의 Content-Type은 발급 시 보낸 contentType과 같아야 합니다.<br>
  * URL은 10분 뒤 만료되며, 문항마다 필요한 시점에 각각 발급받습니다.<br>
+ * 취소된 세션은 INTERVIEW_4025, 제출 이후 세션은 INTERVIEW_4026으로 거부됩니다.<br>
  * 🔐 <strong>Jwt 필요</strong>
  * @summary 면접 음성 업로드 URL 발급
  */
@@ -468,6 +471,7 @@ export const useIssueUploadUrl = <TError = ErrorType<ErrorResponse>, TContext = 
  * 음성 세션은 변환 중(PENDING)인 문항이 있으면 거부됩니다.<br>
  * 제출이 받아들여지면 세션이 채점 중(GRADING)이 되고 채점은 백그라운드에서 진행됩니다.
  * 채점 완료 여부는 세션 상태 조회 API로 확인하세요.<br>
+ * 취소된 세션은 INTERVIEW_4025, 제출 이후 세션은 INTERVIEW_4026으로 거부됩니다.<br>
  * 🔐 <strong>Jwt 필요</strong>
  * @summary 면접 답안 일괄 제출
  */
@@ -555,6 +559,7 @@ export const useSubmit = <TError = ErrorType<ErrorResponse>, TContext = unknown>
 /**
  * 진행 중(IN_PROGRESS)인 세션을 취소(ABANDONED)합니다.<br>
  * 제출 이후에는 취소할 수 없으며, 취소된 세션은 채점하지 않고 결과와 통계에도 포함하지 않습니다.<br>
+ * 취소된 세션은 INTERVIEW_4025, 제출 이후 세션은 INTERVIEW_4026으로 거부됩니다.<br>
  * 🔐 <strong>Jwt 필요</strong>
  * @summary 면접 세션 중단
  */
@@ -760,7 +765,8 @@ export function useGetStatus<
 /**
  * 세션에 확정된 5문항을 문항 번호 오름차순으로 반환합니다.<br>
  * 세션 생성 시 선택한 답변 입력 방식(inputType, TEXT 또는 VOICE)을 함께 내려줍니다.<br>
- * 진행 중, 채점 중, 완료, 채점 실패, 취소 어느 상태에서도 조회할 수 있습니다.<br>
+ * 진행 중(IN_PROGRESS)인 세션만 조회할 수 있습니다.<br>
+ * 취소된 세션은 INTERVIEW_4025, 제출 이후 세션은 INTERVIEW_4026으로 거부됩니다.<br>
  * 각 문항에 질문 음성 재생 URL(audioUrl, presigned GET)을 함께 내려줍니다. 음성이 없는 문항은 null이며 이때는 텍스트만 보여 줍니다.<br>
  * URL은 30분 동안 유효하므로 만료 후에는 문제 목록을 다시 조회해 새 URL을 받습니다.<br>
  * 🔐 <strong>Jwt 필요</strong>
