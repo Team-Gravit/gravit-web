@@ -1,3 +1,6 @@
+import { useState } from 'react';
+
+import { useNavigate } from '@tanstack/react-router';
 import { useShallow } from 'zustand/react/shallow';
 
 import { Button } from '@/shared/ui/button';
@@ -14,12 +17,14 @@ import {
 import { useSessionSetupStore } from '../model/session-setup-store';
 import { AnswerTypeStep } from './answer-type-step';
 import { ConfirmStep } from './confirm-step';
+import { MicPermissionModal } from './mic-permission-modal';
 import { CsTopicsStep } from './cs-topics-step';
 import { DifficultyStep } from './difficulty-step';
 import { JobStep } from './job-step';
 import { SetupStepFrame } from './setup-step-frame';
 import { StackStep } from './stack-step';
 import { TopicStep } from './topic-step';
+import { useAudioPlayer } from '@/shared/ui/audio-player';
 
 interface StepHeading {
   title: string;
@@ -140,6 +145,19 @@ function SetupStepBody({ step }: { step: SessionSetupStep }) {
   }
 }
 
+/**
+ * 프롬프트 없이 현재 마이크 권한이 'granted' 인지 조회한다.
+ * permissions.query 미지원 브라우저는 false 로 보고 안내 모달로 유도한다.
+ */
+async function isMicrophoneGranted(): Promise<boolean> {
+  try {
+    const result = await navigator.permissions.query({ name: 'microphone' });
+    return result.state === 'granted';
+  } catch {
+    return false;
+  }
+}
+
 function StartSessionButton({ onCreated }: { onCreated: (sessionId: number) => Promise<void> }) {
   // 새 요청 객체를 selector에서 반환하면 구독값이 매번 달라진다. 초안을 얕게 구독한 뒤 요청을 만든다.
   const draft = useSessionSetupStore(
@@ -155,22 +173,58 @@ function StartSessionButton({ onCreated }: { onCreated: (sessionId: number) => P
   const request = buildCreateSessionRequest(draft);
   const { mutate, isPending } = useCreateInterviewSession(onCreated);
 
-  function handleStartClick() {
+  const { unlock } = useAudioPlayer();
+  const navigate = useNavigate();
+  const [isMicModalOpen, setIsMicModalOpen] = useState(false);
+
+  async function handleStartClick() {
+    // 오디오 언락은 제스처 안에서 가장 먼저 동기로 처리한다.
+    unlock();
+
+    // 음성 모드면 마이크 권한이 허용돼 있는지 먼저 확인한다.
+    // 허용돼 있지 않으면 안내 모달을 띄우고 세션을 생성하지 않는다.
+    if (draft.inputType === 'VOICE' && !(await isMicrophoneGranted())) {
+      setIsMicModalOpen(true);
+      return;
+    }
+
     if (request) {
       mutate({ data: request });
     }
   }
 
+  async function handleConfirmMic() {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      stream.getTracks().forEach((track) => track.stop());
+      setIsMicModalOpen(false);
+
+      if (request) {
+        mutate({ data: request });
+      }
+    } catch {
+      setIsMicModalOpen(false);
+    }
+  }
+
   return (
-    <Button
-      type="button"
-      size="cta"
-      className={PRIMARY_BUTTON_CLASS}
-      disabled={!request}
-      isLoading={isPending}
-      onClick={handleStartClick}
-    >
-      시작하기
-    </Button>
+    <>
+      <Button
+        type="button"
+        size="cta"
+        className={PRIMARY_BUTTON_CLASS}
+        disabled={!request}
+        isLoading={isPending}
+        onClick={handleStartClick}
+      >
+        시작하기
+      </Button>
+      <MicPermissionModal
+        open={isMicModalOpen}
+        onOpenChange={setIsMicModalOpen}
+        onGoHome={() => navigate({ to: '/main' })}
+        onConfirm={handleConfirmMic}
+      />
+    </>
   );
 }
