@@ -55,7 +55,7 @@ export function AccountDeletionPage({ mailAuthCode }: AccountDeletionPageProps) 
   // 확인 페이지
   return (
     <>
-      <main className="bg-bg-0 md:bg-bg-2 flex min-h-screen flex-col items-center justify-between text-center px-4 py-5 md:p-0">
+      <main className="bg-bg-0 md:bg-bg-2 flex min-h-screen flex-col items-center justify-between text-center px-4 pt-5 pb-safe-5 md:p-0">
         <section className="flex-1 flex items-center justify-between md:justify-center flex-col w-full md:w-auto">
           <div className="flex-1 md:flex-none flex items-center justify-center flex-col md:mb-8">
             <img className="w-36.5 md:w-50 mx-auto" src={withdrawMascot} alt="" />

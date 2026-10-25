@@ -28,7 +28,7 @@ export function RestorePage({ providerId }: RestorePageProps) {
 
   return (
     <>
-      <main className="bg-bg-0 md:bg-bg-2 flex min-h-screen flex-col items-center justify-between text-center px-4 py-5 md:p-0">
+      <main className="bg-bg-0 md:bg-bg-2 flex min-h-screen flex-col items-center justify-between text-center px-4 pt-5 pb-safe-5 md:p-0">
         <section className="w-full md:max-w-[370px] flex-1 flex flex-col items-center justify-between md:justify-center gap-8">
           <div className="flex flex-col items-center justify-center md:my-10 flex-1 md:flex-none gap-10 md:gap-8">
             <img src={RestoreMascot} alt="" className="w-36.5 md:w-50 mx-auto" />

@@ -198,7 +198,7 @@ function QuizFooter({ isWide, onAdvance, finishLabel }: QuizFooterProps) {
       data-slot="quiz-footer"
       className={cn(
         // 내용이 짧으면 mt-auto가 아래로 밀고, 길면 sticky가 하단에 붙잡아 둔다.
-        'sticky bottom-0 mt-auto flex gap-3 bg-bg-1 pt-3 pb-5 md:gap-4 md:pb-10',
+        'sticky bottom-0 mt-auto flex gap-3 bg-bg-1 pt-3 pb-safe-5 md:gap-4 md:pb-10',
         isWide ? 'justify-end' : null,
       )}
     >

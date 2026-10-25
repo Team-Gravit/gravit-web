@@ -58,3 +58,11 @@
     paint-order: stroke fill;
   }
 }
+
+/*
+  탭바 없는 화면에서 아래에 붙는 버튼의 하단 여백. `pb-safe-5` = 20px + 홈 인디케이터 영역.
+  탭바 있는 화면은 탭바가 이 영역을 비우므로 쓰지 않는다 (docs/design-system/README.md §3-9).
+*/
+@utility pb-safe-* {
+  padding-bottom: calc(--spacing(--value(integer)) + var(--safe-area-bottom));
+}
