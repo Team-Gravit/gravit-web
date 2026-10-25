@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import { Link, type LinkProps, useNavigate } from '@tanstack/react-router';
 
 import { useLogout } from '@/features/auth-logout';
+import { WithdrawConfirmModal } from '@/features/user-withdraw';
 import { cn } from '@/shared/lib/cn';
 import { Card, CardTitle } from '@/shared/ui/card';
 import { Icon } from '@/shared/ui/icon';
@@ -34,6 +36,7 @@ const POLICY_ITEMS: LinkItems = [
 export function SettingsPage() {
   const navigate = useNavigate();
   const logout = useLogout({ onSuccess: () => navigate({ to: '/' }) });
+  const [isWithdrawConfirmOpen, setIsWithdrawConfirmOpen] = useState(false);
 
   return (
     <main className="flex min-h-full flex-col">
@@ -54,15 +57,24 @@ export function SettingsPage() {
 
         <SettingsSection title="계정">
           <SettingsItem type="button" label="로그아웃" onClick={logout} />
-          {/* 탈퇴 플로우는 아직 없다. 흐린 라벨로 두되 동작은 붙이지 않는다. */}
           <SettingsItem
             type="button"
             label="탈퇴하기"
-            onClick={() => {}}
+            onClick={() => setIsWithdrawConfirmOpen(true)}
             labelClassName="text-text-4"
           />
         </SettingsSection>
       </section>
+
+      <WithdrawConfirmModal
+        open={isWithdrawConfirmOpen}
+        onOpenChange={setIsWithdrawConfirmOpen}
+        onContinue={() => {
+          // 「계속하기」가 인증 메일 요청을 보낸 뒤: 확인 모달을 닫고 발송 안내 페이지로 이동한다.
+          setIsWithdrawConfirmOpen(false);
+          navigate({ to: '/withdraw-email-sent' });
+        }}
+      />
     </main>
   );
 }
