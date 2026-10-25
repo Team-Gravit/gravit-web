@@ -50,10 +50,17 @@ async function renderSettingsPage() {
 }
 
 describe('SettingsPage', () => {
-  it('계정정보 2항목과 기타 3항목을 보여준다', async () => {
+  it('각 섹션 별 2항목씩 보여준다', async () => {
     await renderSettingsPage();
 
-    for (const label of ['내 정보', '개인정보 처리 방침', '문의하기', '로그아웃', '탈퇴하기']) {
+    for (const label of [
+      '공지사항',
+      '문의하기',
+      '이용약관',
+      '개인정보 처리 방침',
+      '로그아웃',
+      '탈퇴하기',
+    ]) {
       expect(await screen.findByText(label)).toBeInTheDocument();
     }
   });
