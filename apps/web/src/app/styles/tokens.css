@@ -258,7 +258,9 @@
   --mobile-header-height: 47px;
   /* 화면이 상태 표시줄과 겹칠 때만 0보다 크다. 앱이 WebView를 상태 표시줄 뒤까지 펼칠 때 켜진다. */
   --safe-area-top: env(safe-area-inset-top, 0px);
-  /* 모바일 탭 */
+  /* 아이폰 홈 인디케이터 영역. iOS 앱은 WebView가 화면 아래 끝까지 펼쳐져 웹이 비워 둬야 한다. */
+  --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+  /* 모바일 탭. 홈 인디케이터 여백(--safe-area-bottom)은 포함하지 않는다. */
   --bottom-tab-height: 60px;
 
   /*스켈레톤 애니메이션*/

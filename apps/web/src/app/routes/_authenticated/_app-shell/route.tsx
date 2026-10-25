@@ -46,7 +46,7 @@ function AppShell() {
         data-scroll-restoration-id={APP_SHELL_SCROLL_RESTORATION_ID}
         className={cn(
           'h-full overflow-y-auto overscroll-y-none md:pb-0',
-          !isBottomTabBarHidden && 'pb-(--bottom-tab-height)',
+          !isBottomTabBarHidden && 'pb-[calc(var(--bottom-tab-height)+var(--safe-area-bottom))]',
           headerVariant === 'solid' && 'md:pt-(--desktop-header-height)',
         )}
       >
