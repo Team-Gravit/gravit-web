@@ -18,7 +18,7 @@ interface WithdrawStatusLayoutProps {
 export function WithdrawStatusLayout({ mascotSrc, title, description }: WithdrawStatusLayoutProps) {
   return (
     <>
-      <main className="bg-bg-0 md:bg-bg-2 flex min-h-screen flex-col items-center justify-between text-center px-4 py-5 md:p-0">
+      <main className="bg-bg-0 md:bg-bg-2 flex min-h-screen flex-col items-center justify-between text-center px-4 pt-5 pb-safe-5 md:p-0">
         <div className="flex-1 flex items-center justify-center flex-col w-full md:w-auto">
           <img src={mascotSrc} alt="" className="w-36.5 md:w-50 mx-auto" />
           <h1 className="text-heading1 md:text-title3 text-text-1 mt-10 md:mt-8 mb-2 md:mb-3">
