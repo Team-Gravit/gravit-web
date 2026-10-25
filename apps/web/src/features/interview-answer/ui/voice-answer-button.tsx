@@ -21,15 +21,18 @@ export function VoiceAnswerButton() {
   const { isPlaying } = useAudioPlayer();
   const submit = useSubmitVoiceAnswer();
   const goNext = useInterviewSessionStore((s) => s.goNext);
+  const startAnswering = useInterviewSessionStore((s) => s.startAnswering);
 
-  const { isRecording, elapsedMs, startRecording, stopRecording } = useRecording((blob) => {
-    // 0바이트(마이크 무입력 등)는 업로드·STT 요청 없이 다음 문항으로 넘긴다. 확인 페이지에서 직접 입력한다.
-    if (blob.size === 0) {
-      goNext();
-      return;
-    }
+  const { isRecording, elapsedMs, startRecording, stopRecording } = useRecording({
+    onStop: (blob) => {
+      if (blob.size === 0) {
+        goNext();
+        return;
+      }
 
-    submit.mutate(blob, { onSuccess: goNext });
+      submit.mutate(blob, { onSuccess: goNext });
+    },
+    onStart: startAnswering,
   });
 
   // 질문 음성이 끝나면 답변 가능. 자동녹음이 켜져 있으면 바로 녹음을 시작한다.

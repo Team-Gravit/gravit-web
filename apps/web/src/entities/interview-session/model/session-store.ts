@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { createJSONStorage, persist } from 'zustand/middleware';
 
 export interface InterviewAnswer {
   /** 제출 텍스트. TEXT=입력값 / VOICE=STT 수화본 → 편집 */
@@ -19,6 +19,8 @@ interface InterviewSessionState {
   isAutoRecord: boolean;
   /** STT 결과를 content 로 1회만 수화하기 위한 가드(VOICE). persist 위해 Set 대신 배열. */
   hydratedOrders: number[];
+  /** 사용자가 답변을 시작 했는지에 대한 상태, 세션 비디오를 제어 할 때 사용 */
+  isAnswering: boolean;
 
   /**
    * 이 세션 컨텍스트로 store를 정렬한다(진행·확인 화면 공통). 같은 세션이면 복원된 진행을 유지하고,
@@ -31,6 +33,7 @@ interface InterviewSessionState {
   setAnswerAudioKey: (order: number, audioKey: string | null) => void;
   setAutoRecord: (value: boolean) => void;
   markHydrated: (order: number) => void;
+  startAnswering: () => void;
   goTo: (index: number) => void;
   goNext: () => void;
   /** 세션 완료/이탈 시 전체 초기화. */
@@ -42,6 +45,7 @@ const EMPTY_PROGRESS = {
   answers: {} as Record<number, InterviewAnswer>,
   isAutoRecord: true,
   hydratedOrders: [] as number[],
+  isAnswering: false,
 };
 
 export const useInterviewSessionStore = create<InterviewSessionState>()(
@@ -80,17 +84,26 @@ export const useInterviewSessionStore = create<InterviewSessionState>()(
             : { hydratedOrders: [...state.hydratedOrders, order] },
         ),
 
+      startAnswering: () => set({ isAnswering: true }),
+
       goTo: (currentIndex) => set({ currentIndex }),
 
-      goNext: () => set((state) => ({ currentIndex: state.currentIndex + 1 })),
+      goNext: () => set((state) => ({ currentIndex: state.currentIndex + 1, isAnswering: false })),
 
       reset: () => set({ sessionId: null, ...EMPTY_PROGRESS }),
     }),
     {
-      // localStorage(기본)로 영속화한다. 음성 세션은 이미 업로드·변환된 문항을 재요청하면
-      // 서버가 4xx 를 반환하므로, 같은 기기 재진입 시 진행(audioKey·currentIndex)을 복원해
-      // 완료한 문항을 다시 녹음하지 않게 한다.
       name: 'interview-session',
+      // sessionStorage: 새로고침에는 진행이 유지되지만 탭을 닫으면 비워진다.
+      // 이탈(세션 정보 소멸) 후 재진입은 세션을 재개하지 않고 생성 페이지로 보낸다.
+      storage: createJSONStorage(() => sessionStorage),
+      partialize: (state) => ({
+        sessionId: state.sessionId,
+        currentIndex: state.currentIndex,
+        answers: state.answers,
+        isAutoRecord: state.isAutoRecord,
+        hydratedOrders: state.hydratedOrders,
+      }),
     },
   ),
 );
