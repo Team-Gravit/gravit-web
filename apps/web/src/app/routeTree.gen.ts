@@ -14,6 +14,8 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as RestoreRouteImport } from './routes/restore'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as WithdrawRouteImport } from './routes/withdraw'
+import { Route as WithdrawEmailSentRouteImport } from './routes/withdraw-email-sent'
 import { Route as AuthenticatedAppShellRouteRouteImport } from './routes/_authenticated/_app-shell/route'
 import { Route as AuthenticatedFocusRouteRouteImport } from './routes/_authenticated/_focus/route'
 import { Route as AuthenticatedNotificationsRouteImport } from './routes/_authenticated/notifications'
@@ -68,6 +70,16 @@ const RestoreRoute = RestoreRouteImport.update({
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WithdrawRoute = WithdrawRouteImport.update({
+  id: '/withdraw',
+  path: '/withdraw',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WithdrawEmailSentRoute = WithdrawEmailSentRouteImport.update({
+  id: '/withdraw-email-sent',
+  path: '/withdraw-email-sent',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedAppShellRouteRoute =
@@ -260,6 +272,8 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/restore': typeof RestoreRoute
   '/terms': typeof TermsRoute
+  '/withdraw': typeof WithdrawRoute
+  '/withdraw-email-sent': typeof WithdrawEmailSentRoute
   '/onboarding': typeof AuthenticatedOnboardingRouteRouteWithChildren
   '/settings': typeof AuthenticatedSettingsRouteRouteWithChildren
   '/notifications': typeof AuthenticatedNotificationsRoute
@@ -295,6 +309,8 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/restore': typeof RestoreRoute
   '/terms': typeof TermsRoute
+  '/withdraw': typeof WithdrawRoute
+  '/withdraw-email-sent': typeof WithdrawEmailSentRoute
   '/notifications': typeof AuthenticatedNotificationsRoute
   '/friends': typeof AuthenticatedAppShellFriendsRoute
   '/league': typeof AuthenticatedAppShellLeagueRoute
@@ -328,6 +344,8 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/restore': typeof RestoreRoute
   '/terms': typeof TermsRoute
+  '/withdraw': typeof WithdrawRoute
+  '/withdraw-email-sent': typeof WithdrawEmailSentRoute
   '/_authenticated/_app-shell': typeof AuthenticatedAppShellRouteRouteWithChildren
   '/_authenticated/_focus': typeof AuthenticatedFocusRouteRouteWithChildren
   '/_authenticated/onboarding': typeof AuthenticatedOnboardingRouteRouteWithChildren
@@ -367,6 +385,8 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/restore'
     | '/terms'
+    | '/withdraw'
+    | '/withdraw-email-sent'
     | '/onboarding'
     | '/settings'
     | '/notifications'
@@ -402,6 +422,8 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/restore'
     | '/terms'
+    | '/withdraw'
+    | '/withdraw-email-sent'
     | '/notifications'
     | '/friends'
     | '/league'
@@ -434,6 +456,8 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/restore'
     | '/terms'
+    | '/withdraw'
+    | '/withdraw-email-sent'
     | '/_authenticated/_app-shell'
     | '/_authenticated/_focus'
     | '/_authenticated/onboarding'
@@ -473,6 +497,8 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   RestoreRoute: typeof RestoreRoute
   TermsRoute: typeof TermsRoute
+  WithdrawRoute: typeof WithdrawRoute
+  WithdrawEmailSentRoute: typeof WithdrawEmailSentRoute
   LoginOauth2CodeProviderRoute: typeof LoginOauth2CodeProviderRoute
 }
 
@@ -511,6 +537,20 @@ declare module '@tanstack/react-router' {
       path: '/terms'
       fullPath: '/terms'
       preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/withdraw': {
+      id: '/withdraw'
+      path: '/withdraw'
+      fullPath: '/withdraw'
+      preLoaderRoute: typeof WithdrawRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/withdraw-email-sent': {
+      id: '/withdraw-email-sent'
+      path: '/withdraw-email-sent'
+      fullPath: '/withdraw-email-sent'
+      preLoaderRoute: typeof WithdrawEmailSentRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/_app-shell': {
@@ -893,6 +933,8 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   RestoreRoute: RestoreRoute,
   TermsRoute: TermsRoute,
+  WithdrawRoute: WithdrawRoute,
+  WithdrawEmailSentRoute: WithdrawEmailSentRoute,
   LoginOauth2CodeProviderRoute: LoginOauth2CodeProviderRoute,
 }
 export const routeTree = rootRouteImport

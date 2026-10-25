@@ -31,6 +31,7 @@ const toastVariants = cva(
 const POSITION_CLASS = {
   bottom: 'bottom-[calc(var(--bottom-tab-height)+20px)] md:bottom-10',
   top: 'top-10',
+  noneTabBottom: 'bottom-4 md:bottom-10',
 } as const;
 
 /** 전역 단일 토스트 렌더러. 앱 셸에 한 번 마운트한다. */
