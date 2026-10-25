@@ -22,12 +22,12 @@ legacy-web의 **탈퇴 플로우 전체**를 `apps/web`으로 이전한다. 디�
 
 ### 단계 (Phases)
 
-| Phase | 내용                                                                          | 상태    |
-| ----- | ----------------------------------------------------------------------------- | ------- |
-| 1     | 탈퇴 확인 모달 이전 (`features/user-withdraw`) + 설정 「탈퇴하기」 오픈 연결   | ✅ 완료 |
-| 2     | 「계속하기」 → 인증 메일 발송(`request`) + 발송 안내 모달 + confirm 페이지(`/withdraw`) 이전 | ✅ 완료 |
-| 3     | 탈퇴 결과 성공/실패 화면 구현 (현재 placeholder) — 공용 StatusLayout + Figma   | 예정(placeholder 배치됨) |
-| 4     | legacy 탈퇴 폐기 반영 (`docs/migration-status.md`·`implementation-status.md`) | 예정    |
+| Phase | 내용                                                                                         | 상태                     |
+| ----- | -------------------------------------------------------------------------------------------- | ------------------------ |
+| 1     | 탈퇴 확인 모달 이전 (`features/user-withdraw`) + 설정 「탈퇴하기」 오픈 연결                 | ✅ 완료                  |
+| 2     | 「계속하기」 → 인증 메일 발송(`request`) + 발송 안내 모달 + confirm 페이지(`/withdraw`) 이전 | ✅ 완료                  |
+| 3     | 탈퇴 결과 성공/실패 화면 구현 (현재 placeholder) — 공용 StatusLayout + Figma                 | 예정(placeholder 배치됨) |
+| 4     | legacy 탈퇴 폐기 반영 (`docs/migration-status.md`·`implementation-status.md`)                | 예정                     |
 
 ### Phase 2 산출물 (2026-10-01)
 
@@ -47,10 +47,10 @@ legacy-web의 **탈퇴 플로우 전체**를 `apps/web`으로 이전한다. 디�
 
 ## 용어 정의 (Ubiquitous Language)
 
-| 용어      | 정의                                                          |
-| --------- | ------------------------------------------------------------- |
-| 탈퇴 요청 | 로그인 사용자에게 인증 메일을 발송하는 1단계 (`request`)      |
-| 탈퇴 확정 | 메일 인증 코드로 계정 삭제를 확정하는 2단계 (`confirm`)       |
+| 용어      | 정의                                                           |
+| --------- | -------------------------------------------------------------- |
+| 탈퇴 요청 | 로그인 사용자에게 인증 메일을 발송하는 1단계 (`request`)       |
+| 탈퇴 확정 | 메일 인증 코드로 계정 삭제를 확정하는 2단계 (`confirm`)        |
 | 확인 모달 | 설정에서 「탈퇴하기」를 눌렀을 때 뜨는 "정말로..." 재확인 모달 |
 
 ---
@@ -59,15 +59,15 @@ legacy-web의 **탈퇴 플로우 전체**를 `apps/web`으로 이전한다. 디�
 
 > legacy-web 관찰 기준. 탈퇴 플로우 전반.
 
-| #   | 동작                                                                                       | 확인한 위치 (legacy 경로)                                                                    |
+| #   | 동작                                                                                       | 확인한 위치 (legacy 경로)                                                                   |
 | --- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------- |
-| 1   | 설정에서 「탈퇴하기」를 누르면 확인 모달이 열린다                                           | `widgets/setting-box/SettingBox.tsx`, `features/user/delete-user/ui/delete-user-button.tsx` |
-| 2   | 확인 모달은 제목 2줄 + 설명 + [확정/취소] 2버튼 구조                                        | `shared/ui/modal/ConfirmModal` 사용부                                                        |
-| 3   | 확정 시 인증 메일 발송(`request`) 후 성공 안내 모달 표시                                    | `features/user/delete-user/api/useWithdraw.tsx` (`useSendWithdrawEmail`)                     |
-| 4   | 메일 링크로 `/user/me/delete?mailAuthCode=…` 진입 → 「탈퇴 확정하기」 → `confirm`으로 삭제  | `pages/user.me.delete.page.tsx`, `useConfirmWithdraw`                                        |
-| 5   | 확정 결과에 따라 성공/실패 페이지를 보여준다                                                | `widgets/withdraw/ui/{WithdrawSuccessPage,WithdrawFailedPage}.tsx`                           |
-| 6   | `request`는 JWT 필요·`dest` 파라미터, `confirm`은 JWT 불필요·`mailAuthCode` 파라미터        | `shared/api/@generated/docs/UserDeletionAPIApi.md`                                           |
-| 7   | 신규 리팩터본 `setting-box.tsx`의 「탈퇴하기」는 `onClick={() => {}}`로 미연결(TODO)        | `widgets/setting-box/setting-box.tsx`                                                        |
+| 1   | 설정에서 「탈퇴하기」를 누르면 확인 모달이 열린다                                          | `widgets/setting-box/SettingBox.tsx`, `features/user/delete-user/ui/delete-user-button.tsx` |
+| 2   | 확인 모달은 제목 2줄 + 설명 + [확정/취소] 2버튼 구조                                       | `shared/ui/modal/ConfirmModal` 사용부                                                       |
+| 3   | 확정 시 인증 메일 발송(`request`) 후 성공 안내 모달 표시                                   | `features/user/delete-user/api/useWithdraw.tsx` (`useSendWithdrawEmail`)                    |
+| 4   | 메일 링크로 `/user/me/delete?mailAuthCode=…` 진입 → 「탈퇴 확정하기」 → `confirm`으로 삭제 | `pages/user.me.delete.page.tsx`, `useConfirmWithdraw`                                       |
+| 5   | 확정 결과에 따라 성공/실패 페이지를 보여준다                                               | `widgets/withdraw/ui/{WithdrawSuccessPage,WithdrawFailedPage}.tsx`                          |
+| 6   | `request`는 JWT 필요·`dest` 파라미터, `confirm`은 JWT 불필요·`mailAuthCode` 파라미터       | `shared/api/@generated/docs/UserDeletionAPIApi.md`                                          |
+| 7   | 신규 리팩터본 `setting-box.tsx`의 「탈퇴하기」는 `onClick={() => {}}`로 미연결(TODO)       | `widgets/setting-box/setting-box.tsx`                                                       |
 
 ## 시안 대조 결과 (Phase 1 — 확인 모달)
 
@@ -79,12 +79,12 @@ legacy-web의 **탈퇴 플로우 전체**를 `apps/web`으로 이전한다. 디�
 | 2   | 모달 배경        | `bg-white(bg-0)` / `md:bg-bg-1`                   | bg/0 / bg/1(#f8f8f8)                            | 고침            |
 | 3   | 모달 radius      | `rounded-8` / `md:rounded-12`                     | 8 / 12                                          | 고침            |
 | 4   | 그림자(데스크톱) | `md:shadow-elevation-1`                           | elevation/1 (토큰 값 정확 일치)                 | 고침            |
-| 5   | 제목             | `text-heading1` · `text-text-1`/`md:text-text-2` | xl 22 SB · text/1(모바일)·text/2(데스크톱)      | 고침            |
-| 6   | 설명             | `text-label2`/`md:text-headline1` · `text-text-4`| 2xs 13 R / md 18 SB · text/4(#a8a8a8)           | 고침            |
-| 7   | 버튼 크기        | Button `size="cta"` (48 / md 54, 17 SB)          | 48 / 54, md-2 17 SB                             | 고침            |
-| 8   | 계속하기 버튼    | Button `variant="default"`                       | cta/default #9b00cf · cta/text #fbfbfb          | 고침            |
-| 9   | 그만두기 버튼    | `stroke-secondary` + `bg-bg-0 text-main`         | divider-1 테두리 · bg/0 · brand/main/1(#ba00ff) | 고침(확인 필요) |
-| 10  | 마스코트         | Figma export PNG @3x 단일 에셋(150 / md 211px)   | 슬픈 토끼 + 빗줄기 일러스트                      | 고침            |
+| 5   | 제목             | `text-heading1` · `text-text-1`/`md:text-text-2`  | xl 22 SB · text/1(모바일)·text/2(데스크톱)      | 고침            |
+| 6   | 설명             | `text-label2`/`md:text-headline1` · `text-text-4` | 2xs 13 R / md 18 SB · text/4(#a8a8a8)           | 고침            |
+| 7   | 버튼 크기        | Button `size="cta"` (48 / md 54, 17 SB)           | 48 / 54, md-2 17 SB                             | 고침            |
+| 8   | 계속하기 버튼    | Button `variant="default"`                        | cta/default #9b00cf · cta/text #fbfbfb          | 고침            |
+| 9   | 그만두기 버튼    | `stroke-secondary` + `bg-bg-0 text-main`          | divider-1 테두리 · bg/0 · brand/main/1(#ba00ff) | 고침(확인 필요) |
+| 10  | 마스코트         | Figma export PNG @3x 단일 에셋(150 / md 211px)    | 슬픈 토끼 + 빗줄기 일러스트                     | 고침            |
 
 ### 확인 필요
 
@@ -115,8 +115,8 @@ legacy-web의 **탈퇴 플로우 전체**를 `apps/web`으로 이전한다. 디�
 
 ## Changelog
 
-| 날짜       | 요약                                                       | 사유                                         | 연관 항목                                                    |
-| ---------- | ---------------------------------------------------------- | -------------------------------------------- | ----------------------------------------------------------- |
-| 2026-09-29 | 작업 생성 · Phase 1(탈퇴 확인 모달) 구현 + 설정 오픈 연결  | legacy 탈퇴 플로우 이전 착수                 | [#263](https://github.com/Team-Gravit/gravit-web/issues/263) |
-| 2026-09-29 | 범위를 탈퇴 플로우 전체로 확장, 단계(Phase) 구조로 재구성  | 모달만이 아닌 전 단계를 한 작업공간에서 진행 | [#263](https://github.com/Team-Gravit/gravit-web/issues/263) |
+| 날짜       | 요약                                                                                                                    | 사유                                             | 연관 항목                                                    |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ | ------------------------------------------------------------ |
+| 2026-09-29 | 작업 생성 · Phase 1(탈퇴 확인 모달) 구현 + 설정 오픈 연결                                                               | legacy 탈퇴 플로우 이전 착수                     | [#263](https://github.com/Team-Gravit/gravit-web/issues/263) |
+| 2026-09-29 | 범위를 탈퇴 플로우 전체로 확장, 단계(Phase) 구조로 재구성                                                               | 모달만이 아닌 전 단계를 한 작업공간에서 진행     | [#263](https://github.com/Team-Gravit/gravit-web/issues/263) |
 | 2026-10-01 | Phase 2 — request/confirm 연동 · 발송 안내 모달 · `/withdraw` confirm 페이지 이전 · 성공 시 로그아웃 · 결과 placeholder | legacy 탈퇴 후 플로우 이전(동작 보존, UI 미수정) | [#263](https://github.com/Team-Gravit/gravit-web/issues/263) |
