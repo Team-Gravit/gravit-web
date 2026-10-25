@@ -13,7 +13,7 @@ export function MainPageNarrow() {
   return (
     // 당겨서 새로고침할 때 히어로 위로 드러나는 바탕을 상단 색과 맞춘다.
     <div className="flex min-h-full flex-col" style={{ backgroundColor: SPACE_TOP_COLOR }}>
-      <PullToRefresh onRefresh={refetchActiveQueries} className="flex-1">
+      <PullToRefresh onRefresh={refetchActiveQueries} className="flex-1" isUnderStatusBar>
         <div data-slot="main-page" data-layout="narrow" className="flex flex-1 flex-col bg-bg-2">
           <HeroGreeting>
             <HeroProfileSummary />
