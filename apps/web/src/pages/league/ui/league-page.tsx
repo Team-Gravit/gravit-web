@@ -23,7 +23,7 @@ export function LeaguePage() {
   return (
     <>
       <LeagueBackground />
-      <PullToRefresh onRefresh={refetchActiveQueries} className="h-full">
+      <PullToRefresh onRefresh={refetchActiveQueries} className="h-full" isUnderStatusBar>
         <LeagueContent />
       </PullToRefresh>
     </>
