@@ -2,10 +2,15 @@ import { useRef, useState } from 'react';
 
 import { MAX_RECORDING_MS } from '@/entities/interview-session';
 
+interface UseRecordingProps {
+  onStop?: (blob: Blob) => void;
+  onStart?: () => void;
+}
+
 const MIME_CANDIDATES = ['audio/mp4', 'audio/webm;codecs=opus', 'audio/webm', 'audio/mpeg'];
 const pickMimeType = () => MIME_CANDIDATES.find((t) => MediaRecorder.isTypeSupported(t)) ?? '';
 
-export function useRecording(onStop?: (blob: Blob) => void) {
+export function useRecording({ onStop, onStart }: UseRecordingProps) {
   const recordRef = useRef<MediaRecorder | null>(null);
   const chuncksRef = useRef<Blob[]>([]);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -65,6 +70,7 @@ export function useRecording(onStop?: (blob: Blob) => void) {
 
       recorder.start();
       setIsRecording(true);
+      onStart?.();
 
       // Date 차이로 경과시간을 갱신하고, 최대 시간에 도달하면 자동 정지한다.
       const startedAt = Date.now();

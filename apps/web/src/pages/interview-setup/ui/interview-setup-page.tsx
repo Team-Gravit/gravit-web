@@ -1,5 +1,6 @@
 import { useNavigate, useRouter } from '@tanstack/react-router';
 
+import { useInterviewSessionStore } from '@/entities/interview-session';
 import { rewindHistory } from '@/shared/lib/rewind-history';
 
 import { SessionSetup, type SessionSetupStep } from '@/features/interview-session-setup';
@@ -14,6 +15,7 @@ interface InterviewSetupPageProps {
 export function InterviewSetupPage({ step, entryHistoryIndex }: InterviewSetupPageProps) {
   const navigate = useNavigate();
   const router = useRouter();
+  const enterSession = useInterviewSessionStore((s) => s.enterSession);
 
   // 다음 단계는 방문 기록에 남겨 브라우저 뒤로가기로도 돌아올 수 있게 한다.
   function handleNext(nextStep: SessionSetupStep) {
@@ -32,6 +34,8 @@ export function InterviewSetupPage({ step, entryHistoryIndex }: InterviewSetupPa
 
   // 생성 후 뒤로가기가 초기화된 설정 단계로 돌아가지 않도록 첫 진입 위치를 세션 화면으로 교체한다.
   async function handleSessionCreated(sessionId: number) {
+    // 세션 시작을 store(sessionStorage)에 기록한다. 세션 화면 진입 시 이 값으로 정상 진입/이탈을 구분한다.
+    enterSession(sessionId);
     await rewindHistory(router.history, entryHistoryIndex);
     await navigate({
       to: '/interview/sessions/$sessionId',

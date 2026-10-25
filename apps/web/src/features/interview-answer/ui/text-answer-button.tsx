@@ -11,7 +11,7 @@ export function TextAnswerButton() {
   const goNext = useInterviewSessionStore((s) => s.goNext);
   const setAnswerContent = useInterviewSessionStore((s) => s.setAnswerContent);
   const currentIndex = useInterviewSessionStore((s) => s.currentIndex);
-
+  const startAnswering = useInterviewSessionStore((s) => s.startAnswering);
   const [answer, setAnswer] = useState('');
   const [isWriting, setIsWriting] = useState(false);
 
@@ -21,7 +21,13 @@ export function TextAnswerButton() {
   if (!isWriting) {
     return (
       <div className="flex w-full items-center justify-center p-4 md:py-12.5">
-        <AnswerButton onClick={() => setIsWriting(true)} disabled={!canAnswer}>
+        <AnswerButton
+          onClick={() => {
+            setIsWriting(true);
+            startAnswering();
+          }}
+          disabled={!canAnswer}
+        >
           {canAnswer ? '답변 작성하기' : '질문 재생 중'}
         </AnswerButton>
       </div>
