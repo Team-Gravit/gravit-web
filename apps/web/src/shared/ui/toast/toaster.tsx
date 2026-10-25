@@ -29,7 +29,7 @@ const toastVariants = cva(
 
 // 하단 위치는 모바일 바텀탭 위에 뜨도록 탭 높이만큼 띄운다(데스크톱은 탭이 없어 고정 여백).
 const POSITION_CLASS = {
-  bottom: 'bottom-[calc(var(--bottom-tab-height)+20px)] md:bottom-10',
+  bottom: 'bottom-[calc(var(--bottom-tab-height)+var(--safe-area-bottom)+20px)] md:bottom-10',
   top: 'top-10',
   noneTabBottom: 'bottom-4 md:bottom-10',
 } as const;
