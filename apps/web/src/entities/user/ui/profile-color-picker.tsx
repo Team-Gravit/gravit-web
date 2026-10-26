@@ -1,3 +1,5 @@
+import { cva, type VariantProps } from 'class-variance-authority';
+
 import { cn } from '@/shared/lib/cn';
 
 import { getNextProfileColorNumber, getPreviousProfileColorNumber } from '../model/profile-colors';
@@ -7,7 +9,15 @@ import { ProfileAvatar } from './profile-avatar';
 import LeftArrowIcon from './assets/arrow-left.svg?react';
 import RightArrowIcon from './assets/arrow-right.svg?react';
 
-export interface ProfileColorPickerProps {
+// 기본(`light`)은 밝은 배경용 회색 화살표. `space`는 넓은 화면에서 우주 배경 위에 얹혀 밝은 색으로 바뀐다.
+const arrowVariants = cva('h-16 text-gray-500', {
+  variants: {
+    surface: { light: '', space: 'md:text-cta-text' },
+  },
+  defaultVariants: { surface: 'light' },
+});
+
+export interface ProfileColorPickerProps extends VariantProps<typeof arrowVariants> {
   /** 현재 선택된 색 번호 (1~19) */
   value: number;
   onChange: (colorNumber: number) => void;
@@ -20,7 +30,12 @@ const STEP_BUTTON_CLASS = [
 ];
 
 /** 좌우 화살표로 프로필 색상을 선택한다. */
-export function ProfileColorPicker({ value, onChange, className }: ProfileColorPickerProps) {
+export function ProfileColorPicker({
+  value,
+  onChange,
+  surface,
+  className,
+}: ProfileColorPickerProps) {
   const handlePreviousClick = () => {
     onChange(getPreviousProfileColorNumber(value));
   };
@@ -40,7 +55,7 @@ export function ProfileColorPicker({ value, onChange, className }: ProfileColorP
         onClick={handlePreviousClick}
         className={cn(STEP_BUTTON_CLASS)}
       >
-        <LeftArrowIcon className="h-16 text-gray-500 md:text-cta-text" />
+        <LeftArrowIcon className={arrowVariants({ surface })} />
       </button>
 
       <ProfileAvatar colorNumber={value} className="size-[150px] md:size-[178px]" />
@@ -51,7 +66,7 @@ export function ProfileColorPicker({ value, onChange, className }: ProfileColorP
         onClick={handleNextClick}
         className={cn(STEP_BUTTON_CLASS)}
       >
-        <RightArrowIcon className="h-16 text-gray-500 md:text-cta-text" />
+        <RightArrowIcon className={arrowVariants({ surface })} />
       </button>
     </div>
   );

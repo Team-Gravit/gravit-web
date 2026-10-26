@@ -59,6 +59,7 @@ import PaperPlaneFill from './assets/paper-plane-fill.svg?react';
 import PauseCircle from './assets/pause-circle.svg?react';
 import PauseFill from './assets/pause-fill.svg?react';
 import Pencil from './assets/pencil.svg?react';
+import PinFill from './assets/pin-fill.svg?react';
 import Pin from './assets/pin.svg?react';
 import Planet from './assets/planet.svg?react';
 import PlayCircle from './assets/play-circle.svg?react';
@@ -154,6 +155,7 @@ export const ICONS = {
   'pause-circle': PauseCircle,
   'pause-fill': PauseFill,
   pencil: Pencil,
+  'pin-fill': PinFill,
   pin: Pin,
   planet: Planet,
   'play-circle': PlayCircle,

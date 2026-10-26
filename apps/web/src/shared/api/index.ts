@@ -8,3 +8,4 @@ export {
 } from './auth-token';
 export type { BodyType, ErrorType } from './axios-instance';
 export { isNotFoundError, nullIfNotFound } from './not-found';
+export { useRefetchActiveQueries } from './use-refetch-active-queries';

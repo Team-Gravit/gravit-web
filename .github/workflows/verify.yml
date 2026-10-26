@@ -1,0 +1,45 @@
+name: Verify
+
+on:
+  pull_request:
+    branches:
+      - develop
+      - main
+
+permissions:
+  contents: read
+
+# 같은 PR에 새 커밋이 올라오면 이전 실행은 결과가 의미 없으므로 취소한다.
+concurrency:
+  group: verify-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      # version 입력을 생략해 루트 package.json의 packageManager(pnpm@8.15.6)를 따릅니다.
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+
+      # CI에는 커밋 훅이 필요 없다. HUSKY=0이면 prepare 단계의 husky 설치를 건너뛴다.
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        env:
+          HUSKY: '0'
+
+      # 로컬과 같은 진입점을 써서 검사 목록이 갈라지지 않게 한다.
+      - name: Verify
+        run: pnpm verify

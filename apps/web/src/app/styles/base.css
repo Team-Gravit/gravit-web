@@ -1,6 +1,7 @@
+/* 변수 글꼴에서 상용 글자만 남긴 파일이다. 다시 만드는 방법은 docs/design-system/README.md §3-8 */
 @font-face {
   font-family: 'Pretendard';
-  src: url('./fonts/PretendardVariable.woff2') format('woff2');
+  src: url('./fonts/PretendardVariable.subset.woff2') format('woff2');
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
@@ -35,7 +36,7 @@
 
   body {
     min-width: 320px;
-    min-height: 100vh;
+    min-height: 100dvh;
     margin: 0;
     @apply font-pretendard text-black leading-normal;
   }
@@ -46,7 +47,7 @@
   }
 
   #app {
-    min-height: 100vh;
+    min-height: 100dvh;
   }
 
   img {

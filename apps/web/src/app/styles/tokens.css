@@ -256,7 +256,11 @@
   --header-height: 74px;
   --desktop-header-height: 112px;
   --mobile-header-height: 47px;
-  /* 모바일 탭 */
+  /* 화면이 상태 표시줄과 겹칠 때만 0보다 크다. 앱이 WebView를 상태 표시줄 뒤까지 펼칠 때 켜진다. */
+  --safe-area-top: env(safe-area-inset-top, 0px);
+  /* 아이폰 홈 인디케이터 영역. iOS 앱은 WebView가 화면 아래 끝까지 펼쳐져 웹이 비워 둬야 한다. */
+  --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+  /* 모바일 탭. 홈 인디케이터 여백(--safe-area-bottom)은 포함하지 않는다. */
   --bottom-tab-height: 60px;
 
   /*스켈레톤 애니메이션*/
@@ -266,6 +270,9 @@
   /*토스트 애니메이션*/
   --animate-fade-in-y: fadeInWithTransformY 0.5s forwards;
   --animate-fade-out-y: fadeOutWithTransformY 0.5s forwards;
+
+  /* 당겨서 새로고침 로고 */
+  --animate-pull-refresh-hop: pullRefreshHop 0.7s cubic-bezier(0.3, 0, 0.4, 1) infinite;
 
   --text-display1: 40px;
   --text-display1--line-height: 1.25;
@@ -390,6 +397,16 @@
     to {
       opacity: 0;
       transform: translateY(20px);
+    }
+  }
+
+  @keyframes pullRefreshHop {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    45% {
+      transform: translateY(-6px);
     }
   }
 }

@@ -42,7 +42,8 @@ export function PageTitleBar({
     <header
       data-slot="page-title-bar"
       className={cn(
-        'sticky top-0 z-50 flex h-12 shrink-0 items-center justify-center border-b border-divider-1 bg-white',
+        // box-content: 내용 높이 h-12는 그대로 두고 상태 표시줄 여백만큼 막대를 위로 늘린다.
+        'sticky top-0 z-50 box-content flex h-12 shrink-0 items-center justify-center border-b border-divider-1 bg-white pt-(--safe-area-top)',
         className,
       )}
     >

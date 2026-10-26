@@ -12,7 +12,8 @@ export function BottomTabBar() {
     <nav
       data-slot="bottom-tab-bar"
       aria-label="하단 탭"
-      className="fixed inset-x-0 bottom-0 z-40 h-(--bottom-tab-height) bg-white shadow-[0_4px_7px_rgba(0,0,0,0.1)]"
+      // 탭 높이는 그대로 두고 홈 인디케이터 영역만큼 아래를 비운다.
+      className="fixed inset-x-0 bottom-0 z-40 box-content h-(--bottom-tab-height) bg-white pb-(--safe-area-bottom) shadow-[0_4px_7px_rgba(0,0,0,0.1)]"
     >
       <ul className="flex h-full items-center justify-around">
         {NAV_ITEMS.map((item) => {

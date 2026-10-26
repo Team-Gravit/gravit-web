@@ -280,28 +280,24 @@ flowchart LR
 
 ## 7. 검증 명령
 
-현재 전체 검증을 묶은 스크립트는 없다. 정식 작업을 마칠 때는 다음 검사를 실행한다.
+정식 작업을 마칠 때는 묶음 명령 하나를 실행한다. 실패하면 그 단계에서 멈춘다.
 
 ```bash
-pnpm lint          # eslint + steiger(FSD 경계)
-pnpm check-types
-pnpm test
-pnpm build
+pnpm verify   # format:check → lint(eslint + steiger) → check-types → test → build
 ```
 
-포맷은 현재 저장소 전체가 아니라 이번에 변경한 파일을 검사한다. 커밋된 기존 파일 6개가 포맷
-검사에 실패하는 상태이기 때문이다(`REF-003`). 이 문제가 해결되면 `pnpm format:check`도 전체
-검증에 포함한다.
+포맷은 저장소 전체를 검사하고, 완료된 작업 기록(`work/done/`)만 동결 문서라 제외한다(`REF-003`).
 
-```bash
-pnpm exec prettier --check <이번에 변경한 파일>
-```
+### 자동으로 도는 검사
 
-### 묶음 명령은 언제 만드나
+| 시점        | 수단                           | 검사                            |
+| ----------- | ------------------------------ | ------------------------------- |
+| 커밋 직전   | husky + lint-staged            | staged 파일의 prettier · eslint |
+| 커밋 메시지 | husky + commitlint             | Conventional Commits 형식       |
+| PR          | `.github/workflows/verify.yml` | `pnpm verify` 전체              |
 
-전체 검증 묶음 명령과 커밋·PR 자동 검사는 아직 없다. 현재 `.github/workflows/`에는 Storybook
-배포만 있다. 도입 계획은 `work/to-do/INFRA-010-검증-자동화/`에서 관리하고, 현재 동작의 상세는
-`.claude/rules/git-workflow.md`에서 확인한다.
+AI의 편집 직전 훅(`fsd-layer-check.mjs`)과 달리 이 검사들은 **사람의 변경에도** 적용된다.
+도입 경위는 `work/in-progress/INFRA-010-검증-자동화/`, 동작 상세는 `.claude/rules/git-workflow.md` §3.
 
 ## 8. 더 읽을 것
 
