@@ -137,6 +137,54 @@ Tailwind의 `ring-3` 두께 유틸리티와 충돌하므로 사용하지 않는�
 
 코드 글꼴은 Tailwind 기본 `font-mono` 스택을 쓰고 리가처는 끈다. 별도 웹폰트는 내려받지 않는다.
 
+### 3-8. 본문 글꼴 파일 — 단일 변수 subset (REF-064 · #319)
+
+본문 글꼴은 `apps/web/src/app/styles/fonts/PretendardVariable.subset.woff2` 한 파일이다. Pretendard 공식 변수 글꼴에서
+공식 subset 글자 목록만 남기고 **굵기 축(wght 45–930)은 그대로 둔** 파일이라, 한 파일로 모든 굵기를 그린다.
+배포본에 이 형태가 없어 직접 만든다.
+
+| 항목      | 값                                                                                      |
+| --------- | --------------------------------------------------------------------------------------- |
+| 원본      | npm `pretendard@1.3.9` `dist/web/variable/woff2/PretendardVariable.woff2` (2,057,688 B) |
+| 글자 목록 | 같은 패키지의 `subset_glyphs.txt` (한글 2,780자) + Latin-1·기호 범위                    |
+| 결과      | 653,456 B · 글리프 매핑 3,995개 · 공식 정적 subset의 글자를 모두 포함                   |
+| 도구      | fonttools 4.51.0 + brotli                                                               |
+
+```bash
+python -m fontTools.subset PretendardVariable.woff2 \
+  --text-file=subset_glyphs.txt \
+  --unicodes="U+0000-00FF,U+2000-206F,U+2190-21FF,U+2460-24FF,U+25A0-25FF,U+2B00-2BFF,U+3000-303F,U+3131-318E,U+FF00-FFEF" \
+  --layout-features='*' --flavor=woff2 --output-file=PretendardVariable.subset.woff2
+```
+
+- 목록에 없는 한글 음절(8,392자)이 화면에 나오면 **그 글자만** 시스템 글꼴로 보인다
+- 굵기 축을 400–700으로 자르지 않는다. 마크다운(`prose`)의 h1은 800, h1 안 굵게는 900이다
+- 공식 정적 subset(굵기별 4개, 합 1,075KB)과 CDN dynamic subset을 측정으로 비교해 이 방식을 골랐다 (REF-064 `spec.md`)
+
+### 3-9. 안전 영역 — 노치 · 상태 표시줄 · 홈 인디케이터 (#328)
+
+iOS 앱은 WebView를 화면 위아래 끝까지 펼치고 안전 영역 처리를 웹에 맡긴다 (`apps/native/app/index.tsx`).
+웹은 `index.html`의 `viewport-fit=cover`로 `env(safe-area-inset-*)` 값을 받는다. 안드로이드 앱과
+데스크톱 브라우저에서는 값이 0이라 화면이 바뀌지 않는다.
+
+| 토큰 · 클래스        | 값                              | 쓰는 곳                                                          |
+| -------------------- | ------------------------------- | ---------------------------------------------------------------- |
+| `--safe-area-top`    | `env(safe-area-inset-top)`      | 상태 표시줄 뒤까지 올라가는 헤더 · 히어로 · 제목 막대            |
+| `--safe-area-bottom` | `env(safe-area-inset-bottom)`   | 하단 탭바 · 탭바 높이를 기준으로 놓이는 요소(앱 셸 여백, 토스트) |
+| `pb-safe-{n}`        | `pb-{n}` + `--safe-area-bottom` | **탭바 없는 화면**에서 아래에 붙는 버튼                          |
+
+**누가 아래를 비우는가**
+
+- **탭바 있는 화면** (`_app-shell`): 탭바가 홈 인디케이터 영역을 비운다. 화면은 따로 할 일이 없다
+- **탭바 없는 화면** (퀴즈, 레슨 결과, 탈퇴 등 전체 화면): 아래에 고정되거나 아래로 밀린 버튼이 있으면
+  그 화면이 `pb-5` 대신 `pb-safe-5`처럼 직접 비운다. 스크롤되는 일반 콘텐츠는 비우지 않아도 된다
+
+**당겨서 새로고침**
+
+- 배경이 상태 표시줄 뒤까지 올라가는 화면(메인 · 마이 · 리그)은 `<PullToRefresh isUnderStatusBar>`로 켠다.
+  로고를 상단 안전 영역 아래에 그린다
+- 제목 막대 아래에서 당겨지는 화면(학습 · 알림)은 켜지 않는다
+
 ## 4. 정리 대상 토큰 대장 — **50개**
 
 `tokens.css:130`의 TODO 주석 아래에 있는 호환 토큰들이다. legacy와 `apps/web` 양쪽에 신규·호환

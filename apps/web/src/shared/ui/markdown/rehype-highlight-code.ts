@@ -20,8 +20,8 @@ import typescript from 'refractor/typescript';
 import yaml from 'refractor/yaml';
 
 /*
-  개념노트에서 사용하는 언어만 등록해 번들 크기를 제한한다.
-  Vue SFC는 markup 별칭으로 처리하고, 미지원 언어와 ASCII 도식은 원문으로 표시한다.
+  언어 문법은 이 모듈을 처음 불러올 때 등록한다. 전체 언어 묶음 대신 필요한 문법만 가져온다.
+  Vue SFC는 markup 별칭으로 처리한다.
 */
 [
   markup,
@@ -47,10 +47,11 @@ refractor.alias({ markup: ['vue'] });
 
 const LANGUAGE_CLASS_PREFIX = 'language-';
 
-/** 언어가 등록된 코드 블록을 Prism 토큰으로 변환하는 rehype 플러그인. */
+/** 등록된 언어의 코드 블록을 문법별 span 요소로 나눈다. 색상은 CodeBlock에서 적용한다. */
 export function rehypeHighlightCode() {
   return (tree: Root) => {
     visitElements(tree, (element) => {
+      // 인라인 code는 그대로 두고, pre 안에 있는 코드 블록만 강조한다.
       if (element.tagName !== 'pre') {
         return;
       }
@@ -60,6 +61,7 @@ export function rehypeHighlightCode() {
       );
       const language = code ? readLanguage(code) : undefined;
 
+      // 언어 없는 도식이나 미지원 언어도 원문을 읽을 수 있도록 변환하지 않는다.
       if (!code || !language || !refractor.registered(language)) {
         return;
       }

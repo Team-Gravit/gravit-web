@@ -14,6 +14,8 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as RestoreRouteImport } from './routes/restore'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as WithdrawRouteImport } from './routes/withdraw'
+import { Route as WithdrawEmailSentRouteImport } from './routes/withdraw-email-sent'
 import { Route as AuthenticatedAppShellRouteRouteImport } from './routes/_authenticated/_app-shell/route'
 import { Route as AuthenticatedFocusRouteRouteImport } from './routes/_authenticated/_focus/route'
 import { Route as AuthenticatedNotificationsRouteImport } from './routes/_authenticated/notifications'
@@ -23,6 +25,7 @@ import { Route as AuthenticatedAppShellFriendsRouteImport } from './routes/_auth
 import { Route as AuthenticatedAppShellLeagueRouteImport } from './routes/_authenticated/_app-shell/league'
 import { Route as AuthenticatedAppShellMainRouteImport } from './routes/_authenticated/_app-shell/main'
 import { Route as AuthenticatedAppShellMyRouteRouteImport } from './routes/_authenticated/_app-shell/my/route'
+import { Route as AuthenticatedMyEditRouteImport } from './routes/_authenticated/my.edit'
 import { Route as AuthenticatedOnboardingIndexRouteImport } from './routes/_authenticated/onboarding/index'
 import { Route as AuthenticatedOnboardingSuccessRouteImport } from './routes/_authenticated/onboarding/success'
 import { Route as AuthenticatedSettingsIndexRouteImport } from './routes/_authenticated/settings/index'
@@ -68,6 +71,16 @@ const RestoreRoute = RestoreRouteImport.update({
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WithdrawRoute = WithdrawRouteImport.update({
+  id: '/withdraw',
+  path: '/withdraw',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WithdrawEmailSentRoute = WithdrawEmailSentRouteImport.update({
+  id: '/withdraw-email-sent',
+  path: '/withdraw-email-sent',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedAppShellRouteRoute =
@@ -121,6 +134,11 @@ const AuthenticatedAppShellMyRouteRoute =
     path: '/my',
     getParentRoute: () => AuthenticatedAppShellRouteRoute,
   } as any)
+const AuthenticatedMyEditRoute = AuthenticatedMyEditRouteImport.update({
+  id: '/my/edit',
+  path: '/my/edit',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedOnboardingIndexRoute =
   AuthenticatedOnboardingIndexRouteImport.update({
     id: '/',
@@ -260,6 +278,8 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/restore': typeof RestoreRoute
   '/terms': typeof TermsRoute
+  '/withdraw': typeof WithdrawRoute
+  '/withdraw-email-sent': typeof WithdrawEmailSentRoute
   '/onboarding': typeof AuthenticatedOnboardingRouteRouteWithChildren
   '/settings': typeof AuthenticatedSettingsRouteRouteWithChildren
   '/notifications': typeof AuthenticatedNotificationsRoute
@@ -268,6 +288,7 @@ export interface FileRoutesByFullPath {
   '/friends': typeof AuthenticatedAppShellFriendsRoute
   '/league': typeof AuthenticatedAppShellLeagueRoute
   '/main': typeof AuthenticatedAppShellMainRoute
+  '/my/edit': typeof AuthenticatedMyEditRoute
   '/onboarding/success': typeof AuthenticatedOnboardingSuccessRoute
   '/settings/notice': typeof AuthenticatedSettingsNoticeRoute
   '/onboarding/': typeof AuthenticatedOnboardingIndexRoute
@@ -295,10 +316,13 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/restore': typeof RestoreRoute
   '/terms': typeof TermsRoute
+  '/withdraw': typeof WithdrawRoute
+  '/withdraw-email-sent': typeof WithdrawEmailSentRoute
   '/notifications': typeof AuthenticatedNotificationsRoute
   '/friends': typeof AuthenticatedAppShellFriendsRoute
   '/league': typeof AuthenticatedAppShellLeagueRoute
   '/main': typeof AuthenticatedAppShellMainRoute
+  '/my/edit': typeof AuthenticatedMyEditRoute
   '/onboarding/success': typeof AuthenticatedOnboardingSuccessRoute
   '/settings/notice': typeof AuthenticatedSettingsNoticeRoute
   '/onboarding': typeof AuthenticatedOnboardingIndexRoute
@@ -328,6 +352,8 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/restore': typeof RestoreRoute
   '/terms': typeof TermsRoute
+  '/withdraw': typeof WithdrawRoute
+  '/withdraw-email-sent': typeof WithdrawEmailSentRoute
   '/_authenticated/_app-shell': typeof AuthenticatedAppShellRouteRouteWithChildren
   '/_authenticated/_focus': typeof AuthenticatedFocusRouteRouteWithChildren
   '/_authenticated/onboarding': typeof AuthenticatedOnboardingRouteRouteWithChildren
@@ -338,6 +364,7 @@ export interface FileRoutesById {
   '/_authenticated/_app-shell/friends': typeof AuthenticatedAppShellFriendsRoute
   '/_authenticated/_app-shell/league': typeof AuthenticatedAppShellLeagueRoute
   '/_authenticated/_app-shell/main': typeof AuthenticatedAppShellMainRoute
+  '/_authenticated/my/edit': typeof AuthenticatedMyEditRoute
   '/_authenticated/onboarding/success': typeof AuthenticatedOnboardingSuccessRoute
   '/_authenticated/settings/notice': typeof AuthenticatedSettingsNoticeRoute
   '/_authenticated/onboarding/': typeof AuthenticatedOnboardingIndexRoute
@@ -367,6 +394,8 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/restore'
     | '/terms'
+    | '/withdraw'
+    | '/withdraw-email-sent'
     | '/onboarding'
     | '/settings'
     | '/notifications'
@@ -375,6 +404,7 @@ export interface FileRouteTypes {
     | '/friends'
     | '/league'
     | '/main'
+    | '/my/edit'
     | '/onboarding/success'
     | '/settings/notice'
     | '/onboarding/'
@@ -402,10 +432,13 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/restore'
     | '/terms'
+    | '/withdraw'
+    | '/withdraw-email-sent'
     | '/notifications'
     | '/friends'
     | '/league'
     | '/main'
+    | '/my/edit'
     | '/onboarding/success'
     | '/settings/notice'
     | '/onboarding'
@@ -434,6 +467,8 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/restore'
     | '/terms'
+    | '/withdraw'
+    | '/withdraw-email-sent'
     | '/_authenticated/_app-shell'
     | '/_authenticated/_focus'
     | '/_authenticated/onboarding'
@@ -444,6 +479,7 @@ export interface FileRouteTypes {
     | '/_authenticated/_app-shell/friends'
     | '/_authenticated/_app-shell/league'
     | '/_authenticated/_app-shell/main'
+    | '/_authenticated/my/edit'
     | '/_authenticated/onboarding/success'
     | '/_authenticated/settings/notice'
     | '/_authenticated/onboarding/'
@@ -473,6 +509,8 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   RestoreRoute: typeof RestoreRoute
   TermsRoute: typeof TermsRoute
+  WithdrawRoute: typeof WithdrawRoute
+  WithdrawEmailSentRoute: typeof WithdrawEmailSentRoute
   LoginOauth2CodeProviderRoute: typeof LoginOauth2CodeProviderRoute
 }
 
@@ -511,6 +549,20 @@ declare module '@tanstack/react-router' {
       path: '/terms'
       fullPath: '/terms'
       preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/withdraw': {
+      id: '/withdraw'
+      path: '/withdraw'
+      fullPath: '/withdraw'
+      preLoaderRoute: typeof WithdrawRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/withdraw-email-sent': {
+      id: '/withdraw-email-sent'
+      path: '/withdraw-email-sent'
+      fullPath: '/withdraw-email-sent'
+      preLoaderRoute: typeof WithdrawEmailSentRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/_app-shell': {
@@ -575,6 +627,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/my'
       preLoaderRoute: typeof AuthenticatedAppShellMyRouteRouteImport
       parentRoute: typeof AuthenticatedAppShellRouteRoute
+    }
+    '/_authenticated/my/edit': {
+      id: '/_authenticated/my/edit'
+      path: '/my/edit'
+      fullPath: '/my/edit'
+      preLoaderRoute: typeof AuthenticatedMyEditRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/onboarding/': {
       id: '/_authenticated/onboarding/'
@@ -873,6 +932,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedOnboardingRouteRoute: typeof AuthenticatedOnboardingRouteRouteWithChildren
   AuthenticatedSettingsRouteRoute: typeof AuthenticatedSettingsRouteRouteWithChildren
   AuthenticatedNotificationsRoute: typeof AuthenticatedNotificationsRoute
+  AuthenticatedMyEditRoute: typeof AuthenticatedMyEditRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
@@ -882,6 +942,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
     AuthenticatedOnboardingRouteRouteWithChildren,
   AuthenticatedSettingsRouteRoute: AuthenticatedSettingsRouteRouteWithChildren,
   AuthenticatedNotificationsRoute: AuthenticatedNotificationsRoute,
+  AuthenticatedMyEditRoute: AuthenticatedMyEditRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
@@ -893,6 +954,8 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   RestoreRoute: RestoreRoute,
   TermsRoute: TermsRoute,
+  WithdrawRoute: WithdrawRoute,
+  WithdrawEmailSentRoute: WithdrawEmailSentRoute,
   LoginOauth2CodeProviderRoute: LoginOauth2CodeProviderRoute,
 }
 export const routeTree = rootRouteImport

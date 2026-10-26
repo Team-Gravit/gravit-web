@@ -1,9 +1,9 @@
 {
   "expo": {
-    "name": "native",
-    "slug": "native",
+    "name": "Gravit",
+    "slug": "gravit",
     "version": "1.0.0",
-    "scheme": "com.turbo.example",
+    "scheme": "gravit",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -13,10 +13,15 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
+      "bundleIdentifier": "kr.inuappcenter.gravit",
+      "entitlements": {
+        "com.apple.developer.applesignin": ["Default"]
+      },
       "infoPlist": {
         "NSAppTransportSecurity": {
           "NSAllowsArbitraryLoads": true
-        }
+        },
+        "ITSAppUsesNonExemptEncryption": false
       }
     },
     "android": {
@@ -24,7 +29,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#AAAAAA"
       },
-      "package": "com.turbo.example"
+      "package": "kr.inuappcenter.gravit"
     },
     "web": {
       "favicon": "./assets/favicon.png",
@@ -51,6 +56,13 @@
     ],
     "experiments": {
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "b67a0887-399c-4878-b49f-0d29198d08cb"
+      }
+    },
+    "owner": "grav-it"
   }
 }

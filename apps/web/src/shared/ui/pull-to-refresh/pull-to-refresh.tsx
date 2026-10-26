@@ -16,6 +16,11 @@ export interface PullToRefreshProps {
   onRefresh: () => Promise<unknown>;
   children: ReactNode;
   className?: string;
+  /**
+   * 콘텐츠가 상태 표시줄 뒤에서 시작하면 켠다. 로고를 상단 안전 영역 아래에 그려
+   * 노치·상태 표시줄에 가리지 않게 한다. 콘텐츠의 상단 안전 영역 여백 위에 겹쳐 그린다.
+   */
+  isUnderStatusBar?: boolean;
 }
 
 function handleRefreshError() {
@@ -32,7 +37,12 @@ function handleRefreshError() {
  * 이 컴포넌트에 주고, 안쪽 루트는 `min-h-full` 대신 `flex-1`로 늘린다.
  * 높이가 정해진 영역 안에서 안쪽 목록이 스스로 스크롤해도 된다 (`min-h-0`).
  */
-export function PullToRefresh({ onRefresh, children, className }: PullToRefreshProps) {
+export function PullToRefresh({
+  onRefresh,
+  children,
+  className,
+  isUnderStatusBar = false,
+}: PullToRefreshProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const { status, distance } = usePullToRefresh({
     containerRef,
@@ -70,7 +80,9 @@ export function PullToRefresh({ onRefresh, children, className }: PullToRefreshP
       <div
         aria-hidden="true"
         className={cn(
-          'absolute inset-x-0 top-0 flex items-center justify-center overflow-hidden',
+          'absolute inset-x-0 flex items-center justify-center overflow-hidden',
+          // 뒤따르는 콘텐츠보다 위에 그린다. 겹치는 곳은 콘텐츠가 상태 표시줄 몫으로 비워 둔 여백이다.
+          isUnderStatusBar ? 'top-(--safe-area-top) z-10' : 'top-0',
           shouldAnimatePosition && ['transition-[height]', SETTLE_TRANSITION_CLASS],
         )}
         style={{ height: distance }}

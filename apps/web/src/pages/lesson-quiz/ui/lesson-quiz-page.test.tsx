@@ -1,5 +1,5 @@
-import { afterEach, describe, expect, it, vi } from 'vitest';
-import { act, screen, waitFor } from '@testing-library/react';
+import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { act, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { HttpResponse, http } from 'msw';
 
@@ -81,11 +81,34 @@ async function renderLessonQuiz({ isWide = true, extraPaths = EXTRA_PATHS } = {}
   return renderWithProviders(TestPage, { extraPaths });
 }
 
+const UNIT_LESSONS_URL = '*/api/v1/lessons/:unitId';
+
+function createUnitLessonsResponse(chapterTitle: string) {
+  return {
+    chapterSummary: { chapterId: 1, title: chapterTitle },
+    unitSummaryResponse: LESSON_PROBLEMS.unitSummaryResponse,
+    bookmarkAccessible: false,
+    wrongAnsweredNoteAccessible: false,
+    unitId: 3,
+    lessonSummaries: [],
+  };
+}
+
+// 챕터명 조회가 기존 페이지 테스트에 영향을 주지 않도록 기본 응답을 둔다.
+beforeEach(() => {
+  server.use(
+    http.get(UNIT_LESSONS_URL, () => HttpResponse.json(createUnitLessonsResponse('자료구조'))),
+  );
+});
+
 afterEach(() => {
   vi.useRealTimers();
   vi.unstubAllGlobals();
   window.sessionStorage.clear();
 });
+
+// 첫 모듈 변환 시간이 테스트 제한 시간에 포함되지 않도록 미리 로드한다.
+beforeAll(() => import('@/shared/ui/markdown/markdown'));
 
 describe('LessonQuizPage', () => {
   it('응답을 기다리는 동안 로딩중... 만 보이고 발문은 없다', async () => {
@@ -103,7 +126,7 @@ describe('LessonQuizPage', () => {
     expect(await screen.findByRole('heading', { name: 'Unit01 - 연결리스트' })).toBeInTheDocument();
     expect(screen.getByText('01')).toBeInTheDocument();
     expect(screen.getByText('다음 중 옳은 것은?')).toBeInTheDocument();
-    expect(screen.getByText('연결리스트 맨 앞 삽입의 시간복잡도는?')).toBeInTheDocument();
+    expect(await screen.findByText('연결리스트 맨 앞 삽입의 시간복잡도는?')).toBeInTheDocument();
   });
 
   it('7초가 지나면 타이머가 00:07이 된다', async () => {
@@ -145,11 +168,12 @@ describe('LessonQuizPage', () => {
     );
   });
 
-  it('닫기는 기록을 남기지 않아 뒤로가기해도 풀이 화면으로 돌아오지 않는다', async () => {
+  it('그만두기는 기록을 남기지 않아 뒤로가기해도 풀이 화면으로 돌아오지 않는다', async () => {
     server.use(http.get(PROBLEMS_URL, () => HttpResponse.json(LESSON_PROBLEMS)));
     const { router } = await renderLessonQuiz();
 
     await userEvent.click(await screen.findByRole('link', { name: '풀이 닫기' }));
+    await userEvent.click(await screen.findByRole('link', { name: '그만두기' }));
     await waitFor(() => expect(router.state.location.pathname).toBe('/learning/units/3'));
 
     router.history.back();
@@ -356,6 +380,116 @@ function createLesson(problemCount: number) {
 
   return { ...LESSON_PROBLEMS, totalProblems: problemCount, problems };
 }
+
+describe('LessonQuizPage 그만두기 모달', () => {
+  function mockLessonQuizRequests({ problemCount = 1, chapterTitle = '운영체제' } = {}) {
+    server.use(
+      http.get(PROBLEMS_URL, () => HttpResponse.json(createLesson(problemCount))),
+      http.get(UNIT_LESSONS_URL, () => HttpResponse.json(createUnitLessonsResponse(chapterTitle))),
+    );
+  }
+
+  async function openQuitModal() {
+    await userEvent.click(await screen.findByRole('link', { name: '풀이 닫기' }));
+    return screen.findByRole('dialog', { name: /지금까지 푼 내역이/ });
+  }
+
+  it('닫기를 누르면 떠나지 않고 그만두기 모달을 연다 (AC-1)', async () => {
+    mockLessonQuizRequests();
+    const { router } = await renderLessonQuiz();
+
+    const dialog = await openQuitModal();
+
+    expect(dialog).toHaveTextContent('모두 사라져요!');
+    expect(screen.getByRole('link', { name: '그만두기' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: '계속하기' })).toBeInTheDocument();
+    expect(router.state.location.pathname).toBe('/');
+  });
+
+  it('본문에 레슨이 속한 챕터 이름을 넣는다 (AC-2)', async () => {
+    mockLessonQuizRequests({ chapterTitle: '운영체제' });
+    await renderLessonQuiz();
+
+    const dialog = await openQuitModal();
+
+    await waitFor(() => expect(dialog).toHaveTextContent('운영체제 학습 출제가 중단됩니다.'));
+    expect(dialog).toHaveTextContent('정말 학습을 그만두시나요?');
+  });
+
+  it('챕터 이름을 받지 못하면 이름 없이 묻는다 (AC-3)', async () => {
+    server.use(
+      http.get(PROBLEMS_URL, () => HttpResponse.json(createLesson(1))),
+      http.get(UNIT_LESSONS_URL, () => new HttpResponse(null, { status: 500 })),
+    );
+    await renderLessonQuiz();
+
+    const dialog = await openQuitModal();
+
+    expect(dialog).toHaveTextContent('학습 출제가 중단됩니다.');
+    expect(dialog).not.toHaveTextContent('운영체제');
+  });
+
+  it.each([
+    ['계속하기', () => userEvent.click(screen.getByRole('button', { name: '계속하기' }))],
+    ['Esc', () => userEvent.keyboard('{Escape}')],
+  ])('%s는 모달만 닫고 풀던 문제와 답을 그대로 둔다 (AC-4)', async (_, close) => {
+    mockLessonQuizRequests({ problemCount: 2 });
+    const { router } = await renderLessonQuiz();
+
+    await userEvent.click(await screen.findByRole('button', { name: /정답/ }));
+    await userEvent.click(screen.getByRole('button', { name: '다음 문제' }));
+    expect(await screen.findByText('2번 발문')).toBeInTheDocument();
+
+    await openQuitModal();
+    await close();
+
+    await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument());
+    expect(screen.getByText('2번 발문')).toBeInTheDocument();
+    expect(router.state.location.pathname).toBe('/');
+
+    await userEvent.click(screen.getByRole('button', { name: '이전 문제' }));
+    expect(await screen.findByText('👏🏻 정답입니다!')).toBeInTheDocument();
+  });
+
+  it('바깥을 누르면 모달만 닫는다 (AC-4)', async () => {
+    mockLessonQuizRequests();
+    const { router } = await renderLessonQuiz();
+
+    await openQuitModal();
+    const modalOverlay = document.querySelector('[data-state="open"]:not([role="dialog"])');
+    expect(modalOverlay).not.toBeNull();
+    await userEvent.click(modalOverlay as Element);
+
+    await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument());
+    expect(router.state.location.pathname).toBe('/');
+  });
+
+  it('이전 기록이 있으면 그만두기가 그 기록으로 돌아간다 (AC-5)', async () => {
+    mockLessonQuizRequests();
+    const { router } = await renderLessonQuiz();
+    // 직접 진입과 달리 뒤로갈 라우터 기록을 만든다.
+    await router.navigate({ to: '/learning/units/$unitId', params: { unitId: '3' } });
+    await router.navigate({ to: '/' });
+
+    await openQuitModal();
+    await userEvent.click(screen.getByRole('link', { name: '그만두기' }));
+
+    await waitFor(() => expect(router.state.location.pathname).toBe('/learning/units/3'));
+    // history.back()은 이전 항목으로 이동할 뿐 기록을 지우지 않는다.
+    expect(router.history.length).toBe(3);
+  });
+
+  it('직접 진입이면 그만두기가 유닛 상세로 현재 기록을 교체한다 (AC-6)', async () => {
+    mockLessonQuizRequests();
+    const { router } = await renderLessonQuiz();
+
+    await openQuitModal();
+    await userEvent.click(screen.getByRole('link', { name: '그만두기' }));
+
+    await waitFor(() => expect(router.state.location.pathname).toBe('/learning/units/3'));
+    expect(router.history.length).toBe(1);
+  });
+});
 
 const BOOKMARK_URL = '*/api/v1/bookmarks';
 
@@ -867,5 +1001,48 @@ describe('LessonQuizPage 풀이 중 답안 보존', () => {
 
     await screen.findByText('1번 발문');
     expect(container.querySelector('[data-slot="progress-count"]')).toHaveTextContent('0/3');
+  });
+});
+
+describe('LessonQuizPage 문제 신고', () => {
+  const REPORT_URL = '*/api/v1/reports';
+
+  it('상단바에 닫기와 함께 문제 신고 버튼이 하나 있다 (MIG-068 AC-1)', async () => {
+    server.use(http.get(PROBLEMS_URL, () => HttpResponse.json(createLesson(1))));
+    await renderLessonQuiz();
+
+    const reportButton = await screen.findByRole('button', { name: '문제 신고' });
+    const topBar = reportButton.closest('[data-slot="quiz-top-bar"]');
+
+    expect(screen.getAllByRole('button', { name: '문제 신고' })).toHaveLength(1);
+    expect(topBar).toContainElement(screen.getByRole('link', { name: '풀이 닫기' }));
+  });
+
+  it('신고를 마쳐도 풀던 문제와 고른 답이 그대로다 (MIG-068 AC-11)', async () => {
+    const reportedProblemIds: number[] = [];
+    server.use(
+      http.get(PROBLEMS_URL, () => HttpResponse.json(createLesson(3))),
+      http.post(REPORT_URL, async ({ request }) => {
+        const requestBody = (await request.json()) as { problemId: number };
+        reportedProblemIds.push(requestBody.problemId);
+        return new HttpResponse(null);
+      }),
+    );
+    const { router } = await renderLessonQuiz();
+    await userEvent.click(await screen.findByRole('button', { name: '다음 문제' }));
+    await userEvent.click(screen.getByRole('button', { name: /오답/ }));
+
+    await userEvent.click(screen.getByRole('button', { name: '문제 신고' }));
+    const dialog = await screen.findByRole('dialog', { name: '신고하기' });
+    await userEvent.click(within(dialog).getByRole('radio', { name: '기타' }));
+    await userEvent.type(within(dialog).getByRole('textbox', { name: '신고 사유' }), '사유');
+    await userEvent.click(within(dialog).getByRole('button', { name: '제출하기' }));
+    await userEvent.click(await screen.findByRole('button', { name: '확인' }));
+
+    await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument());
+    expect(reportedProblemIds).toEqual([102]);
+    expect(screen.getByText('2번 발문')).toBeInTheDocument();
+    expect(screen.getByText('❌ 오답입니다!')).toBeInTheDocument();
+    expect(router.state.location.pathname).toBe('/');
   });
 });

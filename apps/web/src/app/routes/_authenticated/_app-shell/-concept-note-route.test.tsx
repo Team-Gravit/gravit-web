@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from 'vitest';
+import { beforeAll, describe, expect, it, vi } from 'vitest';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import {
   RouterProvider,
@@ -104,6 +104,9 @@ async function renderAt(initialPath: string, { isWide = false } = {}) {
 
   return router;
 }
+
+// 첫 모듈 변환 시간이 테스트 제한 시간에 포함되지 않도록 미리 로드한다.
+beforeAll(() => import('@/shared/ui/markdown/markdown'));
 
 describe('개념노트 — 좁은 화면', () => {
   it('유닛 상세의 「개념노트」를 누르면 URL 이 바뀌고 노트를 한 번 요청한다 (AC-1)', async () => {

@@ -20,7 +20,11 @@ export function HeroGreeting({ className, children }: HeroGreetingProps) {
   return (
     <section
       data-slot="hero-greeting"
-      className={cn('relative h-66.5 w-full overflow-hidden md:h-68.5', className)}
+      // box-content: 히어로 높이는 그대로 두고 이미지를 상태 표시줄 뒤까지 늘린다.
+      className={cn(
+        'relative box-content h-66.5 w-full overflow-hidden pt-(--safe-area-top) md:h-68.5',
+        className,
+      )}
     >
       <picture className="absolute inset-0">
         <source media="(min-width: 768px)" srcSet={heroWide} />
@@ -32,7 +36,11 @@ export function HeroGreeting({ className, children }: HeroGreetingProps) {
         className="pointer-events-none absolute inset-x-0 bottom-0 h-15.5 bg-gradient-to-b from-transparent to-bg-2 md:hidden"
       />
 
-      {children ? <div className="absolute inset-x-4 top-3">{children}</div> : null}
+      {children ? (
+        <div className="absolute inset-x-4 top-[calc(var(--safe-area-top)+0.75rem)]">
+          {children}
+        </div>
+      ) : null}
 
       <div className="absolute bottom-12.5 left-4 flex flex-col gap-1 text-text-1-w md:bottom-14 md:left-19">
         <h1 className="text-title3 [text-shadow:0_2px_4px_rgba(0,0,0,0.2)] md:text-display1 md:[text-shadow:none]">
