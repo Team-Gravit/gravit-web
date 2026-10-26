@@ -55,11 +55,15 @@ import MoreGridSm from './assets/more-grid-sm.svg?react';
 import MoreHorizontal from './assets/more-horizontal.svg?react';
 import MoreVertical from './assets/more-vertical.svg?react';
 import Note from './assets/note.svg?react';
+import PaperPlaneFill from './assets/paper-plane-fill.svg?react';
 import PauseCircle from './assets/pause-circle.svg?react';
+import PauseFill from './assets/pause-fill.svg?react';
 import Pencil from './assets/pencil.svg?react';
+import PinFill from './assets/pin-fill.svg?react';
 import Pin from './assets/pin.svg?react';
 import Planet from './assets/planet.svg?react';
 import PlayCircle from './assets/play-circle.svg?react';
+import PlayFill from './assets/play-fill.svg?react';
 import Play from './assets/play.svg?react';
 import PlusLg from './assets/plus-lg.svg?react';
 import Plus from './assets/plus.svg?react';
@@ -147,11 +151,15 @@ export const ICONS = {
   'more-horizontal': MoreHorizontal,
   'more-vertical': MoreVertical,
   note: Note,
+  'paper-plane-fill': PaperPlaneFill,
   'pause-circle': PauseCircle,
+  'pause-fill': PauseFill,
   pencil: Pencil,
+  'pin-fill': PinFill,
   pin: Pin,
   planet: Planet,
   'play-circle': PlayCircle,
+  'play-fill': PlayFill,
   play: Play,
   'plus-lg': PlusLg,
   plus: Plus,
