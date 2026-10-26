@@ -12,12 +12,18 @@ export interface PageTitleBarProps {
    * 이전 방문 기록이 없을 때 이동할 경로. 생략하면 탐색 링크를 숨긴다.
    */
   backTo?: LinkProps;
-  /** 왼쪽 탐색의 의미와 아이콘. `close`는 전체 화면에서 빠져나갈 때 사용한다. */
-  backIcon?: 'back' | 'close';
+  /**
+   * 왼쪽 탐색의 의미와 아이콘. `close`는 전체 화면에서 빠져나갈 때 사용한다.
+   * `home`은 이전 화면이 아니라 항상 `backTo`로 이동한다.
+   */
+  backIcon?: 'back' | 'close' | 'home';
   /** 화면별 보조 액션을 오른쪽에 배치한다. */
   rightSlot?: ReactNode;
   className?: string;
 }
+
+const BACK_LINK_LABEL = { back: '뒤로 가기', close: '닫기', home: '홈으로 이동' } as const;
+const BACK_LINK_ICON = { back: 'chevron-left', close: 'close-md', home: 'home' } as const;
 
 /**
  * 좁은 화면에 사용하는 고정 제목 막대.
@@ -45,11 +51,11 @@ export function PageTitleBar({
       {backTo ? (
         <Link
           {...backTo}
-          onClick={handleBackClick}
-          aria-label={backIcon === 'close' ? '닫기' : '뒤로 가기'}
+          onClick={backIcon === 'home' ? undefined : handleBackClick}
+          aria-label={BACK_LINK_LABEL[backIcon]}
           className="absolute left-0 inline-flex p-3"
         >
-          <Icon name={backIcon === 'close' ? 'close-md' : 'chevron-left'} className="text-text-3" />
+          <Icon name={BACK_LINK_ICON[backIcon]} className="text-text-3" />
         </Link>
       ) : null}
       <h1 className="text-label1 text-text-2">{title}</h1>

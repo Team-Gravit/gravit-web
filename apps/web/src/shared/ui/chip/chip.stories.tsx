@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { Chip } from './chip';
 
-const CHIP_VARIANTS = ['filled', 'outlined', 'muted'] as const;
+const CHIP_VARIANTS = ['filled', 'outlined', 'muted', 'neutral', 'soft'] as const;
 const CHIP_SIZES = ['sm', 'md', 'lg'] as const;
 
 const meta = {
@@ -23,6 +23,12 @@ const meta = {
       description: '고정 크기. 기본값은 모바일 sm·데스크톱 lg 반응형 조합',
       table: { defaultValue: { summary: "{ base: 'sm', md: 'lg' }" } },
     },
+    typography: {
+      control: 'inline-radio',
+      options: ['default', 'reading'],
+      description: 'default — 크기별 기본 스타일 · reading — 15px 본문 스타일',
+      table: { defaultValue: { summary: 'default' } },
+    },
   },
   args: { variant: 'filled', children: '학습 중' },
 } satisfies Meta<typeof Chip>;
@@ -42,6 +48,20 @@ export const Sizes: Story = {
           {size}
         </Chip>
       ))}
+    </div>
+  ),
+};
+
+/** 같은 크기에서 글자 스타일만 비교한다. */
+export const Typography: Story = {
+  render: () => (
+    <div className="flex items-center gap-3">
+      <Chip variant="neutral" size="md">
+        기본 스타일
+      </Chip>
+      <Chip variant="neutral" size="md" typography="reading">
+        본문 스타일
+      </Chip>
     </div>
   ),
 };

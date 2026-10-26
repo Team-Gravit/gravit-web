@@ -6,10 +6,13 @@
  * OpenAPI spec version: 1.0.0
  */
 import type { InterviewSessionQuestionResponse } from './interviewSessionQuestionResponse';
+import type { InterviewSessionQuestionsResponseInputType } from './interviewSessionQuestionsResponseInputType';
 
 export interface InterviewSessionQuestionsResponse {
   /** 면접 세션 아이디 */
   sessionId: number;
+  /** 답변 입력 방식 */
+  inputType: InterviewSessionQuestionsResponseInputType;
   /** 문항 번호 오름차순으로 정렬된 5문항 */
   questions: InterviewSessionQuestionResponse[];
 }
