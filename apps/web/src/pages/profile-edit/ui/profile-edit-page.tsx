@@ -45,7 +45,7 @@ function ProfileEditView({ nickname, profileImageNumber }: ProfileEditViewProps)
   return (
     <div className="flex h-dvh flex-col bg-bg-0">
       <PageTitleBar title="프로필 수정" backTo={{ to: '/my' }} />
-      <ProfileEditForm form={form} onCancel={goBack} className="flex-1 p-4" />
+      <ProfileEditForm form={form} onCancel={goBack} className="flex-1 p-4 pb-safe-4" />
     </div>
   );
 }
