@@ -3,7 +3,11 @@
 export {
   useGetNoticeSummaries as useNotices,
   getGetNoticeSummariesQueryKey as getNoticesQueryKey,
+  // 이름은 Summary지만 단건 조회는 상세(NoticeDetailResponse)를 돌려준다.
+  useGetNoticeSummary as useNoticeDetail,
+  getGetNoticeSummaryQueryKey as getNoticeDetailQueryKey,
 } from '@/shared/api/generated/notice-query-api/notice-query-api';
 
 export type { NoticeSummaryResponse } from '@/shared/api/generated/model/noticeSummaryResponse';
 export type { NoticeSummaryPageResponse } from '@/shared/api/generated/model/noticeSummaryPageResponse';
+export type { NoticeDetailResponse } from '@/shared/api/generated/model/noticeDetailResponse';
