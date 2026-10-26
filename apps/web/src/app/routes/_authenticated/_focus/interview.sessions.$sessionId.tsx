@@ -1,3 +1,4 @@
+import { InterviewSessionPage } from '@/pages/interview';
 import { createFileRoute, notFound } from '@tanstack/react-router';
 
 // 생성된 세션의 이동 경로만 먼저 연결한다. 문항 응답 페이지 구현 시 loader와 component를 교체한다.
@@ -12,5 +13,5 @@ export const Route = createFileRoute('/_authenticated/_focus/interview/sessions/
 
     return { sessionId };
   },
-  component: () => null,
+  component: () => <InterviewSessionPage />,
 });
