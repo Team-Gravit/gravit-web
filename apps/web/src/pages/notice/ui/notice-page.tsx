@@ -25,31 +25,32 @@ export function NoticePage({ page, onPageChange }: NoticePageProps) {
   const showSkeleton = useDelayedFlag(isPending);
 
   return (
-    <>
+    // 셸 스크롤 영역 높이(min-h-full)를 PageTitleBar + 콘텐츠(flex-1) + Footer 가 나눠 가진다.
+    // 콘텐츠가 짧아도 flex-1 이 남는 공간을 채워 Footer 가 바닥에 붙고(깜빡임 방지), 초과분이 없어
+    // 뷰포트 절대값(min-h-svh)에서 PageTitleBar 높이만큼 생기던 하단 여백도 사라진다.
+    <div className="flex min-h-full flex-col">
       <PageTitleBar title="공지사항" backTo={{ to: '/settings' }} className="md:hidden" />
 
-      <div className="flex flex-col">
-        {/* 시안: 데스크톱 헤더는 페이지 좌측 여백(90px)에, 카드·페이지네이션은 가운데 1200폭에 둔다. */}
-        <div className="flex-1 px-4 py-5 md:px-[90px] md:pt-10 md:pb-20">
-          <DesktopHeader />
-          <div className="mx-auto w-full max-w-[1200px]">
-            <NoticeList notices={notices} isPending={isPending} showSkeleton={showSkeleton} />
-            {totalPages > 1 && (
-              <Pagination
-                currentPage={page}
-                totalPages={totalPages}
-                onPageChange={onPageChange}
-                className="mt-3 md:mt-8"
-              />
-            )}
-          </div>
-        </div>
-
-        <div className="hidden md:block">
-          <Footer />
+      {/* 시안: 데스크톱 헤더는 페이지 좌측 여백(90px)에, 카드·페이지네이션은 가운데 1200폭에 둔다. */}
+      <div className="flex-1 px-4 py-5 md:px-[90px] md:pt-10 md:pb-20">
+        <DesktopHeader />
+        <div className="mx-auto w-full max-w-[1200px]">
+          <NoticeList notices={notices} isPending={isPending} showSkeleton={showSkeleton} />
+          {totalPages > 1 && (
+            <Pagination
+              currentPage={page}
+              totalPages={totalPages}
+              onPageChange={onPageChange}
+              className="mt-3 md:mt-8"
+            />
+          )}
         </div>
       </div>
-    </>
+
+      <div className="hidden md:block">
+        <Footer />
+      </div>
+    </div>
   );
 }
 
