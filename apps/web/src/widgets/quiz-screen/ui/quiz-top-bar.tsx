@@ -1,4 +1,4 @@
-import type { MouseEvent } from 'react';
+import type { MouseEvent, ReactNode } from 'react';
 
 import { Link } from '@tanstack/react-router';
 
@@ -12,13 +12,15 @@ export interface QuizTopBarProps {
   unitId: number;
   /** 일반 클릭에서 호출한다. 없으면 이전 기록이나 유닛 상세로 이동한다. */
   onCloseRequest?: () => void;
+  /** 상단바 오른쪽에 배치할 조작. */
+  trailingAction?: ReactNode;
 }
 
 /**
  * `_focus` 레이아웃은 앱 셸을 숨기므로 화면 크기와 관계없이 이 상단바를 사용한다.
  * 이전 기록이 없는 직접 진입에서는 유닛 상세로 현재 기록을 교체한다.
  */
-export function QuizTopBar({ title, unitId, onCloseRequest }: QuizTopBarProps) {
+export function QuizTopBar({ title, unitId, onCloseRequest, trailingAction }: QuizTopBarProps) {
   const handleHistoryBackClick = useHistoryBackClick();
 
   const handleCloseClick = (event: MouseEvent<HTMLAnchorElement>) => {
@@ -49,9 +51,10 @@ export function QuizTopBar({ title, unitId, onCloseRequest }: QuizTopBarProps) {
         aria-label="풀이 닫기"
         className="absolute left-5 inline-flex"
       >
-        <Icon size={24} name="close-md" className="text-icon" />
+        <Icon name="close-md" className="size-6 text-icon md:size-8" />
       </Link>
       <h1 className="text-label1 text-text-2 md:text-headline2">{title}</h1>
+      {trailingAction ? <div className="absolute right-5 inline-flex">{trailingAction}</div> : null}
     </header>
   );
 }

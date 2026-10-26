@@ -525,3 +525,17 @@ describe('오답노트 풀이', () => {
     await waitFor(() => expect(requestLog.wrongAnswerLists).toBe(2));
   });
 });
+
+describe('북마크·오답 풀이 — 문제 신고', () => {
+  it.each([
+    ['북마크', '/learning/units/7/bookmarked-problems'],
+    ['오답노트', '/learning/units/7/incorrect-problems'],
+  ])('%s 풀이의 상단바에 문제 신고 버튼이 하나 있다 (MIG-068 AC-1)', async (_name, quizPath) => {
+    useHandlers();
+    await renderAt(quizPath);
+
+    await screen.findByRole('button', { name: '문제 신고' });
+
+    expect(screen.getAllByRole('button', { name: '문제 신고' })).toHaveLength(1);
+  });
+});

@@ -1,5 +1,5 @@
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
-import { act, screen, waitFor } from '@testing-library/react';
+import { act, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { HttpResponse, http } from 'msw';
 
@@ -1001,5 +1001,48 @@ describe('LessonQuizPage 풀이 중 답안 보존', () => {
 
     await screen.findByText('1번 발문');
     expect(container.querySelector('[data-slot="progress-count"]')).toHaveTextContent('0/3');
+  });
+});
+
+describe('LessonQuizPage 문제 신고', () => {
+  const REPORT_URL = '*/api/v1/reports';
+
+  it('상단바에 닫기와 함께 문제 신고 버튼이 하나 있다 (MIG-068 AC-1)', async () => {
+    server.use(http.get(PROBLEMS_URL, () => HttpResponse.json(createLesson(1))));
+    await renderLessonQuiz();
+
+    const reportButton = await screen.findByRole('button', { name: '문제 신고' });
+    const topBar = reportButton.closest('[data-slot="quiz-top-bar"]');
+
+    expect(screen.getAllByRole('button', { name: '문제 신고' })).toHaveLength(1);
+    expect(topBar).toContainElement(screen.getByRole('link', { name: '풀이 닫기' }));
+  });
+
+  it('신고를 마쳐도 풀던 문제와 고른 답이 그대로다 (MIG-068 AC-11)', async () => {
+    const reportedProblemIds: number[] = [];
+    server.use(
+      http.get(PROBLEMS_URL, () => HttpResponse.json(createLesson(3))),
+      http.post(REPORT_URL, async ({ request }) => {
+        const requestBody = (await request.json()) as { problemId: number };
+        reportedProblemIds.push(requestBody.problemId);
+        return new HttpResponse(null);
+      }),
+    );
+    const { router } = await renderLessonQuiz();
+    await userEvent.click(await screen.findByRole('button', { name: '다음 문제' }));
+    await userEvent.click(screen.getByRole('button', { name: /오답/ }));
+
+    await userEvent.click(screen.getByRole('button', { name: '문제 신고' }));
+    const dialog = await screen.findByRole('dialog', { name: '신고하기' });
+    await userEvent.click(within(dialog).getByRole('radio', { name: '기타' }));
+    await userEvent.type(within(dialog).getByRole('textbox', { name: '신고 사유' }), '사유');
+    await userEvent.click(within(dialog).getByRole('button', { name: '제출하기' }));
+    await userEvent.click(await screen.findByRole('button', { name: '확인' }));
+
+    await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument());
+    expect(reportedProblemIds).toEqual([102]);
+    expect(screen.getByText('2번 발문')).toBeInTheDocument();
+    expect(screen.getByText('❌ 오답입니다!')).toBeInTheDocument();
+    expect(router.state.location.pathname).toBe('/');
   });
 });
