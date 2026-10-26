@@ -2,7 +2,6 @@ import { Link } from '@tanstack/react-router';
 
 import { useHistoryBackClick } from '@/shared/lib/use-history-back-click';
 import { Button } from '@/shared/ui/button';
-
 import { Modal, ModalDescription, ModalTitle } from '@/shared/ui/modal';
 
 import mascotImage from './assets/quit-mascot.webp';
