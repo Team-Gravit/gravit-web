@@ -15,6 +15,7 @@ import {
   SubjectiveAnswer,
   useQuizSession,
 } from '@/features/lesson-quiz';
+import { ProblemReportButton } from '@/features/problem-report';
 
 import { QuizProgressPanel } from './quiz-progress-panel';
 import { QuizQuitModal } from './quiz-quit-modal';
@@ -109,6 +110,10 @@ export function QuizScreen({
           title={title}
           unitId={unitId}
           onCloseRequest={quitConfirm ? () => setIsQuitModalOpen(true) : undefined}
+          // 버튼의 p-1을 상쇄해 신고 아이콘을 닫기 아이콘과 같은 가장자리에 맞춘다.
+          trailingAction={
+            <ProblemReportButton problemId={currentProblem.problemId} className="-m-1" />
+          }
         />
         {isWide ? null : <QuizProgressLine problems={problems} />}
         {/* 문제 영역의 상위 flex 자식에 min-h-0이 없으면 컨테이너가 내용만큼 늘어난다. */}
