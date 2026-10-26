@@ -5,6 +5,7 @@ export {
   useUser,
   useUserProfile,
   useMyPageBanner,
+  getMyPageBannerQueryKey,
 } from './api';
 export type { UserProfile } from './model/types';
 export type { MyPageBannerResponse } from '@/shared/api/generated/model/myPageBannerResponse';
@@ -20,6 +21,7 @@ export {
   isValidNickname,
   normalizeNickname,
 } from './model/nickname';
+export { useNicknameStatus } from './model/use-nickname-status';
 export { ProfileAvatar, type ProfileAvatarProps } from './ui/profile-avatar';
 export { toLevelProgress, type LevelProgress } from './model/level';
 export { LevelProgressAvatar, type LevelProgressAvatarProps } from './ui/level-progress-avatar';

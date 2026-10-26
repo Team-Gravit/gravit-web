@@ -25,6 +25,7 @@ import { Route as AuthenticatedAppShellFriendsRouteImport } from './routes/_auth
 import { Route as AuthenticatedAppShellLeagueRouteImport } from './routes/_authenticated/_app-shell/league'
 import { Route as AuthenticatedAppShellMainRouteImport } from './routes/_authenticated/_app-shell/main'
 import { Route as AuthenticatedAppShellMyRouteRouteImport } from './routes/_authenticated/_app-shell/my/route'
+import { Route as AuthenticatedMyEditRouteImport } from './routes/_authenticated/my.edit'
 import { Route as AuthenticatedOnboardingIndexRouteImport } from './routes/_authenticated/onboarding/index'
 import { Route as AuthenticatedOnboardingSuccessRouteImport } from './routes/_authenticated/onboarding/success'
 import { Route as AuthenticatedSettingsIndexRouteImport } from './routes/_authenticated/settings/index'
@@ -133,6 +134,11 @@ const AuthenticatedAppShellMyRouteRoute =
     path: '/my',
     getParentRoute: () => AuthenticatedAppShellRouteRoute,
   } as any)
+const AuthenticatedMyEditRoute = AuthenticatedMyEditRouteImport.update({
+  id: '/my/edit',
+  path: '/my/edit',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedOnboardingIndexRoute =
   AuthenticatedOnboardingIndexRouteImport.update({
     id: '/',
@@ -282,6 +288,7 @@ export interface FileRoutesByFullPath {
   '/friends': typeof AuthenticatedAppShellFriendsRoute
   '/league': typeof AuthenticatedAppShellLeagueRoute
   '/main': typeof AuthenticatedAppShellMainRoute
+  '/my/edit': typeof AuthenticatedMyEditRoute
   '/onboarding/success': typeof AuthenticatedOnboardingSuccessRoute
   '/settings/notice': typeof AuthenticatedSettingsNoticeRoute
   '/onboarding/': typeof AuthenticatedOnboardingIndexRoute
@@ -315,6 +322,7 @@ export interface FileRoutesByTo {
   '/friends': typeof AuthenticatedAppShellFriendsRoute
   '/league': typeof AuthenticatedAppShellLeagueRoute
   '/main': typeof AuthenticatedAppShellMainRoute
+  '/my/edit': typeof AuthenticatedMyEditRoute
   '/onboarding/success': typeof AuthenticatedOnboardingSuccessRoute
   '/settings/notice': typeof AuthenticatedSettingsNoticeRoute
   '/onboarding': typeof AuthenticatedOnboardingIndexRoute
@@ -356,6 +364,7 @@ export interface FileRoutesById {
   '/_authenticated/_app-shell/friends': typeof AuthenticatedAppShellFriendsRoute
   '/_authenticated/_app-shell/league': typeof AuthenticatedAppShellLeagueRoute
   '/_authenticated/_app-shell/main': typeof AuthenticatedAppShellMainRoute
+  '/_authenticated/my/edit': typeof AuthenticatedMyEditRoute
   '/_authenticated/onboarding/success': typeof AuthenticatedOnboardingSuccessRoute
   '/_authenticated/settings/notice': typeof AuthenticatedSettingsNoticeRoute
   '/_authenticated/onboarding/': typeof AuthenticatedOnboardingIndexRoute
@@ -395,6 +404,7 @@ export interface FileRouteTypes {
     | '/friends'
     | '/league'
     | '/main'
+    | '/my/edit'
     | '/onboarding/success'
     | '/settings/notice'
     | '/onboarding/'
@@ -428,6 +438,7 @@ export interface FileRouteTypes {
     | '/friends'
     | '/league'
     | '/main'
+    | '/my/edit'
     | '/onboarding/success'
     | '/settings/notice'
     | '/onboarding'
@@ -468,6 +479,7 @@ export interface FileRouteTypes {
     | '/_authenticated/_app-shell/friends'
     | '/_authenticated/_app-shell/league'
     | '/_authenticated/_app-shell/main'
+    | '/_authenticated/my/edit'
     | '/_authenticated/onboarding/success'
     | '/_authenticated/settings/notice'
     | '/_authenticated/onboarding/'
@@ -615,6 +627,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/my'
       preLoaderRoute: typeof AuthenticatedAppShellMyRouteRouteImport
       parentRoute: typeof AuthenticatedAppShellRouteRoute
+    }
+    '/_authenticated/my/edit': {
+      id: '/_authenticated/my/edit'
+      path: '/my/edit'
+      fullPath: '/my/edit'
+      preLoaderRoute: typeof AuthenticatedMyEditRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/onboarding/': {
       id: '/_authenticated/onboarding/'
@@ -913,6 +932,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedOnboardingRouteRoute: typeof AuthenticatedOnboardingRouteRouteWithChildren
   AuthenticatedSettingsRouteRoute: typeof AuthenticatedSettingsRouteRouteWithChildren
   AuthenticatedNotificationsRoute: typeof AuthenticatedNotificationsRoute
+  AuthenticatedMyEditRoute: typeof AuthenticatedMyEditRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
@@ -922,6 +942,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
     AuthenticatedOnboardingRouteRouteWithChildren,
   AuthenticatedSettingsRouteRoute: AuthenticatedSettingsRouteRouteWithChildren,
   AuthenticatedNotificationsRoute: AuthenticatedNotificationsRoute,
+  AuthenticatedMyEditRoute: AuthenticatedMyEditRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
