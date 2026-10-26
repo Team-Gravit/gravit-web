@@ -57,6 +57,7 @@ import MoreVertical from './assets/more-vertical.svg?react';
 import Note from './assets/note.svg?react';
 import PauseCircle from './assets/pause-circle.svg?react';
 import Pencil from './assets/pencil.svg?react';
+import PinFill from './assets/pin-fill.svg?react';
 import Pin from './assets/pin.svg?react';
 import Planet from './assets/planet.svg?react';
 import PlayCircle from './assets/play-circle.svg?react';
@@ -149,6 +150,7 @@ export const ICONS = {
   note: Note,
   'pause-circle': PauseCircle,
   pencil: Pencil,
+  'pin-fill': PinFill,
   pin: Pin,
   planet: Planet,
   'play-circle': PlayCircle,
