@@ -5,6 +5,7 @@ import { HttpResponse, http } from 'msw';
 
 import { server } from '@/shared/api/mocks/server';
 import { renderWithProviders } from '@/shared/lib/testing';
+import { AudioPlayerProvider } from '@/shared/ui/audio-player';
 import { Toaster } from '@/shared/ui/toast';
 
 import type { SessionSetupStep } from '../model/session-setup-rules';
@@ -23,7 +24,7 @@ interface RenderOptions {
 function renderSessionSetup({ step, onCreated = vi.fn(async () => {}) }: RenderOptions) {
   function SessionSetupHarness() {
     return (
-      <>
+      <AudioPlayerProvider>
         <SessionSetup
           step={step}
           onNext={vi.fn()}
@@ -32,7 +33,7 @@ function renderSessionSetup({ step, onCreated = vi.fn(async () => {}) }: RenderO
           onCreated={onCreated}
         />
         <Toaster />
-      </>
+      </AudioPlayerProvider>
     );
   }
   return renderWithProviders(SessionSetupHarness);
