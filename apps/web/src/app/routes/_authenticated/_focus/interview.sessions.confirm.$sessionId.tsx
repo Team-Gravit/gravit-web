@@ -2,7 +2,9 @@ import { createFileRoute, notFound } from '@tanstack/react-router';
 
 import { InterviewConfirmPage } from '@/pages/interview';
 
-export const Route = createFileRoute('/_authenticated/_focus/interview/sessions/confirm/$sessionId')({
+export const Route = createFileRoute(
+  '/_authenticated/_focus/interview/sessions/confirm/$sessionId',
+)({
   beforeLoad: ({ params }) => {
     const sessionId = Number(params.sessionId);
 
