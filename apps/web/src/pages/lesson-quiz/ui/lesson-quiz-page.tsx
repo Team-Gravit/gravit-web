@@ -6,7 +6,7 @@ import { cn } from '@/shared/lib/cn';
 import { useInitialMinimumDuration } from '@/shared/lib/use-initial-minimum-duration';
 import { CardRetryStatus } from '@/shared/ui/card';
 import { toast } from '@/shared/ui/toast';
-import { toUnitLabel } from '@/entities/learning';
+import { toUnitLabel, useUnitLessons } from '@/entities/learning';
 import { getLessonProblemsQueryKey, useLessonProblems, type Problem } from '@/entities/problem';
 import { BookmarkToggle } from '@/features/problem-bookmark';
 import {
@@ -82,6 +82,8 @@ function LessonQuizScreen({ lessonId, title, unitId, problems }: LessonQuizScree
     select: (location) => location.state.launchedFromUnitId,
   });
   const { answersByProblemId, startedAt } = useQuizSession();
+  // 레슨 문제 응답에는 챕터명이 없어 유닛 레슨 목록에서 가져온다.
+  const { data: unitLessons } = useUnitLessons(unitId);
   const { submit: submitLesson, isPending: isSubmitting } = useSubmitLesson({
     // 실패 후에도 풀이 화면을 유지하므로 토스트로 제출 결과를 알린다.
     onError: () => toast(SUBMIT_FAILURE_MESSAGE),
@@ -117,6 +119,7 @@ function LessonQuizScreen({ lessonId, title, unitId, problems }: LessonQuizScree
       finishLabel={QUIZ_SUBMIT_LABEL}
       onFinish={handleSubmitLesson}
       isFinishing={isSubmitting}
+      quitConfirm={{ chapterTitle: unitLessons?.chapterTitle }}
       renderProblemAction={(problem) => (
         <BookmarkToggle
           problemsQueryKey={getLessonProblemsQueryKey(lessonId)}

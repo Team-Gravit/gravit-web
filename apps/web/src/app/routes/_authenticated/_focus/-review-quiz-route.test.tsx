@@ -400,6 +400,16 @@ describe('오답노트 풀이', () => {
   const WRONG_ANSWER_PATH = '/learning/units/7/incorrect-problems';
   const EXCLUDE_BUTTON = { name: '오답노트에서 제외' };
 
+  it('닫기를 누르면 그만두기 모달 없이 유닛 상세로 간다', async () => {
+    useHandlers();
+    const router = await renderAt(WRONG_ANSWER_PATH);
+
+    await userEvent.click(await screen.findByRole('link', { name: '풀이 닫기' }));
+
+    await waitFor(() => expect(router.state.location.pathname).toBe('/learning/units/7'));
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  });
+
   it('넓은 화면에서도 객관식을 맞히면 정답 선지 해설 안에 제외 버튼이 하나 보인다 (AC-11)', async () => {
     useHandlers();
     await renderAt(WRONG_ANSWER_PATH);
