@@ -44,7 +44,11 @@ export function NoticeList({ notices, isPending, showSkeleton }: NoticeListProps
   return (
     <ul className="overflow-hidden rounded-8 md:rounded-12">
       {notices.map((notice) => (
-        <NoticeListItem key={notice.id} notice={notice} />
+        <NoticeListItem
+          key={notice.id}
+          notice={notice}
+          link={{ to: '/settings/notice/$noticeId', params: { noticeId: String(notice.id) } }}
+        />
       ))}
     </ul>
   );

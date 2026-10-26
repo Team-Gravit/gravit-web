@@ -2,6 +2,7 @@ import { useDelayedFlag } from '@/shared/lib/use-delayed-flag';
 import { Breadcrumb } from '@/shared/ui/breadcrumb';
 import { Pagination } from '@/shared/ui/pagination';
 import { useNotices } from '@/entities/notice';
+import { Footer } from '@/widgets/footer';
 import { PageTitleBar } from '@/widgets/page-title-bar';
 
 import { NoticeList } from './notice-list';
@@ -27,19 +28,25 @@ export function NoticePage({ page, onPageChange }: NoticePageProps) {
     <>
       <PageTitleBar title="공지사항" backTo={{ to: '/settings' }} className="md:hidden" />
 
-      {/* 시안: 데스크톱 헤더는 페이지 좌측 여백(90px)에, 카드·페이지네이션은 가운데 1200폭에 둔다. */}
-      <div className="px-4 py-5 md:px-[90px] md:pt-10 md:pb-20">
-        <DesktopHeader />
-        <div className="mx-auto w-full max-w-[1200px]">
-          <NoticeList notices={notices} isPending={isPending} showSkeleton={showSkeleton} />
-          {totalPages > 1 && (
-            <Pagination
-              currentPage={page}
-              totalPages={totalPages}
-              onPageChange={onPageChange}
-              className="mt-3 md:mt-8"
-            />
-          )}
+      <div className="flex flex-col">
+        {/* 시안: 데스크톱 헤더는 페이지 좌측 여백(90px)에, 카드·페이지네이션은 가운데 1200폭에 둔다. */}
+        <div className="flex-1 px-4 py-5 md:px-[90px] md:pt-10 md:pb-20">
+          <DesktopHeader />
+          <div className="mx-auto w-full max-w-[1200px]">
+            <NoticeList notices={notices} isPending={isPending} showSkeleton={showSkeleton} />
+            {totalPages > 1 && (
+              <Pagination
+                currentPage={page}
+                totalPages={totalPages}
+                onPageChange={onPageChange}
+                className="mt-3 md:mt-8"
+              />
+            )}
+          </div>
+        </div>
+
+        <div className="hidden md:block">
+          <Footer />
         </div>
       </div>
     </>
