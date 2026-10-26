@@ -21,7 +21,7 @@ export function useSubmitInterview() {
   const mutation = useSubmitInterviewMutation();
 
   const submit = (options?: { onSuccess?: () => void }) => {
-    const { sessionId, answers, reset } = useInterviewSessionStore.getState();
+    const { sessionId, answers } = useInterviewSessionStore.getState();
     if (sessionId == null) {
       return;
     }
@@ -29,7 +29,6 @@ export function useSubmitInterview() {
       { sessionId, data: toSubmitBody(answers) },
       {
         onSuccess: () => {
-          reset();
           options?.onSuccess?.();
         },
         // 멀티탭·기기에서 세션 상태가 바뀐 경우: 취소(4025)면 홈, 이미 제출(4026)이면 결과 페이지로.
