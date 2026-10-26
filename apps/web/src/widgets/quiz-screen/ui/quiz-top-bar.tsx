@@ -1,21 +1,38 @@
+import type { MouseEvent } from 'react';
+
 import { Link } from '@tanstack/react-router';
 
 import { useHistoryBackClick } from '@/shared/lib/use-history-back-click';
 import { Icon } from '@/shared/ui/icon';
 
-const EXIT_ROUTE = '/learning/units/$unitId';
+export const QUIZ_EXIT_ROUTE = '/learning/units/$unitId';
 
 export interface QuizTopBarProps {
   title: string;
   unitId: number;
+  /** 일반 클릭에서 호출한다. 없으면 이전 기록이나 유닛 상세로 이동한다. */
+  onCloseRequest?: () => void;
 }
 
 /**
  * `_focus` 레이아웃은 앱 셸을 숨기므로 화면 크기와 관계없이 이 상단바를 사용한다.
  * 이전 기록이 없는 직접 진입에서는 유닛 상세로 현재 기록을 교체한다.
  */
-export function QuizTopBar({ title, unitId }: QuizTopBarProps) {
-  const handleCloseClick = useHistoryBackClick();
+export function QuizTopBar({ title, unitId, onCloseRequest }: QuizTopBarProps) {
+  const handleHistoryBackClick = useHistoryBackClick();
+
+  const handleCloseClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    // 보조 키나 다른 버튼 클릭은 브라우저의 링크 동작에 맡긴다.
+    const shouldUseLinkNavigation =
+      event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0;
+    if (onCloseRequest && !shouldUseLinkNavigation) {
+      event.preventDefault();
+      onCloseRequest();
+      return;
+    }
+
+    handleHistoryBackClick(event);
+  };
 
   return (
     <header
@@ -25,7 +42,7 @@ export function QuizTopBar({ title, unitId }: QuizTopBarProps) {
     >
       {/* 좌우 액션 너비와 무관하게 제목을 가운데 두기 위해 액션을 흐름에서 분리한다. */}
       <Link
-        to={EXIT_ROUTE}
+        to={QUIZ_EXIT_ROUTE}
         params={{ unitId: String(unitId) }}
         replace
         onClick={handleCloseClick}
