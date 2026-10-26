@@ -1,6 +1,18 @@
 import { createFileRoute } from '@tanstack/react-router';
 
-// 공지사항 화면 본체는 별도 이전 작업이다. 설정 목록의 링크 목적지만 확보한다.
+import { NoticePage } from '@/pages/notice';
+
 export const Route = createFileRoute('/_authenticated/settings/notice')({
-  component: () => null,
+  validateSearch: (search: Record<string, unknown>): { page: number } => {
+    const page = Number(search.page);
+    return { page: Number.isFinite(page) && page > 0 ? page : 1 };
+  },
+  component: NoticeRoute,
 });
+
+function NoticeRoute() {
+  const { page } = Route.useSearch();
+  const navigate = Route.useNavigate();
+
+  return <NoticePage page={page} onPageChange={(next) => navigate({ search: { page: next } })} />;
+}
