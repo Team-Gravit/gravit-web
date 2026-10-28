@@ -1,5 +1,5 @@
 import { Button } from '@/shared/ui/button';
-import { Icon } from '@/shared/ui/icon';
+import { Icon, PlusLgIcon } from '@/shared/ui/icon';
 
 import { useFollowRecommendedUser } from '../api/use-follow-recommended-user';
 
@@ -36,7 +36,7 @@ export function RecommendFollowButton({ userId, onFollowed }: RecommendFollowBut
         disabled={isPending}
         className="hidden gap-1 rounded-6 bg-white text-body1-normal md:flex"
       >
-        <Icon name="plus-lg" className="size-6" />
+        <Icon icon={PlusLgIcon} className="size-6" />
         팔로우
       </Button>
     </>

@@ -30,8 +30,8 @@ import { cn } from '@/shared/lib/cn';
 import { Button } from '@/shared/ui/button';
 
 // ✅ 같은 slice 안 — 상대 경로
-import { ICONS } from './icons.generated';
-import type { IconName } from './icons.generated';
+import { ICON_CATALOG } from './icon-catalog.generated';
+import type { IconComponent } from './icon';
 
 // ❌ 레이어를 넘는 상대 경로 — 훅이 차단한다
 import { cn } from '../../../shared/lib/cn';

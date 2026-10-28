@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import type { FollowType } from '@/entities/follow';
+import { CloseMdIcon } from '@/shared/ui/icon';
 import { IconButton } from '@/shared/ui/icon-button';
 import { Modal, ModalTitle } from '@/shared/ui/modal';
 
@@ -43,7 +44,7 @@ export function FollowModal({
     >
       <div className="flex items-center justify-between border-b border-divider-1 px-6 py-5">
         <ModalTitle className="text-body1-normal text-text-4">팔로우</ModalTitle>
-        <IconButton icon="close-md" onClick={onClose} aria-label="닫기" />
+        <IconButton icon={CloseMdIcon} onClick={onClose} aria-label="닫기" />
       </div>
 
       <div className="space-y-4">

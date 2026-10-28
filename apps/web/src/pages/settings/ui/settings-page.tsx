@@ -5,7 +5,7 @@ import { useLogout } from '@/features/auth-logout';
 import { WithdrawConfirmModal } from '@/features/user-withdraw';
 import { cn } from '@/shared/lib/cn';
 import { Card, CardTitle } from '@/shared/ui/card';
-import { Icon } from '@/shared/ui/icon';
+import { ChevronRightIcon, Icon } from '@/shared/ui/icon';
 import { PageTitleBar } from '@/widgets/page-title-bar';
 
 type BaseItemProps = {
@@ -104,7 +104,7 @@ function SettingsItem(props: SettingsItemProps) {
       <span className={cn('text-label1 text-text-1 md:text-heading2', props.labelClassName)}>
         {props.label}
       </span>
-      <Icon name="chevron-right" className="size-4  text-text-3 md:size-8" />
+      <Icon icon={ChevronRightIcon} className="size-4  text-text-3 md:size-8" />
     </>
   );
 

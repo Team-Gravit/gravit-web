@@ -25,7 +25,7 @@ pnpm test           # vitest run
 pnpm format         # prettier --write
 pnpm format:check   # prettier --check
 pnpm verify         # format:check → lint → check-types → test → build (실패하면 그 단계에서 멈춘다)
-pnpm generate:icons # svg → shared/ui/icon/icons.generated.ts
+pnpm generate:icons # svg → shared/ui/icon/{icons,icon-catalog}.generated.ts
 
 # 특정 앱만
 pnpm --filter @repo/web dev
@@ -49,7 +49,7 @@ pnpm --filter @repo/web exec vitest run -t "테스트 이름"   # 단건 테스�
 | 서버 상태       | TanStack Query v5                                                                         |
 | 클라이언트 상태 | Zustand v5                                                                                |
 | API             | **orval** (OpenAPI → axios + Query 훅 + MSW 핸들러)                                       |
-| 아이콘          | SVGR (`?react` suffix) + 생성된 `ICONS` 맵                                                |
+| 아이콘          | SVGR (`?react` suffix) + 생성된 아이콘별 컴포넌트 (`<Icon icon={BellIcon} />`)            |
 | 문서            | Storybook 10 (**테스트가 아니라 컴포넌트 상태 문서**)                                     |
 | 테스트          | Vitest 3 + jsdom + React Testing Library                                                  |
 | 아키텍처 검사   | **steiger** (`@feature-sliced/steiger-plugin`)                                            |
@@ -160,7 +160,7 @@ app(5) → pages(4) → widgets(3) → features(2) → entities(1) → shared(0)
 // ✅
 import { cn } from '@/shared/lib/cn';
 import { Button } from '@/shared/ui/button';
-import type { IconName } from './icons.generated';
+import type { IconComponent } from './icon';
 
 // ❌ 다른 레이어를 상대 경로로 거슬러 올라감
 import { cn } from '../../../shared/lib/cn';
@@ -181,7 +181,7 @@ import { cn } from '../../../shared/lib/cn';
 1. **`apps/legacy-web`은 pnpm 워크스페이스에서 제외**돼 있다 (`!apps/legacy-web`). turbo가 lint/build/check-types를 돌리지 않으므로 **여기 코드를 고쳐도 CI가 안 잡는다.** 애초에 편집 금지다.
 2. **`src/shared/api/generated/`는 orval 산출물** — 직접 수정 금지. `pnpm --filter @repo/web generate:api`로 재생성한다.
 3. **`src/app/routeTree.gen.ts`는 TanStack Router 자동 생성** — 직접 편집 금지. dev/build 시 갱신된다.
-4. **`src/shared/ui/icon/assets/`의 SVG를 추가·변경하면 `pnpm generate:icons`를 돌려야** `icons.generated.ts`에 반영된다. 생성 파일은 직접 수정하지 않는다.
+4. **`src/shared/ui/icon/assets/`의 SVG를 추가·변경하면 `pnpm generate:icons`를 돌려야** `icons.generated.ts`(아이콘별 컴포넌트)와 `icon-catalog.generated.ts`(Storybook 전용 전체 목록)에 반영된다. 앱 코드는 전체 목록을 import하지 않는다 — 모든 아이콘이 첫 청크에 실린다. 생성 파일은 직접 수정하지 않는다.
 5. **색상 토큰에 이름 체계가 두 개 섞여 있다.** 실제로 쓰는 건 하이픈 있는 쪽(`text-text-1` ~ `text-text-4`)이고, `--color-text1` / `--color-text2`(하이픈 없음)는 **아무데서도 안 쓰이는 죽은 토큰**이다. 새 코드에서 쓰지 않는다.
 6. **`rounded-*`는 Tailwind 기본 스케일이 아니다.** `--radius-*: initial`로 기본값을 지우고 숫자 토큰(`rounded-8` = 8px)을 쓴다. `rounded-lg` 같은 t-shirt 이름은 없다.
 7. **`cn()`은 커스텀 확장이 들어간 tailwind-merge다** (`shared/lib/cn.ts`). 타이포 토큰과 radius 토큰을 인식하도록 등록해 둔 것이라 **그냥 `twMerge`를 쓰면 클래스가 조용히 사라진다.** 반드시 `cn()`을 쓴다.

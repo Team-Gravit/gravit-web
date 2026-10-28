@@ -9,7 +9,7 @@ import {
 } from '@/entities/inquiry';
 import { cn } from '@/shared/lib/cn';
 import { formatISODate } from '@/shared/lib/date';
-import { Icon } from '@/shared/ui/icon';
+import { CalendarTimerIcon, ChevronDownIcon, Icon } from '@/shared/ui/icon';
 import { Spinner } from '@/shared/ui/spinner';
 
 interface InquiryListItemProps {
@@ -37,7 +37,7 @@ export function InquiryListItem({ inquiry }: InquiryListItemProps) {
         <div className="flex items-center gap-4 md:gap-6">
           <InquiryStatusChip status={inquiry.status} />
           <Icon
-            name="chevron-down"
+            icon={ChevronDownIcon}
             className={cn(
               'size-4 text-icon-disabled transition-transform md:size-6',
               isOpen && 'rotate-180',
@@ -87,7 +87,7 @@ function InquiryDetail({ detail }: { detail: InquiryDetailResponse }) {
 
       {!detail.answer && (
         <div className="flex min-h-[130px] flex-col items-center justify-center rounded-12 border border-divider-1 bg-bg-1 p-4 md:p-6">
-          <Icon name="calendar-timer" className="mb-3 text-icon-disabled" />
+          <Icon icon={CalendarTimerIcon} className="mb-3 text-icon-disabled" />
           <p className="mb-0.5 text-label1 text-text-3 md:mb-0">답변 대기 중입니다</p>
           <p className="text-center text-caption1 text-text-4">
             문의해주신 내용을 확인하고 있어요.

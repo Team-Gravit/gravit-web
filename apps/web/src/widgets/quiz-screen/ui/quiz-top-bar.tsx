@@ -3,7 +3,7 @@ import type { MouseEvent, ReactNode } from 'react';
 import { Link } from '@tanstack/react-router';
 
 import { useHistoryBackClick } from '@/shared/lib/use-history-back-click';
-import { Icon } from '@/shared/ui/icon';
+import { CloseMdIcon, Icon } from '@/shared/ui/icon';
 
 export const QUIZ_EXIT_ROUTE = '/learning/units/$unitId';
 
@@ -51,7 +51,7 @@ export function QuizTopBar({ title, unitId, onCloseRequest, trailingAction }: Qu
         aria-label="풀이 닫기"
         className="absolute left-5 inline-flex"
       >
-        <Icon name="close-md" className="size-6 text-icon md:size-8" />
+        <Icon icon={CloseMdIcon} className="size-6 text-icon md:size-8" />
       </Link>
       <h1 className="text-label1 text-text-2 md:text-headline2">{title}</h1>
       {trailingAction ? <div className="absolute right-5 inline-flex">{trailingAction}</div> : null}

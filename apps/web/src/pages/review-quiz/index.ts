@@ -1,5 +1,2 @@
-export {
-  ReviewQuizPage,
-  toReviewQuizSessionKey,
-  type ReviewQuizPageProps,
-} from './ui/review-quiz-page';
+export { toReviewQuizSessionKey } from './model/session-key';
+export { ReviewQuizPage, type ReviewQuizPageProps } from './ui/review-quiz-page';

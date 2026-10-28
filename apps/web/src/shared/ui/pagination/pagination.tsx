@@ -2,7 +2,7 @@ import { cva } from 'class-variance-authority';
 
 import { useIsWideViewport } from '@/shared/lib/use-is-wide-viewport';
 import { cn } from '@/shared/lib/cn';
-import { Icon } from '@/shared/ui/icon';
+import { ChevronLeftIcon, ChevronRightIcon, Icon, MoreHorizontalIcon } from '@/shared/ui/icon';
 
 import { getPaginationRange } from './get-pagination-range';
 
@@ -50,7 +50,7 @@ export function Pagination({ currentPage, totalPages, onPageChange, className }:
                 aria-hidden
                 className="flex size-7 items-center justify-center text-text-3 md:size-10"
               >
-                <Icon name="more-horizontal" className="size-6" />
+                <Icon icon={MoreHorizontalIcon} className="size-6" />
               </span>
             ) : (
               <PageButton
@@ -125,9 +125,9 @@ function EdgeButton({ direction, disabled, onClick }: EdgeButtonProps) {
         isPrev ? 'md:pr-2 md:pl-1' : 'md:pr-1 md:pl-2',
       )}
     >
-      {isPrev && <Icon name="chevron-left" className="size-6 md:size-5" />}
+      {isPrev && <Icon icon={ChevronLeftIcon} className="size-6 md:size-5" />}
       <span className="hidden md:inline">{isPrev ? '이전' : '다음'}</span>
-      {!isPrev && <Icon name="chevron-right" className="size-6 md:size-5" />}
+      {!isPrev && <Icon icon={ChevronRightIcon} className="size-6 md:size-5" />}
     </button>
   );
 }

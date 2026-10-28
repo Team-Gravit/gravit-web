@@ -1,6 +1,6 @@
 import type { OptionResponse } from '@/shared/api/generated/model';
 import { cn } from '@/shared/lib/cn';
-import { Icon } from '@/shared/ui/icon';
+import { EyeIcon, EyeOffIcon, Icon } from '@/shared/ui/icon';
 
 import { OPTION_ROW_CLASS, OptionRow } from './option-row';
 
@@ -69,7 +69,7 @@ export function OptionChoiceList({
                   isHidden && 'text-icon-disabled',
                 )}
               >
-                <Icon name={isHidden ? 'eye-off' : 'eye'} size={20} />
+                <Icon icon={isHidden ? EyeOffIcon : EyeIcon} size={20} />
               </button>
             ) : null}
           </li>

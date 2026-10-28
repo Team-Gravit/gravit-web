@@ -2,7 +2,7 @@ import type { FormEvent } from 'react';
 
 import { cn } from '@/shared/lib/cn';
 import { Button } from '@/shared/ui/button';
-import { Icon } from '@/shared/ui/icon';
+import { CheckIcon, CloseMdIcon, Icon, ShapeSquareIcon } from '@/shared/ui/icon';
 import { IconButton } from '@/shared/ui/icon-button';
 import { Modal, ModalTitle } from '@/shared/ui/modal';
 import { FloatingTextArea } from '@/shared/ui/text-field';
@@ -50,7 +50,7 @@ export function ProblemReportModal({
         <ModalTitle className="text-body2-normal text-text-4 md:text-body1-normal">
           신고하기
         </ModalTitle>
-        <IconButton icon="close-md" aria-label="닫기" onClick={() => onOpenChange(false)} />
+        <IconButton icon={CloseMdIcon} aria-label="닫기" onClick={() => onOpenChange(false)} />
       </div>
 
       <form onSubmit={handleReportSubmit} className="flex flex-col gap-3 p-4 md:gap-6 md:p-8">
@@ -128,10 +128,10 @@ function ReportTypeOption({ label, isSelected, onSelect }: ReportTypeOptionProps
       />
       <span aria-hidden className="relative size-6 shrink-0">
         <Icon
-          name="shape-square"
+          icon={ShapeSquareIcon}
           className={cn('absolute inset-0', isSelected ? 'fill-cta text-cta' : 'text-icon')}
         />
-        {isSelected && <Icon name="check" className="absolute inset-0 text-purple-50" />}
+        {isSelected && <Icon icon={CheckIcon} className="absolute inset-0 text-purple-50" />}
       </span>
       <span className="text-body1-normal text-text-2 md:text-heading2">{label}</span>
     </label>

@@ -1,5 +1,5 @@
 import { cn } from '@/shared/lib/cn';
-import { Icon } from '@/shared/ui/icon';
+import { CloseMdIcon, Icon } from '@/shared/ui/icon';
 import { Modal, ModalTitle } from '@/shared/ui/modal';
 
 import { useProfileEditForm } from '../model/use-profile-edit-form';
@@ -60,7 +60,7 @@ function ModalBody({ nickname, profileImageNumber, onClose }: ModalBodyProps) {
             'outline-none focus-visible:ring-3 focus-visible:ring-purple-200',
           )}
         >
-          <Icon name="close-md" />
+          <Icon icon={CloseMdIcon} />
         </button>
       </header>
 

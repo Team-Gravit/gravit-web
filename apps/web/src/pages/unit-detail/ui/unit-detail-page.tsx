@@ -5,7 +5,7 @@ import { Link, type LinkProps } from '@tanstack/react-router';
 import { LessonItem, LessonItemSkeleton, useUnitLessons } from '@/entities/learning';
 import { cn } from '@/shared/lib/cn';
 import { useIsWideViewport } from '@/shared/lib/use-is-wide-viewport';
-import { Icon } from '@/shared/ui/icon';
+import { BookmarkFillIcon, ChevronRightIcon, Icon, LearningFillIcon } from '@/shared/ui/icon';
 import { SpaceBackground } from '@/shared/ui/layout';
 import { PageHeading } from '@/shared/ui/page-heading';
 import { Skeleton } from '@/shared/ui/skeleton';
@@ -101,7 +101,9 @@ export function UnitDetailPage({ unitId }: UnitDetailPageProps) {
               <ShortcutCard
                 link={{ to: '/learning/units/$unitId/concept-note', params: { unitId } }}
                 title="개념노트"
-                icon={<Icon name="learning-fill" className={cn(CONCEPT_ICON_CLASS, 'text-main')} />}
+                icon={
+                  <Icon icon={LearningFillIcon} className={cn(CONCEPT_ICON_CLASS, 'text-main')} />
+                }
                 className={CONCEPT_CARD_CLASS}
               />
 
@@ -113,7 +115,7 @@ export function UnitDetailPage({ unitId }: UnitDetailPageProps) {
                   blockedMessage={data.isBookmarkAccessible ? undefined : BOOKMARK_BLOCKED_MESSAGE}
                   illustration={
                     <Icon
-                      name="bookmark-fill"
+                      icon={BookmarkFillIcon}
                       className={cn(ACTION_ICON_CLASS, 'text-icon-accent')}
                     />
                   }
@@ -129,7 +131,7 @@ export function UnitDetailPage({ unitId }: UnitDetailPageProps) {
                   // 시안은 오답노트에 개념노트와 같은 글리프를 다른 색으로 쓴다.
                   illustration={
                     <Icon
-                      name="learning-fill"
+                      icon={LearningFillIcon}
                       className={cn(ACTION_ICON_CLASS, 'text-icon-accent')}
                     />
                   }
@@ -208,7 +210,10 @@ function ShortcutCard({
         <span className="flex min-w-0 flex-1 flex-col gap-1">
           <span className="flex items-center justify-between">
             <span className={SHORTCUT_CARD_TITLE_CLASS}>{title}</span>
-            <Icon name="chevron-right" className={cn(SHORTCUT_CHEVRON_SIZE_CLASS, 'text-text-3')} />
+            <Icon
+              icon={ChevronRightIcon}
+              className={cn(SHORTCUT_CHEVRON_SIZE_CLASS, 'text-text-3')}
+            />
           </span>
           {description ? (
             <span className="text-label2 text-text-3 md:text-text-4 md:text-body1-normal">

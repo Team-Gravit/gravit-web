@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { cn } from '@/shared/lib/cn';
-import { Icon } from '@/shared/ui/icon';
+import { Icon, SirenIcon } from '@/shared/ui/icon';
 import { toast } from '@/shared/ui/toast';
 
 import { useSubmitProblemReport } from '../api/use-submit-problem-report';
@@ -57,7 +57,7 @@ export function ProblemReportButton({ problemId, className }: ProblemReportButto
           className,
         )}
       >
-        <Icon name="siren" className="size-6 md:size-8" />
+        <Icon icon={SirenIcon} className="size-6 md:size-8" />
       </button>
       <ProblemReportModal
         open={isReportModalOpen}

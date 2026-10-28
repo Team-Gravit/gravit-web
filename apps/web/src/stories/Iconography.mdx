@@ -1,6 +1,13 @@
 import { Canvas, Controls, IconGallery, IconItem, Meta } from '@storybook/addon-docs/blocks';
 import * as IconStories from '../shared/ui/icon/icon.stories';
-import { Icon, ICONS } from '../shared/ui/icon';
+import { ChevronRightIcon, Icon } from '../shared/ui/icon';
+import { ICON_CATALOG } from '../shared/ui/icon/icon-catalog.generated';
+
+export const toComponentName = (fileName) =>
+  `${fileName
+    .split('-')
+    .map((part) => part[0].toUpperCase() + part.slice(1))
+    .join('')}Icon`;
 
 <Meta of={IconStories} />
 
@@ -11,22 +18,22 @@ import { Icon, ICONS } from '../shared/ui/icon';
 
 ## Principles
 
-| 원칙             | 설명                                                               |
-| ---------------- | ------------------------------------------------------------------ |
-| SVG 기반         | 기본 `24×24` viewBox를 사용하며 크기에 맞게 선명하게 렌더링합니다. |
-| `currentColor`   | 단색 아이콘은 부모의 텍스트 색상을 상속합니다.                     |
-| 타입 안전한 이름 | `IconName`에 등록된 이름만 사용할 수 있습니다.                     |
-| 단일 API         | 프로덕트에서는 SVG 대신 공통 `Icon` 컴포넌트를 사용합니다.         |
-| 자동 등록        | 생성 명령이 `ICONS` 레지스트리와 `IconName` 타입을 갱신합니다.     |
+| 원칙            | 설명                                                               |
+| --------------- | ------------------------------------------------------------------ |
+| SVG 기반        | 기본 `24×24` viewBox를 사용하며 크기에 맞게 선명하게 렌더링합니다. |
+| `currentColor`  | 단색 아이콘은 부모의 텍스트 색상을 상속합니다.                     |
+| 컴포넌트로 전달 | `icon`에 `ChevronRightIcon`처럼 아이콘 컴포넌트를 넘깁니다.        |
+| 단일 API        | 프로덕트에서는 SVG 대신 공통 `Icon` 컴포넌트를 사용합니다.         |
+| 자동 등록       | 생성 명령이 아이콘별 컴포넌트와 이 문서의 전체 목록을 갱신합니다.  |
 
 ## Available icons
 
-현재 `ICONS` 레지스트리에 등록된 전체 아이콘입니다. 새 SVG를 등록하면 이 목록도 자동으로 갱신됩니다.
+등록된 전체 아이콘입니다. 이름 아래 컴포넌트 이름으로 가져옵니다. 새 SVG를 등록하면 이 목록도 자동으로 갱신됩니다.
 
 <IconGallery>
-  {Object.keys(ICONS).map((name) => (
-    <IconItem key={name} name={name}>
-      <Icon name={name} />
+  {Object.entries(ICON_CATALOG).map(([name, component]) => (
+    <IconItem key={name} name={toComponentName(name)}>
+      <Icon icon={component} />
     </IconItem>
   ))}
 </IconGallery>
@@ -34,16 +41,16 @@ import { Icon, ICONS } from '../shared/ui/icon';
 ## Usage
 
 ```tsx
-import { Icon } from '@/shared/ui/icon';
+import { ChevronRightIcon, Icon } from '@/shared/ui/icon';
 
-<Icon name="chevron-right" size={24} />;
+<Icon icon={ChevronRightIcon} size={24} />;
 ```
 
 ## Props
 
 | Prop          | 타입                    | 기본값 | 설명                                    |
 | ------------- | ----------------------- | ------ | --------------------------------------- |
-| `name`        | `IconName`              | 필수   | 표시할 아이콘 이름                      |
+| `icon`        | `IconComponent`         | 필수   | 표시할 아이콘 컴포넌트                  |
 | `size`        | `number`                | `24`   | 아이콘의 너비와 높이(px)                |
 | `rotate`      | `0 \| 90 \| 180 \| 270` | `0`    | 상태 전환 등에 사용하는 회전 각도       |
 | `aria-label`  | `string`                | 없음   | 아이콘 자체가 전달하는 접근 가능한 이름 |
@@ -53,23 +60,23 @@ import { Icon } from '@/shared/ui/icon';
 
 ## Playground
 
-Controls 패널에서 아이콘 이름, 크기와 회전 값을 변경할 수 있습니다.
+Controls 패널에서 아이콘, 크기와 회전 값을 변경할 수 있습니다.
 
 <Canvas of={IconStories.Playground} />
 <Controls of={IconStories.Playground} />
 
 ## Naming
 
-파일명과 `IconName`은 모두 kebab-case를 사용합니다. 색상이나 비활성 상태처럼 사용하는 곳에서 결정할 표현 속성은 이름에 넣지 않습니다.
+SVG 파일명은 kebab-case를 사용합니다. 생성 명령이 파일명을 PascalCase로 바꾸고 `Icon`을 붙여 컴포넌트 이름을 만듭니다 (`chevron-left.svg` → `ChevronLeftIcon`). 색상이나 비활성 상태처럼 사용하는 곳에서 결정할 표현 속성은 이름에 넣지 않습니다.
 
 ```tsx
 // Good
-<Icon name="chevron-left" />
-<Icon name="caret-down" />
+chevron-left.svg → ChevronLeftIcon
+caret-down.svg → CaretDownIcon
 
 // Avoid
-<Icon name="chevronLeft" />
-<Icon name="Chevron_Left" />
+chevronLeft.svg
+Chevron_Left.svg
 ```
 
 ### Directional icons
@@ -77,17 +84,17 @@ Controls 패널에서 아이콘 이름, 크기와 회전 값을 변경할 수 �
 고정된 방향은 회전으로 만들지 않고 방향별 이름을 사용합니다.
 
 ```tsx
-<Icon name="chevron-left" />
-<Icon name="chevron-right" />
-<Icon name="chevron-up" />
-<Icon name="chevron-down" />
+<Icon icon={ChevronLeftIcon} />
+<Icon icon={ChevronRightIcon} />
+<Icon icon={ChevronUpIcon} />
+<Icon icon={ChevronDownIcon} />
 ```
 
 Accordion처럼 회전 자체가 상태 전환을 표현할 때만 하나의 아이콘을 회전합니다.
 
 ```tsx
 <Icon
-  name="chevron-down"
+  icon={ChevronDownIcon}
   className={cn('transition-transform duration-200', isOpen && 'rotate-180')}
   aria-hidden
 />
@@ -99,13 +106,13 @@ Accordion처럼 회전 자체가 상태 전환을 표현할 때만 하나의 아
 
 <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
   {['var(--color-primary)', 'var(--color-neutral-600)', 'var(--color-neutral-300)'].map((color) => (
-    <Icon key={color} name="chevron-right" size={24} style={{ color }} />
+    <Icon key={color} icon={ChevronRightIcon} size={24} style={{ color }} />
   ))}
 </div>
 
 ```tsx
-<Icon name="chevron-right" className="text-primary" />
-<Icon name="chevron-right" className="text-neutral-600" />
+<Icon icon={ChevronRightIcon} className="text-primary" />
+<Icon icon={ChevronRightIcon} className="text-neutral-600" />
 ```
 
 ## Size
@@ -115,7 +122,7 @@ Accordion처럼 회전 자체가 상태 전환을 표현할 때만 하나의 아
 <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
   {[16, 20, 24, 32].map((size) => (
     <div key={size} style={{ display: 'grid', justifyItems: 'center', gap: 8 }}>
-      <Icon name="chevron-right" size={size} />
+      <Icon icon={ChevronRightIcon} size={size} />
       <code>{size}</code>
     </div>
   ))}
@@ -128,7 +135,7 @@ Accordion처럼 회전 자체가 상태 전환을 표현할 때만 하나의 아
 ```tsx
 <button type="button">
   다음
-  <Icon name="chevron-right" />
+  <Icon icon={ChevronRightIcon} />
 </button>
 ```
 
@@ -136,14 +143,14 @@ Accordion처럼 회전 자체가 상태 전환을 표현할 때만 하나의 아
 
 ```tsx
 <button type="button" aria-label="닫기">
-  <Icon name="close" />
+  <Icon icon={CloseMdIcon} />
 </button>
 ```
 
 아이콘 자체가 정보를 전달해야 한다면 `aria-label`을 지정합니다. 이 경우 `role="img"`가 자동으로 적용됩니다.
 
 ```tsx
-<Icon name="check" aria-label="완료" />
+<Icon icon={CheckIcon} aria-label="완료" />
 ```
 
 | 상황               | Icon           | Button        |
@@ -156,7 +163,7 @@ Accordion처럼 회전 자체가 상태 전환을 표현할 때만 하나의 아
 
 | Do                                      | Don't                                    |
 | --------------------------------------- | ---------------------------------------- |
-| `Icon` 컴포넌트와 등록된 `name` 사용    | 제품 코드에서 SVG 직접 import            |
+| `Icon`에 생성된 아이콘 컴포넌트 전달    | 제품 코드에서 SVG 직접 import            |
 | `size`로 크기 지정                      | `width`와 `height`를 각각 임의 수정      |
 | `currentColor`와 텍스트 색상 토큰 사용  | SVG 내부에 UI 상태 색상 하드코딩         |
 | 고정 방향에는 방향별 아이콘 사용        | 파일 수를 줄이기 위해 다른 방향으로 회전 |
@@ -186,8 +193,8 @@ Figma
   → SVG export
   → shared/ui/icon/assets
   → pnpm generate:icons
-  → icons.generated.ts
-  → <Icon name="…" />
+  → icons.generated.ts (아이콘별 컴포넌트) · icon-catalog.generated.ts (이 문서의 목록)
+  → <Icon icon={…Icon} />
 ```
 
 생성 파일은 직접 수정하지 않습니다. SVG를 추가하거나 이름을 변경한 뒤 생성 명령을 다시 실행합니다.
