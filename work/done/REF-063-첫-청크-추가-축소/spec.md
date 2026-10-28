@@ -116,3 +116,4 @@ learning.units.$unitId.{bookmarked,incorrect}-problems.tsx (라우트 설정)
 | 2026-10-24 | 확인 필요 1·2 결정 · 방식 비교 실험                                 | 사용자 판정                         | #312                  |
 | 2026-10-25 | 구현 · 첫 청크 · FCP·LCP 측정 결과                                  | 커밋 1·2 전후 비교                  | #312                  |
 | 2026-10-29 | `develop` `06d5669e`로 rebase · 새 사용처 7곳 전환 · 첫 청크 재확인 | 공지·문제 신고·프로필 편집 머지     | #312                  |
+| 2026-10-29 | 검증(`checklist.md`) · 완료 처리                                    | `pnpm verify` 통과 · PR #344        | #312                  |
