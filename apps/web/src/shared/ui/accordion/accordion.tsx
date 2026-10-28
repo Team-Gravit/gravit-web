@@ -1,7 +1,7 @@
 import { useId, useState, type ComponentProps, type ReactNode } from 'react';
 
 import { cn } from '@/shared/lib/cn';
-import { Icon } from '@/shared/ui/icon';
+import { ChevronDownIcon, Icon } from '@/shared/ui/icon';
 
 export interface AccordionProps extends Omit<ComponentProps<'div'>, 'title' | 'children'> {
   title: ReactNode;
@@ -47,7 +47,7 @@ export function Accordion({
       >
         {title}
         <Icon
-          name="chevron-down"
+          icon={ChevronDownIcon}
           size={20}
           className={cn('text-icon-default transition-transform', isOpen && 'rotate-180')}
         />

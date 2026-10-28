@@ -1,7 +1,7 @@
 import type { QueryKey } from '@tanstack/react-query';
 
 import { cn } from '@/shared/lib/cn';
-import { Icon } from '@/shared/ui/icon';
+import { BookmarkFillIcon, BookmarkIcon, Icon } from '@/shared/ui/icon';
 
 import { useToggleProblemBookmark } from '../api/use-toggle-problem-bookmark';
 import { BOOKMARK_ADD_LABEL, BOOKMARK_REMOVE_LABEL } from '../model/constants';
@@ -39,7 +39,7 @@ export function BookmarkToggle({
         className,
       )}
     >
-      <Icon name={isBookmarked ? 'bookmark-fill' : 'bookmark'} className="size-6 md:size-8" />
+      <Icon icon={isBookmarked ? BookmarkFillIcon : BookmarkIcon} className="size-6 md:size-8" />
     </button>
   );
 }

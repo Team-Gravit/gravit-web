@@ -3,6 +3,7 @@ import { Link } from '@tanstack/react-router';
 
 import { cn } from '@/shared/lib/cn';
 import { useIsWideViewport } from '@/shared/lib/use-is-wide-viewport';
+import { ChevronLeftIcon } from '@/shared/ui/icon';
 import { IconButton } from '@/shared/ui/icon-button';
 import { GravitLogo } from '@/shared/ui/logo';
 
@@ -54,7 +55,12 @@ export function DocumentLayout({
         <PageHeader
           title={title}
           leftSlot={
-            <IconButton icon="chevron-left" iconSize={24} aria-label="뒤로 가기" onClick={onBack} />
+            <IconButton
+              icon={ChevronLeftIcon}
+              iconSize={24}
+              aria-label="뒤로 가기"
+              onClick={onBack}
+            />
           }
         />
       )}

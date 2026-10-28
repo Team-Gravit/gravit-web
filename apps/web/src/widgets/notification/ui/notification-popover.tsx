@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 
+import { BellIcon } from '@/shared/ui/icon';
 import { IconButton } from '@/shared/ui/icon-button';
 import { ScrollArea } from '@/shared/ui/scroll';
 import { NotificationFallback, NotificationItem, useInboxQuery } from '@/entities/notification';
@@ -22,7 +23,7 @@ export function NotificationPopover() {
   return (
     <div ref={containerRef} className="relative flex items-center">
       <IconButton
-        icon="bell"
+        icon={BellIcon}
         aria-label="알림"
         aria-expanded={isOpen}
         onClick={() => setIsOpen((open) => !open)}

@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { Link, type LinkProps } from '@tanstack/react-router';
 
 import { cn } from '@/shared/lib/cn';
-import { Icon } from '@/shared/ui/icon';
+import { ChevronRightIcon, Icon } from '@/shared/ui/icon';
 
 /**
  * `link`가 없는 항목은 현재 위치를 나타내므로 목록의 마지막에 둡니다.
@@ -41,7 +41,7 @@ export function Breadcrumb({ items, className }: BreadcrumbProps) {
             </span>
           )}
           {index < items.length - 1 && (
-            <Icon name="chevron-right" size={16} className="text-text-3" />
+            <Icon icon={ChevronRightIcon} size={16} className="text-text-3" />
           )}
         </Fragment>
       ))}

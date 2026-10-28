@@ -5,7 +5,7 @@ import { Link } from '@tanstack/react-router';
 import { ProfileAvatar, useUserProfile } from '@/entities/user';
 import { TierIcon, useLeagueSummary } from '@/entities/league';
 import { cn } from '@/shared/lib/cn';
-import { Icon } from '@/shared/ui/icon';
+import { BellIcon, Icon } from '@/shared/ui/icon';
 
 export interface HeroProfileSummaryProps {
   className?: string;
@@ -45,7 +45,7 @@ export function HeroProfileSummary({ className }: HeroProfileSummaryProps) {
       </div>
 
       <Link to="/notifications" aria-label="알림" className="inline-flex p-1">
-        <Icon name="bell" size={24} />
+        <Icon icon={BellIcon} size={24} />
       </Link>
     </div>
   );

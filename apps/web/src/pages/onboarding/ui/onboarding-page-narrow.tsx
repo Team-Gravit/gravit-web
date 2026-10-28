@@ -3,7 +3,7 @@ import { useNavigate } from '@tanstack/react-router';
 import { useLogout } from '@/features/auth-logout';
 import { OnboardingForm, type OnboardingFormProps } from '@/features/user-onboarding';
 import { Button } from '@/shared/ui/button';
-import { Icon } from '@/shared/ui/icon';
+import { ChevronLeftIcon, Icon } from '@/shared/ui/icon';
 import { PageHeader } from '@/shared/ui/layout';
 
 const CANCEL_LABEL = '이전';
@@ -35,7 +35,7 @@ export function OnboardingPageNarrow({ form }: Pick<OnboardingFormProps, 'form'>
             onClick={cancelOnboarding}
             className="inline-flex size-12 cursor-pointer items-center justify-center outline-none focus-visible:ring-3 focus-visible:ring-purple-200"
           >
-            <Icon name="chevron-left" />
+            <Icon icon={ChevronLeftIcon} />
           </button>
         }
       />

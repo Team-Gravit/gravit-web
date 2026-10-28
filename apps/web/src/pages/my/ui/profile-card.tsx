@@ -4,7 +4,7 @@ import { Link, useNavigate } from '@tanstack/react-router';
 import { cn } from '@/shared/lib/cn';
 import { useIsWideViewport } from '@/shared/lib/use-is-wide-viewport';
 import { Button } from '@/shared/ui/button';
-import { Icon } from '@/shared/ui/icon';
+import { BellIcon, Icon, SettingsIcon } from '@/shared/ui/icon';
 import { Skeleton } from '@/shared/ui/skeleton';
 import { ProfileAvatar, type MyPageBannerResponse } from '@/entities/user';
 import { EditProfileModal } from '@/features/user-profile-edit';
@@ -193,17 +193,17 @@ function ProfileActions({ onEdit }: { onEdit: () => void }) {
           프로필 편집
         </Button>
         <Link to="/settings" aria-label="설정" className="flex items-center">
-          <Icon name="settings" size={32} />
+          <Icon icon={SettingsIcon} size={32} />
         </Link>
       </div>
 
       {/* 모바일: 알림 + 설정 */}
       <div className="flex items-center gap-4 text-text-1-w md:hidden">
         <Link to="/notifications" aria-label="알림" className="flex items-center">
-          <Icon name="bell" size={24} />
+          <Icon icon={BellIcon} size={24} />
         </Link>
         <Link to="/settings" aria-label="설정" className="flex items-center">
-          <Icon name="settings" size={24} />
+          <Icon icon={SettingsIcon} size={24} />
         </Link>
       </div>
     </>

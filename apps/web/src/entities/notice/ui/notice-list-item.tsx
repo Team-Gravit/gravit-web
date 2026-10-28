@@ -1,7 +1,7 @@
 import { Link, type LinkProps } from '@tanstack/react-router';
 
 import { formatISODate } from '@/shared/lib/date';
-import { Icon } from '@/shared/ui/icon';
+import { ChevronRightIcon, Icon, PinFillIcon } from '@/shared/ui/icon';
 
 import type { NoticeSummaryResponse } from '../api';
 
@@ -22,7 +22,7 @@ export function NoticeListItem({ notice, link }: NoticeListItemProps) {
         <div className="flex items-center gap-1 md:gap-2">
           {notice.pinned && (
             <Icon
-              name="pin-fill"
+              icon={PinFillIcon}
               aria-label="고정 공지"
               className="size-5 shrink-0 text-cta md:size-6"
             />
@@ -33,7 +33,7 @@ export function NoticeListItem({ notice, link }: NoticeListItemProps) {
         </div>
         <span className="text-caption1 text-text-4">{formatISODate(notice.publishedAt)}</span>
       </div>
-      <Icon name="chevron-right" className="size-6 shrink-0 text-text-4" />
+      <Icon icon={ChevronRightIcon} className="size-6 shrink-0 text-text-4" />
     </div>
   );
 

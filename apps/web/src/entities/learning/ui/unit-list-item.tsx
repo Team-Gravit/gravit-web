@@ -1,7 +1,7 @@
 import { Link } from '@tanstack/react-router';
 
 import { cn } from '@/shared/lib/cn';
-import { Icon } from '@/shared/ui/icon';
+import { ChevronRightIcon, Icon } from '@/shared/ui/icon';
 import { ProgressBar } from '@/shared/ui/progress-bar';
 import { Skeleton } from '@/shared/ui/skeleton';
 
@@ -65,7 +65,7 @@ export function UnitListItem({
         </div>
 
         {/* 좁은 화면은 제목 우측, 넓은 화면은 행 중앙에 맞춘다. */}
-        <Icon name="chevron-right" className="absolute top-3 right-4 text-text-3 md:static" />
+        <Icon icon={ChevronRightIcon} className="absolute top-3 right-4 text-text-3 md:static" />
       </Link>
     </li>
   );

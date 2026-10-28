@@ -2,7 +2,7 @@ import { Link } from '@tanstack/react-router';
 import { cva, type VariantProps } from 'class-variance-authority';
 
 import { cn } from '@/shared/lib/cn';
-import { Icon } from '@/shared/ui/icon';
+import { Icon, InfoIcon } from '@/shared/ui/icon';
 import { ProgressBar } from '@/shared/ui/progress-bar';
 import { Skeleton } from '@/shared/ui/skeleton';
 
@@ -106,7 +106,7 @@ export function ChapterCard({
             {description ? (
               <span title={description} className="pointer-events-auto shrink-0 cursor-help">
                 <Icon
-                  name="info"
+                  icon={InfoIcon}
                   aria-label={`${title} 설명: ${description}`}
                   className="size-6 text-text-1-w"
                 />
