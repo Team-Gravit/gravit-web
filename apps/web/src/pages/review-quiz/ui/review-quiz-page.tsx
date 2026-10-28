@@ -22,6 +22,8 @@ import {
 import { ExcludeWrongAnswerButton } from '@/features/wrong-answer-exclude';
 import { QUIZ_SURFACE_CLASS, QuizLoadingScreen, QuizScreen } from '@/widgets/quiz-screen';
 
+import { toReviewQuizSessionKey } from '../model/session-key';
+
 const MINIMUM_LOADING_DURATION_MS = 2500;
 const EXIT_ROUTE = '/learning/units/$unitId';
 
@@ -30,11 +32,6 @@ const EMPTY_MESSAGES: Record<ReviewProblemsKind, string> = {
   bookmark: '아직 북마크한 문제가 없어요.',
   wrongAnswer: '아직 틀린 문제가 없어요.',
 };
-
-/** 새로고침 저장본의 키. 레슨 저장본(레슨 ID)과 겹치지 않게 종류를 붙인다. */
-export function toReviewQuizSessionKey(kind: ReviewProblemsKind, unitId: number): string {
-  return `review:${kind}:${unitId}`;
-}
 
 export interface ReviewQuizPageProps {
   kind: ReviewProblemsKind;
