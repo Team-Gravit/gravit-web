@@ -80,11 +80,11 @@ mode: 'refactor'
 - [x] `fetchPriority` · `decoding` · 페이드인(`markImageReadyAfterDecode`) 로직은 그대로
 - [x] 기존 테스트 3개 통과 · AC-3 빌드 확인
 
-### Issue 3 (#352) — 퀴즈 로딩 마스코트
+### Issue 3 (#352) — 퀴즈 로딩 마스코트 → 변경 없음
 
-- [ ] 애니메이션 webp를 변환 도구로 줄일 수 있는지 먼저 확인(sharp `animated`). 안 되면 수동 변환 후 결과만 커밋 — spec 기록
-- [ ] `[widgets]` `quiz-loading-screen.tsx` 소스 교체. 모션 감소 `<source>` 유지
-- [ ] AC-1(정지 프레임 `<source>`) 테스트 추가 · AC-2 프레임 수 확인
+- [x] 애니메이션 webp를 변환 도구로 줄일 수 있는지 먼저 확인 — sharp · ImageMagick 모두 원본(449 KB)보다 커진다(spec 기록)
+- [x] ~~`quiz-loading-screen.tsx` 소스 교체~~ — 바꿀 파일이 없어 하지 않는다
+- [x] ~~AC-1 테스트 · AC-2 프레임 수~~ — 코드 변경이 없어 해당 없음. 동영상 전환 검토는 `REF-075`
 
 ### Issue 4 (#353) — 남은 PNG
 
