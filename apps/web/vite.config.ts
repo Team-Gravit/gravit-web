@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react';
 import { tanstackRouter } from '@tanstack/router-plugin/vite';
 import tailwindcss from '@tailwindcss/vite';
 import svgr from 'vite-plugin-svgr';
+import { imagetools } from 'vite-imagetools';
 import fs from 'fs';
 import path from 'path';
 import os from 'os';
@@ -67,6 +68,8 @@ export default defineConfig(({ mode }) => {
     plugins: [
       // '...svg?react' 를 React 컴포넌트로 변환합니다. shared/ui/icon 이 이 형태에 의존합니다.
       svgr(),
+      // '...png?w=…&format=…' 처럼 쿼리가 붙은 이미지 import만 빌드 때 변환합니다. 쿼리 없는 import는 그대로입니다.
+      imagetools(),
       tailwindcss(),
       tanstackRouter({
         target: 'react',

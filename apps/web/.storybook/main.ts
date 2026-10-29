@@ -2,6 +2,7 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import tailwindcss from '@tailwindcss/vite';
 import svgr from 'vite-plugin-svgr';
+import { imagetools } from 'vite-imagetools';
 import remarkGfm from 'remark-gfm';
 import type { StorybookConfig } from '@storybook/react-vite';
 import { mergeConfig } from 'vite';
@@ -44,8 +45,8 @@ const config: StorybookConfig = {
           '@': resolve(storybookDirectory, '../src'),
         },
       },
-      // 앱 vite.config.ts 와 동일한 플러그인을 유지해야 아이콘이 Storybook 에서도 렌더됩니다.
-      plugins: [svgr(), tailwindcss()],
+      // 앱 vite.config.ts 와 동일한 플러그인을 유지해야 아이콘 · 변환 이미지가 Storybook 에서도 렌더됩니다.
+      plugins: [svgr(), imagetools(), tailwindcss()],
     }),
 };
 
