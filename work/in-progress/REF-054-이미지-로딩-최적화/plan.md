@@ -76,9 +76,9 @@ mode: 'refactor'
 
 ### Issue 2 (#351) — 레슨 결과
 
-- [ ] `[pages]` 데스크톱 배경 장식 4320 → 표시 2배 기준(1920 · 2880 · 3840) `srcset` · avif. 모바일 달 1595 → 1140 기준. 마스코트 크기 확인
-- [ ] `fetchPriority` · `decoding` · 페이드인(`markImageReadyAfterDecode`) 로직은 그대로
-- [ ] 기존 테스트 3개 통과 · AC-3 빌드 확인
+- [x] `[pages]` 데스크톱 배경 장식 4320 → 표시 2배 기준(1920 · 2880 · 3840) `srcset` · avif. 모바일 달 1595 → 1140 기준. 마스코트 크기 확인 → 달 800 · 1140 · 1595, 마스코트 · 모바일 배경은 그대로
+- [x] `fetchPriority` · `decoding` · 페이드인(`markImageReadyAfterDecode`) 로직은 그대로
+- [x] 기존 테스트 3개 통과 · AC-3 빌드 확인
 
 ### Issue 3 (#352) — 퀴즈 로딩 마스코트
 
