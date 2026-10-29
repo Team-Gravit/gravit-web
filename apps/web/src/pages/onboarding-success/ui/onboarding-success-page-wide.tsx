@@ -4,7 +4,7 @@ import { Button } from '@/shared/ui/button';
 import { SpaceBackground } from '@/shared/ui/layout';
 import { GravitLogo } from '@/shared/ui/logo';
 
-import endMascot from './assets/mascot-end.png';
+import endMascot from './assets/mascot-end.png?w=312&lossless&format=webp';
 
 export function OnboardingSuccessPageWide() {
   return (
