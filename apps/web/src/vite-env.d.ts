@@ -1,6 +1,16 @@
 /// <reference types="vite/client" />
 /// <reference types="vite-plugin-svgr/client" />
 
+// vite-imagetools 쿼리 import. 변환 지시어는 쿼리 끝에 출력 형태(as=srcset)나 형식을 둔다.
+declare module '*&as=srcset' {
+  const srcset: string;
+  export default srcset;
+}
+declare module '*format=webp' {
+  const url: string;
+  export default url;
+}
+
 interface ImportMetaEnv {
   readonly VITE_API_BASE_URL: string;
   /** OAuth 리다이렉트 목적지. `local` · `dev` · `prod` 중 하나. */
