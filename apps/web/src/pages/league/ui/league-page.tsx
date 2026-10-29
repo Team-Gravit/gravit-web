@@ -6,8 +6,9 @@ import { useLeagueHome, useMyLeagueProfile } from '@/entities/league';
 import { LeagueArena } from '@/widgets/league-arena';
 import { LeagueSeasonModal } from '@/widgets/league-season-modal';
 
-import LeagueBgDesktop from './assets/league-bg-desktop.png';
-import LeagueBgMobile from './assets/league-bg-mobile.png';
+import leagueBgDesktopAvif from './assets/league-bg-desktop.png?w=1280;1920&format=avif&quality=75&as=srcset';
+import leagueBgDesktopWebp from './assets/league-bg-desktop.png?w=1280;1920&format=webp&as=srcset';
+import leagueBgMobile from './assets/league-bg-mobile.png?format=webp';
 
 const BACKGROUND_GRADIENT = 'linear-gradient(197deg, #4721ca 3.6%, #17034e 95%)';
 
@@ -77,8 +78,19 @@ function LeagueBackground() {
       style={{ backgroundImage: BACKGROUND_GRADIENT }}
     >
       <picture>
-        <source media="(min-width: 768px)" srcSet={LeagueBgDesktop} />
-        <img src={LeagueBgMobile} alt="" className="absolute inset-0 h-full w-full object-cover" />
+        <source
+          media="(min-width: 768px)"
+          type="image/avif"
+          srcSet={leagueBgDesktopAvif}
+          sizes="100vw"
+        />
+        <source
+          media="(min-width: 768px)"
+          type="image/webp"
+          srcSet={leagueBgDesktopWebp}
+          sizes="100vw"
+        />
+        <img src={leagueBgMobile} alt="" className="absolute inset-0 h-full w-full object-cover" />
       </picture>
       <div aria-hidden className="absolute inset-0 bg-[#000000]/45" />
     </div>
