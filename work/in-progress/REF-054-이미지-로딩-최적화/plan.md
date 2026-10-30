@@ -105,8 +105,8 @@ mode: 'refactor'
 
 ### Issue 7 (#356) — starfield
 
-- [ ] `[shared]` `SpaceBackground` starfield 변형을 `<img srcset>`(object-cover · object-top) + avif로. 기본 변형은 이 이슈에서 건드리지 않는다
-- [ ] AC-1 테스트 추가 · AC-2 4개 화면 × 2폭 픽셀 비교
+- [x] `[shared]` `SpaceBackground` starfield 변형을 `<picture>` + `<img>`(object-cover · object-top) + avif로. 해상도는 원본 유지(높이 기준 cover라 `srcset` 축소는 하지 않음). 기본 변형은 그대로
+- [x] AC-1 테스트 추가 · AC-2 같은 크기 상자 4가지로 픽셀 비교
 
 ### Issue 11 (#360) — 마이 배너
 
