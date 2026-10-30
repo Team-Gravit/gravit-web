@@ -34,6 +34,7 @@ export function RecommendedUnitCard({ className }: RecommendedUnitCardProps) {
       title={firstUnit.chapterTitle}
       unitId={firstUnit.unitId}
       chapterId={firstUnit.chapterId}
+      planetLoading="eager"
       className={className}
     />
   );

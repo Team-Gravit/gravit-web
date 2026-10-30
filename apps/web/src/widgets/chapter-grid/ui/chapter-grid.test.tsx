@@ -93,4 +93,26 @@ describe('ChapterGrid', () => {
     expect(await screen.findByRole('link', { name: '자료구조 학습하기' })).toBeInTheDocument();
     expect(requests).toBe(2);
   });
+
+  it('앞 8개 카드의 행성은 바로 요청하고 이후 카드는 지연 로딩한다', async () => {
+    const chapters = Array.from({ length: 10 }, (_, index) => ({
+      chapterSummaryResponse: { chapterId: index + 1, title: `챕터 ${index + 1}`, description: '' },
+      chapterProgressRate: 0,
+    }));
+    server.use(http.get(CHAPTERS_URL, () => HttpResponse.json(chapters)));
+    await renderGrid();
+    await screen.findByRole('link', { name: '챕터 10 학습하기' });
+
+    const planets = Array.from(document.querySelectorAll('[data-slot="chapter-card"] img'));
+    expect(planets).toHaveLength(10);
+    expect(planets.map((planet) => planet.getAttribute('loading'))).toEqual([
+      ...Array<null>(8).fill(null),
+      'lazy',
+      'lazy',
+    ]);
+    for (const planet of planets) {
+      expect(planet).toHaveAttribute('decoding', 'async');
+      expect(planet).toHaveAttribute('alt', '');
+    }
+  });
 });

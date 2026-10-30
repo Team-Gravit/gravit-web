@@ -77,4 +77,24 @@ describe('RecommendedUnitCard', () => {
     await waitFor(() => expect(container.querySelector('[aria-busy="true"]')).toBeNull());
     expect(container.querySelector('[data-slot="unit-card"]')).toBeNull();
   });
+
+  it('첫 줄의 행성은 바로 요청하고 이후 줄은 지연 로딩한다', async () => {
+    const units = [21, 35, 42, 57].map((unitId, index) => ({
+      unitId,
+      unitTitle: `유닛 ${unitId}`,
+      chapterId: index + 1,
+      chapterTitle: `챕터 ${index + 1}`,
+    }));
+    server.use(http.get(UNITS_URL, () => HttpResponse.json(units)));
+    await renderUnits();
+    await screen.findByRole('link', { name: '챕터 4 학습하러 가기' });
+
+    const planets = Array.from(document.querySelectorAll('[data-slot="unit-card"] img'));
+    expect(planets.map((planet) => planet.getAttribute('loading'))).toEqual([
+      null,
+      null,
+      'lazy',
+      'lazy',
+    ]);
+  });
 });

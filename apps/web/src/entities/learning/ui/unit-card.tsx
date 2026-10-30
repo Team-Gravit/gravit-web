@@ -12,13 +12,22 @@ export interface UnitCardProps {
   unitId: number;
   chapterId: number;
   eyebrow?: string;
+  /** 행성 이미지는 기본적으로 지연 로딩한다. 첫 화면에 보이는 카드에는 `eager`를 지정한다. */
+  planetLoading?: 'eager' | 'lazy';
   className?: string;
 }
 
 const CARD_SHELL_CLASS =
   'relative flex min-w-0 flex-col overflow-hidden rounded-8 bg-cover bg-center p-3 md:h-58 md:p-5';
 
-export function UnitCard({ title, unitId, chapterId, eyebrow, className }: UnitCardProps) {
+export function UnitCard({
+  title,
+  unitId,
+  chapterId,
+  eyebrow,
+  planetLoading = 'lazy',
+  className,
+}: UnitCardProps) {
   const planet = getPlanetImage(chapterId);
 
   return (
@@ -49,6 +58,8 @@ export function UnitCard({ title, unitId, chapterId, eyebrow, className }: UnitC
           src={planet}
           alt=""
           aria-hidden
+          loading={planetLoading === 'lazy' ? 'lazy' : undefined}
+          decoding="async"
           className="pointer-events-none absolute right-0 bottom-0 h-[70%] w-auto translate-x-1/6 translate-y-1/6 object-contain md:h-4/5"
         />
       ) : null}
