@@ -49,6 +49,8 @@ export interface ChapterCardProps extends VariantProps<typeof chapterCardVariant
   description?: string;
   /** 호출부에서 0~100 범위로 보정해 전달한다. */
   progressPercent: number;
+  /** 행성 이미지는 기본적으로 지연 로딩한다. 첫 화면에 보이는 카드에는 `eager`를 지정한다. */
+  planetLoading?: 'eager' | 'lazy';
   className?: string;
 }
 
@@ -63,6 +65,7 @@ export function ChapterCard({
   title,
   description,
   progressPercent,
+  planetLoading = 'lazy',
   size = 'sm',
   className,
 }: ChapterCardProps) {
@@ -85,6 +88,8 @@ export function ChapterCard({
             src={planet}
             alt=""
             aria-hidden
+            loading={planetLoading === 'lazy' ? 'lazy' : undefined}
+            decoding="async"
             className="pointer-events-none absolute right-0 bottom-0 z-0 w-[70%] translate-x-[15%] translate-y-[15%] object-contain transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-12 motion-reduce:transition-none motion-reduce:group-hover:scale-100 motion-reduce:group-hover:rotate-0"
           />
         ) : null}

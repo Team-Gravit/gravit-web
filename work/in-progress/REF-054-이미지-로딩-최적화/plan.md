@@ -93,10 +93,10 @@ mode: 'refactor'
 
 ### Issue 5 (#354) — 행성 지연 로딩
 
-- [ ] `[entities]` `ChapterCard` · `UnitCard`에 행성 이미지 로딩 방식을 받는 prop 추가(기본: 지연 로딩), `decoding="async"`
-- [ ] `[widgets]` `chapter-grid` 앞 4개 · `recommended-units` 앞 2개는 즉시 로딩으로 넘긴다
-- [ ] `[pages]` 레슨 결과 행성은 변경 없음(AC-3 확인)
-- [ ] AC-1 · AC-2 · AC-3 테스트 추가 · AC-4 `/learning` 실측
+- [x] `[entities]` `ChapterCard` · `UnitCard`에 행성 이미지 로딩 방식을 받는 prop 추가(기본: 지연 로딩), `decoding="async"`
+- [x] `[widgets]` `chapter-grid` 앞 8개(4개에서 변경) · `recommended-units` 앞 2개는 즉시 로딩으로 넘긴다
+- [x] `[pages]` 레슨 결과 행성은 변경 없음(AC-3 확인)
+- [x] AC-1 · AC-2 · AC-3 테스트 추가 · AC-4 `/learning` 실측
 
 ### Issue 6 (#355) — 티어 아이콘 SVG
 

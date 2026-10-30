@@ -49,4 +49,21 @@ describe('ResultHero', () => {
 
     expect(container.querySelector('[data-slot="mobile-moon"]')).toBeInTheDocument();
   });
+
+  it('페이드인 전에 디코딩할 이미지는 지연 로딩하지 않는다', () => {
+    stubViewport(false);
+
+    const { container } = render(
+      <ResultHero
+        chapterId={1}
+        unitTitle="배열"
+        isIllustrationVisible={false}
+        onIllustrationReady={vi.fn()}
+      />,
+    );
+
+    const images = Array.from(container.querySelectorAll('img'));
+    expect(images).toHaveLength(3);
+    expect(images.filter((image) => image.getAttribute('loading') === 'lazy')).toHaveLength(0);
+  });
 });

@@ -5,6 +5,9 @@ import { ChapterCard, ChapterCardSkeleton, useChapters } from '@/entities/learni
 /** 가장 넓은 4열에서 두 줄을 채워 로딩 중에도 목록 영역의 높이를 유지한다. */
 const SKELETON_CARD_COUNT = 8;
 
+/** 모바일 2열에서는 첫 화면에 카드가 4줄까지 보여 앞 8장의 행성을 바로 요청한다. */
+const EAGER_PLANET_COUNT = 8;
+
 /** 페이지 분기점(768px)을 지나더라도 600~1199px 구간은 3열을 유지한다. */
 const GRID_LAYOUT_CLASS =
   'grid grid-cols-2 gap-3 min-[600px]:grid-cols-3 min-[600px]:gap-4.5 min-[1200px]:grid-cols-4 min-[1200px]:gap-6';
@@ -47,7 +50,7 @@ export function ChapterGrid({ size = 'sm', className }: ChapterGridProps) {
 
   return (
     <div data-slot="chapter-grid" className={cn(GRID_LAYOUT_CLASS, className)}>
-      {chapters.map((chapter) => (
+      {chapters.map((chapter, index) => (
         <ChapterCard
           key={chapter.chapterId}
           size={size}
@@ -55,6 +58,7 @@ export function ChapterGrid({ size = 'sm', className }: ChapterGridProps) {
           title={chapter.title}
           description={chapter.description}
           progressPercent={chapter.progressPercent}
+          planetLoading={index < EAGER_PLANET_COUNT ? 'eager' : 'lazy'}
         />
       ))}
     </div>
