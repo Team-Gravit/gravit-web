@@ -108,10 +108,11 @@ mode: 'refactor'
 - [x] `[shared]` `SpaceBackground` starfield 변형을 `<picture>` + `<img>`(object-cover · object-top) + avif로. 해상도는 원본 유지(높이 기준 cover라 `srcset` 축소는 하지 않음). 기본 변형은 그대로
 - [x] AC-1 테스트 추가 · AC-2 같은 크기 상자 4가지로 픽셀 비교
 
-### Issue 11 (#360) — 마이 배너
+### Issue 11 (#360) — 마이 배너 → 변경 없음 (사용자 판정)
 
-- [ ] `[pages]` `profile-card.tsx` 배너를 `<img srcset>`(object-cover · center)로. 카드 최소 높이 · 상태 표시줄 뒤 확장(`box-content`) 유지
-- [ ] AC-1 테스트 · AC-2 픽셀 비교
+- [x] 표시 크기 계산 — 카드보다 배너가 납작해 항상 높이 기준 cover. 좁은 화면에서도 1,373px 이상으로 그려져 작은 후보가 의미 없다(spec 기록)
+- [ ] ~~`profile-card.tsx` `<img srcset>` 전환~~ — 하지 않음. 배너 교체는 FIX-073 #358
+- [ ] ~~AC-1 · AC-2~~ — 코드 변경이 없으면 해당 없음
 
 ### 마무리
 
