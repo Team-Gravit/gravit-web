@@ -10,6 +10,10 @@ declare module '*format=webp' {
   const url: string;
   export default url;
 }
+declare module '*format=avif' {
+  const url: string;
+  export default url;
+}
 
 interface ImportMetaEnv {
   readonly VITE_API_BASE_URL: string;
