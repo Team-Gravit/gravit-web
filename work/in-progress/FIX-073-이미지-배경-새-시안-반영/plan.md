@@ -4,7 +4,7 @@ planned: '2026-10-30'
 mode: 'design-fix'
 ---
 
-# FIX-073 구현 계획 (초안 — 승인 전)
+# FIX-073 구현 계획 (확인 필요 5개 판정 완료 — 승인 전)
 
 > `ai-plan` 산출물. **사용자 승인 전에는 구현으로 넘어가지 않는다.**
 > 실행 이슈 3개(`issues.md` Issue 1 ~ 3, GitHub #357 ~ #359)와 spec에 추가된 리그 배경(GitHub 미등록)을 다룬다.
@@ -28,12 +28,12 @@ mode: 'design-fix'
 
 | 구분 | 파일                                                                                                                                                                                                  | 이슈 |
 | ---- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---- |
-| 수정 | `app/styles/tokens.css` · `docs/design-system/README.md` · `src/stories/` Foundations(색)                                                                                                             | 1    |
+| 수정 | `app/styles/tokens.css` · `app/styles/utilities.css`(`.bg-space-gradient`) · `docs/design-system/README.md` · `src/stories/` Foundations(색)                                                          | 1    |
 | 신규 | `shared/ui/gradient-canvas/{gradient-canvas.tsx, .test.tsx, .stories.tsx, index.ts}` (이름은 §4-1과 함께 확정)                                                                                        | 1    |
 | 수정 | `shared/ui/layout/space-background.tsx` 기본 변형 · `assets/`                                                                                                                                         | 1    |
 | 수정 | `widgets/hero-greeting/ui/hero-greeting.tsx` · `assets/` · `pages/my/ui/profile-card.tsx` · `pages/main/ui/main-page-narrow.tsx` · `pages/my/ui/my-page-layout.tsx` · `shared/config/space-colors.ts` | 2    |
 | 수정 | `entities/learning/ui/chapter-card.tsx` · `unit-card.tsx` · `assets/`                                                                                                                                 | 3    |
-| 수정 | `pages/league/ui/league-page.tsx` · `assets/` · (에셋 공유 시) `pages/lesson-result/ui/result-background.tsx`                                                                                         | 리그 |
+| 수정 | `pages/league/ui/league-page.tsx` · `assets/` · `pages/lesson-result/ui/result-background.tsx` · `assets/` (장식은 Issue 1 공용 에셋 재사용)                                                          | 리그 |
 
 `SpaceBackground` 기본 변형 사용처(2026-10-30 `rg`): 로그인 넓은 · 온보딩 넓은 · 온보딩 완료 넓은 · 모달 — 4곳. starfield 3곳은 REF-054 #356에서 이미 `<picture>`로 바꿨고 이 작업에서 건드리지 않는다.
 
@@ -48,6 +48,7 @@ mode: 'design-fix'
   canvas={{ width: 475, height: 304 }} // 장식 원본 비율. 그라데이션과 장식이 같은 상자에서 함께 커진다
   anchor="bottom-right" // 'bottom-right' | 'right' | 'top'
   fit="natural-then-cover" // 'cover' | 'natural-then-cover' (히어로 모바일: 좁으면 실제 크기로 붙이고 넓으면 cover)
+  hasBackdrop // 어두운 덮개. 리그 데스크톱처럼 같은 장식에 덮개만 더하는 화면용(§4-3)
   className="…" // 바깥 상자 레이아웃만
 />
 ```
@@ -62,9 +63,9 @@ mode: 'design-fix'
 
 ### Issue 1 (#357) — 토큰 · 공용 캔버스 · 공용 우주 배경
 
-- [ ] `[app]` `tokens.css`에 색 토큰 2개(§4-1 확정 후) · `docs/design-system/README.md`에 「Figma 변수 없음 · 디자이너 확인 필요」 · Foundations 색 문서
+- [ ] `[app]` `tokens.css`에 `--color-space-start` · `--color-space-end` · 기존 `.bg-space-gradient` · 리그 `BACKGROUND_GRADIENT`를 토큰으로 교체(색 같음 → 모양 동일) · `docs/design-system/README.md`에 「Figma 변수 없음 · 디자이너 확인 필요」 · Foundations 색 문서
 - [ ] `[shared]` 공용 캔버스 신설 + 테스트(장식 `alt=""` · 그라데이션 style · anchor별 배치) + 스토리(대표 상태)
-- [ ] `[shared]` `SpaceBackground` 기본 변형을 캔버스로 교체. 장식 webp 1920 · 2560(+avif). 원본 위치는 §4-2
+- [ ] `[shared]` `SpaceBackground` 기본 변형을 캔버스로 교체. 장식은 2560px webp 하나만 `shared/ui/layout/assets`에 두고 빌드에서 1920 · avif를 만든다(§4-2). 장식은 `cover`로 채운다 — spec의 「폭 맞춤 · 세로 가운데」는 세로로 긴 화면(900×1200)에서 장식이 띠로 잘려 2026-10-31 사용자 판정으로 바꿨다
 - [ ] 사용처 4곳 렌더 확인 · 로그인 · 온보딩 테스트 통과
 - [ ] AC-2 로그인 1440×900 Figma 비교 · AC-3 로그인 데스크톱 LCP 3회
 
@@ -82,25 +83,28 @@ mode: 'design-fix'
 - [ ] 장식 이미지 로딩: REF-054 #354의 `planetLoading`처럼 첫 화면 카드(챕터 8 · 추천 2)만 즉시, 나머지 lazy로 맞출지 착수 때 정한다
 - [ ] AC-1 카드 링크 · 덮개 · 행성 · AC-2 두 카드 비율 Figma 비교 · AC-3 `/learning` LCP(로그인 필요)
 
-### 리그 배경 (GitHub 미등록)
+### Issue 4 (GitHub 미등록) — 리그 · 레슨 결과 배경
 
-- [ ] GitHub 이슈 등록(승인 필요) · issues.md에 Issue 4 추가
-- [ ] 데스크톱 `15382:17808` · 모바일 `14600:22711` 그라데이션 CSS 계산 · 장식 2배 내보내기(Figma 복제본에서 그라데이션만 숨김)
-- [ ] `[pages]` 리그 배경을 캔버스로. 모바일은 레슨 결과 모바일과 같은 시안 — 에셋 공유 위치(§4-3)
-- [ ] 리그 테스트 · Figma 비교
+로그인 · 온보딩 · 리그 · 레슨 결과는 **같은 장식 그림**을 화면 비율에 맞춰 잘라 쓴다. 데스크톱 리그는 여기에 어두운 덮개만 더한다(2026-10-31 사용자 확인).
+
+- [ ] GitHub 이슈 등록(승인 필요, #349 하위) · issues.md에 Issue 4 추가
+- [ ] 데스크톱 `15382:17808` · 모바일 `14600:22711` 그라데이션 · 덮개 색과 투명도를 Figma 값으로 확인. 장식은 따로 내보내지 않는다
+- [ ] `[pages]` 리그 배경을 캔버스로(Issue 1 장식 재사용, 데스크톱 `hasBackdrop`)
+- [ ] `[pages]` 레슨 결과 모바일 배경을 같은 캔버스 · 장식으로. 지금 `background-decoration-mobile.webp`(불투명 3배) 삭제
+- [ ] 리그 · 레슨 결과 테스트 · Figma 비교
 
 ### 마무리
 
 - [ ] `pnpm verify` · `ai-validate` · `checklist.md`
 - [ ] REF-054와 합쳐 전후 측정(포트폴리오용, 로그인 필요) — `523cbc27` 대비
 
-## 4. 승인 전 확인 필요
+## 4. 판정 (2026-10-31 사용자 확인)
 
-1. **토큰 이름과 범위** — `--color-space-start` · `--color-space-end`(임시 이름)로 갈지. 기존 두 곳(`app/styles/utilities.css` `.bg-space-gradient` · `pages/league/ui/league-page.tsx` `BACKGROUND_GRADIENT`)도 이 토큰을 쓰게 할지(색만 바꾸면 모양 동일)
-2. **공용 우주 배경 장식 원본 보관** — 받은 투명 PNG(4821×3060)를 저장소에 원본으로 둘지, 2560px webp만 둘지(빌드 변환 원본이 클수록 빌드가 느려진다)
-3. **리그 배경 범위** — 이 작업에 넣고 GitHub 이슈를 새로 만들지, 별도 작업으로 뺄지. 넣는다면 레슨 결과 모바일 배경도 같은 에셋으로 바꿀지
-4. **픽셀 비교 기준** — 이슈 AC의 「최대 4/255」는 REF-054 #355 · #356에서 경로 · 압축 차이로 맞출 수 없었다. 같은 기준(「8/255 넘는 픽셀 0.1% 이하」)으로 바꿀지
-5. **LCP 측정 시 로그인** — `/main` · `/learning`은 측정 때 측정용 창에서 로그인이 한 번 필요하다
+1. **토큰** — `--color-space-start` · `--color-space-end`로 확정. 기존 `.bg-space-gradient` · 리그 `BACKGROUND_GRADIENT`도 토큰을 쓴다(색 같음 → 모양 동일)
+2. **장식 원본** — 2560px webp 하나만 저장소에 둔다. 1920 · avif는 빌드가 만든다. 4821px PNG는 Figma에서 다시 내보낼 수 있어 두지 않는다
+3. **리그 배경** — 이 작업의 Issue 4로 넣고 GitHub 이슈를 새로 만든다. 레슨 결과 모바일도 같은 에셋으로 바꾼다. 장식은 Issue 1 것을 재사용하고 데스크톱 리그만 덮개를 더한다
+4. **픽셀 비교 기준** — 이슈 AC의 「최대 4/255」 대신 「8/255 넘게 다른 픽셀 0.1% 이하」(`image-convention.md` §6)
+5. **LCP 측정 로그인** — 측정 때 측정용 창을 띄워 알리면 사용자가 한 번 로그인한다
 
 ## 5. 리스크
 
