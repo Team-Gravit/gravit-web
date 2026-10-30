@@ -211,7 +211,7 @@ GitHub Issue: [#354](https://github.com/Team-Gravit/gravit-web/issues/354)
 ### 관련 결정
 
 - 기준선: 계약 C1(레슨 결과 행성은 페이드인 대상이라 지연 로딩하지 않는다) · C5
-- 첫 화면 기준: 챕터 그리드는 1200px 이상에서 한 줄 4개 · 좁은 화면에서 2열 → **앞 4개**는 지연 로딩하지 않는다. 추천 유닛은 2열 → **앞 2개**는 지연 로딩하지 않는다
+- 첫 화면 기준: 챕터 그리드는 1200px 이상에서 한 줄 4개 · 좁은 화면에서 2열 → **앞 8개**는 지연 로딩하지 않는다 (2026-10-30 4개에서 변경 — 모바일 2열은 첫 화면에 3 ~ 4줄이 보인다). 추천 유닛은 2열 → **앞 2개**는 지연 로딩하지 않는다
 
 ### 이 이슈가 담당하는 매핑
 
@@ -222,9 +222,9 @@ GitHub Issue: [#354](https://github.com/Team-Gravit/gravit-web/issues/354)
 ### 완료 조건 (Acceptance Criteria)
 
 ☐ **AC-1** (범위: 통합)
-Given 챕터 8개 `[{ id: 1 } … { id: 8 }]`
+Given 챕터 10개 `[{ id: 1 } … { id: 10 }]`
 When 챕터 그리드를 렌더링하면
-Then 1 ~ 4번째 카드의 행성 `<img>`에는 `loading` 속성이 없고, 5 ~ 8번째에는 `loading="lazy"`가 있다. 8개 모두 `decoding="async"` · `alt=""`다
+Then 1 ~ 8번째 카드의 행성 `<img>`에는 `loading` 속성이 없고, 9 ~ 10번째에는 `loading="lazy"`가 있다. 10개 모두 `decoding="async"` · `alt=""`다
 
 ☐ **AC-2** (범위: 통합)
 Given 추천 유닛 4개
