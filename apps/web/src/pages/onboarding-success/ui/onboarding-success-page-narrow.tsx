@@ -2,7 +2,7 @@ import { Link } from '@tanstack/react-router';
 
 import { Button } from '@/shared/ui/button';
 
-import celebrateMascot from './assets/mascot-celebrate.png';
+import celebrateMascot from './assets/mascot-celebrate.png?w=420&lossless&format=webp';
 
 export function OnboardingSuccessPageNarrow() {
   return (
