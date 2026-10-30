@@ -78,4 +78,18 @@ describe('OnboardingSuccessPage', () => {
     expect(await screen.findByText('계정 생성 완료!')).toBeInTheDocument();
     expect(screen.getByRole('link', { name: '홈으로' })).toHaveAttribute('href', '/main');
   });
+
+  it.each([
+    ['좁은', false],
+    ['넓은', true],
+  ])('%s 화면의 마스코트는 alt="" 이미지 하나다', async (_label, isWide) => {
+    stubViewport(isWide);
+
+    await renderSuccessPage();
+    await screen.findByText('계정 생성 완료!');
+
+    const images = document.querySelectorAll('img');
+    expect(images).toHaveLength(1);
+    expect(images[0]).toHaveAttribute('alt', '');
+  });
 });
