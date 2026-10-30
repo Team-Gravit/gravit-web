@@ -10,7 +10,8 @@ import leagueBgDesktopAvif from './assets/league-bg-desktop.png?w=1280;1920&form
 import leagueBgDesktopWebp from './assets/league-bg-desktop.png?w=1280;1920&format=webp&as=srcset';
 import leagueBgMobile from './assets/league-bg-mobile.png?format=webp';
 
-const BACKGROUND_GRADIENT = 'linear-gradient(197deg, #4721ca 3.6%, #17034e 95%)';
+const BACKGROUND_GRADIENT =
+  'linear-gradient(197deg, var(--color-space-start) 3.6%, var(--color-space-end) 95%)';
 
 /**
  * 리그 화면. 배경을 깔고, 당겨서 새로고침으로 감싼 내용을 배치한다.
