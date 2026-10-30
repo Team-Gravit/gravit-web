@@ -105,6 +105,21 @@ describe('LeaguePage', () => {
     expect(await screen.findByText('에러 발생')).toBeInTheDocument();
   });
 
+  it('배경은 768px 이상에서 데스크톱 이미지로 바꾸고 어두운 덮개를 하나 깐다', () => {
+    server.use(
+      http.get(HOME_URL, () => HttpResponse.json(HOME)),
+      http.get(PROFILE_URL, () => HttpResponse.json(PROFILE)),
+    );
+
+    renderLeaguePage();
+
+    const picture = document.querySelector('picture');
+    const desktopSources = picture?.querySelectorAll('source[media="(min-width: 768px)"]');
+    expect(desktopSources).toHaveLength(2);
+    expect(picture?.querySelector('img')).toHaveAttribute('alt', '');
+    expect(picture?.parentElement?.querySelectorAll(':scope > div')).toHaveLength(1);
+  });
+
   it('시즌 팝업을 닫으면 다시 불러와도 뜨지 않는다', async () => {
     server.use(
       http.get(HOME_URL, () => HttpResponse.json(POPUP_HOME)),

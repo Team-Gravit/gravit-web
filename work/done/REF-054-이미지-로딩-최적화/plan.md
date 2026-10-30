@@ -116,9 +116,9 @@ mode: 'refactor'
 
 ### 마무리
 
-- [ ] 이슈마다: 변경 파일 prettier · 관련 테스트 · `check-types` · `lint:fsd` · 측정
-- [ ] 전체: `pnpm verify` → `ai-validate` → `checklist.md`
-- [ ] 기준 문서: 토큰을 바꾸면 `docs/design-system/README.md` · `src/stories/` Foundations
+- [x] 이슈마다: 변경 파일 prettier · 관련 테스트 · `check-types` · `lint:fsd` · 측정
+- [x] 전체: `pnpm verify` → `ai-validate` → `checklist.md` (2026-10-30, 빠진 AC 테스트 2개 추가)
+- [x] 기준 문서: 토큰은 바꾸지 않았다(FIX-073). 이미지 규칙을 `.claude/rules/image-convention.md`로 승격
 
 ## 3. 리스크
 
