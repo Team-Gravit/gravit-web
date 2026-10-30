@@ -70,7 +70,7 @@ REF-054 Issue 1(#350, 변환 도구). REF-054 Issue 7(#356)과 같은 파일(`sp
 
 ---
 
-## Issue 2: [시안] 메인 히어로를 새 시안으로
+## Issue 2: [시안] 메인 히어로 · 마이 프로필 배너를 새 시안으로
 
 GitHub Issue: [#358](https://github.com/Team-Gravit/gravit-web/issues/358)
 
@@ -81,6 +81,8 @@ GitHub Issue: [#358](https://github.com/Team-Gravit/gravit-web/issues/358)
 ### 구현 범위
 
 `widgets/hero-greeting/ui/hero-greeting.tsx` · `assets/` (M6)
+`pages/my/ui/profile-card.tsx` · `assets/` — 데스크톱 배너가 같은 그림이다(2026-10-30 추가)
+`pages/main/ui/main-page-narrow.tsx` · `pages/my/ui/my-page-layout.tsx` — 당겨서 새로고침 때 드러나는 위쪽 색(`SPACE_TOP_COLOR`)
 
 ### 관련 결정
 
@@ -89,9 +91,11 @@ GitHub Issue: [#358](https://github.com/Team-Gravit/gravit-web/issues/358)
 
 ### 이 이슈가 담당하는 매핑
 
-| 현재                            | 목표                                                                  | 변경 종류            |
-| ------------------------------- | --------------------------------------------------------------------- | -------------------- |
-| `<picture>` 1배 webp 360 · 1920 | 공용 캔버스 · 모바일 475×304(오른쪽 아래) · 데스크톱 1920×274(오른쪽) | **시안 반영** · 구조 |
+| 현재                                                                             | 목표                                                                  | 변경 종류                   |
+| -------------------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------- |
+| `<picture>` 1배 webp 360 · 1920                                                  | 공용 캔버스 · 모바일 475×304(오른쪽 아래) · 데스크톱 1920×274(오른쪽) | **시안 반영** · 구조        |
+| 마이 배너 CSS 배경 `profile-banner.webp`(히어로 데스크톱과 같은 그림, 별도 파일) | 히어로와 같은 데스크톱 배너 파일 · 공용 캔버스(가운데 기준)           | **시안 반영** · 파일 하나로 |
+| 당겨서 새로고침 바탕 단색 `#1a0a4f`                                              | 배너 맨 윗줄 색을 위로 늘인 가로 그라데이션(메인 · 마이 각각)         | **시안 반영**               |
 
 ### 완료 조건 (Acceptance Criteria)
 
@@ -99,6 +103,16 @@ GitHub Issue: [#358](https://github.com/Team-Gravit/gravit-web/issues/358)
 Given 프로필 조회 실패
 When 히어로를 렌더링하면
 Then 기본 인사말이 보인다
+
+☐ **AC-1b** (범위: 통합)
+Given 마이 프로필 카드
+When 렌더링하면
+Then 배너 장식 `<img>`가 1개이고 `alt`가 빈 문자열이며, 기존 `profile-card.test.tsx`가 통과한다
+
+☐ **AC-1c** (범위: 측정)
+Given 메인 · 마이 모바일(412px)에서 80px 당긴 상태
+When 배너 맨 윗줄과 바로 위 바탕 한 줄을 캡처해 비교하면
+Then 같은 열의 색 차이가 8/255 이하다(이음새 없음)
 
 ☐ **AC-2** (범위: 측정)
 Given 화면 폭 360 · 412 · 475px, 히어로 높이 266px(상태 표시줄 0)
