@@ -88,7 +88,10 @@ describe('OnboardingSuccessPage', () => {
     await renderSuccessPage();
     await screen.findByText('계정 생성 완료!');
 
-    const images = document.querySelectorAll('img');
+    // 넓은 화면의 우주 배경 장식은 <picture> 안에 있어 마스코트와 구분한다.
+    const images = Array.from(document.querySelectorAll('img')).filter(
+      (img) => !img.closest('picture'),
+    );
     expect(images).toHaveLength(1);
     expect(images[0]).toHaveAttribute('alt', '');
   });

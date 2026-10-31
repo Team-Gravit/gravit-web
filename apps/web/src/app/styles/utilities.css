@@ -38,7 +38,11 @@
   }
 
   .bg-space-gradient {
-    background: linear-gradient(292.58deg, #4721ca 3.59%, #17034e 95.08%);
+    background: linear-gradient(
+      292.58deg,
+      var(--color-space-start) 3.59%,
+      var(--color-space-end) 95.08%
+    );
   }
 
   .scrollbar-hide {

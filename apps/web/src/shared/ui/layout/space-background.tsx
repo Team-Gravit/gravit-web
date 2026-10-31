@@ -1,10 +1,24 @@
 import type { ReactNode } from 'react';
 
 import { cn } from '@/shared/lib/cn';
+import { GradientCanvas } from '@/shared/ui/gradient-canvas';
 
-import backgroundImage from './assets/background.webp';
+import decorationAvif from './assets/space-decoration.webp?w=1920;2560&format=avif&quality=75&as=srcset';
+import decorationWebp from './assets/space-decoration.webp?w=1920;2560&format=webp&as=srcset';
+import decorationFallback from './assets/space-decoration.webp?w=1920&format=webp';
 import starfieldAvif from './assets/starfield.webp?quality=75&format=avif';
 import starfieldWebp from './assets/starfield.webp';
+
+const SPACE_GRADIENT =
+  'linear-gradient(292.58deg, var(--color-space-start) 3.59%, var(--color-space-end) 95.08%)';
+
+// cover라 세로로 긴 화면에서는 높이에 맞춰 커진다. 158vh = 100vh × 원본 비율(4821/3060).
+const SPACE_DECORATION = {
+  avifSrcSet: decorationAvif,
+  webpSrcSet: decorationWebp,
+  src: decorationFallback,
+  sizes: 'max(100vw, 158vh)',
+};
 
 export type SpaceBackgroundVariant = 'default' | 'starfield';
 
@@ -15,7 +29,8 @@ export interface SpaceBackgroundProps {
 }
 
 /**
- * 배경 이미지만 제공하며 내부 정렬과 바탕색은 호출부가 정한다.
+ * 우주 배경을 깔고 내부 정렬은 호출부가 정한다.
+ * 기본 변형은 그라데이션 바탕까지 칠하고, `starfield`는 바탕색을 호출부가 정한다.
  */
 export function SpaceBackground({
   children,
@@ -50,13 +65,16 @@ export function SpaceBackground({
   }
 
   return (
-    <div
+    <GradientCanvas
       data-slot="space-background"
       data-variant={variant}
-      className={cn('min-h-svh w-full bg-cover bg-center bg-no-repeat', className)}
-      style={{ backgroundImage: `url(${backgroundImage})` }}
+      gradient={SPACE_GRADIENT}
+      decoration={SPACE_DECORATION}
+      // 로그인 · 온보딩 넓은 화면에서 첫 화면의 가장 큰 그림이다.
+      decorationPriority="high"
+      className={cn('min-h-svh w-full', className)}
     >
       {children}
-    </div>
+    </GradientCanvas>
   );
 }

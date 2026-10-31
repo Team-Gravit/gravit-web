@@ -22,16 +22,21 @@ describe('SpaceBackground', () => {
     expect(container.querySelector('source[type="image/avif"]')).toBeInTheDocument();
   });
 
-  it('기본 변형은 이미지 요소 없이 CSS 배경을 쓴다', () => {
+  it('기본 변형은 자식을 그대로 보여 주고 그라데이션 위에 alt="" 장식을 깐다', () => {
     const { container } = render(
-      <SpaceBackground>
+      <SpaceBackground className="flex items-center justify-center">
         <p>자식</p>
       </SpaceBackground>,
     );
 
-    const root = container.querySelector('[data-slot="space-background"]');
+    expect(screen.getByText('자식')).toBeInTheDocument();
+    const root = container.querySelector<HTMLElement>('[data-slot="space-background"]');
     expect(root).toHaveAttribute('data-variant', 'default');
-    expect(root?.getAttribute('style')).toContain('background-image');
-    expect(container.querySelector('img')).not.toBeInTheDocument();
+    expect(root).toHaveClass('flex', 'items-center', 'justify-center');
+    expect(root?.style.backgroundImage).toContain('linear-gradient');
+
+    const images = container.querySelectorAll('img');
+    expect(images).toHaveLength(1);
+    expect(images[0]).toHaveAttribute('alt', '');
   });
 });
