@@ -25,7 +25,7 @@ export function useAbandonInterview() {
       {
         onSettled: () => {
           reset();
-          navigate({ to: '/main' });
+          navigate({ to: '/interview' });
         },
       },
     );
