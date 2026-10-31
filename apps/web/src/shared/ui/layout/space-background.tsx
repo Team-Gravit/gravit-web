@@ -9,15 +9,17 @@ import decorationFallback from './assets/space-decoration.webp?w=1920&format=web
 import starfieldAvif from './assets/starfield.webp?quality=75&format=avif';
 import starfieldWebp from './assets/starfield.webp';
 
+// 시안 프레임(1440×1017)의 Figma 그라데이션을 프레임 상자 기준 CSS로 옮긴 값이다.
 const SPACE_GRADIENT =
-  'linear-gradient(292.58deg, var(--color-space-start) 3.59%, var(--color-space-end) 95.08%)';
+  'linear-gradient(303.01deg, var(--color-space-start) -0.83%, var(--color-space-end) 97.56%)';
 
-// cover라 세로로 긴 화면에서는 높이에 맞춰 커진다. 158vh = 100vh × 원본 비율(4821/3060).
+// 장식은 시안 프레임(1440×1017) 범위로 잘라 두었다. cover라 세로로 긴 화면에서는 높이에 맞춰
+// 커진다. 142vh = 100vh × 프레임 비율.
 const SPACE_DECORATION = {
   avifSrcSet: decorationAvif,
   webpSrcSet: decorationWebp,
   src: decorationFallback,
-  sizes: 'max(100vw, 158vh)',
+  sizes: 'max(100vw, 142vh)',
 };
 
 export type SpaceBackgroundVariant = 'default' | 'starfield';

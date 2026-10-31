@@ -38,7 +38,7 @@ const meta = {
       avifSrcSet: decorationAvif,
       webpSrcSet: decorationWebp,
       src: decorationFallback,
-      sizes: 'max(100vw, 158vh)',
+      sizes: 'max(100vw, 142vh)',
     },
     className: 'flex min-h-svh items-center justify-center',
     children: <p className="text-title1 text-text-1-w">공용 우주 배경</p>,
