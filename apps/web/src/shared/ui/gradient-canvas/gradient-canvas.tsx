@@ -10,7 +10,7 @@ export interface GradientCanvasDecoration {
   sizes: string;
 }
 
-/** 장식을 상자에 맞추는 방식. `cover`: 비율을 지키며 상자를 꽉 채우고 넘친 쪽을 자른다 */
+/** 장식을 상자에 맞추는 방식. `cover`: 비율을 지키며 상자를 꽉 채우고, 위를 맞춘 채 넘친 쪽을 자른다 */
 export type GradientCanvasFit = 'cover';
 
 export interface GradientCanvasProps extends ComponentProps<'div'> {
@@ -24,7 +24,7 @@ export interface GradientCanvasProps extends ComponentProps<'div'> {
 }
 
 const FIT_CLASS: Record<GradientCanvasFit, string> = {
-  cover: 'inset-0 size-full object-cover',
+  cover: 'inset-0 size-full object-cover object-top',
 };
 
 /**
