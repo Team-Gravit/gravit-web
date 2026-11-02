@@ -114,10 +114,15 @@ describe('LeaguePage', () => {
     renderLeaguePage();
 
     const picture = document.querySelector('picture');
-    const desktopSources = picture?.querySelectorAll('source[media="(min-width: 768px)"]');
-    expect(desktopSources).toHaveLength(2);
+    const wide = '(min-width: 768px)';
+    expect(picture?.querySelector(`source[media="${wide}"][type="image/avif"]`)).not.toBeNull();
+    expect(picture?.querySelector(`source[media="${wide}"][type="image/webp"]`)).not.toBeNull();
+    // 배경 장식은 <img> 하나(좁은 · 넓은 화면이 같은 <picture>를 쓴다).
+    expect(picture?.querySelectorAll('img')).toHaveLength(1);
     expect(picture?.querySelector('img')).toHaveAttribute('alt', '');
-    expect(picture?.parentElement?.querySelectorAll(':scope > div')).toHaveLength(1);
+    // 고정 배경 상자 = 캔버스 + 덮개 하나
+    const background = picture?.closest('[data-slot="gradient-canvas"]')?.parentElement;
+    expect(background?.children).toHaveLength(2);
   });
 
   it('시즌 팝업을 닫으면 다시 불러와도 뜨지 않는다', async () => {

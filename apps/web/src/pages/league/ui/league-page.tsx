@@ -1,6 +1,7 @@
-import { type CSSProperties, type ReactNode, useState } from 'react';
+import { type ReactNode, useState } from 'react';
 
 import { useRefetchActiveQueries } from '@/shared/api';
+import { GradientCanvas, type GradientCanvasArt } from '@/shared/ui/gradient-canvas';
 import { PullToRefresh } from '@/shared/ui/pull-to-refresh';
 import { useLeagueHome, useMyLeagueProfile } from '@/entities/league';
 import { LeagueArena } from '@/widgets/league-arena';
@@ -8,19 +9,39 @@ import { LeagueSeasonModal } from '@/widgets/league-season-modal';
 
 import leagueBgDesktopAvif from './assets/league-bg-desktop.png?w=1280;1920&format=avif&quality=75&as=srcset';
 import leagueBgDesktopWebp from './assets/league-bg-desktop.png?w=1280;1920&format=webp&as=srcset';
-import leagueBgMobile from './assets/league-bg-mobile.png?format=webp';
+import leagueBgDesktopFallback from './assets/league-bg-desktop.png?w=1920&format=webp';
+import leagueBgMobile from './assets/league-bg-mobile.png?w=720&format=webp';
 
 /*
   시안 그라데이션(LG-01)을 상자 기준 CSS로 옮긴 값이다.
-  - 좁은 화면: 360×740 프레임 전체. 장식이 투명이라 이 값이 그대로 보인다
+  - 좁은 화면: 배경 프레임 360×692. 장식이 투명이라 이 값이 그대로 보인다
   - 넓은 화면: 1920×2582 배경 중 위쪽 1080. 장식 이미지에 같은 그라데이션이 구워져 있어 로딩 전 바탕으로만 보인다
 */
-const BACKGROUND_STYLE = {
-  '--league-gradient':
-    'linear-gradient(281.43deg, var(--color-space-start) 3.59%, var(--color-space-end) 95.08%)',
-  '--league-gradient-wide':
+const LEAGUE_BACKGROUND: GradientCanvasArt = {
+  gradient:
+    'linear-gradient(282.21deg, var(--color-space-start) 3.59%, var(--color-space-end) 95.08%)',
+  decoration: { src: leagueBgMobile },
+};
+
+const LEAGUE_BACKGROUND_WIDE: GradientCanvasArt = {
+  gradient:
     'linear-gradient(287.18deg, var(--color-space-start) -16.27%, var(--color-space-end) 94.06%)',
-} as CSSProperties;
+  decoration: {
+    avifSrcSet: leagueBgDesktopAvif,
+    webpSrcSet: leagueBgDesktopWebp,
+    src: leagueBgDesktopFallback,
+    sizes: '100vw',
+  },
+};
+
+/*
+  좁은 화면: 그라데이션과 장식을 360:692 상자에 함께 넣고 화면을 덮게 키운다(위쪽 기준). 따로 늘리면 화면 비율에
+  따라 둘이 어긋난다. 넓은 화면: 장식에 그라데이션이 구워져 있어 화면을 그대로 채운다.
+*/
+const LEAGUE_BACKGROUND_FIT_CLASS = [
+  'inset-auto top-0 left-1/2 aspect-360/692 w-[max(100cqw,calc(100cqh*360/692))] -translate-x-1/2',
+  'md:inset-0 md:aspect-auto md:w-auto md:translate-x-0',
+].join(' ');
 
 /**
  * 리그 화면. 배경을 깔고, 당겨서 새로고침으로 감싼 내용을 배치한다.
@@ -82,26 +103,14 @@ function LeagueContent() {
 
 function LeagueBackground() {
   return (
-    <div
-      aria-hidden
-      className="fixed inset-0 -z-10 bg-(image:--league-gradient) md:bg-(image:--league-gradient-wide)"
-      style={BACKGROUND_STYLE}
-    >
-      <picture>
-        <source
-          media="(min-width: 768px)"
-          type="image/avif"
-          srcSet={leagueBgDesktopAvif}
-          sizes="100vw"
-        />
-        <source
-          media="(min-width: 768px)"
-          type="image/webp"
-          srcSet={leagueBgDesktopWebp}
-          sizes="100vw"
-        />
-        <img src={leagueBgMobile} alt="" className="absolute inset-0 h-full w-full object-cover" />
-      </picture>
+    <div aria-hidden className="fixed inset-0 -z-10">
+      <GradientCanvas
+        {...LEAGUE_BACKGROUND}
+        wide={LEAGUE_BACKGROUND_WIDE}
+        artworkClassName={LEAGUE_BACKGROUND_FIT_CLASS}
+        // 그림 상자 크기를 화면(캔버스) 크기 기준으로 계산한다.
+        className="absolute inset-0 [container-type:size]"
+      />
       {/* 덮개는 넓은 화면 시안에만 있다(순수 검정 40%). */}
       <div aria-hidden className="absolute inset-0 hidden bg-(--primitive-gray-1100)/40 md:block" />
     </div>
