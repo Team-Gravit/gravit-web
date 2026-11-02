@@ -65,8 +65,11 @@ export function ProfileCard({ data, isLoading = false }: ProfileCardProps) {
         decorationPriority="high"
         className="absolute inset-0"
       />
-      {/* 모바일: 균일한 어둠 오버레이 / 데스크톱: 우측으로 짙어지는 그라데이션 */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 bg-black/40 md:hidden" />
+      {/* 모바일: 순수 검정 40% 덮개(`black` 토큰은 #222124라 쓰지 않는다) / 데스크톱: 우측으로 짙어지는 그라데이션 */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-(--primitive-gray-1100)/40 md:hidden"
+      />
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 hidden md:block md:bg-linear-to-r md:from-[#1d0027]/0 md:from-77% md:to-[#1d0027]/60"

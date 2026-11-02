@@ -14,8 +14,8 @@ import { ProfileCard } from './profile-card';
   배경 폭 계산에 쓰는 196px은 ProfileCard의 모바일 최소 높이와 맞춘 값이다.
 */
 const PULL_TO_REFRESH_BACKGROUND = [
-  // 카드 덮개(`bg-black/40`)와 같은 색. `black` 토큰은 순수 검정이 아니다.
-  'linear-gradient(color-mix(in srgb, var(--color-black) 40%, transparent) 0 0)',
+  // 카드 덮개와 같은 순수 검정 40%.
+  'linear-gradient(color-mix(in srgb, var(--primitive-gray-1100) 40%, transparent) 0 0)',
   'linear-gradient(90deg, var(--color-space-end) 2.88%, var(--color-space-start) 133.16%) center top / max(100%, calc((196px + var(--safe-area-top)) * 1920 / 274)) 100% no-repeat var(--color-space-end)',
 ].join(', ');
 
