@@ -1,11 +1,16 @@
 import { Link } from '@tanstack/react-router';
 
 import { cn } from '@/shared/lib/cn';
+import { GradientCanvas } from '@/shared/ui/gradient-canvas';
 import { Skeleton } from '@/shared/ui/skeleton';
 
 import { formatUnitNumber } from '../model/unit-progress';
+import {
+  UNIT_CARD_BACKGROUND,
+  UNIT_CARD_BACKGROUND_FIT_CLASS,
+  UNIT_CARD_BACKGROUND_CONTAINER_CLASS,
+} from './card-background';
 import { getPlanetImage } from './planets';
-import unitCardBackground from './assets/unit-card-background.webp';
 
 export interface UnitCardProps {
   title: string;
@@ -18,7 +23,7 @@ export interface UnitCardProps {
 }
 
 const CARD_SHELL_CLASS =
-  'relative flex min-w-0 flex-col overflow-hidden rounded-8 bg-cover bg-center p-3 md:h-58 md:p-5';
+  'relative flex min-w-0 flex-col overflow-hidden rounded-8 p-3 md:h-58 md:p-5';
 
 export function UnitCard({
   title,
@@ -36,13 +41,19 @@ export function UnitCard({
       params={{ unitId: String(unitId) }}
       aria-label={`${title} 학습하러 가기`}
       data-slot="unit-card"
-      style={{ backgroundImage: `url(${unitCardBackground})` }}
       className={cn(
         CARD_SHELL_CLASS,
         'h-39 text-white outline-none focus-visible:ring-3 focus-visible:ring-purple-200',
         className,
       )}
     >
+      <GradientCanvas
+        {...UNIT_CARD_BACKGROUND}
+        artworkClassName={UNIT_CARD_BACKGROUND_FIT_CLASS}
+        // 카드가 모두 같은 장식 파일을 써서 요청은 한 번뿐이다. 첫 화면 카드만 우선순위를 올린다.
+        decorationPriority={planetLoading === 'eager' ? 'high' : 'auto'}
+        className={UNIT_CARD_BACKGROUND_CONTAINER_CLASS}
+      />
       <span className="relative z-10 flex flex-col gap-1">
         {eyebrow ? <span className="text-label2 text-bg-4">{eyebrow}</span> : null}
         <span className="line-clamp-3 break-keep text-headline1 md:line-clamp-2 md:text-heading1">

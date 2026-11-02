@@ -2,12 +2,13 @@ import { Link } from '@tanstack/react-router';
 import { cva, type VariantProps } from 'class-variance-authority';
 
 import { cn } from '@/shared/lib/cn';
+import { GradientCanvas } from '@/shared/ui/gradient-canvas';
 import { Icon, InfoIcon } from '@/shared/ui/icon';
 import { ProgressBar } from '@/shared/ui/progress-bar';
 import { Skeleton } from '@/shared/ui/skeleton';
 
+import { CHAPTER_CARD_BACKGROUND, CHAPTER_CARD_BACKGROUND_FIT_CLASS } from './card-background';
 import { getPlanetImage } from './planets';
-import cardBackground from './assets/unit-card-background.webp';
 
 const SIZE_STYLE = {
   lg: {
@@ -28,7 +29,7 @@ const SIZE_STYLE = {
 
 const chapterCardVariants = cva(
   [
-    'relative flex h-full w-full flex-col overflow-hidden bg-cover bg-center',
+    'relative flex h-full w-full flex-col overflow-hidden',
     // 대응하는 그림자 토큰이 없어 Figma 값을 직접 쓴다. 토큰이 확정되면 교체한다.
     'shadow-[-4px_4px_4px_0_rgba(0,0,0,0.1)]',
   ],
@@ -79,10 +80,14 @@ export function ChapterCard({
       data-size={cardSize}
       className={cn('group relative aspect-square min-w-0', className)}
     >
-      <div
-        className={chapterCardVariants({ size: cardSize })}
-        style={{ backgroundImage: `url(${cardBackground})` }}
-      >
+      <div className={chapterCardVariants({ size: cardSize })}>
+        <GradientCanvas
+          {...CHAPTER_CARD_BACKGROUND}
+          artworkClassName={CHAPTER_CARD_BACKGROUND_FIT_CLASS}
+          // 카드가 모두 같은 장식 파일을 써서 요청은 한 번뿐이다. 첫 화면 카드만 우선순위를 올린다.
+          decorationPriority={planetLoading === 'eager' ? 'high' : 'auto'}
+          className="absolute inset-0"
+        />
         {planet ? (
           <img
             src={planet}

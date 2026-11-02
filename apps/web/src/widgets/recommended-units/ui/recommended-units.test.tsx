@@ -89,7 +89,10 @@ describe('RecommendedUnitCard', () => {
     await renderUnits();
     await screen.findByRole('link', { name: '챕터 4 학습하러 가기' });
 
-    const planets = Array.from(document.querySelectorAll('[data-slot="unit-card"] img'));
+    // 카드 배경 장식은 <picture> 안에 있어 행성과 구분한다.
+    const planets = Array.from(document.querySelectorAll('[data-slot="unit-card"] img')).filter(
+      (img) => !img.closest('picture'),
+    );
     expect(planets.map((planet) => planet.getAttribute('loading'))).toEqual([
       null,
       null,
