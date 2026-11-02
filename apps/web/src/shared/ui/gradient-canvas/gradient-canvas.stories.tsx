@@ -18,12 +18,6 @@ const meta = {
       control: 'text',
       description: 'CSS 그라데이션. 색은 `--color-space-*` 토큰을 씁니다.',
     },
-    fit: {
-      control: 'inline-radio',
-      options: ['cover'],
-      description: '장식을 상자에 맞추는 방식',
-      table: { defaultValue: { summary: 'cover' } },
-    },
     decorationPriority: {
       control: 'inline-radio',
       options: ['auto', 'high'],

@@ -1,6 +1,6 @@
 export {
   GradientCanvas,
+  type GradientCanvasArt,
   type GradientCanvasDecoration,
-  type GradientCanvasFit,
   type GradientCanvasProps,
 } from './gradient-canvas';

@@ -33,7 +33,7 @@ describe('SpaceBackground', () => {
     const root = container.querySelector<HTMLElement>('[data-slot="space-background"]');
     expect(root).toHaveAttribute('data-variant', 'default');
     expect(root).toHaveClass('flex', 'items-center', 'justify-center');
-    expect(root?.style.backgroundImage).toContain('linear-gradient');
+    expect(root?.style.getPropertyValue('--canvas-gradient')).toContain('linear-gradient');
 
     const images = container.querySelectorAll('img');
     expect(images).toHaveLength(1);
