@@ -1,13 +1,23 @@
 import { Outlet } from '@tanstack/react-router';
 
 import { useRefetchActiveQueries } from '@/shared/api';
-import { SPACE_TOP_COLOR } from '@/shared/config';
 import { useDelayedFlag } from '@/shared/lib/use-delayed-flag';
 import { PullToRefresh } from '@/shared/ui/pull-to-refresh';
 import { useMyPageBanner } from '@/entities/user';
 
 import { MyPageTabs } from './my-page-tabs';
 import { ProfileCard } from './profile-card';
+
+/*
+  당겨서 새로고침할 때 프로필 카드 위로 드러나는 배경.
+  1920×274 배너 그림 상자의 윗변 색을 가로로 펼치고 모바일 카드의 어둠 덮개를 얹는다.
+  배경 폭 계산에 쓰는 196px은 ProfileCard의 모바일 최소 높이와 맞춘 값이다.
+*/
+const PULL_TO_REFRESH_BACKGROUND = [
+  // 카드 덮개(`bg-black/40`)와 같은 색. `black` 토큰은 순수 검정이 아니다.
+  'linear-gradient(color-mix(in srgb, var(--color-black) 40%, transparent) 0 0)',
+  'linear-gradient(90deg, var(--color-space-end) 2.88%, var(--color-space-start) 133.16%) center top / max(100%, calc((196px + var(--safe-area-top)) * 1920 / 274)) 100% no-repeat var(--color-space-end)',
+].join(', ');
 
 /**
  * 마이페이지 공통 레이아웃: 프로필 카드 + 섹션 탭 + 하위 탭 콘텐츠(`Outlet`).
@@ -20,8 +30,7 @@ export function MyPageLayout() {
   const refetchActiveQueries = useRefetchActiveQueries();
 
   return (
-    // 당겨서 새로고침할 때 프로필 카드 위로 드러나는 바탕을 상단 색과 맞춘다.
-    <div className="flex min-h-full flex-col" style={{ backgroundColor: SPACE_TOP_COLOR }}>
+    <div className="flex min-h-full flex-col" style={{ background: PULL_TO_REFRESH_BACKGROUND }}>
       <PullToRefresh onRefresh={refetchActiveQueries} className="flex-1" isUnderStatusBar>
         <main className="flex-1 bg-bg-2 md:px-8 md:py-10">
           <div className="mx-auto flex h-full max-w-[1200px] flex-col">
