@@ -12,15 +12,29 @@ import narrowDecorationSrc from './assets/hero-narrow-decoration.png?w=950&forma
 const NARROW_GRADIENT =
   'linear-gradient(303.01deg, var(--color-space-start) 3.59%, var(--color-space-end) 95.08%)';
 
+// 캔버스(상태 표시줄 포함 히어로 전체)를 크기 기준으로 삼아 그림 상자를 계산한다.
+const CANVAS_CLASS = 'absolute inset-0 [container-type:size]';
+
 /*
-  좁은 화면: 그림 상자를 오른쪽 아래에 실제 크기로 붙인다. 360px은 시안 프레임과 같고, 그보다 넓으면
-  여백에 그려 둔 장식이 드러나며, 475px을 넘으면 폭에 맞춰 키운다.
+  좁은 화면: 그림 상자(475:304)를 오른쪽에 붙이고, 높이를 「시안 304px · 폭에 맞춘 높이 · 히어로 높이」 중 큰 값으로
+  잡아 상태 표시줄까지 늘어난 히어로도 빈틈없이 덮는다.
+  세로는 시안이 보여 주는 영역(그림 높이 38 ~ 304px)의 가운데(56.25%)를 히어로 가운데에 맞추되, 위아래가
+  비지 않게 0 ~ (히어로 높이 − 그림 높이) 사이로 막는다. 상태 표시줄이 없는 475px 이하에서는 시안처럼 위를 38px 자른다.
   넓은 화면: 오른쪽(지구 쪽)을 기준으로 붙여 1920px보다 좁으면 왼쪽이 잘리고 넓으면 키운다.
 */
 const ARTWORK_CLASS = cn(
-  'top-auto left-auto aspect-475/304 w-[max(100%,475px)]',
-  'md:top-1/2 md:bottom-auto md:aspect-1920/274 md:w-[max(100%,1920px)] md:-translate-y-1/2',
+  '[--hero-art-h:max(64cqw,304px,100cqh)] left-auto h-(--hero-art-h) aspect-475/304',
+  'top-[clamp(calc(100cqh-var(--hero-art-h)),calc(50cqh-0.5625*var(--hero-art-h)),0px)] bottom-auto',
+  'md:top-1/2 md:h-auto md:aspect-1920/274 md:w-[max(100%,1920px)] md:-translate-y-1/2',
 );
+
+/**
+ * 당겨서 새로고침할 때 히어로 위로 드러나는 바탕. 좁은 화면 그림 상자(475px 이하) 맨 위쪽 줄 색을 위로 늘인
+ * 가로 그라데이션이다. 정지점은 그림 상자 그라데이션(303.01deg)의 38px 줄을 폭 기준으로 옮긴 값이고,
+ * 그림 0 ~ 38px 줄과의 차이는 1/255 안이라 히어로 윗변이 어느 줄이어도 이어진다.
+ */
+export const HERO_TOP_ROW_BACKGROUND =
+  'linear-gradient(90deg, var(--color-space-end) 6.97%, var(--color-space-start) 136.5%) right top / max(100%, 475px) 100% no-repeat var(--color-space-end)';
 
 export interface HeroGreetingProps {
   className?: string;
@@ -35,7 +49,7 @@ export function HeroGreeting({ className, children }: HeroGreetingProps) {
   return (
     <section
       data-slot="hero-greeting"
-      // box-content: 히어로 높이는 그대로 두고 이미지를 상태 표시줄 뒤까지 늘린다.
+      // box-content: 히어로 높이는 그대로 두고 그림을 상태 표시줄 뒤까지 늘린다.
       className={cn(
         'relative box-content h-66.5 w-full overflow-hidden pt-(--safe-area-top) md:h-68.5',
         className,
@@ -48,7 +62,7 @@ export function HeroGreeting({ className, children }: HeroGreetingProps) {
         artworkClassName={ARTWORK_CLASS}
         // 첫 화면 상단의 가장 큰 그림이다.
         decorationPriority="high"
-        className="absolute inset-0"
+        className={CANVAS_CLASS}
       />
       {/* 좁은 화면에서 히어로 하단을 페이지 배경과 자연스럽게 잇는다. */}
       <div
