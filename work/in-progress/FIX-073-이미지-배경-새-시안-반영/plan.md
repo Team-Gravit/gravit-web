@@ -71,17 +71,26 @@ mode: 'design-fix'
 
 ### Issue 2 (#358) — 메인 히어로 · 마이 프로필 배너
 
-- [ ] `[widgets]` `hero-greeting`을 캔버스로. 모바일 475×304 `bottom-right` + `natural-then-cover`, 데스크톱 1920×274 `right` + `cover`. 장식 2배 에셋(`local-docs/.../hero-gradient/`)
-- [ ] 장식에 `fetchPriority="high"`(LCP 후보)
-- [ ] `[pages]` 마이 `profile-card`를 같은 데스크톱 배너 파일 · 캔버스(가운데 기준)로. `profile-banner.webp` 삭제
-- [ ] `[pages]` 메인 · 마이 모바일 당겨서 새로고침 바탕을 배너 맨 윗줄 가로 그라데이션으로(`shared/config` 상수 교체)
-- [ ] AC-1 기본 인사말 테스트 · AC-2 360 · 412 · 475px Figma 비교 · AC-3 600px 빈 픽셀 0 · AC-4 `/main` LCP(로그인 필요)
+- [x] `[widgets]` `hero-greeting`을 캔버스로. 모바일 475×304 `bottom-right` + `natural-then-cover`, 데스크톱 1920×274 `right` + `cover`. 장식 2배 에셋(`local-docs/.../hero-gradient/`). 캔버스에 `wide`(768px 이상 그림) · `artworkClassName`(그림 상자 위치 · 비율) prop을 더하고 `fit`은 뺐다. 데스크톱 배너는 `shared/ui/layout`의 `SPACE_BANNER_ART` 하나를 히어로 · 마이가 같이 쓴다
+- [x] 장식에 `fetchPriority="high"`(LCP 후보)
+- [x] `[pages]` 마이 `profile-card`를 같은 데스크톱 배너 파일 · 캔버스(가운데 기준)로. `profile-banner.webp` 삭제
+- [x] `[pages]` 메인 · 마이 모바일 당겨서 새로고침 바탕을 배너 맨 윗줄 가로 그라데이션으로. `SPACE_TOP_COLOR`는 라우트의 `browserTopColor`가 계속 쓰므로 남겼다. 이음새(412px, 80px 당김): 메인 그라데이션 최대 6/255(장식이 맨 윗줄에 걸친 열만 13~43), 마이 최대 1/255
+- [x] 마이 모바일 카드 덮개를 시안(`M/프로필`, `#00000066`)대로 순수 검정 40%(`--primitive-gray-1100`)로 바꿨다. 기존 `bg-black/40`은 `black` 토큰이 `#222124`라 시안보다 R · G · B가 13~14 밝았다(#225부터 있던 차이). 당겨서 새로고침 바탕의 덮개 층도 같은 값으로 맞췄다. 수정 후 빈 곳 9군데 중 8군데가 시안과 0~2 차이(2026-11-02 사용자 판정, PR #376)
+- [x] AC-1 기본 인사말 테스트 · AC-1b 배너 `<img>` 1개 `alt=""`(`profile-card.test.tsx`)
+- [x] AC-2 Figma `15868:62746`(360×266 @2x)과 같은 그림 지점끼리 비교: 360 · 412 · 475px 모두 8/255 넘는 픽셀 약 4.5%, 최대 88. 차이는 경계선에만 있고, Figma 그림을 webp로 압축하기만 해도 5.8%(q80) / 4.1%(q90)가 나와 0.1% 기준은 손실 webp로 맞출 수 없다. 위치는 장치 픽셀 이동 탐색에서 지금이 최적이다. 시안 360 프레임은 그림 상자가 오른쪽으로 11px 넘친다(x −104, 폭 474.89). 구현은 AC대로 오른쪽 끝에 맞췄다. 측정 오차로 사용자 채택(2026-11-02)
+- [x] AC-3 600 · 700 · 767px 페이지 배경색 픽셀 0개(장식을 숨겨도 0개) — 통과
+- [x] AC-4 `/main` 모바일 LCP(412×915 · DPR 2.625 · 9 Mbps/RTT 60ms · CPU 4배, MSW 목업, 번갈아 5회): 기준 6,396 → 변경 6,544ms, 흔들림 140ms로 기준을 8ms 넘었다. 회차별 5.9 ~ 7.5초로 흔들리고 변경 10회 평균(6,421)이 기준 평균(6,454)보다 낮아 측정 오차로 사용자 채택(2026-11-02). LCP 요소는 전후 모두 히어로 장식 `<img>`(면적 95,760 → 109,592). 측정 결과는 PR #376 댓글
 
 ### Issue 3 (#359) — 학습 카드
 
-- [ ] `[entities]` `ChapterCard` · `UnitCard` 배경을 캔버스로(355:377, `cover`). 장식 710×754 webp 54 KB
-- [ ] 장식 이미지 로딩: REF-054 #354의 `planetLoading`처럼 첫 화면 카드(챕터 8 · 추천 2)만 즉시, 나머지 lazy로 맞출지 착수 때 정한다
-- [ ] AC-1 카드 링크 · 덮개 · 행성 · AC-2 두 카드 비율 Figma 비교 · AC-3 `/learning` LCP(로그인 필요)
+- [x] `[entities]` `ChapterCard` · `UnitCard` 배경을 캔버스로. 두 카드가 그림을 나눠 쓴다(2026-11-02 사용자 확인, 메인 모바일 유닛 카드 `15868:62848`이 `card-background` 전체를 FILL로 쓴다)
+  - 챕터 카드: `crop`(355×377). 그라데이션 `-23.34% → 103.83%`, 장식 710×754 → webp 49.8 KB. 정사각형 카드라 폭에 맞추고 세로 가운데(위아래 11px 잘림)
+  - 유닛 카드: `card-background` 전체(589×377). 그라데이션은 메인 히어로 모바일과 같은 `3.59% → 95.08%`(crop 정지점이 다시 나오는지 계산으로 확인). 장식은 Figma 복제본에서 그라데이션만 숨겨 2배(1178×754)로 내보내고 복제본은 지웠다 → webp(w=800) 51.2 KB. CSS 그라데이션 위에 합성하면 원본과 최대 3/255 · 평균 0.5. 카드가 그림보다 좁기도(모바일 184×156) 넓기도(데스크톱 368×232) 해서 캔버스를 크기 컨테이너로 두고 그림 상자 폭을 `max(100cqw, 100cqh × 589/377)`로 잡는다
+  - 정의는 `entities/learning/ui/card-background.ts`
+- [x] 장식 이미지 로딩: 모든 카드가 같은 장식 파일을 써서 요청은 한 번이다. lazy는 걸지 않고 첫 화면 카드(`planetLoading="eager"`)만 `fetchPriority="high"`
+- [x] AC-1 `chapter-card.test.tsx` — 카드 링크 `/learning/chapters/1` · `alt=""` 이미지 2개(행성 · 장식) · 첫 화면 카드만 `fetchpriority="high"`. 기존 행성 loading 테스트 2개(`chapter-grid` · `recommended-units`)는 `<picture>` 안 장식을 빼고 세도록 고쳤다
+- [x] AC-2 Figma `card-background` @2x를 카드마다 같은 cover 규칙(가운데)으로 잘라 기준을 만들고 행성 · 덮개 · 글자 · 둥근 모서리를 빼고 비교: 챕터 412 2.31% · 1440 2.49%, 유닛 412 3.67% · 1440 4.56%(8/255 넘는 픽셀). 차이는 경계선에만 있고 윤곽이 두 줄로 갈라지지 않아 구도는 맞다. 히어로 AC-2와 같은 이유(손실 webp · 크기 변환)로 채택 대상
+- [x] AC-3 `/learning` 모바일 LCP(412×915 · DPR 2.625 · 9 Mbps/RTT 60ms · CPU 4배, 번갈아 5회): 기준 7,096 → 변경 7,016ms, 흔들림 76ms — 통과. LCP 요소는 CSS 배경 `DIV` → 챕터 장식 `<img>`(면적 33,856 같음). 챕터 목록 응답이 MSW에 없어 측정 빌드만 `VITE_API_BASE_URL`을 로컬 고정 응답 서버로 바꿨다(기준 · 변경 같은 조건)
 
 ### Issue 4 (GitHub 미등록) — 리그 · 레슨 결과 배경
 
