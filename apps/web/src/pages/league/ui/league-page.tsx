@@ -1,4 +1,4 @@
-import { type ReactNode, useState } from 'react';
+import { type CSSProperties, type ReactNode, useState } from 'react';
 
 import { useRefetchActiveQueries } from '@/shared/api';
 import { PullToRefresh } from '@/shared/ui/pull-to-refresh';
@@ -10,8 +10,17 @@ import leagueBgDesktopAvif from './assets/league-bg-desktop.png?w=1280;1920&form
 import leagueBgDesktopWebp from './assets/league-bg-desktop.png?w=1280;1920&format=webp&as=srcset';
 import leagueBgMobile from './assets/league-bg-mobile.png?format=webp';
 
-const BACKGROUND_GRADIENT =
-  'linear-gradient(197deg, var(--color-space-start) 3.6%, var(--color-space-end) 95%)';
+/*
+  시안 그라데이션(LG-01)을 상자 기준 CSS로 옮긴 값이다.
+  - 좁은 화면: 360×740 프레임 전체. 장식이 투명이라 이 값이 그대로 보인다
+  - 넓은 화면: 1920×2582 배경 중 위쪽 1080. 장식 이미지에 같은 그라데이션이 구워져 있어 로딩 전 바탕으로만 보인다
+*/
+const BACKGROUND_STYLE = {
+  '--league-gradient':
+    'linear-gradient(281.43deg, var(--color-space-start) 3.59%, var(--color-space-end) 95.08%)',
+  '--league-gradient-wide':
+    'linear-gradient(287.18deg, var(--color-space-start) -16.27%, var(--color-space-end) 94.06%)',
+} as CSSProperties;
 
 /**
  * 리그 화면. 배경을 깔고, 당겨서 새로고침으로 감싼 내용을 배치한다.
@@ -75,8 +84,8 @@ function LeagueBackground() {
   return (
     <div
       aria-hidden
-      className="fixed inset-0 -z-10"
-      style={{ backgroundImage: BACKGROUND_GRADIENT }}
+      className="fixed inset-0 -z-10 bg-(image:--league-gradient) md:bg-(image:--league-gradient-wide)"
+      style={BACKGROUND_STYLE}
     >
       <picture>
         <source
@@ -93,7 +102,8 @@ function LeagueBackground() {
         />
         <img src={leagueBgMobile} alt="" className="absolute inset-0 h-full w-full object-cover" />
       </picture>
-      <div aria-hidden className="absolute inset-0 bg-[#000000]/45" />
+      {/* 덮개는 넓은 화면 시안에만 있다(순수 검정 40%). */}
+      <div aria-hidden className="absolute inset-0 hidden bg-(--primitive-gray-1100)/40 md:block" />
     </div>
   );
 }
