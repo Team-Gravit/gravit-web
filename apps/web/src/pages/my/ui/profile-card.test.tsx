@@ -47,6 +47,15 @@ describe('ProfileCard', () => {
     expect(screen.getByText('7일 연속 학습중')).toBeInTheDocument();
   });
 
+  it('배너 장식은 alt="" 이미지 하나다', async () => {
+    await renderWithRouter(<ProfileCard data={BANNER} />);
+
+    const card = screen.getByRole('region', { name: '사용자 프로필 카드' });
+    const bannerImages = card.querySelectorAll('picture img');
+    expect(bannerImages).toHaveLength(1);
+    expect(bannerImages[0]).toHaveAttribute('alt', '');
+  });
+
   it('모바일 알림 버튼은 /notifications 로 가는 링크다 (FEAT-047 AC-4)', async () => {
     await renderWithRouter(<ProfileCard data={BANNER} />);
 

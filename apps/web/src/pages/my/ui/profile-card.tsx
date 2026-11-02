@@ -4,12 +4,15 @@ import { Link, useNavigate } from '@tanstack/react-router';
 import { cn } from '@/shared/lib/cn';
 import { useIsWideViewport } from '@/shared/lib/use-is-wide-viewport';
 import { Button } from '@/shared/ui/button';
+import { GradientCanvas } from '@/shared/ui/gradient-canvas';
 import { BellIcon, Icon, SettingsIcon } from '@/shared/ui/icon';
+import { SPACE_BANNER_ART } from '@/shared/ui/layout';
 import { Skeleton } from '@/shared/ui/skeleton';
 import { ProfileAvatar, type MyPageBannerResponse } from '@/entities/user';
 import { EditProfileModal } from '@/features/user-profile-edit';
 
-import bannerImage from './assets/profile-banner.webp';
+// 1920×274 비율의 배너 그림 상자를 카드 가운데에 두고, 카드보다 좁아지지 않게 한다.
+const BANNER_ARTWORK_CLASS = 'left-1/2 right-auto aspect-1920/274 min-w-full -translate-x-1/2';
 
 interface ProfileCardProps {
   data?: MyPageBannerResponse;
@@ -53,16 +56,20 @@ export function ProfileCard({ data, isLoading = false }: ProfileCardProps) {
   return (
     <section
       aria-label="사용자 프로필 카드"
-      style={{
-        backgroundImage: `url(${bannerImage})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
       // box-content: 카드 최소 높이는 그대로 두고 배너를 상태 표시줄 뒤까지 늘린다.
       className="relative box-content w-full min-h-[196px] overflow-hidden pt-(--safe-area-top) md:min-h-[204px] md:rounded-12"
     >
-      {/* 모바일: 균일한 어둠 오버레이 / 데스크톱: 우측으로 짙어지는 그라데이션 */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 bg-black/40 md:hidden" />
+      <GradientCanvas
+        {...SPACE_BANNER_ART}
+        artworkClassName={BANNER_ARTWORK_CLASS}
+        decorationPriority="high"
+        className="absolute inset-0"
+      />
+      {/* 모바일: 순수 검정 40% 덮개(`black` 토큰은 #222124라 쓰지 않는다) / 데스크톱: 우측으로 짙어지는 그라데이션 */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-(--primitive-gray-1100)/40 md:hidden"
+      />
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 hidden md:block md:bg-linear-to-r md:from-[#1d0027]/0 md:from-77% md:to-[#1d0027]/60"
