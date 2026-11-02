@@ -1,11 +1,26 @@
 import type { ReactNode } from 'react';
 
 import { cn } from '@/shared/lib/cn';
+import { GradientCanvas } from '@/shared/ui/gradient-canvas';
+import { SPACE_BANNER_ART } from '@/shared/ui/layout';
 import { Skeleton } from '@/shared/ui/skeleton';
 import { useUserProfile } from '@/entities/user';
 
-import heroNarrow from './assets/hero-narrow.webp';
-import heroWide from './assets/hero-wide.webp';
+import narrowDecorationSrc from './assets/hero-narrow-decoration.png?w=950&format=webp';
+
+// 좁은 화면 시안의 그림 영역은 475×304. 그라데이션은 내부 그림 상자 기준 값이다.
+const NARROW_GRADIENT =
+  'linear-gradient(303.01deg, var(--color-space-start) 3.59%, var(--color-space-end) 95.08%)';
+
+/*
+  좁은 화면: 그림 상자를 오른쪽 아래에 실제 크기로 붙인다. 360px은 시안 프레임과 같고, 그보다 넓으면
+  여백에 그려 둔 장식이 드러나며, 475px을 넘으면 폭에 맞춰 키운다.
+  넓은 화면: 오른쪽(지구 쪽)을 기준으로 붙여 1920px보다 좁으면 왼쪽이 잘리고 넓으면 키운다.
+*/
+const ARTWORK_CLASS = cn(
+  'top-auto left-auto aspect-475/304 w-[max(100%,475px)]',
+  'md:top-1/2 md:bottom-auto md:aspect-1920/274 md:w-[max(100%,1920px)] md:-translate-y-1/2',
+);
 
 export interface HeroGreetingProps {
   className?: string;
@@ -26,10 +41,15 @@ export function HeroGreeting({ className, children }: HeroGreetingProps) {
         className,
       )}
     >
-      <picture className="absolute inset-0">
-        <source media="(min-width: 768px)" srcSet={heroWide} />
-        <img src={heroNarrow} alt="" className="size-full object-cover object-right" />
-      </picture>
+      <GradientCanvas
+        gradient={NARROW_GRADIENT}
+        decoration={{ src: narrowDecorationSrc }}
+        wide={SPACE_BANNER_ART}
+        artworkClassName={ARTWORK_CLASS}
+        // 첫 화면 상단의 가장 큰 그림이다.
+        decorationPriority="high"
+        className="absolute inset-0"
+      />
       {/* 좁은 화면에서 히어로 하단을 페이지 배경과 자연스럽게 잇는다. */}
       <div
         aria-hidden
