@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 
 import {
-  parseTranscriptText,
   useInterviewQuestions,
   useInterviewSessionStore,
   useInterviewTranscriptions,
@@ -75,7 +74,7 @@ function useHydrateAnswers(
     transcriptions.forEach((transcription) => {
       const isHydrated = hydratedOrders.includes(transcription.displayOrder);
       if (transcription.status === 'COMPLETED' && transcription.transcript && !isHydrated) {
-        setAnswerContent(transcription.displayOrder, parseTranscriptText(transcription.transcript));
+        setAnswerContent(transcription.displayOrder, transcription.transcript);
         markHydrated(transcription.displayOrder);
       }
     });
