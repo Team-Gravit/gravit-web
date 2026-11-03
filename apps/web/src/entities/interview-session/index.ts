@@ -23,8 +23,8 @@ export {
   isAbandonedSessionError,
   isSubmittedSessionError,
   getServerErrorMessage,
+  getGradingErrorMessage,
 } from './lib/session-errors';
-export { parseTranscriptText } from './lib/parse-transcript';
 export {
   useInterviewSessionStore,
   useInterviewSessionAutoRecord,
