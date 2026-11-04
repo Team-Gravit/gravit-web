@@ -14,7 +14,10 @@ export function OnboardingSuccessPageNarrow() {
       </div>
 
       <Button asChild size="cta">
-        <Link to="/main">홈으로</Link>
+        {/* 뒤로 가기로 완료 화면에 돌아오지 않게 현재 기록을 대체한다. */}
+        <Link to="/main" replace>
+          홈으로
+        </Link>
       </Button>
     </div>
   );
