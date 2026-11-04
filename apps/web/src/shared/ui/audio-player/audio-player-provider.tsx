@@ -43,6 +43,8 @@ interface AudioPlayerContextValue {
   unlock: () => void;
   play: (src: string) => Promise<void>;
   stop: () => void;
+  pause: () => void;
+  resume: () => void;
   /** 재생 종료(ended) 구독. 해제 함수를 반환한다. */
   onEnded: (handler: () => void) => () => void;
 }
@@ -58,6 +60,7 @@ export function useAudioPlayer() {
 }
 
 export function AudioPlayerProvider({ children }: AudioPlayerProviderProps) {
+  const wasPlayingRef = useRef<boolean>(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -108,8 +111,22 @@ export function AudioPlayerProvider({ children }: AudioPlayerProviderProps) {
     return () => audio.removeEventListener('ended', handler);
   };
 
+  const pause = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    wasPlayingRef.current = !audio.paused && !audio.ended;
+    audio.pause();
+  };
+
+  const resume = () => {
+    const audio = audioRef.current;
+    if (!audio || !wasPlayingRef.current) return;
+
+    audio.play().catch(() => {});
+  };
+
   return (
-    <AudioPlayerContext value={{ isPlaying, unlock, play, stop, onEnded }}>
+    <AudioPlayerContext value={{ isPlaying, unlock, play, stop, onEnded, pause, resume }}>
       {children}
       <audio ref={audioRef} className="hidden" />
     </AudioPlayerContext>

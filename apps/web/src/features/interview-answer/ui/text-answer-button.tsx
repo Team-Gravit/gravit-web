@@ -35,11 +35,13 @@ export function TextAnswerButton() {
   }
 
   const handleSubmitAnswer = () => {
-    setAnswerContent(currentIndex + 1, answer);
+    setAnswerContent(currentIndex + 1, answer.trim());
     goNext();
     setAnswer('');
     setIsWriting(false);
   };
+
+  const isValidTextAnswer = answer.trim().length !== 0 && answer.trim().length <= 1000;
 
   return (
     <div className="flex w-full items-end gap-4 px-5 py-4 md:px-8 md:mt-6 md:items-center md:bg-bg-0">
@@ -47,6 +49,7 @@ export function TextAnswerButton() {
         value={answer}
         onChange={(e) => setAnswer(e.target.value)}
         placeholder="답변을 입력해주세요."
+        maxLength={1000}
         className={cn(
           'flex-1 resize-none overflow-y-auto rounded-8 bg-bg-1 px-3 py-4 outline-none',
           'text-body2-normal text-text-1 placeholder:text-text-4',
@@ -56,7 +59,7 @@ export function TextAnswerButton() {
       />
       <AnswerButton
         onClick={handleSubmitAnswer}
-        disabled={!answer}
+        disabled={!isValidTextAnswer}
         className="size-8 flex-none md:h-[54px] md:w-[230px]"
       >
         <Icon

@@ -64,11 +64,19 @@ type AnswerSlot = (typeof ANSWER_SLOTS)[number];
 export function AvatarStage() {
   const { isPlaying } = useAudioPlayer();
   const isAnswering = useInterviewSessionStore((s) => s.isAnswering);
+  const isPaused = useInterviewSessionStore((s) => s.isPaused);
   const isWide = useIsWideViewport();
 
   const sources = AVATAR_SOURCES[isWide ? 'desktop' : 'mobile'];
-  const phase = getAvatarPhase(isPlaying, isAnswering);
 
+  const livePhase = getAvatarPhase(isPlaying, isAnswering);
+  const [frozenPhase, setFrozenPhase] = useState(livePhase);
+
+  if (!isPaused && frozenPhase !== livePhase) {
+    setFrozenPhase(livePhase);
+  }
+
+  const phase = isPaused ? frozenPhase : livePhase;
   // 이전 렌더의 phase 와 비교해 전환 방향을 감지한다(렌더 중 파생 state).
   // Q → 대기 전환 순간에만 크로스페이드를 주고, 진입(→Q)·답변 등 다른 전환은 즉시.
   const [phases, setPhases] = useState({ prev: phase, last: phase });
@@ -82,6 +90,7 @@ export function AvatarStage() {
   // 번갈아 쓴다. 보이는 front 가 재생되는 동안 숨은 쪽에 다음 리액션을 미리 로드해 두고,
   // ended 때 이미 로드된 쪽으로 즉시 전환한다(리액션끼리 구도가 같아 한 영상처럼 이어진다).
   const slotRefs = useRef<Record<AnswerSlot, HTMLVideoElement | null>>({ 0: null, 1: null });
+  const questionAvatarRef = useRef<HTMLVideoElement | null>(null);
   const [slotReactions, setSlotReactions] = useState<Record<AnswerSlot, AvatarReaction>>(() => ({
     0: 'listen',
     1: pickNextReaction('listen'),
@@ -92,7 +101,7 @@ export function AvatarStage() {
   // src 가 바뀌어 재로드돼도 다시 재생시켜 끊기지 않게 한다.
   useEffect(() => {
     const { 0: first, 1: second } = slotRefs.current;
-    if (phase !== 'answer') {
+    if (isPaused || phase !== 'answer') {
       first?.pause();
       second?.pause();
       return;
@@ -102,7 +111,19 @@ export function AvatarStage() {
     if (video) {
       video.play().catch(() => {});
     }
-  }, [phase, front, isWide]);
+  }, [phase, front, isWide, isPaused]);
+
+  useEffect(() => {
+    const video = questionAvatarRef.current;
+
+    if (!video) return;
+
+    if (isPaused || phase !== 'question') {
+      video.pause();
+    } else {
+      video.play().catch(() => {});
+    }
+  }, [isPaused, phase, sources]);
 
   // 재생이 끝나면 미리 로드해 둔 다음 영상(back)으로 전환하고, 비워진 슬롯에 그 다음을 로드한다.
   const handleEnded = (slot: AnswerSlot) => {
@@ -120,6 +141,7 @@ export function AvatarStage() {
         autoPlay
         loop
         playsInline
+        ref={questionAvatarRef}
         src={sources.questionVideo}
         poster={sources.questionPoster}
         className={cn(AVATAR_LAYER_CLASS, fadeClass)}

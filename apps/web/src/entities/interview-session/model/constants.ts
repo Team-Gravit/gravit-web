@@ -9,3 +9,9 @@ export const INTERVIEW_QUESTION_COUNT = 5;
 
 /** INTERVIEW_4025(세션 취소됨) 안내 문구. 서버 메시지가 없을 때의 fallback. */
 export const ABANDONED_SESSION_MESSAGE = '중단된 면접 세션입니다';
+
+/** GRADING_FAILED(채점 실패) 상태 접근 시 안내 문구. */
+export const GRADING_FAILED_MESSAGE = '채점에 실패했습니다';
+
+/** 이미 종료된 세션(ABANDONED 등)에 접근했을 때 안내 문구. */
+export const SESSION_ENDED_MESSAGE = '이미 종료된 면접 세션입니다';

@@ -7,7 +7,7 @@ import bannerNarrow from './assets/banner-narrow.webp';
 import bannerWide from './assets/banner-wide.webp';
 
 // 세션 문항 수는 #298에서 확정할 예정이다.
-const INTERVIEW_QUESTION_COUNT = 6;
+const INTERVIEW_QUESTION_COUNT = 5;
 
 export interface InterviewBannerProps {
   layout: 'wide' | 'narrow';

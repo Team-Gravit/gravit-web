@@ -24,3 +24,14 @@ export function getServerErrorMessage(error: unknown): string | undefined {
   const message = (error as ApiErrorShape)?.response?.data?.message;
   return typeof message === 'string' ? message : undefined;
 }
+
+const UNEXPECTED_ERROR_MESSAGE = '예기치 못한 오류가 발생했습니다.';
+
+/** 채점 상태 조회 에러의 안내 문구. 4003·4004는 서버 메시지, 그 외는 기본 문구. */
+export function getGradingErrorMessage(error: unknown): string {
+  const code = (error as ApiErrorShape)?.response?.data?.error;
+  if (code === 'INTERVIEW_4003' || code === 'INTERVIEW_4004') {
+    return getServerErrorMessage(error) ?? UNEXPECTED_ERROR_MESSAGE;
+  }
+  return UNEXPECTED_ERROR_MESSAGE;
+}
