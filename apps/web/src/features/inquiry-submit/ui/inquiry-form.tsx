@@ -19,7 +19,13 @@ export function InquiryForm() {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    mutate({ data: values });
+    mutate({
+      data: {
+        type: values.type,
+        title: values.title.trim(),
+        content: values.content.trim(),
+      },
+    });
   };
 
   return (
@@ -42,6 +48,7 @@ export function InquiryForm() {
         placeholder="문의 내용을 입력해주세요."
         value={values.content}
         onChange={(event) => update('content', event.target.value)}
+        maxLength={5000}
       />
       <Button
         type="submit"
