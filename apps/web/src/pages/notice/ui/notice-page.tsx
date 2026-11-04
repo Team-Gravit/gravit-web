@@ -1,3 +1,5 @@
+import { Navigate } from '@tanstack/react-router';
+
 import { useDelayedFlag } from '@/shared/lib/use-delayed-flag';
 import { Breadcrumb } from '@/shared/ui/breadcrumb';
 import { Pagination } from '@/shared/ui/pagination';
@@ -23,6 +25,12 @@ export function NoticePage({ page, onPageChange }: NoticePageProps) {
   const totalPages = data?.totalPages ?? 0;
   // 임계값(기본 300ms)보다 오래 걸릴 때만 스켈레톤을 띄워 빠른 응답 깜빡임을 막는다.
   const showSkeleton = useDelayedFlag(isPending);
+
+  // 총 페이지 수를 넘는 page(예: ?page=99)는 조회 후에만 알 수 있다. 첫 페이지로 보정한다.
+  // totalPages > 0 가드로 로딩 중·공지 0건일 때의 오작동 리다이렉트를 막는다.
+  if (!isPending && totalPages > 0 && page > totalPages) {
+    return <Navigate to="/settings/notice" search={{ page: 1 }} replace />;
+  }
 
   return (
     // 셸 스크롤 영역 높이(min-h-full)를 PageTitleBar + 콘텐츠(flex-1) + Footer 가 나눠 가진다.
