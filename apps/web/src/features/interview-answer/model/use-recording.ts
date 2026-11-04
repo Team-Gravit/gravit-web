@@ -15,6 +15,16 @@ export function useRecording({ onStop, onStart }: UseRecordingProps) {
   const chuncksRef = useRef<Blob[]>([]);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
+  const startAtRef = useRef(0);
+  const pauseAtRef = useRef(0);
+
+  const startTimer = () => {
+    intervalRef.current = setInterval(() => {
+      const elapsed = Date.now() - startAtRef.current;
+      setElapsedMs(elapsed);
+      if (elapsed >= MAX_RECORDING_MS) stopRecording();
+    }, 250);
+  };
   // getUserMedia await 틈의 중복 start(자동녹음 + 버튼 클릭 등)를 막는 동기 가드.
   const isStartingRef = useRef(false);
 
@@ -38,6 +48,10 @@ export function useRecording({ onStop, onStart }: UseRecordingProps) {
         onStop?.(blob); // 수동·자동(최대 시간) 정지 모두 이 경로를 거친다
         resolve(blob);
       };
+
+      // paused 상태로 stop 하면 일부 브라우저(iOS 등)가 데이터를 flush 하지 않는다.
+      // 멈추기 직전이라 타이머 복원은 필요 없으니 recorder 만 깨운다.
+      if (recorder.state === 'paused') recorder.resume();
 
       recorder.stop();
     });
@@ -68,22 +82,35 @@ export function useRecording({ onStop, onStart }: UseRecordingProps) {
         }
       };
 
-      recorder.start();
+      recorder.start(1000);
       setIsRecording(true);
       onStart?.();
 
       // Date 차이로 경과시간을 갱신하고, 최대 시간에 도달하면 자동 정지한다.
-      const startedAt = Date.now();
+      startAtRef.current = Date.now();
       setElapsedMs(0);
-      intervalRef.current = setInterval(() => {
-        const elapsed = Date.now() - startedAt;
-        setElapsedMs(elapsed);
-        if (elapsed >= MAX_RECORDING_MS) stopRecording();
-      }, 250);
+      startTimer();
     } finally {
       // 성공 시엔 이후 recordRef 가드가 맡고, 실패(권한 거부 등)해도 재시도할 수 있게 푼다.
       isStartingRef.current = false;
     }
+  };
+
+  const pauseRecording = () => {
+    const recorder = recordRef.current;
+    if (recorder?.state !== 'recording') return;
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    pauseAtRef.current = Date.now();
+    recorder.pause();
+  };
+
+  const resumeRecording = () => {
+    const recorder = recordRef.current;
+    if (recorder?.state !== 'paused') return;
+
+    startAtRef.current += Date.now() - pauseAtRef.current;
+    recorder.resume();
+    startTimer();
   };
 
   return {
@@ -91,5 +118,7 @@ export function useRecording({ onStop, onStart }: UseRecordingProps) {
     elapsedMs,
     startRecording,
     stopRecording,
+    pauseRecording,
+    resumeRecording,
   };
 }

@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import {
   MAX_RECORDING_MS,
   MIN_RECORDING_MS,
@@ -22,18 +24,20 @@ export function VoiceAnswerButton() {
   const submit = useSubmitVoiceAnswer();
   const goNext = useInterviewSessionStore((s) => s.goNext);
   const startAnswering = useInterviewSessionStore((s) => s.startAnswering);
+  const isPaused = useInterviewSessionStore((s) => s.isPaused);
 
-  const { isRecording, elapsedMs, startRecording, stopRecording } = useRecording({
-    onStop: (blob) => {
-      if (blob.size === 0) {
-        goNext();
-        return;
-      }
+  const { isRecording, elapsedMs, startRecording, stopRecording, pauseRecording, resumeRecording } =
+    useRecording({
+      onStop: (blob) => {
+        if (blob.size === 0) {
+          goNext();
+          return;
+        }
 
-      submit.mutate(blob, { onSuccess: goNext });
-    },
-    onStart: startAnswering,
-  });
+        submit.mutate(blob, { onSuccess: goNext });
+      },
+      onStart: startAnswering,
+    });
 
   // 질문 음성이 끝나면 답변 가능. 자동녹음이 켜져 있으면 바로 녹음을 시작한다.
   const canAnswer = useAnswerReady(() => {
@@ -41,6 +45,11 @@ export function VoiceAnswerButton() {
       startRecording();
     }
   });
+
+  useEffect(() => {
+    if (isPaused) pauseRecording();
+    else resumeRecording();
+  }, [isPaused, pauseRecording, resumeRecording]);
 
   // 녹음이 너무 짧으면 답변 완료를 무시한다. 아무 반응 없이 녹음을 계속한다.
   const handleStopAnswer = () => {

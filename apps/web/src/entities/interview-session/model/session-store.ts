@@ -21,6 +21,13 @@ interface InterviewSessionState {
   hydratedOrders: number[];
   /** 사용자가 답변을 시작 했는지에 대한 상태, 세션 비디오를 제어 할 때 사용 */
   isAnswering: boolean;
+  /** 그만두기 모달을 띄웠을 때 영상, 음성, 녹음 상태등을 pause 한다 */
+  isPaused: boolean;
+  /**
+   * 홈(그만두기) 버튼으로 나가기 확인 모달을 요청했는지.
+   * 뒤로가기 차단(InterviewSessionBlocker)과 OR로 합쳐 모달을 하나만 띄우기 위한 트리거다.
+   */
+  isLeaveRequested: boolean;
 
   /**
    * 이 세션 컨텍스트로 store를 정렬한다(진행·확인 화면 공통). 같은 세션이면 복원된 진행을 유지하고,
@@ -32,6 +39,9 @@ interface InterviewSessionState {
   /** VOICE 업로드 직후 audioKey 기록. content 는 기존 값을 유지한다. */
   setAnswerAudioKey: (order: number, audioKey: string | null) => void;
   setAutoRecord: (value: boolean) => void;
+  setIsPaused: (paused: boolean) => void;
+  requestLeave: () => void;
+  cancelLeave: () => void;
   markHydrated: (order: number) => void;
   startAnswering: () => void;
   goTo: (index: number) => void;
@@ -46,6 +56,8 @@ const EMPTY_PROGRESS = {
   isAutoRecord: true,
   hydratedOrders: [] as number[],
   isAnswering: false,
+  isPaused: false,
+  isLeaveRequested: false,
 };
 
 export const useInterviewSessionStore = create<InterviewSessionState>()(
@@ -76,6 +88,12 @@ export const useInterviewSessionStore = create<InterviewSessionState>()(
         })),
 
       setAutoRecord: (isAutoRecord) => set({ isAutoRecord }),
+
+      setIsPaused: (paused) => set({ isPaused: paused }),
+
+      requestLeave: () => set({ isLeaveRequested: true }),
+
+      cancelLeave: () => set({ isLeaveRequested: false }),
 
       markHydrated: (order) =>
         set((state) =>
