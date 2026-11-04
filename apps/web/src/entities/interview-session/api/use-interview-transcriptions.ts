@@ -11,7 +11,7 @@ export function isAllTranscriptionsTerminal(data?: InterviewTranscriptionsRespon
   if (!data) {
     return false;
   }
-  return data.transcriptions.every((t) => t.status === 'COMPLETED' || t.status === 'FAILED');
+  return data.transcriptions.every((t) => t.status !== 'PENDING');
 }
 
 /**
