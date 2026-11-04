@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 
 import { useNavigate } from '@tanstack/react-router';
 
+import { MascotLoading } from '@/shared/ui/mascot-loading';
 import {
   isAllTranscriptionsTerminal,
   isSessionCompleted,
@@ -9,10 +10,12 @@ import {
   useInterviewSessionStore,
   useInterviewTranscriptions,
 } from '@/entities/interview-session';
-import { MascotLoading } from '@/shared/ui/mascot-loading';
+import { InterviewAbandonButton } from '@/features/interview-abandon';
 import { InterviewConfirm } from '@/widgets/interview-session';
 
 import { useInterviewSessionGuard } from '../lib/use-interview-session-guard';
+import { useResetSessionOnExit } from '../lib/use-reset-session-on-exit';
+import { InterviewSessionBlocker } from './interview-session-blocker';
 
 interface InterviewConfirmPageProps {
   sessionId: number;
@@ -25,6 +28,8 @@ interface InterviewConfirmPageProps {
 export function InterviewConfirmPage({ sessionId }: InterviewConfirmPageProps) {
   const navigate = useNavigate();
   const { isInProgress } = useInterviewSessionGuard(sessionId);
+  // 세션 플로우 밖으로 벗어나면(언마운트) 진행 상태를 비운다. 확인→채점 등 내부 이동은 제외.
+  useResetSessionOnExit();
 
   const currentIndex = useInterviewSessionStore((s) => s.currentIndex);
   const { data: questions } = useInterviewQuestions(sessionId);
@@ -53,20 +58,31 @@ export function InterviewConfirmPage({ sessionId }: InterviewConfirmPageProps) {
   }
 
   if (isVoice && !isAllTranscriptionsTerminal(transcriptions)) {
-    return <MascotLoading className="h-svh bg-bg-1" message="답변을 텍스트로 바꾸고 있어요" />;
+    return (
+      <>
+        <header className="z-30 fixed w-full flex h-[72px] shrink-0 items-center border-b border-divider-1 bg-bg-0/20 px-5">
+          <InterviewAbandonButton className="bg-white/20" />
+        </header>
+        <MascotLoading className="h-svh bg-bg-1" message="답변을 텍스트로 바꾸고 있어요" />
+        <InterviewSessionBlocker isInProgress={isInProgress} />
+      </>
+    );
   }
 
   return (
-    <InterviewConfirm
-      sessionId={sessionId}
-      onSubmitted={() =>
-        navigate({
-          to: '/interview/sessions/grading/$sessionId',
-          params: { sessionId: String(sessionId) },
-          // 제출 후 채점 대기 화면으로 교체 이동(뒤로가기로 confirm 재진입·재제출 방지).
-          replace: true,
-        })
-      }
-    />
+    <>
+      <InterviewConfirm
+        sessionId={sessionId}
+        onSubmitted={() =>
+          navigate({
+            to: '/interview/sessions/grading/$sessionId',
+            params: { sessionId: String(sessionId) },
+            // 제출 후 채점 대기 화면으로 교체 이동(뒤로가기로 confirm 재진입·재제출 방지).
+            replace: true,
+          })
+        }
+      />
+      <InterviewSessionBlocker isInProgress={isInProgress} />
+    </>
   );
 }
