@@ -30,6 +30,8 @@ import type {
   InterviewSessionQuestionsResponse,
   InterviewSessionStatusResponse,
   InterviewSubmitRequest,
+  InterviewTranscriptionRequest,
+  InterviewTranscriptionsResponse,
 } from '../model';
 
 import { customInstance } from '../../axios-instance';
@@ -57,6 +59,7 @@ const withQueryKey = <T extends object, K>(query: T, queryKey: K): T & { queryKe
  * 공통 CS(COMMON_CS) 모드는 topics에 중복 없는 CS 주제 1~5개를 담고 stack은 비웁니다.<br>
  * 직군(JOB_SPECIFIC) 모드는 stack 하나를 담고 topics는 비웁니다.<br>
  * 확정된 문제는 문제 목록 조회 API로 받습니다.<br>
+ * 같은 사용자의 진행 중(IN_PROGRESS) 세션이 있으면 모두 취소(ABANDONED)한 뒤 새 세션을 만듭니다.<br>
  * 🔐 <strong>Jwt 필요</strong>
  * @summary 면접 세션 생성
  */
@@ -141,10 +144,238 @@ export const useCreate = <TError = ErrorType<ErrorResponse>, TContext = unknown>
   return useMutation(getCreateMutationOptions(options), queryClient);
 };
 /**
+ * 음성 세션의 5문항 변환 상태와 텍스트를 문항 순서대로 조회합니다.<br>
+ * PENDING이면 3초 간격으로 다시 조회하고, COMPLETED면 transcript를 사용자에게 보여 주고 수정받습니다.<br>
+ * COMPLETED인데 transcript가 null이면 말이 없었던 문항입니다.<br>
+ * FAILED면 변환을 다시 요청하거나 사용자가 직접 입력합니다. 변환을 요청하지 않은 문항은 status가 null입니다.<br>
+ * 변환 중(PENDING)인 문항이 있으면 답안 제출이 거부됩니다.<br>
+ * audioUrl은 변환을 요청한 문항의 답변 음성 재생 URL입니다. 새로고침 뒤에도 이 URL로 다시 재생할 수 있습니다.<br>
+ * audioUrl은 조회할 때마다 새로 서명되므로 이미 재생 중인 문항의 플레이어는 URL이 바뀌어도 다시 불러오지 마세요. 발급 후 30분 동안 유효합니다.<br>
+ * 🔐 <strong>Jwt 필요</strong>
+ * @summary 면접 음성 변환 조회
+ */
+export const getTranscriptions = (
+  sessionId: number,
+  options?: SecondParameter<typeof customInstance>,
+  signal?: AbortSignal,
+) => {
+  return customInstance<InterviewTranscriptionsResponse>(
+    { url: `/api/v1/interview-sessions/${sessionId}/transcriptions`, method: 'GET', signal },
+    options,
+  );
+};
+
+export const getGetTranscriptionsQueryKey = (sessionId: number) => {
+  return [`/api/v1/interview-sessions/${sessionId}/transcriptions`] as const;
+};
+
+export const getGetTranscriptionsQueryOptions = <
+  TData = Awaited<ReturnType<typeof getTranscriptions>>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  sessionId: number,
+  options?: {
+    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getTranscriptions>>, TError, TData>>;
+    request?: SecondParameter<typeof customInstance>;
+  },
+) => {
+  const { query: queryOptions, request: requestOptions } = options ?? {};
+
+  const queryKey = queryOptions?.queryKey ?? getGetTranscriptionsQueryKey(sessionId);
+
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof getTranscriptions>>> = ({ signal }) =>
+    getTranscriptions(sessionId, requestOptions, signal);
+
+  return {
+    queryKey,
+    queryFn,
+    enabled: sessionId !== null && sessionId !== undefined,
+    ...queryOptions,
+  } as UseQueryOptions<Awaited<ReturnType<typeof getTranscriptions>>, TError, TData> & {
+    queryKey: DataTag<QueryKey, TData, TError>;
+  };
+};
+
+export type GetTranscriptionsQueryResult = NonNullable<
+  Awaited<ReturnType<typeof getTranscriptions>>
+>;
+export type GetTranscriptionsQueryError = ErrorType<ErrorResponse>;
+
+export function useGetTranscriptions<
+  TData = Awaited<ReturnType<typeof getTranscriptions>>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  sessionId: number,
+  options: {
+    query: Partial<UseQueryOptions<Awaited<ReturnType<typeof getTranscriptions>>, TError, TData>> &
+      Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getTranscriptions>>,
+          TError,
+          Awaited<ReturnType<typeof getTranscriptions>>
+        >,
+        'initialData'
+      >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+export function useGetTranscriptions<
+  TData = Awaited<ReturnType<typeof getTranscriptions>>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  sessionId: number,
+  options?: {
+    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getTranscriptions>>, TError, TData>> &
+      Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getTranscriptions>>,
+          TError,
+          Awaited<ReturnType<typeof getTranscriptions>>
+        >,
+        'initialData'
+      >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+export function useGetTranscriptions<
+  TData = Awaited<ReturnType<typeof getTranscriptions>>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  sessionId: number,
+  options?: {
+    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getTranscriptions>>, TError, TData>>;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+/**
+ * @summary 면접 음성 변환 조회
+ */
+
+export function useGetTranscriptions<
+  TData = Awaited<ReturnType<typeof getTranscriptions>>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  sessionId: number,
+  options?: {
+    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getTranscriptions>>, TError, TData>>;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+  const queryOptions = getGetTranscriptionsQueryOptions(sessionId, options);
+
+  const query = useQuery(queryOptions, queryClient) as UseQueryResult<TData, TError> & {
+    queryKey: DataTag<QueryKey, TData, TError>;
+  };
+
+  return withQueryKey(query, queryOptions.queryKey);
+}
+
+/**
+ * 업로드를 마친 문항의 음성을 텍스트로 변환하도록 요청합니다.<br>
+ * 음성 업로드(PUT)가 성공한 직후 호출하고, 변환은 백그라운드에서 진행됩니다.<br>
+ * 결과는 음성 변환 조회 API로 확인합니다.<br>
+ * 업로드된 파일이 0바이트면 변환을 접수하지 않고 거부합니다.<br>
+ * 변환에 실패(FAILED)했거나 요청 후 5분이 지나도 변환 중(PENDING)이면 다시 요청할 수 있습니다.<br>
+ * 취소된 세션은 INTERVIEW_4025, 제출 이후 세션은 INTERVIEW_4026으로 거부됩니다.<br>
+ * 🔐 <strong>Jwt 필요</strong>
+ * @summary 면접 음성 변환 요청
+ */
+export const requestTranscription = (
+  sessionId: number,
+  interviewTranscriptionRequest: BodyType<InterviewTranscriptionRequest>,
+  options?: SecondParameter<typeof customInstance>,
+  signal?: AbortSignal,
+) => {
+  return customInstance<void>(
+    {
+      url: `/api/v1/interview-sessions/${sessionId}/transcriptions`,
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      data: interviewTranscriptionRequest,
+      signal,
+    },
+    options,
+  );
+};
+
+export const getRequestTranscriptionMutationOptions = <
+  TError = ErrorType<ErrorResponse>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof requestTranscription>>,
+    TError,
+    RequestTranscriptionMutationVariables,
+    TContext
+  >;
+  request?: SecondParameter<typeof customInstance>;
+}): UseMutationOptions<
+  Awaited<ReturnType<typeof requestTranscription>>,
+  TError,
+  RequestTranscriptionMutationVariables,
+  TContext
+> => {
+  const mutationKey = ['requestTranscription'];
+  const { mutation: mutationOptions, request: requestOptions } = options
+    ? options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey
+      ? options
+      : { ...options, mutation: { ...options.mutation, mutationKey } }
+    : { mutation: { mutationKey }, request: undefined };
+
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof requestTranscription>>,
+    RequestTranscriptionMutationVariables
+  > = (props) => {
+    const { sessionId, data } = props ?? {};
+
+    return requestTranscription(sessionId, data, requestOptions);
+  };
+
+  return { mutationFn, ...mutationOptions };
+};
+
+export type RequestTranscriptionMutationResult = NonNullable<
+  Awaited<ReturnType<typeof requestTranscription>>
+>;
+export type RequestTranscriptionMutationBody = BodyType<InterviewTranscriptionRequest>;
+export type RequestTranscriptionMutationError = ErrorType<ErrorResponse>;
+export type RequestTranscriptionMutationVariables = {
+  sessionId: number;
+  data: BodyType<InterviewTranscriptionRequest>;
+};
+
+/**
+ * @summary 면접 음성 변환 요청
+ */
+export const useRequestTranscription = <TError = ErrorType<ErrorResponse>, TContext = unknown>(
+  options?: {
+    mutation?: UseMutationOptions<
+      Awaited<ReturnType<typeof requestTranscription>>,
+      TError,
+      RequestTranscriptionMutationVariables,
+      TContext
+    >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): UseMutationResult<
+  Awaited<ReturnType<typeof requestTranscription>>,
+  TError,
+  RequestTranscriptionMutationVariables,
+  TContext
+> => {
+  return useMutation(getRequestTranscriptionMutationOptions(options), queryClient);
+};
+/**
  * 진행 중(IN_PROGRESS)인 음성(VOICE) 세션의 문항 하나에 대해 업로드용 presigned URL을 발급합니다.<br>
  * 응답의 uploadUrl로 PUT 요청을 보내 음성 원본을 올리고, 함께 받은 audioKey를 답안 제출 본문에 담습니다.<br>
  * PUT 요청의 Content-Type은 발급 시 보낸 contentType과 같아야 합니다.<br>
  * URL은 10분 뒤 만료되며, 문항마다 필요한 시점에 각각 발급받습니다.<br>
+ * 취소된 세션은 INTERVIEW_4025, 제출 이후 세션은 INTERVIEW_4026으로 거부됩니다.<br>
  * 🔐 <strong>Jwt 필요</strong>
  * @summary 면접 음성 업로드 URL 발급
  */
@@ -237,8 +468,10 @@ export const useIssueUploadUrl = <TError = ErrorType<ErrorResponse>, TContext = 
  * 문항 번호(displayOrder) 1~5를 각각 정확히 한 번씩 담아야 하며, 재제출은 불가능합니다.<br>
  * content가 null이거나 공백이면 무응답으로 저장됩니다.<br>
  * audioKey는 VOICE 세션에서만 담고, TEXT 세션은 null이어야 합니다.<br>
+ * 음성 세션은 변환 중(PENDING)인 문항이 있으면 거부됩니다.<br>
  * 제출이 받아들여지면 세션이 채점 중(GRADING)이 되고 채점은 백그라운드에서 진행됩니다.
  * 채점 완료 여부는 세션 상태 조회 API로 확인하세요.<br>
+ * 취소된 세션은 INTERVIEW_4025, 제출 이후 세션은 INTERVIEW_4026으로 거부됩니다.<br>
  * 🔐 <strong>Jwt 필요</strong>
  * @summary 면접 답안 일괄 제출
  */
@@ -326,6 +559,7 @@ export const useSubmit = <TError = ErrorType<ErrorResponse>, TContext = unknown>
 /**
  * 진행 중(IN_PROGRESS)인 세션을 취소(ABANDONED)합니다.<br>
  * 제출 이후에는 취소할 수 없으며, 취소된 세션은 채점하지 않고 결과와 통계에도 포함하지 않습니다.<br>
+ * 취소된 세션은 INTERVIEW_4025, 제출 이후 세션은 INTERVIEW_4026으로 거부됩니다.<br>
  * 🔐 <strong>Jwt 필요</strong>
  * @summary 면접 세션 중단
  */
@@ -530,7 +764,11 @@ export function useGetStatus<
 
 /**
  * 세션에 확정된 5문항을 문항 번호 오름차순으로 반환합니다.<br>
- * 진행 중, 채점 중, 완료, 채점 실패, 취소 어느 상태에서도 조회할 수 있습니다.<br>
+ * 세션 생성 시 선택한 답변 입력 방식(inputType, TEXT 또는 VOICE)을 함께 내려줍니다.<br>
+ * 진행 중(IN_PROGRESS)인 세션만 조회할 수 있습니다.<br>
+ * 취소된 세션은 INTERVIEW_4025, 제출 이후 세션은 INTERVIEW_4026으로 거부됩니다.<br>
+ * 각 문항에 질문 음성 재생 URL(audioUrl, presigned GET)을 함께 내려줍니다. 음성이 없는 문항은 null이며 이때는 텍스트만 보여 줍니다.<br>
+ * URL은 30분 동안 유효하므로 만료 후에는 문제 목록을 다시 조회해 새 URL을 받습니다.<br>
  * 🔐 <strong>Jwt 필요</strong>
  * @summary 면접 세션 문제 목록 조회
  */

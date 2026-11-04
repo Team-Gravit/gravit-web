@@ -18,7 +18,7 @@ const USER = {
   isOnboarded: true,
 };
 
-const NAV_PATHS = ['/', '/learning', '/league', '/my'];
+const NAV_PATHS = ['/', '/learning', '/league', '/my', '/interview'];
 
 function renderHeader() {
   return renderWithProviders(Header, { path: '/main', extraPaths: NAV_PATHS });
@@ -35,7 +35,7 @@ afterEach(() => {
 });
 
 describe('Header', () => {
-  it('로고 · 네비 4개 · 로그아웃이 있다 (AC-2)', async () => {
+  it('로고 · 네비 5개 · 로그아웃이 있다 (AC-2, FEAT-055)', async () => {
     await renderHeader();
 
     const nav = await screen.findByRole('navigation', { name: '주요 메뉴' });
@@ -43,7 +43,7 @@ describe('Header', () => {
       within(nav)
         .getAllByRole('link')
         .map((link) => link.getAttribute('href')),
-    ).toEqual(['/main', '/learning', '/league', '/my']);
+    ).toEqual(['/main', '/learning', '/league', '/my', '/interview']);
     expect(screen.getByRole('img', { name: 'Gravit' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: '로그아웃' })).toBeInTheDocument();
   });

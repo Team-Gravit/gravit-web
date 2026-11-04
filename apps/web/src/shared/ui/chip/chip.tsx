@@ -12,6 +12,8 @@ const chipVariants = cva(
         filled: 'border-transparent bg-cta text-cta-text',
         outlined: 'border-cta bg-white text-cta',
         muted: 'border-divider-2 bg-white text-text-4',
+        neutral: 'border-transparent bg-bg-1 text-text-1',
+        soft: 'border-transparent bg-purple-50 text-cta-hover',
       },
     },
     defaultVariants: {
@@ -21,7 +23,9 @@ const chipVariants = cva(
 );
 
 type ChipSize = 'sm' | 'md' | 'lg';
-type ChipSizeProp = ChipSize | { base: ChipSize; md: ChipSize };
+type ChipTypography = 'default' | 'reading';
+type ResponsiveProp<T> = T | { base: T; md: T };
+type ChipSizeProp = ResponsiveProp<ChipSize>;
 
 const CHIP_SIZE_CLASS: Record<ChipSize, string> = {
   sm: 'h-6 px-2 text-caption1',
@@ -36,23 +40,59 @@ const CHIP_SIZE_CLASS_MD: Record<ChipSize, string> = {
   lg: 'md:h-8 md:px-4 md:text-body1-normal',
 };
 
+const chipTypographyVariants = cva('', {
+  variants: {
+    typography: { default: '', reading: 'text-body2-reading' },
+  },
+});
+
+const chipTypographyVariantsMd = cva('', {
+  variants: {
+    typography: { default: '', reading: 'md:text-body2-reading' },
+  },
+});
+
 const DEFAULT_CHIP_SIZE = { base: 'sm', md: 'lg' } as const;
 
-function resolveChipSize(size: ChipSizeProp): string {
+function resolveChipClasses(
+  size: ChipSizeProp,
+  typography: ResponsiveProp<ChipTypography>,
+): string {
+  const baseTypography = typeof typography === 'string' ? typography : typography.base;
+  const mdTypography = typeof typography === 'string' ? typography : typography.md;
+
   if (typeof size === 'string') {
-    return CHIP_SIZE_CLASS[size];
+    return cn(
+      CHIP_SIZE_CLASS[size],
+      chipTypographyVariants({ typography: baseTypography }),
+      typeof typography !== 'string' && CHIP_SIZE_CLASS_MD[size],
+      chipTypographyVariantsMd({ typography: mdTypography }),
+    );
   }
 
-  return cn(CHIP_SIZE_CLASS[size.base], CHIP_SIZE_CLASS_MD[size.md]);
+  return cn(
+    CHIP_SIZE_CLASS[size.base],
+    chipTypographyVariants({ typography: baseTypography }),
+    CHIP_SIZE_CLASS_MD[size.md],
+    chipTypographyVariantsMd({ typography: mdTypography }),
+  );
 }
 
 export interface ChipProps extends ComponentProps<'span'>, VariantProps<typeof chipVariants> {
   /** 고정 크기 또는 모바일·데스크톱 크기 조합. 기본은 모바일 `sm`, 데스크톱 `lg`. */
   size?: ChipSizeProp;
+  /** 기본은 크기별 글자 스타일. reading은 15px 본문 스타일이며 반응형 지정도 가능하다. */
+  typography?: ResponsiveProp<ChipTypography>;
 }
 
 /** 상태 표시용 작은 라벨. 클릭 동작이 필요하면 `Button`을 사용한다. */
-export function Chip({ variant, size = DEFAULT_CHIP_SIZE, className, ...props }: ChipProps) {
+export function Chip({
+  variant,
+  size = DEFAULT_CHIP_SIZE,
+  typography = 'default',
+  className,
+  ...props
+}: ChipProps) {
   const dataSize = typeof size === 'string' ? size : `${size.base}-${size.md}`;
 
   return (
@@ -60,7 +100,7 @@ export function Chip({ variant, size = DEFAULT_CHIP_SIZE, className, ...props }:
       data-slot="chip"
       data-variant={variant ?? 'filled'}
       data-size={dataSize}
-      className={cn(chipVariants({ variant }), resolveChipSize(size), className)}
+      className={cn(chipVariants({ variant }), resolveChipClasses(size, typography), className)}
       {...props}
     />
   );

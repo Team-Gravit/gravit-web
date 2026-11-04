@@ -13,15 +13,16 @@ import type { RequestHandlerOptions } from 'msw';
 import type {
   InterviewDashboardResponse,
   InterviewSessionAnswersResponse,
-  InterviewSessionHistorySliceResponse,
+  InterviewSessionHistoryPageResponse,
   InterviewSessionSummaryResponse,
   InterviewTopicAccuracyResponse,
 } from '../../model';
 
 export const getGetSessionHistoryResponseMock = (
-  overrideResponse: Partial<Extract<InterviewSessionHistorySliceResponse, object>> = {},
-): InterviewSessionHistorySliceResponse => ({
+  overrideResponse: Partial<Extract<InterviewSessionHistoryPageResponse, object>> = {},
+): InterviewSessionHistoryPageResponse => ({
   hasNextPage: faker.datatype.boolean(),
+  totalPages: faker.number.int(),
   contents: Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, (_, i) => i + 1).map(
     () => ({
       sessionId: faker.number.int(),
@@ -180,6 +181,7 @@ export const getGetSessionAnswersResponseMock = (
   overrideResponse: Partial<Extract<InterviewSessionAnswersResponse, object>> = {},
 ): InterviewSessionAnswersResponse => ({
   sessionId: faker.number.int(),
+  startedAt: faker.date.past().toISOString().slice(0, 19) + 'Z',
   answers: Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, (_, i) => i + 1).map(
     () => ({
       displayOrder: faker.number.int(),
@@ -216,7 +218,7 @@ export const getGetSessionAnswersResponseMock = (
         faker.string.alpha({ length: { min: 10, max: 20 } }),
         undefined,
       ]),
-      audioKey: faker.helpers.arrayElement([
+      audioUrl: faker.helpers.arrayElement([
         faker.string.alpha({ length: { min: 10, max: 20 } }),
         undefined,
       ]),
@@ -379,10 +381,10 @@ export const getGetDashboardResponseMock = (
 
 export const getGetSessionHistoryMockHandler = (
   overrideResponse?:
-    | InterviewSessionHistorySliceResponse
+    | InterviewSessionHistoryPageResponse
     | ((
         info: Parameters<Parameters<typeof http.get>[1]>[0],
-      ) => Promise<InterviewSessionHistorySliceResponse> | InterviewSessionHistorySliceResponse),
+      ) => Promise<InterviewSessionHistoryPageResponse> | InterviewSessionHistoryPageResponse),
   options?: RequestHandlerOptions,
 ) => {
   return http.get(
