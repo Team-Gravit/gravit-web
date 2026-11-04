@@ -19,6 +19,7 @@ export {
   ABANDONED_SESSION_MESSAGE,
 } from './model/constants';
 export { isSessionCompleted } from './model/is-session-completed';
+export { resolveInterviewTransition } from './model/resolve-interview-transition';
 export {
   isAbandonedSessionError,
   isSubmittedSessionError,
