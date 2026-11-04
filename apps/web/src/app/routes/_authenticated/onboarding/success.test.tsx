@@ -30,7 +30,7 @@ describe('/onboarding/success 진입 가드', () => {
   });
 
   it('통과권 없이 주소로 들어오면 /onboarding 으로 넘긴다', () => {
-    // 목적지를 여기서 또 정하지 않는다. /onboarding 의 가드가
+    // 목적지를 여기서 또 정하지 않는다. /_authenticated 의 게이트가
     // 「가입을 마쳤으면 /main」까지 이어서 판정한다.
     expect(runGuard({})).toBe('/onboarding');
   });
