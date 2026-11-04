@@ -33,4 +33,27 @@ describe('useInquiryForm', () => {
 
     expect(result.current.isValid).toBe(false);
   });
+
+  it('제목·내용이 공백뿐이면 유효하지 않다', () => {
+    const { result } = renderHook(() => useInquiryForm());
+
+    act(() => result.current.update('type', 'BUG_REPORT'));
+    act(() => result.current.update('title', '   '));
+    act(() => result.current.update('content', '   '));
+
+    expect(result.current.isValid).toBe(false);
+  });
+
+  it('내용이 5000자면 유효하고 5001자면 유효하지 않다', () => {
+    const { result } = renderHook(() => useInquiryForm());
+
+    act(() => result.current.update('type', 'BUG_REPORT'));
+    act(() => result.current.update('title', '제목'));
+
+    act(() => result.current.update('content', 'a'.repeat(5000)));
+    expect(result.current.isValid).toBe(true);
+
+    act(() => result.current.update('content', 'a'.repeat(5001)));
+    expect(result.current.isValid).toBe(false);
+  });
 });

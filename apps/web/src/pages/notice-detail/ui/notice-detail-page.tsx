@@ -1,4 +1,7 @@
-import { Link } from '@tanstack/react-router';
+import { useEffect } from 'react';
+
+import { isAxiosError } from 'axios';
+import { Link, Navigate } from '@tanstack/react-router';
 
 import { formatISODate } from '@/shared/lib/date';
 import { useDelayedFlag } from '@/shared/lib/use-delayed-flag';
@@ -6,9 +9,24 @@ import { Breadcrumb, type BreadcrumbItem } from '@/shared/ui/breadcrumb';
 import { Button } from '@/shared/ui/button';
 import { Markdown } from '@/shared/ui/markdown';
 import { Skeleton } from '@/shared/ui/skeleton';
+import { toast } from '@/shared/ui/toast';
 import { useNoticeDetail, type NoticeDetailResponse } from '@/entities/notice';
 import { Footer } from '@/widgets/footer';
 import { PageTitleBar } from '@/widgets/page-title-bar';
+
+// 없는 공지 ID 는 서버가 이 에러 코드로 응답한다. 상태 코드(404)가 아니라 코드로 분기한다.
+const NOTICE_NOT_FOUND_ERROR = 'NOTICE_4041';
+const NOTICE_NOT_FOUND_MESSAGE = '존재하지 않는 공지입니다.';
+
+/** 조회 에러가 '존재하지 않는 공지'(NOTICE_4041)인지 응답 body 의 error 코드로 판별한다. */
+function isNoticeNotFound(error: unknown): boolean {
+  if (!isAxiosError(error)) {
+    return false;
+  }
+
+  const body = error.response?.data as { error?: string } | undefined;
+  return body?.error === NOTICE_NOT_FOUND_ERROR;
+}
 
 export interface NoticeDetailPageProps {
   noticeId: number;
@@ -20,14 +38,24 @@ export interface NoticeDetailPageProps {
  * 본문(`content`)은 Markdown으로 렌더한다.
  */
 export function NoticeDetailPage({ noticeId }: NoticeDetailPageProps) {
-  const { data, isPending } = useNoticeDetail(noticeId);
+  const { data, isPending, error } = useNoticeDetail(noticeId);
   const showSkeleton = useDelayedFlag(isPending);
+  const isNotFound = isNoticeNotFound(error);
+
+  // 404 는 안내 토스트를 한 번 띄운다. 토스트는 렌더 부작용이 아니라 effect 에서 실행한다.
+  useEffect(() => {
+    if (isNotFound) {
+      toast(NOTICE_NOT_FOUND_MESSAGE);
+    }
+  }, [isNotFound]);
 
   const breadcrumbItems: BreadcrumbItem[] = [
     { label: '설정', link: { to: '/settings' } },
     { label: '공지사항', link: { to: '/settings/notice', search: { page: 1 } } },
     ...(data ? [{ label: data.title }] : []),
   ];
+
+  if (!isPending && !data) return <Navigate to="/settings/notice" search={{ page: 1 }} replace />;
 
   return (
     // 셸 스크롤 영역 높이(min-h-full)를 PageTitleBar + 콘텐츠(flex-1) + Footer 가 나눠 가진다.
