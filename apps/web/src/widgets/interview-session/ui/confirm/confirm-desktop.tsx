@@ -15,7 +15,13 @@ const SUBTITLE =
 
 export function ConfirmDesktop({ items, isPending, onSubmit }: ConfirmLayoutProps) {
   const [selected, setSelected] = useState(items[0]?.displayOrder ?? 1);
-  const current = items.find((item) => item.displayOrder === selected) ?? items[0];
+  const index = Math.max(
+    0,
+    items.findIndex((item) => item.displayOrder === selected),
+  );
+  const current = items[index];
+
+  const hasNext = index < items.length - 1;
 
   return (
     <div className="flex h-svh flex-col bg-bg-2">
@@ -57,11 +63,24 @@ export function ConfirmDesktop({ items, isPending, onSubmit }: ConfirmLayoutProp
               )}
             </div>
 
-            <div className="flex justify-end">
-              <Button size="cta" className="w-[158px]" isLoading={isPending} onClick={onSubmit}>
-                제출하기
-              </Button>
-            </div>
+            {current && (
+              <div className="flex justify-end">
+                <Button
+                  size="cta"
+                  className="w-[158px]"
+                  isLoading={isPending}
+                  onClick={() => {
+                    if (hasNext) {
+                      setSelected(items[index + 1].displayOrder);
+                      return;
+                    }
+                    onSubmit();
+                  }}
+                >
+                  {hasNext ? '다음으로' : '제출하기'}
+                </Button>
+              </div>
+            )}
           </div>
         </div>
       </div>
