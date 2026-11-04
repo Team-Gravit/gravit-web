@@ -20,9 +20,10 @@ interface InterviewSessionProps {
 /** AI 면접 세션 진행 화면. 문항 조회·오디오 재생 구동과 화면 조립을 담당한다. */
 export function InterviewSession({ sessionId, onComplete }: InterviewSessionProps) {
   const { data, isPending } = useInterviewQuestions(sessionId);
-  const { play } = useAudioPlayer();
+  const { play, pause, resume, stop } = useAudioPlayer();
   const currentIndex = useInterviewSessionStore((s) => s.currentIndex);
   const enterSession = useInterviewSessionStore((s) => s.enterSession);
+  const isPaused = useInterviewSessionStore((s) => s.isPaused);
 
   // 세션 진입 시 store에 sessionId를 등록한다(같은 세션이면 진행 복원, 다르면 초기화).
   useEffect(() => {
@@ -41,10 +42,28 @@ export function InterviewSession({ sessionId, onComplete }: InterviewSessionProp
 
   useEffect(() => {
     const audioUrl = data?.questions[currentIndex]?.audioUrl;
+
     if (audioUrl) {
       play(audioUrl);
     }
   }, [data, play, currentIndex]);
+
+  useEffect(() => {
+    if (isPaused) {
+      pause();
+      return;
+    }
+
+    resume();
+  }, [isPaused, pause, resume]);
+
+  // 세션 화면을 벗어나면(언마운트) 재생 중인 질문 오디오를 멈춘다. 오디오 element 는 상위 레이아웃에 있어
+  // 페이지를 떠나도 계속 재생되므로 여기서 명시적으로 정지한다.
+  useEffect(() => {
+    return () => {
+      stop();
+    };
+  }, [stop]);
 
   if (isPending || !data) return null;
   if (isCompleted) return null; // 확인 페이지로 이동 중
