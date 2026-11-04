@@ -32,7 +32,12 @@ export function RecentSessionItem({ session }: RecentSessionItemProps) {
             </span>
           </div>
         </div>
-        <Chip variant="outlined">{session.score}점</Chip>
+        <Chip variant="outlined" className="grid">
+          <span aria-hidden className="invisible col-start-1 row-start-1">
+            100점
+          </span>
+          <span className="col-start-1 row-start-1 text-center">{session.score}점</span>
+        </Chip>
       </Link>
     </li>
   );

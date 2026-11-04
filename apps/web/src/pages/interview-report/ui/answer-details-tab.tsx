@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { cn } from '@/shared/lib/cn';
 import { CardRetryStatus } from '@/shared/ui/card';
-import { Icon } from '@/shared/ui/icon';
+import { ChevronDownIcon, ChevronUpIcon, Icon } from '@/shared/ui/icon';
 import { Skeleton } from '@/shared/ui/skeleton';
 import {
   formatAnswerTitle,
@@ -141,7 +141,7 @@ function AnswerAccordionItem({ answer, isOpen, onToggle }: AnswerAccordionItemPr
         <span className="truncate text-headline2 text-main-2">{formatAnswerTitle(answer)}</span>
         <span className="flex shrink-0 items-center gap-1 text-caption1 text-text-4">
           {isOpen ? '접기' : '펼쳐서 보기'}
-          <Icon name={isOpen ? 'chevron-up' : 'chevron-down'} className="text-icon-disabled" />
+          <Icon icon={isOpen ? ChevronUpIcon : ChevronDownIcon} className="text-icon-disabled" />
         </span>
       </button>
       {isOpen ? <AnswerDetail answer={answer} layout="narrow" /> : null}

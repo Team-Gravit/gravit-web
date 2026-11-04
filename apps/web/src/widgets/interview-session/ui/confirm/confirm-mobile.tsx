@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { Button } from '@/shared/ui/button';
-import { Icon } from '@/shared/ui/icon';
+import { ChevronDownIcon, ChevronUpIcon, Icon } from '@/shared/ui/icon';
 import { RecordingPlayer } from '@/shared/ui/recording-player';
 import { InterviewAbandonButton } from '@/features/interview-abandon';
 
@@ -79,7 +79,7 @@ function AnswerAccordion({
         <ConfirmAnswerChip order={item.displayOrder} />
         <span className="text-caption1 flex items-center gap-1 text-text-4">
           펼쳐서 보기
-          <Icon name={open ? 'chevron-up' : 'chevron-down'} className="size-6" />
+          <Icon icon={open ? ChevronUpIcon : ChevronDownIcon} className="size-6" />
         </span>
       </button>
 

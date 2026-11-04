@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 
 import { cn } from '@/shared/lib/cn';
-import { Icon } from '@/shared/ui/icon';
+import { CheckCircleIcon, Icon } from '@/shared/ui/icon';
 import { Markdown } from '@/shared/ui/markdown';
 import { RecordingPlayer, formatPlaybackTime } from '@/shared/ui/recording-player';
 import type { InterviewAnswerDetailResponse } from '@/entities/interview';
@@ -96,7 +96,7 @@ export function AnswerDetail({ answer, layout, className }: AnswerDetailProps) {
               {/* 아이콘을 글자 한 줄 높이 안에서 가운데 두어, 개념이 여러 줄이어도 첫 줄과 맞춘다. */}
               <span className="flex h-lh shrink-0 items-center">
                 <Icon
-                  name="check-circle"
+                  icon={CheckCircleIcon}
                   size={isWide ? 24 : 20}
                   className="text-semantic-success"
                 />

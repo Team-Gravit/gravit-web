@@ -41,6 +41,7 @@ export function ScoreGauge({
   const radius = outerRadius - strokeWidth / 2;
   const progressSweep = ARC_SWEEP_DEGREE * ratio;
   const knobPoint = pointOnArc(radius, ARC_START_DEGREE + progressSweep);
+  const knobDiameter = VIEWBOX_SIZE * knobRatio;
 
   return (
     <svg
@@ -67,8 +68,10 @@ export function ScoreGauge({
       <circle
         cx={knobPoint.x}
         cy={knobPoint.y}
-        r={(VIEWBOX_SIZE * knobRatio) / 2}
-        className="fill-white drop-shadow-sm"
+        r={(knobDiameter + strokeWidth) / 4}
+        fill="none"
+        strokeWidth={(knobDiameter - strokeWidth) / 2}
+        className="stroke-white drop-shadow-sm"
       />
     </svg>
   );

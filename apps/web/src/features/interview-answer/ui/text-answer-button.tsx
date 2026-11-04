@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { cn } from '@/shared/lib/cn';
-import { Icon } from '@/shared/ui/icon';
+import { Icon, PaperPlaneFillIcon } from '@/shared/ui/icon';
 import { useInterviewSessionStore } from '@/entities/interview-session';
 
 import { useAnswerReady } from '../model/use-answer-ready';
@@ -63,7 +63,7 @@ export function TextAnswerButton() {
         className="size-8 flex-none md:h-[54px] md:w-[230px]"
       >
         <Icon
-          name="paper-plane-fill"
+          icon={PaperPlaneFillIcon}
           className={cn('md:hidden', answer ? 'fill-bg-0' : 'fill-text-3-w')}
         />
         <span className="hidden md:block">답변 완료하기</span>

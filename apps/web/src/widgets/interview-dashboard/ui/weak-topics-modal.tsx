@@ -1,4 +1,5 @@
 import { CardRetryStatus, CardStatus } from '@/shared/ui/card';
+import { CloseMdIcon } from '@/shared/ui/icon';
 import { IconButton } from '@/shared/ui/icon-button';
 import { Modal, ModalTitle } from '@/shared/ui/modal';
 import { ScrollArea } from '@/shared/ui/scroll';
@@ -25,7 +26,7 @@ export function WeakTopicsModal({ open, onOpenChange }: WeakTopicsModalProps) {
           {WEAK_TOPICS_TITLE}
         </ModalTitle>
         <IconButton
-          icon="close-md"
+          icon={CloseMdIcon}
           aria-label="닫기"
           onClick={() => onOpenChange(false)}
           // 40px 클릭 영역은 유지하고 시안의 24px 아이콘 위치에 맞춘다.

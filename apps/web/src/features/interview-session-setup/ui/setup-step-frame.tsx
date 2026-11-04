@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 
 import { cn } from '@/shared/lib/cn';
+import { HomeIcon } from '@/shared/ui/icon';
 import { IconButton } from '@/shared/ui/icon-button';
 
 import type { SessionSetupProgress } from '../model/session-setup-rules';
@@ -40,7 +41,7 @@ export function SetupStepFrame({
       */}
       <header className="sticky top-0 z-10 flex h-12 shrink-0 items-center border-b border-divider-1 bg-bg-0 px-3 md:h-18 md:bg-bg-2 md:bg-linear-to-r md:from-white/20 md:to-white/20 md:px-7">
         <IconButton
-          icon="home"
+          icon={HomeIcon}
           aria-label="AI면접 홈으로 이동"
           onClick={onExit}
           className="rounded-none text-icon md:size-8"

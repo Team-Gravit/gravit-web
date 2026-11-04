@@ -1,5 +1,6 @@
 import { cn } from '@/shared/lib/cn';
 import { useIsWideViewport } from '@/shared/lib/use-is-wide-viewport';
+import { HomeIcon } from '@/shared/ui/icon';
 import { IconButton } from '@/shared/ui/icon-button';
 import { useInterviewSessionStore } from '@/entities/interview-session';
 
@@ -18,7 +19,7 @@ export function InterviewAbandonButton({ className }: InterviewAbandonButtonProp
   return (
     <IconButton
       aria-label="인터뷰 그만두기"
-      icon="home"
+      icon={HomeIcon}
       iconSize={isWideViewport ? 32 : 24}
       onClick={requestLeave}
       className={cn('bg-white size-12 md:size-15 md:rounded-full', className)}

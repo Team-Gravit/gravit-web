@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import { useRef, useState } from 'react';
 
 import { cn } from '@/shared/lib/cn';
-import { Icon } from '@/shared/ui/icon';
+import { Icon, PauseFillIcon, PlayFillIcon } from '@/shared/ui/icon';
 
 export type RecordingPlayerSize = 'sm' | 'md' | 'lg';
 
@@ -112,7 +112,7 @@ export function RecordingPlayer({
         )}
       >
         <Icon
-          name={isPlaying ? 'pause-fill' : 'play-fill'}
+          icon={isPlaying ? PauseFillIcon : PlayFillIcon}
           className={cn('text-white', ICON_SIZE[size])}
         />
       </button>

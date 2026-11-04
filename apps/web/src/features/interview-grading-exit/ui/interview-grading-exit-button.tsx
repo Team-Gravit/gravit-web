@@ -5,6 +5,7 @@ import { useNavigate } from '@tanstack/react-router';
 import { cn } from '@/shared/lib/cn';
 import { useIsWideViewport } from '@/shared/lib/use-is-wide-viewport';
 import { Button } from '@/shared/ui/button';
+import { HomeIcon } from '@/shared/ui/icon';
 import { IconButton } from '@/shared/ui/icon-button';
 import { Modal, ModalDescription, ModalTitle } from '@/shared/ui/modal';
 
@@ -25,7 +26,7 @@ export function InterviewGradingExitButton({ className }: InterviewGradingExitBu
     <>
       <IconButton
         aria-label="채점 중 나가기"
-        icon="home"
+        icon={HomeIcon}
         iconSize={isWideViewport ? 32 : 24}
         onClick={() => setIsOpen(true)}
         className={cn('bg-white size-12 md:size-15 md:rounded-full', className)}

@@ -34,8 +34,11 @@ export function SessionHistoryItem({ session, dateFormat }: SessionHistoryItemPr
             </span>
           </div>
         </div>
-        <Chip variant="outlined" className="shrink-0">
-          {session.score}점
+        <Chip variant="outlined" className="grid shrink-0">
+          <span aria-hidden className="invisible col-start-1 row-start-1">
+            100점
+          </span>
+          <span className="col-start-1 row-start-1 text-center">{session.score}점</span>
         </Chip>
       </Link>
     </li>

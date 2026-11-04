@@ -36,7 +36,7 @@ export function TotalScoreCard({ summary, layout }: TotalScoreCardProps) {
               score={summary.score}
               maxScore={summary.maxScore}
               innerRadiusRatio={isWide ? 0.8 : 0.85}
-              knobRatio={isWide ? 0.18 : 0.12}
+              knobRatio={isWide ? 50 / 282 : 0.12}
               className="size-full"
             />
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-1">
