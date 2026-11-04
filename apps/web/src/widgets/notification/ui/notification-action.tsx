@@ -21,14 +21,24 @@ interface NotificationActionProps {
 export function NotificationAction({ notification, layout, onNavigate }: NotificationActionProps) {
   const descriptor = getActionDescriptor(notification);
 
-  if (descriptor.kind === 'link') {
+  if (descriptor.kind === 'link' || descriptor.kind === 'notice-link') {
     const sizeClass =
       layout === 'popover' ? 'h-[37px] px-5 text-body1-normal' : 'h-8 px-4 text-label2';
     return (
       <Button asChild variant="default" size="sm" className={cn('w-full', sizeClass)}>
-        <Link to={descriptor.to} onClick={onNavigate}>
-          {descriptor.label}
-        </Link>
+        {descriptor.kind === 'notice-link' ? (
+          <Link
+            to="/settings/notice/$noticeId"
+            params={{ noticeId: String(descriptor.noticeId) }}
+            onClick={onNavigate}
+          >
+            {descriptor.label}
+          </Link>
+        ) : (
+          <Link to={descriptor.to} onClick={onNavigate}>
+            {descriptor.label}
+          </Link>
+        )}
       </Button>
     );
   }
