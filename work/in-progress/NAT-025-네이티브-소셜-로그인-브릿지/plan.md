@@ -505,3 +505,116 @@ orval 재생성 · 라우트 트리 재생성 없음.
 | `UNSUPPORTED` 토스트     | 자동 (Issue 3 AC-4)                           |
 | 브릿지 · SDK · 빌드 설정 | 수동. 일시 · 기기 · 결과 · 관찰한 코드를 기록 |
 | 전체                     | 이슈마다 `pnpm verify`                        |
+
+---
+
+# NAT-025 구현 계획 — 4회차 (Apple: Issue 6 웹 · Issue 7 iOS 앱)
+
+> `ai-plan` 4회차 (2026-11-05, 같은 날 승인). 체크 표시는 2026-11-06 기준이고 근거는 `checklist.md`의 「Apple 로그인 검증」에 있다.
+> Issue 8(Android)은 제외한다 (사용자 지시). 서버 API가 확정돼 Issue 6·7의 전제가 바뀌었다 — `issues.md`의 Issue 6·7(AC 포함)은 이 계획이 승인되면 고친다.
+
+## 0. 서버 API 확정으로 달라진 점
+
+| 항목         | 이전 가정                         | 확정 (생성 코드 확인, 2026-11-05)                                                              |
+| ------------ | --------------------------------- | ---------------------------------------------------------------------------------------------- |
+| 웹 경로      | 다른 provider처럼 인가 URL로 이동 | **Apple JS SDK 팝업** → `authorizationCode` → `POST /api/v1/oauth/apple?dest=` (`appleLogin1`) |
+| iOS 앱 경로  | identityToken · nonce 전달        | `authorizationCode`만 → `POST /api/v1/oauth/ios/apple` (`appleLogin`, `oauth2-0-ios-api`)      |
+| 앱 권한 범위 | —                                 | `EMAIL` 필수                                                                                   |
+| 웹 로컬 확인 | 가능                              | **불가.** Apple은 localhost를 받지 않는다. 배포(dev) 도메인에서만 확인한다                     |
+| redirectURI  | —                                 | `{dest 도메인}/login/oauth2/code/apple` (Apple 콘솔 Service ID에 등록돼 있어야 함)             |
+
+웹은 `login-url/{provider}`로 URL을 받아 이동하지 않으므로 `useOauthLogin`을 재사용하지 않는다.
+
+## 1. 착수 전 확인할 것 (사용자 · 서버)
+
+- [ ] **웹 Service ID(Apple JS SDK의 `clientId`)** 값과, 개발·운영 도메인에서 쓸 redirectURI가 Apple 콘솔에 등록됐는지
+- [x] iOS 코드 교환 — 처음엔 400으로 실패했고 서버 쪽 확인 후 앱 수정 없이 성공했다. 서버가 실제로 무엇을 바꿨는지는 기록이 없다
+- [x] Android 앱의 Apple 버튼 — 별도 처리하지 않는다. Expo Android를 배포하지 않는다 (§5 결정 1은 적용하지 않음)
+- [x] 앱 ID의 Sign in with Apple — iOS 실기기에서 시트가 뜨고 로그인이 끝나 동작을 확인했다
+
+## 2. 영향 분석
+
+| 구분 | 파일                                                                                                                                                |
+| ---- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 신규 | `features/auth-login/api/request-apple-web-login.ts` · `.test.ts` (JS SDK 로드 + 팝업)                                                              |
+| 신규 | `features/auth-login/api/use-apple-web-login.ts`                                                                                                    |
+| 신규 | `apps/native/bridge/handlers/apple-login.ts`                                                                                                        |
+| 수정 | `packages/bridge-protocol/src/contracts.ts` (`provider`에 `apple`, `tokenType`에 `authorizationCode`) · 계약 테스트                                 |
+| 수정 | `features/auth-login/model/login-providers.ts` (+test) · `api/exchange-native-token.ts` (+test) · `ui/social-login-button.tsx` (+test) · `index.ts` |
+| 수정 | `shared/config/env.ts` (`VITE_APPLE_CLIENT_ID`) · `.env.example`                                                                                    |
+| 수정 | `apps/native/bridge/handlers/auth-login.ts` · `app.config.ts` · `package.json` (`expo-apple-authentication ~57.0.1`)                                |
+| 수정 | `pages/login` 화면은 `LOGIN_PROVIDERS.map`을 쓰므로 코드 변경 없음. 테스트만 확인                                                                   |
+| 생성 | `shared/api/generated/**` — 사용자가 `generate:api`로 만들었다. **Apple과 무관한 변경(면접 · QA · 시즌 팝업)이 섞여 있어 별도 커밋으로 나눈다**     |
+
+`routeTree.gen.ts` 재생성 불필요. `/login/oauth2/code/$provider`는 `LOGIN_PROVIDERS`에 `apple`이 들어가면 같이 통과하지만 팝업 흐름은 이 라우트를 거치지 않는다.
+
+## 3. 의존 관계 검증
+
+`pages → features/auth-login → shared(api · config)`, `native → bridge-protocol`. 모두 하향이고 cross-slice 없음. 생성 훅은 `features/auth-login/api/`에서만 import한다 (`api-convention.md` §3).
+
+## 4. 구현 계획
+
+### Issue 7 — iOS 앱 (먼저 한다: 계약을 웹보다 앞서 정해야 한다)
+
+- [x] `[packages]` `contracts.ts` — `provider`에 `'apple'`, `tokenType`에 `'authorizationCode'`. 계약 테스트 갱신
+- [x] `[native]` `expo install expo-apple-authentication` (`~57.0.x`) · `app.config.ts`에 플러그인 등록 (키가 필요 없어 `readEnvGroup` 대상 아님)
+- [x] `[native]` `apple-login.ts` — `signInAsync({ requestedScopes: [EMAIL, FULL_NAME] })` → `authorizationCode`가 없으면 `NATIVE_ERROR` · 취소 코드(`ERR_REQUEST_CANCELED`)는 `CANCELLED`. **Android이면 `UNSUPPORTED`** · 토큰 로그 금지
+- [x] `[native]` `auth-login.ts` — `apple` 분기
+- [x] `[features]` `exchange-native-token.ts` — `apple`이면 `tokenType === 'authorizationCode'` 확인 후 `appleLogin({ code })`. 아니면 요청 전에 `NATIVE_ERROR`. 생성 이름(`appleLogin`/`appleLogin1`)은 이 파일 안에서만 보인다
+- [x] `[features]` `login-providers.ts`에 `apple` 추가 (테스트 갱신) · `social-login-button.tsx`에 `apple` 변형(검정 배경 · 흰 글자) · `apple.svg` (`currentColor`라 글자색을 따른다)
+- [x] 증분: `check-types` · `vitest run src/features/auth-login src/pages/login` · native `check-types lint` — 통과 (web 62건 · bridge-protocol 24건 · native 타입)
+- [x] **개발 빌드를 다시 만든다**
+- [ ] 수동 iOS 실기기: 로그인 성공 확인 (2026-11-06). 시트 닫기 · 재로그인은 기록이 없다
+
+### Issue 6 — 웹 (브라우저)
+
+- [x] `[shared]` `env.ts` — `getAppleClientId()` (`VITE_APPLE_CLIENT_ID`) · `.env.example`
+- [x] `[features]` `request-apple-web-login.ts` — Apple JS SDK(`appleid.cdn-apple.com`)를 한 번만 로드 → `AppleID.auth.init({ clientId, scope: 'name email', redirectURI: {origin}/login/oauth2/code/apple, usePopup: true })` → `signIn()` → `authorization.code`. 팝업 닫힘(`popup_closed_by_user`)은 `CANCELLED`와 같은 취급
+- [x] `[features]` `use-apple-web-login.ts` — `appleLogin1({ code }, { dest })` → `setSession`. `retry: false`
+- [x] `[features]` `social-login-button.tsx` — 브라우저에서 `apple`이면 위 훅, 그 외는 기존 `useOauthLogin`
+- [x] 테스트: SDK를 모킹한 코드 수신 · 취소는 오류 콜백 호출 안 함 · 교환 실패 시 `onLoginError`
+- [ ] 수동: **배포(dev) 도메인**에서 Apple 로그인 → `/onboarding` | `/main`
+
+### 마무리
+
+- [ ] `checklist.md` 회차 누적 (`pnpm verify`: 포맷·린트·타입·빌드 통과, 테스트는 `problem-card.test.tsx` 간헐 시간 초과 1건 — 단독 통과, 무관) · `issues.md` AC 표시
+- [x] `docs/implementation-status.md` · `docs/fe-implement-spec/o-1/o-1.md`
+- [x] 커밋 분리 (실제 순서): 생성 API → 계약 + iOS 앱 → 웹 팝업 흐름 → 웹 교환 + 버튼 → 로고 크기 · 중심선 → 문서
+
+## 5. 결정이 필요한 것
+
+1. **Android 앱의 Apple 버튼.** Issue 8을 하지 않으므로 Android 앱에서 눌렀을 때의 동작이 필요하다.
+   - A. 버튼은 보이고 눌렀을 때 `UNSUPPORTED` 토스트(「앱을 업데이트 해주세요」). 문구가 사실과 다르다
+   - **B(권장). Android 앱에서는 Apple 버튼을 숨긴다.** 웹이 `navigator.userAgent`의 `Android`로 판별한다. 앱 기능 사전 판별(ADR-5가 거부한 것)이 아니라 플랫폼 사실이고, 숨김 조건을 한 곳에 둔다. Issue 8 때 지운다
+2. 웹 Apple 로그인은 **배포 도메인에서만** 확인된다. 로컬에서는 코드와 단위 테스트까지만 확인한다.
+
+## 6. 리스크
+
+| 리스크                             | 영향                   | 대응                                                     |
+| ---------------------------------- | ---------------------- | -------------------------------------------------------- |
+| iOS client_id가 번들 ID와 다름     | iOS 로그인이 전부 실패 | 서버에 사전 확인 (§1)                                    |
+| 웹 redirectURI가 Apple 콘솔에 없음 | 팝업이 오류로 닫힘     | 배포 도메인 등록 확인 후 수동 검증                       |
+| JS SDK 로드 실패 · 차단            | 버튼이 반응 없음       | 로드 실패를 오류로 올려 공통 토스트(`FEAT-017`)를 띄운다 |
+| 앱 심사에서 버튼 문구 지적         | 심사 반려              | 「Apple로 계속하기」로 교체 (spec 확인 필요 8)           |
+| 탈퇴 시 Apple 토큰 철회 미처리     | 심사 요구 위반         | 서버에 확인. 이번 범위 밖이면 별도 항목으로 기록         |
+| `authorizationCode` 재사용         | 두 번째 교환 실패      | 일회용이고 수명이 짧다. `retry: false` (이미 적용)       |
+
+## 7. 검증
+
+| 대상                  | 방법                                              |
+| --------------------- | ------------------------------------------------- |
+| 계약 · 토큰 교환 분기 | 자동 (`exchange-native-token.test` · 계약 테스트) |
+| 버튼 · 웹 SDK 흐름    | 자동 (SDK 모킹). 실제 팝업은 수동 (배포 도메인)   |
+| iOS 시트              | 수동 (EAS 개발 빌드 실기기)                       |
+| 전체                  | `pnpm verify`                                     |
+
+### 4회차 구현 중 계획과 달라진 점 (2026-11-05)
+
+- 앱 로그인 요청 권한을 `EMAIL`만으로 줄였다. 서버가 이름을 받지 않아 불필요한 정보를 요청하지 않는다.
+- Android 앱의 Apple 버튼 숨김은 하지 않기로 했다 (§5 결정 1). Expo Android 빌드를 배포하지 않고, 핸들러가 Android에서 `UNSUPPORTED`를 돌려주는 것까지만 넣었다. Expo Android를 배포하게 되면 Issue 8과 함께 다룬다.
+- 웹 팝업 취소는 앱과 같은 `BridgeError('CANCELLED')`로 던져 버튼의 취소 처리를 공유한다.
+
+### 4회차 추가 변경 (2026-11-06)
+
+- 로고 크기와 중심선을 고쳤다. 시안(`12898:23111`)은 Google · 카카오 20×20, 네이버 17×16인데 구현은 글자 크기를 따라 15px이었다. 로고를 상자에 맞춰 넣고, 좁은 화면에서는 40px 자리의 가운데에 둔다. Apple은 시안이 없어 22px로 맞췄다
+- 아이콘 · 스플래시(`NAT-011`)는 이 작업과 함께 구현했으나 PR을 나누기 위해 별도로 보관했다

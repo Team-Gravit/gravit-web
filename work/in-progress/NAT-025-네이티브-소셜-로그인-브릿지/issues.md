@@ -9,7 +9,7 @@ id: 'NAT-025'
 > **2026-11-04 재분해 (구성·순서 사용자 확정)** — Android · Apple · 보안 범위를 반영하고 실행 순서대로 번호를 다시 매겼다.
 > `plan.md` · `checklist.md`와 `spec.md`의 2026-09 기록은 이전 번호를 쓴다. 이전 → 현재: 1 → 1, 2 → 3, 3 → 4, 4 → 5, 신규 → 2·6·7·8.
 > **AC 표시 (2026-11-05)** — ☑ 확인됨 · ◐ 일부만 확인(남은 부분은 `checklist.md`의 「AC 대조」) · ☐ 미확인 · ⊘ 더는 해당 없음.
-> Issue 6~8은 서버 답변 전이라 착수하지 않는다.
+> Issue 6·7은 서버 API 확정 후 AC를 다시 썼다 (2026-11-06). Issue 8은 Expo Android를 배포하지 않아 보류한다.
 
 ## 수직 슬라이싱 원칙
 
@@ -404,64 +404,96 @@ GitHub Issue: 미등록
 
 ### 설명
 
-로그인 화면에 검정 배경 · 흰 글자 「Apple로 시작하기」 버튼이 나타나고, 브라우저에서는 다른 provider와 같은 웹 경로로 로그인한다. 앱에서는 Issue 7·8이 끝나기 전까지 토스트로 안내한다.
+로그인 화면에 검정 배경 · 흰 글자 「Apple로 시작하기」 버튼이 나타나고, 브라우저에서는 Apple JS SDK 팝업으로 로그인한다. 다른 provider와 달리 인가 페이지로 이동하지 않는다.
 
 ### 구현 범위
 
-- `features/auth-login/model/login-providers.ts` — `apple`과 레이블 추가. 서버 준비 전에는 추가하지 않는다
-- `features/auth-login/ui/social-login-button.tsx` — `apple` 변형 · `apple.svg` · 로고 규격 확인 (확인 필요 8)
-- `packages/bridge-protocol` — provider에 `apple`. Apple 응답 형태는 서버 답변 후 기술 결정에서 정한다
-- 서버 API 추가 시 orval 재생성
+- `features/auth-login/api/request-apple-web-login.ts` · `use-apple-web-login.ts`
+- `features/auth-login/model/login-providers.ts` · `ui/social-login-button.tsx` · `apple.svg`
+- `shared/config/env.ts` — `VITE_APPLE_CLIENT_ID`
 
 ### 완료 조건 (Acceptance Criteria)
 
-☐ **AC-1** (범위: 통합)
+☑ **AC-1** (범위: 통합)
 Given `LoginPage`를 렌더한다
 When 버튼을 조회한다
-Then 「Apple로 시작하기」 버튼이 1개 있고 `data-provider="apple"`이며 size는 다른 버튼과 같다
+Then 버튼이 Google · 카카오 · 네이버 · Apple 순서로 4개이고 마지막 문구가 「Apple로 시작하기」다
 
-☐ **AC-2** (범위: 통합)
-Given `navigator.userAgent`에 `GravitNative/`가 없고 MSW가 `GET /api/v1/oauth/login-url/apple`에 `{ loginUrl: 'https://appleid.apple.com/x' }`로 응답한다
+☑ **AC-2** (범위: 통합)
+Given 브라우저 환경이고 Apple SDK의 `signIn`이 `{ authorization: { code: 'apple_web_code' } }`로 응답한다
 When 「Apple로 시작하기」를 클릭한다
-Then `window.location.href`에 `'https://appleid.apple.com/x'`가 대입된다. 경로는 서버 답변에 맞춰 확정한다
+Then `POST /api/v1/oauth/apple` 본문이 `{ code: 'apple_web_code' }`이고 `onLoginSuccess`가 1회 호출되며, `GET /api/v1/oauth/login-url/apple`은 0회다
 
-☐ **AC-3** (범위: 수동)
-Given 운영과 같은 서버 설정의 브라우저에서 로그인 화면을 연다
-When Apple 계정으로 로그인한다
+☑ **AC-3** (범위: 통합)
+Given Apple SDK의 `signIn`이 `{ error: 'popup_closed_by_user' }`로 실패한다
+When 「Apple로 시작하기」를 클릭한다
+Then 버튼이 풀리고 `onLoginError`와 교환 요청은 0회다
+
+☑ **AC-4** (범위: 통합)
+Given 교환 요청이 500으로 실패한다
+When 「Apple로 시작하기」를 클릭한다
+Then `onLoginError`가 1회 호출된다
+
+☐ **AC-5** (범위: 수동)
+Given dev 배포 환경에 `VITE_APPLE_CLIENT_ID`가 있고 Return URL이 Services ID에 등록돼 있다
+When 브라우저에서 Apple 계정으로 로그인한다
 Then 라우트가 `/onboarding` 또는 `/main`이다
 
 ### 의존성
 
-**확인 필요 5**(서버 웹 API) 답변 후 시작. Issue 3의 토스트 분기를 쓴다
+Issue 7의 계약 · 버튼과 같은 변경으로 나간다. AC-5는 dev 배포가 필요하다. Apple이 localhost를 받지 않는다
 
 ---
 
 ## Issue 7: [Feat] iOS 앱에서 Apple로 로그인한다
 
-GitHub Issue: 미등록 · **상태: 보류 (AC 미작성, 서버 답변 대기)**
+GitHub Issue: 미등록
 
 ### 설명
 
-iOS 앱에서 네이티브 Apple 로그인 시트로 로그인한다. AC의 요청·응답 값은 서버 API가 정해지면 쓴다.
+iOS 앱에서 네이티브 Apple 로그인 시트로 `authorizationCode`를 받아 웹이 서버와 교환한다.
 
 ### 구현 범위
 
-- `expo-apple-authentication` `~57.0.1` (`expo install`) · Apple 핸들러 · 웹 토큰 교환
-- 탈퇴 시 Apple 토큰 철회 흐름은 서버 답변에 맞춘다
+- `expo-apple-authentication` · `apps/native/bridge/handlers/apple-login.ts` · `packages/bridge-protocol` 계약
+- `features/auth-login/api/exchange-native-token.ts`
 
 ### 완료 조건 (Acceptance Criteria)
 
-서버 답변 후 작성한다. 최소 포함 항목: 로그인 성공 이동 · 시트 닫기 `CANCELLED` · nonce 전달 · 재로그인 시 이름 없음 · 탈퇴 후 철회
+☑ **AC-1** (범위: 통합)
+Given 앱 환경이고 `AUTH_LOGIN`이 `{ tokenType: 'authorizationCode', token: 'apple_code' }`로 응답한다
+When `useNativeLogin`으로 `apple` 로그인을 실행한다
+Then `POST /api/v1/oauth/ios/apple` 본문이 `{ code: 'apple_code' }`이고 `/oauth/android`는 0회이며 세션이 만들어진다
+
+☑ **AC-2** (범위: 통합)
+Given `AUTH_LOGIN`이 `apple`에 `idToken`으로 응답한다 (계약 위반)
+When `useNativeLogin`으로 `apple` 로그인을 실행한다
+Then `NATIVE_ERROR`로 실패하고 교환 요청은 0회다
+
+◐ **AC-3** (범위: 수동)
+Given iOS 개발 빌드 실기기
+When Apple 계정으로 로그인한다
+Then 라우트가 `/onboarding` 또는 `/main`이다
+
+☐ **AC-4** (범위: 수동)
+Given iOS 개발 빌드 실기기에 Apple 시트가 떠 있다
+When 시트를 닫는다
+Then 버튼이 풀리고 실패 토스트는 0회다
+
+☐ **AC-5** (범위: 수동)
+Given 탈퇴한 Apple 계정
+When 탈퇴 처리를 마친다
+Then Apple 토큰이 철회된다. 서버 처리 여부를 확인한 뒤 범위를 정한다
 
 ### 의존성
 
-Issue 6 완료 후 시작. **확인 필요 5** 답변 필요. Issue 8과 병렬 가능
+서버 `POST /api/v1/oauth/ios/apple`. 앱 ID의 Sign in with Apple 기능
 
 ---
 
 ## Issue 8: [Feat] Android 앱에서 Apple로 로그인한다
 
-GitHub Issue: 미등록 · **상태: 보류 (방식·AC 미정, 서버 답변 대기)**
+GitHub Issue: 미등록 · **상태: 보류 (2026-11-06 사용자 결정).** Android 앱은 다른 개발자가 따로 배포하고 Expo Android는 배포하지 않는다. 담당자가 이탈해 Expo Android를 배포하게 되면 다시 연다
 
 ### 설명
 
