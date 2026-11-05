@@ -1,16 +1,37 @@
 import type { PropsWithChildren } from 'react';
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { http, HttpResponse } from 'msw';
 
+import {
+  failFromNative,
+  installNativeBridgeStub,
+  respondFromNative,
+  uninstallNativeBridgeStub,
+  type NativeBridgeStub,
+} from '@/shared/api/mocks/native-bridge';
 import { server } from '@/shared/api/mocks/server';
+import { toast } from '@/shared/ui/toast';
 
 import { SocialLoginButton } from './social-login-button';
 
+vi.mock('@/shared/ui/toast', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@/shared/ui/toast')>();
+
+  return { ...actual, toast: vi.fn() };
+});
+
 const KAKAO_LOGIN_URL_ENDPOINT = '*/api/v1/oauth/login-url/kakao';
+const ID_TOKEN_ENDPOINT = '*/api/v1/oauth/android';
 const AUTHORIZE_URL = 'https://kauth.kakao.com/oauth/authorize?client_id=test';
+const LOGIN_RESPONSE = {
+  accessToken: 'at_1',
+  refreshToken: 'rt_1',
+  isOnboarded: false,
+  role: 'USER',
+};
 
 const queryClient = new QueryClient({ defaultOptions: { mutations: { retry: false } } });
 
@@ -96,5 +117,133 @@ describe('SocialLoginButton', () => {
 
     await waitFor(() => expect(assignedHref).toBe(AUTHORIZE_URL));
     expect(requestCount).toBe(1);
+  });
+});
+
+describe('SocialLoginButton — 앱 환경', () => {
+  let bridge: NativeBridgeStub;
+
+  beforeEach(() => {
+    bridge = installNativeBridgeStub();
+  });
+
+  afterEach(() => {
+    uninstallNativeBridgeStub();
+  });
+
+  /** 클릭 후 AUTH_LOGIN 요청이 나갈 때까지 기다리고 그 id 를 돌려준다. */
+  async function clickAndReadRequestId() {
+    await userEvent.click(screen.getByRole('button', { name: '카카오로 시작하기' }));
+    await waitFor(() => expect(bridge.postMessage).toHaveBeenCalledTimes(1));
+
+    const request = bridge.readLastRequest();
+    expect(request).toMatchObject({ type: 'AUTH_LOGIN', payload: { provider: 'kakao' } });
+
+    return request.id;
+  }
+
+  it('클릭하면 AUTH_LOGIN 을 요청하고, 교환이 끝나면 onLoginSuccess 에 응답을 넘긴다', async () => {
+    server.use(http.post(ID_TOKEN_ENDPOINT, () => HttpResponse.json(LOGIN_RESPONSE)));
+    const onLoginSuccess = vi.fn();
+    render(<SocialLoginButton provider="kakao" onLoginSuccess={onLoginSuccess} />, {
+      wrapper: Wrapper,
+    });
+
+    const id = await clickAndReadRequestId();
+    respondFromNative(id, { tokenType: 'idToken', token: 'kakao_id_tok' });
+
+    await waitFor(() => expect(onLoginSuccess).toHaveBeenCalledTimes(1));
+    expect(onLoginSuccess).toHaveBeenCalledWith(expect.objectContaining({ isOnboarded: false }));
+    expect(screen.getByRole('button', { name: '카카오로 시작하기' })).toBeEnabled();
+  });
+
+  it('CANCELLED 로 실패하면 버튼이 풀리고 onLoginError 와 백엔드 요청은 없다', async () => {
+    let requestCount = 0;
+    server.use(
+      http.post(ID_TOKEN_ENDPOINT, () => {
+        requestCount += 1;
+        return HttpResponse.json(LOGIN_RESPONSE);
+      }),
+    );
+    const onLoginError = vi.fn();
+    render(<SocialLoginButton provider="kakao" onLoginError={onLoginError} />, {
+      wrapper: Wrapper,
+    });
+    const button = screen.getByRole('button', { name: '카카오로 시작하기' });
+
+    const id = await clickAndReadRequestId();
+    expect(button).toBeDisabled();
+    failFromNative(id, 'CANCELLED');
+
+    await waitFor(() => expect(button).toBeEnabled());
+    expect(onLoginError).not.toHaveBeenCalled();
+    expect(requestCount).toBe(0);
+  });
+
+  it('UNSUPPORTED 로 실패하면 업데이트 토스트가 1회 뜨고 웹 인가 페이지로 이동하지 않는다', async () => {
+    vi.mocked(toast).mockClear();
+    let loginUrlRequestCount = 0;
+    server.use(
+      http.get(KAKAO_LOGIN_URL_ENDPOINT, () => {
+        loginUrlRequestCount += 1;
+        return HttpResponse.json({ loginUrl: AUTHORIZE_URL });
+      }),
+    );
+    const onLoginError = vi.fn();
+    render(<SocialLoginButton provider="kakao" onLoginError={onLoginError} />, {
+      wrapper: Wrapper,
+    });
+    const button = screen.getByRole('button', { name: '카카오로 시작하기' });
+
+    const id = await clickAndReadRequestId();
+    failFromNative(id, 'UNSUPPORTED', 'unknown type');
+
+    await waitFor(() => expect(toast).toHaveBeenCalledTimes(1));
+    expect(toast).toHaveBeenCalledWith(
+      '해당 로그인을 사용할 수 없습니다. 앱을 업데이트 해주세요.',
+      {
+        position: 'noneTabBottom',
+      },
+    );
+    await waitFor(() => expect(button).toBeEnabled());
+    expect(loginUrlRequestCount).toBe(0);
+    expect(assignedHref).toBe(ORIGINAL_HREF);
+    expect(onLoginError).not.toHaveBeenCalled();
+  });
+
+  it('TIMEOUT 등 그 외 실패는 버튼이 풀리고 onLoginError 로 전달된다', async () => {
+    vi.mocked(toast).mockClear();
+    const onLoginError = vi.fn();
+    render(<SocialLoginButton provider="kakao" onLoginError={onLoginError} />, {
+      wrapper: Wrapper,
+    });
+    const button = screen.getByRole('button', { name: '카카오로 시작하기' });
+
+    const id = await clickAndReadRequestId();
+    failFromNative(id, 'TIMEOUT');
+
+    await waitFor(() => expect(button).toBeEnabled());
+    expect(onLoginError).toHaveBeenCalledTimes(1);
+    expect(onLoginError.mock.calls[0][0]).toMatchObject({ code: 'TIMEOUT' });
+    expect(assignedHref).toBe(ORIGINAL_HREF);
+    expect(toast).not.toHaveBeenCalled();
+  });
+
+  it('브라우저 환경이면 postMessage 없이 인가 URL 조회가 1회 나간다', async () => {
+    uninstallNativeBridgeStub();
+    let requestCount = 0;
+    server.use(
+      http.get(KAKAO_LOGIN_URL_ENDPOINT, () => {
+        requestCount += 1;
+        return HttpResponse.json({ loginUrl: AUTHORIZE_URL });
+      }),
+    );
+    render(<SocialLoginButton provider="kakao" />, { wrapper: Wrapper });
+
+    await userEvent.click(screen.getByRole('button', { name: '카카오로 시작하기' }));
+
+    await waitFor(() => expect(assignedHref).toBe(AUTHORIZE_URL));
+    expect(requestCount).toBe(1);
+    expect(bridge.postMessage).not.toHaveBeenCalled();
   });
 });
