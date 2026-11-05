@@ -8,6 +8,7 @@ import { NATIVE_USER_AGENT_MARKER } from '@repo/bridge-protocol';
 
 import { createBridge } from '../bridge/create-bridge';
 import { APP_VERSION, handleAppInfo } from '../bridge/handlers/app-info';
+import { handleAuthLogin } from '../bridge/handlers/auth-login';
 
 const devHost = Constants.expoConfig?.hostUri?.split(':')[0];
 
@@ -63,7 +64,7 @@ let webView: WebView | null = null;
 // 웹의 요청을 핸들러로 보내고 응답을 되돌려 준다. 봉투가 아닌 메시지(주입 스크립트의
 // 에러 리포트)는 기존 콘솔 로그 경로로 남긴다.
 const bridge = createBridge({
-  handlers: { APP_INFO: handleAppInfo },
+  handlers: { APP_INFO: handleAppInfo, AUTH_LOGIN: handleAuthLogin },
   allowedUrl: WEB_URL,
   postMessage: (json) => webView?.postMessage(json),
   onUnhandled: (raw) => console.log('[WebView] browser event', raw),
