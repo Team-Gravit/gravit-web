@@ -19,10 +19,20 @@ import {
   type NativeBridgeStub,
 } from '@/shared/api/mocks/native-bridge';
 import { server } from '@/shared/api/mocks/server';
+import { toast } from '@/shared/ui/toast';
 import { clearSession } from '@/entities/auth';
 
 import { LoginPage } from './login-page';
 
+// 토스트는 다시 띄우면 기존 것을 대체한다. 중복 안내를 잡기 위해 호출 횟수를 센다.
+vi.mock('@/shared/ui/toast', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@/shared/ui/toast')>();
+
+  return { ...actual, toast: vi.fn() };
+});
+
+const KAKAO_LOGIN_URL_ENDPOINT = '*/api/v1/oauth/login-url/kakao';
+const LOGIN_FAILED_TEXT = '로그인에 실패했습니다. 다시 시도해 주세요.';
 const ID_TOKEN_ENDPOINT = '*/api/v1/oauth/android';
 const LOGIN_RESPONSE = {
   accessToken: 'at_1',
@@ -80,11 +90,29 @@ async function renderLoginPage() {
   return router;
 }
 
+beforeEach(() => {
+  vi.mocked(toast).mockClear();
+});
+
 afterEach(() => {
   vi.unstubAllGlobals();
 });
 
 describe('LoginPage', () => {
+  it('브라우저에서 인가 URL 조회가 실패하면 실패 토스트가 1회 뜨고 / 에 남는다', async () => {
+    stubViewport(false);
+    server.use(http.get(KAKAO_LOGIN_URL_ENDPOINT, () => new HttpResponse(null, { status: 500 })));
+    const router = await renderLoginPage();
+    const button = screen.getByRole('button', { name: '카카오로 시작하기' });
+
+    await userEvent.click(button);
+
+    await waitFor(() => expect(toast).toHaveBeenCalledTimes(1));
+    expect(toast).toHaveBeenCalledWith(LOGIN_FAILED_TEXT, { position: 'noneTabBottom' });
+    await waitFor(() => expect(button).toBeEnabled());
+    expect(router.state.location.pathname).toBe('/');
+  });
+
   it('소셜 로그인 버튼이 Google · 카카오 · 네이버 순서로 3개 렌더된다', async () => {
     stubViewport(false);
 
@@ -186,9 +214,10 @@ describe('LoginPage — 앱 환경 네이티브 로그인', () => {
 
     await waitFor(() => expect(router.state.location.pathname).toBe('/restore'));
     expect(router.state.location.search).toEqual({ providerId: 'pid_9' });
+    expect(toast).not.toHaveBeenCalled();
   });
 
-  it('네이티브가 CANCELLED 로 실패하면 라우터 위치는 / 그대로이고 버튼이 풀린다', async () => {
+  it('네이티브가 CANCELLED 로 실패하면 라우터 위치는 / 그대로이고 버튼이 풀리며 토스트는 없다', async () => {
     const router = await renderLoginPage();
     const button = screen.getByRole('button', { name: '카카오로 시작하기' });
 
@@ -196,6 +225,35 @@ describe('LoginPage — 앱 환경 네이티브 로그인', () => {
     failFromNative(id, 'CANCELLED');
 
     await waitFor(() => expect(button).toBeEnabled());
+    expect(router.state.location.pathname).toBe('/');
+    expect(toast).not.toHaveBeenCalled();
+  });
+
+  it.each(['NATIVE_ERROR', 'TIMEOUT'] as const)(
+    '네이티브가 %s 로 실패하면 실패 토스트가 1회 뜨고 버튼이 풀리며 / 에 남는다',
+    async (code) => {
+      const router = await renderLoginPage();
+      const button = screen.getByRole('button', { name: '카카오로 시작하기' });
+
+      const id = await clickKakaoAndReadRequestId();
+      failFromNative(id, code);
+
+      await waitFor(() => expect(toast).toHaveBeenCalledTimes(1));
+      expect(toast).toHaveBeenCalledWith(LOGIN_FAILED_TEXT, { position: 'noneTabBottom' });
+      await waitFor(() => expect(button).toBeEnabled());
+      expect(router.state.location.pathname).toBe('/');
+    },
+  );
+
+  it('토큰 교환이 500 이면 실패 토스트가 1회 뜨고 / 에 남는다', async () => {
+    server.use(http.post(ID_TOKEN_ENDPOINT, () => new HttpResponse(null, { status: 500 })));
+    const router = await renderLoginPage();
+
+    const id = await clickKakaoAndReadRequestId();
+    respondFromNative(id, { tokenType: 'idToken', token: 'kakao_id_tok' });
+
+    await waitFor(() => expect(toast).toHaveBeenCalledTimes(1));
+    expect(toast).toHaveBeenCalledWith(LOGIN_FAILED_TEXT, { position: 'noneTabBottom' });
     expect(router.state.location.pathname).toBe('/');
   });
 });

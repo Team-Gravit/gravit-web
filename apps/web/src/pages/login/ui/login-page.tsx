@@ -1,7 +1,12 @@
 import { useNavigate } from '@tanstack/react-router';
 
 import { useIsWideViewport } from '@/shared/lib/use-is-wide-viewport';
-import { readWithdrawnProviderId, resolveLoginDestination } from '@/features/auth-login';
+import { toast } from '@/shared/ui/toast';
+import {
+  LOGIN_FAILED_MESSAGE,
+  readWithdrawnProviderId,
+  resolveLoginDestination,
+} from '@/features/auth-login';
 
 import { LoginPageNarrow } from './login-page-narrow';
 import type { LoginPageVariantProps } from './login-page-variant-props';
@@ -24,7 +29,10 @@ export function LoginPage() {
 
     if (providerId) {
       navigate({ to: '/restore', search: { providerId }, replace: true });
+      return;
     }
+
+    toast(LOGIN_FAILED_MESSAGE, { position: 'noneTabBottom' });
   };
 
   const variantProps: LoginPageVariantProps = {

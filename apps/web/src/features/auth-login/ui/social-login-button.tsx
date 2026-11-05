@@ -125,7 +125,7 @@ export function SocialLoginButton({
       return;
     }
 
-    startOauthLogin(provider);
+    startOauthLogin(provider, { onError: (error) => onLoginError?.(error) });
   };
 
   // 웹 경로는 성공하면 window.location.href 로 문서가 전환되므로 pending 이 풀리지 않는다.

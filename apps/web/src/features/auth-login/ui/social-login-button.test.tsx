@@ -118,6 +118,21 @@ describe('SocialLoginButton', () => {
     await waitFor(() => expect(assignedHref).toBe(AUTHORIZE_URL));
     expect(requestCount).toBe(1);
   });
+
+  it('인가 URL 조회가 실패하면 버튼이 풀리고 onLoginError 가 1회 호출된다', async () => {
+    server.use(http.get(KAKAO_LOGIN_URL_ENDPOINT, () => new HttpResponse(null, { status: 500 })));
+    const onLoginError = vi.fn();
+    render(<SocialLoginButton provider="kakao" onLoginError={onLoginError} />, {
+      wrapper: Wrapper,
+    });
+    const button = screen.getByRole('button', { name: '카카오로 시작하기' });
+
+    await userEvent.click(button);
+
+    await waitFor(() => expect(onLoginError).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(button).toBeEnabled());
+    expect(assignedHref).toBe(ORIGINAL_HREF);
+  });
 });
 
 describe('SocialLoginButton — 앱 환경', () => {

@@ -1,7 +1,9 @@
 import { useEffect, useRef } from 'react';
 import { useNavigate } from '@tanstack/react-router';
 
+import { toast } from '@/shared/ui/toast';
 import {
+  LOGIN_FAILED_MESSAGE,
   readWithdrawnProviderId,
   resolveLoginDestination,
   useOauthCallback,
@@ -53,6 +55,7 @@ export function OauthCallbackPage({ provider, code }: OauthCallbackPageProps) {
             return;
           }
 
+          toast(LOGIN_FAILED_MESSAGE, { position: 'noneTabBottom' });
           navigate({ to: '/', replace: true });
         },
       },
