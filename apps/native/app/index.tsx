@@ -1,9 +1,13 @@
 import { StyleSheet, View, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { WebView, type WebViewMessageEvent } from 'react-native-webview';
 import Constants from 'expo-constants';
 import { StatusBar, type StatusBarStyle } from 'expo-status-bar';
+import { NATIVE_USER_AGENT_MARKER } from '@repo/bridge-protocol';
+
+import { createBridge } from '../bridge/create-bridge';
+import { APP_VERSION, handleAppInfo } from '../bridge/handlers/app-info';
 
 const devHost = Constants.expoConfig?.hostUri?.split(':')[0];
 
@@ -52,9 +56,20 @@ function rewriteLocalDevCallback(url: string): string | null {
   return url.replace(LOCAL_DEV_ORIGIN, WEB_URL.replace(/\/+$/, ''));
 }
 
+// WebView 는 이 화면 하나뿐이라 인스턴스와 브릿지를 모듈 스코프에 둔다. 렌더 안에서 ref 를
+// 읽는 클로저를 만들면 react-compiler 린트(`react-hooks/refs`)에 걸린다.
+let webView: WebView | null = null;
+
+// 웹의 요청을 핸들러로 보내고 응답을 되돌려 준다. 봉투가 아닌 메시지(주입 스크립트의
+// 에러 리포트)는 기존 콘솔 로그 경로로 남긴다.
+const bridge = createBridge({
+  handlers: { APP_INFO: handleAppInfo },
+  postMessage: (json) => webView?.postMessage(json),
+  onUnhandled: (raw) => console.log('[WebView] browser event', raw),
+});
+
 export default function WebviewPage() {
   const insets = useSafeAreaInsets();
-  const webViewRef = useRef<WebView>(null);
   const [webUri, setWebUri] = useState(WEB_URL);
   const [statusBarStyle, setStatusBarStyle] = useState<StatusBarStyle>('dark');
 
@@ -76,7 +91,7 @@ export default function WebviewPage() {
       return;
     }
 
-    console.log('[WebView] browser event', event.nativeEvent.data);
+    bridge.handleMessage(event);
   };
 
   return (
@@ -92,18 +107,21 @@ export default function WebviewPage() {
     >
       <StatusBar style={statusBarStyle} />
       <WebView
-        ref={webViewRef}
+        ref={(instance) => {
+          webView = instance;
+        }}
         style={styles.container}
         source={{ uri: webUri }}
         onShouldStartLoadWithRequest={handleShouldStartLoad}
         // 기본 UA 뒤에 덧붙인다. `userAgent`로 통째로 바꾸면 WebKit 정보가 사라져 네이버·구글 로그인이
-        // 알 수 없는 브라우저로 판단해 차단한다. 웹은 `GravitNative/` 포함 여부로 앱 환경을 판별한다.
-        applicationNameForUserAgent="GravitNative/1.0"
+        // 알 수 없는 브라우저로 판단해 차단한다. 웹은 마커 포함 여부로 앱 환경을 판별한다.
+        applicationNameForUserAgent={`${NATIVE_USER_AGENT_MARKER}/${APP_VERSION}`}
         // 웹 화면이 스크롤을 직접 관리한다. WebView 가 튕기면 고정 헤더 · 바텀탭까지 함께 끌려간다.
         bounces={false}
         // WebView의 자동 inset 보정을 꺼 웹의 상단 여백과 중복되지 않게 한다.
         contentInsetAdjustmentBehavior="never"
         overScrollMode="never"
+        webviewDebuggingEnabled={__DEV__}
         cacheEnabled={!__DEV__}
         cacheMode={__DEV__ ? 'LOAD_NO_CACHE' : 'LOAD_DEFAULT'}
         originWhitelist={['*']}
