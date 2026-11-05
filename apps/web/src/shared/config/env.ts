@@ -11,6 +11,11 @@ export function getOauthDest(): string {
   return import.meta.env.VITE_OAUTH_DEST;
 }
 
+/** 웹 Apple 로그인의 Services ID를 읽는다. 설정하지 않았으면 빈 문자열이다. */
+export function getAppleClientId(): string {
+  return import.meta.env.VITE_APPLE_CLIENT_ID ?? '';
+}
+
 /**
  * API 요청의 baseURL을 읽는다.
  *
