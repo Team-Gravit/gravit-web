@@ -31,7 +31,7 @@ Issue 3은 카카오로 앱에서 로그인이 끝나는 것까지다. Issue 4·
 
 ## Issue 1: [Feat] 웹↔네이티브 브릿지 왕복을 만든다 (`APP_INFO`)
 
-GitHub Issue: 미등록
+GitHub Issue: [#389](https://github.com/Team-Gravit/gravit-web/issues/389)
 
 ### 설명
 
@@ -139,7 +139,7 @@ Then `EAS_BUILD_PROFILE`이 없으면 설정이 출력되고 `plugins`에 `@reac
 
 ## Issue 2: [Security] 앱 웹 주소에서 온 브릿지 요청만 처리하고 운영 빌드의 HTTP를 끈다
 
-GitHub Issue: 미등록
+GitHub Issue: [#389](https://github.com/Team-Gravit/gravit-web/issues/389)
 
 ### 설명
 
@@ -182,7 +182,7 @@ Issue 1 완료 후 시작
 
 ## Issue 3: [Feat] 앱에서 카카오 SDK로 로그인한다 (iOS · Android)
 
-GitHub Issue: 미등록
+GitHub Issue: [#389](https://github.com/Team-Gravit/gravit-web/issues/389)
 
 ### 설명
 
@@ -285,7 +285,7 @@ Issue 2 완료 후 시작. **확인 필요 2**(카카오 네이티브 앱 키 ·
 
 ## Issue 4: [Feat] 앱에서 Google SDK로 로그인한다 (iOS · Android)
 
-GitHub Issue: 미등록
+GitHub Issue: [#389](https://github.com/Team-Gravit/gravit-web/issues/389)
 
 ### 설명
 
@@ -340,7 +340,7 @@ Issue 3 완료 후 시작 (provider 분기·토스트·페이지 이동이 거�
 
 ## Issue 5: [Feat] 앱에서 네이버 SDK로 로그인한다 (iOS · Android)
 
-GitHub Issue: 미등록
+GitHub Issue: [#389](https://github.com/Team-Gravit/gravit-web/issues/389)
 
 ### 설명
 
@@ -400,7 +400,7 @@ Issue 3 완료 후 시작. Issue 4와 병렬 가능
 
 ## Issue 6: [Feat] 브라우저에서 Apple로 로그인한다
 
-GitHub Issue: 미등록
+GitHub Issue: [#389](https://github.com/Team-Gravit/gravit-web/issues/389)
 
 ### 설명
 
@@ -447,7 +447,7 @@ Issue 7의 계약 · 버튼과 같은 변경으로 나간다. AC-5는 dev 배포
 
 ## Issue 7: [Feat] iOS 앱에서 Apple로 로그인한다
 
-GitHub Issue: 미등록
+GitHub Issue: [#389](https://github.com/Team-Gravit/gravit-web/issues/389)
 
 ### 설명
 
