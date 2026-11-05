@@ -8,7 +8,7 @@ import {
   useQuizSession,
 } from '@/features/lesson-quiz';
 
-import { StatusNumberButton, statusNumberColors } from '@/shared/ui/status-number-button';
+import { ProblemStatusButton, problemStatusColors } from './problem-status-button';
 
 const LEGEND_ITEMS = [
   { status: 'current', label: PROGRESS_PANEL_LABELS.current },
@@ -64,12 +64,12 @@ export function QuizProgressPanel({ problems, className }: QuizProgressPanelProp
           <ol className="grid grid-cols-5 justify-items-center gap-2">
             {problems.map((problem, problemIndex) => (
               <li key={problem.problemId}>
-                <StatusNumberButton
+                <ProblemStatusButton
                   status={problemStatuses[problemIndex]}
                   onClick={() => goTo(problemIndex)}
                 >
                   {problemIndex + 1}
-                </StatusNumberButton>
+                </ProblemStatusButton>
               </li>
             ))}
           </ol>
@@ -81,7 +81,7 @@ export function QuizProgressPanel({ problems, className }: QuizProgressPanelProp
               <span
                 aria-hidden="true"
                 className={cn(
-                  statusNumberColors({ status: item.status }),
+                  problemStatusColors({ status: item.status }),
                   'size-4 shrink-0 rounded-4',
                 )}
               />

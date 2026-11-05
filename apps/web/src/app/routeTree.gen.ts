@@ -25,36 +25,27 @@ import { Route as AuthenticatedAppShellFriendsRouteImport } from './routes/_auth
 import { Route as AuthenticatedAppShellLeagueRouteImport } from './routes/_authenticated/_app-shell/league'
 import { Route as AuthenticatedAppShellMainRouteImport } from './routes/_authenticated/_app-shell/main'
 import { Route as AuthenticatedAppShellMyRouteRouteImport } from './routes/_authenticated/_app-shell/my/route'
-import { Route as AuthenticatedFocusInterviewRouteImport } from './routes/_authenticated/_focus/interview'
 import { Route as AuthenticatedMyEditRouteImport } from './routes/_authenticated/my.edit'
 import { Route as AuthenticatedOnboardingIndexRouteImport } from './routes/_authenticated/onboarding/index'
 import { Route as AuthenticatedOnboardingSuccessRouteImport } from './routes/_authenticated/onboarding/success'
 import { Route as AuthenticatedSettingsIndexRouteImport } from './routes/_authenticated/settings/index'
 import { Route as AuthenticatedSettingsInquiryRouteRouteImport } from './routes/_authenticated/settings/inquiry/route'
-import { Route as AuthenticatedAppShellInterviewIndexRouteImport } from './routes/_authenticated/_app-shell/interview.index'
 import { Route as AuthenticatedAppShellLearningIndexRouteImport } from './routes/_authenticated/_app-shell/learning.index'
 import { Route as AuthenticatedAppShellMyIndexRouteImport } from './routes/_authenticated/_app-shell/my/index'
 import { Route as AuthenticatedAppShellMyLeagueRouteImport } from './routes/_authenticated/_app-shell/my/league'
 import { Route as AuthenticatedAppShellMyLearningRouteImport } from './routes/_authenticated/_app-shell/my/learning'
 import { Route as AuthenticatedAppShellMySocialRouteImport } from './routes/_authenticated/_app-shell/my/social'
 import { Route as AuthenticatedAppShellMySummaryRouteImport } from './routes/_authenticated/_app-shell/my/summary'
-import { Route as AuthenticatedFocusInterviewNewRouteImport } from './routes/_authenticated/_focus/interview.new'
 import { Route as AuthenticatedSettingsInquiryIndexRouteImport } from './routes/_authenticated/settings/inquiry/index'
 import { Route as AuthenticatedSettingsInquiryNewRouteImport } from './routes/_authenticated/settings/inquiry/new'
 import { Route as AuthenticatedSettingsNoticeIndexRouteImport } from './routes/_authenticated/settings/notice/index'
 import { Route as AuthenticatedSettingsNoticeNoticeIdRouteImport } from './routes/_authenticated/settings/notice/$noticeId'
 import { Route as LoginOauth2CodeProviderRouteImport } from './routes/login.oauth2.code.$provider'
-import { Route as AuthenticatedAppShellInterviewHistoryIndexRouteImport } from './routes/_authenticated/_app-shell/interview.history.index'
-import { Route as AuthenticatedAppShellInterviewHistorySessionIdRouteImport } from './routes/_authenticated/_app-shell/interview.history.$sessionId'
 import { Route as AuthenticatedAppShellMyFriendsSearchRouteImport } from './routes/_authenticated/_app-shell/my.friends.search'
-import { Route as AuthenticatedFocusInterviewNewStepRouteImport } from './routes/_authenticated/_focus/interview.new.$step'
-import { Route as AuthenticatedFocusInterviewSessionsSessionIdRouteImport } from './routes/_authenticated/_focus/interview.sessions.$sessionId'
 import { Route as AuthenticatedFocusLearningLessonsLessonIdRouteImport } from './routes/_authenticated/_focus/learning.lessons.$lessonId'
 import { Route as AuthenticatedAppShellLearningChaptersChapterIdIndexRouteImport } from './routes/_authenticated/_app-shell/learning.chapters.$chapterId.index'
 import { Route as AuthenticatedAppShellLearningUnitsUnitIdIndexRouteImport } from './routes/_authenticated/_app-shell/learning.units.$unitId.index'
 import { Route as AuthenticatedAppShellLearningUnitsUnitIdConceptNoteRouteImport } from './routes/_authenticated/_app-shell/learning.units.$unitId.concept-note'
-import { Route as AuthenticatedFocusInterviewSessionsConfirmSessionIdRouteImport } from './routes/_authenticated/_focus/interview.sessions.confirm.$sessionId'
-import { Route as AuthenticatedFocusInterviewSessionsGradingSessionIdRouteImport } from './routes/_authenticated/_focus/interview.sessions.grading.$sessionId'
 import { Route as AuthenticatedFocusLearningUnitsUnitIdBookmarkedProblemsRouteImport } from './routes/_authenticated/_focus/learning.units.$unitId.bookmarked-problems'
 import { Route as AuthenticatedFocusLearningUnitsUnitIdIncorrectProblemsRouteImport } from './routes/_authenticated/_focus/learning.units.$unitId.incorrect-problems'
 import { Route as AuthenticatedFocusLearningLessonsLessonIdResultSubmissionIdRouteImport } from './routes/_authenticated/_focus/learning.lessons.$lessonId_.result.$submissionId'
@@ -144,12 +135,6 @@ const AuthenticatedAppShellMyRouteRoute =
     path: '/my',
     getParentRoute: () => AuthenticatedAppShellRouteRoute,
   } as any)
-const AuthenticatedFocusInterviewRoute =
-  AuthenticatedFocusInterviewRouteImport.update({
-    id: '/interview',
-    path: '/interview',
-    getParentRoute: () => AuthenticatedFocusRouteRoute,
-  } as any)
 const AuthenticatedMyEditRoute = AuthenticatedMyEditRouteImport.update({
   id: '/my/edit',
   path: '/my/edit',
@@ -178,12 +163,6 @@ const AuthenticatedSettingsInquiryRouteRoute =
     id: '/inquiry',
     path: '/inquiry',
     getParentRoute: () => AuthenticatedSettingsRouteRoute,
-  } as any)
-const AuthenticatedAppShellInterviewIndexRoute =
-  AuthenticatedAppShellInterviewIndexRouteImport.update({
-    id: '/interview/',
-    path: '/interview/',
-    getParentRoute: () => AuthenticatedAppShellRouteRoute,
   } as any)
 const AuthenticatedAppShellLearningIndexRoute =
   AuthenticatedAppShellLearningIndexRouteImport.update({
@@ -221,12 +200,6 @@ const AuthenticatedAppShellMySummaryRoute =
     path: '/summary',
     getParentRoute: () => AuthenticatedAppShellMyRouteRoute,
   } as any)
-const AuthenticatedFocusInterviewNewRoute =
-  AuthenticatedFocusInterviewNewRouteImport.update({
-    id: '/new',
-    path: '/new',
-    getParentRoute: () => AuthenticatedFocusInterviewRoute,
-  } as any)
 const AuthenticatedSettingsInquiryIndexRoute =
   AuthenticatedSettingsInquiryIndexRouteImport.update({
     id: '/',
@@ -256,35 +229,11 @@ const LoginOauth2CodeProviderRoute = LoginOauth2CodeProviderRouteImport.update({
   path: '/login/oauth2/code/$provider',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthenticatedAppShellInterviewHistoryIndexRoute =
-  AuthenticatedAppShellInterviewHistoryIndexRouteImport.update({
-    id: '/interview/history/',
-    path: '/interview/history/',
-    getParentRoute: () => AuthenticatedAppShellRouteRoute,
-  } as any)
-const AuthenticatedAppShellInterviewHistorySessionIdRoute =
-  AuthenticatedAppShellInterviewHistorySessionIdRouteImport.update({
-    id: '/interview/history/$sessionId',
-    path: '/interview/history/$sessionId',
-    getParentRoute: () => AuthenticatedAppShellRouteRoute,
-  } as any)
 const AuthenticatedAppShellMyFriendsSearchRoute =
   AuthenticatedAppShellMyFriendsSearchRouteImport.update({
     id: '/friends/search',
     path: '/friends/search',
     getParentRoute: () => AuthenticatedAppShellMyRouteRoute,
-  } as any)
-const AuthenticatedFocusInterviewNewStepRoute =
-  AuthenticatedFocusInterviewNewStepRouteImport.update({
-    id: '/$step',
-    path: '/$step',
-    getParentRoute: () => AuthenticatedFocusInterviewNewRoute,
-  } as any)
-const AuthenticatedFocusInterviewSessionsSessionIdRoute =
-  AuthenticatedFocusInterviewSessionsSessionIdRouteImport.update({
-    id: '/sessions/$sessionId',
-    path: '/sessions/$sessionId',
-    getParentRoute: () => AuthenticatedFocusInterviewRoute,
   } as any)
 const AuthenticatedFocusLearningLessonsLessonIdRoute =
   AuthenticatedFocusLearningLessonsLessonIdRouteImport.update({
@@ -309,18 +258,6 @@ const AuthenticatedAppShellLearningUnitsUnitIdConceptNoteRoute =
     id: '/learning/units/$unitId/concept-note',
     path: '/learning/units/$unitId/concept-note',
     getParentRoute: () => AuthenticatedAppShellRouteRoute,
-  } as any)
-const AuthenticatedFocusInterviewSessionsConfirmSessionIdRoute =
-  AuthenticatedFocusInterviewSessionsConfirmSessionIdRouteImport.update({
-    id: '/sessions/confirm/$sessionId',
-    path: '/sessions/confirm/$sessionId',
-    getParentRoute: () => AuthenticatedFocusInterviewRoute,
-  } as any)
-const AuthenticatedFocusInterviewSessionsGradingSessionIdRoute =
-  AuthenticatedFocusInterviewSessionsGradingSessionIdRouteImport.update({
-    id: '/sessions/grading/$sessionId',
-    path: '/sessions/grading/$sessionId',
-    getParentRoute: () => AuthenticatedFocusInterviewRoute,
   } as any)
 const AuthenticatedFocusLearningUnitsUnitIdBookmarkedProblemsRoute =
   AuthenticatedFocusLearningUnitsUnitIdBookmarkedProblemsRouteImport.update({
@@ -358,7 +295,6 @@ export interface FileRoutesByFullPath {
   '/friends': typeof AuthenticatedAppShellFriendsRoute
   '/league': typeof AuthenticatedAppShellLeagueRoute
   '/main': typeof AuthenticatedAppShellMainRoute
-  '/interview': typeof AuthenticatedFocusInterviewRouteWithChildren
   '/my/edit': typeof AuthenticatedMyEditRoute
   '/onboarding/success': typeof AuthenticatedOnboardingSuccessRoute
   '/onboarding/': typeof AuthenticatedOnboardingIndexRoute
@@ -367,24 +303,16 @@ export interface FileRoutesByFullPath {
   '/my/learning': typeof AuthenticatedAppShellMyLearningRoute
   '/my/social': typeof AuthenticatedAppShellMySocialRoute
   '/my/summary': typeof AuthenticatedAppShellMySummaryRoute
-  '/interview/new': typeof AuthenticatedFocusInterviewNewRouteWithChildren
   '/settings/inquiry/new': typeof AuthenticatedSettingsInquiryNewRoute
   '/settings/notice/$noticeId': typeof AuthenticatedSettingsNoticeNoticeIdRoute
   '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
-  '/interview/': typeof AuthenticatedAppShellInterviewIndexRoute
   '/learning/': typeof AuthenticatedAppShellLearningIndexRoute
   '/my/': typeof AuthenticatedAppShellMyIndexRoute
   '/settings/inquiry/': typeof AuthenticatedSettingsInquiryIndexRoute
   '/settings/notice/': typeof AuthenticatedSettingsNoticeIndexRoute
-  '/interview/history/$sessionId': typeof AuthenticatedAppShellInterviewHistorySessionIdRoute
   '/my/friends/search': typeof AuthenticatedAppShellMyFriendsSearchRoute
-  '/interview/new/$step': typeof AuthenticatedFocusInterviewNewStepRoute
-  '/interview/sessions/$sessionId': typeof AuthenticatedFocusInterviewSessionsSessionIdRoute
   '/learning/lessons/$lessonId': typeof AuthenticatedFocusLearningLessonsLessonIdRoute
-  '/interview/history/': typeof AuthenticatedAppShellInterviewHistoryIndexRoute
   '/learning/units/$unitId/concept-note': typeof AuthenticatedAppShellLearningUnitsUnitIdConceptNoteRoute
-  '/interview/sessions/confirm/$sessionId': typeof AuthenticatedFocusInterviewSessionsConfirmSessionIdRoute
-  '/interview/sessions/grading/$sessionId': typeof AuthenticatedFocusInterviewSessionsGradingSessionIdRoute
   '/learning/units/$unitId/bookmarked-problems': typeof AuthenticatedFocusLearningUnitsUnitIdBookmarkedProblemsRoute
   '/learning/units/$unitId/incorrect-problems': typeof AuthenticatedFocusLearningUnitsUnitIdIncorrectProblemsRoute
   '/learning/chapters/$chapterId/': typeof AuthenticatedAppShellLearningChaptersChapterIdIndexRoute
@@ -402,7 +330,6 @@ export interface FileRoutesByTo {
   '/friends': typeof AuthenticatedAppShellFriendsRoute
   '/league': typeof AuthenticatedAppShellLeagueRoute
   '/main': typeof AuthenticatedAppShellMainRoute
-  '/interview': typeof AuthenticatedAppShellInterviewIndexRoute
   '/my/edit': typeof AuthenticatedMyEditRoute
   '/onboarding/success': typeof AuthenticatedOnboardingSuccessRoute
   '/onboarding': typeof AuthenticatedOnboardingIndexRoute
@@ -411,7 +338,6 @@ export interface FileRoutesByTo {
   '/my/learning': typeof AuthenticatedAppShellMyLearningRoute
   '/my/social': typeof AuthenticatedAppShellMySocialRoute
   '/my/summary': typeof AuthenticatedAppShellMySummaryRoute
-  '/interview/new': typeof AuthenticatedFocusInterviewNewRouteWithChildren
   '/settings/inquiry/new': typeof AuthenticatedSettingsInquiryNewRoute
   '/settings/notice/$noticeId': typeof AuthenticatedSettingsNoticeNoticeIdRoute
   '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
@@ -419,15 +345,9 @@ export interface FileRoutesByTo {
   '/my': typeof AuthenticatedAppShellMyIndexRoute
   '/settings/inquiry': typeof AuthenticatedSettingsInquiryIndexRoute
   '/settings/notice': typeof AuthenticatedSettingsNoticeIndexRoute
-  '/interview/history/$sessionId': typeof AuthenticatedAppShellInterviewHistorySessionIdRoute
   '/my/friends/search': typeof AuthenticatedAppShellMyFriendsSearchRoute
-  '/interview/new/$step': typeof AuthenticatedFocusInterviewNewStepRoute
-  '/interview/sessions/$sessionId': typeof AuthenticatedFocusInterviewSessionsSessionIdRoute
   '/learning/lessons/$lessonId': typeof AuthenticatedFocusLearningLessonsLessonIdRoute
-  '/interview/history': typeof AuthenticatedAppShellInterviewHistoryIndexRoute
   '/learning/units/$unitId/concept-note': typeof AuthenticatedAppShellLearningUnitsUnitIdConceptNoteRoute
-  '/interview/sessions/confirm/$sessionId': typeof AuthenticatedFocusInterviewSessionsConfirmSessionIdRoute
-  '/interview/sessions/grading/$sessionId': typeof AuthenticatedFocusInterviewSessionsGradingSessionIdRoute
   '/learning/units/$unitId/bookmarked-problems': typeof AuthenticatedFocusLearningUnitsUnitIdBookmarkedProblemsRoute
   '/learning/units/$unitId/incorrect-problems': typeof AuthenticatedFocusLearningUnitsUnitIdIncorrectProblemsRoute
   '/learning/chapters/$chapterId': typeof AuthenticatedAppShellLearningChaptersChapterIdIndexRoute
@@ -453,7 +373,6 @@ export interface FileRoutesById {
   '/_authenticated/_app-shell/friends': typeof AuthenticatedAppShellFriendsRoute
   '/_authenticated/_app-shell/league': typeof AuthenticatedAppShellLeagueRoute
   '/_authenticated/_app-shell/main': typeof AuthenticatedAppShellMainRoute
-  '/_authenticated/_focus/interview': typeof AuthenticatedFocusInterviewRouteWithChildren
   '/_authenticated/my/edit': typeof AuthenticatedMyEditRoute
   '/_authenticated/onboarding/success': typeof AuthenticatedOnboardingSuccessRoute
   '/_authenticated/onboarding/': typeof AuthenticatedOnboardingIndexRoute
@@ -462,24 +381,16 @@ export interface FileRoutesById {
   '/_authenticated/_app-shell/my/learning': typeof AuthenticatedAppShellMyLearningRoute
   '/_authenticated/_app-shell/my/social': typeof AuthenticatedAppShellMySocialRoute
   '/_authenticated/_app-shell/my/summary': typeof AuthenticatedAppShellMySummaryRoute
-  '/_authenticated/_focus/interview/new': typeof AuthenticatedFocusInterviewNewRouteWithChildren
   '/_authenticated/settings/inquiry/new': typeof AuthenticatedSettingsInquiryNewRoute
   '/_authenticated/settings/notice/$noticeId': typeof AuthenticatedSettingsNoticeNoticeIdRoute
   '/login/oauth2/code/$provider': typeof LoginOauth2CodeProviderRoute
-  '/_authenticated/_app-shell/interview/': typeof AuthenticatedAppShellInterviewIndexRoute
   '/_authenticated/_app-shell/learning/': typeof AuthenticatedAppShellLearningIndexRoute
   '/_authenticated/_app-shell/my/': typeof AuthenticatedAppShellMyIndexRoute
   '/_authenticated/settings/inquiry/': typeof AuthenticatedSettingsInquiryIndexRoute
   '/_authenticated/settings/notice/': typeof AuthenticatedSettingsNoticeIndexRoute
-  '/_authenticated/_app-shell/interview/history/$sessionId': typeof AuthenticatedAppShellInterviewHistorySessionIdRoute
   '/_authenticated/_app-shell/my/friends/search': typeof AuthenticatedAppShellMyFriendsSearchRoute
-  '/_authenticated/_focus/interview/new/$step': typeof AuthenticatedFocusInterviewNewStepRoute
-  '/_authenticated/_focus/interview/sessions/$sessionId': typeof AuthenticatedFocusInterviewSessionsSessionIdRoute
   '/_authenticated/_focus/learning/lessons/$lessonId': typeof AuthenticatedFocusLearningLessonsLessonIdRoute
-  '/_authenticated/_app-shell/interview/history/': typeof AuthenticatedAppShellInterviewHistoryIndexRoute
   '/_authenticated/_app-shell/learning/units/$unitId/concept-note': typeof AuthenticatedAppShellLearningUnitsUnitIdConceptNoteRoute
-  '/_authenticated/_focus/interview/sessions/confirm/$sessionId': typeof AuthenticatedFocusInterviewSessionsConfirmSessionIdRoute
-  '/_authenticated/_focus/interview/sessions/grading/$sessionId': typeof AuthenticatedFocusInterviewSessionsGradingSessionIdRoute
   '/_authenticated/_focus/learning/units/$unitId/bookmarked-problems': typeof AuthenticatedFocusLearningUnitsUnitIdBookmarkedProblemsRoute
   '/_authenticated/_focus/learning/units/$unitId/incorrect-problems': typeof AuthenticatedFocusLearningUnitsUnitIdIncorrectProblemsRoute
   '/_authenticated/_app-shell/learning/chapters/$chapterId/': typeof AuthenticatedAppShellLearningChaptersChapterIdIndexRoute
@@ -503,7 +414,6 @@ export interface FileRouteTypes {
     | '/friends'
     | '/league'
     | '/main'
-    | '/interview'
     | '/my/edit'
     | '/onboarding/success'
     | '/onboarding/'
@@ -512,24 +422,16 @@ export interface FileRouteTypes {
     | '/my/learning'
     | '/my/social'
     | '/my/summary'
-    | '/interview/new'
     | '/settings/inquiry/new'
     | '/settings/notice/$noticeId'
     | '/login/oauth2/code/$provider'
-    | '/interview/'
     | '/learning/'
     | '/my/'
     | '/settings/inquiry/'
     | '/settings/notice/'
-    | '/interview/history/$sessionId'
     | '/my/friends/search'
-    | '/interview/new/$step'
-    | '/interview/sessions/$sessionId'
     | '/learning/lessons/$lessonId'
-    | '/interview/history/'
     | '/learning/units/$unitId/concept-note'
-    | '/interview/sessions/confirm/$sessionId'
-    | '/interview/sessions/grading/$sessionId'
     | '/learning/units/$unitId/bookmarked-problems'
     | '/learning/units/$unitId/incorrect-problems'
     | '/learning/chapters/$chapterId/'
@@ -547,7 +449,6 @@ export interface FileRouteTypes {
     | '/friends'
     | '/league'
     | '/main'
-    | '/interview'
     | '/my/edit'
     | '/onboarding/success'
     | '/onboarding'
@@ -556,7 +457,6 @@ export interface FileRouteTypes {
     | '/my/learning'
     | '/my/social'
     | '/my/summary'
-    | '/interview/new'
     | '/settings/inquiry/new'
     | '/settings/notice/$noticeId'
     | '/login/oauth2/code/$provider'
@@ -564,15 +464,9 @@ export interface FileRouteTypes {
     | '/my'
     | '/settings/inquiry'
     | '/settings/notice'
-    | '/interview/history/$sessionId'
     | '/my/friends/search'
-    | '/interview/new/$step'
-    | '/interview/sessions/$sessionId'
     | '/learning/lessons/$lessonId'
-    | '/interview/history'
     | '/learning/units/$unitId/concept-note'
-    | '/interview/sessions/confirm/$sessionId'
-    | '/interview/sessions/grading/$sessionId'
     | '/learning/units/$unitId/bookmarked-problems'
     | '/learning/units/$unitId/incorrect-problems'
     | '/learning/chapters/$chapterId'
@@ -597,7 +491,6 @@ export interface FileRouteTypes {
     | '/_authenticated/_app-shell/friends'
     | '/_authenticated/_app-shell/league'
     | '/_authenticated/_app-shell/main'
-    | '/_authenticated/_focus/interview'
     | '/_authenticated/my/edit'
     | '/_authenticated/onboarding/success'
     | '/_authenticated/onboarding/'
@@ -606,24 +499,16 @@ export interface FileRouteTypes {
     | '/_authenticated/_app-shell/my/learning'
     | '/_authenticated/_app-shell/my/social'
     | '/_authenticated/_app-shell/my/summary'
-    | '/_authenticated/_focus/interview/new'
     | '/_authenticated/settings/inquiry/new'
     | '/_authenticated/settings/notice/$noticeId'
     | '/login/oauth2/code/$provider'
-    | '/_authenticated/_app-shell/interview/'
     | '/_authenticated/_app-shell/learning/'
     | '/_authenticated/_app-shell/my/'
     | '/_authenticated/settings/inquiry/'
     | '/_authenticated/settings/notice/'
-    | '/_authenticated/_app-shell/interview/history/$sessionId'
     | '/_authenticated/_app-shell/my/friends/search'
-    | '/_authenticated/_focus/interview/new/$step'
-    | '/_authenticated/_focus/interview/sessions/$sessionId'
     | '/_authenticated/_focus/learning/lessons/$lessonId'
-    | '/_authenticated/_app-shell/interview/history/'
     | '/_authenticated/_app-shell/learning/units/$unitId/concept-note'
-    | '/_authenticated/_focus/interview/sessions/confirm/$sessionId'
-    | '/_authenticated/_focus/interview/sessions/grading/$sessionId'
     | '/_authenticated/_focus/learning/units/$unitId/bookmarked-problems'
     | '/_authenticated/_focus/learning/units/$unitId/incorrect-problems'
     | '/_authenticated/_app-shell/learning/chapters/$chapterId/'
@@ -756,13 +641,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAppShellMyRouteRouteImport
       parentRoute: typeof AuthenticatedAppShellRouteRoute
     }
-    '/_authenticated/_focus/interview': {
-      id: '/_authenticated/_focus/interview'
-      path: '/interview'
-      fullPath: '/interview'
-      preLoaderRoute: typeof AuthenticatedFocusInterviewRouteImport
-      parentRoute: typeof AuthenticatedFocusRouteRoute
-    }
     '/_authenticated/my/edit': {
       id: '/_authenticated/my/edit'
       path: '/my/edit'
@@ -797,13 +675,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/settings/inquiry'
       preLoaderRoute: typeof AuthenticatedSettingsInquiryRouteRouteImport
       parentRoute: typeof AuthenticatedSettingsRouteRoute
-    }
-    '/_authenticated/_app-shell/interview/': {
-      id: '/_authenticated/_app-shell/interview/'
-      path: '/interview'
-      fullPath: '/interview/'
-      preLoaderRoute: typeof AuthenticatedAppShellInterviewIndexRouteImport
-      parentRoute: typeof AuthenticatedAppShellRouteRoute
     }
     '/_authenticated/_app-shell/learning/': {
       id: '/_authenticated/_app-shell/learning/'
@@ -847,13 +718,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAppShellMySummaryRouteImport
       parentRoute: typeof AuthenticatedAppShellMyRouteRoute
     }
-    '/_authenticated/_focus/interview/new': {
-      id: '/_authenticated/_focus/interview/new'
-      path: '/new'
-      fullPath: '/interview/new'
-      preLoaderRoute: typeof AuthenticatedFocusInterviewNewRouteImport
-      parentRoute: typeof AuthenticatedFocusInterviewRoute
-    }
     '/_authenticated/settings/inquiry/': {
       id: '/_authenticated/settings/inquiry/'
       path: '/'
@@ -889,40 +753,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginOauth2CodeProviderRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_authenticated/_app-shell/interview/history/': {
-      id: '/_authenticated/_app-shell/interview/history/'
-      path: '/interview/history'
-      fullPath: '/interview/history/'
-      preLoaderRoute: typeof AuthenticatedAppShellInterviewHistoryIndexRouteImport
-      parentRoute: typeof AuthenticatedAppShellRouteRoute
-    }
-    '/_authenticated/_app-shell/interview/history/$sessionId': {
-      id: '/_authenticated/_app-shell/interview/history/$sessionId'
-      path: '/interview/history/$sessionId'
-      fullPath: '/interview/history/$sessionId'
-      preLoaderRoute: typeof AuthenticatedAppShellInterviewHistorySessionIdRouteImport
-      parentRoute: typeof AuthenticatedAppShellRouteRoute
-    }
     '/_authenticated/_app-shell/my/friends/search': {
       id: '/_authenticated/_app-shell/my/friends/search'
       path: '/friends/search'
       fullPath: '/my/friends/search'
       preLoaderRoute: typeof AuthenticatedAppShellMyFriendsSearchRouteImport
       parentRoute: typeof AuthenticatedAppShellMyRouteRoute
-    }
-    '/_authenticated/_focus/interview/new/$step': {
-      id: '/_authenticated/_focus/interview/new/$step'
-      path: '/$step'
-      fullPath: '/interview/new/$step'
-      preLoaderRoute: typeof AuthenticatedFocusInterviewNewStepRouteImport
-      parentRoute: typeof AuthenticatedFocusInterviewNewRoute
-    }
-    '/_authenticated/_focus/interview/sessions/$sessionId': {
-      id: '/_authenticated/_focus/interview/sessions/$sessionId'
-      path: '/sessions/$sessionId'
-      fullPath: '/interview/sessions/$sessionId'
-      preLoaderRoute: typeof AuthenticatedFocusInterviewSessionsSessionIdRouteImport
-      parentRoute: typeof AuthenticatedFocusInterviewRoute
     }
     '/_authenticated/_focus/learning/lessons/$lessonId': {
       id: '/_authenticated/_focus/learning/lessons/$lessonId'
@@ -951,20 +787,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/learning/units/$unitId/concept-note'
       preLoaderRoute: typeof AuthenticatedAppShellLearningUnitsUnitIdConceptNoteRouteImport
       parentRoute: typeof AuthenticatedAppShellRouteRoute
-    }
-    '/_authenticated/_focus/interview/sessions/confirm/$sessionId': {
-      id: '/_authenticated/_focus/interview/sessions/confirm/$sessionId'
-      path: '/sessions/confirm/$sessionId'
-      fullPath: '/interview/sessions/confirm/$sessionId'
-      preLoaderRoute: typeof AuthenticatedFocusInterviewSessionsConfirmSessionIdRouteImport
-      parentRoute: typeof AuthenticatedFocusInterviewRoute
-    }
-    '/_authenticated/_focus/interview/sessions/grading/$sessionId': {
-      id: '/_authenticated/_focus/interview/sessions/grading/$sessionId'
-      path: '/sessions/grading/$sessionId'
-      fullPath: '/interview/sessions/grading/$sessionId'
-      preLoaderRoute: typeof AuthenticatedFocusInterviewSessionsGradingSessionIdRouteImport
-      parentRoute: typeof AuthenticatedFocusInterviewRoute
     }
     '/_authenticated/_focus/learning/units/$unitId/bookmarked-problems': {
       id: '/_authenticated/_focus/learning/units/$unitId/bookmarked-problems'
@@ -1020,10 +842,7 @@ interface AuthenticatedAppShellRouteRouteChildren {
   AuthenticatedAppShellFriendsRoute: typeof AuthenticatedAppShellFriendsRoute
   AuthenticatedAppShellLeagueRoute: typeof AuthenticatedAppShellLeagueRoute
   AuthenticatedAppShellMainRoute: typeof AuthenticatedAppShellMainRoute
-  AuthenticatedAppShellInterviewIndexRoute: typeof AuthenticatedAppShellInterviewIndexRoute
   AuthenticatedAppShellLearningIndexRoute: typeof AuthenticatedAppShellLearningIndexRoute
-  AuthenticatedAppShellInterviewHistorySessionIdRoute: typeof AuthenticatedAppShellInterviewHistorySessionIdRoute
-  AuthenticatedAppShellInterviewHistoryIndexRoute: typeof AuthenticatedAppShellInterviewHistoryIndexRoute
   AuthenticatedAppShellLearningUnitsUnitIdConceptNoteRoute: typeof AuthenticatedAppShellLearningUnitsUnitIdConceptNoteRoute
   AuthenticatedAppShellLearningChaptersChapterIdIndexRoute: typeof AuthenticatedAppShellLearningChaptersChapterIdIndexRoute
   AuthenticatedAppShellLearningUnitsUnitIdIndexRoute: typeof AuthenticatedAppShellLearningUnitsUnitIdIndexRoute
@@ -1036,14 +855,8 @@ const AuthenticatedAppShellRouteRouteChildren: AuthenticatedAppShellRouteRouteCh
     AuthenticatedAppShellFriendsRoute: AuthenticatedAppShellFriendsRoute,
     AuthenticatedAppShellLeagueRoute: AuthenticatedAppShellLeagueRoute,
     AuthenticatedAppShellMainRoute: AuthenticatedAppShellMainRoute,
-    AuthenticatedAppShellInterviewIndexRoute:
-      AuthenticatedAppShellInterviewIndexRoute,
     AuthenticatedAppShellLearningIndexRoute:
       AuthenticatedAppShellLearningIndexRoute,
-    AuthenticatedAppShellInterviewHistorySessionIdRoute:
-      AuthenticatedAppShellInterviewHistorySessionIdRoute,
-    AuthenticatedAppShellInterviewHistoryIndexRoute:
-      AuthenticatedAppShellInterviewHistoryIndexRoute,
     AuthenticatedAppShellLearningUnitsUnitIdConceptNoteRoute:
       AuthenticatedAppShellLearningUnitsUnitIdConceptNoteRoute,
     AuthenticatedAppShellLearningChaptersChapterIdIndexRoute:
@@ -1057,47 +870,7 @@ const AuthenticatedAppShellRouteRouteWithChildren =
     AuthenticatedAppShellRouteRouteChildren,
   )
 
-interface AuthenticatedFocusInterviewNewRouteChildren {
-  AuthenticatedFocusInterviewNewStepRoute: typeof AuthenticatedFocusInterviewNewStepRoute
-}
-
-const AuthenticatedFocusInterviewNewRouteChildren: AuthenticatedFocusInterviewNewRouteChildren =
-  {
-    AuthenticatedFocusInterviewNewStepRoute:
-      AuthenticatedFocusInterviewNewStepRoute,
-  }
-
-const AuthenticatedFocusInterviewNewRouteWithChildren =
-  AuthenticatedFocusInterviewNewRoute._addFileChildren(
-    AuthenticatedFocusInterviewNewRouteChildren,
-  )
-
-interface AuthenticatedFocusInterviewRouteChildren {
-  AuthenticatedFocusInterviewNewRoute: typeof AuthenticatedFocusInterviewNewRouteWithChildren
-  AuthenticatedFocusInterviewSessionsSessionIdRoute: typeof AuthenticatedFocusInterviewSessionsSessionIdRoute
-  AuthenticatedFocusInterviewSessionsConfirmSessionIdRoute: typeof AuthenticatedFocusInterviewSessionsConfirmSessionIdRoute
-  AuthenticatedFocusInterviewSessionsGradingSessionIdRoute: typeof AuthenticatedFocusInterviewSessionsGradingSessionIdRoute
-}
-
-const AuthenticatedFocusInterviewRouteChildren: AuthenticatedFocusInterviewRouteChildren =
-  {
-    AuthenticatedFocusInterviewNewRoute:
-      AuthenticatedFocusInterviewNewRouteWithChildren,
-    AuthenticatedFocusInterviewSessionsSessionIdRoute:
-      AuthenticatedFocusInterviewSessionsSessionIdRoute,
-    AuthenticatedFocusInterviewSessionsConfirmSessionIdRoute:
-      AuthenticatedFocusInterviewSessionsConfirmSessionIdRoute,
-    AuthenticatedFocusInterviewSessionsGradingSessionIdRoute:
-      AuthenticatedFocusInterviewSessionsGradingSessionIdRoute,
-  }
-
-const AuthenticatedFocusInterviewRouteWithChildren =
-  AuthenticatedFocusInterviewRoute._addFileChildren(
-    AuthenticatedFocusInterviewRouteChildren,
-  )
-
 interface AuthenticatedFocusRouteRouteChildren {
-  AuthenticatedFocusInterviewRoute: typeof AuthenticatedFocusInterviewRouteWithChildren
   AuthenticatedFocusLearningLessonsLessonIdRoute: typeof AuthenticatedFocusLearningLessonsLessonIdRoute
   AuthenticatedFocusLearningUnitsUnitIdBookmarkedProblemsRoute: typeof AuthenticatedFocusLearningUnitsUnitIdBookmarkedProblemsRoute
   AuthenticatedFocusLearningUnitsUnitIdIncorrectProblemsRoute: typeof AuthenticatedFocusLearningUnitsUnitIdIncorrectProblemsRoute
@@ -1106,8 +879,6 @@ interface AuthenticatedFocusRouteRouteChildren {
 
 const AuthenticatedFocusRouteRouteChildren: AuthenticatedFocusRouteRouteChildren =
   {
-    AuthenticatedFocusInterviewRoute:
-      AuthenticatedFocusInterviewRouteWithChildren,
     AuthenticatedFocusLearningLessonsLessonIdRoute:
       AuthenticatedFocusLearningLessonsLessonIdRoute,
     AuthenticatedFocusLearningUnitsUnitIdBookmarkedProblemsRoute:
