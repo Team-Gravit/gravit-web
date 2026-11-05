@@ -54,6 +54,8 @@ export default ({ config }: ConfigContext): ExpoConfig => {
 
   const plugins: ConfigPlugins = [
     ...(config.plugins ?? []),
+    // Apple 로그인은 자격 증명이 앱에 없고 번들 ID 와 권한(entitlement)으로 동작하므로 환경변수가 없다.
+    'expo-apple-authentication',
     [
       'expo-build-properties',
       {

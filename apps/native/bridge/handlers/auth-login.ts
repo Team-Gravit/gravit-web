@@ -1,4 +1,5 @@
 import type { BridgeHandlers } from '../create-bridge';
+import { loginWithApple } from './apple-login';
 import { loginWithGoogle } from './google-login';
 import { loginWithKakao } from './kakao-login';
 import { loginWithNaver } from './naver-login';
@@ -12,5 +13,7 @@ export const handleAuthLogin: BridgeHandlers['AUTH_LOGIN'] = ({ provider }) => {
       return loginWithGoogle();
     case 'naver':
       return loginWithNaver();
+    case 'apple':
+      return loginWithApple();
   }
 };

@@ -11,11 +11,11 @@ export interface BridgeContracts {
   };
   /**
    * 네이티브 SDK는 제공자 토큰까지만 발급한다. 서비스 세션 토큰으로의 교환은 웹이 맡는다.
-   * Google·Kakao는 `idToken`, Naver는 `accessToken`을 반환한다.
+   * Google·Kakao는 `idToken`, Naver는 `accessToken`, Apple은 `authorizationCode`를 반환한다.
    */
   AUTH_LOGIN: {
-    request: { provider: 'google' | 'kakao' | 'naver' };
-    result: { tokenType: 'idToken' | 'accessToken'; token: string };
+    request: { provider: 'google' | 'kakao' | 'naver' | 'apple' };
+    result: { tokenType: 'idToken' | 'accessToken' | 'authorizationCode'; token: string };
   };
 }
 
