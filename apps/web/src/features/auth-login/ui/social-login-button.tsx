@@ -69,9 +69,9 @@ export interface SocialLoginButtonProps
   onLoginError?: (error: unknown) => void;
 }
 
-// em 은 자기 자신의 font-size 를 기준으로 한다. 로고에는 font-size 가 없어 버튼에서 물려받으므로
-// 높이가 버튼 글자 크기를 따라간다 — size 변형을 추가해도 로고를 따로 손보지 않는다.
-const PROVIDER_LOGO_CLASS = 'h-[1em] w-auto shrink-0 object-contain';
+// 시안의 로고 자리(20×20)다. 로고마다 가로세로 비율이 달라 긴 쪽이 이 상자에 닿을 때까지만 키워
+// 잘리지 않게 한다. SVG 는 viewBox 기본 동작이 같고, 이미지는 object-contain 이 맡는다.
+const PROVIDER_LOGO_CLASS = 'size-5 shrink-0 object-contain';
 
 // 버튼 레이블이 제공자를 알리므로 로고는 접근성 트리에서 제외한다.
 function ProviderLogo({ provider, className }: { provider: LoginProvider; className: string }) {
@@ -84,12 +84,12 @@ function ProviderLogo({ provider, className }: { provider: LoginProvider; classN
   }
 
   if (provider === 'apple') {
-    // 세로로 긴 모양이라 글자 크기에 맞추면 다른 로고보다 작아 보인다. wide 에서도 같은 비율을 유지하도록
-    // px 대신 em 으로 키운다.
-    return <AppleLogo aria-hidden className={cn(className, 'h-[1.15em]')} />;
+    // apple.svg 는 안쪽 여백이 있고 폭이 좁아 같은 상자에서 작아 보인다. 시안이 없어 눈으로 맞춘 값이다.
+    return <AppleLogo aria-hidden className={cn(className, 'size-[22px]')} />;
   }
 
-  return <NaverLogo aria-hidden className={cn(className, 'h-[17px]')} />;
+  // 시안에서 네이버 로고만 다른 로고보다 작다 (17×16).
+  return <NaverLogo aria-hidden className={cn(className, 'size-[17px]')} />;
 }
 
 /**
@@ -154,12 +154,15 @@ export function SocialLoginButton({
   // 웹 경로는 성공하면 window.location.href 로 문서가 전환되므로 pending 이 풀리지 않는다.
   // 즉 이동이 시작된 뒤에도 버튼이 잠긴 채로 남는 것이 의도된 동작이다.
   // 네이티브 경로와 Apple 웹 팝업은 mutation 이 끝나면 풀리고, 이동은 onLoginSuccess 를 받은 호출부가 한다.
+  const logo = <ProviderLogo provider={provider} className={PROVIDER_LOGO_CLASS} />;
   const content = (
     <>
-      <ProviderLogo
-        provider={provider}
-        className={cn(PROVIDER_LOGO_CLASS, size === 'narrow' && 'absolute left-3.5')}
-      />
+      {size === 'narrow' ? (
+        // 로고 크기가 달라 왼쪽 끝을 맞추면 버튼끼리 중심선이 어긋난다. 시안의 40px 자리 가운데에 둔다.
+        <span className="absolute left-1 flex size-10 items-center justify-center">{logo}</span>
+      ) : (
+        logo
+      )}
       <span>{LOGIN_PROVIDER_LABELS[provider]}</span>
     </>
   );
