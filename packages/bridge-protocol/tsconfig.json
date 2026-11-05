@@ -1,0 +1,14 @@
+{
+  "extends": "@repo/typescript-config/base.json",
+  // 계약은 web(DOM)과 native(RN) 양쪽이 쓴다. `lib`에 DOM을 넣지 않아 어느 한쪽 환경에도
+  // 기대지 못하게 컴파일러가 막는다.
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": ["ESNext"],
+    "noEmit": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "verbatimModuleSyntax": true
+  },
+  "include": ["src", "vitest.config.ts"]
+}
