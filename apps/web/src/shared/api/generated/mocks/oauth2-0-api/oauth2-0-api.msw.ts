@@ -22,6 +22,16 @@ export const getOauthLoginResponseMock = (
   ...overrideResponse,
 });
 
+export const getAppleLogin1ResponseMock = (
+  overrideResponse: Partial<Extract<LoginResponse, object>> = {},
+): LoginResponse => ({
+  accessToken: faker.string.alpha({ length: { min: 10, max: 20 } }),
+  refreshToken: faker.string.alpha({ length: { min: 10, max: 20 } }),
+  isOnboarded: faker.datatype.boolean(),
+  role: faker.helpers.arrayElement(['ADMIN', 'USER'] as const),
+  ...overrideResponse,
+});
+
 export const getAuthorizeUrlResponseMock = (): AuthorizeUrl200 => ({
   [faker.string.alphanumeric(5)]: faker.string.alpha({ length: { min: 10, max: 20 } }),
 });
@@ -45,6 +55,32 @@ export const getOauthLoginMockHandler = (
             ? await overrideResponse(info)
             : overrideResponse
           : getOauthLoginResponseMock(),
+        { status: 200 },
+      );
+    },
+    options,
+  );
+};
+
+export const getAppleLogin1MockHandler = (
+  overrideResponse?:
+    | LoginResponse
+    | ((
+        info: Parameters<Parameters<typeof http.post>[1]>[0],
+      ) => Promise<LoginResponse> | LoginResponse),
+  options?: RequestHandlerOptions,
+) => {
+  return http.post(
+    '*/api/v1/oauth/apple',
+    async (info: Parameters<Parameters<typeof http.post>[1]>[0]) => {
+      await delay(600);
+
+      return HttpResponse.json(
+        overrideResponse !== undefined
+          ? typeof overrideResponse === 'function'
+            ? await overrideResponse(info)
+            : overrideResponse
+          : getAppleLogin1ResponseMock(),
         { status: 200 },
       );
     },
@@ -77,4 +113,8 @@ export const getAuthorizeUrlMockHandler = (
     options,
   );
 };
-export const getOauth20ApiMock = () => [getOauthLoginMockHandler(), getAuthorizeUrlMockHandler()];
+export const getOauth20ApiMock = () => [
+  getOauthLoginMockHandler(),
+  getAppleLogin1MockHandler(),
+  getAuthorizeUrlMockHandler(),
+];

@@ -22,6 +22,26 @@ export const getGetAllChapterResponseMock = (): ChapterDetailResponse[] =>
     chapterProgressRate: faker.number.float({ fractionDigits: 2 }),
   }));
 
+export const getGetTrackChaptersResponseMock = (): ChapterDetailResponse[] =>
+  Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, (_, i) => i + 1).map(() => ({
+    chapterSummaryResponse: {
+      chapterId: faker.number.int(),
+      title: faker.string.alpha({ length: { min: 10, max: 20 } }),
+      description: faker.string.alpha({ length: { min: 10, max: 20 } }),
+    },
+    chapterProgressRate: faker.number.float({ fractionDigits: 2 }),
+  }));
+
+export const getGetCsChaptersResponseMock = (): ChapterDetailResponse[] =>
+  Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, (_, i) => i + 1).map(() => ({
+    chapterSummaryResponse: {
+      chapterId: faker.number.int(),
+      title: faker.string.alpha({ length: { min: 10, max: 20 } }),
+      description: faker.string.alpha({ length: { min: 10, max: 20 } }),
+    },
+    chapterProgressRate: faker.number.float({ fractionDigits: 2 }),
+  }));
+
 export const getGetAllChapterMockHandler = (
   overrideResponse?:
     | ChapterDetailResponse[]
@@ -47,4 +67,81 @@ export const getGetAllChapterMockHandler = (
     options,
   );
 };
-export const getChapterApiMock = () => [getGetAllChapterMockHandler()];
+
+export const getGetTracksMockHandler = (
+  overrideResponse?:
+    | unknown
+    | ((info: Parameters<Parameters<typeof http.get>[1]>[0]) => Promise<unknown> | unknown),
+  options?: RequestHandlerOptions,
+) => {
+  return http.get(
+    '*/api/v1/chapters/tracks',
+    async (info: Parameters<Parameters<typeof http.get>[1]>[0]) => {
+      await delay(600);
+      if (typeof overrideResponse === 'function') {
+        await overrideResponse(info);
+      }
+
+      return new HttpResponse(null, { status: 200 });
+    },
+    options,
+  );
+};
+
+export const getGetTrackChaptersMockHandler = (
+  overrideResponse?:
+    | ChapterDetailResponse[]
+    | ((
+        info: Parameters<Parameters<typeof http.get>[1]>[0],
+      ) => Promise<ChapterDetailResponse[]> | ChapterDetailResponse[]),
+  options?: RequestHandlerOptions,
+) => {
+  return http.get(
+    '*/api/v1/chapters/tracks/:track',
+    async (info: Parameters<Parameters<typeof http.get>[1]>[0]) => {
+      await delay(600);
+
+      return HttpResponse.json(
+        overrideResponse !== undefined
+          ? typeof overrideResponse === 'function'
+            ? await overrideResponse(info)
+            : overrideResponse
+          : getGetTrackChaptersResponseMock(),
+        { status: 200 },
+      );
+    },
+    options,
+  );
+};
+
+export const getGetCsChaptersMockHandler = (
+  overrideResponse?:
+    | ChapterDetailResponse[]
+    | ((
+        info: Parameters<Parameters<typeof http.get>[1]>[0],
+      ) => Promise<ChapterDetailResponse[]> | ChapterDetailResponse[]),
+  options?: RequestHandlerOptions,
+) => {
+  return http.get(
+    '*/api/v1/chapters/cs',
+    async (info: Parameters<Parameters<typeof http.get>[1]>[0]) => {
+      await delay(600);
+
+      return HttpResponse.json(
+        overrideResponse !== undefined
+          ? typeof overrideResponse === 'function'
+            ? await overrideResponse(info)
+            : overrideResponse
+          : getGetCsChaptersResponseMock(),
+        { status: 200 },
+      );
+    },
+    options,
+  );
+};
+export const getChapterApiMock = () => [
+  getGetAllChapterMockHandler(),
+  getGetTracksMockHandler(),
+  getGetTrackChaptersMockHandler(),
+  getGetCsChaptersMockHandler(),
+];

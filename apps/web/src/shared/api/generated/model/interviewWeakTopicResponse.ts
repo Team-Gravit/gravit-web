@@ -10,6 +10,8 @@ import type { InterviewTopicResponse } from './interviewTopicResponse';
 export interface InterviewWeakTopicResponse {
   /** 학습 이동 대상 유닛 ID */
   unitId: number;
+  /** 학습 이동 대상 유닛 제목. 유닛이 없으면 null */
+  unitTitle?: string;
   /** 약점 문항의 주제 */
   topic: InterviewTopicResponse;
 }

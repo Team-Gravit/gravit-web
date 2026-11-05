@@ -9,5 +9,6 @@ import type { UnitSummaryResponse } from './unitSummaryResponse';
 
 export interface UnitDetailResponse {
   unitSummaryResponse: UnitSummaryResponse;
+  /** 유닛 진행률 (0~100, 소수점 버림). 푼 레슨 수 / 유닛 전체 레슨 수 x 100 */
   progressRate: number;
 }

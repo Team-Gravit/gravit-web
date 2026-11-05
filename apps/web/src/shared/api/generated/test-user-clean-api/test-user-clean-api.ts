@@ -21,7 +21,7 @@ import type { ErrorType } from '../../axios-instance';
 type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
 /**
- * 해당 이메일을 가진 <strong>모든</strong> 유저(중복 가능)와 연관 데이터를 삭제합니다.<br>소셜/알림/문의/학습/리그/미션 등 users 를 참조하는 데이터를 FK 순서에 맞춰 함께 정리합니다.<br>삭제된 유저 수를 문자열로 반환하며, 대상이 없으면 404를 반환합니다.
+ * 해당 이메일을 가진 <strong>모든</strong> 유저(중복 가능)와 연관 데이터를 삭제합니다.<br>소셜/알림/문의/학습/리그/미션/면접 등 users 를 참조하는 데이터는 실제 탈퇴 정리와 같은 SQL로 삭제합니다.<br>일일 활동 기록(user_daily_activity)은 별도 DELETE로 삭제하고, Redis 리그 랭킹 항목은 랭킹 제거 이벤트로 커밋 후 정리합니다.<br>삭제된 유저 수를 문자열로 반환하며, 대상이 없으면 404를 반환합니다.
  * @summary [테스트] 유저 및 연관 데이터 삭제
  */
 export const clean = (
