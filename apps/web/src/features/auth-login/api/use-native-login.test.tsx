@@ -17,6 +17,7 @@ import { useNativeLogin } from './use-native-login';
 
 const ID_TOKEN_ENDPOINT = '*/api/v1/oauth/android';
 const NAVER_ENDPOINT = '*/api/v1/oauth/android/naver';
+const APPLE_IOS_ENDPOINT = '*/api/v1/oauth/ios/apple';
 
 const LOGIN_RESPONSE = {
   accessToken: 'at_1',
@@ -34,7 +35,10 @@ function Wrapper({ children }: PropsWithChildren) {
 let bridge: NativeBridgeStub;
 
 /** 네이티브가 SDK 토큰을 돌려준 것처럼 응답한다. 요청이 나갈 때까지 기다린다. */
-async function resolveNativeLogin(token: { tokenType: 'idToken' | 'accessToken'; token: string }) {
+async function resolveNativeLogin(token: {
+  tokenType: 'idToken' | 'accessToken' | 'authorizationCode';
+  token: string;
+}) {
   await waitFor(() => expect(bridge.postMessage).toHaveBeenCalledTimes(1));
   respondFromNative(bridge.readLastRequest().id, token);
 }
@@ -109,6 +113,52 @@ describe('useNativeLogin', () => {
     await expect(pending).resolves.toMatchObject(LOGIN_RESPONSE);
     expect(receivedNaver).toHaveBeenCalledWith({ accessToken: 'nv_at' });
     expect(receivedIdToken).not.toHaveBeenCalled();
+  });
+
+  it('apple 은 authorizationCode 를 { code } 로 /oauth/ios/apple 에 보내고 세션을 만든다', async () => {
+    const received = vi.fn();
+    const receivedIdToken = vi.fn();
+    server.use(
+      http.post(APPLE_IOS_ENDPOINT, async ({ request }) => {
+        received(await request.json());
+        return HttpResponse.json(LOGIN_RESPONSE);
+      }),
+      http.post(ID_TOKEN_ENDPOINT, () => {
+        receivedIdToken();
+        return HttpResponse.json(LOGIN_RESPONSE);
+      }),
+    );
+    const { result } = renderHook(() => useNativeLogin(), { wrapper: Wrapper });
+
+    const pending = result.current.mutateAsync('apple');
+    await resolveNativeLogin({ tokenType: 'authorizationCode', token: 'apple_code' });
+
+    expect(bridge.readLastRequest()).toMatchObject({
+      type: 'AUTH_LOGIN',
+      payload: { provider: 'apple' },
+    });
+    await expect(pending).resolves.toMatchObject(LOGIN_RESPONSE);
+    expect(received).toHaveBeenCalledWith({ code: 'apple_code' });
+    expect(receivedIdToken).not.toHaveBeenCalled();
+    expect(getSessionToken()).toBe('at_1');
+  });
+
+  it('apple 에 idToken 이 오면(계약 위반) NATIVE_ERROR 로 실패하고 백엔드를 부르지 않는다', async () => {
+    const received = vi.fn();
+    server.use(
+      http.post(APPLE_IOS_ENDPOINT, () => {
+        received();
+        return HttpResponse.json(LOGIN_RESPONSE);
+      }),
+    );
+    const { result } = renderHook(() => useNativeLogin(), { wrapper: Wrapper });
+
+    const pending = result.current.mutateAsync('apple');
+    await resolveNativeLogin({ tokenType: 'idToken', token: 'x' });
+
+    await expect(pending).rejects.toMatchObject({ name: 'BridgeError', code: 'NATIVE_ERROR' });
+    expect(received).not.toHaveBeenCalled();
+    expect(getSessionToken()).toBeNull();
   });
 
   it('naver 에 idToken 이 오면(계약 위반) NATIVE_ERROR 로 실패하고 백엔드를 부르지 않는다', async () => {

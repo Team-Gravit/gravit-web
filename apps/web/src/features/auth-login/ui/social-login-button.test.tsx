@@ -262,3 +262,112 @@ describe('SocialLoginButton — 앱 환경', () => {
     expect(bridge.postMessage).not.toHaveBeenCalled();
   });
 });
+
+describe('SocialLoginButton — Apple', () => {
+  const APPLE_IOS_ENDPOINT = '*/api/v1/oauth/ios/apple';
+  const APPLE_WEB_ENDPOINT = '*/api/v1/oauth/apple';
+  const APPLE_LOGIN_URL_ENDPOINT = '*/api/v1/oauth/login-url/apple';
+
+  it('앱 환경에서 클릭하면 apple 로 AUTH_LOGIN 을 요청하고 authorizationCode 를 iOS 엔드포인트로 교환한다', async () => {
+    const bridge = installNativeBridgeStub();
+    const received = vi.fn();
+    server.use(
+      http.post(APPLE_IOS_ENDPOINT, async ({ request }) => {
+        received(await request.json());
+        return HttpResponse.json(LOGIN_RESPONSE);
+      }),
+    );
+    const onLoginSuccess = vi.fn();
+    render(<SocialLoginButton provider="apple" onLoginSuccess={onLoginSuccess} />, {
+      wrapper: Wrapper,
+    });
+
+    await userEvent.click(screen.getByRole('button', { name: 'Apple로 시작하기' }));
+    await waitFor(() => expect(bridge.postMessage).toHaveBeenCalledTimes(1));
+    const request = bridge.readLastRequest();
+    expect(request).toMatchObject({ type: 'AUTH_LOGIN', payload: { provider: 'apple' } });
+    respondFromNative(request.id, { tokenType: 'authorizationCode', token: 'apple_code' });
+
+    await waitFor(() => expect(onLoginSuccess).toHaveBeenCalledTimes(1));
+    expect(received).toHaveBeenCalledWith({ code: 'apple_code' });
+    uninstallNativeBridgeStub();
+  });
+
+  describe('브라우저 환경', () => {
+    const signIn = vi.fn();
+
+    beforeEach(() => {
+      vi.stubEnv('VITE_APPLE_CLIENT_ID', 'kr.example.web');
+      window.AppleID = { auth: { init: vi.fn(), signIn } };
+    });
+
+    afterEach(() => {
+      vi.unstubAllEnvs();
+      delete window.AppleID;
+      signIn.mockReset();
+    });
+
+    it('클릭하면 인가 URL 조회 없이 Apple 팝업의 code 를 웹 엔드포인트로 교환하고 onLoginSuccess 를 부른다', async () => {
+      const received = vi.fn();
+      let loginUrlRequestCount = 0;
+      signIn.mockResolvedValue({ authorization: { code: 'apple_web_code' } });
+      server.use(
+        http.post(APPLE_WEB_ENDPOINT, async ({ request }) => {
+          received(new URL(request.url).searchParams.get('dest'), await request.json());
+          return HttpResponse.json(LOGIN_RESPONSE);
+        }),
+        http.get(APPLE_LOGIN_URL_ENDPOINT, () => {
+          loginUrlRequestCount += 1;
+          return HttpResponse.json({ loginUrl: AUTHORIZE_URL });
+        }),
+      );
+      const onLoginSuccess = vi.fn();
+      render(<SocialLoginButton provider="apple" onLoginSuccess={onLoginSuccess} />, {
+        wrapper: Wrapper,
+      });
+
+      await userEvent.click(screen.getByRole('button', { name: 'Apple로 시작하기' }));
+
+      await waitFor(() => expect(onLoginSuccess).toHaveBeenCalledTimes(1));
+      expect(received).toHaveBeenCalledWith(expect.any(String), { code: 'apple_web_code' });
+      expect(loginUrlRequestCount).toBe(0);
+      expect(assignedHref).toBe(ORIGINAL_HREF);
+    });
+
+    it('팝업을 닫으면 버튼이 풀리고 onLoginError 와 교환 요청은 없다', async () => {
+      let requestCount = 0;
+      signIn.mockRejectedValue({ error: 'popup_closed_by_user' });
+      server.use(
+        http.post(APPLE_WEB_ENDPOINT, () => {
+          requestCount += 1;
+          return HttpResponse.json(LOGIN_RESPONSE);
+        }),
+      );
+      const onLoginError = vi.fn();
+      render(<SocialLoginButton provider="apple" onLoginError={onLoginError} />, {
+        wrapper: Wrapper,
+      });
+      const button = screen.getByRole('button', { name: 'Apple로 시작하기' });
+
+      await userEvent.click(button);
+
+      await waitFor(() => expect(signIn).toHaveBeenCalledTimes(1));
+      await waitFor(() => expect(button).toBeEnabled());
+      expect(onLoginError).not.toHaveBeenCalled();
+      expect(requestCount).toBe(0);
+    });
+
+    it('교환이 500 이면 onLoginError 가 1회 호출된다', async () => {
+      signIn.mockResolvedValue({ authorization: { code: 'apple_web_code' } });
+      server.use(http.post(APPLE_WEB_ENDPOINT, () => new HttpResponse(null, { status: 500 })));
+      const onLoginError = vi.fn();
+      render(<SocialLoginButton provider="apple" onLoginError={onLoginError} />, {
+        wrapper: Wrapper,
+      });
+
+      await userEvent.click(screen.getByRole('button', { name: 'Apple로 시작하기' }));
+
+      await waitFor(() => expect(onLoginError).toHaveBeenCalledTimes(1));
+    });
+  });
+});

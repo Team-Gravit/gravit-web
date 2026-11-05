@@ -7,10 +7,12 @@ import { cn } from '@/shared/lib/cn';
 import { Spinner } from '@/shared/ui/spinner';
 import { toast } from '@/shared/ui/toast';
 
+import { useAppleWebLogin } from '../api/use-apple-web-login';
 import { useNativeLogin } from '../api/use-native-login';
 import { LOGIN_UNSUPPORTED_MESSAGE } from '../model/login-outcome';
 import { LOGIN_PROVIDER_LABELS, type LoginProvider } from '../model/login-providers';
 import { useOauthLogin } from '../model/use-oauth-login';
+import AppleLogo from './assets/apple.svg?react';
 import googleLogo from './assets/google-logo.png';
 import KakaoLogo from './assets/kakao-logo.svg?react';
 import NaverLogo from './assets/naver-logo.svg?react';
@@ -35,6 +37,8 @@ const socialLoginButtonVariants = cva(
         // 카카오·네이버 색은 각 사의 브랜드 색이므로 tokens.css 로 올리지 않고 이 버튼 안에서만 사용한다
         kakao: 'bg-[#FFE500] text-[rgba(0,0,0,0.85)]',
         naver: 'bg-[#03A94D] text-white',
+        // Apple 은 검정 배경에 흰 글자·로고를 쓴다 (로고가 currentColor 라 글자색을 따른다)
+        apple: 'bg-black text-white',
       },
       size: {
         narrow: 'h-12 text-body2-reading rounded-8',
@@ -53,7 +57,10 @@ export interface SocialLoginButtonProps
   extends Omit<ComponentProps<'button'>, 'children' | 'onClick'> {
   provider: LoginProvider;
   size?: SocialLoginButtonSize;
-  /** 앱 환경에서 네이티브 SDK 로그인이 끝나 세션이 만들어졌다. 이동은 호출부가 정한다. */
+  /**
+   * 앱의 네이티브 SDK 로그인이나 브라우저의 Apple 팝업 로그인이 끝나 세션이 만들어졌다.
+   * 이동은 호출부가 정한다. (다른 provider 의 브라우저 로그인은 인가 페이지로 이동해 호출되지 않는다.)
+   */
   onLoginSuccess?: (response: LoginResponse) => void;
   /**
    * 취소(`CANCELLED`)와 미지원(`UNSUPPORTED`)은 버튼에서 처리한다.
@@ -76,14 +83,20 @@ function ProviderLogo({ provider, className }: { provider: LoginProvider; classN
     return <KakaoLogo aria-hidden className={className} />;
   }
 
+  if (provider === 'apple') {
+    // 세로로 긴 모양이라 글자 크기에 맞추면 다른 로고보다 작아 보인다. wide 에서도 같은 비율을 유지하도록
+    // px 대신 em 으로 키운다.
+    return <AppleLogo aria-hidden className={cn(className, 'h-[1.15em]')} />;
+  }
+
   return <NaverLogo aria-hidden className={cn(className, 'h-[17px]')} />;
 }
 
 /**
  * 선택한 provider 로 로그인을 시작한다.
  *
- * 브라우저에서는 인가 페이지로 이동하고, 앱 환경에서는 브릿지로 네이티브 SDK 로그인을
- * 요청한다. 두 훅을 모두 호출하는 이유: 환경은 문서 수명 동안 바뀌지 않지만 조건부 훅 호출은
+ * 브라우저에서는 인가 페이지로 이동하고(Apple 은 JS SDK 팝업), 앱 환경에서는 브릿지로 네이티브
+ * SDK 로그인을 요청한다. 훅을 모두 호출하는 이유: 환경은 문서 수명 동안 바뀌지 않지만 조건부 훅 호출은
  * 훅 규칙 위반이다. 어느 쪽을 쓸지는 클릭 시점에 가른다.
  */
 export function SocialLoginButton({
@@ -97,9 +110,11 @@ export function SocialLoginButton({
 }: SocialLoginButtonProps) {
   const { mutate: startOauthLogin, isPending: isOauthPending } = useOauthLogin();
   const { mutate: startNativeLogin, isPending: isNativePending } = useNativeLogin();
-  const isPending = isOauthPending || isNativePending;
+  const { mutate: startAppleWebLogin, isPending: isAppleWebPending } = useAppleWebLogin();
+  const isPending = isOauthPending || isNativePending || isAppleWebPending;
 
-  const handleNativeLoginError = (error: unknown) => {
+  // 네이티브 SDK 와 Apple 웹 팝업이 같이 쓴다. 둘 다 세션을 만들고 끝나며 취소를 CANCELLED 로 알린다.
+  const handleSdkLoginError = (error: unknown) => {
     // 사용자가 SDK 화면을 닫았다. 실패이지만 알릴 일이 아니다. 버튼만 풀린다.
     if (isBridgeError(error, 'CANCELLED')) {
       return;
@@ -120,7 +135,15 @@ export function SocialLoginButton({
       startNativeLogin(provider, {
         // mutation 콜백의 나머지 인자(variables · context)를 prop 계약 밖으로 흘리지 않는다.
         onSuccess: (response) => onLoginSuccess?.(response),
-        onError: handleNativeLoginError,
+        onError: handleSdkLoginError,
+      });
+      return;
+    }
+
+    if (provider === 'apple') {
+      startAppleWebLogin(undefined, {
+        onSuccess: (response) => onLoginSuccess?.(response),
+        onError: handleSdkLoginError,
       });
       return;
     }
@@ -130,7 +153,7 @@ export function SocialLoginButton({
 
   // 웹 경로는 성공하면 window.location.href 로 문서가 전환되므로 pending 이 풀리지 않는다.
   // 즉 이동이 시작된 뒤에도 버튼이 잠긴 채로 남는 것이 의도된 동작이다.
-  // 네이티브 경로는 mutation 이 끝나면 풀리고, 이동은 onLoginSuccess 를 받은 호출부가 한다.
+  // 네이티브 경로와 Apple 웹 팝업은 mutation 이 끝나면 풀리고, 이동은 onLoginSuccess 를 받은 호출부가 한다.
   const content = (
     <>
       <ProviderLogo

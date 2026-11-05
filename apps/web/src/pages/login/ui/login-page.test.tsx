@@ -113,7 +113,7 @@ describe('LoginPage', () => {
     expect(router.state.location.pathname).toBe('/');
   });
 
-  it('소셜 로그인 버튼이 Google · 카카오 · 네이버 순서로 3개 렌더된다', async () => {
+  it('소셜 로그인 버튼이 Google · 카카오 · 네이버 · Apple 순서로 4개 렌더된다', async () => {
     stubViewport(false);
 
     await renderLoginPage();
@@ -122,6 +122,7 @@ describe('LoginPage', () => {
       'Google로 시작하기',
       '카카오로 시작하기',
       '네이버로 시작하기',
+      'Apple로 시작하기',
     ]);
   });
 
