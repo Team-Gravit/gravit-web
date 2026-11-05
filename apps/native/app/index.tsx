@@ -64,6 +64,7 @@ let webView: WebView | null = null;
 // 에러 리포트)는 기존 콘솔 로그 경로로 남긴다.
 const bridge = createBridge({
   handlers: { APP_INFO: handleAppInfo },
+  allowedUrl: WEB_URL,
   postMessage: (json) => webView?.postMessage(json),
   onUnhandled: (raw) => console.log('[WebView] browser event', raw),
 });

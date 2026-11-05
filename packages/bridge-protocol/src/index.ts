@@ -1,3 +1,4 @@
+export { isAllowedBridgeOrigin } from './bridge-origin';
 export type {
   BridgeContracts,
   BridgeEventPayload,
