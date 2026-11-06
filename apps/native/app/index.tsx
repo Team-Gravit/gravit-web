@@ -1,8 +1,9 @@
 import { StyleSheet, View, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { WebView, type WebViewMessageEvent } from 'react-native-webview';
 import Constants from 'expo-constants';
+import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar, type StatusBarStyle } from 'expo-status-bar';
 import { NATIVE_USER_AGENT_MARKER } from '@repo/bridge-protocol';
 
@@ -57,6 +58,16 @@ function rewriteLocalDevCallback(url: string): string | null {
   return url.replace(LOCAL_DEV_ORIGIN, WEB_URL.replace(/\/+$/, ''));
 }
 
+/**
+ * 로드 결과와 무관하게 스플래시를 내리는 상한.
+ * 서버가 응답 없이 멈추면 `onLoadEnd` 도 `onError` 도 오지 않아 스플래시에 갇힌다.
+ */
+const SPLASH_MAX_WAIT_MS = 10_000;
+
+function hideSplash() {
+  SplashScreen.hide();
+}
+
 // WebView 는 이 화면 하나뿐이라 인스턴스와 브릿지를 모듈 스코프에 둔다. 렌더 안에서 ref 를
 // 읽는 클로저를 만들면 react-compiler 린트(`react-hooks/refs`)에 걸린다.
 let webView: WebView | null = null;
@@ -74,6 +85,12 @@ export default function WebviewPage() {
   const insets = useSafeAreaInsets();
   const [webUri, setWebUri] = useState(WEB_URL);
   const [statusBarStyle, setStatusBarStyle] = useState<StatusBarStyle>('dark');
+
+  useEffect(() => {
+    const timer = setTimeout(hideSplash, SPLASH_MAX_WAIT_MS);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleShouldStartLoad = ({ url }: { url: string }) => {
     const rewrittenUrl = rewriteLocalDevCallback(url);
@@ -154,13 +171,17 @@ export default function WebviewPage() {
                 `}
         onLoadStart={(event) => console.log('[WebView] load start', event.nativeEvent.url)}
         onLoad={(event) => console.log('[WebView] loaded', event.nativeEvent.url)}
-        onLoadEnd={(event) =>
+        onLoadEnd={(event) => {
           console.log('[WebView] load end', {
             url: event.nativeEvent.url,
             loading: event.nativeEvent.loading,
-          })
-        }
-        onError={(event) => console.error('[WebView] error', event.nativeEvent)}
+          });
+          hideSplash();
+        }}
+        onError={(event) => {
+          console.error('[WebView] error', event.nativeEvent);
+          hideSplash();
+        }}
         onHttpError={(event) => console.error('[WebView] HTTP error', event.nativeEvent)}
         onMessage={handleMessage}
       />
