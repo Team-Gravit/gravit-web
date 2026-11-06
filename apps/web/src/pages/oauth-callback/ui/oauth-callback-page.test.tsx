@@ -7,15 +7,24 @@ import {
   createRoute,
   createRouter,
 } from '@tanstack/react-router';
-import { render, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { http, HttpResponse } from 'msw';
 
-import { useAuthStore } from '@/entities/auth';
 import { server } from '@/shared/api/mocks/server';
+import { Toaster, toast } from '@/shared/ui/toast';
+import { useAuthStore } from '@/entities/auth';
 
 import { OauthCallbackPage } from './oauth-callback-page';
 
+// 화면 이동 뒤에도 토스트가 보이는지 확인해야 하므로 실제 동작을 유지하며 호출 횟수를 센다.
+vi.mock('@/shared/ui/toast', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@/shared/ui/toast')>();
+
+  return { ...actual, toast: vi.fn(actual.toast) };
+});
+
 const OAUTH_ENDPOINT = '*/api/v1/oauth/google';
+const LOGIN_FAILED_TEXT = '로그인에 실패했습니다. 다시 시도해 주세요.';
 
 /** 이동 목적지를 확인하려면 그 경로가 트리에 있어야 한다. 화면 내용은 검증 대상이 아니다. */
 function renderCallback(code: string | undefined) {
@@ -38,6 +47,7 @@ function renderCallback(code: string | undefined) {
   const element = (
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router as never} />
+      <Toaster />
     </QueryClientProvider>
   );
   const view = render(element);
@@ -48,6 +58,7 @@ function renderCallback(code: string | undefined) {
 beforeEach(() => {
   localStorage.clear();
   useAuthStore.setState({ accessToken: null, isRestored: false });
+  vi.mocked(toast).mockClear();
   vi.stubEnv('VITE_OAUTH_DEST', 'local');
 });
 
@@ -147,6 +158,7 @@ describe('OauthCallbackPage', () => {
     expect(router.state.location.search).toEqual({ providerId: 'google_123' });
     // replace 로 이동해야 뒤로 가기가 소모된 코드로 되돌아가지 않는다.
     expect(router.history.length).toBe(1);
+    expect(toast).not.toHaveBeenCalled();
   });
 
   it('code 가 없으면 교환을 호출하지 않고 / 로 되돌린다', async () => {
@@ -162,13 +174,16 @@ describe('OauthCallbackPage', () => {
 
     await waitFor(() => expect(router.state.location.pathname).toBe('/'));
     expect(requestCount).toBe(0);
+    expect(toast).not.toHaveBeenCalled();
   });
 
-  it('USER_423 이 아닌 실패면 / 로 되돌려 빈 화면에 갇히지 않게 한다', async () => {
+  it('USER_423 이 아닌 실패면 / 로 이동한 뒤에도 실패 토스트가 보인다', async () => {
     server.use(http.post(OAUTH_ENDPOINT, () => new HttpResponse(null, { status: 500 })));
 
     const { router } = renderCallback('abc123');
 
     await waitFor(() => expect(router.state.location.pathname).toBe('/'));
+    expect(await screen.findByText(LOGIN_FAILED_TEXT)).toBeInTheDocument();
+    expect(toast).toHaveBeenCalledTimes(1);
   });
 });

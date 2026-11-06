@@ -41,7 +41,10 @@ export const login = (
   );
 };
 
-export const getLoginMutationOptions = <TError = ErrorType<unknown>, TContext = unknown>(options?: {
+export const getLoginMutationOptions = <
+  TError = ErrorType<LoginResponse>,
+  TContext = unknown,
+>(options?: {
   mutation?: UseMutationOptions<
     Awaited<ReturnType<typeof login>>,
     TError,
@@ -75,13 +78,13 @@ export const getLoginMutationOptions = <TError = ErrorType<unknown>, TContext = 
 
 export type LoginMutationResult = NonNullable<Awaited<ReturnType<typeof login>>>;
 
-export type LoginMutationError = ErrorType<unknown>;
+export type LoginMutationError = ErrorType<LoginResponse>;
 export type LoginMutationVariables = { params: LoginParams };
 
 /**
  * @summary [테스트] userId 로 로그인 토큰 발급
  */
-export const useLogin = <TError = ErrorType<unknown>, TContext = unknown>(
+export const useLogin = <TError = ErrorType<LoginResponse>, TContext = unknown>(
   options?: {
     mutation?: UseMutationOptions<
       Awaited<ReturnType<typeof login>>,

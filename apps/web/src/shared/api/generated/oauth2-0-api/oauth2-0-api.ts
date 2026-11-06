@@ -22,6 +22,7 @@ import type {
 } from '@tanstack/react-query';
 
 import type {
+  AppleLogin1Params,
   AuthCodeRequest,
   AuthorizeUrl200,
   AuthorizeUrlParams,
@@ -140,6 +141,95 @@ export const useOauthLogin = <TError = ErrorType<ErrorResponse>, TContext = unkn
   TContext
 > => {
   return useMutation(getOauthLoginMutationOptions(options), queryClient);
+};
+/**
+ * Apple JS SDK 팝업으로 받은 AuthCode를 Apple에서 토큰으로 교환하고, id_token을 검증해 회원가입 및 로그인 처리를 합니다.<br>프론트의 redirectURI는 {dest 도메인}/login/oauth2/code/apple 이어야 하며, scope에 email이 포함되어야 합니다.<br>Apple은 localhost를 등록할 수 없어 dest=local로는 로그인할 수 없습니다.
+ * @summary Apple 회원가입/로그인 처리
+ */
+export const appleLogin1 = (
+  authCodeRequest: BodyType<AuthCodeRequest>,
+  params: AppleLogin1Params,
+  options?: SecondParameter<typeof customInstance>,
+  signal?: AbortSignal,
+) => {
+  return customInstance<LoginResponse>(
+    {
+      url: `/api/v1/oauth/apple`,
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      data: authCodeRequest,
+      params,
+      signal,
+    },
+    options,
+  );
+};
+
+export const getAppleLogin1MutationOptions = <
+  TError = ErrorType<ErrorResponse>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof appleLogin1>>,
+    TError,
+    AppleLogin1MutationVariables,
+    TContext
+  >;
+  request?: SecondParameter<typeof customInstance>;
+}): UseMutationOptions<
+  Awaited<ReturnType<typeof appleLogin1>>,
+  TError,
+  AppleLogin1MutationVariables,
+  TContext
+> => {
+  const mutationKey = ['appleLogin1'];
+  const { mutation: mutationOptions, request: requestOptions } = options
+    ? options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey
+      ? options
+      : { ...options, mutation: { ...options.mutation, mutationKey } }
+    : { mutation: { mutationKey }, request: undefined };
+
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof appleLogin1>>,
+    AppleLogin1MutationVariables
+  > = (props) => {
+    const { data, params } = props ?? {};
+
+    return appleLogin1(data, params, requestOptions);
+  };
+
+  return { mutationFn, ...mutationOptions };
+};
+
+export type AppleLogin1MutationResult = NonNullable<Awaited<ReturnType<typeof appleLogin1>>>;
+export type AppleLogin1MutationBody = BodyType<AuthCodeRequest>;
+export type AppleLogin1MutationError = ErrorType<ErrorResponse>;
+export type AppleLogin1MutationVariables = {
+  data: BodyType<AuthCodeRequest>;
+  params: AppleLogin1Params;
+};
+
+/**
+ * @summary Apple 회원가입/로그인 처리
+ */
+export const useAppleLogin1 = <TError = ErrorType<ErrorResponse>, TContext = unknown>(
+  options?: {
+    mutation?: UseMutationOptions<
+      Awaited<ReturnType<typeof appleLogin1>>,
+      TError,
+      AppleLogin1MutationVariables,
+      TContext
+    >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): UseMutationResult<
+  Awaited<ReturnType<typeof appleLogin1>>,
+  TError,
+  AppleLogin1MutationVariables,
+  TContext
+> => {
+  return useMutation(getAppleLogin1MutationOptions(options), queryClient);
 };
 /**
  * OAuth 정보를 바탕으로 로그인 URL을 생성합니다

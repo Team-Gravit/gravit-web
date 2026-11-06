@@ -150,3 +150,353 @@ export function useGetAllChapter<
 
   return withQueryKey(query, queryOptions.queryKey);
 }
+
+/**
+ * 직군별 챕터 조회에서 고를 수 있는 직군 분류를 노출 순서대로 반환합니다. CS는 포함하지 않습니다.<br>
+ * 🔐 <strong>Jwt 필요</strong>
+ * @summary 직군 옵션 조회
+ */
+export const getTracks = (
+  options?: SecondParameter<typeof customInstance>,
+  signal?: AbortSignal,
+) => {
+  return customInstance<unknown>(
+    { url: `/api/v1/chapters/tracks`, method: 'GET', signal },
+    options,
+  );
+};
+
+export const getGetTracksQueryKey = () => {
+  return [`/api/v1/chapters/tracks`] as const;
+};
+
+export const getGetTracksQueryOptions = <
+  TData = Awaited<ReturnType<typeof getTracks>>,
+  TError = ErrorType<ErrorResponse>,
+>(options?: {
+  query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getTracks>>, TError, TData>>;
+  request?: SecondParameter<typeof customInstance>;
+}) => {
+  const { query: queryOptions, request: requestOptions } = options ?? {};
+
+  const queryKey = queryOptions?.queryKey ?? getGetTracksQueryKey();
+
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof getTracks>>> = ({ signal }) =>
+    getTracks(requestOptions, signal);
+
+  return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
+    Awaited<ReturnType<typeof getTracks>>,
+    TError,
+    TData
+  > & { queryKey: DataTag<QueryKey, TData, TError> };
+};
+
+export type GetTracksQueryResult = NonNullable<Awaited<ReturnType<typeof getTracks>>>;
+export type GetTracksQueryError = ErrorType<ErrorResponse>;
+
+export function useGetTracks<
+  TData = Awaited<ReturnType<typeof getTracks>>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  options: {
+    query: Partial<UseQueryOptions<Awaited<ReturnType<typeof getTracks>>, TError, TData>> &
+      Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getTracks>>,
+          TError,
+          Awaited<ReturnType<typeof getTracks>>
+        >,
+        'initialData'
+      >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+export function useGetTracks<
+  TData = Awaited<ReturnType<typeof getTracks>>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  options?: {
+    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getTracks>>, TError, TData>> &
+      Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getTracks>>,
+          TError,
+          Awaited<ReturnType<typeof getTracks>>
+        >,
+        'initialData'
+      >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+export function useGetTracks<
+  TData = Awaited<ReturnType<typeof getTracks>>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  options?: {
+    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getTracks>>, TError, TData>>;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+/**
+ * @summary 직군 옵션 조회
+ */
+
+export function useGetTracks<
+  TData = Awaited<ReturnType<typeof getTracks>>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  options?: {
+    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getTracks>>, TError, TData>>;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+  const queryOptions = getGetTracksQueryOptions(options);
+
+  const query = useQuery(queryOptions, queryClient) as UseQueryResult<TData, TError> & {
+    queryKey: DataTag<QueryKey, TData, TError>;
+  };
+
+  return withQueryKey(query, queryOptions.queryKey);
+}
+
+/**
+ * 선택한 직군 분류의 챕터를 유저의 진행도와 함께 챕터 id 순으로 조회합니다.<br>
+ * 직군 값은 직군 옵션 조회 결과(COMMON, SERVER, WEB, AOS, IOS, LANGUAGE)를 그대로 씁니다. CS는 CS 챕터 조회를 사용하세요.<br>
+ * 🔐 <strong>Jwt 필요</strong>
+ * @summary 직군별 챕터 조회
+ */
+export const getTrackChapters = (
+  track: 'CS' | 'COMMON' | 'SERVER' | 'WEB' | 'AOS' | 'IOS' | 'LANGUAGE',
+  options?: SecondParameter<typeof customInstance>,
+  signal?: AbortSignal,
+) => {
+  return customInstance<ChapterDetailResponse[]>(
+    { url: `/api/v1/chapters/tracks/${track}`, method: 'GET', signal },
+    options,
+  );
+};
+
+export const getGetTrackChaptersQueryKey = (
+  track: 'CS' | 'COMMON' | 'SERVER' | 'WEB' | 'AOS' | 'IOS' | 'LANGUAGE',
+) => {
+  return [`/api/v1/chapters/tracks/${track}`] as const;
+};
+
+export const getGetTrackChaptersQueryOptions = <
+  TData = Awaited<ReturnType<typeof getTrackChapters>>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  track: 'CS' | 'COMMON' | 'SERVER' | 'WEB' | 'AOS' | 'IOS' | 'LANGUAGE',
+  options?: {
+    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getTrackChapters>>, TError, TData>>;
+    request?: SecondParameter<typeof customInstance>;
+  },
+) => {
+  const { query: queryOptions, request: requestOptions } = options ?? {};
+
+  const queryKey = queryOptions?.queryKey ?? getGetTrackChaptersQueryKey(track);
+
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof getTrackChapters>>> = ({ signal }) =>
+    getTrackChapters(track, requestOptions, signal);
+
+  return {
+    queryKey,
+    queryFn,
+    enabled: track !== null && track !== undefined,
+    ...queryOptions,
+  } as UseQueryOptions<Awaited<ReturnType<typeof getTrackChapters>>, TError, TData> & {
+    queryKey: DataTag<QueryKey, TData, TError>;
+  };
+};
+
+export type GetTrackChaptersQueryResult = NonNullable<Awaited<ReturnType<typeof getTrackChapters>>>;
+export type GetTrackChaptersQueryError = ErrorType<ErrorResponse>;
+
+export function useGetTrackChapters<
+  TData = Awaited<ReturnType<typeof getTrackChapters>>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  track: 'CS' | 'COMMON' | 'SERVER' | 'WEB' | 'AOS' | 'IOS' | 'LANGUAGE',
+  options: {
+    query: Partial<UseQueryOptions<Awaited<ReturnType<typeof getTrackChapters>>, TError, TData>> &
+      Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getTrackChapters>>,
+          TError,
+          Awaited<ReturnType<typeof getTrackChapters>>
+        >,
+        'initialData'
+      >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+export function useGetTrackChapters<
+  TData = Awaited<ReturnType<typeof getTrackChapters>>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  track: 'CS' | 'COMMON' | 'SERVER' | 'WEB' | 'AOS' | 'IOS' | 'LANGUAGE',
+  options?: {
+    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getTrackChapters>>, TError, TData>> &
+      Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getTrackChapters>>,
+          TError,
+          Awaited<ReturnType<typeof getTrackChapters>>
+        >,
+        'initialData'
+      >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+export function useGetTrackChapters<
+  TData = Awaited<ReturnType<typeof getTrackChapters>>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  track: 'CS' | 'COMMON' | 'SERVER' | 'WEB' | 'AOS' | 'IOS' | 'LANGUAGE',
+  options?: {
+    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getTrackChapters>>, TError, TData>>;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+/**
+ * @summary 직군별 챕터 조회
+ */
+
+export function useGetTrackChapters<
+  TData = Awaited<ReturnType<typeof getTrackChapters>>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  track: 'CS' | 'COMMON' | 'SERVER' | 'WEB' | 'AOS' | 'IOS' | 'LANGUAGE',
+  options?: {
+    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getTrackChapters>>, TError, TData>>;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+  const queryOptions = getGetTrackChaptersQueryOptions(track, options);
+
+  const query = useQuery(queryOptions, queryClient) as UseQueryResult<TData, TError> & {
+    queryKey: DataTag<QueryKey, TData, TError>;
+  };
+
+  return withQueryKey(query, queryOptions.queryKey);
+}
+
+/**
+ * CS 분류 챕터(자료구조, 알고리즘, 네트워크, 데이터베이스, 운영체제)를 유저의 진행도와 함께 챕터 id 순으로 조회합니다.<br>
+ * 🔐 <strong>Jwt 필요</strong>
+ * @summary CS 챕터 조회
+ */
+export const getCsChapters = (
+  options?: SecondParameter<typeof customInstance>,
+  signal?: AbortSignal,
+) => {
+  return customInstance<ChapterDetailResponse[]>(
+    { url: `/api/v1/chapters/cs`, method: 'GET', signal },
+    options,
+  );
+};
+
+export const getGetCsChaptersQueryKey = () => {
+  return [`/api/v1/chapters/cs`] as const;
+};
+
+export const getGetCsChaptersQueryOptions = <
+  TData = Awaited<ReturnType<typeof getCsChapters>>,
+  TError = ErrorType<ErrorResponse>,
+>(options?: {
+  query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getCsChapters>>, TError, TData>>;
+  request?: SecondParameter<typeof customInstance>;
+}) => {
+  const { query: queryOptions, request: requestOptions } = options ?? {};
+
+  const queryKey = queryOptions?.queryKey ?? getGetCsChaptersQueryKey();
+
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof getCsChapters>>> = ({ signal }) =>
+    getCsChapters(requestOptions, signal);
+
+  return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
+    Awaited<ReturnType<typeof getCsChapters>>,
+    TError,
+    TData
+  > & { queryKey: DataTag<QueryKey, TData, TError> };
+};
+
+export type GetCsChaptersQueryResult = NonNullable<Awaited<ReturnType<typeof getCsChapters>>>;
+export type GetCsChaptersQueryError = ErrorType<ErrorResponse>;
+
+export function useGetCsChapters<
+  TData = Awaited<ReturnType<typeof getCsChapters>>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  options: {
+    query: Partial<UseQueryOptions<Awaited<ReturnType<typeof getCsChapters>>, TError, TData>> &
+      Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getCsChapters>>,
+          TError,
+          Awaited<ReturnType<typeof getCsChapters>>
+        >,
+        'initialData'
+      >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+export function useGetCsChapters<
+  TData = Awaited<ReturnType<typeof getCsChapters>>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  options?: {
+    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getCsChapters>>, TError, TData>> &
+      Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getCsChapters>>,
+          TError,
+          Awaited<ReturnType<typeof getCsChapters>>
+        >,
+        'initialData'
+      >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+export function useGetCsChapters<
+  TData = Awaited<ReturnType<typeof getCsChapters>>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  options?: {
+    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getCsChapters>>, TError, TData>>;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+/**
+ * @summary CS 챕터 조회
+ */
+
+export function useGetCsChapters<
+  TData = Awaited<ReturnType<typeof getCsChapters>>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  options?: {
+    query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof getCsChapters>>, TError, TData>>;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+  const queryOptions = getGetCsChaptersQueryOptions(options);
+
+  const query = useQuery(queryOptions, queryClient) as UseQueryResult<TData, TError> & {
+    queryKey: DataTag<QueryKey, TData, TError>;
+  };
+
+  return withQueryKey(query, queryOptions.queryKey);
+}

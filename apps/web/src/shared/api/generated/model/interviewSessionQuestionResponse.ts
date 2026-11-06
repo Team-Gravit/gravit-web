@@ -11,4 +11,6 @@ export interface InterviewSessionQuestionResponse {
   displayOrder: number;
   /** 문제 본문 */
   content: string;
+  /** 질문 음성 재생 URL(presigned GET). 음성이 없는 문항은 null. 발급 후 30분 동안 유효 */
+  audioUrl?: string;
 }

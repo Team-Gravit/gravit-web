@@ -19,6 +19,8 @@ interface ImportMetaEnv {
   readonly VITE_API_BASE_URL: string;
   /** OAuth 리다이렉트 목적지. `local` · `dev` · `prod` 중 하나. */
   readonly VITE_OAUTH_DEST: string;
+  /** 웹 Apple 로그인의 Services ID. 서버가 코드 교환에 쓰는 값과 같아야 한다. */
+  readonly VITE_APPLE_CLIENT_ID?: string;
   readonly VITE_ENABLE_API_MOCKING?: string;
   readonly VITE_USE_HTTPS?: string;
   /** `true`면 dev 서버의 `/api` 프록시를 거친다. 빌드에서는 무시된다. */

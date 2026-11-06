@@ -1,30 +1,18 @@
 import { useEffect, useRef } from 'react';
 import { useNavigate } from '@tanstack/react-router';
-import { isAxiosError } from 'axios';
 
-import { useOauthCallback, type LoginProvider } from '@/features/auth-login';
-
-/** 탈퇴한 계정이면 서버가 이 코드로 복구 흐름을 요구한다. message에 providerId가 담긴다. (기준선 D6) */
-const WITHDRAWN_ACCOUNT_ERROR = 'USER_423';
+import { toast } from '@/shared/ui/toast';
+import {
+  LOGIN_FAILED_MESSAGE,
+  readWithdrawnProviderId,
+  resolveLoginDestination,
+  useOauthCallback,
+  type LoginProvider,
+} from '@/features/auth-login';
 
 export interface OauthCallbackPageProps {
   provider: LoginProvider;
   code: string | undefined;
-}
-
-/** 탈퇴 계정 응답이면 복구에 쓸 providerId를, 아니면 `null`을 반환한다. */
-function readWithdrawnProviderId(error: unknown): string | null {
-  if (!isAxiosError(error)) {
-    return null;
-  }
-
-  const body = error.response?.data as { error?: string; message?: unknown } | undefined;
-
-  if (body?.error !== WITHDRAWN_ACCOUNT_ERROR || typeof body.message !== 'string') {
-    return null;
-  }
-
-  return body.message;
 }
 
 /**
@@ -56,8 +44,8 @@ export function OauthCallbackPage({ provider, code }: OauthCallbackPageProps) {
     mutate(
       { provider, code },
       {
-        onSuccess: ({ isOnboarded }) => {
-          navigate({ to: isOnboarded ? '/main' : '/onboarding', replace: true });
+        onSuccess: (response) => {
+          navigate({ to: resolveLoginDestination(response), replace: true });
         },
         onError: (error) => {
           const providerId = readWithdrawnProviderId(error);
@@ -67,7 +55,7 @@ export function OauthCallbackPage({ provider, code }: OauthCallbackPageProps) {
             return;
           }
 
-          // 실패 사유 표시는 별도 작업(FEAT-017)이다. 지금은 최소한 로그인 화면으로 되돌린다.
+          toast(LOGIN_FAILED_MESSAGE, { position: 'noneTabBottom' });
           navigate({ to: '/', replace: true });
         },
       },

@@ -10,5 +10,6 @@ export interface UserLevelDetailResponse {
   level: number;
   currentXp: number;
   maxXp: number;
+  /** 현재 레벨 진행률 (0~100, 소수점 첫째 자리 반올림). 현재 레벨 구간에서 획득한 XP / 구간 XP x 100, 최대 레벨이면 100 */
   levelRate: number;
 }

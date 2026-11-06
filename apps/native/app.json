@@ -18,9 +18,6 @@
         "com.apple.developer.applesignin": ["Default"]
       },
       "infoPlist": {
-        "NSAppTransportSecurity": {
-          "NSAllowsArbitraryLoads": true
-        },
         "ITSAppUsesNonExemptEncryption": false
       }
     },
@@ -43,14 +40,6 @@
           "image": "./assets/splash.png",
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
-        }
-      ],
-      [
-        "expo-build-properties",
-        {
-          "android": {
-            "usesCleartextTraffic": true
-          }
         }
       ]
     ],

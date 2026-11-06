@@ -23,7 +23,7 @@ import type {
   GetSessionHistoryParams,
   InterviewDashboardResponse,
   InterviewSessionAnswersResponse,
-  InterviewSessionHistorySliceResponse,
+  InterviewSessionHistoryPageResponse,
   InterviewSessionSummaryResponse,
   InterviewTopicAccuracyResponse,
 } from '../model';
@@ -60,7 +60,7 @@ export const getSessionHistory = (
   options?: SecondParameter<typeof customInstance>,
   signal?: AbortSignal,
 ) => {
-  return customInstance<InterviewSessionHistorySliceResponse>(
+  return customInstance<InterviewSessionHistoryPageResponse>(
     { url: `/api/v1/interview-sessions`, method: 'GET', params, signal },
     options,
   );
@@ -176,6 +176,7 @@ export function useGetSessionHistory<
  * 완료된 세션의 리포트 종합을 조회합니다.<br>
  * 총점과 만점, 정확도와 전달력, 전체 사용자 평균, 이 세션을 포함한 최근 완료 세션 5개의 추이(오래된 순), 문항별 점수, 약점 분야를 담습니다.<br>
  * 약점 분야는 문항 획득 점수가 문항 만점의 절반 이하인 문항의 유닛이며 중복을 제거합니다.<br>
+ * 같은 주제의 유닛이 여럿이면 주제가 반복되므로 유닛 제목으로 구분합니다.<br>
  * 본인 세션이 아니면 403, 완료되지 않은 세션이면 409입니다.<br>
  * 🔐 <strong>Jwt 필요</strong>
  * @summary 면접 세션 종합 조회
@@ -302,7 +303,8 @@ export function useGetSessionSummary<
 
 /**
  * 완료된 세션의 5문항 상세를 문항 순서대로 조회합니다.<br>
- * 질문, 주제, 사용자 답변(음성 세션은 음성 키 포함), 모범답안, 핵심 개념 목록, 점수 분해(정확도 14, 구조성 3, 명료성 3), 개선 제안을 담습니다.<br>
+ * 질문, 주제, 사용자 답변(음성 세션은 답변 음성 재생 URL 포함), 모범답안, 핵심 개념 목록, 점수 분해(정확도 14, 구조성 3, 명료성 3), 개선 제안을 담습니다.<br>
+ * audioUrl은 발급 후 30분 동안 유효하며, 만료되면 다시 조회해 새 URL을 받습니다.<br>
  * 핵심 개념 목록에는 개념별 전달 여부가 없습니다. 무응답 문항은 answerContent와 improvementSuggestion이 null이고 세 점수가 0입니다.<br>
  * 본인 세션이 아니면 403, 완료되지 않은 세션이면 409입니다.<br>
  * 🔐 <strong>Jwt 필요</strong>

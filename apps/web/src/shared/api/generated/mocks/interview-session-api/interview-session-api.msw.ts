@@ -15,11 +15,37 @@ import type {
   InterviewSessionCreateResponse,
   InterviewSessionQuestionsResponse,
   InterviewSessionStatusResponse,
+  InterviewTranscriptionsResponse,
 } from '../../model';
 
 export const getCreateResponseMock = (
   overrideResponse: Partial<Extract<InterviewSessionCreateResponse, object>> = {},
 ): InterviewSessionCreateResponse => ({ sessionId: faker.number.int(), ...overrideResponse });
+
+export const getGetTranscriptionsResponseMock = (
+  overrideResponse: Partial<Extract<InterviewTranscriptionsResponse, object>> = {},
+): InterviewTranscriptionsResponse => ({
+  sessionId: faker.number.int(),
+  transcriptions: Array.from(
+    { length: faker.number.int({ min: 1, max: 10 }) },
+    (_, i) => i + 1,
+  ).map(() => ({
+    displayOrder: faker.number.int(),
+    status: faker.helpers.arrayElement([
+      faker.helpers.arrayElement(['PENDING', 'COMPLETED', 'FAILED'] as const),
+      undefined,
+    ]),
+    transcript: faker.helpers.arrayElement([
+      faker.string.alpha({ length: { min: 10, max: 20 } }),
+      undefined,
+    ]),
+    audioUrl: faker.helpers.arrayElement([
+      faker.string.alpha({ length: { min: 10, max: 20 } }),
+      undefined,
+    ]),
+  })),
+  ...overrideResponse,
+});
 
 export const getIssueUploadUrlResponseMock = (
   overrideResponse: Partial<Extract<InterviewAudioUploadResponse, object>> = {},
@@ -76,10 +102,15 @@ export const getGetQuestionsResponseMock = (
   overrideResponse: Partial<Extract<InterviewSessionQuestionsResponse, object>> = {},
 ): InterviewSessionQuestionsResponse => ({
   sessionId: faker.number.int(),
+  inputType: faker.helpers.arrayElement(['TEXT', 'VOICE'] as const),
   questions: Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, (_, i) => i + 1).map(
     () => ({
       displayOrder: faker.number.int(),
       content: faker.string.alpha({ length: { min: 10, max: 20 } }),
+      audioUrl: faker.helpers.arrayElement([
+        faker.string.alpha({ length: { min: 10, max: 20 } }),
+        undefined,
+      ]),
     }),
   ),
   ...overrideResponse,
@@ -106,6 +137,52 @@ export const getCreateMockHandler = (
           : getCreateResponseMock(),
         { status: 201 },
       );
+    },
+    options,
+  );
+};
+
+export const getGetTranscriptionsMockHandler = (
+  overrideResponse?:
+    | InterviewTranscriptionsResponse
+    | ((
+        info: Parameters<Parameters<typeof http.get>[1]>[0],
+      ) => Promise<InterviewTranscriptionsResponse> | InterviewTranscriptionsResponse),
+  options?: RequestHandlerOptions,
+) => {
+  return http.get(
+    '*/api/v1/interview-sessions/:sessionId/transcriptions',
+    async (info: Parameters<Parameters<typeof http.get>[1]>[0]) => {
+      await delay(600);
+
+      return HttpResponse.json(
+        overrideResponse !== undefined
+          ? typeof overrideResponse === 'function'
+            ? await overrideResponse(info)
+            : overrideResponse
+          : getGetTranscriptionsResponseMock(),
+        { status: 200 },
+      );
+    },
+    options,
+  );
+};
+
+export const getRequestTranscriptionMockHandler = (
+  overrideResponse?:
+    | void
+    | ((info: Parameters<Parameters<typeof http.post>[1]>[0]) => Promise<void> | void),
+  options?: RequestHandlerOptions,
+) => {
+  return http.post(
+    '*/api/v1/interview-sessions/:sessionId/transcriptions',
+    async (info: Parameters<Parameters<typeof http.post>[1]>[0]) => {
+      await delay(600);
+      if (typeof overrideResponse === 'function') {
+        await overrideResponse(info);
+      }
+
+      return new HttpResponse(null, { status: 202 });
     },
     options,
   );
@@ -242,6 +319,8 @@ export const getGetQuestionsMockHandler = (
 };
 export const getInterviewSessionApiMock = () => [
   getCreateMockHandler(),
+  getGetTranscriptionsMockHandler(),
+  getRequestTranscriptionMockHandler(),
   getIssueUploadUrlMockHandler(),
   getSubmitMockHandler(),
   getAbandonMockHandler(),

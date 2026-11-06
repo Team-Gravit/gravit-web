@@ -8,11 +8,13 @@
 import type { InterviewSessionHistoryResponse } from './interviewSessionHistoryResponse';
 
 /**
- * 응시 이력 슬라이스 응답
+ * 응시 이력 페이지 응답
  */
-export interface InterviewSessionHistorySliceResponse {
+export interface InterviewSessionHistoryPageResponse {
   /** 다음 페이지 존재 여부 */
   hasNextPage: boolean;
+  /** 전체 페이지 수. 이력이 없으면 0 */
+  totalPages: number;
   /** 응시 이력 목록 (완료 세션만, 페이지당 10건) */
   contents: InterviewSessionHistoryResponse[];
 }

@@ -1,0 +1,49 @@
+# EAS 빌드 업로드 제외 목록. 이 파일이 있으면 EAS가 .gitignore를 보지 않으므로 그 내용도 함께 둔다.
+
+# .gitignore와 같은 항목
+.DS_Store
+node_modules
+.turbo
+*.log
+dist
+dist-ssr
+storybook-static
+*.local
+.env
+.cache
+server/dist
+public/dist
+.agents/
+.codex/agents/
+skills-lock.json
+local-docs/
+.claude/settings.local.json
+.claude/.cache/
+docs/_reference/
+apps/web/.tanstack/
+.tanstack/
+
+# apps/native 생성물과 비공개 값
+apps/native/android/
+apps/native/ios/
+apps/native/.expo/
+.env.*
+!.env.example
+*.jks
+*.keystore
+*.p8
+*.p12
+*.mobileprovision
+*.key
+*.pem
+
+# 앱 빌드에 필요 없는 저장소 이력 · 문서 · 도구 설정
+.git
+.github/
+.vscode/
+.mcp.json
+docs/
+work/
+.claude/
+.codex/
+apps/legacy-web/

@@ -4,8 +4,10 @@ import { LOGIN_PROVIDERS, SocialLoginButton } from '@/features/auth-login';
 import { SpaceBackground } from '@/shared/ui/layout';
 import { GravitLogo } from '@/shared/ui/logo';
 
+import type { LoginPageVariantProps } from './login-page-variant-props';
+
 /** 넓은 화면 로그인 화면. 우주 배경 위에 흰 카드를 가운데 놓는다. */
-export function LoginPageWide() {
+export function LoginPageWide({ onLoginSuccess, onLoginError }: LoginPageVariantProps) {
   return (
     <SpaceBackground className="flex items-center justify-center">
       <section className="flex w-[630px] flex-col items-center rounded-12 bg-white px-18 pt-22 pb-15">
@@ -17,7 +19,13 @@ export function LoginPageWide() {
 
         <div className="mt-13 flex w-full flex-col gap-4">
           {LOGIN_PROVIDERS.map((provider) => (
-            <SocialLoginButton key={provider} provider={provider} size="wide" />
+            <SocialLoginButton
+              key={provider}
+              provider={provider}
+              size="wide"
+              onLoginSuccess={onLoginSuccess}
+              onLoginError={onLoginError}
+            />
           ))}
         </div>
 

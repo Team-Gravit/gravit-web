@@ -36,6 +36,6 @@ export interface InterviewSessionSummaryResponse {
   recentSessions: InterviewRecentSessionResponse[];
   /** 문항별 점수 (문항 순서대로) */
   answers: InterviewAnswerScoreResponse[];
-  /** 약점 분야 (문항 획득 점수가 문항 만점의 절반 이하인 문항의 유닛, 중복 제거) */
+  /** 약점 분야 (문항 획득 점수가 문항 만점의 절반 이하인 문항의 유닛, 유닛 기준 중복 제거, 문항 순서) */
   weakTopics: InterviewWeakTopicResponse[];
 }
