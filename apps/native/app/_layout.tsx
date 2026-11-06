@@ -2,7 +2,12 @@ import { initializeKakaoSDK } from '@react-native-kakao/core';
 import Constants from 'expo-constants';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { useEffect, useState } from 'react';
+
+// WebView 가 로드될 때까지 스플래시를 유지한다. 자동으로 내려가면 웹 첫 화면 전에 흰 화면이 보인다.
+// 숨기는 호출은 app/index.tsx 가 맡는다.
+SplashScreen.preventAutoHideAsync().catch((error: unknown) => {
+  console.warn('[splash] 자동 숨김을 막지 못했다', error);
+});
 
 SplashScreen.setOptions({
   duration: 1000,
@@ -22,17 +27,6 @@ if (typeof kakaoNativeAppKey === 'string' && kakaoNativeAppKey) {
 }
 
 export default function RootLayout() {
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  // TODO: 실제 초기 로딩 작업이 추가되면 완료 콜백에서 상태를 갱신한다.
-  useEffect(() => {
-    // 현재는 로딩 화면 구현 전의 placeholder 상태 전환이다.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setIsLoaded(true);
-  }, []);
-
-  if (!isLoaded) return <></>;
-
   return (
     <Stack>
       {/** 웹뷰를 띄울 단일 페이지 */}
