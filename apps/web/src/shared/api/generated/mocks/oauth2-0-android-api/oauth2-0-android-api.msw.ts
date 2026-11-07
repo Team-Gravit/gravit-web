@@ -12,7 +12,7 @@ import type { RequestHandlerOptions } from 'msw';
 
 import type { LoginResponse } from '../../model';
 
-export const getOauthLogin1ResponseMock = (
+export const getOauthLogin2ResponseMock = (
   overrideResponse: Partial<Extract<LoginResponse, object>> = {},
 ): LoginResponse => ({
   accessToken: faker.string.alpha({ length: { min: 10, max: 20 } }),
@@ -22,7 +22,7 @@ export const getOauthLogin1ResponseMock = (
   ...overrideResponse,
 });
 
-export const getOauthNaverLoginResponseMock = (
+export const getOauthNaverLogin1ResponseMock = (
   overrideResponse: Partial<Extract<LoginResponse, object>> = {},
 ): LoginResponse => ({
   accessToken: faker.string.alpha({ length: { min: 10, max: 20 } }),
@@ -32,7 +32,7 @@ export const getOauthNaverLoginResponseMock = (
   ...overrideResponse,
 });
 
-export const getOauthLogin1MockHandler = (
+export const getOauthLogin2MockHandler = (
   overrideResponse?:
     | LoginResponse
     | ((
@@ -50,7 +50,7 @@ export const getOauthLogin1MockHandler = (
           ? typeof overrideResponse === 'function'
             ? await overrideResponse(info)
             : overrideResponse
-          : getOauthLogin1ResponseMock(),
+          : getOauthLogin2ResponseMock(),
         { status: 200 },
       );
     },
@@ -58,7 +58,7 @@ export const getOauthLogin1MockHandler = (
   );
 };
 
-export const getOauthNaverLoginMockHandler = (
+export const getOauthNaverLogin1MockHandler = (
   overrideResponse?:
     | LoginResponse
     | ((
@@ -76,7 +76,7 @@ export const getOauthNaverLoginMockHandler = (
           ? typeof overrideResponse === 'function'
             ? await overrideResponse(info)
             : overrideResponse
-          : getOauthNaverLoginResponseMock(),
+          : getOauthNaverLogin1ResponseMock(),
         { status: 200 },
       );
     },
@@ -84,6 +84,6 @@ export const getOauthNaverLoginMockHandler = (
   );
 };
 export const getOauth20AndroidApiMock = () => [
-  getOauthLogin1MockHandler(),
-  getOauthNaverLoginMockHandler(),
+  getOauthLogin2MockHandler(),
+  getOauthNaverLogin1MockHandler(),
 ];
