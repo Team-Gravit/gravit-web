@@ -22,7 +22,7 @@ export function ConfirmDesktop({ items, isPending, onSubmit }: ConfirmLayoutProp
   const current = items[index];
 
   const hasNext = index < items.length - 1;
-
+  const hasPrev = index > 0;
   return (
     <div className="flex h-svh flex-col bg-bg-2">
       <header className="flex h-[72px] shrink-0 items-center border-b border-divider-1 bg-bg-0 px-5">
@@ -64,7 +64,20 @@ export function ConfirmDesktop({ items, isPending, onSubmit }: ConfirmLayoutProp
             </div>
 
             {current && (
-              <div className="flex justify-end">
+              <div className="flex justify-end gap-4">
+                {hasPrev && (
+                  <Button
+                    size="cta"
+                    variant={'stroke-default'}
+                    className="w-[158px] bg-bg-0"
+                    onClick={() => {
+                      setSelected(items[index - 1].displayOrder);
+                    }}
+                  >
+                    이전으로
+                  </Button>
+                )}
+
                 <Button
                   size="cta"
                   className="w-[158px]"
