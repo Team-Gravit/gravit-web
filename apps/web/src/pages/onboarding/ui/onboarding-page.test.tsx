@@ -163,9 +163,9 @@ describe('OnboardingPage', () => {
 
   it('좁은 화면에서 온보딩을 취소하면 세션을 지우고 / 로 이동한다', async () => {
     stubViewport(false);
-    localStorage.setItem('accessToken', 't1');
-    localStorage.setItem('refreshToken', 'r1');
+    localStorage.setItem('hasSession', '1');
     useAuthStore.setState({ accessToken: 't1', isRestored: true });
+    server.use(http.post('*/api/v1/auth/logout', () => new HttpResponse(null, { status: 204 })));
 
     const { router, user } = await renderOnboardingPage();
 
@@ -176,16 +176,15 @@ describe('OnboardingPage', () => {
     await waitFor(() => {
       expect(router.state.location.pathname).toBe('/');
     });
-    expect(localStorage.getItem('accessToken')).toBeNull();
-    expect(localStorage.getItem('refreshToken')).toBeNull();
+    expect(localStorage.getItem('hasSession')).toBeNull();
     expect(useAuthStore.getState().accessToken).toBeNull();
   });
 
   it('넓은 화면에서 「이전」을 누르면 세션을 지우고 / 로 이동한다', async () => {
     stubViewport(true);
-    localStorage.setItem('accessToken', 't1');
-    localStorage.setItem('refreshToken', 'r1');
+    localStorage.setItem('hasSession', '1');
     useAuthStore.setState({ accessToken: 't1', isRestored: true });
+    server.use(http.post('*/api/v1/auth/logout', () => new HttpResponse(null, { status: 204 })));
 
     const { router, user } = await renderOnboardingPage();
 
@@ -194,8 +193,7 @@ describe('OnboardingPage', () => {
     await waitFor(() => {
       expect(router.state.location.pathname).toBe('/');
     });
-    expect(localStorage.getItem('accessToken')).toBeNull();
-    expect(localStorage.getItem('refreshToken')).toBeNull();
+    expect(localStorage.getItem('hasSession')).toBeNull();
     expect(useAuthStore.getState().accessToken).toBeNull();
   });
 });
