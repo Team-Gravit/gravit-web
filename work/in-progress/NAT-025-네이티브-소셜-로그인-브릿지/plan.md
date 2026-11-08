@@ -618,3 +618,82 @@ orval 재생성 · 라우트 트리 재생성 없음.
 
 - 로고 크기와 중심선을 고쳤다. 시안(`12898:23111`)은 Google · 카카오 20×20, 네이버 17×16인데 구현은 글자 크기를 따라 15px이었다. 로고를 상자에 맞춰 넣고, 좁은 화면에서는 40px 자리의 가운데에 둔다. Apple은 시안이 없어 22px로 맞췄다
 - 아이콘 · 스플래시(`NAT-011`)는 이 작업과 함께 구현했으나 PR을 나누기 위해 별도로 보관했다
+
+---
+
+# NAT-025 구현 계획 — 5회차 (iOS 앱 Google · 카카오 · 네이버를 iOS 경로로)
+
+> `ai-plan` 5회차 (2026-11-07). **사용자 승인 전에는 구현으로 넘어가지 않는다.**
+
+## 0. 바뀐 전제
+
+`spec.md`는 "iOS도 우선 Android 경로를 쓰고, 차이가 없으면 서버가 통합한다"였다. 차이가 생겨 서버가 경로를 나눴다.
+
+| 항목             | 이전                                          | 지금 (dev API 문서 · 서버 답변, 2026-11-07)                                                                            |
+| ---------------- | --------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| iOS 경로         | `/oauth/android?provider=` · `/android/naver` | `POST /api/v1/oauth/ios?provider=`(google · kakao) · `POST /api/v1/oauth/ios/naver`. 요청 · 응답 형태는 Android와 같다 |
+| 리프레시 토큰 칸 | 사용자당 1개                                  | WEB · ANDROID · IOS 3칸. 칸은 토큰의 `client` 클레임으로 정해져 재발급 · 로그아웃에 클라이언트가 보낼 값이 없다        |
+| Google `aud`     | 확인 필요                                     | 플랫폼과 무관하게 `webClientId`. 앱 변경 없음                                                                          |
+| 생성 함수 이름   | android `oauthLogin1` · `oauthNaverLogin`     | android `oauthLogin2` · `oauthNaverLogin1`, ios `oauthLogin1` · `oauthNaverLogin`. **이름이 아니라 파일로 고른다**     |
+
+이미 ANDROID 칸에 저장된 iOS 세션은 그 칸으로 계속 재발급되고, 다음 로그인부터 IOS 칸에 들어간다. 강제 로그아웃은 없다.
+운영 서버에는 iOS 경로가 아직 없다 (운영 API 문서 58개 경로). 운영 배포 전에 앱 심사용 빌드를 운영 서버로 보내지 않는다.
+
+**범위**: 앱 웹뷰의 토큰 교환 경로 선택. **비범위**: 재생성으로 함께 깨진 웹 쿠키 계약 5건(`FEAT-080`) · native 코드 · Android 앱 동작(경로 그대로).
+
+## 1. 기술 결정 — 웹이 기기 종류를 아는 방법
+
+| 안                                  | 판단                                                                                                                      |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| **`APP_INFO` 브릿지 (선택)**        | native가 `Platform.OS`로 답한다. 1차부터 모든 빌드에 있어 재빌드가 없다. 로그인마다 브릿지 왕복이 한 번 는다              |
+| `navigator.userAgent`의 `iPhone` 등 | 동기라 단순하다. iPad 웹뷰는 데스크톱 UA(`Macintosh`)를 보낼 수 있다(`supportsTablet: true`) → iPad가 ANDROID 칸으로 간다 |
+| `AUTH_LOGIN` 응답에 `platform` 추가 | 계약과 native를 고쳐야 하고 개발 빌드를 다시 만들어야 한다                                                                |
+
+- `APP_INFO`는 `AUTH_LOGIN` **전에** 부른다. 실패하면 SDK 화면을 띄우지 않고 기존 오류 처리(`onLoginError` → 공통 토스트)로 간다
+- Apple은 기기와 무관하게 지금처럼 `/oauth/ios/apple`이다. native가 Android에서 `UNSUPPORTED`를 돌려준다
+- 결과를 캐시하지 않는다. 측정 근거가 없다 (`refactor-checklist.md` §5)
+
+## 2. 영향 분석
+
+| 구분 | 파일                                                                                                                                                                |
+| ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 수정 | `features/auth-login/api/request-native-login.ts` — `requestNativePlatform()` (`requestNative('APP_INFO', {})`의 `platform`)                                        |
+| 수정 | `features/auth-login/api/exchange-native-token.ts` — `platform` 인자. `ios`면 ios 파일, `android`면 android 파일의 생성 함수                                        |
+| 수정 | `features/auth-login/api/use-native-login.ts` — 기기 확인 → SDK 로그인 → 교환                                                                                       |
+| 수정 | `shared/api/mocks/native-bridge.ts` — 스텁이 `APP_INFO`에 자동 응답하는 선택 옵션 (`{ platform }`). 기본은 지금처럼 응답하지 않아 `request-native.test.ts`는 그대로 |
+| 수정 | `use-native-login.test.tsx` · `ui/social-login-button.test.tsx` · `pages/login/ui/login-page.test.tsx` — 엔드포인트 · 요청 순서                                     |
+| 문서 | `spec.md` (범위 재정의 · 용어 「Android 엔드포인트」 · 확인 필요 1) · `checklist.md` 5회차 · `docs/fe-implement-spec/o-1/o-1.md` 앱 환경 절(있으면)                 |
+
+orval 재생성은 사용자가 이미 했다. 라우트 트리 재생성 없음. FSD: `features/auth-login/api` → `shared/api`(생성물 · 브릿지) 하향만.
+
+## 3. 구현 계획
+
+- [x] `[shared]` `mocks/native-bridge.ts` — `installNativeBridgeStub({ platform })`이면 `APP_INFO` 요청에 바로 응답한다
+- [x] `[features]` `request-native-login.ts` — `requestNativePlatform()`. 타임아웃은 브릿지 기본값(10초)
+- [x] `[features]` `exchange-native-token.ts` — `exchangeNativeToken(provider, token, platform)`. 생성 함수를 `ios*` · `android*` 별칭으로 import해 번호 이름이 파일 밖으로 새지 않게 한다. 주석의 "iOS도 같은 엔드포인트" 문장을 지운다
+- [x] `[features]` `use-native-login.ts` — `platform` → `requestNativeLogin` → `exchangeNativeToken`
+- [x] `[features]` `use-native-login.test.tsx` — iOS: google · kakao → `/oauth/ios?provider=` · naver → `/oauth/ios/naver`, android 경로는 안 부름 / Android: 기존 경로 / `APP_INFO` 실패 → `AUTH_LOGIN`을 보내지 않음 / 계약 위반 케이스 유지
+- [x] `[features]` `social-login-button.test.tsx` · `[pages]` `login-page.test.tsx` — 스텁에 `platform: 'ios'`, 엔드포인트를 ios로
+- [x] 증분: `exec vitest run src/features/auth-login src/pages/login` · `lint:fsd` · 변경 파일 eslint · prettier. `check-types`는 `FEAT-080` 5건이 남아 실패가 기대값 — **이번 2건이 사라졌는지**로 판정한다 (2026-11-07: vitest 11파일 71건 통과 · steiger · eslint · prettier 통과 · `check-types`는 `FEAT-080` 5건만 남음)
+- [ ] 수동 iOS 실기기(dev 서버): google · 카카오 · 네이버 로그인 → 재실행 유지 → 로그아웃. 개발 빌드 재생성 불필요(웹만 바뀐다) — 세 로그인 성공(2026-11-07). 재실행 유지 · 로그아웃은 기록 없음
+- [x] `spec.md` 갱신 (범위 재정의 · 용어 · 경계 조건 · 확인 필요 1 · Changelog). `docs/`에는 Android 경로를 적은 곳이 없어 변경 없음
+- [x] `checklist.md` 5회차 — `ai-validate` · `docs/implementation-status.md` 갱신 이력
+
+### 5회차 구현 중 계획과 달라진 점
+
+- 테스트 대역이 자동 응답한 `APP_INFO`는 `postMessage` 기록에서 뺐다. 기존 테스트의 "요청 1건" 단언을 그대로 두고, 횟수는 `readAppInfoRequestCount()`로 본다
+- 생성 함수는 플랫폼별 표(`LOGIN_BY_PLATFORM`)로 묶었다. Apple은 기기와 무관하게 iOS 경로라 표에 넣지 않았다
+- `issues.md`의 Issue 2~5 AC에 남은 `/oauth/android` 문구는 고치지 않았다. 이슈 문서는 `feature-planner` 소유라 사용자 판단을 받는다
+
+## 4. 리스크
+
+| 리스크                                        | 영향                             | 대응                                                                                    |
+| --------------------------------------------- | -------------------------------- | --------------------------------------------------------------------------------------- |
+| 생성 함수를 이름만 보고 고름                  | iOS가 Android 칸으로 감 (조용함) | 테스트가 경로를 단언한다. import에 파일 기준 별칭                                       |
+| `APP_INFO` 응답 지연                          | 로그인 시작이 늦어짐             | 브릿지 기본 타임아웃. 실기기에서 체감 확인                                              |
+| 웹을 iOS 경로로 배포했는데 서버에 경로가 없음 | 앱 로그인 404                    | dev는 반영 확인. **운영 웹 배포는 서버 운영 배포 뒤**로 묶는다 (`FEAT-080`과 같은 조건) |
+| `check-types`가 `FEAT-080` 때문에 계속 실패   | 이 작업만으로 `pnpm verify` 불가 | 이 작업의 완료 판정은 증분 검사. 커밋 · PR은 `FEAT-080`과 순서를 맞춘다                 |
+
+## 5. 확인 필요
+
+1. **브랜치 · GitHub 이슈.** `#390`은 머지됐다. 이 변경을 올릴 이슈와 브랜치(`develop`에서 분기)를 정한다
