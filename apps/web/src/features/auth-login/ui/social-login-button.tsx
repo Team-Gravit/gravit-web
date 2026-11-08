@@ -2,14 +2,13 @@ import type { ComponentProps } from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 
 import { isBridgeError, isNativeApp } from '@/shared/api';
-import type { LoginResponse } from '@/shared/api/generated/model';
 import { cn } from '@/shared/lib/cn';
 import { Spinner } from '@/shared/ui/spinner';
 import { toast } from '@/shared/ui/toast';
 
 import { useAppleWebLogin } from '../api/use-apple-web-login';
 import { useNativeLogin } from '../api/use-native-login';
-import { LOGIN_UNSUPPORTED_MESSAGE } from '../model/login-outcome';
+import { LOGIN_UNSUPPORTED_MESSAGE, type LoginSuccess } from '../model/login-outcome';
 import { LOGIN_PROVIDER_LABELS, type LoginProvider } from '../model/login-providers';
 import { useOauthLogin } from '../model/use-oauth-login';
 import AppleLogo from './assets/apple.svg?react';
@@ -61,7 +60,7 @@ export interface SocialLoginButtonProps
    * 앱의 네이티브 SDK 로그인이나 브라우저의 Apple 팝업 로그인이 끝나 세션이 만들어졌다.
    * 이동은 호출부가 정한다. (다른 provider 의 브라우저 로그인은 인가 페이지로 이동해 호출되지 않는다.)
    */
-  onLoginSuccess?: (response: LoginResponse) => void;
+  onLoginSuccess?: (response: LoginSuccess) => void;
   /**
    * 취소(`CANCELLED`)와 미지원(`UNSUPPORTED`)은 버튼에서 처리한다.
    * 그 밖의 브릿지 오류(`BridgeError`)와 서버 요청 오류를 호출부에 전달한다.
