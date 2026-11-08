@@ -24,7 +24,7 @@ vi.mock('@/shared/ui/toast', async (importOriginal) => {
 });
 
 const KAKAO_LOGIN_URL_ENDPOINT = '*/api/v1/oauth/login-url/kakao';
-const ID_TOKEN_ENDPOINT = '*/api/v1/oauth/android';
+const ID_TOKEN_ENDPOINT = '*/api/v1/oauth/ios';
 const AUTHORIZE_URL = 'https://kauth.kakao.com/oauth/authorize?client_id=test';
 const LOGIN_RESPONSE = {
   accessToken: 'at_1',
@@ -139,7 +139,7 @@ describe('SocialLoginButton — 앱 환경', () => {
   let bridge: NativeBridgeStub;
 
   beforeEach(() => {
-    bridge = installNativeBridgeStub();
+    bridge = installNativeBridgeStub({ platform: 'ios' });
   });
 
   afterEach(() => {
@@ -269,7 +269,7 @@ describe('SocialLoginButton — Apple', () => {
   const APPLE_LOGIN_URL_ENDPOINT = '*/api/v1/oauth/login-url/apple';
 
   it('앱 환경에서 클릭하면 apple 로 AUTH_LOGIN 을 요청하고 authorizationCode 를 iOS 엔드포인트로 교환한다', async () => {
-    const bridge = installNativeBridgeStub();
+    const bridge = installNativeBridgeStub({ platform: 'ios' });
     const received = vi.fn();
     server.use(
       http.post(APPLE_IOS_ENDPOINT, async ({ request }) => {
