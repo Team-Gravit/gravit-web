@@ -113,9 +113,9 @@ async function renderGate(
   return { router };
 }
 
+// 웹 로그인 직후 상태 — 토큰은 store 에만 있고 저장소에는 힌트만 있다.
 beforeEach(() => {
-  localStorage.setItem('accessToken', 't1');
-  localStorage.setItem('refreshToken', 'r1');
+  localStorage.setItem('hasSession', '1');
   useAuthStore.setState({ accessToken: 't1', isRestored: true });
 });
 
@@ -222,7 +222,7 @@ describe('온보딩 게이트 — 조회 실패와 대기', () => {
     const { router } = await renderGate();
 
     await waitFor(() => expect(router.state.location.pathname).toBe('/'));
-    expect(localStorage.getItem('accessToken')).toBeNull();
+    expect(localStorage.getItem('hasSession')).toBeNull();
     expect(useAuthStore.getState().accessToken).toBeNull();
     expect(screen.queryByText('메인 화면')).not.toBeInTheDocument();
   });
@@ -233,7 +233,7 @@ describe('온보딩 게이트 — 조회 실패와 대기', () => {
     const { router } = await renderGate();
 
     await waitFor(() => expect(router.state.location.pathname).toBe('/'));
-    expect(localStorage.getItem('accessToken')).toBeNull();
+    expect(localStorage.getItem('hasSession')).toBeNull();
     expect(useAuthStore.getState().accessToken).toBeNull();
     expect(screen.queryByText(USER_CHECK_FAILED_MESSAGE)).not.toBeInTheDocument();
   });
@@ -248,7 +248,7 @@ describe('온보딩 게이트 — 조회 실패와 대기', () => {
 
     await waitFor(() => expect(router.state.location.pathname).toBe('/'));
     expect(screen.queryByText(USER_CHECK_FAILED_MESSAGE)).not.toBeInTheDocument();
-    expect(localStorage.getItem('accessToken')).toBeNull();
+    expect(localStorage.getItem('hasSession')).toBeNull();
   });
 
   it('USER_4041 이면 실제 라우트에서 /main 으로 되돌아가지 않고 / 에 머문다', async () => {
@@ -264,7 +264,8 @@ describe('온보딩 게이트 — 조회 실패와 대기', () => {
 
     expect(await screen.findByText(USER_CHECK_FAILED_MESSAGE)).toBeInTheDocument();
     expect(router.state.location.pathname).toBe('/main');
-    expect(localStorage.getItem('accessToken')).toBe('t1');
+    expect(useAuthStore.getState().accessToken).toBe('t1');
+    expect(localStorage.getItem('hasSession')).toBe('1');
   });
 
   it('구독하는 화면 없이 5분이 지나도 사용자를 다시 조회하지 않는다', async () => {
@@ -347,5 +348,56 @@ describe('온보딩 게이트 — 조회 실패와 대기', () => {
 
     expect(await screen.findByText('화면 렌더 실패')).toBeInTheDocument();
     expect(screen.queryByText(USER_CHECK_FAILED_MESSAGE)).not.toBeInTheDocument();
+  });
+});
+
+describe('인증 게이트 — 웹 세션 복원', () => {
+  const REISSUE_ENDPOINT = '*/api/v1/auth/reissue';
+
+  // 새로고침 직후 상태 — 메모리의 토큰은 사라지고 힌트만 남는다.
+  beforeEach(() => {
+    useAuthStore.setState({ accessToken: null, isRestored: false });
+  });
+
+  it('힌트가 있으면 재발급을 기다린 뒤 판단해 /main 에 머문다 (AC-9)', async () => {
+    server.use(
+      http.post(REISSUE_ENDPOINT, async () => {
+        await delay(50);
+        return HttpResponse.json({ accessToken: 't2' });
+      }),
+    );
+    mockUser(true);
+
+    await expect(resolvePath('/main')).resolves.toBe('/main');
+    expect(useAuthStore.getState().accessToken).toBe('t2');
+  });
+
+  it('힌트가 없으면 재발급 없이 / 로 이동한다 (AC-8)', async () => {
+    localStorage.clear();
+    let reissueCount = 0;
+    server.use(
+      http.post(REISSUE_ENDPOINT, () => {
+        reissueCount += 1;
+        return HttpResponse.json({ accessToken: 't2' });
+      }),
+    );
+
+    await expect(resolvePath('/main')).resolves.toBe('/');
+    expect(reissueCount).toBe(0);
+  });
+
+  it('재발급이 5xx 면 재시도 화면을 보이고, 다시 시도해 성공하면 들어간다 (AC-11)', async () => {
+    server.use(http.post(REISSUE_ENDPOINT, () => new HttpResponse(null, { status: 500 })));
+    mockUser(true);
+
+    const { router } = await renderGate();
+    const retryButton = await screen.findByRole('button', { name: '다시 시도' });
+    expect(router.state.location.pathname).toBe('/main');
+    expect(localStorage.getItem('hasSession')).toBe('1');
+
+    server.use(http.post(REISSUE_ENDPOINT, () => HttpResponse.json({ accessToken: 't2' })));
+    await userEvent.click(retryButton);
+
+    expect(await screen.findByText('메인 화면')).toBeInTheDocument();
   });
 });

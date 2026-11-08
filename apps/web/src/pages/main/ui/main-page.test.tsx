@@ -156,7 +156,7 @@ async function renderMainPage() {
 }
 
 beforeEach(() => {
-  localStorage.setItem('accessToken', 't1');
+  localStorage.setItem('hasSession', '1');
   useAuthStore.setState({ accessToken: 't1', isRestored: true });
 });
 
