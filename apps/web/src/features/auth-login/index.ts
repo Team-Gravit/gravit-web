@@ -7,5 +7,6 @@ export {
   readWithdrawnProviderId,
   resolveLoginDestination,
 } from './model/login-outcome';
+export { consumePendingOauthState } from './model/oauth-state';
 export { useOauthLogin } from './model/use-oauth-login';
 export { SocialLoginButton, type SocialLoginButtonProps } from './ui/social-login-button';

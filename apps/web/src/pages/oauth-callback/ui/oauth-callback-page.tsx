@@ -4,6 +4,7 @@ import { useNavigate } from '@tanstack/react-router';
 import { toast } from '@/shared/ui/toast';
 import {
   LOGIN_FAILED_MESSAGE,
+  consumePendingOauthState,
   readWithdrawnProviderId,
   resolveLoginDestination,
   useOauthCallback,
@@ -13,6 +14,7 @@ import {
 export interface OauthCallbackPageProps {
   provider: LoginProvider;
   code: string | undefined;
+  state: string | undefined;
 }
 
 /**
@@ -22,7 +24,7 @@ export interface OauthCallbackPageProps {
  * 빈 화면에 갇히고, 뒤로 가기를 눌러도 인가 코드가 이미 소모돼 복구할 수 없다.
  * 코드가 1회용이므로 이동은 replace로 해서 뒤로 가기가 이 경로로 돌아오지 않게 한다. (기준선 D5)
  */
-export function OauthCallbackPage({ provider, code }: OauthCallbackPageProps) {
+export function OauthCallbackPage({ provider, code, state }: OauthCallbackPageProps) {
   const navigate = useNavigate();
   const { mutate } = useOauthCallback();
   // 인가 코드는 1회용이다. StrictMode의 이중 렌더에서도 교환이 두 번 나가면 안 된다. (기준선 D3)
@@ -41,8 +43,16 @@ export function OauthCallbackPage({ provider, code }: OauthCallbackPageProps) {
       return;
     }
 
+    // 이 브라우저가 시작한 로그인이 아니면 교환하지 않는다. 남이 보낸 콜백 링크로 그 사람 계정에
+    // 로그인되는 것을 막는다. (FEAT-080 AC-3) state 가 없으면 앞의 확인이 이미 거절한다. 뒤는 타입을 좁힌다.
+    if (!consumePendingOauthState({ provider, state }) || !state) {
+      toast(LOGIN_FAILED_MESSAGE, { position: 'noneTabBottom' });
+      navigate({ to: '/', replace: true });
+      return;
+    }
+
     mutate(
-      { provider, code },
+      { provider, code, state },
       {
         onSuccess: (response) => {
           navigate({ to: resolveLoginDestination(response), replace: true });
@@ -60,7 +70,7 @@ export function OauthCallbackPage({ provider, code }: OauthCallbackPageProps) {
         },
       },
     );
-  }, [code, mutate, navigate, provider]);
+  }, [code, mutate, navigate, provider, state]);
 
   return null;
 }
