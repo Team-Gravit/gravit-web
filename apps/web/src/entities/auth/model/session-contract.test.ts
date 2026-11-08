@@ -19,7 +19,7 @@ import {
   clearSession,
   getSessionToken,
   restoreSession,
-  setSession,
+  setNativeSession,
   setWebSession,
 } from './session-contract';
 
@@ -186,9 +186,9 @@ describe('앱 경로', () => {
     uninstallNativeBridgeStub();
   });
 
-  describe('setSession', () => {
+  describe('setNativeSession', () => {
     it('두 토큰을 저장소에 저장하고 store 에 accessToken 을 싣는다 (AC-17)', () => {
-      setSession({ accessToken: 'tok_new', refreshToken: 'ref_new' });
+      setNativeSession({ accessToken: 'tok_new', refreshToken: 'ref_new' });
 
       expect(readStoredAccessToken()).toBe('tok_new');
       expect(readStoredRefreshToken()).toBe('ref_new');
@@ -224,7 +224,7 @@ describe('앱 경로', () => {
 
   describe('clearSession', () => {
     it('두 토큰을 모두 지운다', () => {
-      setSession({ accessToken: 'tok_abc', refreshToken: 'ref_1' });
+      setNativeSession({ accessToken: 'tok_abc', refreshToken: 'ref_1' });
 
       clearSession();
 
@@ -236,13 +236,13 @@ describe('앱 경로', () => {
 
   describe('재발급 주입', () => {
     it('getRefreshToken 이 저장소의 refreshToken 을 반환한다 (AC-19)', () => {
-      setSession({ accessToken: 'tok_old', refreshToken: 'ref_1' });
+      setNativeSession({ accessToken: 'tok_old', refreshToken: 'ref_1' });
 
       expect(getRefreshToken()).toBe('ref_1');
     });
 
     it('notifyTokenRefreshed 를 호출하면 accessToken 만 교체하고 refreshToken 은 유지한다', () => {
-      setSession({ accessToken: 'tok_old', refreshToken: 'ref_1' });
+      setNativeSession({ accessToken: 'tok_old', refreshToken: 'ref_1' });
 
       notifyTokenRefreshed('tok_new');
 

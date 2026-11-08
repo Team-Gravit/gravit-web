@@ -28,7 +28,7 @@ import { useAuthStore } from './auth-store';
 export type RestoreResult = 'restored' | 'none' | 'failed';
 
 /** 앱 로그인 — 응답 본문의 두 토큰을 저장한다. */
-export function setSession(tokens: SessionTokens): void {
+export function setNativeSession(tokens: SessionTokens): void {
   writeStoredTokens(tokens);
   useAuthStore.getState().setToken(tokens.accessToken);
 }

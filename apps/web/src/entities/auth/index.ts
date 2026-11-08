@@ -3,7 +3,7 @@ export {
   clearSession,
   getSessionToken,
   restoreSession,
-  setSession,
+  setNativeSession,
   setWebSession,
   type RestoreResult,
 } from './model/session-contract';

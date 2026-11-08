@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 
-import { setSession } from '@/entities/auth';
+import { setNativeSession } from '@/entities/auth';
 
 import type { LoginProvider } from '../model/login-providers';
 import { exchangeNativeToken } from './exchange-native-token';
@@ -22,7 +22,7 @@ export function useNativeLogin() {
     // SDK 토큰은 1회용에 가깝고, 재시도하면 SDK 화면이 다시 뜬다.
     retry: false,
     onSuccess: ({ accessToken, refreshToken }) => {
-      setSession({ accessToken, refreshToken });
+      setNativeSession({ accessToken, refreshToken });
     },
   });
 }
