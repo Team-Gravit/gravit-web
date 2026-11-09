@@ -9,7 +9,7 @@ const APPLE_SDK_URL =
 const APPLE_CANCEL_ERRORS = ['popup_closed_by_user', 'user_cancelled_authorize'];
 
 interface AppleSignInResponse {
-  authorization?: { code?: string };
+  authorization?: { code?: string; state?: string };
 }
 
 interface AppleIdAuth {
@@ -17,6 +17,7 @@ interface AppleIdAuth {
     clientId: string;
     scope: string;
     redirectURI: string;
+    state: string;
     usePopup: boolean;
   }) => void;
   signIn: () => Promise<AppleSignInResponse>;
@@ -74,10 +75,13 @@ function readAppleErrorName(error: unknown): string | undefined {
 /**
  * Apple JS SDK 팝업으로 로그인해 `authorizationCode` 를 받는다. 서버 교환은 호출부가 한다.
  *
+ * `state` 는 서버가 `login-url/apple` 로 발급한 값이다. 팝업 응답의 `state` 가 다르면 이 브라우저가
+ * 시작한 로그인이 아니므로 실패한다. (FEAT-080 AC-6)
+ *
  * 팝업을 닫으면 `BridgeError('CANCELLED')` 로 실패해 앱 경로와 같은 취소 처리를 쓴다.
  * `redirectURI` 는 서버가 Apple 에 보내는 값과 같아야 하고, Apple 콘솔의 Services ID 에 등록돼 있어야 한다.
  */
-export async function requestAppleWebCode(): Promise<string> {
+export async function requestAppleWebCode(state: string): Promise<string> {
   const clientId = getAppleClientId();
 
   if (!clientId) {
@@ -90,6 +94,7 @@ export async function requestAppleWebCode(): Promise<string> {
     clientId,
     scope: 'email',
     redirectURI: `${window.location.origin}/login/oauth2/code/apple`,
+    state,
     usePopup: true,
   });
 
@@ -111,6 +116,10 @@ export async function requestAppleWebCode(): Promise<string> {
 
   if (!code) {
     throw new Error('Apple 응답에 authorizationCode 가 없다');
+  }
+
+  if (response.authorization?.state !== state) {
+    throw new Error('Apple 응답의 state 가 요청과 다르다');
   }
 
   return code;

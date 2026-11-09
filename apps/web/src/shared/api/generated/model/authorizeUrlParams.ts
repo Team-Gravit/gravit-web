@@ -8,7 +8,7 @@
 
 export type AuthorizeUrlParams = {
   /**
-   * Dest(local, dev, prod)
+   * Dest(local, dev, prod, admin). Origin으로 판별할 수 없을 때만 사용 (선택)
    */
-  dest: string;
+  dest?: string;
 };

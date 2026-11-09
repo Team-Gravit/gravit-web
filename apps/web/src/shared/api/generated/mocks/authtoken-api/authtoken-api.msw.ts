@@ -44,4 +44,24 @@ export const getReissueTokenMockHandler = (
     options,
   );
 };
-export const getAuthtokenApiMock = () => [getReissueTokenMockHandler()];
+
+export const getLogoutMockHandler = (
+  overrideResponse?:
+    | void
+    | ((info: Parameters<Parameters<typeof http.post>[1]>[0]) => Promise<void> | void),
+  options?: RequestHandlerOptions,
+) => {
+  return http.post(
+    '*/api/v1/auth/logout',
+    async (info: Parameters<Parameters<typeof http.post>[1]>[0]) => {
+      await delay(600);
+      if (typeof overrideResponse === 'function') {
+        await overrideResponse(info);
+      }
+
+      return new HttpResponse(null, { status: 204 });
+    },
+    options,
+  );
+};
+export const getAuthtokenApiMock = () => [getReissueTokenMockHandler(), getLogoutMockHandler()];

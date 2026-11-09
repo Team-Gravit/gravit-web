@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from '@tanstack/react-router';
 
-import { getSessionToken } from '@/entities/auth';
+import { getSessionToken, restoreSession } from '@/entities/auth';
 import { useLogout } from '@/features/auth-logout';
 import { useConfirmWithdrawal } from '@/features/user-withdraw';
 
@@ -28,7 +28,10 @@ export function AccountDeletionPage({ mailAuthCode }: AccountDeletionPageProps) 
   const { confirmWithdrawal, isPending, isSuccess, isError } = useConfirmWithdrawal({
     // 로그인 상태(토큰 보유)에서 확정했다면 세션을 끝내고 로그인 화면으로 보낸다.
     // 메일 링크를 비로그인 브라우저에서 열었다면 토큰이 없어 결과 화면을 그대로 보여준다.
-    onSuccess: () => {
+    // 웹은 토큰이 메모리에만 있어, 새 탭에서 연 직후라면 부팅 복원이 끝나야 로그인 여부를 알 수 있다.
+    onSuccess: async () => {
+      await restoreSession();
+
       if (getSessionToken()) {
         logout();
       }

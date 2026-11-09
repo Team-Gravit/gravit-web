@@ -18,7 +18,7 @@ import type {
   ErrorResponse,
   IdTokenRequest,
   LoginResponse,
-  OauthLogin1Params,
+  OauthLogin2Params,
 } from '../model';
 
 import { customInstance } from '../../axios-instance';
@@ -30,9 +30,9 @@ type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
  * Android 에서 전달한 OAuth IdToken 및 provider 기반으로 사용자 정보를 조회하고 회원가입/로그인 처리를 합니다. <br>google, kakao 만 해당 api로 로그인 할 수 있습니다(IdToken 방식)IdToken 을 body에 담고, provider는 쿼리 파라미터로 담아서 사용합니다.
  * @summary OAuth 회원가입/로그인 처리
  */
-export const oauthLogin1 = (
+export const oauthLogin2 = (
   idTokenRequest: BodyType<IdTokenRequest>,
-  params: OauthLogin1Params,
+  params: OauthLogin2Params,
   options?: SecondParameter<typeof customInstance>,
   signal?: AbortSignal,
 ) => {
@@ -49,24 +49,24 @@ export const oauthLogin1 = (
   );
 };
 
-export const getOauthLogin1MutationOptions = <
+export const getOauthLogin2MutationOptions = <
   TError = ErrorType<ErrorResponse>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof oauthLogin1>>,
+    Awaited<ReturnType<typeof oauthLogin2>>,
     TError,
-    OauthLogin1MutationVariables,
+    OauthLogin2MutationVariables,
     TContext
   >;
   request?: SecondParameter<typeof customInstance>;
 }): UseMutationOptions<
-  Awaited<ReturnType<typeof oauthLogin1>>,
+  Awaited<ReturnType<typeof oauthLogin2>>,
   TError,
-  OauthLogin1MutationVariables,
+  OauthLogin2MutationVariables,
   TContext
 > => {
-  const mutationKey = ['oauthLogin1'];
+  const mutationKey = ['oauthLogin2'];
   const { mutation: mutationOptions, request: requestOptions } = options
     ? options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey
       ? options
@@ -74,52 +74,52 @@ export const getOauthLogin1MutationOptions = <
     : { mutation: { mutationKey }, request: undefined };
 
   const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof oauthLogin1>>,
-    OauthLogin1MutationVariables
+    Awaited<ReturnType<typeof oauthLogin2>>,
+    OauthLogin2MutationVariables
   > = (props) => {
     const { data, params } = props ?? {};
 
-    return oauthLogin1(data, params, requestOptions);
+    return oauthLogin2(data, params, requestOptions);
   };
 
   return { mutationFn, ...mutationOptions };
 };
 
-export type OauthLogin1MutationResult = NonNullable<Awaited<ReturnType<typeof oauthLogin1>>>;
-export type OauthLogin1MutationBody = BodyType<IdTokenRequest>;
-export type OauthLogin1MutationError = ErrorType<ErrorResponse>;
-export type OauthLogin1MutationVariables = {
+export type OauthLogin2MutationResult = NonNullable<Awaited<ReturnType<typeof oauthLogin2>>>;
+export type OauthLogin2MutationBody = BodyType<IdTokenRequest>;
+export type OauthLogin2MutationError = ErrorType<ErrorResponse>;
+export type OauthLogin2MutationVariables = {
   data: BodyType<IdTokenRequest>;
-  params: OauthLogin1Params;
+  params: OauthLogin2Params;
 };
 
 /**
  * @summary OAuth 회원가입/로그인 처리
  */
-export const useOauthLogin1 = <TError = ErrorType<ErrorResponse>, TContext = unknown>(
+export const useOauthLogin2 = <TError = ErrorType<ErrorResponse>, TContext = unknown>(
   options?: {
     mutation?: UseMutationOptions<
-      Awaited<ReturnType<typeof oauthLogin1>>,
+      Awaited<ReturnType<typeof oauthLogin2>>,
       TError,
-      OauthLogin1MutationVariables,
+      OauthLogin2MutationVariables,
       TContext
     >;
     request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseMutationResult<
-  Awaited<ReturnType<typeof oauthLogin1>>,
+  Awaited<ReturnType<typeof oauthLogin2>>,
   TError,
-  OauthLogin1MutationVariables,
+  OauthLogin2MutationVariables,
   TContext
 > => {
-  return useMutation(getOauthLogin1MutationOptions(options), queryClient);
+  return useMutation(getOauthLogin2MutationOptions(options), queryClient);
 };
 /**
  * Android에서 전달한 네이버 AccessToken 으로 회원가입/로그인 처리를 합니다. <br>네이버는 IdToken 방식을 지원하지 않기 때문에, Android 가 네이버 SDK로 발급받은 AccessToken 을 전달하면 서버가 네이버에 사용자 정보를 조회해 검증합니다. <br>AccessToken 을 body에 담아서 사용합니다.
  * @summary 네이버 OAuth 회원가입/로그인 처리
  */
-export const oauthNaverLogin = (
+export const oauthNaverLogin1 = (
   accessTokenRequest: BodyType<AccessTokenRequest>,
   options?: SecondParameter<typeof customInstance>,
   signal?: AbortSignal,
@@ -136,24 +136,24 @@ export const oauthNaverLogin = (
   );
 };
 
-export const getOauthNaverLoginMutationOptions = <
+export const getOauthNaverLogin1MutationOptions = <
   TError = ErrorType<ErrorResponse>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof oauthNaverLogin>>,
+    Awaited<ReturnType<typeof oauthNaverLogin1>>,
     TError,
-    OauthNaverLoginMutationVariables,
+    OauthNaverLogin1MutationVariables,
     TContext
   >;
   request?: SecondParameter<typeof customInstance>;
 }): UseMutationOptions<
-  Awaited<ReturnType<typeof oauthNaverLogin>>,
+  Awaited<ReturnType<typeof oauthNaverLogin1>>,
   TError,
-  OauthNaverLoginMutationVariables,
+  OauthNaverLogin1MutationVariables,
   TContext
 > => {
-  const mutationKey = ['oauthNaverLogin'];
+  const mutationKey = ['oauthNaverLogin1'];
   const { mutation: mutationOptions, request: requestOptions } = options
     ? options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey
       ? options
@@ -161,43 +161,43 @@ export const getOauthNaverLoginMutationOptions = <
     : { mutation: { mutationKey }, request: undefined };
 
   const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof oauthNaverLogin>>,
-    OauthNaverLoginMutationVariables
+    Awaited<ReturnType<typeof oauthNaverLogin1>>,
+    OauthNaverLogin1MutationVariables
   > = (props) => {
     const { data } = props ?? {};
 
-    return oauthNaverLogin(data, requestOptions);
+    return oauthNaverLogin1(data, requestOptions);
   };
 
   return { mutationFn, ...mutationOptions };
 };
 
-export type OauthNaverLoginMutationResult = NonNullable<
-  Awaited<ReturnType<typeof oauthNaverLogin>>
+export type OauthNaverLogin1MutationResult = NonNullable<
+  Awaited<ReturnType<typeof oauthNaverLogin1>>
 >;
-export type OauthNaverLoginMutationBody = BodyType<AccessTokenRequest>;
-export type OauthNaverLoginMutationError = ErrorType<ErrorResponse>;
-export type OauthNaverLoginMutationVariables = { data: BodyType<AccessTokenRequest> };
+export type OauthNaverLogin1MutationBody = BodyType<AccessTokenRequest>;
+export type OauthNaverLogin1MutationError = ErrorType<ErrorResponse>;
+export type OauthNaverLogin1MutationVariables = { data: BodyType<AccessTokenRequest> };
 
 /**
  * @summary 네이버 OAuth 회원가입/로그인 처리
  */
-export const useOauthNaverLogin = <TError = ErrorType<ErrorResponse>, TContext = unknown>(
+export const useOauthNaverLogin1 = <TError = ErrorType<ErrorResponse>, TContext = unknown>(
   options?: {
     mutation?: UseMutationOptions<
-      Awaited<ReturnType<typeof oauthNaverLogin>>,
+      Awaited<ReturnType<typeof oauthNaverLogin1>>,
       TError,
-      OauthNaverLoginMutationVariables,
+      OauthNaverLogin1MutationVariables,
       TContext
     >;
     request?: SecondParameter<typeof customInstance>;
   },
   queryClient?: QueryClient,
 ): UseMutationResult<
-  Awaited<ReturnType<typeof oauthNaverLogin>>,
+  Awaited<ReturnType<typeof oauthNaverLogin1>>,
   TError,
-  OauthNaverLoginMutationVariables,
+  OauthNaverLogin1MutationVariables,
   TContext
 > => {
-  return useMutation(getOauthNaverLoginMutationOptions(options), queryClient);
+  return useMutation(getOauthNaverLogin1MutationOptions(options), queryClient);
 };

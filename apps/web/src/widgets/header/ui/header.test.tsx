@@ -25,9 +25,10 @@ function renderHeader() {
 }
 
 beforeEach(() => {
-  localStorage.setItem('accessToken', 't1');
+  localStorage.setItem('hasSession', '1');
   useAuthStore.setState({ accessToken: 't1', isRestored: true });
   server.use(http.get(USERS_URL, () => HttpResponse.json(USER)));
+  server.use(http.post('*/api/v1/auth/logout', () => new HttpResponse(null, { status: 204 })));
 });
 
 afterEach(() => {
@@ -80,6 +81,6 @@ describe('Header', () => {
     await userEvent.click(await screen.findByRole('button', { name: '로그아웃' }));
 
     await waitFor(() => expect(router.state.location.pathname).toBe('/'));
-    expect(localStorage.getItem('accessToken')).toBeNull();
+    expect(localStorage.getItem('hasSession')).toBeNull();
   });
 });

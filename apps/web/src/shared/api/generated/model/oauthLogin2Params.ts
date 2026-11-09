@@ -6,4 +6,9 @@
  * OpenAPI spec version: 1.0.0
  */
 
-export type AuthorizeUrl200 = { [key: string]: string };
+export type OauthLogin2Params = {
+  /**
+   * OAuth 제공자 이름(google, kakao)
+   */
+  provider: string;
+};

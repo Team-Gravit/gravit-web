@@ -23,12 +23,12 @@ import type {
 
 import type {
   AppleLogin1Params,
-  AuthCodeRequest,
-  AuthorizeUrl200,
   AuthorizeUrlParams,
   ErrorResponse,
-  LoginResponse,
+  LoginUrlResponse,
   OauthLoginParams,
+  WebAuthCodeRequest,
+  WebLoginResponse,
 } from '../model';
 
 import { customInstance } from '../../axios-instance';
@@ -52,22 +52,22 @@ const withQueryKey = <T extends object, K>(query: T, queryKey: K): T & { queryKe
 };
 
 /**
- * AuthCode를 기반으로 사용자 정보를 조회하고 회원가입 및 로그인 처리를 합니다
+ * AuthCode와 state를 기반으로 사용자 정보를 조회하고 회원가입 및 로그인 처리를 합니다.<br>state는 로그인 URL 조회 때 서버가 발급한 값이어야 하며 한 번만 쓸 수 있습니다.<br>redirect 호스트는 Origin 헤더로 판별하고, 판별할 수 없을 때만 dest를 사용합니다.<br>리프레시 토큰은 응답 본문이 아닌 <strong>HttpOnly 쿠키(refreshToken, Path=/api/v1/auth)</strong>로 발급합니다. 요청에 <code>credentials: 'include'</code>가 필요합니다.
  * @summary OAuth 회원가입/로그인 처리
  */
 export const oauthLogin = (
   provider: string,
-  authCodeRequest: BodyType<AuthCodeRequest>,
-  params: OauthLoginParams,
+  webAuthCodeRequest: BodyType<WebAuthCodeRequest>,
+  params?: OauthLoginParams,
   options?: SecondParameter<typeof customInstance>,
   signal?: AbortSignal,
 ) => {
-  return customInstance<LoginResponse>(
+  return customInstance<WebLoginResponse>(
     {
       url: `/api/v1/oauth/${provider}`,
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      data: authCodeRequest,
+      data: webAuthCodeRequest,
       params,
       signal,
     },
@@ -112,12 +112,12 @@ export const getOauthLoginMutationOptions = <
 };
 
 export type OauthLoginMutationResult = NonNullable<Awaited<ReturnType<typeof oauthLogin>>>;
-export type OauthLoginMutationBody = BodyType<AuthCodeRequest>;
+export type OauthLoginMutationBody = BodyType<WebAuthCodeRequest>;
 export type OauthLoginMutationError = ErrorType<ErrorResponse>;
 export type OauthLoginMutationVariables = {
   provider: string;
-  data: BodyType<AuthCodeRequest>;
-  params: OauthLoginParams;
+  data: BodyType<WebAuthCodeRequest>;
+  params?: OauthLoginParams;
 };
 
 /**
@@ -143,21 +143,21 @@ export const useOauthLogin = <TError = ErrorType<ErrorResponse>, TContext = unkn
   return useMutation(getOauthLoginMutationOptions(options), queryClient);
 };
 /**
- * Apple JS SDK 팝업으로 받은 AuthCode를 Apple에서 토큰으로 교환하고, id_token을 검증해 회원가입 및 로그인 처리를 합니다.<br>프론트의 redirectURI는 {dest 도메인}/login/oauth2/code/apple 이어야 하며, scope에 email이 포함되어야 합니다.<br>Apple은 localhost를 등록할 수 없어 dest=local로는 로그인할 수 없습니다.
+ * Apple JS SDK 팝업으로 받은 AuthCode를 Apple에서 토큰으로 교환하고, id_token을 검증해 회원가입 및 로그인 처리를 합니다.<br>state는 login-url/apple 조회 때 서버가 발급한 값이어야 하며 한 번만 쓸 수 있습니다.<br>프론트의 redirectURI는 {웹 도메인}/login/oauth2/code/apple 이어야 하며, scope에 email이 포함되어야 합니다. 웹 도메인은 Origin 헤더로 판별하고, 판별할 수 없을 때만 dest를 사용합니다.<br>Apple은 localhost를 등록할 수 없어 로컬 환경으로는 로그인할 수 없습니다.<br>리프레시 토큰은 응답 본문이 아닌 <strong>HttpOnly 쿠키(refreshToken, Path=/api/v1/auth)</strong>로 발급합니다. 요청에 <code>credentials: 'include'</code>가 필요합니다.
  * @summary Apple 회원가입/로그인 처리
  */
 export const appleLogin1 = (
-  authCodeRequest: BodyType<AuthCodeRequest>,
-  params: AppleLogin1Params,
+  webAuthCodeRequest: BodyType<WebAuthCodeRequest>,
+  params?: AppleLogin1Params,
   options?: SecondParameter<typeof customInstance>,
   signal?: AbortSignal,
 ) => {
-  return customInstance<LoginResponse>(
+  return customInstance<WebLoginResponse>(
     {
       url: `/api/v1/oauth/apple`,
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      data: authCodeRequest,
+      data: webAuthCodeRequest,
       params,
       signal,
     },
@@ -202,11 +202,11 @@ export const getAppleLogin1MutationOptions = <
 };
 
 export type AppleLogin1MutationResult = NonNullable<Awaited<ReturnType<typeof appleLogin1>>>;
-export type AppleLogin1MutationBody = BodyType<AuthCodeRequest>;
+export type AppleLogin1MutationBody = BodyType<WebAuthCodeRequest>;
 export type AppleLogin1MutationError = ErrorType<ErrorResponse>;
 export type AppleLogin1MutationVariables = {
-  data: BodyType<AuthCodeRequest>;
-  params: AppleLogin1Params;
+  data: BodyType<WebAuthCodeRequest>;
+  params?: AppleLogin1Params;
 };
 
 /**
@@ -232,16 +232,16 @@ export const useAppleLogin1 = <TError = ErrorType<ErrorResponse>, TContext = unk
   return useMutation(getAppleLogin1MutationOptions(options), queryClient);
 };
 /**
- * OAuth 정보를 바탕으로 로그인 URL을 생성합니다
+ * OAuth 정보를 바탕으로 로그인 URL과 state를 생성합니다.<br>redirect 호스트는 요청의 Origin 헤더로 판별하고, Origin이 등록된 웹 호스트가 아니면 dest로 판별합니다. 브라우저에서 호출하면 dest를 보내지 않아도 됩니다.<br>응답의 state는 로그인 URL에 함께 들어 있으며, 10분 뒤 만료되고 한 번만 쓸 수 있습니다. OAuth 콜백 쿼리로 돌아온 state를 로그인 요청 body에 그대로 담아 보내야 합니다.<br>provider가 apple이면 Apple 인가 URL을 돌려줍니다. Apple JS SDK를 쓰는 경우 응답의 state를 SDK init에 넣어야 합니다.
  * @summary 로그인 URL 생성
  */
 export const authorizeUrl = (
   provider: string,
-  params: AuthorizeUrlParams,
+  params?: AuthorizeUrlParams,
   options?: SecondParameter<typeof customInstance>,
   signal?: AbortSignal,
 ) => {
-  return customInstance<AuthorizeUrl200>(
+  return customInstance<LoginUrlResponse>(
     { url: `/api/v1/oauth/login-url/${provider}`, method: 'GET', params, signal },
     options,
   );
@@ -256,7 +256,7 @@ export const getAuthorizeUrlQueryOptions = <
   TError = ErrorType<ErrorResponse>,
 >(
   provider: string,
-  params: AuthorizeUrlParams,
+  params?: AuthorizeUrlParams,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof authorizeUrl>>, TError, TData>>;
     request?: SecondParameter<typeof customInstance>;
@@ -287,7 +287,7 @@ export function useAuthorizeUrl<
   TError = ErrorType<ErrorResponse>,
 >(
   provider: string,
-  params: AuthorizeUrlParams,
+  params: undefined | AuthorizeUrlParams,
   options: {
     query: Partial<UseQueryOptions<Awaited<ReturnType<typeof authorizeUrl>>, TError, TData>> &
       Pick<
@@ -307,7 +307,7 @@ export function useAuthorizeUrl<
   TError = ErrorType<ErrorResponse>,
 >(
   provider: string,
-  params: AuthorizeUrlParams,
+  params?: AuthorizeUrlParams,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof authorizeUrl>>, TError, TData>> &
       Pick<
@@ -327,7 +327,7 @@ export function useAuthorizeUrl<
   TError = ErrorType<ErrorResponse>,
 >(
   provider: string,
-  params: AuthorizeUrlParams,
+  params?: AuthorizeUrlParams,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof authorizeUrl>>, TError, TData>>;
     request?: SecondParameter<typeof customInstance>;
@@ -343,7 +343,7 @@ export function useAuthorizeUrl<
   TError = ErrorType<ErrorResponse>,
 >(
   provider: string,
-  params: AuthorizeUrlParams,
+  params?: AuthorizeUrlParams,
   options?: {
     query?: Partial<UseQueryOptions<Awaited<ReturnType<typeof authorizeUrl>>, TError, TData>>;
     request?: SecondParameter<typeof customInstance>;

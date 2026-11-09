@@ -1,10 +1,14 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import {
+  clearSessionHint,
   clearStoredTokens,
+  hasSessionHint,
+  hasStoredTokens,
   readStoredAccessToken,
   readStoredRefreshToken,
   writeStoredAccessToken,
+  writeSessionHint,
   writeStoredTokens,
 } from './auth-storage';
 
@@ -40,5 +44,22 @@ describe('clearStoredTokens', () => {
 
     expect(readStoredAccessToken()).toBeNull();
     expect(readStoredRefreshToken()).toBeNull();
+  });
+});
+
+describe('세션 힌트', () => {
+  it("키 이름 'hasSession' 으로 쓰고 지운다", () => {
+    writeSessionHint();
+    expect(localStorage.getItem('hasSession')).not.toBeNull();
+    expect(hasSessionHint()).toBe(true);
+
+    clearSessionHint();
+    expect(hasSessionHint()).toBe(false);
+  });
+
+  it('힌트는 토큰으로 취급하지 않는다', () => {
+    writeSessionHint();
+
+    expect(hasStoredTokens()).toBe(false);
   });
 });

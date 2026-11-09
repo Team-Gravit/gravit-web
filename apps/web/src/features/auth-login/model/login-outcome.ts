@@ -13,11 +13,14 @@ export const LOGIN_UNSUPPORTED_MESSAGE =
   '해당 로그인을 사용할 수 없습니다. 앱을 업데이트 해주세요.';
 
 /**
+ * 로그인 성공 결과 중 이동 판정에 쓰는 값. 앱(`LoginResponse`)과 웹(`WebLoginResponse`) 응답이 모두 갖는다.
+ */
+export type LoginSuccess = Pick<LoginResponse, 'isOnboarded'>;
+
+/**
  * 로그인 성공 후 갈 곳. 콜백·네이티브 두 진입 경로가 같은 판정을 쓴다.
  */
-export function resolveLoginDestination({
-  isOnboarded,
-}: Pick<LoginResponse, 'isOnboarded'>): '/main' | '/onboarding' {
+export function resolveLoginDestination({ isOnboarded }: LoginSuccess): '/main' | '/onboarding' {
   return isOnboarded ? '/main' : '/onboarding';
 }
 

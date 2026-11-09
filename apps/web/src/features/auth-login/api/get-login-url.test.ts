@@ -15,7 +15,7 @@ function captureDest(): { read: () => string | null } {
   server.use(
     http.get(LOGIN_URL_ENDPOINT, ({ request }) => {
       dest = new URL(request.url).searchParams.get('dest');
-      return HttpResponse.json({ loginUrl: AUTHORIZE_URL });
+      return HttpResponse.json({ loginUrl: AUTHORIZE_URL, state: 'st_1' });
     }),
   );
 
@@ -48,9 +48,16 @@ describe('getLoginUrl', () => {
     expect(captured.read()).toBe('local');
   });
 
-  it('응답의 loginUrl 을 반환한다', async () => {
-    server.use(http.get(LOGIN_URL_ENDPOINT, () => HttpResponse.json({ loginUrl: AUTHORIZE_URL })));
+  it('응답의 loginUrl 과 state 를 반환한다', async () => {
+    server.use(
+      http.get(LOGIN_URL_ENDPOINT, () =>
+        HttpResponse.json({ loginUrl: AUTHORIZE_URL, state: 'st_1' }),
+      ),
+    );
 
-    await expect(getLoginUrl('google')).resolves.toBe(AUTHORIZE_URL);
+    await expect(getLoginUrl('google')).resolves.toEqual({
+      loginUrl: AUTHORIZE_URL,
+      state: 'st_1',
+    });
   });
 });

@@ -8,7 +8,7 @@ import Axios, {
 import { getApiBaseUrl } from '@/shared/config';
 
 import { getAuthToken, notifyUnauthorized } from './auth-token';
-import { refreshAccessToken } from './refresh-token';
+import { isRefreshRejected, refreshAccessToken } from './refresh-token';
 
 declare module 'axios' {
   export interface AxiosRequestConfig {
@@ -24,6 +24,8 @@ export const API_REQUEST_TIMEOUT_MS = 15_000;
 export const AXIOS_INSTANCE = Axios.create({
   baseURL: getApiBaseUrl(),
   timeout: API_REQUEST_TIMEOUT_MS,
+  // 웹 refreshToken 쿠키를 주고받는다. 쿠키는 Path=/api/v1/auth 라 다른 API 요청에는 실리지 않는다.
+  withCredentials: true,
 });
 
 AXIOS_INSTANCE.interceptors.request.use((config) => {
@@ -79,17 +81,6 @@ AXIOS_INSTANCE.interceptors.response.use(
     }
   },
 );
-
-// 재발급 거절 코드가 명세에 없어 4xx를 거절로 취급하고, 5xx·네트워크 오류는 세션을 유지한다.
-function isRefreshRejected(error: unknown): boolean {
-  if (!isAxiosError(error)) {
-    // 재발급할 토큰이 없거나 응답에 새 토큰이 없으면 재발급을 이어갈 수 없다.
-    return true;
-  }
-
-  const status = error.response?.status;
-  return status !== undefined && status >= 400 && status < 500;
-}
 
 export async function customInstance<T>(
   config: AxiosRequestConfig,

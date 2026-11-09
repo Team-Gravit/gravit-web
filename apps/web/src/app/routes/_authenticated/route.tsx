@@ -13,7 +13,7 @@ import {
   isUserNotFoundError,
 } from '@/app/auth/onboarding-gate';
 import { SessionGuard } from '@/app/auth/session-guard';
-import { clearSession, getSessionToken } from '@/entities/auth';
+import { clearSession, getSessionToken, restoreSession } from '@/entities/auth';
 import { getUserQueryOptions } from '@/entities/user';
 import { SessionCheckError, SessionCheckPending } from '@/pages/session-check';
 
@@ -53,6 +53,11 @@ function AuthenticatedRouteError({ error }: ErrorComponentProps) {
 
 export const Route = createFileRoute('/_authenticated')({
   beforeLoad: async ({ context, location }) => {
+    // 일시 장애면 세션 힌트가 남아 있으므로 로그인 화면으로 보내지 않고 다시 시도할 수 있게 한다.
+    if ((await restoreSession()) === 'failed') {
+      throw new UserCheckFailedError(new Error('세션 복원에 실패했습니다'));
+    }
+
     if (!getSessionToken()) {
       throw redirect({ to: '/' });
     }

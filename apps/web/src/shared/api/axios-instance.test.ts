@@ -65,11 +65,14 @@ describe('요청 인터셉터', () => {
 });
 
 describe('응답 인터셉터', () => {
-  it('refreshToken 이 없으면 401 에서 onUnauthorized 를 1회 호출하고 에러를 전파한다', async () => {
+  it('refreshToken 이 없고 쿠키 재발급도 401 이면 onUnauthorized 를 1회 호출하고 에러를 전파한다', async () => {
     const onUnauthorized = vi.fn();
     configure({ readAuthToken: () => 'tok_abc', onUnauthorized });
 
-    server.use(http.get(TEST_URL, () => new HttpResponse(null, { status: 401 })));
+    server.use(
+      http.post(REISSUE_URL, () => new HttpResponse(null, { status: 401 })),
+      http.get(TEST_URL, () => new HttpResponse(null, { status: 401 })),
+    );
 
     await expect(AXIOS_INSTANCE.get(TEST_URL)).rejects.toThrow();
     expect(onUnauthorized).toHaveBeenCalledTimes(1);
@@ -166,6 +169,58 @@ describe('토큰 갱신', () => {
     expect(reissueCount).toBe(1);
     expect(retriedWith).toHaveLength(3);
     expect(retriedWith.every((header) => header === 'Bearer tok_new')).toBe(true);
+  });
+
+  it('refreshToken 이 없으면(웹) 본문 없이 재발급하고, 동시 401 3건에도 1회만 나간다', async () => {
+    configure({ readAuthToken: () => 'tok_old' });
+
+    const reissueBodies: string[] = [];
+    const failedOnce = new Set<string>();
+    server.use(
+      http.post(REISSUE_URL, async ({ request }) => {
+        reissueBodies.push(await request.text());
+        return HttpResponse.json({ accessToken: 'tok_new' });
+      }),
+      http.get('https://api.test.local/concurrent/:id', ({ params }) => {
+        const id = String(params.id);
+
+        if (!failedOnce.has(id)) {
+          failedOnce.add(id);
+          return new HttpResponse(null, { status: 401 });
+        }
+
+        return HttpResponse.json({ ok: true });
+      }),
+    );
+
+    await Promise.all(
+      [1, 2, 3].map((id) => AXIOS_INSTANCE.get(`https://api.test.local/concurrent/${id}`)),
+    );
+
+    expect(reissueBodies).toEqual(['']);
+  });
+
+  it('refreshToken 이 있으면(앱) 본문에 refreshToken 을 담아 재발급한다', async () => {
+    configureExpiredSession();
+
+    let reissueBody: unknown = null;
+    let pingCount = 0;
+    server.use(
+      http.post(REISSUE_URL, async ({ request }) => {
+        reissueBody = await request.json();
+        return HttpResponse.json({ accessToken: 'tok_new' });
+      }),
+      http.get(TEST_URL, () => {
+        pingCount += 1;
+        return pingCount === 1
+          ? new HttpResponse(null, { status: 401 })
+          : HttpResponse.json({ ok: true });
+      }),
+    );
+
+    await AXIOS_INSTANCE.get(TEST_URL);
+
+    expect(reissueBody).toEqual({ refreshToken: 'ref_1' });
   });
 
   it('재시도한 요청이 403 이면 onUnauthorized 를 호출하지 않는다', async () => {

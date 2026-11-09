@@ -1,4 +1,4 @@
-import type { BridgeErrorCode, BridgeRequest } from '@repo/bridge-protocol';
+import type { BridgeErrorCode, BridgeRequest, BridgeResult } from '@repo/bridge-protocol';
 import { vi, type Mock } from 'vitest';
 
 import { resetBridgeForTest } from '../bridge';
@@ -12,24 +12,48 @@ function stubUserAgent(userAgent: string) {
   Object.defineProperty(navigator, 'userAgent', { configurable: true, value: userAgent });
 }
 
+export interface NativeBridgeStubOptions {
+  /** 주면 `APP_INFO` 요청에 이 플랫폼으로 바로 응답한다. 그 요청은 `postMessage`에 기록하지 않는다. */
+  platform?: BridgeResult<'APP_INFO'>['platform'];
+}
+
 export interface NativeBridgeStub {
+  /** 스텁이 자동 응답한 `APP_INFO`를 뺀, 테스트가 직접 응답할 요청만 기록한다. */
   postMessage: Mock<(message: string) => void>;
   /** 아직 요청을 보내지 않았다면 예외를 던진다. */
   readLastRequest: () => BridgeRequest;
+  readAppInfoRequestCount: () => number;
 }
 
 /**
  * 테스트용 UA와 `ReactNativeWebView`를 설치한다.
  * 테스트가 끝나면 `uninstallNativeBridgeStub()`로 둘 다 되돌린다.
  */
-export function installNativeBridgeStub(): NativeBridgeStub {
+export function installNativeBridgeStub({
+  platform,
+}: NativeBridgeStubOptions = {}): NativeBridgeStub {
   const postMessage = vi.fn<(message: string) => void>();
+  let appInfoRequestCount = 0;
 
   stubUserAgent(NATIVE_USER_AGENT);
-  window.ReactNativeWebView = { postMessage };
+  window.ReactNativeWebView = {
+    postMessage: (message) => {
+      const request = JSON.parse(message) as BridgeRequest;
+
+      if (platform && request.type === 'APP_INFO') {
+        appInfoRequestCount += 1;
+        // 실제 네이티브처럼 비동기로 응답한다.
+        queueMicrotask(() => respondFromNative(request.id, { platform, appVersion: '1.0.0' }));
+        return;
+      }
+
+      postMessage(message);
+    },
+  };
 
   return {
     postMessage,
+    readAppInfoRequestCount: () => appInfoRequestCount,
     readLastRequest: () => {
       const raw = postMessage.mock.lastCall?.[0];
 

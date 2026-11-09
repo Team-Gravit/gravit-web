@@ -3,6 +3,8 @@ export {
   clearSession,
   getSessionToken,
   restoreSession,
-  setSession,
+  setNativeSession,
+  setWebSession,
+  type RestoreResult,
 } from './model/session-contract';
 export type { SessionTokens } from './model/auth-storage';

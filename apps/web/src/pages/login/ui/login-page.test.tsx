@@ -33,7 +33,7 @@ vi.mock('@/shared/ui/toast', async (importOriginal) => {
 
 const KAKAO_LOGIN_URL_ENDPOINT = '*/api/v1/oauth/login-url/kakao';
 const LOGIN_FAILED_TEXT = '로그인에 실패했습니다. 다시 시도해 주세요.';
-const ID_TOKEN_ENDPOINT = '*/api/v1/oauth/android';
+const ID_TOKEN_ENDPOINT = '*/api/v1/oauth/ios';
 const LOGIN_RESPONSE = {
   accessToken: 'at_1',
   refreshToken: 'rt_1',
@@ -163,7 +163,7 @@ describe('LoginPage — 앱 환경 네이티브 로그인', () => {
 
   beforeEach(() => {
     stubViewport(false);
-    bridge = installNativeBridgeStub();
+    bridge = installNativeBridgeStub({ platform: 'ios' });
   });
 
   afterEach(() => {
