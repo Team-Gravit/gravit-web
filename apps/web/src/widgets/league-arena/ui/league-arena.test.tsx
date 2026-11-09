@@ -11,6 +11,9 @@ const EMPTY_RANKING = {
   hasNextPage: false,
   isFetchingNextPage: false,
   fetchNextPage: () => {},
+  hasPreviousPage: false,
+  isFetchingPreviousPage: false,
+  fetchPreviousPage: () => {},
   isLoading: false,
 };
 
@@ -36,23 +39,28 @@ describe('LeagueArena', () => {
   });
 
   it('티어를 고르지 않았으면 myLeagueId 가 바뀔 때 선택도 따라간다', () => {
-    const { rerender } = render(<LeagueArena seasonName="2026-41" myLeagueId={4} />);
+    const { rerender } = render(
+      <LeagueArena seasonName="2026-41" myLeagueId={4} myRank={1} myUserId={10} />,
+    );
     expect(getRequestedTierId()).toBe(4);
 
-    rerender(<LeagueArena seasonName="2026-41" myLeagueId={5} />);
+    rerender(<LeagueArena seasonName="2026-41" myLeagueId={5} myRank={1} myUserId={10} />);
 
     expect(getRequestedTierId()).toBe(5);
-    expect(vi.mocked(useMyLeagueRanking).mock.lastCall?.[0]).toBe(true);
+    // useMyLeagueRanking(rank, enabled) — 내 티어이므로 enabled(두 번째 인자)가 true.
+    expect(vi.mocked(useMyLeagueRanking).mock.lastCall?.[1]).toBe(true);
   });
 
   it('직접 고른 티어는 myLeagueId 가 바뀌어도 유지한다', async () => {
-    const { rerender } = render(<LeagueArena seasonName="2026-41" myLeagueId={4} />);
+    const { rerender } = render(
+      <LeagueArena seasonName="2026-41" myLeagueId={4} myRank={1} myUserId={10} />,
+    );
 
     // 티어 버튼은 tiers 순서로 놓인다. 두 번째는 브론즈 2(id 2)다.
     await userEvent.click(screen.getAllByRole('button')[1]);
-    rerender(<LeagueArena seasonName="2026-41" myLeagueId={5} />);
+    rerender(<LeagueArena seasonName="2026-41" myLeagueId={5} myRank={1} myUserId={10} />);
 
     expect(getRequestedTierId()).toBe(2);
-    expect(vi.mocked(useMyLeagueRanking).mock.lastCall?.[0]).toBe(false);
+    expect(vi.mocked(useMyLeagueRanking).mock.lastCall?.[1]).toBe(false);
   });
 });

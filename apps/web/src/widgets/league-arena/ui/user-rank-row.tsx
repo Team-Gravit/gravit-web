@@ -1,3 +1,5 @@
+import type { Ref } from 'react';
+
 import type { LeagueUser } from '@/entities/league';
 import { LevelProgressAvatar } from '@/entities/user';
 import { cn } from '@/shared/lib/cn';
@@ -6,6 +8,8 @@ import { useIsWideViewport } from '@/shared/lib/use-is-wide-viewport';
 export interface UserRankRowProps {
   user: LeagueUser;
   className?: string;
+  /** 리그 진입 시 이 행을 중앙으로 스크롤하기 위한 ref(내 행에만 붙는다). */
+  ref?: Ref<HTMLDivElement>;
 }
 
 /**
@@ -16,11 +20,12 @@ export interface UserRankRowProps {
  * #fef1ff/25 우블록(LV→LP·값 purple-200). hover 시 흰 배경 + main 테두리 + 핑크 글로우 +
  * 순위·값 앰버(#f9a825)·닉 다크. (get_design_context 12899:41425 / 12356:27636 / 12356:27678 기준)
  */
-export function UserRankRow({ user, className }: UserRankRowProps) {
+export function UserRankRow({ user, className, ref }: UserRankRowProps) {
   const isWide = useIsWideViewport();
 
   return (
     <div
+      ref={ref}
       className={cn(
         'group relative flex items-center rounded-8 shadow-[0px_0px_30px_5px_rgba(0,0,0,0.2)] transition-all',
         'bg-[linear-gradient(150deg,rgba(255,255,255,0.24)_0%,rgba(255,255,255,0.06)_100%)] backdrop-blur-xs',
@@ -40,7 +45,7 @@ export function UserRankRow({ user, className }: UserRankRowProps) {
           </span>
         </div>
 
-        <div className="flex min-w-0 flex-1 items-center gap-3 border-r my-3 border-text-2-w md:h-full md:border-0">
+        <div className="flex min-w-0  flex-1 items-center gap-3 border-r my-3 border-text-2-w md:h-full md:border-0">
           <LevelProgressAvatar
             xp={user.xp}
             profileImgNumber={user.profileImgNumber}
