@@ -9,6 +9,7 @@ import {
   createRootRouteWithContext,
   createRoute,
   createRouter,
+  isRedirect,
 } from '@tanstack/react-router';
 import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -31,10 +32,18 @@ function createQueryClient() {
   return new QueryClient({ defaultOptions: { queries: { retry: false } } });
 }
 
-const runGate = Route.options.beforeLoad as unknown as (options: {
-  context: RouterContext;
-  location: { pathname: string };
-}) => Promise<void>;
+type GateOptions = { context: RouterContext; location: { pathname: string } };
+
+const runBeforeLoad = Route.options.beforeLoad as unknown as (
+  options: GateOptions,
+) => Promise<void>;
+const runLoader = Route.options.loader as unknown as (options: GateOptions) => Promise<void>;
+
+/** 라우터와 같은 순서로 게이트를 실행한다: beforeLoad → loader. */
+async function runGate(options: GateOptions) {
+  await runBeforeLoad(options);
+  await runLoader(options);
+}
 
 /** 사용자 조회 응답을 등록하고 요청 횟수를 돌려준다. */
 function mockUser(isOnboarded: boolean) {
@@ -84,7 +93,8 @@ async function renderGate(
   const gateRoute = createRoute({
     getParentRoute: () => rootRoute,
     id: 'gate',
-    beforeLoad: ({ context, location }) => runGate({ context, location }),
+    beforeLoad: ({ context, location }) => runBeforeLoad({ context, location }),
+    loader: ({ context, location }) => runLoader({ context, location }),
     pendingComponent: Route.options.pendingComponent,
     errorComponent: Route.options.errorComponent,
     pendingMs: 0,
@@ -399,5 +409,75 @@ describe('인증 게이트 — 웹 세션 복원', () => {
     await userEvent.click(retryButton);
 
     expect(await screen.findByText('메인 화면')).toBeInTheDocument();
+  });
+});
+
+describe('인증 게이트 — 화면 loader와 겹치기 (REF-062)', () => {
+  /** 게이트 아래에 loader가 있는 화면 하나를 둔 최소 라우터. */
+  function createGateRouter(childLoader: () => void) {
+    const rootRoute = createRootRouteWithContext<RouterContext>()({ component: Outlet });
+    const gateRoute = createRoute({
+      getParentRoute: () => rootRoute,
+      id: 'gate',
+      beforeLoad: ({ context, location }) => runBeforeLoad({ context, location }),
+      loader: ({ context, location }) => runLoader({ context, location }),
+      component: Outlet,
+    });
+    const mainRoute = createRoute({
+      getParentRoute: () => gateRoute,
+      path: '/main',
+      loader: childLoader,
+      component: () => <p>메인 화면</p>,
+    });
+
+    return createRouter({
+      routeTree: rootRoute.addChildren([gateRoute.addChildren([mainRoute])]),
+      history: createMemoryHistory({ initialEntries: ['/main'] }),
+      context: { queryClient: createQueryClient() },
+    });
+  }
+
+  it('사용자 조회 응답을 기다리는 동안 화면 loader가 출발한다 (AC-8)', async () => {
+    let isUserResponded = false;
+    server.use(
+      http.get(USER_ENDPOINT, async () => {
+        await delay(100);
+        isUserResponded = true;
+        return HttpResponse.json({ userId: 1, isOnboarded: true });
+      }),
+    );
+    let isUserRespondedAtChildLoader: boolean | null = null;
+    const router = createGateRouter(() => {
+      isUserRespondedAtChildLoader = isUserResponded;
+    });
+
+    await router.load();
+
+    expect(isUserRespondedAtChildLoader).toBe(false);
+    expect(router.state.location.pathname).toBe('/main');
+  });
+
+  it('미온보딩 사용자에게는 메인 화면을 한 번도 그리지 않고 /onboarding 으로 보낸다 (AC-10)', async () => {
+    mockUser(false);
+    const MainComponent = vi.fn(() => <p>메인 화면</p>);
+
+    const { router } = await renderGate(MainComponent);
+
+    await waitFor(() => expect(router.state.location.pathname).toBe('/onboarding'));
+    expect(MainComponent).not.toHaveBeenCalled();
+  });
+
+  it('사용자를 이미 받았다면 화면 이동 때 beforeLoad에서 요청 없이 바로 판정한다', async () => {
+    const queryClient = createQueryClient();
+    queryClient.setQueryData(getUserQueryKey(), { userId: 1, isOnboarded: false } as never);
+    const requests = mockUser(false);
+
+    const thrown = await runBeforeLoad({
+      context: { queryClient },
+      location: { pathname: '/main' },
+    }).catch((error: unknown) => error);
+
+    expect(isRedirect(thrown) && thrown.options.to).toBe('/onboarding');
+    expect(requests.count).toBe(0);
   });
 });

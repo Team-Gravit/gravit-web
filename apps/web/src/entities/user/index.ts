@@ -1,5 +1,6 @@
 export {
   getUserProfileQueryKey,
+  getUserProfileQueryOptions,
   getUserQueryKey,
   getUserQueryOptions,
   useUser,

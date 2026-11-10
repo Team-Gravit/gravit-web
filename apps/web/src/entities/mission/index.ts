@@ -1,4 +1,4 @@
-export { getDailyMissionQueryKey, useDailyMission } from './api';
+export { getDailyMissionQueryKey, getDailyMissionQueryOptions, useDailyMission } from './api';
 export { toDailyMission, toMissionProgressPercent, type DailyMission } from './model/mission';
 export { getMissionRoute, type MissionRoute } from './model/mission-route';
 export {
