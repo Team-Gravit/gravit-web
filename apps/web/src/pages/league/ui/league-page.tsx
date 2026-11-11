@@ -91,7 +91,12 @@ function LeagueContent() {
   return (
     <main className="relative flex min-h-0 w-full flex-1 flex-col overflow-hidden pt-(--safe-area-top) md:px-10 md:pb-[clamp(16px,8vh,64px)] md:pt-[calc(var(--desktop-header-height)+clamp(16px,10vh,100px))]">
       <div className="flex min-h-0 flex-1 flex-col">
-        <LeagueArena seasonName={home.currentSeason.nowSeason} myLeagueId={profile.leagueId} />
+        <LeagueArena
+          seasonName={home.currentSeason.nowSeason}
+          myLeagueId={profile.leagueId}
+          myRank={profile.rank}
+          myUserId={profile.userId}
+        />
       </div>
 
       {seasonPopup && (

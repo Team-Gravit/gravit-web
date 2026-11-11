@@ -1,8 +1,7 @@
-import { useEffect, useRef } from 'react';
-
 import type { LeagueUser } from '@/entities/league';
 import { useDelayedFlag } from '@/shared/lib/use-delayed-flag';
 
+import { useScrollAnchor } from '../lib/use-scroll-anchor';
 import { RankingRowSkeleton } from './ranking-row-skeleton';
 import { UserRankRow } from './user-rank-row';
 
@@ -17,40 +16,49 @@ export interface RankingListProps {
   onLoadMore: () => void;
   /** 첫 페이지 로딩 중이면 스켈레톤을 보여준다. */
   isLoading?: boolean;
+  /**
+   * 내 userId. 주어지면 센터 모드 — 내 행을 중앙에 띄우고 위로도 더 불러온다(내 티어일 때만).
+   * 없으면 하단 단방향 무한스크롤.
+   */
+  myUserId?: number;
+  hasPreviousPage?: boolean;
+  isFetchingPreviousPage?: boolean;
+  onLoadPrevious?: () => void;
+  /** 센터링을 애니메이션으로 보여줄지(첫 진입) 즉시 점프할지(티어 전환 재진입). */
+  animateCentering?: boolean;
 }
 
-/** 랭킹 행 목록. 첫 로딩엔 스켈레톤, 하단 센티넬이 보이면 다음 페이지를 불러온다. */
+/** 랭킹 행 목록. 센터 모드면 내 순위로 스크롤하고 양방향, 아니면 하단으로만 무한로딩한다. */
 export function RankingList({
   users,
   hasNextPage,
   isFetchingNextPage,
   onLoadMore,
   isLoading = false,
+  myUserId,
+  hasPreviousPage = false,
+  isFetchingPreviousPage = false,
+  onLoadPrevious = () => {},
+  animateCentering = true,
 }: RankingListProps) {
-  const scrollRef = useRef<HTMLDivElement | null>(null);
-  const sentinelRef = useRef<HTMLDivElement | null>(null);
+  const centerMode = myUserId != null;
 
   // 로딩이 임계 시간을 넘겨야 스켈레톤을 띄운다(빠른 응답은 그냥 데이터로 채움).
   const showSkeleton = useDelayedFlag(isLoading, SKELETON_DELAY_MS);
 
-  useEffect(() => {
-    const target = sentinelRef.current;
-    const root = scrollRef.current;
-    if (!target || !root || !hasNextPage) return;
-
-    // root를 스크롤 컨테이너로 지정 — 페이지가 아니라 리스트 내부 스크롤에서 무한로딩이 동작한다.
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && hasNextPage && !isFetchingNextPage) {
-          onLoadMore();
-        }
-      },
-      { root, threshold: 1 },
-    );
-
-    observer.observe(target);
-    return () => observer.disconnect();
-  }, [hasNextPage, isFetchingNextPage, onLoadMore, users.length]);
+  const { scrollRef, topSentinelRef, bottomSentinelRef, targetRef } = useScrollAnchor({
+    centerMode,
+    rowCount: users.length,
+    firstRowId: users[0]?.userId ?? null,
+    hasTarget: centerMode && users.some((user) => user.userId === myUserId),
+    animateCentering,
+    hasPreviousPage,
+    isFetchingPreviousPage,
+    onLoadPrevious,
+    hasNextPage,
+    isFetchingNextPage,
+    onLoadMore,
+  });
 
   if (showSkeleton) {
     return (
@@ -76,12 +84,17 @@ export function RankingList({
   return (
     <div
       ref={scrollRef}
-      className="scrollbar-hide flex h-full flex-col gap-3 overflow-y-auto pt-6 pb-3  md:gap-6 md:px-5.5 md:py-1"
+      className="scrollbar-hide flex h-full flex-col gap-3 overflow-y-auto pt-6 pb-3 md:gap-6 md:px-5.5 md:py-1"
     >
+      {centerMode && <div ref={topSentinelRef} className="h-px shrink-0" />}
       {users.map((user) => (
-        <UserRankRow key={user.userId} user={user} />
+        <UserRankRow
+          key={user.userId}
+          ref={user.userId === myUserId ? targetRef : undefined}
+          user={user}
+        />
       ))}
-      <div ref={sentinelRef} className="h-px shrink-0" />
+      <div ref={bottomSentinelRef} className="h-px shrink-0" />
     </div>
   );
 }
