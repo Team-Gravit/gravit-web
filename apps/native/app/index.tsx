@@ -15,7 +15,7 @@ const devHost = Constants.expoConfig?.hostUri?.split(':')[0];
 
 const WEB_URL =
   process.env.EXPO_PUBLIC_WEB_URL ??
-  (__DEV__ && devHost ? `http://${devHost}:5173` : 'https://dev.gravit.inuappcenter.kr/');
+  (__DEV__ && devHost ? `http://${devHost}:5173` : 'https://gravit.inuappcenter.kr/');
 
 /** 웹의 `native-status-bar.ts`에서 보내는 메시지 타입과 일치해야 한다. */
 const STATUS_BAR_STYLE_MESSAGE_TYPE = 'statusBarStyle';
