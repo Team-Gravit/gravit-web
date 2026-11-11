@@ -84,16 +84,21 @@ export function RankingList({
   return (
     <div
       ref={scrollRef}
-      className="scrollbar-hide flex h-full flex-col gap-3 overflow-y-auto pt-6 pb-3 md:gap-6 md:px-5.5 md:py-1"
+      className="scrollbar-hide px-4 flex h-full flex-col gap-3 overflow-y-auto pt-6 pb-3 md:gap-6 md:px-5.5 md:py-1"
     >
-      {centerMode && <div ref={topSentinelRef} className="h-px shrink-0" />}
-      {users.map((user) => (
-        <UserRankRow
-          key={user.userId}
-          ref={user.userId === myUserId ? targetRef : undefined}
-          user={user}
-        />
-      ))}
+      {centerMode && hasPreviousPage && <div ref={topSentinelRef} className="h-px shrink-0" />}
+      {users.map((user) => {
+        const isMine = user.userId === myUserId;
+
+        return (
+          <UserRankRow
+            key={user.userId}
+            ref={isMine ? targetRef : undefined}
+            user={user}
+            isMine={isMine}
+          />
+        );
+      })}
       <div ref={bottomSentinelRef} className="h-px shrink-0" />
     </div>
   );

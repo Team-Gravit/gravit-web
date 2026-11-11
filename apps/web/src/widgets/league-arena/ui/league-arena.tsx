@@ -69,7 +69,7 @@ export function LeagueArena({ seasonName, myLeagueId, myRank, myUserId }: League
         </section>
 
         {/* 랭킹만 내부 세로 스크롤. stage 높이에 묶여 아레나와 같은 비율로 함께 축소된다. */}
-        <section className="flex min-h-0 flex-1 flex-col border-t border-bg-4 px-4 md:w-[664px] md:min-w-[400px]  md:border-0 md:px-0 md:pt-0">
+        <section className="flex min-h-0 flex-1 flex-col border-t border-bg-4 md:w-[664px] md:min-w-[400px]  md:border-0 md:pt-0">
           <RankingList
             // 티어가 바뀌면 remount해 스크롤·센터링 상태를 초기화한다. 내 티어로 돌아오면 내 순위로
             // 다시 센터링되고, 다른 티어는 맨 위에서 시작한다. 데이터는 Query 캐시라 재요청은 없다.
