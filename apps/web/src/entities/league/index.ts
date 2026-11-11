@@ -12,7 +12,11 @@ export { useMyLeagueProfile } from './api/use-my-league-profile';
 export { LEAGUE_RANKING_QUERY_KEY, useLeagueRanking } from './api/use-league-ranking';
 export { useMyLeagueRanking } from './api/use-my-league-ranking';
 
-export { getLeagueSummaryQueryKey, useLeagueSummary } from './api/use-league-summary';
+export {
+  getLeagueSummaryQueryKey,
+  getLeagueSummaryQueryOptions,
+  useLeagueSummary,
+} from './api/use-league-summary';
 export { TierBadge, type TierBadgeProps } from './ui/tier-badge';
 
 // 마이페이지 리그 시즌 히스토리. 변환 없이 이름만 도메인 어휘로 노출한다.
