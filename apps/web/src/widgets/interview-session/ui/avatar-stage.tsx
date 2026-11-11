@@ -7,17 +7,17 @@ import { useAudioPlayer } from '@/shared/ui/audio-player';
 
 import { pickNextReaction, type AvatarReaction } from '../lib/pick-next-reaction';
 
-import desktopAPoster from './assets/desktop-a-poster.png';
+import desktopAPoster from './assets/desktop-a-poster.webp';
 import desktopListen from './assets/desktop-a-video-listen.mp4';
 import desktopMemo from './assets/desktop-a-video-memo.mp4';
 import desktopWorry from './assets/desktop-a-video-worry.mp4';
-import desktopQPoster from './assets/desktop-q-poster.png';
+import desktopQPoster from './assets/desktop-q-poster.webp';
 import desktopQVideo from './assets/desktop-q-video.mp4';
-import mobileAPoster from './assets/mobile-a-poster.png';
+import mobileAPoster from './assets/mobile-a-poster.webp';
 import mobileListen from './assets/mobile-a-video-listen.mp4';
 import mobileMemo from './assets/mobile-a-video-memo.mp4';
 import mobileWorry from './assets/mobile-a-video-worry.mp4';
-import mobileQPoster from './assets/mobile-q-poster.png';
+import mobileQPoster from './assets/mobile-q-poster.webp';
 import mobileQVideo from './assets/mobile-q-video.mp4';
 
 type AvatarPhase = 'question' | 'waiting' | 'answer';
