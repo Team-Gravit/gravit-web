@@ -10,12 +10,17 @@ import { NATIVE_USER_AGENT_MARKER } from '@repo/bridge-protocol';
 import { createBridge } from '../bridge/create-bridge';
 import { APP_VERSION, handleAppInfo } from '../bridge/handlers/app-info';
 import { handleAuthLogin } from '../bridge/handlers/auth-login';
+import {
+  classifyWebLoadError,
+  WebLoadErrorScreen,
+  type WebLoadErrorKind,
+} from '../components/web-load-error-screen';
 
 const devHost = Constants.expoConfig?.hostUri?.split(':')[0];
 
 const WEB_URL =
   process.env.EXPO_PUBLIC_WEB_URL ??
-  (__DEV__ && devHost ? `http://${devHost}:5173` : 'https://dev.gravit.inuappcenter.kr/');
+  (__DEV__ && devHost ? `http://${devHost}:5173` : 'https://gravit.inuappcenter.kr/');
 
 /** 웹의 `native-status-bar.ts`에서 보내는 메시지 타입과 일치해야 한다. */
 const STATUS_BAR_STYLE_MESSAGE_TYPE = 'statusBarStyle';
@@ -85,6 +90,16 @@ export default function WebviewPage() {
   const insets = useSafeAreaInsets();
   const [webUri, setWebUri] = useState(WEB_URL);
   const [statusBarStyle, setStatusBarStyle] = useState<StatusBarStyle>('dark');
+  const [loadError, setLoadError] = useState<WebLoadErrorKind | null>(null);
+  // 값이 바뀌면 WebView를 새로 만든다. 실패한 페이지는 reload()로 다시 불러오지 않는 경우가 있다.
+  const [webViewKey, setWebViewKey] = useState(0);
+
+  const remountWebView = () => setWebViewKey((key) => key + 1);
+
+  const handleRetry = () => {
+    setLoadError(null);
+    remountWebView();
+  };
 
   useEffect(() => {
     const timer = setTimeout(hideSplash, SPLASH_MAX_WAIT_MS);
@@ -126,6 +141,7 @@ export default function WebviewPage() {
     >
       <StatusBar style={statusBarStyle} />
       <WebView
+        key={webViewKey}
         ref={(instance) => {
           webView = instance;
         }}
@@ -180,11 +196,26 @@ export default function WebviewPage() {
         }}
         onError={(event) => {
           console.error('[WebView] error', event.nativeEvent);
+          const errorKind = classifyWebLoadError(event.nativeEvent);
+          if (errorKind) {
+            setLoadError(errorKind);
+          }
           hideSplash();
         }}
-        onHttpError={(event) => console.error('[WebView] HTTP error', event.nativeEvent)}
+        onHttpError={(event) => {
+          console.error('[WebView] HTTP error', event.nativeEvent);
+          // 4xx는 웹이 자체 화면(404 등)으로 처리한다. 서버가 응답하지 못한 경우만 앱이 막는다.
+          if (event.nativeEvent.statusCode >= 500) {
+            setLoadError('server');
+          }
+        }}
+        // iOS가 메모리 부족 등으로 웹 프로세스를 끝내면 화면이 흰색으로 남는다. 다시 불러온다.
+        onContentProcessDidTerminate={() => webView?.reload()}
+        // Android에서 처리하지 않으면 앱이 종료된다. WebView를 새로 만든다.
+        onRenderProcessGone={() => remountWebView()}
         onMessage={handleMessage}
       />
+      {loadError ? <WebLoadErrorScreen kind={loadError} onRetry={handleRetry} /> : null}
     </View>
   );
 }

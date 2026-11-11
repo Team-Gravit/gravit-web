@@ -5,6 +5,11 @@ type ConfigPlugins = NonNullable<ExpoConfig['plugins']>;
 const KAKAO_MAVEN_REPOSITORY = 'https://devrepo.kakao.com/nexus/content/groups/public/';
 const GOOGLE_IOS_CLIENT_ID_SUFFIX = '.apps.googleusercontent.com';
 
+/** 스토어(App Store · TestFlight)에 올라가는 빌드 프로필. testflight는 dev 서버를 보지만 같은 바이너리 조건으로 만든다. */
+function isStoreBuildProfile(profile: string | undefined): boolean {
+  return profile === 'production' || profile === 'testflight';
+}
+
 /**
  * 한 SDK 에 필요한 환경변수를 모두 읽는다. 하나라도 없으면 `null` 이다.
  *
@@ -23,7 +28,7 @@ function readEnvGroup<T extends string>(
 
   const message = `[app.config] ${sdkName} 설정이 없다: ${missing.join(', ')}. apps/native/.env 에 넣는다 (.env.example 참고).`;
 
-  if (process.env.EAS_BUILD_PROFILE === 'production') {
+  if (isStoreBuildProfile(process.env.EAS_BUILD_PROFILE)) {
     throw new Error(message);
   }
 
@@ -50,7 +55,7 @@ function toGoogleIosUrlScheme(iosClientId: string): string {
 export default ({ config }: ConfigContext): ExpoConfig => {
   // 값이 없으면 로컬 개발이다. EAS 빌드에서는 프로필 이름이 들어온다.
   const buildProfile = process.env.EAS_BUILD_PROFILE;
-  const canUseCleartextTraffic = buildProfile !== 'preview' && buildProfile !== 'production';
+  const canUseCleartextTraffic = buildProfile !== 'preview' && !isStoreBuildProfile(buildProfile);
 
   const plugins: ConfigPlugins = [
     ...(config.plugins ?? []),
