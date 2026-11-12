@@ -1,22 +1,28 @@
 {
   "expo": {
-    "name": "native",
-    "slug": "native",
+    "name": "Gravit",
+    "slug": "gravit",
     "version": "1.0.0",
-    "scheme": "com.turbo.example",
+    "scheme": "gravit",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
     "updates": {
+      "url": "https://u.expo.dev/b67a0887-399c-4878-b49f-0d29198d08cb",
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true,
+      "supportsTablet": false,
+      "bundleIdentifier": "kr.inuappcenter.gravit",
+      "entitlements": {
+        "com.apple.developer.applesignin": ["Default"]
+      },
       "infoPlist": {
-        "NSAppTransportSecurity": {
-          "NSAllowsArbitraryLoads": true
-        }
+        "ITSAppUsesNonExemptEncryption": false
       }
     },
     "android": {
@@ -24,7 +30,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#AAAAAA"
       },
-      "package": "com.turbo.example"
+      "package": "kr.inuappcenter.gravit"
     },
     "web": {
       "favicon": "./assets/favicon.png",
@@ -32,25 +38,32 @@
     },
     "plugins": [
       "expo-router",
+      "expo-notifications",
       [
         "expo-splash-screen",
         {
-          "image": "./assets/splash.png",
-          "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
-        }
-      ],
-      [
-        "expo-build-properties",
-        {
+          "backgroundColor": "#8100B3",
+          "ios": {
+            "image": "./assets/splash-ios.png",
+            "resizeMode": "cover",
+            "enableFullScreenImage_legacy": true
+          },
           "android": {
-            "usesCleartextTraffic": true
+            "image": "./assets/splash-logo-square.png",
+            "imageWidth": 150
           }
         }
       ]
     ],
     "experiments": {
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "b67a0887-399c-4878-b49f-0d29198d08cb"
+      }
+    },
+    "owner": "grav-it"
   }
 }

@@ -10,6 +10,7 @@ import type { UnitProgressSummaryResponse } from './unitProgressSummaryResponse'
 export interface LearningDetailResponse {
   recentSolvedChapterId: number;
   recentSolvedChapterTitle: string;
+  /** 최근 학습한 챕터 진행률 (0~100, 소수점 버림). 푼 레슨 수 / 챕터 전체 레슨 수 x 100 */
   recentSolvedChapterProgressRate: number;
   units: UnitProgressSummaryResponse[];
 }

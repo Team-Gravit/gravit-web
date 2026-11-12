@@ -1,30 +1,20 @@
 import { useEffect, useRef } from 'react';
 import { useNavigate } from '@tanstack/react-router';
-import { isAxiosError } from 'axios';
 
-import { useOauthCallback, type LoginProvider } from '@/features/auth-login';
-
-/** 탈퇴한 계정이면 서버가 이 코드로 복구 흐름을 요구한다. message에 providerId가 담긴다. (기준선 D6) */
-const WITHDRAWN_ACCOUNT_ERROR = 'USER_423';
+import { toast } from '@/shared/ui/toast';
+import {
+  LOGIN_FAILED_MESSAGE,
+  consumePendingOauthState,
+  readWithdrawnProviderId,
+  resolveLoginDestination,
+  useOauthCallback,
+  type LoginProvider,
+} from '@/features/auth-login';
 
 export interface OauthCallbackPageProps {
   provider: LoginProvider;
   code: string | undefined;
-}
-
-/** 탈퇴 계정 응답이면 복구에 쓸 providerId를, 아니면 `null`을 반환한다. */
-function readWithdrawnProviderId(error: unknown): string | null {
-  if (!isAxiosError(error)) {
-    return null;
-  }
-
-  const body = error.response?.data as { error?: string; message?: unknown } | undefined;
-
-  if (body?.error !== WITHDRAWN_ACCOUNT_ERROR || typeof body.message !== 'string') {
-    return null;
-  }
-
-  return body.message;
+  state: string | undefined;
 }
 
 /**
@@ -34,7 +24,7 @@ function readWithdrawnProviderId(error: unknown): string | null {
  * 빈 화면에 갇히고, 뒤로 가기를 눌러도 인가 코드가 이미 소모돼 복구할 수 없다.
  * 코드가 1회용이므로 이동은 replace로 해서 뒤로 가기가 이 경로로 돌아오지 않게 한다. (기준선 D5)
  */
-export function OauthCallbackPage({ provider, code }: OauthCallbackPageProps) {
+export function OauthCallbackPage({ provider, code, state }: OauthCallbackPageProps) {
   const navigate = useNavigate();
   const { mutate } = useOauthCallback();
   // 인가 코드는 1회용이다. StrictMode의 이중 렌더에서도 교환이 두 번 나가면 안 된다. (기준선 D3)
@@ -53,11 +43,19 @@ export function OauthCallbackPage({ provider, code }: OauthCallbackPageProps) {
       return;
     }
 
+    // 이 브라우저가 시작한 로그인이 아니면 교환하지 않는다. 남이 보낸 콜백 링크로 그 사람 계정에
+    // 로그인되는 것을 막는다. (FEAT-080 AC-3) state 가 없으면 앞의 확인이 이미 거절한다. 뒤는 타입을 좁힌다.
+    if (!consumePendingOauthState({ provider, state }) || !state) {
+      toast(LOGIN_FAILED_MESSAGE, { position: 'noneTabBottom' });
+      navigate({ to: '/', replace: true });
+      return;
+    }
+
     mutate(
-      { provider, code },
+      { provider, code, state },
       {
-        onSuccess: ({ isOnboarded }) => {
-          navigate({ to: isOnboarded ? '/main' : '/onboarding', replace: true });
+        onSuccess: (response) => {
+          navigate({ to: resolveLoginDestination(response), replace: true });
         },
         onError: (error) => {
           const providerId = readWithdrawnProviderId(error);
@@ -67,12 +65,12 @@ export function OauthCallbackPage({ provider, code }: OauthCallbackPageProps) {
             return;
           }
 
-          // 실패 사유 표시는 별도 작업(FEAT-017)이다. 지금은 최소한 로그인 화면으로 되돌린다.
+          toast(LOGIN_FAILED_MESSAGE, { position: 'noneTabBottom' });
           navigate({ to: '/', replace: true });
         },
       },
     );
-  }, [code, mutate, navigate, provider]);
+  }, [code, mutate, navigate, provider, state]);
 
   return null;
 }

@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import {
   RouterProvider,
@@ -220,6 +220,9 @@ afterEach(() => {
   window.sessionStorage.clear();
 });
 
+// 첫 모듈 변환 시간이 테스트 제한 시간에 포함되지 않도록 미리 로드한다.
+beforeAll(() => import('@/shared/ui/markdown/markdown'));
+
 describe('북마크 풀이 — 공통 흐름', () => {
   it('들어오면 북마크 목록을 한 번 받고 1번 문제와 진행률 0/3 을 보인다 (AC-1)', async () => {
     const requestLog = useHandlers();
@@ -397,6 +400,16 @@ describe('오답노트 풀이', () => {
   const WRONG_ANSWER_PATH = '/learning/units/7/incorrect-problems';
   const EXCLUDE_BUTTON = { name: '오답노트에서 제외' };
 
+  it('닫기를 누르면 그만두기 모달 없이 유닛 상세로 간다', async () => {
+    useHandlers();
+    const router = await renderAt(WRONG_ANSWER_PATH);
+
+    await userEvent.click(await screen.findByRole('link', { name: '풀이 닫기' }));
+
+    await waitFor(() => expect(router.state.location.pathname).toBe('/learning/units/7'));
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  });
+
   it('넓은 화면에서도 객관식을 맞히면 정답 선지 해설 안에 제외 버튼이 하나 보인다 (AC-11)', async () => {
     useHandlers();
     await renderAt(WRONG_ANSWER_PATH);
@@ -510,5 +523,19 @@ describe('오답노트 풀이', () => {
       params: { unitId: '7' },
     });
     await waitFor(() => expect(requestLog.wrongAnswerLists).toBe(2));
+  });
+});
+
+describe('북마크·오답 풀이 — 문제 신고', () => {
+  it.each([
+    ['북마크', '/learning/units/7/bookmarked-problems'],
+    ['오답노트', '/learning/units/7/incorrect-problems'],
+  ])('%s 풀이의 상단바에 문제 신고 버튼이 하나 있다 (MIG-068 AC-1)', async (_name, quizPath) => {
+    useHandlers();
+    await renderAt(quizPath);
+
+    await screen.findByRole('button', { name: '문제 신고' });
+
+    expect(screen.getAllByRole('button', { name: '문제 신고' })).toHaveLength(1);
   });
 });

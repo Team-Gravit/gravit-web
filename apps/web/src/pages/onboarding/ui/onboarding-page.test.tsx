@@ -141,13 +141,13 @@ describe('OnboardingPage', () => {
     expect(screen.getByRole('button', { name: '다음' })).toBeInTheDocument();
   });
 
-  it('넓은 화면이면 상단바와 「이전」이 없고 태그라인이 보인다', async () => {
+  it('넓은 화면이면 상단바가 없고 「이전」 하나와 태그라인이 보인다', async () => {
     stubViewport(true);
 
     await renderOnboardingPage();
 
     expect(screen.queryByRole('banner')).not.toBeInTheDocument();
-    expect(screen.queryByRole('button', { name: '이전' })).not.toBeInTheDocument();
+    expect(screen.getAllByRole('button', { name: '이전' })).toHaveLength(1);
     expect(screen.getByText('그래빗과 함께 CS 지식을 마스터해요!')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: '다음' })).toBeInTheDocument();
   });
@@ -163,9 +163,9 @@ describe('OnboardingPage', () => {
 
   it('좁은 화면에서 온보딩을 취소하면 세션을 지우고 / 로 이동한다', async () => {
     stubViewport(false);
-    localStorage.setItem('accessToken', 't1');
-    localStorage.setItem('refreshToken', 'r1');
+    localStorage.setItem('hasSession', '1');
     useAuthStore.setState({ accessToken: 't1', isRestored: true });
+    server.use(http.post('*/api/v1/auth/logout', () => new HttpResponse(null, { status: 204 })));
 
     const { router, user } = await renderOnboardingPage();
 
@@ -176,8 +176,24 @@ describe('OnboardingPage', () => {
     await waitFor(() => {
       expect(router.state.location.pathname).toBe('/');
     });
-    expect(localStorage.getItem('accessToken')).toBeNull();
-    expect(localStorage.getItem('refreshToken')).toBeNull();
+    expect(localStorage.getItem('hasSession')).toBeNull();
+    expect(useAuthStore.getState().accessToken).toBeNull();
+  });
+
+  it('넓은 화면에서 「이전」을 누르면 세션을 지우고 / 로 이동한다', async () => {
+    stubViewport(true);
+    localStorage.setItem('hasSession', '1');
+    useAuthStore.setState({ accessToken: 't1', isRestored: true });
+    server.use(http.post('*/api/v1/auth/logout', () => new HttpResponse(null, { status: 204 })));
+
+    const { router, user } = await renderOnboardingPage();
+
+    await user.click(screen.getByRole('button', { name: '이전' }));
+
+    await waitFor(() => {
+      expect(router.state.location.pathname).toBe('/');
+    });
+    expect(localStorage.getItem('hasSession')).toBeNull();
     expect(useAuthStore.getState().accessToken).toBeNull();
   });
 });

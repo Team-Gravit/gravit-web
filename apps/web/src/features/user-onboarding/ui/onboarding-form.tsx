@@ -40,8 +40,13 @@ export function OnboardingForm({ form, secondaryAction, className }: OnboardingF
       className={cn('flex flex-1 flex-col items-center w-full h-full md:h-fit', className)}
     >
       <div className="flex flex-1 flex-col justify-center gap-6 md:gap-2.5 w-full md:w-[325px] md:pt-13 short:md:pt-6">
-        <ProfileColorPicker value={colorNumber} onChange={setColorNumber} />
-        <NicknameField value={nickname} status={nicknameStatus} onChange={setNickname} />
+        <ProfileColorPicker value={colorNumber} onChange={setColorNumber} surface="space" />
+        <NicknameField
+          value={nickname}
+          status={nicknameStatus}
+          onChange={setNickname}
+          surface="space"
+        />
       </div>
 
       <div className="flex gap-3 w-full py-5 md:py-0">

@@ -1,6 +1,7 @@
 import { useNavigate } from '@tanstack/react-router';
 
 import { useIsWideViewport } from '@/shared/lib/use-is-wide-viewport';
+import { useLogout } from '@/features/auth-logout';
 import { useOnboardingForm } from '@/features/user-onboarding';
 
 import { OnboardingPageNarrow } from './onboarding-page-narrow';
@@ -20,6 +21,16 @@ export function OnboardingPage() {
         state: { fromOnboarding: true },
       }),
   });
+  // 온보딩을 취소하면 세션을 지우고 로그인 화면으로 돌아간다.
+  const cancelOnboarding = useLogout({
+    onSuccess: () => {
+      navigate({ to: '/' });
+    },
+  });
 
-  return isWide ? <OnboardingPageWide form={form} /> : <OnboardingPageNarrow form={form} />;
+  return isWide ? (
+    <OnboardingPageWide form={form} onCancel={cancelOnboarding} />
+  ) : (
+    <OnboardingPageNarrow form={form} onCancel={cancelOnboarding} />
+  );
 }

@@ -1,4 +1,4 @@
-import { useEffect, useRef, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 
 import { cn } from '@/shared/lib/cn';
 import { useIsWideViewport } from '@/shared/lib/use-is-wide-viewport';
@@ -15,13 +15,20 @@ import {
   SubjectiveAnswer,
   useQuizSession,
 } from '@/features/lesson-quiz';
+import { ProblemReportButton } from '@/features/problem-report';
 
 import { QuizProgressPanel } from './quiz-progress-panel';
+import { QuizQuitModal } from './quiz-quit-modal';
 import { QuizTimer } from './quiz-timer';
 import { QuizTopBar } from './quiz-top-bar';
 
 export const QUIZ_SURFACE_CLASS = 'flex h-dvh flex-col bg-bg-1';
 const PANEL_CLASS = 'w-70 shrink-0 overflow-y-auto';
+
+export interface QuizQuitConfirm {
+  /** 챕터명을 아직 받지 못했다면 모달에 이름 없이 표시한다. */
+  chapterTitle?: string;
+}
 
 export interface QuizScreenProps {
   title: string;
@@ -44,6 +51,8 @@ export interface QuizScreenProps {
    * 보일 조건은 화면이 정해 `null` 을 돌려준다.
    */
   renderResultAction?: (problem: Problem) => ReactNode;
+  /** 있으면 닫기 전에 확인 모달을 열고, 없으면 바로 떠난다. */
+  quitConfirm?: QuizQuitConfirm;
 }
 
 /**
@@ -60,8 +69,10 @@ export function QuizScreen({
   isFinishing = false,
   renderProblemAction,
   renderResultAction,
+  quitConfirm,
 }: QuizScreenProps) {
   const isWide = useIsWideViewport();
+  const [isQuitModalOpen, setIsQuitModalOpen] = useState(false);
   const { currentProblemIndex, startedAt, advance, getAdvanceAction } = useQuizSession();
   const currentProblem = problems[currentProblemIndex];
   const resultAction = currentProblem ? renderResultAction?.(currentProblem) : null;
@@ -95,7 +106,15 @@ export function QuizScreen({
     <div data-slot="quiz-screen" className={QUIZ_SURFACE_CLASS}>
       {/* 제출 중에는 풀이 상태를 유지하고 inert로 뒤쪽 상호작용을 막는다. */}
       <div data-slot="quiz-surface" inert={isFinishing} className="flex min-h-0 flex-1 flex-col">
-        <QuizTopBar title={title} unitId={unitId} />
+        <QuizTopBar
+          title={title}
+          unitId={unitId}
+          onCloseRequest={quitConfirm ? () => setIsQuitModalOpen(true) : undefined}
+          // 버튼의 p-1을 상쇄해 신고 아이콘을 닫기 아이콘과 같은 가장자리에 맞춘다.
+          trailingAction={
+            <ProblemReportButton problemId={currentProblem.problemId} className="-m-1" />
+          }
+        />
         {isWide ? null : <QuizProgressLine problems={problems} />}
         {/* 문제 영역의 상위 flex 자식에 min-h-0이 없으면 컨테이너가 내용만큼 늘어난다. */}
         <div className="flex min-h-0 w-full flex-1">
@@ -135,6 +154,14 @@ export function QuizScreen({
         </div>
       </div>
       {isFinishing ? <SubmittingOverlay /> : null}
+      {quitConfirm ? (
+        <QuizQuitModal
+          open={isQuitModalOpen}
+          onOpenChange={setIsQuitModalOpen}
+          unitId={unitId}
+          chapterTitle={quitConfirm.chapterTitle}
+        />
+      ) : null}
     </div>
   );
 }
@@ -198,7 +225,7 @@ function QuizFooter({ isWide, onAdvance, finishLabel }: QuizFooterProps) {
       data-slot="quiz-footer"
       className={cn(
         // 내용이 짧으면 mt-auto가 아래로 밀고, 길면 sticky가 하단에 붙잡아 둔다.
-        'sticky bottom-0 mt-auto flex gap-3 bg-bg-1 pt-3 pb-5 md:gap-4 md:pb-10',
+        'sticky bottom-0 mt-auto flex gap-3 bg-bg-1 pt-3 pb-safe-5 md:gap-4 md:pb-10',
         isWide ? 'justify-end' : null,
       )}
     >

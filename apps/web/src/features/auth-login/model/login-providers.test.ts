@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { isLoginProvider } from './login-providers';
 
 describe('isLoginProvider', () => {
-  it.each(['google', 'kakao', 'naver'])('%s 는 지원하는 provider 다', (value) => {
+  it.each(['google', 'kakao', 'naver', 'apple'])('%s 는 지원하는 provider 다', (value) => {
     expect(isLoginProvider(value)).toBe(true);
   });
 

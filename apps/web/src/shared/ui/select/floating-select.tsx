@@ -3,7 +3,7 @@ import { useRef, useState } from 'react';
 import * as RadixSelect from '@radix-ui/react-select';
 
 import { cn } from '@/shared/lib/cn';
-import { Icon } from '@/shared/ui/icon';
+import { ChevronDownIcon, Icon } from '@/shared/ui/icon';
 import { FLOATING_LABEL_CLASS, textFieldVariants } from '@/shared/ui/text-field';
 
 // 터치 기기에서 닫자마자 다시 열리는 버그 방지(shared/ui/select와 동일).
@@ -78,7 +78,7 @@ export function FloatingSelect({
         )}
         <RadixSelect.Icon asChild>
           <Icon
-            name="chevron-down"
+            icon={ChevronDownIcon}
             className="size-4 shrink-0 text-text-3 transition-transform group-data-[state=open]:rotate-180 md:size-8"
           />
         </RadixSelect.Icon>

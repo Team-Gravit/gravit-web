@@ -1,6 +1,7 @@
 import { fileURLToPath } from 'node:url';
 
 import react from '@vitejs/plugin-react';
+import { imagetools } from 'vite-imagetools';
 import svgr from 'vite-plugin-svgr';
 import { defineConfig } from 'vitest/config';
 
@@ -16,6 +17,8 @@ export default defineConfig({
   plugins: [
     // shared/ui/icon 이 '...svg?react' 형태에 의존하므로 테스트에서도 필요합니다.
     svgr(),
+    // 쿼리가 붙은 이미지 import('...png?format=webp')를 해석해야 화면을 렌더할 수 있습니다.
+    imagetools(),
     react(),
   ],
   test: {

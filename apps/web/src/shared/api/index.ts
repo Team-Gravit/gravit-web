@@ -7,4 +7,14 @@ export {
   type AuthConfig,
 } from './auth-token';
 export type { BodyType, ErrorType } from './axios-instance';
+export {
+  BridgeError,
+  isBridgeError,
+  isNativeApp,
+  requestNative,
+  subscribeNativeEvent,
+  type RequestNativeOptions,
+} from './bridge';
 export { isNotFoundError, nullIfNotFound } from './not-found';
+export { isRefreshRejected, refreshAccessToken } from './refresh-token';
+export { useRefetchActiveQueries } from './use-refetch-active-queries';

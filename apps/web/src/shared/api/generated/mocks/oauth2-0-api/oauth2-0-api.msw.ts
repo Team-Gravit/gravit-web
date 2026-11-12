@@ -10,28 +10,40 @@ import { faker } from '@faker-js/faker';
 import { HttpResponse, delay, http } from 'msw';
 import type { RequestHandlerOptions } from 'msw';
 
-import type { AuthorizeUrl200, LoginResponse } from '../../model';
+import type { LoginUrlResponse, WebLoginResponse } from '../../model';
 
 export const getOauthLoginResponseMock = (
-  overrideResponse: Partial<Extract<LoginResponse, object>> = {},
-): LoginResponse => ({
+  overrideResponse: Partial<Extract<WebLoginResponse, object>> = {},
+): WebLoginResponse => ({
   accessToken: faker.string.alpha({ length: { min: 10, max: 20 } }),
-  refreshToken: faker.string.alpha({ length: { min: 10, max: 20 } }),
   isOnboarded: faker.datatype.boolean(),
   role: faker.helpers.arrayElement(['ADMIN', 'USER'] as const),
   ...overrideResponse,
 });
 
-export const getAuthorizeUrlResponseMock = (): AuthorizeUrl200 => ({
-  [faker.string.alphanumeric(5)]: faker.string.alpha({ length: { min: 10, max: 20 } }),
+export const getAppleLogin1ResponseMock = (
+  overrideResponse: Partial<Extract<WebLoginResponse, object>> = {},
+): WebLoginResponse => ({
+  accessToken: faker.string.alpha({ length: { min: 10, max: 20 } }),
+  isOnboarded: faker.datatype.boolean(),
+  role: faker.helpers.arrayElement(['ADMIN', 'USER'] as const),
+  ...overrideResponse,
+});
+
+export const getAuthorizeUrlResponseMock = (
+  overrideResponse: Partial<Extract<LoginUrlResponse, object>> = {},
+): LoginUrlResponse => ({
+  loginUrl: faker.string.alpha({ length: { min: 10, max: 20 } }),
+  state: faker.string.alpha({ length: { min: 10, max: 20 } }),
+  ...overrideResponse,
 });
 
 export const getOauthLoginMockHandler = (
   overrideResponse?:
-    | LoginResponse
+    | WebLoginResponse
     | ((
         info: Parameters<Parameters<typeof http.post>[1]>[0],
-      ) => Promise<LoginResponse> | LoginResponse),
+      ) => Promise<WebLoginResponse> | WebLoginResponse),
   options?: RequestHandlerOptions,
 ) => {
   return http.post(
@@ -52,12 +64,38 @@ export const getOauthLoginMockHandler = (
   );
 };
 
+export const getAppleLogin1MockHandler = (
+  overrideResponse?:
+    | WebLoginResponse
+    | ((
+        info: Parameters<Parameters<typeof http.post>[1]>[0],
+      ) => Promise<WebLoginResponse> | WebLoginResponse),
+  options?: RequestHandlerOptions,
+) => {
+  return http.post(
+    '*/api/v1/oauth/apple',
+    async (info: Parameters<Parameters<typeof http.post>[1]>[0]) => {
+      await delay(600);
+
+      return HttpResponse.json(
+        overrideResponse !== undefined
+          ? typeof overrideResponse === 'function'
+            ? await overrideResponse(info)
+            : overrideResponse
+          : getAppleLogin1ResponseMock(),
+        { status: 200 },
+      );
+    },
+    options,
+  );
+};
+
 export const getAuthorizeUrlMockHandler = (
   overrideResponse?:
-    | AuthorizeUrl200
+    | LoginUrlResponse
     | ((
         info: Parameters<Parameters<typeof http.get>[1]>[0],
-      ) => Promise<AuthorizeUrl200> | AuthorizeUrl200),
+      ) => Promise<LoginUrlResponse> | LoginUrlResponse),
   options?: RequestHandlerOptions,
 ) => {
   return http.get(
@@ -77,4 +115,8 @@ export const getAuthorizeUrlMockHandler = (
     options,
   );
 };
-export const getOauth20ApiMock = () => [getOauthLoginMockHandler(), getAuthorizeUrlMockHandler()];
+export const getOauth20ApiMock = () => [
+  getOauthLoginMockHandler(),
+  getAppleLogin1MockHandler(),
+  getAuthorizeUrlMockHandler(),
+];

@@ -27,10 +27,22 @@ describe('getActionDescriptor', () => {
     );
   });
 
-  it('GO_TO_NOTICE / GO_TO_INQUIRY 의 경로가 각각 맞다', () => {
+  it('GO_TO_NOTICE 는 targetId 가 있으면 공지 상세(notice-link)로 간다', () => {
+    expect(getActionDescriptor(noti({ actionType: 'GO_TO_NOTICE', targetId: 12 }))).toEqual({
+      kind: 'notice-link',
+      label: '공지 보러가기',
+      noticeId: 12,
+    });
+  });
+
+  it('GO_TO_NOTICE 라도 targetId 가 없으면 공지 목록 링크로 떨어진다', () => {
     expect(getActionDescriptor(noti({ actionType: 'GO_TO_NOTICE' }))).toMatchObject({
+      kind: 'link',
       to: '/settings/notice',
     });
+  });
+
+  it('GO_TO_INQUIRY 의 경로가 맞다', () => {
     expect(getActionDescriptor(noti({ actionType: 'GO_TO_INQUIRY' }))).toMatchObject({
       to: '/settings/inquiry',
     });

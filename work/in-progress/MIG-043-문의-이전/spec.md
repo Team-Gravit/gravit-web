@@ -35,12 +35,12 @@ legacy-web의 문의 화면 전체(문의 내역 확인 `/settings/inquiry` + �
 
 ## 용어 정의
 
-| 용어 | 정의 |
-| ---- | ---- |
-| 문의 유형 | BUG_REPORT(버그 신고)·CONTENT_ERROR(콘텐츠 오류)·FEATURE_SUGGESTION(기능 제안)·OTHER(기타) |
-| 문의 상태 | PENDING(답변 대기)·RESOLVED(답변 완료) |
-| 아코디언 상세 | 목록 항목을 클릭하면 인라인으로 펼쳐지는 문의 내용·답변 영역 |
-| floating label | 입력·선택 후 필드 안 상단에 필드명이 뜨는 라벨 |
+| 용어           | 정의                                                                                       |
+| -------------- | ------------------------------------------------------------------------------------------ |
+| 문의 유형      | BUG_REPORT(버그 신고)·CONTENT_ERROR(콘텐츠 오류)·FEATURE_SUGGESTION(기능 제안)·OTHER(기타) |
+| 문의 상태      | PENDING(답변 대기)·RESOLVED(답변 완료)                                                     |
+| 아코디언 상세  | 목록 항목을 클릭하면 인라인으로 펼쳐지는 문의 내용·답변 영역                               |
+| floating label | 입력·선택 후 필드 안 상단에 필드명이 뜨는 라벨                                             |
 
 ---
 
@@ -50,40 +50,40 @@ legacy-web의 문의 화면 전체(문의 내역 확인 `/settings/inquiry` + �
 
 ### 문의 내역 확인
 
-| #   | 동작 | 확인한 위치 (legacy) |
-| --- | ---- | -------------------- |
-| 1 | `/settings/inquiry` 레이아웃: 탭(문의하기→/new, 문의내역확인→/) + Outlet | `settings/inquiry/route.tsx` |
-| 2 | 목록: `useGetMyInquiriesInfinite`(page 1부터, hasNext) 무한스크롤 | `use-infinite-my-inquiries.ts` |
-| 3 | 헤더: "문의 내역 {totalElements}" + "최신순" | `settings/inquiry/index.tsx` |
-| 4 | 항목: 유형칩(main-2 테두리) + 제목 + 날짜 + 상태칩 + chevron. 클릭 시 아코디언 펼침 | `my-inquiries-list-item.tsx` |
-| 5 | 상태칩: PENDING "답변 대기"(text-4/divider-2), RESOLVED "답변 완료"(bg-main-2/white) | 〃 |
-| 6 | 펼침 시 `useGetMyInquiryDetail(id, {enabled:isOpen})` 상세 조회 | 〃 |
-| 7 | 상세: 문의 내용 박스 + (답변 있으면 답변 박스 / 없으면 "답변 대기 중입니다") | 〃 |
-| 8 | 빈 상태: "등록된 문의 내역이 없어요" + 안내 + 문의하기 버튼(→/new) | `my-inquiries-list.tsx` |
-| 9 | 날짜 `formatISODate`로 표기 | `shared/lib/formatDate` |
+| #   | 동작                                                                                 | 확인한 위치 (legacy)           |
+| --- | ------------------------------------------------------------------------------------ | ------------------------------ |
+| 1   | `/settings/inquiry` 레이아웃: 탭(문의하기→/new, 문의내역확인→/) + Outlet             | `settings/inquiry/route.tsx`   |
+| 2   | 목록: `useGetMyInquiriesInfinite`(page 1부터, hasNext) 무한스크롤                    | `use-infinite-my-inquiries.ts` |
+| 3   | 헤더: "문의 내역 {totalElements}" + "최신순"                                         | `settings/inquiry/index.tsx`   |
+| 4   | 항목: 유형칩(main-2 테두리) + 제목 + 날짜 + 상태칩 + chevron. 클릭 시 아코디언 펼침  | `my-inquiries-list-item.tsx`   |
+| 5   | 상태칩: PENDING "답변 대기"(text-4/divider-2), RESOLVED "답변 완료"(bg-main-2/white) | 〃                             |
+| 6   | 펼침 시 `useGetMyInquiryDetail(id, {enabled:isOpen})` 상세 조회                      | 〃                             |
+| 7   | 상세: 문의 내용 박스 + (답변 있으면 답변 박스 / 없으면 "답변 대기 중입니다")         | 〃                             |
+| 8   | 빈 상태: "등록된 문의 내역이 없어요" + 안내 + 문의하기 버튼(→/new)                   | `my-inquiries-list.tsx`        |
+| 9   | 날짜 `formatISODate`로 표기                                                          | `shared/lib/formatDate`        |
 
 ### 문의 작성
 
-| #   | 동작 | 확인한 위치 (legacy) |
-| --- | ---- | -------------------- |
-| 10 | `/settings/inquiry/new`: 헤더 "문의유형을 선택해주세요" + 폼 | `settings/inquiry/new.tsx` |
-| 11 | 폼: Dropdown(유형) + Input(제목) + Textarea(내용) + Button(등록하기) | `inquiry-form.tsx` |
-| 12 | 유효성: zod `SubmitInquiryBody`(title·type·content 각 min(1)) | `use-inquiry-form.ts` |
-| 13 | 제출: `useSubmitInquiry` → 성공 시 `/settings/inquiry` 이동 + 목록 무효화 | `inquiry-form.tsx` |
-| 14 | 필드: 입력 후 상단에 필드명(floating label) 표시 | `CommonInput`/`CommonTextarea`/`FieldLabel` |
+| #   | 동작                                                                      | 확인한 위치 (legacy)                        |
+| --- | ------------------------------------------------------------------------- | ------------------------------------------- |
+| 10  | `/settings/inquiry/new`: 헤더 "문의유형을 선택해주세요" + 폼              | `settings/inquiry/new.tsx`                  |
+| 11  | 폼: Dropdown(유형) + Input(제목) + Textarea(내용) + Button(등록하기)      | `inquiry-form.tsx`                          |
+| 12  | 유효성: zod `SubmitInquiryBody`(title·type·content 각 min(1))             | `use-inquiry-form.ts`                       |
+| 13  | 제출: `useSubmitInquiry` → 성공 시 `/settings/inquiry` 이동 + 목록 무효화 | `inquiry-form.tsx`                          |
+| 14  | 필드: 입력 후 상단에 필드명(floating label) 표시                          | `CommonInput`/`CommonTextarea`/`FieldLabel` |
 
 ## 시안 대조 결과
 
 > Figma: 내역 68354/44770, 작성 68321/55017, dropdown 68335/55054, 필드 68347.
 
-| #   | 항목 | 현행(legacy) | 시안 | 판정 |
-| --- | ---- | ---- | ---- | ---- |
-| D1 | 목록 로딩 | 무한스크롤 | **페이지네이션** | 고침 — `shared/ui/pagination` |
-| D2 | 탭 스타일 | web `Tabs` bg-cta | 활성 bg-main-2(#9b00cf) | 유지 — `bg-cta`가 #9b00cf로 동일(사용자 판정) |
-| D3 | 항목/상세/빈상태 구조 | (legacy 동일) | 유형칩·제목·날짜·상태칩·아코디언 | 유지 |
-| D4 | 작성 필드 floating label | (legacy 동일) | 입력 후 상단 라벨 | 유지 — legacy·시안 일치 |
-| D5 | 필드 수치 | h-54 md:h-74 | h-54/**72**, px-16/24, rounded-8/12 | 고침 — 데스크톱 72(전체화면 기준, 사용자 판정) |
-| D6 | 유형/상태 칩 색 | main-2(#8100b3) | #9b00cf | 고침 — 공통 Chip(cta) 사용(사용자 판정) |
+| #   | 항목                     | 현행(legacy)      | 시안                                | 판정                                           |
+| --- | ------------------------ | ----------------- | ----------------------------------- | ---------------------------------------------- |
+| D1  | 목록 로딩                | 무한스크롤        | **페이지네이션**                    | 고침 — `shared/ui/pagination`                  |
+| D2  | 탭 스타일                | web `Tabs` bg-cta | 활성 bg-main-2(#9b00cf)             | 유지 — `bg-cta`가 #9b00cf로 동일(사용자 판정)  |
+| D3  | 항목/상세/빈상태 구조    | (legacy 동일)     | 유형칩·제목·날짜·상태칩·아코디언    | 유지                                           |
+| D4  | 작성 필드 floating label | (legacy 동일)     | 입력 후 상단 라벨                   | 유지 — legacy·시안 일치                        |
+| D5  | 필드 수치                | h-54 md:h-74      | h-54/**72**, px-16/24, rounded-8/12 | 고침 — 데스크톱 72(전체화면 기준, 사용자 판정) |
+| D6  | 유형/상태 칩 색          | main-2(#8100b3)   | #9b00cf                             | 고침 — 공통 Chip(cta) 사용(사용자 판정)        |
 
 ### 확인 필요
 
@@ -106,9 +106,9 @@ legacy-web의 문의 화면 전체(문의 내역 확인 `/settings/inquiry` + �
 
 ## Changelog
 
-| 날짜 | 요약 | 사유 | 연관 항목 |
-| ---- | ---- | ---- | --------- |
-| 2026-09-23 | 작업 생성, 페이지네이션 컴포넌트 완료 | 문의 이전 착수 | #254 |
-| 2026-09-26 | 내역 baseline·시안 대조 기록, web Tabs 재사용 | 내역 계획 수립 | #254 |
-| 2026-09-27 | 내역 구현·검증 완료(AC-1~5). 무한→페이지네이션 | 문의 내역 이전 | #254 |
-| 2026-09-27 | 작성 이전 포함으로 범위 확장. floating 입력 필드 공통화(text-field size single source), features/inquiry-submit·pages/inquiry-new 추가(AC-6~8) | 문의 페이지 전체 이전 | #254 |
+| 날짜       | 요약                                                                                                                                           | 사유                  | 연관 항목 |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- | --------- |
+| 2026-09-23 | 작업 생성, 페이지네이션 컴포넌트 완료                                                                                                          | 문의 이전 착수        | #254      |
+| 2026-09-26 | 내역 baseline·시안 대조 기록, web Tabs 재사용                                                                                                  | 내역 계획 수립        | #254      |
+| 2026-09-27 | 내역 구현·검증 완료(AC-1~5). 무한→페이지네이션                                                                                                 | 문의 내역 이전        | #254      |
+| 2026-09-27 | 작성 이전 포함으로 범위 확장. floating 입력 필드 공통화(text-field size single source), features/inquiry-submit·pages/inquiry-new 추가(AC-6~8) | 문의 페이지 전체 이전 | #254      |

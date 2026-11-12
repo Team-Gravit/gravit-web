@@ -2,6 +2,7 @@ import { Outlet, createFileRoute } from '@tanstack/react-router';
 
 import { SETTINGS_SCROLL_RESTORATION_ID } from '@/app/router/scroll-restoration';
 import { Header } from '@/widgets/header';
+import { NotificationPopover } from '@/widgets/notification';
 
 export const Route = createFileRoute('/_authenticated/settings')({
   component: SettingsShell,
@@ -19,7 +20,7 @@ function SettingsShell() {
       <div aria-hidden className="fixed inset-0 -z-20 bg-bg-2" />
 
       <div className="hidden md:block">
-        <Header variant="solid" />
+        <Header variant="solid" notificationSlot={<NotificationPopover />} />
       </div>
 
       <div

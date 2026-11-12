@@ -219,7 +219,9 @@ export const useCongratulateFeed = <TError = ErrorType<ErrorResponse>, TContext 
  * 나와 같은 티어의 팔로우하지 않은 유저를 최대 8명 추천합니다.<br>
  * 같은 티어 유저가 5명 미만이면 ±1 티어로 확장합니다.<br>
  * 노출 순서는 랜덤입니다.<br>
- * mutualFollowCount: 추천 유저의 팔로잉 중 내가 팔로잉하는 유저 수입니다.<br>
+ * mutualFollowCount: 내가 팔로우하는 사람 중 추천 유저를 팔로우하는 사람(함께 아는 친구) 수입니다.<br>
+ * mutualFollowPreviewNickname: 함께 아는 친구 중 내가 가장 최근에 팔로우한 사람의 닉네임입니다. 탈퇴한 사람은 빠집니다.<br>
+ * 함께 아는 친구가 없으면 null이며, 함께 아는 친구가 모두 탈퇴 처리 중이면 mutualFollowCount가 1 이상이어도 null입니다.<br>
  * 🔐 <strong>Jwt 필요</strong>
  * @summary 추천 친구 목록 조회
  */

@@ -39,12 +39,14 @@ function AppShell() {
       {/*
         콘텐츠 영역이 앱 셸의 스크롤을 소유한다. 패딩은 고정 바텀탭과 solid 헤더에
         콘텐츠가 가리지 않게 하며, overlay 헤더는 히어로와 겹치도록 상단 패딩을 두지 않는다.
+        iOS 고무줄 튕김은 끈다. 제목 막대까지 끌려 내려가 위에 회색 틈이 생기기 때문이다.
+        당겨서 새로고침이 필요한 탭 루트는 PullToRefresh로 제목 막대 아래만 내린다.
       */}
       <div
         data-scroll-restoration-id={APP_SHELL_SCROLL_RESTORATION_ID}
         className={cn(
-          'h-full overflow-y-auto overscroll-y-contain md:pb-0',
-          !isBottomTabBarHidden && 'pb-(--bottom-tab-height)',
+          'h-full overflow-y-auto overscroll-y-none md:pb-0',
+          !isBottomTabBarHidden && 'pb-[calc(var(--bottom-tab-height)+var(--safe-area-bottom))]',
           headerVariant === 'solid' && 'md:pt-(--desktop-header-height)',
         )}
       >

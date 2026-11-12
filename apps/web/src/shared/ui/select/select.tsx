@@ -3,7 +3,7 @@ import { useRef, useState } from 'react';
 import * as RadixSelect from '@radix-ui/react-select';
 
 import { cn } from '@/shared/lib/cn';
-import { Icon } from '@/shared/ui/icon';
+import { ChevronDownIcon, Icon } from '@/shared/ui/icon';
 
 // 터치 기기에서 열린 트리거를 탭하면 dismiss(닫힘) 직후 click 이 다시 열어버린다.
 // 닫힌 지 이 시간 안에 들어오는 재-open 은 그 버그로 보고 무시한다(사람은 이보다 빨리 못 연다).
@@ -73,7 +73,7 @@ export function Select({
         <RadixSelect.Icon>
           {/* 모바일은 legacy 기준 16px, 데스크톱은 Figma 기준 24px. CSS 크기가 svg 속성을 덮는다. */}
           <Icon
-            name="chevron-down"
+            icon={ChevronDownIcon}
             size={24}
             className="size-4 text-text-3 transition-transform group-data-[state=open]:rotate-180 md:size-6"
           />

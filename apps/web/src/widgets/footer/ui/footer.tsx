@@ -2,7 +2,7 @@ import { Link } from '@tanstack/react-router';
 
 import { GravitLogo } from '@/shared/ui/logo';
 
-import appcenterLogo from './assets/logo-appcenter.png';
+import appcenterLogo from './assets/logo-appcenter.png?lossless&format=webp';
 
 export function Footer() {
   return (

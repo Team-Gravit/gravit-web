@@ -17,8 +17,8 @@ export interface InterviewAnswerDetailResponse {
   questionContent: string;
   /** 사용자 답변. 무응답 문항은 null */
   answerContent?: string;
-  /** 음성 세션의 음성 키. 텍스트 세션이거나 무응답이면 null */
-  audioKey?: string;
+  /** 답변 음성 재생 URL(presigned GET). 텍스트 세션이거나 음성이 없으면 null. 발급 후 30분 동안 유효 */
+  audioUrl?: string;
   /** 모범답안 (Markdown) */
   modelAnswer: string;
   /** 핵심 개념 목록 (개념별 전달 여부는 포함하지 않음) */

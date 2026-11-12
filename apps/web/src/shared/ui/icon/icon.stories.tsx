@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { Icon, ICONS } from './icon';
+import { Icon } from './icon';
+import { ICON_CATALOG, type IconCatalogName } from './icon-catalog.generated';
 
-const iconNames = Object.keys(ICONS) as Array<keyof typeof ICONS>;
+const iconNames = Object.keys(ICON_CATALOG) as IconCatalogName[];
 
 const meta = {
   title: 'Foundations/Iconography',
@@ -11,10 +12,11 @@ const meta = {
     layout: 'centered',
   },
   argTypes: {
-    name: {
+    icon: {
       control: 'select',
       options: iconNames,
-      description: '표시할 아이콘 이름',
+      mapping: ICON_CATALOG,
+      description: '표시할 아이콘 컴포넌트',
     },
     size: {
       control: { type: 'range', min: 12, max: 64, step: 4 },
@@ -41,7 +43,7 @@ const meta = {
     },
   },
   args: {
-    name: 'chevron-right',
+    icon: ICON_CATALOG['chevron-right'],
     size: 24,
     rotate: 0,
   },
@@ -85,7 +87,7 @@ export const AllIcons: Story = {
             borderRadius: 8,
           }}
         >
-          <Icon name={name} size={24} />
+          <Icon icon={ICON_CATALOG[name]} size={24} />
           <code
             style={{
               maxWidth: '100%',

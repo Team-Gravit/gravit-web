@@ -5,6 +5,7 @@
  * 앱센터 16.5기 동계 프로젝트 Gravit API Docs
  * OpenAPI spec version: 1.0.0
  */
+import type { NoticeNeighborResponse } from './noticeNeighborResponse';
 
 export interface NoticeDetailResponse {
   id: number;
@@ -16,4 +17,8 @@ export interface NoticeDetailResponse {
   status: string;
   pinned: boolean;
   publishedAt: string;
+  /** 이전 공지. 바로 더 최근에 게시된 공지이며, 고정 공지는 순서에서 빠진다. 고정 공지 상세이거나 가장 최근 공지면 null */
+  prev: NoticeNeighborResponse;
+  /** 다음 공지. 바로 더 오래전에 게시된 공지이며, 고정 공지는 순서에서 빠진다. 고정 공지 상세이거나 가장 오래된 공지면 null */
+  next: NoticeNeighborResponse;
 }

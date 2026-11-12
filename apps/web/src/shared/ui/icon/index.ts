@@ -1,1 +1,2 @@
-export { Icon, ICONS, type IconName } from './icon';
+export { Icon, type IconComponent } from './icon';
+export * from './icons.generated';

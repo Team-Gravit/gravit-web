@@ -41,7 +41,7 @@ const withQueryKey = <T extends object, K>(query: T, queryKey: K): T & { queryKe
 };
 
 /**
- * 공지의 상세 내용을 조회합니다.<br>🔐 <strong>Jwt 필요</strong><br>
+ * 공지의 상세 내용과 이전, 다음 공지를 조회합니다.<br><strong>prev</strong>는 바로 더 최근에 게시된 공지, <strong>next</strong>는 바로 더 오래전에 게시된 공지입니다. 게시일이 같으면 id로 순서를 정합니다.<br>고정 공지는 이 순서에서 빠지며, 고정 공지 상세에서는 prev, next가 모두 null입니다. 가장 최근 공지는 prev, 가장 오래된 공지는 next가 null입니다.<br>🔐 <strong>Jwt 필요</strong><br>
  * @summary 공지 상세 조회
  */
 export const getNoticeSummary = (

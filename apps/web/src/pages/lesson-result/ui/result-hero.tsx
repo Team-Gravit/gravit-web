@@ -7,6 +7,7 @@ import { getPlanetImage, getPlanetName } from '@/entities/learning';
 import { markImageReadyAfterDecode } from '../lib/image-loading';
 import mascotImage from './assets/mascot.webp';
 import mobileMoonImage from './assets/moon-mobile.webp';
+import mobileMoonSrcSet from './assets/moon-mobile.webp?w=800;1140;1595&format=webp&as=srcset';
 
 export interface ResultHeroProps {
   chapterId: number;
@@ -83,6 +84,8 @@ export function ResultHero({
             >
               <img
                 src={mobileMoonImage}
+                srcSet={mobileMoonSrcSet}
+                sizes="138vw"
                 alt=""
                 decoding="async"
                 className="w-full -translate-y-[5.3%]"

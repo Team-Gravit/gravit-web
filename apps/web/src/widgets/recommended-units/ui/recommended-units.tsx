@@ -5,6 +5,9 @@ import { UnitCard, UnitCardSkeleton, useRecommendedUnits } from '@/entities/lear
 
 const SKELETON_CARD_COUNT = 2;
 
+/** 첫 화면에 보이는 2열 첫 줄의 행성 이미지는 바로 요청한다. */
+const EAGER_PLANET_COUNT = 2;
+
 export interface RecommendedUnitsProps {
   className?: string;
 }
@@ -27,12 +30,13 @@ export function RecommendedUnits({ className }: RecommendedUnitsProps) {
   } else {
     body = (
       <div data-slot="recommended-units-grid" className="grid grid-cols-2 gap-4">
-        {units.map((unit) => (
+        {units.map((unit, index) => (
           <UnitCard
             key={unit.unitId}
             title={unit.chapterTitle}
             unitId={unit.unitId}
             chapterId={unit.chapterId}
+            planetLoading={index < EAGER_PLANET_COUNT ? 'eager' : 'lazy'}
           />
         ))}
       </div>

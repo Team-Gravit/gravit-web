@@ -1,6 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { Icon } from '@/shared/ui/icon';
+import {
+  ChevronDownIcon,
+  ChevronRightIcon,
+  Icon,
+  LearningFillIcon,
+  PlusIcon,
+} from '@/shared/ui/icon';
 
 import { Button } from './button';
 
@@ -126,13 +132,21 @@ export const BlockCta: Story = {
 export const WithIcons: Story = {
   render: (args) => (
     <div className="flex flex-wrap items-center gap-4">
-      <Button {...args} startIcon={<Icon name="plus" size={16} />}>
+      <Button {...args} startIcon={<Icon icon={PlusIcon} size={16} />}>
         추가하기
       </Button>
-      <Button {...args} variant="stroke-default" endIcon={<Icon name="chevron-right" size={16} />}>
+      <Button
+        {...args}
+        variant="stroke-default"
+        endIcon={<Icon icon={ChevronRightIcon} size={16} />}
+      >
         다음으로
       </Button>
-      <Button {...args} variant="stroke-error" startIcon={<Icon name="learning-fill" size={16} />}>
+      <Button
+        {...args}
+        variant="stroke-error"
+        startIcon={<Icon icon={LearningFillIcon} size={16} />}
+      >
         오답노트에서 제외
       </Button>
     </div>
@@ -207,6 +221,6 @@ export const HasPopupTrigger: Story = {
     'aria-haspopup': 'menu',
     variant: 'stroke-secondary',
     children: '메뉴 열기',
-    endIcon: <Icon name="chevron-down" size={16} />,
+    endIcon: <Icon icon={ChevronDownIcon} size={16} />,
   },
 };

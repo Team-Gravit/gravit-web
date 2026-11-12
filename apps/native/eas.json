@@ -1,0 +1,43 @@
+{
+  "cli": {
+    "version": ">= 25.3.0",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "base": {
+      "env": {
+        "SHARP_IGNORE_GLOBAL_LIBVIPS": "1"
+      }
+    },
+    "development": {
+      "extends": "base",
+      "environment": "development",
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "preview": {
+      "extends": "base",
+      "environment": "preview",
+      "channel": "preview",
+      "distribution": "internal"
+    },
+    "testflight": {
+      "extends": "production",
+      "environment": "preview",
+      "channel": "preview"
+    },
+    "production": {
+      "extends": "base",
+      "environment": "production",
+      "channel": "production",
+      "autoIncrement": true
+    }
+  },
+  "submit": {
+    "production": {
+      "ios": {
+        "ascAppId": "6826819751"
+      }
+    }
+  }
+}

@@ -1,1 +1,1 @@
-export { Markdown, type MarkdownProps } from './markdown';
+export { Markdown, preloadMarkdown, type MarkdownProps } from './lazy-markdown';

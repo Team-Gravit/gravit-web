@@ -61,8 +61,8 @@ export function NotificationItem({
       <div className="flex w-full items-center gap-3">
         {leading}
         <div className="flex min-w-0 flex-1 flex-col gap-1">
-          <div className="flex items-center gap-1">
-            <p className="truncate text-label1 text-text-1">{headline}</p>
+          <div className="flex items-center justify-between gap-2">
+            <p className=" text-label1 text-text-1">{headline}</p>
             <p className="shrink-0 text-caption1 text-text-4">{timeAgo}</p>
           </div>
           {subText ? <p className="w-full truncate text-label2 text-text-3">{subText}</p> : null}

@@ -1,4 +1,4 @@
-import { Icon } from '@/shared/ui/icon';
+import { Icon, LinearTimerIcon } from '@/shared/ui/icon';
 
 import { useRemainingTime } from '../model/use-remaining-time';
 
@@ -21,7 +21,7 @@ export function SeasonTimer({ seasonName }: SeasonTimerProps) {
       </h1>
 
       <div className="flex items-center justify-center gap-2 rounded-full  bg-white px-4 py-2 shadow-[0px_0px_15px_rgba(0,0,0,0.2)] md:gap-4 md:rounded-full md:bg-white/40 md:px-6 md:py-4 md:shadow-none">
-        <Icon name="linear-timer" size={40} className="hidden text-text-1-w md:block" />
+        <Icon icon={LinearTimerIcon} size={40} className="hidden text-text-1-w md:block" />
         <span className="text-label1 text-text-2 md:font-mbc md:text-[40px] md:text-text-1-w md:min-w-80 text-center">
           {remaining}
         </span>

@@ -1,13 +1,18 @@
-import type { ReactNode } from 'react';
-import { Link } from '@tanstack/react-router';
+import { useState, type ReactNode } from 'react';
+import { Link, useNavigate } from '@tanstack/react-router';
 
 import { cn } from '@/shared/lib/cn';
+import { useIsWideViewport } from '@/shared/lib/use-is-wide-viewport';
 import { Button } from '@/shared/ui/button';
-import { Icon } from '@/shared/ui/icon';
+import { GradientCanvas } from '@/shared/ui/gradient-canvas';
+import { BellIcon, Icon, SettingsIcon } from '@/shared/ui/icon';
+import { SPACE_BANNER_ART } from '@/shared/ui/layout';
 import { Skeleton } from '@/shared/ui/skeleton';
 import { ProfileAvatar, type MyPageBannerResponse } from '@/entities/user';
+import { EditProfileModal } from '@/features/user-profile-edit';
 
-import bannerImage from './assets/profile-banner.webp';
+// 1920×274 비율의 배너 그림 상자를 카드 가운데에 두고, 카드보다 좁아지지 않게 한다.
+const BANNER_ARTWORK_CLASS = 'left-1/2 right-auto aspect-1920/274 min-w-full -translate-x-1/2';
 
 interface ProfileCardProps {
   data?: MyPageBannerResponse;
@@ -33,19 +38,38 @@ interface SlotProps {
  */
 export function ProfileCard({ data, isLoading = false }: ProfileCardProps) {
   const slot: SlotProps = { data, isLoading };
+  const [isEditModalOpen, setEditModalOpen] = useState(false);
+  const isWide = useIsWideViewport();
+  const navigate = useNavigate();
+
+  // 데스크톱은 모달로, 모바일은 전체화면 편집 페이지로 수정한다.
+  const handleEditClick = () => {
+    if (isWide) {
+      if (data) {
+        setEditModalOpen(true);
+      }
+      return;
+    }
+    navigate({ to: '/my/edit' });
+  };
 
   return (
     <section
       aria-label="사용자 프로필 카드"
-      style={{
-        backgroundImage: `url(${bannerImage})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
-      className="relative w-full min-h-[196px] overflow-hidden md:min-h-[204px] md:rounded-12"
+      // box-content: 카드 최소 높이는 그대로 두고 배너를 상태 표시줄 뒤까지 늘린다.
+      className="relative box-content w-full min-h-[196px] overflow-hidden pt-(--safe-area-top) md:min-h-[204px] md:rounded-12"
     >
-      {/* 모바일: 균일한 어둠 오버레이 / 데스크톱: 우측으로 짙어지는 그라데이션 */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 bg-black/40 md:hidden" />
+      <GradientCanvas
+        {...SPACE_BANNER_ART}
+        artworkClassName={BANNER_ARTWORK_CLASS}
+        decorationPriority="high"
+        className="absolute inset-0"
+      />
+      {/* 모바일: 순수 검정 40% 덮개(`black` 토큰은 #222124라 쓰지 않는다) / 데스크톱: 우측으로 짙어지는 그라데이션 */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-(--primitive-gray-1100)/40 md:hidden"
+      />
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 hidden md:block md:bg-linear-to-r md:from-[#1d0027]/0 md:from-77% md:to-[#1d0027]/60"
@@ -63,16 +87,28 @@ export function ProfileCard({ data, isLoading = false }: ProfileCardProps) {
             </div>
           </div>
 
-          <ProfileActions />
+          <ProfileActions onEdit={handleEditClick} />
         </div>
 
         <MobileHandle {...slot} />
 
-        {/* ponytail: /my/edit 편집 페이지는 별도 작업. 그때 onClick 연결 */}
-        <Button variant="secondary" className="h-[37px] w-full text-body2-normal md:hidden">
+        <Button
+          variant="secondary"
+          onClick={handleEditClick}
+          className="h-[37px] w-full text-body2-normal md:hidden"
+        >
           프로필 편집
         </Button>
       </div>
+
+      {data && (
+        <EditProfileModal
+          open={isEditModalOpen}
+          onOpenChange={setEditModalOpen}
+          nickname={data.nickname}
+          profileImageNumber={data.profileImageNumber}
+        />
+      )}
     </section>
   );
 }
@@ -153,26 +189,28 @@ function LabelRow({ data, isLoading }: SlotProps) {
 
 /**
  * 편집·설정·알림 액션. 데이터와 무관해 항상 렌더한다.
- * 설정은 `/settings`, 알림은 `/notifications`로 연결한다. 편집 대상은 아직 없어 시각 요소만 둔다.
+ * 설정은 `/settings`, 알림은 `/notifications`로 연결한다. 편집은 `onEdit`으로 상위가 처리한다.
  */
-function ProfileActions() {
+function ProfileActions({ onEdit }: { onEdit: () => void }) {
   return (
     <>
       {/* 데스크톱: 프로필 편집 + 설정 */}
       <div className="flex items-center gap-3 text-text-1-w max-md:hidden">
-        <Button className="h-[37px] px-5 text-body1-normal">프로필 편집</Button>
+        <Button onClick={onEdit} className="h-[37px] px-5 text-body1-normal">
+          프로필 편집
+        </Button>
         <Link to="/settings" aria-label="설정" className="flex items-center">
-          <Icon name="settings" size={32} />
+          <Icon icon={SettingsIcon} size={32} />
         </Link>
       </div>
 
       {/* 모바일: 알림 + 설정 */}
       <div className="flex items-center gap-4 text-text-1-w md:hidden">
         <Link to="/notifications" aria-label="알림" className="flex items-center">
-          <Icon name="bell" size={24} />
+          <Icon icon={BellIcon} size={24} />
         </Link>
         <Link to="/settings" aria-label="설정" className="flex items-center">
-          <Icon name="settings" size={24} />
+          <Icon icon={SettingsIcon} size={24} />
         </Link>
       </div>
     </>

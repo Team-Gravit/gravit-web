@@ -254,10 +254,34 @@ const friendFeedHandlers = [
 // 추천 친구 시안 검토용 고정값. mutualFollowCount 로 함께 아는 친구 표기 유무를 섞는다.
 const recommendFriendHandlers = [
   getGetRecommendedUsersMockHandler([
-    { userId: 21, nickname: '한소희', profileImgNumber: 2, mutualFollowCount: 3 },
-    { userId: 22, nickname: '오지훈', profileImgNumber: 5, mutualFollowCount: 0 },
-    { userId: 23, nickname: '배수민', profileImgNumber: 7, mutualFollowCount: 1 },
-    { userId: 24, nickname: '신예린', profileImgNumber: 9, mutualFollowCount: 0 },
+    {
+      userId: 21,
+      nickname: '한소희',
+      profileImgNumber: 2,
+      mutualFollowCount: 3,
+      mutualFollowPreviewNickname: '김민준',
+    },
+    {
+      userId: 22,
+      nickname: '오지훈',
+      profileImgNumber: 5,
+      mutualFollowCount: 0,
+      mutualFollowPreviewNickname: null,
+    },
+    {
+      userId: 23,
+      nickname: '배수민',
+      profileImgNumber: 7,
+      mutualFollowCount: 1,
+      mutualFollowPreviewNickname: '이서연',
+    },
+    {
+      userId: 24,
+      nickname: '신예린',
+      profileImgNumber: 9,
+      mutualFollowCount: 0,
+      mutualFollowPreviewNickname: null,
+    },
   ]),
   getFollowMockHandler(),
 ];

@@ -21,11 +21,11 @@ import type { ErrorType, BodyType } from '../../axios-instance';
 type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
 /**
- * 유효한 리프레시 토큰으로 엑세스 토큰을 재발급합니다. <br> 만약 리프레시 토큰이 유효하지 않다면 재 로그인이 필요합니다.
+ * 유효한 리프레시 토큰으로 엑세스 토큰을 재발급합니다. <br> 만약 리프레시 토큰이 유효하지 않다면 재 로그인이 필요합니다.<br>refreshToken 쿠키가 있으면 쿠키를 우선 사용하고, 없으면 body의 refreshToken을 사용합니다. 웹은 <code>credentials: 'include'</code>로 호출하고 body를 비워도 됩니다.
  * @summary 리프레시 토큰으로 엑세스 토큰 재발급
  */
 export const reissueToken = (
-  refreshTokenRequest: BodyType<RefreshTokenRequest>,
+  refreshTokenRequest?: BodyType<RefreshTokenRequest>,
   options?: SecondParameter<typeof customInstance>,
   signal?: AbortSignal,
 ) => {
@@ -78,9 +78,9 @@ export const getReissueTokenMutationOptions = <
 };
 
 export type ReissueTokenMutationResult = NonNullable<Awaited<ReturnType<typeof reissueToken>>>;
-export type ReissueTokenMutationBody = BodyType<RefreshTokenRequest>;
+export type ReissueTokenMutationBody = BodyType<RefreshTokenRequest> | undefined;
 export type ReissueTokenMutationError = ErrorType<ErrorResponse>;
-export type ReissueTokenMutationVariables = { data: BodyType<RefreshTokenRequest> };
+export type ReissueTokenMutationVariables = { data?: BodyType<RefreshTokenRequest> };
 
 /**
  * @summary 리프레시 토큰으로 엑세스 토큰 재발급
@@ -103,4 +103,88 @@ export const useReissueToken = <TError = ErrorType<ErrorResponse>, TContext = un
   TContext
 > => {
   return useMutation(getReissueTokenMutationOptions(options), queryClient);
+};
+/**
+ * 리프레시 토큰을 무효화하고 refreshToken 쿠키를 만료시킵니다. 인증 없이 호출할 수 있습니다.<br>refreshToken 쿠키가 있으면 쿠키를 우선 사용하고, 없으면 body의 refreshToken을 사용합니다. 웹은 <code>credentials: 'include'</code>로 호출하고 body를 비워도 됩니다.<br>토큰이 없거나 만료, 위조된 경우에도 항상 204와 만료 쿠키를 응답합니다.
+ * @summary 로그아웃
+ */
+export const logout = (
+  refreshTokenRequest?: BodyType<RefreshTokenRequest>,
+  options?: SecondParameter<typeof customInstance>,
+  signal?: AbortSignal,
+) => {
+  return customInstance<void>(
+    {
+      url: `/api/v1/auth/logout`,
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      data: refreshTokenRequest,
+      signal,
+    },
+    options,
+  );
+};
+
+export const getLogoutMutationOptions = <
+  TError = ErrorType<ErrorResponse>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof logout>>,
+    TError,
+    LogoutMutationVariables,
+    TContext
+  >;
+  request?: SecondParameter<typeof customInstance>;
+}): UseMutationOptions<
+  Awaited<ReturnType<typeof logout>>,
+  TError,
+  LogoutMutationVariables,
+  TContext
+> => {
+  const mutationKey = ['logout'];
+  const { mutation: mutationOptions, request: requestOptions } = options
+    ? options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey
+      ? options
+      : { ...options, mutation: { ...options.mutation, mutationKey } }
+    : { mutation: { mutationKey }, request: undefined };
+
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof logout>>,
+    LogoutMutationVariables
+  > = (props) => {
+    const { data } = props ?? {};
+
+    return logout(data, requestOptions);
+  };
+
+  return { mutationFn, ...mutationOptions };
+};
+
+export type LogoutMutationResult = NonNullable<Awaited<ReturnType<typeof logout>>>;
+export type LogoutMutationBody = BodyType<RefreshTokenRequest> | undefined;
+export type LogoutMutationError = ErrorType<ErrorResponse>;
+export type LogoutMutationVariables = { data?: BodyType<RefreshTokenRequest> };
+
+/**
+ * @summary 로그아웃
+ */
+export const useLogout = <TError = ErrorType<ErrorResponse>, TContext = unknown>(
+  options?: {
+    mutation?: UseMutationOptions<
+      Awaited<ReturnType<typeof logout>>,
+      TError,
+      LogoutMutationVariables,
+      TContext
+    >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): UseMutationResult<
+  Awaited<ReturnType<typeof logout>>,
+  TError,
+  LogoutMutationVariables,
+  TContext
+> => {
+  return useMutation(getLogoutMutationOptions(options), queryClient);
 };

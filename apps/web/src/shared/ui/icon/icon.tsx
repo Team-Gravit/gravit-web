@@ -2,20 +2,19 @@ import * as React from 'react';
 
 import { cn } from '@/shared/lib/cn';
 
-import { ICONS, type IconName } from './icons.generated';
-
-export type { IconName } from './icons.generated';
+type IconComponent = React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
 
 type IconRotate = 0 | 90 | 180 | 270;
 
-type IconProps = Omit<React.SVGProps<SVGSVGElement>, 'name'> & {
-  name: IconName;
+interface IconProps extends React.SVGProps<SVGSVGElement> {
+  // 이름 문자열이 아니라 컴포넌트를 받아야 빌드가 쓰는 아이콘만 번들에 남긴다.
+  icon: IconComponent;
   size?: number;
   rotate?: IconRotate;
-};
+}
 
 function Icon({
-  name,
+  icon: Component,
   size = 24,
   rotate = 0,
   className,
@@ -25,8 +24,6 @@ function Icon({
   role = ariaLabel ? 'img' : undefined,
   ...props
 }: IconProps) {
-  const Component = ICONS[name];
-
   return (
     <Component
       data-slot="icon"
@@ -42,4 +39,4 @@ function Icon({
   );
 }
 
-export { Icon, ICONS };
+export { Icon, type IconComponent };

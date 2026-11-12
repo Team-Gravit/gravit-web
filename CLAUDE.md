@@ -24,7 +24,8 @@ pnpm check-types    # tsc --noEmit
 pnpm test           # vitest run
 pnpm format         # prettier --write
 pnpm format:check   # prettier --check
-pnpm generate:icons # svg → shared/ui/icon/icons.generated.ts
+pnpm verify         # format:check → lint → check-types → test → build (실패하면 그 단계에서 멈춘다)
+pnpm generate:icons # svg → shared/ui/icon/{icons,icon-catalog}.generated.ts
 
 # 특정 앱만
 pnpm --filter @repo/web dev
@@ -35,9 +36,8 @@ pnpm --filter @repo/web exec vitest run -t "테스트 이름"   # 단건 테스�
 ```
 
 **패키지 매니저는 pnpm 8.15.6 고정.** `npm` / `yarn` 명령을 쓰지 않는다.
-`pnpm ci`나 `pnpm verify` 같은 묶음 스크립트는 **없다.** 정식 작업을 마칠 때는
-`lint` → `check-types` → `test` → `build`를 각각 실행한다. `format:check`는 기존 파일의
-포맷 문제(`REF-003`)를 해결하기 전까지 변경한 파일만 `pnpm exec prettier --check <파일>`로 검사한다.
+정식 작업을 마칠 때는 `pnpm verify`를 실행한다. PR에서도 같은 명령이 돈다(`.github/workflows/verify.yml`).
+커밋할 때는 husky가 staged 파일만 prettier · eslint로 검사하고, 커밋 메시지 형식을 commitlint로 검사한다.
 
 ## Tech Stack
 
@@ -49,7 +49,7 @@ pnpm --filter @repo/web exec vitest run -t "테스트 이름"   # 단건 테스�
 | 서버 상태       | TanStack Query v5                                                                         |
 | 클라이언트 상태 | Zustand v5                                                                                |
 | API             | **orval** (OpenAPI → axios + Query 훅 + MSW 핸들러)                                       |
-| 아이콘          | SVGR (`?react` suffix) + 생성된 `ICONS` 맵                                                |
+| 아이콘          | SVGR (`?react` suffix) + 생성된 아이콘별 컴포넌트 (`<Icon icon={BellIcon} />`)            |
 | 문서            | Storybook 10 (**테스트가 아니라 컴포넌트 상태 문서**)                                     |
 | 테스트          | Vitest 3 + jsdom + React Testing Library                                                  |
 | 아키텍처 검사   | **steiger** (`@feature-sliced/steiger-plugin`)                                            |
@@ -74,7 +74,7 @@ app(5) → pages(4) → widgets(3) → features(2) → entities(1) → shared(0)
 
 규칙 상세는 `.claude/rules/`:
 
-> **레이어·컨벤션 규칙 11종은 `paths` frontmatter로 `apps/web/src/**`에 한정**돼 있어 해당 파일을
+> **레이어·컨벤션 규칙 12종**은 `paths` frontmatter로 `apps/web/src/**`에 한정돼 있어 해당 파일을
 > 읽거나 편집할 때 로드된다 (Claude Code의 path-scoped rules — 키는 `paths`다. Cursor의 `globs`가
 > 아니다). 정책 8종은 frontmatter 없이 항상 로드된다. 계획 단계처럼 파일을 읽기 전이라면 스킬이
 > 명시한 대로 규칙 문서를 직접 읽는다.
@@ -100,6 +100,7 @@ app(5) → pages(4) → widgets(3) → features(2) → entities(1) → shared(0)
 | `api-convention.md`       | orval + MSW. **queryKey는 생성 팩토리를 쓴다**    |
 | `className-convention.md` | 조건부 className 함정, `cn()` 사용법, 토큰 클래스 |
 | `constants-convention.md` | 상수로 뽑을지 인라인으로 둘지 판단                |
+| `image-convention.md`     | 쿼리 import 변환, 형식 · 해상도 · 로딩 속성       |
 
 **정책**
 
@@ -110,18 +111,20 @@ app(5) → pages(4) → widgets(3) → features(2) → entities(1) → shared(0)
 | `i18n-policy.md`          | 한국어 단일 언어. i18n 제안 금지                          |
 | `legacy-web-policy.md`    | `apps/legacy-web` 참조 전용 · 편집 금지                   |
 | `work-management.md`      | `work/` 작업 폴더 · ID prefix · 상태 이동                 |
-| `git-workflow.md`         | 브랜치 · 머지 · **PR 자동 검사가 없다는 사실**            |
+| `git-workflow.md`         | 브랜치 · 머지 · **커밋 훅과 PR 검사가 무엇을 보는가**     |
 | `test-policy.md`          | 무엇에 테스트를 쓰고 무엇에 안 쓰는가                     |
 
-## 세 가지 검사 층
+## 검사 층
 
-같은 규칙을 세 층에서 본다. 중복이 아니라 깊이 방어다.
+같은 규칙을 여러 층에서 본다. 중복이 아니라 깊이 방어다. 위 둘은 AI 작업에만, 아래 셋은 사람과 AI 모두에 적용된다.
 
-| 층            | 수단                                | 시점          | 범위                  |
-| ------------- | ----------------------------------- | ------------- | --------------------- |
-| 소프트        | `.claude/rules/*.md`                | 작업 전       | 안내                  |
-| **하드 차단** | `.claude/hooks/fsd-layer-check.mjs` | **편집 직전** | 새로 쓰는 import 구문 |
-| 사후 전수     | `steiger ./src` (`pnpm lint`)       | 검증 단계     | 기존 코드 포함 전체   |
+| 층            | 수단                                          | 시점          | 범위                                |
+| ------------- | --------------------------------------------- | ------------- | ----------------------------------- |
+| 소프트        | `.claude/rules/*.md`                          | 작업 전       | 안내                                |
+| **하드 차단** | `.claude/hooks/fsd-layer-check.mjs`           | **편집 직전** | 새로 쓰는 import 구문               |
+| 커밋 훅       | husky + lint-staged · commitlint              | 커밋 직전     | staged 파일의 포맷 · eslint, 메시지 |
+| 사후 전수     | `steiger ./src` (`pnpm lint`) · `pnpm verify` | 검증 단계     | 기존 코드 포함 전체                 |
+| PR 검사       | `.github/workflows/verify.yml`                | PR            | `pnpm verify` 전체                  |
 
 **훅(`PreToolUse`, matcher `Edit\|Write\|MultiEdit`)이 차단하는 것**
 
@@ -158,7 +161,7 @@ app(5) → pages(4) → widgets(3) → features(2) → entities(1) → shared(0)
 // ✅
 import { cn } from '@/shared/lib/cn';
 import { Button } from '@/shared/ui/button';
-import type { IconName } from './icons.generated';
+import type { IconComponent } from './icon';
 
 // ❌ 다른 레이어를 상대 경로로 거슬러 올라감
 import { cn } from '../../../shared/lib/cn';
@@ -179,14 +182,14 @@ import { cn } from '../../../shared/lib/cn';
 1. **`apps/legacy-web`은 pnpm 워크스페이스에서 제외**돼 있다 (`!apps/legacy-web`). turbo가 lint/build/check-types를 돌리지 않으므로 **여기 코드를 고쳐도 CI가 안 잡는다.** 애초에 편집 금지다.
 2. **`src/shared/api/generated/`는 orval 산출물** — 직접 수정 금지. `pnpm --filter @repo/web generate:api`로 재생성한다.
 3. **`src/app/routeTree.gen.ts`는 TanStack Router 자동 생성** — 직접 편집 금지. dev/build 시 갱신된다.
-4. **`src/shared/ui/icon/assets/`의 SVG를 추가·변경하면 `pnpm generate:icons`를 돌려야** `icons.generated.ts`에 반영된다. 생성 파일은 직접 수정하지 않는다.
+4. **`src/shared/ui/icon/assets/`의 SVG를 추가·변경하면 `pnpm generate:icons`를 돌려야** `icons.generated.ts`(아이콘별 컴포넌트)와 `icon-catalog.generated.ts`(Storybook 전용 전체 목록)에 반영된다. 앱 코드는 전체 목록을 import하지 않는다 — 모든 아이콘이 첫 청크에 실린다. 생성 파일은 직접 수정하지 않는다.
 5. **색상 토큰에 이름 체계가 두 개 섞여 있다.** 실제로 쓰는 건 하이픈 있는 쪽(`text-text-1` ~ `text-text-4`)이고, `--color-text1` / `--color-text2`(하이픈 없음)는 **아무데서도 안 쓰이는 죽은 토큰**이다. 새 코드에서 쓰지 않는다.
 6. **`rounded-*`는 Tailwind 기본 스케일이 아니다.** `--radius-*: initial`로 기본값을 지우고 숫자 토큰(`rounded-8` = 8px)을 쓴다. `rounded-lg` 같은 t-shirt 이름은 없다.
 7. **`cn()`은 커스텀 확장이 들어간 tailwind-merge다** (`shared/lib/cn.ts`). 타이포 토큰과 radius 토큰을 인식하도록 등록해 둔 것이라 **그냥 `twMerge`를 쓰면 클래스가 조용히 사라진다.** 반드시 `cn()`을 쓴다.
 8. **`src/stories/`는 Foundations 문서가 사는 곳**이다 — `colors` · `typography` · `radius` · `Iconography` MDX 4종. 스캐폴드 잔재가 아니라 **디자인 토큰의 표시처**이므로 지우지 않는다. 토큰을 바꾸면 여기도 갱신한다. 단 **기능 코드는 얹지 않는다.**
 9. **환경변수는 `VITE_` 접두사** (Vite). `import.meta.env.VITE_*`.
 10. **native는 web을 WebView로 로드한다.** 웹 화면 변경이 앱 동작에 직결된다.
-11. **`pnpm format:check`가 현재 실패한다** — 커밋된 6개 파일이 prettier 설정과 어긋나 있다 (`work/to-do/REF-003-*`). 새 코드 때문이 아니니 놀라지 않는다. 단, **네가 만든 파일은 반드시 포맷을 맞춘다.**
+11. **`work/done/`은 포맷 검사에서 빠져 있다** (`.prettierignore`). 완료된 작업 기록은 동결 문서라 고치지 않는다. 그 밖의 파일은 전부 `pnpm format:check`를 통과해야 한다 (`REF-003`).
 12. **`<Button asChild>`와 `isLoading`은 함께 쓸 수 없다** (타입 에러). 로딩 표시가 레이블을 `<span>`으로 감싸면 `Slottable`이 Slot의 직속 자식에서 사라지고, `asChild`의 대상인 `<a>`에는 「진행 중」이 성립하지도 않는다. 링크를 CTA 모양으로 쓸 때는 `<Button asChild><Link …/></Button>`이 정상 동작한다 (`FIX-001`에서 수정).
 
 13. **제품 구현과 legacy 폐기를 구분한다.** 플랫폼별 화면 구현·검증은 `docs/implementation-status.md`, legacy 대체·폐기는 `docs/migration-status.md`에서 본다. legacy에는 이전 여부 표시를 남기지 않고, 폐기 조건이 모두 충족된 뒤 한 번에 제거한다.

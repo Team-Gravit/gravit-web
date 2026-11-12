@@ -28,5 +28,9 @@ export function ConceptNoteContent({ unitId, size }: ConceptNoteContentProps) {
     return <CardStatus message={EMPTY_CONCEPT_NOTE_MESSAGE} />;
   }
 
-  return <Markdown size={size}>{conceptNote.markdown}</Markdown>;
+  return (
+    <Markdown size={size} fallback={<ConceptNoteSkeleton size={size} />}>
+      {conceptNote.markdown}
+    </Markdown>
+  );
 }

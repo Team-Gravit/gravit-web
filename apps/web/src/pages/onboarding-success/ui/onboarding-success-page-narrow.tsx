@@ -2,7 +2,7 @@ import { Link } from '@tanstack/react-router';
 
 import { Button } from '@/shared/ui/button';
 
-import celebrateMascot from './assets/mascot-celebrate.png';
+import celebrateMascot from './assets/mascot-celebrate.png?w=420&lossless&format=webp';
 
 export function OnboardingSuccessPageNarrow() {
   return (
@@ -14,7 +14,10 @@ export function OnboardingSuccessPageNarrow() {
       </div>
 
       <Button asChild size="cta">
-        <Link to="/main">홈으로</Link>
+        {/* 뒤로 가기로 완료 화면에 돌아오지 않게 현재 기록을 대체한다. */}
+        <Link to="/main" replace>
+          홈으로
+        </Link>
       </Button>
     </div>
   );

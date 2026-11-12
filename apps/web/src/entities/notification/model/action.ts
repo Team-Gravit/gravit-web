@@ -10,6 +10,7 @@ type NotificationLinkPath = '/learning' | '/settings/notice' | '/settings/inquir
 export type NotificationActionDescriptor =
   | { kind: 'none' }
   | { kind: 'link'; label: string; to: NotificationLinkPath }
+  | { kind: 'notice-link'; label: string; noticeId: number }
   | { kind: 'follow'; userId: number; initiallyFollowing: boolean }
   | { kind: 'congratulate'; feedId: number; congratulated: boolean };
 
@@ -17,7 +18,7 @@ export type NotificationActionDescriptor =
 const LINK_ACTIONS: Record<string, { label: string; to: NotificationLinkPath }> = {
   GO_TO_LEARNING: { label: '학습하러 가기', to: '/learning' },
   GO_TO_NOTICE: { label: '공지 보러가기', to: '/settings/notice' },
-  GO_TO_INQUIRY: { label: '문의 보러가기', to: '/settings/inquiry' },
+  GO_TO_INQUIRY: { label: '답변 확인하기', to: '/settings/inquiry' },
 };
 
 /**
@@ -27,6 +28,11 @@ const LINK_ACTIONS: Record<string, { label: string; to: NotificationLinkPath }> 
  */
 export function getActionDescriptor(notification: Notification): NotificationActionDescriptor {
   const { type, actionType, targetId, congratulated, actor } = notification;
+
+  // 공지 알림은 targetId(공지 ID)가 있으면 상세로, 없으면 LINK_ACTIONS 의 목록으로 떨어진다.
+  if (actionType === 'GO_TO_NOTICE' && targetId !== undefined) {
+    return { kind: 'notice-link', label: LINK_ACTIONS.GO_TO_NOTICE.label, noticeId: targetId };
+  }
 
   const link = LINK_ACTIONS[actionType];
   if (link) {

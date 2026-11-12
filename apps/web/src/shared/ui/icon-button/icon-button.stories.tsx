@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { ICONS } from '@/shared/ui/icon';
+import { PlusIcon, SearchIcon } from '@/shared/ui/icon';
+import { ICON_CATALOG } from '@/shared/ui/icon/icon-catalog.generated';
 
 import { IconButton } from './icon-button';
 
@@ -23,7 +24,8 @@ const meta = {
   argTypes: {
     icon: {
       control: 'select',
-      options: Object.keys(ICONS),
+      options: Object.keys(ICON_CATALOG),
+      mapping: ICON_CATALOG,
       description: '버튼에 표시할 아이콘',
     },
     variant: {
@@ -53,7 +55,7 @@ const meta = {
     },
   },
   args: {
-    icon: 'plus',
+    icon: PlusIcon,
     variant: 'ghost',
     shape: 'rounded',
     iconSize: 24,
@@ -113,5 +115,5 @@ export const Disabled: Story = {
  * `aria-label` 은 타입에서 필수라 빠뜨리면 컴파일되지 않습니다.
  */
 export const AccessibleName: Story = {
-  args: { icon: 'search', 'aria-label': '검색' },
+  args: { icon: SearchIcon, 'aria-label': '검색' },
 };

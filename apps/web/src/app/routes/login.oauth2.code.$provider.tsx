@@ -11,19 +11,20 @@ export const Route = createFileRoute('/login/oauth2/code/$provider')({
     }
   },
   component: OauthCallbackRoute,
-  validateSearch: (search: Record<string, unknown>): { code?: string } => ({
+  validateSearch: (search: Record<string, unknown>): { code?: string; state?: string } => ({
     code: typeof search.code === 'string' ? search.code : undefined,
+    state: typeof search.state === 'string' ? search.state : undefined,
   }),
 });
 
 function OauthCallbackRoute() {
   const { provider } = Route.useParams();
-  const { code } = Route.useSearch();
+  const { code, state } = Route.useSearch();
 
   // beforeLoad 가 이미 걸렀다. 타입을 좁히기 위한 가드다.
   if (!isLoginProvider(provider)) {
     return null;
   }
 
-  return <OauthCallbackPage provider={provider} code={code} />;
+  return <OauthCallbackPage provider={provider} code={code} state={state} />;
 }

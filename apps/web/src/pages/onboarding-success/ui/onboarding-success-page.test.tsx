@@ -6,7 +6,8 @@ import {
   createRoute,
   createRouter,
 } from '@tanstack/react-router';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import { OnboardingSuccessPage } from './onboarding-success-page';
 
@@ -33,16 +34,22 @@ async function renderSuccessPage() {
       component: OnboardingSuccessPage,
     }),
     createRoute({ getParentRoute: () => rootRoute, path: '/main', component: () => null }),
+    createRoute({ getParentRoute: () => rootRoute, path: '/before', component: () => null }),
   ];
 
   const router = createRouter({
     routeTree: rootRoute.addChildren(routes),
-    history: createMemoryHistory({ initialEntries: ['/onboarding/success'] }),
+    history: createMemoryHistory({
+      initialEntries: ['/before', '/onboarding/success'],
+      initialIndex: 1,
+    }),
   });
 
   await router.load();
 
   render(<RouterProvider router={router as never} />);
+
+  return router;
 }
 
 afterEach(() => {
@@ -77,5 +84,41 @@ describe('OnboardingSuccessPage', () => {
 
     expect(await screen.findByText('계정 생성 완료!')).toBeInTheDocument();
     expect(screen.getByRole('link', { name: '홈으로' })).toHaveAttribute('href', '/main');
+  });
+
+  it.each([
+    ['좁은', false],
+    ['넓은', true],
+  ])(
+    '%s 화면에서 「홈으로」 뒤 뒤로 가기를 하면 완료 화면으로 돌아오지 않는다',
+    async (_label, isWide) => {
+      stubViewport(isWide);
+      const router = await renderSuccessPage();
+
+      await userEvent.click(await screen.findByRole('link', { name: '홈으로' }));
+      await waitFor(() => expect(router.state.location.pathname).toBe('/main'));
+
+      router.history.back();
+
+      await waitFor(() => expect(router.state.location.pathname).toBe('/before'));
+      expect(screen.queryByText('계정 생성 완료!')).not.toBeInTheDocument();
+    },
+  );
+
+  it.each([
+    ['좁은', false],
+    ['넓은', true],
+  ])('%s 화면의 마스코트는 alt="" 이미지 하나다', async (_label, isWide) => {
+    stubViewport(isWide);
+
+    await renderSuccessPage();
+    await screen.findByText('계정 생성 완료!');
+
+    // 넓은 화면의 우주 배경 장식은 <picture> 안에 있어 마스코트와 구분한다.
+    const images = Array.from(document.querySelectorAll('img')).filter(
+      (img) => !img.closest('picture'),
+    );
+    expect(images).toHaveLength(1);
+    expect(images[0]).toHaveAttribute('alt', '');
   });
 });

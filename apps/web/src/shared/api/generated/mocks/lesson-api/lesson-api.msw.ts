@@ -22,6 +22,8 @@ export const getSaveLessonSubmissionResponseMock = (
   lessonSubmissionId: faker.number.int(),
   isLevelUp: faker.datatype.boolean(),
   isLeaguePromoted: faker.datatype.boolean(),
+  isStreakUpdated: faker.datatype.boolean(),
+  consecutiveSolvedDays: faker.number.int(),
   ...overrideResponse,
 });
 

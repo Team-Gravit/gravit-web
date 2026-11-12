@@ -1,6 +1,6 @@
 import { formatElapsedTime } from '@/shared/lib/date';
 import { useElapsedSeconds } from '@/shared/lib/use-elapsed-seconds';
-import { Icon } from '@/shared/ui/icon';
+import { Icon, TimerIcon } from '@/shared/ui/icon';
 
 export interface QuizTimerProps {
   /** 새로고침 후에도 유지되는 세션 시작 시각(ms). */
@@ -18,7 +18,7 @@ export function QuizTimer({ startedAt }: QuizTimerProps) {
       aria-label="경과 시간"
       className="flex items-center gap-0.5 text-main-1 bg-purple-100 h-6 md:h-11 px-2 md:px-3 rounded-8 md:rounded-[60px]"
     >
-      <Icon name="timer" className="size-3.5 md:size-6" />
+      <Icon icon={TimerIcon} className="size-3.5 md:size-6" />
       <span className="min-w-10 md:min-w-15 text-label1 md:text-heading1">
         {formatElapsedTime(elapsedSeconds)}
       </span>

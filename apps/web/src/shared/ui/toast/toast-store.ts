@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-export type ToastPosition = 'top' | 'bottom';
+export type ToastPosition = 'top' | 'bottom' | 'noneTabBottom';
 
 export interface ToastOptions {
   /** 화면에서 토스트가 뜰 위치. 기본은 하단. */

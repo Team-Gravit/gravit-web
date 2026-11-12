@@ -22,5 +22,11 @@ apps/web/src/app/routeTree.gen.ts
 # MSW generated worker
 apps/web/public/mockServiceWorker.js
 
+# Google Search Console 인증 파일 — 구글이 받은 그대로의 내용을 확인한다
+apps/web/public/google*.html
+
 # 다른 프로젝트에서 가져온 참조용 하네스 (우리가 포맷할 대상이 아님)
 docs/_reference
+
+# 완료된 작업 기록 — 끝나면 수정하지 않는 동결 문서다 (work-management.md §5)
+work/done

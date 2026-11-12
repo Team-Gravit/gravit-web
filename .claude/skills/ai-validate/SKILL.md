@@ -16,20 +16,18 @@ description: >
 ## 1. 자동 검사
 
 ```bash
+pnpm format:check    # prettier (work/done 제외)
 pnpm lint            # eslint + steiger
 pnpm check-types
 pnpm test
 pnpm build
 ```
 
-### ⚠️ `pnpm format:check`는 전체를 보지 않는다
+### `format:check`가 실패하면
 
-저장소 전체 포맷 검사는 **커밋된 6개 파일 때문에 이미 실패 중**이다 (`REF-003`).
-전체를 돌리면 항상 빨간불이라 신호가 되지 않는다. **변경 파일만** 본다.
-
-`plan.md`의 영향 파일과 `git status --short`를 대조해 **이번 작업이 변경한 파일만** 골라낸 뒤,
-그 명시적 목록을 `pnpm exec prettier --check <파일...>`에 넘긴다. 셸별 명령 치환에 의존하거나
-사용자의 범위 밖 변경을 검사·수정 대상에 섞지 않는다.
+실패 파일이 `plan.md`의 영향 파일과 `git status --short`에 있는 **이번 작업의 변경 파일**인지 본다.
+이번 작업 파일이면 `pnpm exec prettier --write <파일...>`로 고친다. 범위 밖 파일이면 고치지 않고
+체크리스트에 그 파일과 원인을 적는다. 사용자의 범위 밖 변경을 수정 대상에 섞지 않는다.
 
 루트 명령은 저장소 기준 경로를 받는다. `pnpm --filter @repo/web exec ...`를 별도로 실행하면
 작업 디렉터리가 `apps/web`이므로 그때만 앱 기준 상대경로를 사용한다.
@@ -157,7 +155,7 @@ git mv work/in-progress/{ID} work/done/{ID}
 ## 하지 않는 것
 
 - ❌ 체크리스트 파일 생략
-- ❌ `pnpm format:check` 전체 결과를 실패로 보고하기 — REF-003이 원인이면 그렇게 적는다
+- ❌ 범위 밖 파일의 포맷을 함께 고치기 — 실패 원인으로 적기만 한다
 - ❌ 검사 실패를 "통과"로 적기 — 실패는 실패로 적고 원인을 밝힌다
 - ❌ 재검증 3회 초과
 - ❌ 커밋 (사용자가 요청할 때만)

@@ -4,8 +4,10 @@ import { LOGIN_PROVIDERS, SocialLoginButton } from '@/features/auth-login';
 import { PageHeader } from '@/shared/ui/layout';
 import { GravitSymbol } from '@/shared/ui/logo';
 
+import type { LoginPageVariantProps } from './login-page-variant-props';
+
 /** 좁은 화면 로그인 화면. 상단바를 두고 버튼을 화면 아래쪽에 붙인다. */
-export function LoginPageNarrow() {
+export function LoginPageNarrow({ onLoginSuccess, onLoginError }: LoginPageVariantProps) {
   return (
     <div className="flex min-h-svh flex-col bg-white">
       <PageHeader title="로그인" />
@@ -24,7 +26,12 @@ export function LoginPageNarrow() {
 
         <div className="mt-auto flex flex-col gap-3">
           {LOGIN_PROVIDERS.map((provider) => (
-            <SocialLoginButton key={provider} provider={provider} />
+            <SocialLoginButton
+              key={provider}
+              provider={provider}
+              onLoginSuccess={onLoginSuccess}
+              onLoginError={onLoginError}
+            />
           ))}
         </div>
 

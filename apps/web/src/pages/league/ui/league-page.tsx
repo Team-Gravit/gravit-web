@@ -1,68 +1,130 @@
-import { useState } from 'react';
+import { type ReactNode, useState } from 'react';
 
+import { useRefetchActiveQueries } from '@/shared/api';
+import { GradientCanvas, type GradientCanvasArt } from '@/shared/ui/gradient-canvas';
+import { PullToRefresh } from '@/shared/ui/pull-to-refresh';
 import { useLeagueHome, useMyLeagueProfile } from '@/entities/league';
 import { LeagueArena } from '@/widgets/league-arena';
 import { LeagueSeasonModal } from '@/widgets/league-season-modal';
 
-import LeagueBgDesktop from './assets/league-bg-desktop.png';
-import LeagueBgMobile from './assets/league-bg-mobile.png';
+import leagueBgDesktopAvif from './assets/league-bg-desktop.png?w=1280;1920&format=avif&quality=75&as=srcset';
+import leagueBgDesktopWebp from './assets/league-bg-desktop.png?w=1280;1920&format=webp&as=srcset';
+import leagueBgDesktopFallback from './assets/league-bg-desktop.png?w=1920&format=webp';
+import leagueBgMobile from './assets/league-bg-mobile.png?w=720&format=webp';
 
-const BACKGROUND_GRADIENT = 'linear-gradient(197deg, #4721ca 3.6%, #17034e 95%)';
+/*
+  시안 그라데이션(LG-01)을 상자 기준 CSS로 옮긴 값이다.
+  - 좁은 화면: 배경 프레임 360×692. 장식이 투명이라 이 값이 그대로 보인다
+  - 넓은 화면: 1920×2582 배경 중 위쪽 1080. 장식 이미지에 같은 그라데이션이 구워져 있어 로딩 전 바탕으로만 보인다
+*/
+const LEAGUE_BACKGROUND: GradientCanvasArt = {
+  gradient:
+    'linear-gradient(282.21deg, var(--color-space-start) 3.59%, var(--color-space-end) 95.08%)',
+  decoration: { src: leagueBgMobile },
+};
 
-/** 리그 화면. 로딩/에러 분기와 시즌 모달을 결정하고 아레나를 배치한다. */
+const LEAGUE_BACKGROUND_WIDE: GradientCanvasArt = {
+  gradient:
+    'linear-gradient(287.18deg, var(--color-space-start) -16.27%, var(--color-space-end) 94.06%)',
+  decoration: {
+    avifSrcSet: leagueBgDesktopAvif,
+    webpSrcSet: leagueBgDesktopWebp,
+    src: leagueBgDesktopFallback,
+    sizes: '100vw',
+  },
+};
+
+/*
+  좁은 화면: 그라데이션과 장식을 360:692 상자에 함께 넣고 화면을 덮게 키운다(위쪽 기준). 따로 늘리면 화면 비율에
+  따라 둘이 어긋난다. 넓은 화면: 장식에 그라데이션이 구워져 있어 화면을 그대로 채운다.
+*/
+const LEAGUE_BACKGROUND_FIT_CLASS = [
+  'inset-auto top-0 left-1/2 aspect-360/692 w-[max(100cqw,calc(100cqh*360/692))] -translate-x-1/2',
+  'md:inset-0 md:aspect-auto md:w-auto md:translate-x-0',
+].join(' ');
+
+/**
+ * 리그 화면. 배경을 깔고, 당겨서 새로고침으로 감싼 내용을 배치한다.
+ *
+ * 배경은 PullToRefresh 밖에 둔다. 안에 두면 당기는 동안 걸리는 transform 때문에 `fixed` 배경이
+ * 화면 대신 감싼 영역을 기준으로 놓여 함께 내려간다.
+ */
 export function LeaguePage() {
+  const refetchActiveQueries = useRefetchActiveQueries();
+
+  return (
+    <>
+      <LeagueBackground />
+      <PullToRefresh onRefresh={refetchActiveQueries} className="h-full" isUnderStatusBar>
+        <LeagueContent />
+      </PullToRefresh>
+    </>
+  );
+}
+
+/** 로딩/에러 분기와 시즌 모달을 결정하고 아레나를 배치한다. */
+function LeagueContent() {
   const homeQuery = useLeagueHome();
   const profileQuery = useMyLeagueProfile();
 
-  const [modalChecked, setModalChecked] = useState(false);
+  const [hasClosedSeasonModal, setHasClosedSeasonModal] = useState(false);
 
-  if (profileQuery.isFetching || homeQuery.isLoading) return <StatusScreen>로딩중</StatusScreen>;
-  if (profileQuery.isError || homeQuery.isError) return <StatusScreen>에러 발생</StatusScreen>;
-  if (!profileQuery.data || !homeQuery.data) return <StatusScreen>데이터 없음</StatusScreen>;
+  // isPending은 성공한 데이터가 없을 때만 참이다. 재조회 중에는 기존 화면을 유지한다.
+  if (profileQuery.isPending || homeQuery.isPending) {
+    return <StatusScreen>로딩중</StatusScreen>;
+  }
+  if (profileQuery.isError || homeQuery.isError) {
+    return <StatusScreen>에러 발생</StatusScreen>;
+  }
 
   const home = homeQuery.data;
   const profile = profileQuery.data;
+  const seasonPopup =
+    home.containsPopup && !hasClosedSeasonModal ? home.lastSeasonPopupDto : undefined;
 
-  const shouldShowSeasonModal =
-    home.containsPopup && Boolean(home.lastSeasonPopupDto) && !modalChecked;
+  function handleSeasonModalComplete() {
+    setHasClosedSeasonModal(true);
+  }
 
   // overlay 헤더(투명)가 배경 위에 겹치되 아레나 콘텐츠는 가리지 않도록, 데스크톱에서 헤더 높이만큼
   // 상단 여백을 둔다. 배경은 fixed 라 이 padding 에 영향받지 않고 헤더 뒤까지 full-bleed 유지된다.
   return (
-    <main className="relative flex h-full w-full flex-col overflow-hidden md:px-10 md:pb-[clamp(16px,8vh,64px)] md:pt-[calc(var(--desktop-header-height)+clamp(16px,10vh,100px))]">
-      <div
-        aria-hidden
-        className="fixed inset-0 -z-10"
-        style={{ backgroundImage: BACKGROUND_GRADIENT }}
-      >
-        <picture>
-          <source media="(min-width: 768px)" srcSet={LeagueBgDesktop} />
-          <img
-            src={LeagueBgMobile}
-            alt=""
-            className="absolute inset-0 h-full w-full object-cover"
-          />
-        </picture>
-        <div aria-hidden className="absolute inset-0 bg-[#000000]/45" />
-      </div>
-
+    <main className="relative flex min-h-0 w-full flex-1 flex-col overflow-hidden pt-(--safe-area-top) md:px-10 md:pb-[clamp(16px,8vh,64px)] md:pt-[calc(var(--desktop-header-height)+clamp(16px,10vh,100px))]">
       <div className="flex min-h-0 flex-1 flex-col">
-        <LeagueArena seasonName={home.currentSeason.nowSeason} myLeagueId={profile.leagueId} />
+        <LeagueArena
+          seasonName={home.currentSeason.nowSeason}
+          myLeagueId={profile.leagueId}
+          myRank={profile.rank}
+          myUserId={profile.userId}
+        />
       </div>
 
-      {shouldShowSeasonModal && home.lastSeasonPopupDto && (
-        <LeagueSeasonModal
-          popup={home.lastSeasonPopupDto}
-          onComplete={() => setModalChecked(true)}
-        />
+      {seasonPopup && (
+        <LeagueSeasonModal popup={seasonPopup} onComplete={handleSeasonModalComplete} />
       )}
     </main>
   );
 }
 
-function StatusScreen({ children }: { children: React.ReactNode }) {
+function LeagueBackground() {
   return (
-    <div className="flex min-h-screen w-full items-center justify-center text-body1-normal text-text-1-w">
+    <div aria-hidden className="fixed inset-0 -z-10">
+      <GradientCanvas
+        {...LEAGUE_BACKGROUND}
+        wide={LEAGUE_BACKGROUND_WIDE}
+        artworkClassName={LEAGUE_BACKGROUND_FIT_CLASS}
+        // 그림 상자 크기를 화면(캔버스) 크기 기준으로 계산한다.
+        className="absolute inset-0 [container-type:size]"
+      />
+      {/* 덮개는 넓은 화면 시안에만 있다(순수 검정 40%). */}
+      <div aria-hidden className="absolute inset-0 hidden bg-(--primitive-gray-1100)/40 md:block" />
+    </div>
+  );
+}
+
+function StatusScreen({ children }: { children: ReactNode }) {
+  return (
+    <div className="flex w-full flex-1 items-center justify-center text-body1-normal text-text-1-w">
       {children}
     </div>
   );

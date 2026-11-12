@@ -1,5 +1,5 @@
 import { Button, type ButtonProps } from '@/shared/ui/button';
-import { Icon } from '@/shared/ui/icon';
+import { Icon, LearningFillIcon } from '@/shared/ui/icon';
 
 import { useExcludeWrongAnswer } from '../api/use-exclude-wrong-answer';
 import { WRONG_ANSWER_EXCLUDE_LABEL } from '../model/constants';
@@ -27,7 +27,7 @@ export function ExcludeWrongAnswerButton({
       variant="stroke-error"
       size={size}
       className={className}
-      startIcon={<Icon name="learning-fill" size={16} />}
+      startIcon={<Icon icon={LearningFillIcon} size={16} />}
       isLoading={isPending}
       onClick={() => excludeWrongAnswer(problemId)}
     >

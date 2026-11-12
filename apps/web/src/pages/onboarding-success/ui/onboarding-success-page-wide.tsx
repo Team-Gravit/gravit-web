@@ -4,7 +4,7 @@ import { Button } from '@/shared/ui/button';
 import { SpaceBackground } from '@/shared/ui/layout';
 import { GravitLogo } from '@/shared/ui/logo';
 
-import endMascot from './assets/mascot-end.png';
+import endMascot from './assets/mascot-end.png?w=312&lossless&format=webp';
 
 export function OnboardingSuccessPageWide() {
   return (
@@ -29,7 +29,10 @@ export function OnboardingSuccessPageWide() {
         </div>
 
         <Button asChild size="cta" className="mt-6">
-          <Link to="/main">홈으로</Link>
+          {/* 뒤로 가기로 완료 화면에 돌아오지 않게 현재 기록을 대체한다. */}
+          <Link to="/main" replace>
+            홈으로
+          </Link>
         </Button>
       </section>
     </SpaceBackground>

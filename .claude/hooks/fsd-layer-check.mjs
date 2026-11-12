@@ -32,6 +32,7 @@ const GENERATED = [
   ['apps/web/src/shared/api/generated/', 'pnpm --filter @repo/web generate:api'],
   ['apps/web/src/app/routeTree.gen.ts', 'dev/build 시 자동 생성'],
   ['apps/web/src/shared/ui/icon/icons.generated.ts', 'pnpm generate:icons'],
+  ['apps/web/src/shared/ui/icon/icon-catalog.generated.ts', 'pnpm generate:icons'],
 ];
 
 const WEB_SRC = 'apps/web/src/';

@@ -10,6 +10,7 @@ export interface MissionDetailResponse {
   missionType: string;
   missionDescription: string;
   awardXp: number;
+  /** 미션 진행률 (0~100, 소수점 첫째 자리 반올림). 진행량 / 목표치 x 100, 최대 100 */
   progressRate: number;
   isCompleted: boolean;
 }
