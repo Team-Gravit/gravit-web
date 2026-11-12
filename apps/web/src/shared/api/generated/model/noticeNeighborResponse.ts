@@ -6,9 +6,9 @@
  * OpenAPI spec version: 1.0.0
  */
 
-export type SendSeasonEndingParams = {
-  /**
-   * 시즌 종료까지 남은 일수 마일스톤(7/3)
-   */
-  daysBefore?: number;
-};
+export interface NoticeNeighborResponse {
+  /** 공지 아이디 */
+  id: number;
+  /** 공지 제목 */
+  title: string;
+}
