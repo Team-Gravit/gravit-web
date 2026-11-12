@@ -3,7 +3,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 
 import { cn } from '@/shared/lib/cn';
 import { GradientCanvas } from '@/shared/ui/gradient-canvas';
-import { Icon, InfoIcon } from '@/shared/ui/icon';
+import { InfoTooltip } from '@/shared/ui/info-tooltip';
 import { ProgressBar } from '@/shared/ui/progress-bar';
 import { Skeleton } from '@/shared/ui/skeleton';
 
@@ -59,7 +59,7 @@ export interface ChapterCardProps extends VariantProps<typeof chapterCardVariant
  * 링크를 콘텐츠 위에 겹쳐 카드 전체를 클릭 영역으로 만든다.
  *
  * 링크의 `aria-label`은 자식에서 계산되는 접근 가능한 이름을 대체하므로 챕터 설명은 링크 밖의
- * 정보 아이콘으로 노출한다. 정식 툴팁 시안이 없어 설명 표시는 네이티브 `title`을 사용한다.
+ * 정보 아이콘의 말풍선으로 노출한다.
  */
 export function ChapterCard({
   chapterId,
@@ -105,20 +105,23 @@ export function ChapterCard({
         {/* 카드 클릭은 뒤의 링크로 통과시키고 설명 아이콘만 포인터 입력을 받는다. */}
         <div className="pointer-events-none relative z-30 flex flex-col gap-3">
           <div className={cn('flex justify-between gap-2', style.header)}>
+            {/* 단어 단위로 줄을 바꾸되, 한 단어(예: 타입스크립트)가 칸보다 길 때만 그 단어를 끊어
+                오른쪽이 잘리지 않게 한다. 글자 크기 조정은 디자이너와 정한다. */}
             <span
               className={cn(
-                'pointer-events-none line-clamp-2 break-keep font-mbc text-text-1-w',
+                'pointer-events-none line-clamp-2 break-keep wrap-anywhere font-mbc text-text-1-w',
                 style.title,
               )}
             >
               {title}
             </span>
             {description ? (
-              <span title={description} className="pointer-events-auto shrink-0 cursor-help">
-                <Icon
-                  icon={InfoIcon}
-                  aria-label={`${title} 설명: ${description}`}
-                  className="size-6 text-text-1-w"
+              // 제목과 같은 글꼴로 한 줄 높이(1lh) 칸을 만들어 아이콘을 그 줄의 세로 가운데에 둔다.
+              <span className={cn('flex h-[1lh] shrink-0 items-center font-mbc', style.title)}>
+                <InfoTooltip
+                  content={description}
+                  label={`${title} 설명 보기`}
+                  className="pointer-events-auto size-6 text-text-1-w"
                 />
               </span>
             ) : null}
