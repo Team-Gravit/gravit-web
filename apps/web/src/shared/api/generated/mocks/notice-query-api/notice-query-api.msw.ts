@@ -24,6 +24,8 @@ export const getGetNoticeSummaryResponseMock = (
   status: faker.string.alpha({ length: { min: 10, max: 20 } }),
   pinned: faker.datatype.boolean(),
   publishedAt: faker.date.past().toISOString().slice(0, 19) + 'Z',
+  prev: { id: faker.number.int(), title: faker.string.alpha({ length: { min: 10, max: 20 } }) },
+  next: { id: faker.number.int(), title: faker.string.alpha({ length: { min: 10, max: 20 } }) },
   ...overrideResponse,
 });
 

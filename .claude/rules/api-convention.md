@@ -237,7 +237,10 @@ invalidateResource(queryClient, '/api/v1/users');
 
 ## 8. 명세가 이상할 때
 
-`openapi/normalize-openapi.mjs`는 **알려진 결함 하나만** 보정한다 (BearerAuth의 `name`/`in` 제거).
+`openapi/normalize-openapi.mjs`는 **알려진 결함만** 보정한다.
+
+- BearerAuth의 `name`/`in` 제거
+- `RecommendUserResponse.mutualFollowPreviewNickname`을 nullable로 — 설명은 null을 말하지만 타입이 non-null로 선언돼 있다
 
 - `unsafeDisableValidation`은 쓰지 않는다. 다른 명세 오류를 계속 발견할 수 있어야 한다
 - 새 결함을 만나면 transformer에 **최소 범위로** 추가하고, 사유를 주석에 남긴다
