@@ -13,6 +13,11 @@ const STATUS_CHIP: Record<UnitProgressStatus, { variant: ChipProps['variant']; l
   notStarted: { variant: 'muted', label: '학습 전' },
 };
 
+const LONGEST_STATUS_LABEL = Object.values(STATUS_CHIP).reduce(
+  (longest, { label }) => (label.length > longest.length ? label : longest),
+  '',
+);
+
 export interface UnitProgressItemProps {
   unit: UnitProgress;
   className?: string;
@@ -38,10 +43,16 @@ export function UnitProgressItem({ unit, className }: UnitProgressItemProps) {
         <span aria-hidden className="h-4.5 w-px shrink-0 bg-divider-1" />
         <span className="min-w-0 flex-1 truncate">{unit.title}</span>
       </span>
-      {/* 칩 폭을 가장 긴 문구(학습 완료)에 맞춰 고정해 행마다 제목 칸 너비가 같게 한다.
-          좁아지거나 목록에 스크롤 막대가 생겨도 열이 어긋나지 않는다. */}
-      <Chip variant={variant} className="min-w-20">
-        {label}
+      {/* 가장 긴 상태 문구를 보이지 않는 가상 요소로 같은 칸에 겹쳐 칩 폭을 그 문구에 맞춘다.
+          행마다 제목 칸 너비가 같아지고, 칩 크기가 화면 폭에 따라 바뀌어도 폭이 남거나 모자라지 않는다.
+          가상 요소라 행의 텍스트와 스크린리더에는 잡히지 않는다. */}
+      <Chip variant={variant}>
+        <span
+          data-width-label={LONGEST_STATUS_LABEL}
+          className="grid justify-items-center after:invisible after:col-start-1 after:row-start-1 after:content-[attr(data-width-label)]"
+        >
+          <span className="col-start-1 row-start-1">{label}</span>
+        </span>
       </Chip>
     </li>
   );
