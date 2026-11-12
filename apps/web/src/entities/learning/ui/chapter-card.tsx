@@ -3,7 +3,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 
 import { cn } from '@/shared/lib/cn';
 import { GradientCanvas } from '@/shared/ui/gradient-canvas';
-import { Icon, InfoIcon } from '@/shared/ui/icon';
+import { InfoTooltip } from '@/shared/ui/info-tooltip';
 import { ProgressBar } from '@/shared/ui/progress-bar';
 import { Skeleton } from '@/shared/ui/skeleton';
 
@@ -59,7 +59,7 @@ export interface ChapterCardProps extends VariantProps<typeof chapterCardVariant
  * 링크를 콘텐츠 위에 겹쳐 카드 전체를 클릭 영역으로 만든다.
  *
  * 링크의 `aria-label`은 자식에서 계산되는 접근 가능한 이름을 대체하므로 챕터 설명은 링크 밖의
- * 정보 아이콘으로 노출한다. 정식 툴팁 시안이 없어 설명 표시는 네이티브 `title`을 사용한다.
+ * 정보 아이콘의 말풍선으로 노출한다.
  */
 export function ChapterCard({
   chapterId,
@@ -114,11 +114,12 @@ export function ChapterCard({
               {title}
             </span>
             {description ? (
-              <span title={description} className="pointer-events-auto shrink-0 cursor-help">
-                <Icon
-                  icon={InfoIcon}
-                  aria-label={`${title} 설명: ${description}`}
-                  className="size-6 text-text-1-w"
+              // 제목과 같은 글꼴로 한 줄 높이(1lh) 칸을 만들어 아이콘을 그 줄의 세로 가운데에 둔다.
+              <span className={cn('flex h-[1lh] shrink-0 items-center font-mbc', style.title)}>
+                <InfoTooltip
+                  content={description}
+                  label={`${title} 설명 보기`}
+                  className="pointer-events-auto size-6 text-text-1-w"
                 />
               </span>
             ) : null}
