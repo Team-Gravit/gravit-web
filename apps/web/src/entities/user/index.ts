@@ -25,6 +25,7 @@ export {
 export { useNicknameStatus } from './model/use-nickname-status';
 export { ProfileAvatar, type ProfileAvatarProps } from './ui/profile-avatar';
 export { toLevelProgress, type LevelProgress } from './model/level';
+export { isWithdrawnAccountError, readWithdrawnAccountError } from './model/withdrawn-account';
 export { LevelProgressAvatar, type LevelProgressAvatarProps } from './ui/level-progress-avatar';
 export { ProfileColorPicker, type ProfileColorPickerProps } from './ui/profile-color-picker';
 export {
