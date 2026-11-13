@@ -12,7 +12,7 @@ export function LoginPageNarrow({ onLoginSuccess, onLoginError }: LoginPageVaria
     <div className="flex min-h-svh flex-col bg-white">
       <PageHeader title="로그인" />
 
-      <main className="flex flex-1 flex-col px-4 pt-28 pb-10">
+      <main className="flex flex-1 flex-col px-4 pt-28 pb-safe-10">
         <GravitSymbol className="w-18 text-main" />
 
         <h2 className="mt-5 text-heading1 text-text-1">

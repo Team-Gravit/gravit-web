@@ -1,11 +1,11 @@
-import { StyleSheet, View, Platform } from 'react-native';
+import { Linking, StyleSheet, View, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useEffect, useState } from 'react';
 import { WebView, type WebViewMessageEvent } from 'react-native-webview';
 import Constants from 'expo-constants';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar, type StatusBarStyle } from 'expo-status-bar';
-import { NATIVE_USER_AGENT_MARKER } from '@repo/bridge-protocol';
+import { isAllowedBridgeOrigin, NATIVE_USER_AGENT_MARKER } from '@repo/bridge-protocol';
 
 import { createBridge } from '../bridge/create-bridge';
 import { APP_VERSION, handleAppInfo } from '../bridge/handlers/app-info';
@@ -63,6 +63,20 @@ function rewriteLocalDevCallback(url: string): string | null {
   return url.replace(LOCAL_DEV_ORIGIN, WEB_URL.replace(/\/+$/, ''));
 }
 
+/** `onShouldStartLoadWithRequest` 이벤트 중 쓰는 값. `isTopFrame`은 iOS 만 준다. */
+interface ShouldStartLoadRequest {
+  url: string;
+  isTopFrame?: boolean;
+}
+
+/**
+ * WebView 안에서 그대로 열 주소인지. 서비스 origin 과 빈 문서만 해당한다.
+ * 앱의 소셜 로그인은 네이티브 SDK 로 하므로 제공자 인가 페이지를 WebView 에서 열 일이 없다.
+ */
+function isInAppUrl(url: string): boolean {
+  return url === 'about:blank' || isAllowedBridgeOrigin(url, WEB_URL);
+}
+
 /**
  * 로드 결과와 무관하게 스플래시를 내리는 상한.
  * 서버가 응답 없이 멈추면 `onLoadEnd` 도 `onError` 도 오지 않아 스플래시에 갇힌다.
@@ -107,14 +121,23 @@ export default function WebviewPage() {
     return () => clearTimeout(timer);
   }, []);
 
-  const handleShouldStartLoad = ({ url }: { url: string }) => {
+  const handleShouldStartLoad = ({ url, isTopFrame }: ShouldStartLoadRequest) => {
     const rewrittenUrl = rewriteLocalDevCallback(url);
+    if (rewrittenUrl) {
+      setWebUri(rewrittenUrl);
+      return false;
+    }
 
-    if (!rewrittenUrl) {
+    // iframe 안의 이동은 화면을 바꾸지 않는다. Android 는 값을 주지 않으므로 최상위로 본다.
+    if (isTopFrame === false || isInAppUrl(url)) {
       return true;
     }
 
-    setWebUri(rewrittenUrl);
+    // 외부 사이트 · mailto 를 WebView 에서 열면 앱 화면이 그 페이지로 바뀌고, 주소창 · 뒤로 가기가
+    // 없어 돌아올 수 없다. 기기 기본 앱(브라우저 · 메일)으로 넘긴다.
+    Linking.openURL(url).catch((error: unknown) => {
+      console.warn('[WebView] 외부 링크를 열지 못함', url, error);
+    });
     return false;
   };
 

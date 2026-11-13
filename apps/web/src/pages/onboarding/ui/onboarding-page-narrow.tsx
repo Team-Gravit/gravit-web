@@ -31,7 +31,7 @@ export function OnboardingPageNarrow({ form, onCancel }: OnboardingPageNarrowPro
         }
       />
 
-      <main className="flex flex-1 flex-col px-4 pt-5">
+      <main className="flex flex-1 flex-col px-4 pt-5 pb-safe-0">
         <OnboardingForm
           form={form}
           secondaryAction={<OnboardingCancelButton onCancel={onCancel} />}

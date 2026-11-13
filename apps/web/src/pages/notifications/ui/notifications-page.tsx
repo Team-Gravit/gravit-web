@@ -28,7 +28,7 @@ export function NotificationsPage() {
       {/* 제목 막대는 두고 그 아래만 내려간다. 빈 상태에서도 당겨서 다시 불러올 수 있다. */}
       <PullToRefresh onRefresh={refetchActiveQueries} className="min-h-0 flex-1">
         {notifications && notifications.length > 0 ? (
-          <div className="flex min-h-0 flex-1 flex-col gap-6 overflow-y-auto overscroll-y-none px-4 py-5 scrollbar-hide">
+          <div className="flex min-h-0 flex-1 flex-col gap-6 overflow-y-auto overscroll-y-none px-4 pt-5 pb-safe-5 scrollbar-hide">
             {groups.map((group) => (
               <section key={group.label} className="flex flex-col gap-4">
                 <p className="text-label2 text-text-4">{group.label}</p>
