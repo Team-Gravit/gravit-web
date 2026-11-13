@@ -46,7 +46,9 @@ export function ErrorStatus({
           </p>
         </div>
       </div>
-      <div className="flex w-full gap-3 px-4 py-5 md:w-auto md:gap-4 md:p-0">{actions}</div>
+      <div className="flex w-full gap-3 px-4 pt-5 pb-safe-5 md:w-auto md:gap-4 md:p-0">
+        {actions}
+      </div>
     </div>
   );
 }
