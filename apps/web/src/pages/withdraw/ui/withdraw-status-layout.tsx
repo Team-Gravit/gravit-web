@@ -9,13 +9,20 @@ interface WithdrawStatusLayoutProps {
   title: string;
   /** 본문 안내 문구. 줄바꿈이 있어 ReactNode로 받는다. */
   description: ReactNode;
+  /** 화면 아래에 두는 다음 행동. 앱처럼 빠져나갈 헤더가 없는 환경에서 막다른 화면을 피한다. */
+  action?: ReactNode;
 }
 
 /**
  * 탈퇴 플로우의 전체화면 안내 레이아웃(마스코트 + 제목 + 설명).
  * 결과(성공/실패)와 메일 발송 안내가 구조가 같아 공유한다. 데스크톱은 하단에 Footer.
  */
-export function WithdrawStatusLayout({ mascotSrc, title, description }: WithdrawStatusLayoutProps) {
+export function WithdrawStatusLayout({
+  mascotSrc,
+  title,
+  description,
+  action,
+}: WithdrawStatusLayoutProps) {
   return (
     <>
       <main className="bg-bg-0 md:bg-bg-2 flex min-h-screen flex-col items-center justify-between text-center px-4 pt-5 pb-safe-5 md:p-0">
@@ -26,6 +33,7 @@ export function WithdrawStatusLayout({ mascotSrc, title, description }: Withdraw
           </h1>
           <p className="text-body2-normal md:text-headline1 text-text-4">{description}</p>
         </div>
+        {action ? <div className="w-full md:mt-8 md:mb-20 md:w-[370px]">{action}</div> : null}
       </main>
       <div className="hidden md:block">
         <Footer />
