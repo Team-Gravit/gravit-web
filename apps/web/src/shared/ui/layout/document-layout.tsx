@@ -1,95 +1,63 @@
 import type { ReactNode } from 'react';
-import { Link } from '@tanstack/react-router';
 
-import { cn } from '@/shared/lib/cn';
 import { useIsWideViewport } from '@/shared/lib/use-is-wide-viewport';
-import { ChevronLeftIcon } from '@/shared/ui/icon';
-import { IconButton } from '@/shared/ui/icon-button';
 import { GravitLogo } from '@/shared/ui/logo';
 
-import { PageHeader } from './page-header';
-
 export interface DocumentLayoutProps {
-  /** 문서 제목. 화면 폭에 따라 상단바 또는 본문 머리글로 렌더된다. */
+  /** 문서 이름. 본문 머리에 「Gravit {title}」로 표시한다. */
   title: string;
-  /** 좁은 화면 상단바의 뒤로 가기. 목적지는 화면이 정한다. */
-  onBack: () => void;
+  /** 본문 머리와 맨 아래에 함께 표시하는 시행일 (예: `2026년 11월 13일`). */
+  effectiveDate: string;
   /**
-   * 본문 아래에 붙는 영역. **넓은 화면에서만 렌더된다.**
-   *
-   * `shared`가 `widgets`를 import할 수 없어 노드로 받는다. 화면이 무엇을 넣을지 정한다.
+   * 화면 폭별 상단 헤더. `shared`가 `widgets`를 import할 수 없어 노드로 받는다.
+   * 넓은 화면 헤더는 화면 위에 고정되므로 본문이 그 높이만큼 내려간다.
    */
+  wideHeader: ReactNode;
+  /** 좁은 화면 헤더는 문서의 `h1`을 가진다고 가정한다. 본문 머리는 그때 `h1`이 아니다. */
+  narrowHeader: ReactNode;
+  /** 본문 아래에 붙는 영역. **넓은 화면에서만 렌더된다.** */
   footer?: ReactNode;
   children: ReactNode;
-  className?: string;
 }
 
-/**
- * 본문이 긴 고지 문서 화면의 껍데기.
- *
- * 제목은 **이 컴포넌트가 렌더한다.** 좁은 화면에서는 상단바가, 넓은 화면에서는 본문 머리글이
- * 문서의 `h1`이 되므로 `children`에 `h1`을 넣지 않는다. 넣으면 `h1`이 둘이 된다.
- *
- * 본문 타이포는 컨테이너에서 상속시킨다. `p`·`li`에 클래스를 붙이지 않아도 되고,
- * 강조 문단처럼 예외가 필요한 곳은 직접 클래스를 줘서 상속을 덮으면 된다.
- * (`[&_p]:` 같은 하위 선택자로 지정하면 자식에 붙인 클래스보다 우선순위가 높아 덮이지 않는다.)
- */
+/** 처리방침·약관처럼 본문이 긴 고지 문서 화면의 껍데기. 본문은 `@/shared/ui/document` 조각으로 채운다. */
 export function DocumentLayout({
   title,
-  onBack,
+  effectiveDate,
+  wideHeader,
+  narrowHeader,
   footer,
   children,
-  className,
 }: DocumentLayoutProps) {
   const isWide = useIsWideViewport();
+  // 좁은 화면은 상단바 제목이 h1 이다. 본문 머리까지 h1 이면 문서 제목이 둘이 된다.
+  const TitleTag = isWide ? 'h1' : 'p';
 
   return (
-    <>
-      {isWide ? (
-        <header className="flex h-[var(--header-height)] w-full items-center bg-white px-8 py-4">
-          <Link to="/">
-            <GravitLogo className="h-6" />
-          </Link>
-        </header>
-      ) : (
-        <PageHeader
-          title={title}
-          leftSlot={
-            <IconButton
-              icon={ChevronLeftIcon}
-              iconSize={24}
-              aria-label="뒤로 가기"
-              onClick={onBack}
-            />
-          }
-        />
-      )}
+    <div className="flex min-h-dvh w-full flex-col bg-white md:pt-(--desktop-header-height)">
+      {isWide ? wideHeader : narrowHeader}
 
-      <main
-        className={cn(
-          // 본문 폭과 여백. 좁은 화면 기준값을 두고 md 에서 넓힌다.
-          'mx-auto w-full max-w-[800px] px-4 py-5 md:px-8 md:py-12',
+      <main className="mx-auto flex w-full max-w-[800px] flex-1 flex-col">
+        <div className="flex w-full flex-col gap-1 border-b border-bg-2 px-5 pt-6 pb-3 md:px-8">
+          <TitleTag className="text-heading1 text-text-1">Gravit {title}</TitleTag>
+          <p className="text-label2 text-text-3">시행일 {effectiveDate}</p>
+        </div>
 
-          // 본문 타이포는 상속시킨다. 자식에 클래스를 주면 그쪽이 이긴다.
-          'text-body2-reading text-text-2 md:text-body1-reading',
-
-          // 제목은 preflight 가 크기·굵기를 지워 상속으로는 살아나지 않으므로 직접 지정한다.
-          '[&_h1]:text-title3 [&_h1]:text-text-1 md:[&_h1]:text-title1',
-          '[&_h2]:text-heading2 [&_h2]:text-text-1 md:[&_h2]:text-heading1',
-          '[&_h3]:text-headline2 [&_h3]:text-text-1 md:[&_h3]:text-headline1',
-          '[&_h4]:text-headline2 [&_h4]:text-text-1 md:[&_h4]:text-headline1',
-
-          '[&_a]:text-main [&_a:hover]:underline',
-
-          className,
-        )}
-      >
-        {isWide ? <h1 className="mb-6">{title}</h1> : null}
-        {children}
+        <div className="flex w-full flex-col gap-7 px-5 pt-3 pb-6 md:px-8 md:pb-12">{children}</div>
       </main>
 
       {/* 좁은 화면에서는 아예 마운트하지 않는다. 숨기기만 하면 이미지까지 내려받는다. */}
-      {isWide ? footer : null}
-    </>
+      {isWide ? (
+        footer
+      ) : (
+        <div className="flex w-full flex-col gap-3 bg-bg-1 px-5 pt-6 pb-safe-6">
+          <GravitLogo className="h-5 w-auto" />
+          <div className="flex flex-col gap-0.5 text-caption1 text-text-4">
+            <p>Gravit</p>
+            <p>시행일: {effectiveDate}</p>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }

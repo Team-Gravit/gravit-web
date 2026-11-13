@@ -13,6 +13,11 @@ export interface HeaderProps {
   variant?: HeaderVariant;
   /** 알림 트리거 슬롯. 위젯 간 cross-slice 를 피하려 app 이 NotificationPopover 를 주입한다. */
   notificationSlot?: ReactNode;
+  /**
+   * 로그인 없이 열리는 공개 화면(약관·처리방침)용. 메뉴와 사용자 메뉴를 숨기고 로고만 둔다.
+   * 사용자 메뉴가 사용자 정보를 조회하므로 숨기는 게 아니라 아예 렌더하지 않는다.
+   */
+  isLogoOnly?: boolean;
 }
 
 const VARIANT_CLASS: Record<HeaderVariant, { bar: string; text: string }> = {
@@ -20,7 +25,7 @@ const VARIANT_CLASS: Record<HeaderVariant, { bar: string; text: string }> = {
   solid: { bar: 'bg-bg-1 backdrop-blur-[66px]', text: 'text-text-1' },
 };
 
-export function Header({ variant = 'solid', notificationSlot }: HeaderProps) {
+export function Header({ variant = 'solid', notificationSlot, isLogoOnly = false }: HeaderProps) {
   const style = VARIANT_CLASS[variant];
   const navigate = useNavigate();
 
@@ -38,7 +43,7 @@ export function Header({ variant = 'solid', notificationSlot }: HeaderProps) {
         )}
       >
         <Link
-          to="/main"
+          to={isLogoOnly ? '/' : '/main'}
           aria-label="홈으로 이동"
           className="inline-flex rounded-4 outline-none focus-visible:ring-3 focus-visible:ring-purple-200"
         >
@@ -50,23 +55,27 @@ export function Header({ variant = 'solid', notificationSlot }: HeaderProps) {
           />
         </Link>
 
-        <nav aria-label="주요 메뉴">
-          <ul className="flex items-center gap-20 text-heading2">
-            {NAV_ITEMS.map((item) => (
-              <li key={item.to}>
-                {/* Link가 현재 경로에 자동으로 붙이는 aria-current 속성으로 활성 상태를 표시한다. */}
-                <Link
-                  to={item.to}
-                  className="inline-block border-b-[1.5px] border-transparent py-0.5 aria-[current=page]:border-current"
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        {isLogoOnly ? null : (
+          <>
+            <nav aria-label="주요 메뉴">
+              <ul className="flex items-center gap-20 text-heading2">
+                {NAV_ITEMS.map((item) => (
+                  <li key={item.to}>
+                    {/* Link가 현재 경로에 자동으로 붙이는 aria-current 속성으로 활성 상태를 표시한다. */}
+                    <Link
+                      to={item.to}
+                      className="inline-block border-b-[1.5px] border-transparent py-0.5 aria-[current=page]:border-current"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
 
-        <HeaderUserMenu onLoggedOut={handleLoggedOut} notificationSlot={notificationSlot} />
+            <HeaderUserMenu onLoggedOut={handleLoggedOut} notificationSlot={notificationSlot} />
+          </>
+        )}
       </div>
     </header>
   );
