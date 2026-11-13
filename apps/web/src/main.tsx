@@ -6,11 +6,13 @@ import { AuthProvider } from '@/app/auth/auth-provider';
 import { QueryProvider } from '@/app/query/query-provider';
 import { router } from '@/app/router/router';
 import { syncBrowserTopColor } from '@/app/viewport/browser-top-color';
+import { markNativeApp } from '@/app/viewport/native-app-marker';
 import { lockNativeAppZoom } from '@/app/viewport/native-app-zoom';
 import { syncNativeStatusBarStyle } from '@/app/viewport/native-status-bar';
 import { Toaster } from '@/shared/ui/toast';
 import '@/app/styles/index.css';
 
+markNativeApp(document, navigator.userAgent);
 lockNativeAppZoom(document, navigator.userAgent);
 syncNativeStatusBarStyle(router);
 syncBrowserTopColor(router, document);

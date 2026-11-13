@@ -55,6 +55,12 @@
     -webkit-user-drag: none;
   }
 
+  /* 앱(WebView)에서 링크 · 이미지를 길게 누르면 iOS 가 미리보기와 「열기 / 링크 복사 / 공유」 메뉴를
+     띄운다. 웹페이지처럼 보이므로 앱에서만 끈다. 표시는 main.tsx 의 markNativeApp 이 단다. */
+  :root[data-native-app] :is(a, img) {
+    -webkit-touch-callout: none;
+  }
+
   @keyframes fadeIn {
     from {
       opacity: 0;

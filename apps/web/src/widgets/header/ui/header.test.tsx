@@ -83,4 +83,12 @@ describe('Header', () => {
     await waitFor(() => expect(router.state.location.pathname).toBe('/'));
     expect(localStorage.getItem('hasSession')).toBeNull();
   });
+
+  it('isLogoOnly 이면 / 로 가는 로고만 있고 메뉴·로그아웃은 없다', async () => {
+    await renderWithProviders(() => <Header isLogoOnly />, { path: '/privacy', extraPaths: ['/'] });
+
+    expect(await screen.findByRole('link', { name: '홈으로 이동' })).toHaveAttribute('href', '/');
+    expect(screen.queryByRole('navigation', { name: '주요 메뉴' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: '로그아웃' })).not.toBeInTheDocument();
+  });
 });

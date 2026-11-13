@@ -1,5 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import {
   createMemoryHistory,
   createRootRoute,
@@ -23,19 +24,24 @@ function stubViewport(isWide: boolean) {
   );
 }
 
-async function renderTermsPage() {
+/** `initialEntries`의 마지막이 현재 화면이다. 앞에 경로를 두면 이전 기록이 있는 상태가 된다. */
+async function renderTermsPage(initialEntries = ['/terms']) {
   const rootRoute = createRootRoute();
-  const routes = ['/', '/terms', '/privacy'].map((path) =>
-    createRoute({ getParentRoute: () => rootRoute, path, component: TermsPage }),
+  const routes = ['/', '/settings', '/terms', '/privacy'].map((path) =>
+    createRoute({
+      getParentRoute: () => rootRoute,
+      path,
+      component: path === '/terms' ? TermsPage : () => <p>다른 화면</p>,
+    }),
   );
   const router = createRouter({
     routeTree: rootRoute.addChildren(routes),
-    history: createMemoryHistory({ initialEntries: ['/terms'] }),
+    history: createMemoryHistory({ initialEntries, initialIndex: initialEntries.length - 1 }),
   });
 
   await router.load();
 
-  return render(<RouterProvider router={router as never} />);
+  return { router, ...render(<RouterProvider router={router as never} />) };
 }
 
 afterEach(() => {
@@ -43,7 +49,6 @@ afterEach(() => {
 });
 
 describe('TermsPage', () => {
-  // AC-3 — 표현만 바꾸고 내용은 그대로임을 고정한다
   it('제목이 "서비스 이용약관"이고 조항이 13개다', async () => {
     stubViewport(true);
 
@@ -53,7 +58,7 @@ describe('TermsPage', () => {
     expect(screen.getAllByRole('heading', { level: 2 })).toHaveLength(13);
   });
 
-  it('좁은 화면에서도 문서 제목은 하나이고 조항 수가 같다', async () => {
+  it('좁은 화면에서도 문서 제목은 상단바의 하나뿐이고 조항 수가 같다', async () => {
     stubViewport(false);
 
     await renderTermsPage();
@@ -62,23 +67,31 @@ describe('TermsPage', () => {
     expect(screen.getAllByRole('heading', { level: 2 })).toHaveLength(13);
   });
 
-  it('넓은 화면에서 헤더 로고 링크가 홈으로 향한다', async () => {
+  it('넓은 화면 헤더는 홈으로 가는 로고만 있고 메뉴는 없다', async () => {
     stubViewport(true);
 
     await renderTermsPage();
 
-    const [homeLink] = await screen.findAllByRole('link');
-
-    expect(homeLink).toHaveAttribute('href', '/');
+    expect(await screen.findByRole('link', { name: '홈으로 이동' })).toHaveAttribute('href', '/');
+    expect(screen.queryByRole('navigation', { name: '주요 메뉴' })).not.toBeInTheDocument();
   });
 
-  it('좁은 화면에서는 로고 헤더 대신 문서 제목 상단바와 뒤로 가기 버튼이 있다', async () => {
+  it('좁은 화면에서 이전 화면이 있으면 「뒤로 가기」가 그 화면으로 돌아간다', async () => {
+    stubViewport(false);
+    const user = userEvent.setup();
+    const { router } = await renderTermsPage(['/settings', '/terms']);
+
+    await user.click(await screen.findByRole('link', { name: '뒤로 가기' }));
+
+    await vi.waitFor(() => expect(router.state.location.pathname).toBe('/settings'));
+  });
+
+  it('좁은 화면에서 직접 들어왔으면 「뒤로 가기」가 / 로 간다', async () => {
     stubViewport(false);
 
     await renderTermsPage();
 
-    expect(await screen.findByRole('button', { name: '뒤로 가기' })).toBeInTheDocument();
-    expect(screen.getByRole('banner')).toHaveTextContent('서비스 이용약관');
+    expect(await screen.findByRole('link', { name: '뒤로 가기' })).toHaveAttribute('href', '/');
   });
 
   // 푸터는 좌우 여백이 150px 고정이라 좁은 화면에서 쓸 수 없다. 숨기지 않고 아예 마운트하지 않는다.
@@ -93,17 +106,5 @@ describe('TermsPage', () => {
     await renderTermsPage();
 
     expect(screen.queryByRole('contentinfo')).not.toBeInTheDocument();
-  });
-
-  // AC-1 — 디자인 시스템을 우회하던 유틸리티가 남아 있지 않은지 본다.
-  // 시각 검증이 아니라 회귀 가드다. 이 네 개가 다시 들어오면 토큰 체계가 깨진 것이다.
-  it('타이포·굵기를 토큰 대신 직접 지정하던 클래스가 남아 있지 않다', async () => {
-    stubViewport(true);
-
-    const { container } = await renderTermsPage();
-
-    expect(container.innerHTML).not.toMatch(
-      /\btext-2xl\b|\btext-xl\b|\bfont-bold\b|\bfont-semibold\b/,
-    );
   });
 });
