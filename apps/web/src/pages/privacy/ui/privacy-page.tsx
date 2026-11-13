@@ -13,7 +13,7 @@ import { Header } from '@/widgets/header';
 import { PageTitleBar } from '@/widgets/page-title-bar';
 
 const EFFECTIVE_DATE = '2026년 11월 13일';
-const PRIVACY_CONTACT_EMAIL = 'xunssoie@gmail.com';
+const PRIVACY_CONTACT_EMAIL = 'gravitfrontend@gmail.com';
 
 const ENTRUSTED_COMPANIES: [string, string][] = [
   ['카카오, 네이버, Google, Apple', '소셜 로그인 인증'],

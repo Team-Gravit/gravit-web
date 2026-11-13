@@ -46,7 +46,10 @@ function AppShell() {
         data-scroll-restoration-id={APP_SHELL_SCROLL_RESTORATION_ID}
         className={cn(
           'h-full overflow-y-auto overscroll-y-none md:pb-0',
-          !isBottomTabBarHidden && 'pb-[calc(var(--bottom-tab-height)+var(--safe-area-bottom))]',
+          // 탭바가 없으면 탭바 대신 화면이 홈 인디케이터 영역을 비운다.
+          isBottomTabBarHidden
+            ? 'pb-(--safe-area-bottom)'
+            : 'pb-[calc(var(--bottom-tab-height)+var(--safe-area-bottom))]',
           headerVariant === 'solid' && 'md:pt-(--desktop-header-height)',
         )}
       >
