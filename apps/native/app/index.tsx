@@ -161,6 +161,9 @@ export default function WebviewPage() {
         cacheMode={__DEV__ ? 'LOAD_NO_CACHE' : 'LOAD_DEFAULT'}
         originWhitelist={['*']}
         setSupportMultipleWindows={false}
+        // iOS 는 링크를 길게 누르면 웹 페이지 미리보기를 띄운다. 앱 화면이 웹페이지처럼 보이므로 끈다.
+        // 웹도 앱에서는 길게 누르기 메뉴를 끈다 (apps/web `base.css`의 `data-native-app`).
+        allowsLinkPreview={false}
         javaScriptEnabled
         domStorageEnabled
         thirdPartyCookiesEnabled

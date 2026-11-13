@@ -1,231 +1,296 @@
-import { useNavigate } from '@tanstack/react-router';
-
+import {
+  DocumentInfoCard,
+  DocumentList,
+  DocumentNote,
+  DocumentSection,
+  DocumentSubsection,
+  DocumentTable,
+  DocumentText,
+} from '@/shared/ui/document';
 import { DocumentLayout } from '@/shared/ui/layout';
 import { Footer } from '@/widgets/footer';
+import { Header } from '@/widgets/header';
+import { PageTitleBar } from '@/widgets/page-title-bar';
+
+const EFFECTIVE_DATE = '2026년 11월 13일';
+const PRIVACY_CONTACT_EMAIL = 'xunssoie@gmail.com';
+
+const ENTRUSTED_COMPANIES: [string, string][] = [
+  ['카카오, 네이버, Google, Apple', '소셜 로그인 인증'],
+  ['Google (Gmail)', '회원 탈퇴 인증 메일 발송'],
+  ['Google (Firebase Cloud Messaging)', '푸시 알림 발송'],
+  ['OpenAI', '면접 답변 채점, 답변 음성의 텍스트 변환'],
+  ['Amazon Web Services (서울 리전)', '면접 질문·답변 음성 파일 저장'],
+];
+
+const REPORT_AGENCIES = [
+  { name: '개인정보침해신고센터', phone: '118', href: 'https://privacy.kisa.or.kr' },
+  { name: '개인정보분쟁조정위원회', phone: '1833-6972', href: 'https://www.kopico.go.kr' },
+  { name: '대검찰청 사이버수사과', phone: '1301', href: 'https://www.spo.go.kr' },
+  { name: '경찰청 사이버수사국', phone: '182', href: 'https://ecrm.police.go.kr' },
+];
+
+function ExternalLink({ href }: { href: string }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-main underline-offset-2 hover:underline"
+    >
+      {href.replace('https://', '')}
+    </a>
+  );
+}
+
+function MailLink() {
+  return (
+    <a
+      href={`mailto:${PRIVACY_CONTACT_EMAIL}`}
+      className="text-main underline-offset-2 hover:underline"
+    >
+      {PRIVACY_CONTACT_EMAIL}
+    </a>
+  );
+}
 
 export function PrivacyPage() {
-  const navigate = useNavigate();
-
-  // 직접 URL 로 들어올 수 있어 history.back() 은 돌아갈 곳이 없을 수 있다. 홈으로 보낸다.
-  const handleBack = () => {
-    navigate({ to: '/' });
-  };
-
   return (
-    <DocumentLayout title="개인정보 처리방침" onBack={handleBack} footer={<Footer />}>
-      <p className="mb-4">
-        Gravit(이하 &quot;서비스&quot;)은 「개인정보 보호법」 제30조에 따라 정보주체의 개인정보를
-        보호하고 이와 관련한 고충을 신속하고 원활하게 처리할 수 있도록 다음과 같이 개인정보
-        처리방침을 수립·공개합니다.
-      </p>
+    <DocumentLayout
+      title="개인정보 처리방침"
+      effectiveDate={EFFECTIVE_DATE}
+      wideHeader={<Header isLogoOnly />}
+      narrowHeader={<PageTitleBar title="개인정보 처리방침" backTo={{ to: '/' }} />}
+      footer={<Footer />}
+    >
+      <DocumentNote tone="accent">
+        <p>
+          Gravit(이하 &quot;서비스&quot;)은 「개인정보 보호법」 제30조에 따라 정보주체의 개인정보를
+          보호하고 관련 고충을 신속하게 처리하기 위해 이 개인정보 처리방침을 공개합니다. 서비스는
+          제공에 필요한 최소한의 개인정보만 처리합니다.
+        </p>
+      </DocumentNote>
 
-      <p className="mb-6 text-label1 text-text-3">최종 수정일: 2026년 2월 2일</p>
+      <DocumentSection number={1} title="수집하는 정보">
+        <DocumentSubsection title="회원가입 및 로그인">
+          <DocumentList
+            items={[
+              '소셜 로그인(카카오, Google, 네이버, Apple) 계정 식별자',
+              '소셜 로그인 계정의 이메일 주소',
+              '처음 닉네임: Google·네이버는 계정 이름, 카카오는 카카오 닉네임. 온보딩에서 바꾸면 새 닉네임으로 대체됩니다.',
+            ]}
+          />
+          <DocumentNote>
+            <p>
+              Apple 로그인은 Apple 사용자 식별자와 이메일만 받으며 이름은 받지 않습니다. 이메일
+              가리기를 선택하면 Apple이 만든 릴레이 이메일 주소가 저장되고, 닉네임은
+              &quot;애플사용자&quot;로 시작하는 임의 값으로 정해집니다.
+            </p>
+            <p>
+              탈퇴할 때 Apple 계정 연결을 해제하기 위해 Apple이 발급한 인증 토큰(refresh token)을
+              암호화해 저장하고, 발급된 곳(웹 또는 iOS 앱)을 함께 기록합니다.
+            </p>
+            <p>프로필 사진은 받지 않으며, 서비스가 제공하는 기본 이미지 번호만 저장합니다.</p>
+          </DocumentNote>
+        </DocumentSubsection>
 
-      <h2 className="mt-8 mb-3">1. 개인정보의 수집 항목 및 수집 방법</h2>
+        <DocumentSubsection title="서비스 이용">
+          <DocumentList
+            items={[
+              '학습 기록(학습한 개념, 문제 풀이 결과, 오답노트, 북마크)',
+              '리그 포인트(LP), 순위, 리그 기록, 미션 진행 상황',
+              '친구 관계, 피드, 알림 내역',
+              '문의 내용과 답변, 문제 신고 내용',
+              '마지막 접속 시각',
+            ]}
+          />
+        </DocumentSubsection>
 
-      <h3 className="mt-4 mb-2">1.1 수집 항목</h3>
+        <DocumentSubsection title="면접 기능 (이용 시)">
+          <DocumentList items={['면접 질문, 답변 텍스트, 답변 음성']} />
+        </DocumentSubsection>
 
-      <h4 className="mb-2">회원가입 시 수집하는 정보</h4>
-      <ul className="list-disc list-inside mb-4 ml-4">
-        <li>필수 항목: 이메일 주소</li>
-        <li>소셜 로그인 이용 시: 카카오/구글/네이버 계정 정보(이메일, 프로필 정보)</li>
-      </ul>
+        <DocumentSubsection title="푸시 알림">
+          <DocumentList items={['기기 식별자, 푸시 토큰(FCM), 기기 플랫폼(Android, iOS)']} />
+          <DocumentNote>
+            <p>
+              푸시 토큰은 알림을 보내는 데만 쓰며, 알림 수신은 기기 설정에서 언제든지 끌 수
+              있습니다.
+            </p>
+          </DocumentNote>
+        </DocumentSubsection>
 
-      <h4 className="mb-2">서비스 이용 과정에서 자동 수집되는 정보</h4>
-      <ul className="list-disc list-inside mb-4 ml-4">
-        <li>학습 기록(학습한 개념, 문제 풀이 결과)</li>
-        <li>리그 포인트(LP) 및 순위 정보</li>
-        <li>면접 시뮬레이터 이용 시 음성 데이터</li>
-        <li>서비스 이용 기록, 접속 로그, 쿠키, 접속 IP 정보</li>
-      </ul>
+        <DocumentSubsection title="자동으로 생성되는 기록">
+          <DocumentList items={['서비스 이용 기록(요청 경로, 응답 시간, 처리 결과, 회원 번호)']} />
+          <DocumentNote>
+            <p>
+              서비스 애플리케이션은 접속 IP를 기록하지 않습니다. 다만 서버 앞단의 웹 서버 접속
+              기록에는 접속 IP가 남을 수 있습니다.
+            </p>
+          </DocumentNote>
+        </DocumentSubsection>
+      </DocumentSection>
 
-      <h3 className="mt-4 mb-2">1.2 수집 방법</h3>
-      <ul className="list-disc list-inside mb-4 ml-4">
-        <li>회원가입 및 서비스 이용 과정에서 사용자가 직접 입력</li>
-        <li>소셜 로그인(카카오, 구글, 네이버) API를 통한 제공</li>
-        <li>서비스 이용 과정에서 자동 생성·수집</li>
-      </ul>
+      <DocumentSection number={2} title="이용 목적">
+        <DocumentText>수집한 정보는 다음 목적으로만 이용합니다.</DocumentText>
+        <DocumentList
+          items={[
+            '회원 식별, 로그인 및 계정 관리',
+            'CS 학습 콘텐츠 제공과 학습 기록 관리',
+            '리그 운영(LP 관리, 순위 산정)과 미션 제공',
+            '친구, 피드, 알림 기능 제공',
+            '면접 답변 채점과 답변 음성의 텍스트 변환',
+            '푸시 알림 발송',
+            '회원 탈퇴 인증 메일 발송',
+            '문의 응대와 문제 신고 확인',
+            '서비스 운영, 오류 개선, 부정 이용 방지',
+          ]}
+        />
+      </DocumentSection>
 
-      <h2 className="mt-8 mb-3">2. 개인정보의 수집 및 이용 목적</h2>
-      <p className="mb-2">서비스는 수집한 개인정보를 다음의 목적으로 이용합니다.</p>
-      <ul className="list-disc list-inside mb-4 ml-4">
-        <li>회원 식별 및 본인 확인</li>
-        <li>CS 학습 콘텐츠 제공 및 학습 기록 관리</li>
-        <li>리그 경쟁 시스템 운영(LP 관리, 순위 산정)</li>
-        <li>면접 시뮬레이터 기능 제공</li>
-        <li>서비스 개선 및 신규 서비스 개발</li>
-        <li>문의 및 고객 지원</li>
-        <li>부정 이용 방지 및 서비스 안정성 확보</li>
-      </ul>
+      <DocumentSection number={3} title="보유 및 파기">
+        <DocumentText>
+          회원 탈퇴를 확정하면 계정이 즉시 비활성화되고, 7일 동안은 탈퇴를 취소하고 계정을 복구할 수
+          있습니다. 7일이 지나면 아래 정보를 지체 없이 삭제합니다. Apple 계정 연결은 탈퇴를 확정하는
+          즉시 해제합니다.
+        </DocumentText>
+        <DocumentNote title="탈퇴 7일 뒤 삭제하는 정보">
+          <DocumentList
+            items={[
+              '계정 정보(이메일, 소셜 로그인 식별자, 닉네임)',
+              '학습 기록, 오답노트, 북마크',
+              '리그와 리그 기록, 미션',
+              '친구, 피드, 알림, 푸시 토큰',
+              'Apple 인증 토큰',
+              '문의와 답변, 문제 신고',
+              '면접 기록과 저장된 답변 음성',
+            ]}
+          />
+        </DocumentNote>
+        <DocumentNote title="삭제 후에도 남는 정보">
+          <DocumentList
+            items={[
+              '일별 이용 기록: 회원 번호와 날짜만 남으며 운영 통계에 사용합니다. 계정이 삭제되어 개인을 알아볼 수 없습니다.',
+              '서비스 이용 기록: 서버 파일은 7일, 로그 저장소는 180일 동안 보관한 뒤 삭제합니다.',
+              'OpenAI에 전송된 면접 답변 음성 사본: OpenAI가 최대 30일 동안 보관한 뒤 삭제하며, 서비스가 직접 삭제할 수 없습니다.',
+            ]}
+          />
+        </DocumentNote>
+        <DocumentText>
+          삭제하는 정보는 복구할 수 없는 방법으로 영구 삭제합니다. 법령에 따라 보관해야 하는 정보가
+          생기면 해당 기간 동안 분리해 보관합니다.
+        </DocumentText>
+      </DocumentSection>
 
-      <h2 className="mt-8 mb-3">3. 개인정보의 보유 및 이용 기간</h2>
-      <ul className="list-disc list-inside mb-4 ml-4">
-        <li>
-          <strong>회원 탈퇴 시:</strong> 즉시 파기 (단, 관련 법령에 따라 보관이 필요한 경우 예외)
-        </li>
-        <li>
-          <strong>법령에 따른 보관:</strong> 전자상거래법 등 관련 법령에 따라 일정 기간 보관
-          <ul className="list-disc list-inside ml-6 mt-2">
-            <li>계약 또는 청약철회 등에 관한 기록: 5년</li>
-            <li>대금결제 및 재화 등의 공급에 관한 기록: 5년</li>
-            <li>소비자 불만 또는 분쟁처리에 관한 기록: 3년</li>
-          </ul>
-        </li>
-      </ul>
+      <DocumentSection number={4} title="제3자 제공">
+        <DocumentText>
+          서비스는 개인정보를 판매하지 않으며, 이용자의 동의가 있거나 법령에 따라 수사기관 등이
+          정해진 절차로 요구하는 경우를 제외하고 제3자에게 제공하지 않습니다.
+        </DocumentText>
+      </DocumentSection>
 
-      <h2 className="mt-8 mb-3">4. 개인정보의 제3자 제공</h2>
-      <p className="mb-2">서비스는 원칙적으로 사용자의 개인정보를 제3자에게 제공하지 않습니다.</p>
-      <p className="mb-2">단, 다음의 경우는 예외로 합니다.</p>
-      <ul className="list-disc list-inside mb-4 ml-4">
-        <li>사용자가 사전에 동의한 경우</li>
-        <li>
-          법령의 규정에 의거하거나, 수사 목적으로 법령에 정해진 절차와 방법에 따라 수사기관의 요구가
-          있는 경우
-        </li>
-      </ul>
+      <DocumentSection number={5} title="개인정보 처리위탁">
+        <DocumentText>
+          서비스 제공을 위해 아래와 같이 개인정보 처리 업무를 위탁합니다. 수탁업체는 위탁 목적 범위
+          안에서만 개인정보를 처리합니다.
+        </DocumentText>
+        <DocumentTable columns={['수탁업체', '위탁 업무']} rows={ENTRUSTED_COMPANIES} />
+        <DocumentNote>
+          <p>
+            API 서버와 데이터베이스, 서비스 이용 기록은 외부 클라우드가 아닌 서비스 운영 조직이 직접
+            관리하는 국내 서버에 저장합니다. 위탁 업체가 바뀌면 이 처리방침으로 알립니다.
+          </p>
+        </DocumentNote>
+      </DocumentSection>
 
-      <h2 className="mt-8 mb-3">5. 개인정보 처리 위탁</h2>
-      <p className="mb-4">
-        서비스는 원활한 서비스 제공을 위해 다음과 같이 개인정보 처리 업무를 위탁하고 있습니다.
-      </p>
-      <div className="overflow-x-auto mb-4">
-        <table className="min-w-full border-collapse border border-divider-1">
-          <thead>
-            <tr className="bg-bg-2">
-              <th className="border border-divider-1 px-4 py-2 text-left">수탁업체</th>
-              <th className="border border-divider-1 px-4 py-2 text-left">위탁 업무 내용</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td className="border border-divider-1 px-4 py-2">카카오</td>
-              <td className="border border-divider-1 px-4 py-2">소셜 로그인 인증</td>
-            </tr>
-            <tr>
-              <td className="border border-divider-1 px-4 py-2">구글</td>
-              <td className="border border-divider-1 px-4 py-2">소셜 로그인 인증</td>
-            </tr>
-            <tr>
-              <td className="border border-divider-1 px-4 py-2">네이버</td>
-              <td className="border border-divider-1 px-4 py-2">소셜 로그인 인증</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <p className="mb-4">위탁 업체 변경 시 개인정보 처리방침을 통해 공지합니다.</p>
+      <DocumentSection number={6} title="개인정보의 국외 이전">
+        <DocumentText>
+          서비스는 아래 기능을 제공하기 위해 개인정보를 국외로 이전합니다. 정보는 기능을 이용하는
+          시점에 암호화된 통신망으로 전송됩니다.
+        </DocumentText>
+        <DocumentInfoCard
+          title="Google LLC"
+          rows={[
+            { label: '이전 국가', value: '미국 등 Google 데이터센터 소재 국가' },
+            {
+              label: '이전 항목',
+              value: '이메일 주소와 탈퇴 인증 링크(메일 발송), 푸시 토큰과 알림 내용(푸시 알림)',
+            },
+            { label: '이전 목적', value: '회원 탈퇴 인증 메일 발송, 푸시 알림 발송' },
+            { label: '보유 기간', value: '목적 달성 후 Google의 보관 정책에 따라 삭제' },
+            { label: '연락처', value: <ExternalLink href="https://policies.google.com/privacy" /> },
+          ]}
+        />
+        <DocumentInfoCard
+          title="OpenAI, L.L.C."
+          rows={[
+            { label: '이전 국가', value: '미국' },
+            { label: '이전 항목', value: '면접 질문, 답변 텍스트, 답변 음성' },
+            { label: '이전 목적', value: '면접 답변 채점, 답변 음성의 텍스트 변환' },
+            { label: '보유 기간', value: '전송일로부터 최대 30일' },
+            {
+              label: '연락처',
+              value: <ExternalLink href="https://openai.com/policies/privacy-policy" />,
+            },
+          ]}
+        />
+        <DocumentNote>
+          <p>
+            국외 이전을 원하지 않으면 면접 기능을 이용하지 않거나 기기 설정에서 알림을 끌 수
+            있습니다. 이 경우 해당 기능을 이용할 수 없습니다. 탈퇴 인증 메일은 탈퇴 절차에
+            필요하므로, 원하지 않으면 아래 이메일로 탈퇴를 요청할 수 있습니다.
+          </p>
+        </DocumentNote>
+      </DocumentSection>
 
-      <h2 className="mt-8 mb-3">6. 정보주체의 권리·의무 및 행사 방법</h2>
-      <p className="mb-2">사용자는 언제든지 다음의 권리를 행사할 수 있습니다.</p>
-      <ul className="list-disc list-inside mb-4 ml-4">
-        <li>개인정보 열람 요구</li>
-        <li>개인정보 정정·삭제 요구</li>
-        <li>개인정보 처리 정지 요구</li>
-        <li>회원 탈퇴(동의 철회)</li>
-      </ul>
-      <p className="mb-4">
-        권리 행사는 서비스 내 설정 메뉴 또는 고객센터(
-        <a href="mailto:xunssoie@gmail.com" className="underline-offset-2">
-          xunssoie@gmail.com
-        </a>
-        )를 통해 가능합니다.
-      </p>
+      <DocumentSection number={7} title="안전성 확보조치">
+        <DocumentText>서비스는 개인정보 보호를 위해 다음 조치를 취하고 있습니다.</DocumentText>
+        <DocumentList
+          items={[
+            '모든 통신의 암호화(HTTPS)',
+            'Apple 인증 토큰 등 인증 정보의 암호화 저장',
+            '개인정보에 접근할 수 있는 인원의 최소화',
+          ]}
+        />
+      </DocumentSection>
 
-      <h2 className="mt-8 mb-3">7. 개인정보의 파기</h2>
-      <p className="mb-4">
-        서비스는 개인정보 보유 기간의 경과, 처리 목적 달성 등 개인정보가 불필요하게 되었을 때 지체
-        없이 해당 개인정보를 파기합니다.
-      </p>
-      <h4 className="mb-2">파기 절차</h4>
-      <ul className="list-disc list-inside mb-4 ml-4">
-        <li>
-          이용자가 입력한 정보는 목적 달성 후 내부 방침 및 관련 법령에 따라 일정 기간 저장 후 파기
-        </li>
-      </ul>
-      <h4 className="mb-2">파기 방법</h4>
-      <ul className="list-disc list-inside mb-4 ml-4">
-        <li>전자적 파일 형태: 복구 불가능한 방법으로 영구 삭제</li>
-        <li>종이 문서: 분쇄 또는 소각</li>
-      </ul>
+      <DocumentSection number={8} title="이용자의 권리">
+        <DocumentText>
+          이용자는 언제든지 자신의 개인정보 열람, 정정·삭제, 처리 정지를 요구하거나 회원 탈퇴로
+          동의를 철회할 수 있습니다. 닉네임 변경과 회원 탈퇴는 앱의 설정 메뉴에서 할 수 있으며, 그
+          밖의 요청은 <MailLink />로 접수할 수 있습니다.
+        </DocumentText>
+      </DocumentSection>
 
-      <h2 className="mt-8 mb-3">8. 개인정보 보호책임자</h2>
-      <p className="mb-4">
-        서비스는 개인정보 처리에 관한 업무를 총괄해서 책임지고, 개인정보 처리와 관련한 정보주체의
-        불만 처리 및 피해구제를 위하여 아래와 같이 개인정보 보호책임자를 지정하고 있습니다.
-      </p>
-      <h4 className="mb-2">개인정보 보호책임자</h4>
-      <ul className="list-disc list-inside mb-4 ml-4">
-        <li>성명: 한준서</li>
-        <li>
-          이메일:{' '}
-          <a href="mailto:xunssoie@gmail.com" className="underline-offset-2">
-            xunssoie@gmail.com
-          </a>
-        </li>
-      </ul>
-      <p className="mb-2">
-        개인정보 침해에 대한 신고나 상담이 필요하신 경우 아래 기관에 문의하실 수 있습니다.
-      </p>
-      <ul className="list-disc list-inside mb-4 ml-4">
-        <li>
-          개인정보침해신고센터: (국번없이) 118 (
-          <a
-            href="https://privacy.kisa.or.kr"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline-offset-2"
-          >
-            privacy.kisa.or.kr
-          </a>
-          )
-        </li>
-        <li>
-          개인정보분쟁조정위원회: (국번없이) 1833-6972 (
-          <a
-            href="https://www.kopico.go.kr"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline-offset-2"
-          >
-            www.kopico.go.kr
-          </a>
-          )
-        </li>
-        <li>
-          대검찰청 사이버수사과: (국번없이) 1301 (
-          <a
-            href="https://www.spo.go.kr"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline-offset-2"
-          >
-            www.spo.go.kr
-          </a>
-          )
-        </li>
-        <li>
-          경찰청 사이버안전국: (국번없이) 182 (
-          <a
-            href="https://ecrm.cyber.go.kr"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline-offset-2"
-          >
-            ecrm.cyber.go.kr
-          </a>
-          )
-        </li>
-      </ul>
+      <DocumentSection number={9} title="개인정보 보호책임자">
+        <DocumentInfoCard
+          rows={[
+            { label: '성명', value: '한준서' },
+            { label: '이메일', value: <MailLink /> },
+          ]}
+        />
+        <DocumentText>
+          개인정보 침해에 대한 신고나 상담이 필요하면 아래 기관에 문의할 수 있습니다.
+        </DocumentText>
+        <DocumentList
+          items={REPORT_AGENCIES.map((agency) => (
+            <span key={agency.name}>
+              {agency.name}: (국번없이) {agency.phone} (<ExternalLink href={agency.href} />)
+            </span>
+          ))}
+        />
+      </DocumentSection>
 
-      <h2 className="mt-8 mb-3">9. 개인정보 처리방침의 변경</h2>
-      <p className="mb-4">
-        본 개인정보 처리방침은 법령·정책 또는 보안기술의 변경에 따라 내용의 추가·삭제 및 수정이 있을
-        시 시행일자 최소 7일 전에 서비스 공지사항을 통해 고지합니다.
-      </p>
-
-      <div className="mt-8 pt-6 border-t border-divider-1">
-        <p className="text-label1 text-text-3">공고일자: 2026년 2월 2일</p>
-        <p className="text-label1 text-text-3">시행일자: 2026년 2월 2일</p>
-      </div>
+      <DocumentSection number={10} title="개인정보 처리방침 변경">
+        <DocumentText>
+          이 처리방침은 서비스나 관련 법령이 바뀌면 수정될 수 있으며, 변경 내용은 서비스 공지사항
+          또는 이 화면으로 알립니다.
+        </DocumentText>
+        <DocumentList
+          isEmphasized
+          items={[`시행일: ${EFFECTIVE_DATE}`, `최종 수정일: ${EFFECTIVE_DATE}`]}
+        />
+      </DocumentSection>
     </DocumentLayout>
   );
 }
