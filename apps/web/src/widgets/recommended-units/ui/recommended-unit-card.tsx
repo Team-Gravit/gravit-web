@@ -1,4 +1,4 @@
-import { CardRetryStatus } from '@/shared/ui/card';
+import { Card, CardHeader, CardRetryStatus, CardTitle } from '@/shared/ui/card';
 import { UnitCard, UnitCardSkeleton, useRecommendedUnits } from '@/entities/learning';
 
 export interface RecommendedUnitCardProps {
@@ -13,13 +13,15 @@ export function RecommendedUnitCard({ className }: RecommendedUnitCardProps) {
     return <UnitCardSkeleton className={className} />;
   }
 
+  // 다른 메인 위젯처럼 카드 틀과 제목 안에 오류 안내를 둔다.
   if (isError) {
     return (
-      <CardRetryStatus
-        sectionName="추천 유닛"
-        onRetry={() => void refetch()}
-        className={className}
-      />
+      <Card data-section="recommended-unit" className={className}>
+        <CardHeader>
+          <CardTitle>새 주제 시작하기</CardTitle>
+        </CardHeader>
+        <CardRetryStatus sectionName="추천 유닛" onRetry={() => void refetch()} />
+      </Card>
     );
   }
 

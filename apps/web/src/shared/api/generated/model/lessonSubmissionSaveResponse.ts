@@ -16,4 +16,8 @@ export interface LessonSubmissionSaveResponse {
   isLevelUp: boolean;
   /** 이번 제출의 리그 점수로 리그가 승급했는지 여부. 리그 점수 지급이 재시도 큐로 넘어갔거나, 승급 여부 조회에 실패했거나, 리그에 참여하지 않았으면 false이며, 재제출은 항상 false */
   isLeaguePromoted: boolean;
+  /** 이번 제출로 연속 학습일이 올랐는지 여부. 그날 첫 학습이면 재제출이어도 true이며, 같은 날 두 번째 제출부터는 false */
+  isStreakUpdated: boolean;
+  /** 이번 제출 반영 후 연속 학습일. isStreakUpdated가 false여도 현재 연속 학습일을 준다 */
+  consecutiveSolvedDays: number;
 }

@@ -110,6 +110,7 @@ export * from './myLeagueRankWithProfileResponse';
 export * from './myPageBannerResponse';
 export * from './myPageResponse';
 export * from './noticeDetailResponse';
+export * from './noticeNeighborResponse';
 export * from './noticeSummaryPageResponse';
 export * from './noticeSummaryResponse';
 export * from './notificationActor';

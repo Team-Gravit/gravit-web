@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /main
+Disallow: /my
+Disallow: /learning
+Disallow: /league
+Disallow: /user
+Disallow: /onboarding
+Disallow: /login/oauth2
+
+Sitemap: https://gravit.inuappcenter.kr/sitemap.xml

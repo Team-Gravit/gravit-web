@@ -18,6 +18,7 @@ export const getGetRecommendedUsersResponseMock = (): RecommendUserResponse[] =>
     nickname: faker.string.alpha({ length: { min: 10, max: 20 } }),
     profileImgNumber: faker.number.int(),
     mutualFollowCount: faker.number.int(),
+    mutualFollowPreviewNickname: faker.string.alpha({ length: { min: 10, max: 20 } }),
   }));
 
 export const getGetFeedResponseMock = (

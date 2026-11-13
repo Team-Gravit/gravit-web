@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { beforeAll, describe, expect, it, vi } from 'vitest';
 import { screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { HttpResponse, http } from 'msw';
@@ -7,6 +7,18 @@ import { server } from '@/shared/api/mocks/server';
 import { renderWithProviders } from '@/shared/lib/testing';
 
 import { ChapterGrid } from './chapter-grid';
+
+// Radix Popover 가 위치 계산에 ResizeObserver 를 쓰는데 jsdom 에는 없다. 테스트 대상이 아니므로 no-op stub.
+beforeAll(() => {
+  vi.stubGlobal(
+    'ResizeObserver',
+    class {
+      observe() {}
+      unobserve() {}
+      disconnect() {}
+    },
+  );
+});
 
 const CHAPTERS_URL = '*/api/v1/chapters';
 
@@ -57,13 +69,13 @@ describe('ChapterGrid', () => {
     expect(screen.getByText('32%')).toBeInTheDocument();
   });
 
-  it('챕터 설명을 ⓘ 의 접근 가능한 이름으로 노출한다', async () => {
+  it('ⓘ 를 누르면 챕터 설명을 보여 준다', async () => {
     server.use(http.get(CHAPTERS_URL, () => HttpResponse.json(CHAPTERS)));
     await renderGrid();
 
-    expect(
-      await screen.findByRole('img', { name: '자료구조 설명: 자료를 다루는 방법' }),
-    ).toBeInTheDocument();
+    await userEvent.click(await screen.findByRole('button', { name: '자료구조 설명 보기' }));
+
+    expect(await screen.findByText('자료를 다루는 방법')).toBeInTheDocument();
   });
 
   it('빈 배열이면 「챕터가 없습니다.」를 표시한다', async () => {
