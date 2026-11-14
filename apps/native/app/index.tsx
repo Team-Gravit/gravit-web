@@ -1,4 +1,4 @@
-import { Linking, StyleSheet, View, Platform } from 'react-native';
+import { AppState, Linking, StyleSheet, View, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useEffect, useState } from 'react';
 import { WebView, type WebViewMessageEvent } from 'react-native-webview';
@@ -119,6 +119,18 @@ export default function WebviewPage() {
     const timer = setTimeout(hideSplash, SPLASH_MAX_WAIT_MS);
 
     return () => clearTimeout(timer);
+  }, []);
+
+  // 앱 복귀를 웹에 알린다. iOS WKWebView는 앱이 앞으로 와도 `visibilitychange`를 보내지 않는 경우가
+  // 있어, 메일 앱에서 탈퇴를 확정하고 돌아온 것 같은 상황을 웹이 알아차리지 못한다.
+  useEffect(() => {
+    const subscription = AppState.addEventListener('change', (state) => {
+      if (state === 'active') {
+        bridge.emit('APP_FOREGROUND', {});
+      }
+    });
+
+    return () => subscription.remove();
   }, []);
 
   const handleShouldStartLoad = ({ url, isTopFrame }: ShouldStartLoadRequest) => {
