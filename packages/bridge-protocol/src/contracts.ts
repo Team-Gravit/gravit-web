@@ -25,10 +25,16 @@ export type BridgeResult<T extends BridgeRequestType> = BridgeContracts[T]['resu
 
 /**
  * 네이티브가 요청 없이 웹에 보내는 이벤트의 payload 계약.
- * 아직 등록된 이벤트는 없다.
+ *
+ * 구버전 앱은 새 이벤트를 보내지 않는다. 웹은 이벤트가 오지 않아도 동작이 깨지지 않게 만든다.
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-export interface BridgeEvents {}
+export interface BridgeEvents {
+  /**
+   * 앱이 백그라운드에서 다시 앞으로 왔다(`AppState`가 `active`).
+   * iOS WKWebView는 앱 복귀 때 `visibilitychange`를 보내지 않는 경우가 있어 네이티브가 직접 알린다.
+   */
+  APP_FOREGROUND: Record<string, never>;
+}
 
 export type BridgeEventType = keyof BridgeEvents;
 export type BridgeEventPayload<T extends BridgeEventType> = BridgeEvents[T];
