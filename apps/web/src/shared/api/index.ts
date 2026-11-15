@@ -18,3 +18,4 @@ export {
 export { isNotFoundError, nullIfNotFound } from './not-found';
 export { isRefreshRejected, refreshAccessToken } from './refresh-token';
 export { useRefetchActiveQueries } from './use-refetch-active-queries';
+export { isWithdrawnUserTokenError } from './withdrawn-user-token';
