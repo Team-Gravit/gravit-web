@@ -9,6 +9,7 @@ import { getApiBaseUrl } from '@/shared/config';
 
 import { getAuthToken, notifyUnauthorized } from './auth-token';
 import { isRefreshRejected, refreshAccessToken } from './refresh-token';
+import { isWithdrawnUserTokenError } from './withdrawn-user-token';
 
 declare module 'axios' {
   export interface AxiosRequestConfig {
@@ -47,6 +48,14 @@ AXIOS_INSTANCE.interceptors.response.use(
   (response) => response,
   async (error: AxiosError) => {
     const config = error.config as InternalAxiosRequestConfig | undefined;
+
+    // 계정이 없어진 토큰은 재발급해도 살아나지 않는다. 재발급 에러로 원래 응답을 가리지 않도록
+    // 세션만 지우고 원래 에러를 그대로 넘겨, 호출부가 탈퇴 여부를 판단할 수 있게 한다.
+    if (isWithdrawnUserTokenError(error)) {
+      notifyUnauthorized();
+      throw error;
+    }
+
     const canRetry =
       error.response?.status === 401 && config && !config.skipAuthRefresh && !config.isRetried;
 

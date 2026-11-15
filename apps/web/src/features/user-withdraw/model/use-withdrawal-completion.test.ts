@@ -46,6 +46,30 @@ describe('useWithdrawalCompletion', () => {
     await vi.waitFor(() => expect(onWithdrawn).toHaveBeenCalledTimes(1));
   });
 
+  it('사용자 조회가 401 JWT_4017 이면 재발급 실패와 상관없이 onWithdrawn 을 호출한다', async () => {
+    server.use(
+      http.get(USERS_URL, () =>
+        HttpResponse.json(
+          { error: 'JWT_4017', message: '탈퇴했거나 존재하지 않는 사용자의 토큰입니다.' },
+          { status: 401 },
+        ),
+      ),
+      http.post('*/api/v1/auth/reissue', () =>
+        HttpResponse.json({ error: 'JWT_4013', message: '빈 토큰입니다.' }, { status: 401 }),
+      ),
+    );
+    const onWithdrawn = vi.fn();
+    const { result } = renderHook(() => useWithdrawalCompletion({ onWithdrawn }));
+
+    let checked: string | undefined;
+    await act(async () => {
+      checked = await result.current.checkNow();
+    });
+
+    expect(checked).toBe('withdrawn');
+    expect(onWithdrawn).toHaveBeenCalledTimes(1);
+  });
+
   it('사용자 조회가 성공하면(아직 확정 전) onWithdrawn 을 호출하지 않는다', async () => {
     const requested = vi.fn();
     server.use(
