@@ -87,6 +87,31 @@ describe('응답 인터셉터', () => {
     await expect(AXIOS_INSTANCE.get(TEST_URL)).rejects.toThrow();
     expect(onUnauthorized).not.toHaveBeenCalled();
   });
+
+  it('401 JWT_4017 이면 재발급하지 않고 onUnauthorized 를 1회 호출한 뒤 원래 에러를 전파한다', async () => {
+    const onUnauthorized = vi.fn();
+    const reissued = vi.fn();
+    configureExpiredSession({ onUnauthorized });
+
+    server.use(
+      http.post(REISSUE_URL, () => {
+        reissued();
+        return HttpResponse.json({ accessToken: 'tok_new' });
+      }),
+      http.get(TEST_URL, () =>
+        HttpResponse.json(
+          { error: 'JWT_4017', message: '탈퇴했거나 존재하지 않는 사용자의 토큰입니다.' },
+          { status: 401 },
+        ),
+      ),
+    );
+
+    await expect(AXIOS_INSTANCE.get(TEST_URL)).rejects.toMatchObject({
+      response: { status: 401, data: { error: 'JWT_4017' } },
+    });
+    expect(reissued).not.toHaveBeenCalled();
+    expect(onUnauthorized).toHaveBeenCalledTimes(1);
+  });
 });
 
 describe('토큰 갱신', () => {
