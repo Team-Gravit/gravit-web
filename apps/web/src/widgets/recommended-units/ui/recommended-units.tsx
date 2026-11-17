@@ -26,7 +26,9 @@ export function RecommendedUnits({ className }: RecommendedUnitsProps) {
       </div>
     );
   } else if (isError) {
-    body = <CardRetryStatus sectionName="추천 유닛" onRetry={() => void refetch()} />;
+    body = (
+      <CardRetryStatus sectionName="추천 유닛" onRetry={() => refetch({ throwOnError: true })} />
+    );
   } else {
     body = (
       <div data-slot="recommended-units-grid" className="grid grid-cols-2 gap-4">

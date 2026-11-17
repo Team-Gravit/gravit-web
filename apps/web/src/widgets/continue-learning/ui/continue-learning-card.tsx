@@ -31,7 +31,12 @@ export function ContinueLearningCard({ className }: ContinueLearningCardProps) {
   if (isPending) {
     body = <ContinueLearningBodySkeleton />;
   } else if (isError) {
-    body = <CardRetryStatus sectionName="이어서 학습하기" onRetry={() => void refetch()} />;
+    body = (
+      <CardRetryStatus
+        sectionName="이어서 학습하기"
+        onRetry={() => refetch({ throwOnError: true })}
+      />
+    );
   } else if (learning === null) {
     // 빈 상태 시안이 확정되면 레거시 기준선에서 가져온 임시 문구를 교체한다.
     body = (

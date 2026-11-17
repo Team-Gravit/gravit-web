@@ -18,7 +18,9 @@ export function DailyMission({ layout, className }: DailyMissionProps) {
   if (isPending) {
     body = <MissionCardBodySkeleton layout={layout} />;
   } else if (isError) {
-    body = <CardRetryStatus sectionName="오늘의 미션" onRetry={() => void refetch()} />;
+    body = (
+      <CardRetryStatus sectionName="오늘의 미션" onRetry={() => refetch({ throwOnError: true })} />
+    );
   } else {
     body = <MissionCardBody mission={mission} layout={layout} />;
   }

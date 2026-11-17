@@ -28,7 +28,7 @@ export function UnitList({ chapterId, className }: UnitListProps) {
   if (isError) {
     return (
       <div data-slot="unit-list-status" className={cn('flex min-h-40', className)}>
-        <CardRetryStatus sectionName="유닛 목록" onRetry={() => void refetch()} />
+        <CardRetryStatus sectionName="유닛 목록" onRetry={() => refetch({ throwOnError: true })} />
       </div>
     );
   }

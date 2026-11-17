@@ -65,7 +65,7 @@ export function ReviewQuizPage({ kind, unitId }: ReviewQuizPageProps) {
   if (isError || !reviewProblems) {
     return (
       <div data-slot="review-quiz-page" className={cn(QUIZ_SURFACE_CLASS, 'justify-center p-4')}>
-        <CardRetryStatus sectionName="문제" onRetry={() => void refetch()} />
+        <CardRetryStatus sectionName="문제" onRetry={() => refetch({ throwOnError: true })} />
       </div>
     );
   }
