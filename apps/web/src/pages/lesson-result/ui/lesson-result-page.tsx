@@ -64,7 +64,11 @@ export function LessonResultPage({ lessonSubmissionId }: LessonResultPageProps) 
             }
           />
         ) : (
-          <CardRetryStatus sectionName="결과" onRetry={() => void refetch()} className="z-10" />
+          <CardRetryStatus
+            sectionName="결과"
+            onRetry={() => refetch({ throwOnError: true })}
+            className="z-10"
+          />
         )}
       </div>
     );

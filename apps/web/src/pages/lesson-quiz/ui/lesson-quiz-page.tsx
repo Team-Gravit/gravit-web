@@ -48,7 +48,7 @@ export function LessonQuizPage({ lessonId }: LessonQuizPageProps) {
   if (isError || !lessonProblems) {
     return (
       <div data-slot="lesson-quiz-page" className={cn(QUIZ_SURFACE_CLASS, 'justify-center p-4')}>
-        <CardRetryStatus sectionName="문제" onRetry={() => void refetch()} />
+        <CardRetryStatus sectionName="문제" onRetry={() => refetch({ throwOnError: true })} />
       </div>
     );
   }

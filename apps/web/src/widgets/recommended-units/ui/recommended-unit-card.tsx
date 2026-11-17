@@ -20,7 +20,7 @@ export function RecommendedUnitCard({ className }: RecommendedUnitCardProps) {
         <CardHeader>
           <CardTitle>새 주제 시작하기</CardTitle>
         </CardHeader>
-        <CardRetryStatus sectionName="추천 유닛" onRetry={() => void refetch()} />
+        <CardRetryStatus sectionName="추천 유닛" onRetry={() => refetch({ throwOnError: true })} />
       </Card>
     );
   }

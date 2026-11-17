@@ -42,7 +42,7 @@ export function ChapterGrid({ size = 'sm', className }: ChapterGridProps) {
   if (isError) {
     return (
       <div data-slot="chapter-grid-status" className={cn('flex min-h-40', className)}>
-        <CardRetryStatus sectionName="챕터 목록" onRetry={() => void refetch()} />
+        <CardRetryStatus sectionName="챕터 목록" onRetry={() => refetch({ throwOnError: true })} />
       </div>
     );
   }

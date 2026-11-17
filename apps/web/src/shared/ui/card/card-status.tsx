@@ -1,8 +1,13 @@
-import type { ReactNode } from 'react';
+import { type ReactNode, useState } from 'react';
 
 import { cn } from '@/shared/lib/cn';
 import { withObjectParticle } from '@/shared/lib/korean-particle';
 import { Button, type ButtonProps } from '@/shared/ui/button';
+import {
+  MIN_REFRESH_DURATION_MS,
+  PULL_TO_REFRESH_FAILURE_MESSAGE,
+} from '@/shared/ui/pull-to-refresh';
+import { toast } from '@/shared/ui/toast';
 
 export interface CardStatusProps {
   message: string;
@@ -51,19 +56,44 @@ export function CardStatusButton(props: CardStatusButtonProps) {
 export interface CardRetryStatusProps {
   /** 「{sectionName}을/를 불러오지 못했어요.」의 섹션 이름. 조사는 여기서 붙인다. */
   sectionName: string;
-  onRetry: () => void;
+  /** 거부되면 실패로 보고 토스트를 띄운다. Query는 `refetch({ throwOnError: true })`를 넘긴다. */
+  onRetry: () => Promise<unknown>;
   className?: string;
 }
 
-/** 섹션 이름에 맞춘 실패 문구와 재시도 버튼을 표시한다. */
+function wait(milliseconds: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, milliseconds));
+}
+
+/**
+ * 섹션 이름에 맞춘 실패 문구와 재시도 버튼을 표시한다.
+ * 진행 표시 · 최소 표시 시간 · 실패 토스트는 pull-to-refresh와 같게 맞춘다.
+ */
 export function CardRetryStatus({ sectionName, onRetry, className }: CardRetryStatusProps) {
+  const [isRetrying, setIsRetrying] = useState(false);
+
+  async function handleRetry() {
+    setIsRetrying(true);
+    // 응답이 빨라도 진행 표시가 깜빡이고 사라지지 않게 한다.
+    const minimumDuration = wait(MIN_REFRESH_DURATION_MS);
+
+    try {
+      await onRetry();
+    } catch {
+      toast(PULL_TO_REFRESH_FAILURE_MESSAGE);
+    } finally {
+      await minimumDuration;
+      setIsRetrying(false);
+    }
+  }
+
   return (
     <CardStatus
       tone="error"
       message={`${withObjectParticle(sectionName)} 불러오지 못했어요.`}
       className={className}
       action={
-        <CardStatusButton type="button" onClick={onRetry}>
+        <CardStatusButton type="button" isLoading={isRetrying} onClick={() => void handleRetry()}>
           다시 시도
         </CardStatusButton>
       }
