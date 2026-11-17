@@ -166,6 +166,22 @@ main → hotfix/x.y.z-설명 → main → tag vx.y.z → develop 동기화
 hotfix에는 해당 운영 결함 수정만 넣는다. `main` 반영과 태그 생성 후 같은 변경을 PR로
 `develop`에 동기화한다.
 
+**hotfix로 낼지, release로 모을지.** 운영 중인 사용자가 **지금 막히는 결함**만 hotfix로 낸다.
+로그인·탈퇴·데이터 손실, 화면이 뜨지 않는 오류 등이 해당한다. 성능 개선·문구·외형 다듬기처럼
+기다릴 수 있는 수정은 `develop`에 쌓았다가 다음 `release/x.y.z`로 낸다.
+
+**develop 동기화 방법.** `main`을 `develop`에 직접 PR로 올리지 않고, 동기화 브랜치를 거친다.
+release와 hotfix 모두 같은 방법을 쓴다.
+
+```bash
+git switch -c "chore/#{이슈}/sync-main-to-develop" origin/develop
+git merge origin/main        # 커밋 메시지: chore(repo): vx.y.z 출시 후 main을 develop에 동기화 (#{이슈})
+# → develop 대상 PR
+```
+
+이 merge는 §2-1의 rebase 원칙에서 예외다. `main`의 머지 커밋 이력을 그대로 `develop`에 가져와야
+다음 release에서 같은 변경이 다시 충돌하지 않는다.
+
 ### 5-3. 버전 태그
 
 태그는 `v{major}.{minor}.{patch}` 형식의 Semantic Versioning을 사용한다.
@@ -176,6 +192,22 @@ hotfix에는 해당 운영 결함 수정만 넣는다. `main` 반영과 태그 �
 
 태그는 브랜치를 대신하지 않는다. 배포 대상으로 승인된 `main`의 정확한 커밋을 가리키는
 출시 기록이며, 이동하거나 같은 버전으로 다시 만들지 않는다.
+
+### 5-3-1. 웹 버전과 앱 버전은 따로 움직인다
+
+앱은 웹 화면을 WebView로 불러온다. 웹만 바뀐 출시는 스토어 심사도 OTA도 거치지 않고 앱에
+바로 반영되므로, 두 번호를 맞추지 않는다.
+
+| 버전                 | 가리키는 것                 | 어디에                             | 올리는 때                                   |
+| -------------------- | --------------------------- | ---------------------------------- | ------------------------------------------- |
+| `vX.Y.Z` 태그        | 웹 제품 버전 (Vercel 배포)  | `main` 커밋                        | `main`이 배포될 때마다 (release·hotfix)     |
+| 스토어 앱 버전       | 스토어에 올린 네이티브 빌드 | `apps/native/app.json`의 `version` | 네이티브 코드·설정이 바뀌어 새 빌드를 낼 때 |
+| `native-vX.Y.Z` 태그 | 그 스토어 빌드를 만든 커밋  | 빌드한 커밋                        | 스토어에 빌드를 제출할 때                   |
+
+- OTA `runtimeVersion`은 `appVersion` 정책이라 스토어 앱 버전을 따라간다. 따로 관리하지 않는다
+- 빌드 번호(`buildNumber` · `versionCode`)는 EAS가 원격으로 올린다(`appVersionSource: remote`).
+  직접 고치지 않는다
+- 웹 태그와 앱 태그는 서로 다른 커밋에 붙을 수 있다. 한 커밋에 둘 다 붙어도 된다
 
 ### 5-4. PR 필수 검사
 
