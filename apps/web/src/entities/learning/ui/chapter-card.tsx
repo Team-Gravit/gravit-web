@@ -72,7 +72,6 @@ export function ChapterCard({
 }: ChapterCardProps) {
   const cardSize = size ?? 'sm';
   const style = SIZE_STYLE[cardSize];
-  const planet = getPlanetImage(chapterId);
 
   return (
     <article
@@ -81,26 +80,7 @@ export function ChapterCard({
       className={cn('group relative aspect-square min-w-0', className)}
     >
       <div className={chapterCardVariants({ size: cardSize })}>
-        <GradientCanvas
-          {...CHAPTER_CARD_BACKGROUND}
-          artworkClassName={CHAPTER_CARD_BACKGROUND_FIT_CLASS}
-          // 카드가 모두 같은 장식 파일을 써서 요청은 한 번뿐이다. 첫 화면 카드만 우선순위를 올린다.
-          decorationPriority={planetLoading === 'eager' ? 'high' : 'auto'}
-          className="absolute inset-0"
-        />
-        {planet ? (
-          <img
-            src={planet}
-            alt=""
-            aria-hidden
-            loading={planetLoading === 'lazy' ? 'lazy' : undefined}
-            decoding="async"
-            className="pointer-events-none absolute right-0 bottom-0 z-0 w-[70%] translate-x-[15%] translate-y-[15%] object-contain transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-12 motion-reduce:transition-none motion-reduce:group-hover:scale-100 motion-reduce:group-hover:rotate-0"
-          />
-        ) : null}
-
-        {/* 행성 이미지가 달라도 텍스트 대비를 일정하게 유지한다. */}
-        <div aria-hidden className="pointer-events-none absolute inset-0 z-5 bg-black/20" />
+        <ChapterCardArtwork chapterId={chapterId} planetLoading={planetLoading} />
 
         {/* 카드 클릭은 뒤의 링크로 통과시키고 설명 아이콘만 포인터 입력을 받는다. */}
         <div className="pointer-events-none relative z-30 flex flex-col gap-3">
@@ -152,10 +132,19 @@ export function ChapterCard({
   );
 }
 
+export interface ChapterCardSkeletonProps
+  extends Pick<ChapterCardProps, 'size' | 'planetLoading' | 'className'> {
+  /** 챕터 목록이 고정이라 응답 전에도 칸의 챕터를 알면 행성을 미리 그린다. */
+  chapterId?: number;
+}
+
+/** 배경과 행성은 실제 카드와 같게 그리고, 응답으로 채워질 글자와 게이지 자리만 비워 둔다. */
 export function ChapterCardSkeleton({
+  chapterId,
+  planetLoading = 'lazy',
   size = 'sm',
   className,
-}: Pick<ChapterCardProps, 'size' | 'className'>) {
+}: ChapterCardSkeletonProps) {
   const cardSize = size ?? 'sm';
   const style = SIZE_STYLE[cardSize];
 
@@ -166,13 +155,56 @@ export function ChapterCardSkeleton({
       aria-busy="true"
       className={cn('aspect-square min-w-0', className)}
     >
-      <div className={cn(chapterCardVariants({ size: cardSize }), 'gap-3 bg-bg-3')}>
-        <Skeleton className={cn('w-3/4', style.title)} />
-        <div className="flex flex-col gap-1">
-          <Skeleton variant="block" className={cn('w-full rounded-full', style.gauge)} />
-          <Skeleton className={cn('w-10', style.percent)} />
+      <div className={chapterCardVariants({ size: cardSize })}>
+        <ChapterCardArtwork chapterId={chapterId} planetLoading={planetLoading} />
+
+        <div className="relative z-30 flex flex-col gap-3">
+          <Skeleton className={cn('w-3/4 bg-white/20', style.title)} />
+          <div className="flex flex-col gap-1">
+            <Skeleton
+              variant="block"
+              className={cn('w-full rounded-full bg-white/20', style.gauge)}
+            />
+            <Skeleton className={cn('w-10 bg-white/20', style.percent)} />
+          </div>
         </div>
       </div>
     </div>
+  );
+}
+
+/** 카드 배경 · 행성 · 글자 대비용 덮개. 로딩 전후로 같은 그림을 유지하려고 카드와 스켈레톤이 공유한다. */
+function ChapterCardArtwork({
+  chapterId,
+  planetLoading,
+}: {
+  chapterId?: number;
+  planetLoading: 'eager' | 'lazy';
+}) {
+  const planet = chapterId === undefined ? undefined : getPlanetImage(chapterId);
+
+  return (
+    <>
+      <GradientCanvas
+        {...CHAPTER_CARD_BACKGROUND}
+        artworkClassName={CHAPTER_CARD_BACKGROUND_FIT_CLASS}
+        // 카드가 모두 같은 장식 파일을 써서 요청은 한 번뿐이다. 첫 화면 카드만 우선순위를 올린다.
+        decorationPriority={planetLoading === 'eager' ? 'high' : 'auto'}
+        className="absolute inset-0"
+      />
+      {planet ? (
+        <img
+          src={planet}
+          alt=""
+          aria-hidden
+          loading={planetLoading === 'lazy' ? 'lazy' : undefined}
+          decoding="async"
+          className="pointer-events-none absolute right-0 bottom-0 z-0 w-[70%] translate-x-[15%] translate-y-[15%] object-contain transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-12 motion-reduce:transition-none motion-reduce:group-hover:scale-100 motion-reduce:group-hover:rotate-0"
+        />
+      ) : null}
+
+      {/* 행성 이미지가 달라도 텍스트 대비를 일정하게 유지한다. */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 z-5 bg-black/20" />
+    </>
   );
 }
