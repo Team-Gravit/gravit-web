@@ -81,16 +81,27 @@ export function UnitCard({
   );
 }
 
+/**
+ * 배경은 실제 카드와 같게 그리고 글자 자리만 비워 둔다.
+ * 추천 결과에 따라 챕터가 달라 응답 전에는 행성을 알 수 없으므로 행성 자리는 비운다.
+ */
 export function UnitCardSkeleton({ className }: { className?: string }) {
   return (
     <div
       data-slot="unit-card"
       aria-busy="true"
-      className={cn(CARD_SHELL_CLASS, 'h-39 gap-1 bg-bg-3', className)}
+      className={cn(CARD_SHELL_CLASS, 'h-39 gap-1', className)}
     >
-      <Skeleton className="w-3/4 text-headline1 md:text-heading1" />
-      <Skeleton className="w-18 text-caption1 md:text-body1-normal" />
-      <Skeleton className="mt-auto w-24 text-label1 md:text-body1-normal" />
+      <GradientCanvas
+        {...UNIT_CARD_BACKGROUND}
+        artworkClassName={UNIT_CARD_BACKGROUND_FIT_CLASS}
+        // 로딩 중에도 첫 화면의 카드라 실제 카드의 eager와 같은 우선순위로 받는다.
+        decorationPriority="high"
+        className={UNIT_CARD_BACKGROUND_CONTAINER_CLASS}
+      />
+      <Skeleton className="relative z-10 w-3/4 bg-white/20 text-headline1 md:text-heading1" />
+      <Skeleton className="relative z-10 w-18 bg-white/20 text-caption1 md:text-body1-normal" />
+      <Skeleton className="relative z-10 mt-auto w-24 bg-white/20 text-label1 md:text-body1-normal" />
     </div>
   );
 }
