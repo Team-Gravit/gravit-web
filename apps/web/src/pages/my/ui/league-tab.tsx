@@ -2,8 +2,7 @@ import { useNavigate } from '@tanstack/react-router';
 
 import { LeagueHistoryChart, formatLeagueTier, useMyLeagueHistory } from '@/entities/league';
 import { useDelayedFlag } from '@/shared/lib/use-delayed-flag';
-import { Button } from '@/shared/ui/button';
-import { Card, CardStatus } from '@/shared/ui/card';
+import { Card, CardStatus, CardStatusButton } from '@/shared/ui/card';
 import { Skeleton } from '@/shared/ui/skeleton';
 import { StatItem } from '@/shared/ui/stat-item';
 
@@ -56,13 +55,9 @@ export function LeagueTab() {
           className="whitespace-pre-line py-8 md:py-50"
           message={'아직 획득한 LP가 없어요.\n어서 학습을 진행해 주세요!'}
           action={
-            <Button
-              size="lg"
-              className="text-headline2"
-              onClick={() => navigate({ to: '/learning' })}
-            >
+            <CardStatusButton type="button" onClick={() => navigate({ to: '/learning' })}>
               학습하러 가기
-            </Button>
+            </CardStatusButton>
           }
         />
       )}
