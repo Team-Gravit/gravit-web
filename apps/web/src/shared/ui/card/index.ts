@@ -4,6 +4,8 @@ export { CardLink, type CardLinkProps } from './card-link';
 export {
   CardRetryStatus,
   CardStatus,
+  CardStatusButton,
   type CardRetryStatusProps,
+  type CardStatusButtonProps,
   type CardStatusProps,
 } from './card-status';

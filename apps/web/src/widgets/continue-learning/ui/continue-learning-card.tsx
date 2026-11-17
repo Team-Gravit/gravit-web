@@ -8,6 +8,7 @@ import {
   CardLink,
   CardRetryStatus,
   CardStatus,
+  CardStatusButton,
   CardTitle,
 } from '@/shared/ui/card';
 import { LabeledProgressBar } from '@/shared/ui/progress-bar';
@@ -36,7 +37,11 @@ export function ContinueLearningCard({ className }: ContinueLearningCardProps) {
     body = (
       <CardStatus
         message="아직 학습 기록이 없어요."
-        action={<Link to="/learning">학습 시작하기</Link>}
+        action={
+          <CardStatusButton asChild>
+            <Link to="/learning">학습 시작하기</Link>
+          </CardStatusButton>
+        }
       />
     );
   } else {

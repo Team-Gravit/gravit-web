@@ -1,7 +1,6 @@
 import { useMyPageTopChapters, type TopChapterResponse } from '@/entities/learning';
 import { useDelayedFlag } from '@/shared/lib/use-delayed-flag';
-import { Button } from '@/shared/ui/button';
-import { Card, CardStatus } from '@/shared/ui/card';
+import { Card, CardStatus, CardStatusButton } from '@/shared/ui/card';
 import { ProgressBar } from '@/shared/ui/progress-bar';
 import { RankBadge } from '@/shared/ui/rank-badge';
 import { Skeleton } from '@/shared/ui/skeleton';
@@ -43,9 +42,9 @@ export function TopChapters({ onGoToLearning }: TopChaptersProps) {
           className="whitespace-pre-line py-8"
           message={'이번주 학습한 내용이 없어요.\n어서 학습을 진행해 주세요.'}
           action={
-            <Button size="lg" className="text-headline2" onClick={onGoToLearning}>
+            <CardStatusButton type="button" onClick={onGoToLearning}>
               학습하러 가기
-            </Button>
+            </CardStatusButton>
           }
         />
       )}

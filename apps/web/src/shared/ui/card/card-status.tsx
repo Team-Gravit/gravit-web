@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 
 import { cn } from '@/shared/lib/cn';
 import { withObjectParticle } from '@/shared/lib/korean-particle';
-import { Button } from '@/shared/ui/button';
+import { Button, type ButtonProps } from '@/shared/ui/button';
 
 export interface CardStatusProps {
   message: string;
@@ -34,6 +34,20 @@ export function CardStatus({ message, action, tone = 'empty', className }: CardS
   );
 }
 
+// ButtonProps 는 asChild · isLoading 배타 유니온이라, Omit 을 분기마다 적용해야 배타가 유지된다.
+type WithoutVisual<P> = P extends unknown ? Omit<P, 'variant' | 'size'> : never;
+
+export type CardStatusButtonProps = WithoutVisual<ButtonProps>;
+
+/**
+ * 카드 상태(에러 · 빈 상태)의 행동 버튼. 재시도와 빈 상태 행동이 같은 모양을 쓰도록
+ * 모양(variant · size)은 여기서만 정한다. 링크로 쓸 때는 `asChild`.
+ */
+export function CardStatusButton(props: CardStatusButtonProps) {
+  // TODO(design): Button 크기 확정 후 모바일 sm·데스크톱 lg 적용을 재검토한다.
+  return <Button {...props} variant="default" size={{ base: 'sm', md: 'lg' }} />;
+}
+
 export interface CardRetryStatusProps {
   /** 「{sectionName}을/를 불러오지 못했어요.」의 섹션 이름. 조사는 여기서 붙인다. */
   sectionName: string;
@@ -49,10 +63,9 @@ export function CardRetryStatus({ sectionName, onRetry, className }: CardRetrySt
       message={`${withObjectParticle(sectionName)} 불러오지 못했어요.`}
       className={className}
       action={
-        // TODO(design): Button 크기 확정 후 모바일 sm·데스크톱 lg 적용을 재검토한다.
-        <Button type="button" variant="default" size={{ base: 'sm', md: 'lg' }} onClick={onRetry}>
+        <CardStatusButton type="button" onClick={onRetry}>
           다시 시도
-        </Button>
+        </CardStatusButton>
       }
     />
   );
