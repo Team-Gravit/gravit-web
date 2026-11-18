@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { RouterProvider } from '@tanstack/react-router';
 
 import { AuthProvider } from '@/app/auth/auth-provider';
+import { connectNativeForegroundToFocus } from '@/app/query/native-foreground-focus';
 import { QueryProvider } from '@/app/query/query-provider';
 import { router } from '@/app/router/router';
 import { syncBrowserTopColor } from '@/app/viewport/browser-top-color';
@@ -16,6 +17,7 @@ markNativeApp(document, navigator.userAgent);
 lockNativeAppZoom(document, navigator.userAgent);
 syncNativeStatusBarStyle(router);
 syncBrowserTopColor(router, document);
+connectNativeForegroundToFocus();
 
 const rootElement = document.getElementById('app');
 
