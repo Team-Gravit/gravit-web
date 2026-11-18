@@ -17,6 +17,8 @@ export const Route = createFileRoute('/_authenticated/_focus/learning/lessons/$l
   },
   // 문제 본문을 그리기 전에 마크다운 청크 다운로드를 시작한다.
   loader: preloadMarkdown,
+  // 뒤로 스와이프는 X 버튼의 그만두기 확인창을 거치지 않으므로 막는다.
+  staticData: { swipeBack: false },
   component: LessonQuizRoute,
   // 새로고침에는 저장본을 유지하고 실제 라우트 이탈에서만 삭제한다.
   // 컴포넌트 정리 함수는 StrictMode에서도 실행돼 두 경우를 구분할 수 없다.

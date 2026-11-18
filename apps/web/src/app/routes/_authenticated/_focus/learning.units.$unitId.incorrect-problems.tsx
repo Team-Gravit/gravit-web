@@ -10,6 +10,8 @@ export const Route = createFileRoute(
 )({
   beforeLoad: validateReviewQuizUnitId,
   loader: preloadMarkdown,
+  // 뒤로 스와이프는 풀이 상단의 닫기 처리를 거치지 않으므로 막는다.
+  staticData: { swipeBack: false },
   component: WrongAnswerQuizRoute,
   onLeave: createReviewQuizLeaveHandler('wrongAnswer'),
 });
