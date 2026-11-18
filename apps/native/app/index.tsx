@@ -4,7 +4,11 @@ import { useEffect, useState } from 'react';
 import { WebView, type WebViewMessageEvent } from 'react-native-webview';
 import Constants from 'expo-constants';
 import * as SplashScreen from 'expo-splash-screen';
-import { StatusBar, type StatusBarStyle } from 'expo-status-bar';
+import {
+  setStatusBarStyle as applyStatusBarStyle,
+  StatusBar,
+  type StatusBarStyle,
+} from 'expo-status-bar';
 import { isAllowedBridgeOrigin, NATIVE_USER_AGENT_MARKER } from '@repo/bridge-protocol';
 
 import { createBridge } from '../bridge/create-bridge';
@@ -132,6 +136,19 @@ export default function WebviewPage() {
 
     return () => subscription.remove();
   }, []);
+
+  // iOS는 앱이 오래 백그라운드에 있다 돌아오면 상태 표시줄을 기본(검은 글자)으로 되돌리기도 한다.
+  // 기억한 값이 그대로라 `<StatusBar>`는 다시 그리지 않고, 웹도 화면이 같으면 다시 보내지 않으므로
+  // 앱이 앞으로 올 때마다 직접 다시 적용한다.
+  useEffect(() => {
+    const subscription = AppState.addEventListener('change', (state) => {
+      if (state === 'active') {
+        applyStatusBarStyle(statusBarStyle);
+      }
+    });
+
+    return () => subscription.remove();
+  }, [statusBarStyle]);
 
   const handleShouldStartLoad = ({ url, isTopFrame }: ShouldStartLoadRequest) => {
     const rewrittenUrl = rewriteLocalDevCallback(url);
