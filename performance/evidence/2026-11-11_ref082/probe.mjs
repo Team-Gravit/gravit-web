@@ -1,0 +1,18 @@
+import { createRequire } from 'node:module';
+const require = createRequire(process.argv[2]);
+const puppeteer = require('puppeteer');
+const b = await puppeteer.launch({ headless: true });
+const p = await b.newPage();
+await p.setViewport({ width: 412, height: 915, isMobile: true, hasTouch: true });
+await p.evaluateOnNewDocument(() => localStorage.setItem('hasSession', '1'));
+const logs = [];
+p.on('console', (m) => logs.push(`console.${m.type()}: ${m.text().slice(0, 200)}`));
+p.on('pageerror', (e) => logs.push(`pageerror: ${e.message.slice(0, 200)}`));
+p.on('requestfailed', (r) => logs.push(`failed: ${r.url()}`));
+p.on('response', (r) => { if (r.status() >= 400) logs.push(`${r.status()} ${r.url()}`); });
+await p.goto(`http://localhost:4194${process.argv[3]}`, { waitUntil: 'networkidle0', timeout: 60000 });
+await new Promise((r) => setTimeout(r, 6000));
+await p.screenshot({ path: 'probe.png' });
+console.log(logs.join('\n') || 'no logs');
+console.log('text:', (await p.evaluate(() => document.body.innerText)).slice(0, 300).replace(/\n/g, ' | '));
+await b.close();

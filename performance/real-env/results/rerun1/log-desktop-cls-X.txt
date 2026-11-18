@@ -1,0 +1,3 @@
+main-desktop 1 fcp 304 lcp 304 cls 0.049 tbt 0 | img.size-full.object-cover.object-top space-banner-MwsmKPWE.webp
+main-desktop 2 fcp 276 lcp 292 cls 0.049 tbt 0 | img.size-full.object-cover.object-top space-banner-MwsmKPWE.webp
+main-desktop 3 fcp 260 lcp 284 cls 0.049 tbt 0 | img.size-full.object-cover.object-top space-banner-MwsmKPWE.webp

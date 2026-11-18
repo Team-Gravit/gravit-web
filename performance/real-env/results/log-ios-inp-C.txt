@@ -1,0 +1,63 @@
+my-edit-ios 1 inp 56 다음 프로필 색:56 input 입력:0
+my-edit-ios 2 inp 64 다음 프로필 색:64 input 입력:0
+my-edit-ios 3 inp 72 다음 프로필 색:72 input 입력:0
+my-edit-ios 4 inp 48 다음 프로필 색:48 input 입력:0
+my-edit-ios 5 inp 56 다음 프로필 색:56 input 입력:0
+my-edit-ios 6 inp 56 다음 프로필 색:56 input 입력:0
+my-edit-ios 7 inp 48 다음 프로필 색:48 input 입력:0
+notifications-ios 1 inp 56 학습하러 가기:56
+notifications-ios 2 inp 48 학습하러 가기:48
+notifications-ios 3 inp 56 학습하러 가기:56
+notifications-ios 4 inp 48 학습하러 가기:48
+notifications-ios 5 inp 48 학습하러 가기:48
+notifications-ios 6 inp 56 학습하러 가기:56
+notifications-ios 7 inp 48 학습하러 가기:48
+onboarding-ios 1 inp 64 다음 프로필 색:64 input 입력:0
+onboarding-ios 2 inp 64 다음 프로필 색:64 input 입력:0
+onboarding-ios 3 inp 72 다음 프로필 색:72 input 입력:0
+onboarding-ios 4 inp 56 다음 프로필 색:56 input 입력:0
+onboarding-ios 5 inp 64 다음 프로필 색:64 input 입력:0
+onboarding-ios 6 inp 48 다음 프로필 색:48 input 입력:0
+onboarding-ios 7 inp 72 다음 프로필 색:72 input 입력:0
+onboarding-success-ios 1 inp 48 홈으로:48
+onboarding-success-ios 2 inp 48 홈으로:48
+onboarding-success-ios 3 inp 72 홈으로:72
+onboarding-success-ios 4 inp 88 홈으로:88
+onboarding-success-ios 5 inp 56 홈으로:56
+onboarding-success-ios 6 inp 48 홈으로:48
+onboarding-success-ios 7 inp 48 홈으로:48
+settings-ios 1 inp 56 공지사항:56
+settings-ios 2 inp 56 공지사항:56
+settings-ios 3 inp 48 공지사항:48
+settings-ios 4 inp 56 공지사항:56
+settings-ios 5 inp 48 공지사항:48
+settings-ios 6 inp 56 공지사항:56
+settings-ios 7 inp 48 공지사항:48
+inquiry-ios 1 inp 72 문의 1:72 문의 2:56
+inquiry-ios 2 inp 72 문의 1:72 문의 2:72
+inquiry-ios 3 inp 72 문의 1:72 문의 2:56
+inquiry-ios 4 inp 72 문의 1:64 문의 2:72
+inquiry-ios 5 inp 72 문의 1:72 문의 2:56
+inquiry-ios 6 inp 72 문의 1:72 문의 2:56
+inquiry-ios 7 inp 64 문의 1:64 문의 2:56
+inquiry-new-ios 1 inp 64 문의 유형을 선택해주세요.:48 input 입력:64 textarea 입력:32
+inquiry-new-ios 2 inp 72 문의 유형을 선택해주세요.:72 input 입력:48 textarea 입력:40
+inquiry-new-ios 3 inp 64 문의 유형을 선택해주세요.:64 input 입력:56 textarea 입력:48
+inquiry-new-ios 4 inp 56 문의 유형을 선택해주세요.:48 input 입력:56 textarea 입력:56
+inquiry-new-ios 5 inp 72 문의 유형을 선택해주세요.:72 input 입력:56 textarea 입력:48
+inquiry-new-ios 6 inp 72 문의 유형을 선택해주세요.:72 input 입력:56 textarea 입력:32
+inquiry-new-ios 7 inp 64 문의 유형을 선택해주세요.:64 input 입력:56 textarea 입력:48
+notice-ios 1 inp 56 공지 1 ·:56
+notice-ios 2 inp 48 공지 1 ·:48
+notice-ios 3 inp 48 공지 1 ·:48
+notice-ios 4 inp 64 공지 1 ·:64
+notice-ios 5 inp 48 공지 1 ·:48
+notice-ios 6 inp 48 공지 1 ·:48
+notice-ios 7 inp 48 공지 1 ·:48
+notice-detail-ios 1 inp 48 뒤로 가기:48
+notice-detail-ios 2 inp 48 뒤로 가기:48
+notice-detail-ios 3 inp 48 뒤로 가기:48
+notice-detail-ios 4 inp 56 뒤로 가기:56
+notice-detail-ios 5 inp 48 뒤로 가기:48
+notice-detail-ios 6 inp 48 뒤로 가기:48
+notice-detail-ios 7 inp 48 뒤로 가기:48

@@ -1,0 +1,10 @@
+import { createRequire } from 'node:module';
+import { pathToFileURL } from 'node:url';
+const require = createRequire(process.argv[2]);
+const puppeteer = require('puppeteer');
+const b = await puppeteer.launch({ headless: true });
+const p = await b.newPage();
+await p.setViewport({ width: 1260, height: 2000 });
+await p.goto(pathToFileURL(process.cwd() + '/contact.html').href, { waitUntil: 'load' });
+await p.screenshot({ path: 'contact.png', fullPage: true });
+await b.close();

@@ -1,0 +1,63 @@
+my-edit-mobile 1 inp 48 다음 프로필 색:48 input 입력:0
+my-edit-mobile 2 inp 48 다음 프로필 색:48 input 입력:0
+my-edit-mobile 3 inp 56 다음 프로필 색:56 input 입력:0
+my-edit-mobile 4 inp 48 다음 프로필 색:48 input 입력:0
+my-edit-mobile 5 inp 48 다음 프로필 색:48 input 입력:0
+my-edit-mobile 6 inp 64 다음 프로필 색:64 input 입력:0
+my-edit-mobile 7 inp 48 다음 프로필 색:48 input 입력:0
+notifications-mobile 1 inp 48 학습하러 가기:48
+notifications-mobile 2 inp 48 학습하러 가기:48
+notifications-mobile 3 inp 48 학습하러 가기:48
+notifications-mobile 4 inp 56 학습하러 가기:56
+notifications-mobile 5 inp 48 학습하러 가기:48
+notifications-mobile 6 inp 56 학습하러 가기:56
+notifications-mobile 7 inp 48 학습하러 가기:48
+onboarding-mobile 1 inp 48 다음 프로필 색:48 input 입력:0
+onboarding-mobile 2 inp 56 다음 프로필 색:56 input 입력:0
+onboarding-mobile 3 inp 48 다음 프로필 색:48 input 입력:0
+onboarding-mobile 4 inp 56 다음 프로필 색:56 input 입력:0
+onboarding-mobile 5 inp 56 다음 프로필 색:56 input 입력:0
+onboarding-mobile 6 inp 56 다음 프로필 색:56 input 입력:0
+onboarding-mobile 7 inp 64 다음 프로필 색:64 input 입력:0
+onboarding-success-mobile 1 inp 48 홈으로:48
+onboarding-success-mobile 2 inp 56 홈으로:56
+onboarding-success-mobile 3 inp 56 홈으로:56
+onboarding-success-mobile 4 inp 48 홈으로:48
+onboarding-success-mobile 5 inp 56 홈으로:56
+onboarding-success-mobile 6 inp 48 홈으로:48
+onboarding-success-mobile 7 inp 48 홈으로:48
+settings-mobile 1 inp 56 공지사항:56
+settings-mobile 2 inp 80 공지사항:80
+settings-mobile 3 inp 48 공지사항:48
+settings-mobile 4 inp 48 공지사항:48
+settings-mobile 5 inp 48 공지사항:48
+settings-mobile 6 inp 56 공지사항:56
+settings-mobile 7 inp 48 공지사항:48
+inquiry-mobile 1 inp 48 문의 1:48 문의 2:48
+inquiry-mobile 2 inp 56 문의 1:48 문의 2:56
+inquiry-mobile 3 inp 56 문의 1:48 문의 2:56
+inquiry-mobile 4 inp 56 문의 1:48 문의 2:56
+inquiry-mobile 5 inp 56 문의 1:56 문의 2:56
+inquiry-mobile 6 inp 64 문의 1:48 문의 2:64
+inquiry-mobile 7 inp 48 문의 1:48 문의 2:48
+inquiry-new-mobile 1 inp 64 문의 유형을 선택해주세요.:64 input 입력:48 textarea 입력:40
+inquiry-new-mobile 2 inp 64 문의 유형을 선택해주세요.:64 input 입력:56 textarea 입력:48
+inquiry-new-mobile 3 inp 64 문의 유형을 선택해주세요.:64 input 입력:40 textarea 입력:56
+inquiry-new-mobile 4 inp 64 문의 유형을 선택해주세요.:64 input 입력:48 textarea 입력:56
+inquiry-new-mobile 5 inp 64 문의 유형을 선택해주세요.:64 input 입력:48 textarea 입력:48
+inquiry-new-mobile 6 inp 64 문의 유형을 선택해주세요.:64 input 입력:40 textarea 입력:48
+inquiry-new-mobile 7 inp 64 문의 유형을 선택해주세요.:64 input 입력:40 textarea 입력:40
+notice-mobile 1 inp 48 공지 1 ·:48
+notice-mobile 2 inp 48 공지 1 ·:48
+notice-mobile 3 inp 48 공지 1 ·:48
+notice-mobile 4 inp 56 공지 1 ·:56
+notice-mobile 5 inp 56 공지 1 ·:56
+notice-mobile 6 inp 48 공지 1 ·:48
+notice-mobile 7 inp 56 공지 1 ·:56
+notice-detail-mobile 1 inp 56 뒤로 가기:56
+notice-detail-mobile 2 inp 48 뒤로 가기:48
+notice-detail-mobile 3 inp 48 뒤로 가기:48
+notice-detail-mobile 4 inp 48 뒤로 가기:48
+notice-detail-mobile 5 inp 48 뒤로 가기:48
+notice-detail-mobile 6 inp 48 뒤로 가기:48
+notice-detail-mobile 7 inp 56 뒤로 가기:56

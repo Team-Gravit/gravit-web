@@ -1,0 +1,84 @@
+main-ios 1 inp 48 전체 학습화면 보기:48
+main-ios 2 inp 48 전체 학습화면 보기:48
+main-ios 3 inp 48 전체 학습화면 보기:48
+main-ios 4 inp 48 전체 학습화면 보기:48
+main-ios 5 inp 48 전체 학습화면 보기:48
+main-ios 6 inp 48 전체 학습화면 보기:48
+main-ios 7 inp 56 전체 학습화면 보기:56
+learning-ios 1 inp 48 자료구조 학습하기:48
+learning-ios 2 inp 48 자료구조 학습하기:48
+learning-ios 3 inp 48 자료구조 학습하기:48
+learning-ios 4 inp 64 자료구조 학습하기:64
+learning-ios 5 inp 48 자료구조 학습하기:48
+learning-ios 6 inp 48 자료구조 학습하기:48
+learning-ios 7 inp 48 자료구조 학습하기:48
+chapter-ios 1 inp 48 Unit01:48
+chapter-ios 2 inp 48 Unit01:48
+chapter-ios 3 inp 48 Unit01:48
+chapter-ios 4 inp 48 Unit01:48
+chapter-ios 5 inp 64 Unit01:64
+chapter-ios 6 inp 48 Unit01:48
+chapter-ios 7 inp 64 Unit01:64
+friend-search-ios 1 inp 48 a[href="/my/summary"]:48
+friend-search-ios 2 inp 48 a[href="/my/summary"]:48
+friend-search-ios 3 inp 48 a[href="/my/summary"]:48
+friend-search-ios 4 inp 48 a[href="/my/summary"]:48
+friend-search-ios 5 inp 48 a[href="/my/summary"]:48
+friend-search-ios 6 inp 48 a[href="/my/summary"]:48
+friend-search-ios 7 inp 48 a[href="/my/summary"]:48
+lesson-ios 1 inp 32 1번 선지 가리기:32 보기 1:0 다음:32
+lesson-ios 2 inp 32 1번 선지 가리기:32 보기 1:0 다음:24
+lesson-ios 3 inp 40 1번 선지 가리기:40 보기 1:0 다음:16
+lesson-ios 4 inp 32 1번 선지 가리기:32 보기 1:0 다음:16
+lesson-ios 5 inp 40 1번 선지 가리기:40 보기 1:0 다음:16
+lesson-ios 6 inp 40 1번 선지 가리기:40 보기 1:0 다음:24
+lesson-ios 7 inp 40 1번 선지 가리기:40 보기 1:0 다음:16
+lesson-result-ios 1 inp 48 이어서 학습하기:48
+lesson-result-ios 2 inp 176 이어서 학습하기:176
+lesson-result-ios 3 inp 48 이어서 학습하기:48
+lesson-result-ios 4 inp 56 이어서 학습하기:56
+lesson-result-ios 5 inp 72 이어서 학습하기:72
+lesson-result-ios 6 inp 88 이어서 학습하기:88
+lesson-result-ios 7 inp 72 이어서 학습하기:72
+bookmarked-ios 1 inp 40 보기 1:32 다음:40
+bookmarked-ios 2 inp 32 보기 1:32 다음:32
+bookmarked-ios 3 inp 40 보기 1:40 다음:40
+bookmarked-ios 4 inp 32 보기 1:32 다음:32
+bookmarked-ios 5 inp 40 보기 1:32 다음:40
+bookmarked-ios 6 inp 40 보기 1:40 다음:40
+bookmarked-ios 7 inp 40 보기 1:40 다음:32
+incorrect-ios 1 inp 40 보기 1:32 다음:40
+incorrect-ios 2 inp 32 보기 1:32 다음:32
+incorrect-ios 3 inp 40 보기 1:40 다음:40
+incorrect-ios 4 inp 40 보기 1:40 다음:40
+incorrect-ios 5 inp 32 보기 1:32 다음:32
+incorrect-ios 6 inp 40 보기 1:40 다음:32
+incorrect-ios 7 inp 40 보기 1:32 다음:40
+my-edit-ios 1 inp 48 다음 프로필 색:48 input 입력:0
+my-edit-ios 2 inp 64 다음 프로필 색:64 input 입력:0
+my-edit-ios 3 inp 48 다음 프로필 색:48 input 입력:0
+my-edit-ios 4 inp 64 다음 프로필 색:64 input 입력:0
+my-edit-ios 5 inp 48 다음 프로필 색:48 input 입력:0
+my-edit-ios 6 inp 64 다음 프로필 색:64 input 입력:0
+my-edit-ios 7 inp 64 다음 프로필 색:64 input 입력:0
+onboarding-ios 1 inp 64 다음 프로필 색:64 input 입력:0
+onboarding-ios 2 inp 56 다음 프로필 색:56 input 입력:0
+onboarding-ios 3 inp 72 다음 프로필 색:72 input 입력:0
+onboarding-ios 4 inp 64 다음 프로필 색:64 input 입력:0
+onboarding-ios 5 inp 56 다음 프로필 색:56 input 입력:0
+onboarding-ios 6 inp 64 다음 프로필 색:64 input 입력:0
+onboarding-ios 7 inp 64 다음 프로필 색:64 input 입력:0
+onboarding-success-ios 1 inp 80 홈으로:80
+onboarding-success-ios 2 inp 56 홈으로:56
+onboarding-success-ios 3 inp 48 홈으로:48
+onboarding-success-ios 4 inp 48 홈으로:48
+onboarding-success-ios 5 inp 48 홈으로:48
+onboarding-success-ios 6 inp 56 홈으로:56
+onboarding-success-ios 7 inp 80 홈으로:80
+notice-ios 1 inp 72 공지 1 ·:72
+notice-ios 2 inp 56 공지 1 ·:56
+notice-ios 3 inp 56 공지 1 ·:56
+notice-ios 4 inp 80 공지 1 ·:80
+notice-ios 5 inp 64 공지 1 ·:64
+notice-ios 6 inp 48 공지 1 ·:48
+notice-ios 7 inp 64 공지 1 ·:64

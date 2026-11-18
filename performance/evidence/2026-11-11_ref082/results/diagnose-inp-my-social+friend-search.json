@@ -1,0 +1,202 @@
+{
+  "my-social-mobile": [
+    {
+      "interactions": [
+        {
+          "action": "축하하기",
+          "inp": 176,
+          "event": "pointerdown",
+          "target": "button.group/button.relative.inline-flex \"축하 완료\""
+        },
+        {
+          "action": "8 팔로잉",
+          "inp": 184,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 184
+    },
+    {
+      "interactions": [
+        {
+          "action": "축하하기",
+          "inp": 184,
+          "event": "pointerdown",
+          "target": "button.group/button.relative.inline-flex \"축하 완료\""
+        },
+        {
+          "action": "8 팔로잉",
+          "inp": 288,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 288
+    },
+    {
+      "interactions": [
+        {
+          "action": "축하하기",
+          "inp": 184,
+          "event": "pointerdown",
+          "target": "button.group/button.relative.inline-flex \"축하 완료\""
+        },
+        {
+          "action": "8 팔로잉",
+          "inp": 288,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 288
+    },
+    {
+      "interactions": [
+        {
+          "action": "축하하기",
+          "inp": 184,
+          "event": "pointerdown",
+          "target": "button.group/button.relative.inline-flex \"축하 완료\""
+        },
+        {
+          "action": "8 팔로잉",
+          "inp": 288,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 288
+    },
+    {
+      "interactions": [
+        {
+          "action": "축하하기",
+          "inp": 184,
+          "event": "pointerdown",
+          "target": "button.group/button.relative.inline-flex \"축하 완료\""
+        },
+        {
+          "action": "8 팔로잉",
+          "inp": 288,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 288
+    },
+    {
+      "interactions": [
+        {
+          "action": "축하하기",
+          "inp": 184,
+          "event": "pointerdown",
+          "target": "button.group/button.relative.inline-flex \"축하 완료\""
+        },
+        {
+          "action": "8 팔로잉",
+          "inp": 288,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 288
+    },
+    {
+      "interactions": [
+        {
+          "action": "축하하기",
+          "inp": 184,
+          "event": "pointerdown",
+          "target": "button.group/button.relative.inline-flex \"축하 완료\""
+        },
+        {
+          "action": "8 팔로잉",
+          "inp": 288,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 288
+    }
+  ],
+  "friend-search-mobile": [
+    {
+      "interactions": [
+        {
+          "action": "a[href=\"/my/summary\"]",
+          "inp": 288,
+          "event": "pointerdown",
+          "target": "a.flex.flex-1.items-center \"요약\""
+        }
+      ],
+      "inp": 288
+    },
+    {
+      "interactions": [
+        {
+          "action": "a[href=\"/my/summary\"]",
+          "inp": 288,
+          "event": "pointerdown",
+          "target": "a.flex.flex-1.items-center \"요약\""
+        }
+      ],
+      "inp": 288
+    },
+    {
+      "interactions": [
+        {
+          "action": "a[href=\"/my/summary\"]",
+          "inp": 0,
+          "event": null,
+          "target": null
+        }
+      ],
+      "inp": 0
+    },
+    {
+      "interactions": [
+        {
+          "action": "a[href=\"/my/summary\"]",
+          "inp": 288,
+          "event": "pointerdown",
+          "target": "a.flex.flex-1.items-center \"요약\""
+        }
+      ],
+      "inp": 288
+    },
+    {
+      "interactions": [
+        {
+          "action": "a[href=\"/my/summary\"]",
+          "inp": 288,
+          "event": "pointerdown",
+          "target": "a.flex.flex-1.items-center \"요약\""
+        }
+      ],
+      "inp": 288
+    },
+    {
+      "interactions": [
+        {
+          "action": "a[href=\"/my/summary\"]",
+          "inp": 288,
+          "event": "pointerdown",
+          "target": "a.flex.flex-1.items-center \"요약\""
+        }
+      ],
+      "inp": 288
+    },
+    {
+      "interactions": [
+        {
+          "action": "a[href=\"/my/summary\"]",
+          "inp": 288,
+          "event": "pointerdown",
+          "target": "a.flex.flex-1.items-center \"요약\""
+        }
+      ],
+      "inp": 288
+    }
+  ]
+}

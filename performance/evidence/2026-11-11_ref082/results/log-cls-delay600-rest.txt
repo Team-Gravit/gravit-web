@@ -1,0 +1,63 @@
+learning-mobile 1 fcp 4640 lcp 4640 cls 0.000 tbt 0 | img.size-full.object-cover.object-top chapter-card-decoration-BMW7jce4.webp
+learning-mobile 2 fcp 4072 lcp 4072 cls 0.000 tbt 110 | img.size-full.object-cover.object-top chapter-card-decoration-BMW7jce4.webp
+learning-mobile 3 fcp 3712 lcp 3712 cls 0.000 tbt 87 | img.size-full.object-cover.object-top chapter-card-decoration-BMW7jce4.webp
+learning-desktop 1 fcp 4800 lcp 4800 cls 0.001 tbt 0 | img.size-full.object-cover.object-top space-banner-MwsmKPWE.webp
+learning-desktop 2 fcp 3720 lcp 3720 cls 0.007 tbt 173 | img.size-full.object-cover.object-top space-banner-MwsmKPWE.webp
+learning-desktop 3 fcp 3772 lcp 3772 cls 0.007 tbt 205 | img.size-full.object-cover.object-top space-banner-MwsmKPWE.webp
+chapter-mobile 1 fcp 4508 lcp 5056 cls 0.148 tbt 258 | h2.break-keep.text-headline2.text-text-2 "Unit03 - 유닛 3 · 스택과 큐" 
+chapter-mobile 2 fcp 4272 lcp 4708 cls 0.148 tbt 164 | h2.break-keep.text-headline2.text-text-2 "Unit03 - 유닛 3 · 스택과 큐" 
+chapter-mobile 3 fcp 3876 lcp 4408 cls 0.148 tbt 265 | h2.break-keep.text-headline2.text-text-2 "Unit03 - 유닛 3 · 스택과 큐" 
+unit-mobile 1 fcp 4492 lcp 4772 cls 0.110 tbt 166 | img.pointer-events-none.absolute.inset-0 starfield-B6KO2C6x.avif
+unit-mobile 2 fcp 4176 lcp 4592 cls 0.110 tbt 236 | img.pointer-events-none.absolute.inset-0 starfield-B6KO2C6x.avif
+unit-mobile 3 fcp 4080 lcp 4544 cls 0.110 tbt 214 | img.pointer-events-none.absolute.inset-0 starfield-B6KO2C6x.avif
+concept-note-mobile 1 fcp 3784 lcp 6080 cls 0.291 tbt 1549 | code.language-ts "const stack: number[] = []; st" 
+concept-note-mobile 2 fcp 3640 lcp 5704 cls 0.291 tbt 1325 | code.language-ts "const stack: number[] = []; st" 
+concept-note-mobile 3 fcp 3632 lcp 5428 cls 0.000 tbt 1154 | code.language-ts "const stack: number[] = []; st" 
+concept-note-desktop 1 fcp 4436 lcp 6068 cls 0.059 tbt 1236 | code.language-ts "const stack: number[] = []; st" 
+concept-note-desktop 2 fcp 4116 lcp 5548 cls 0.059 tbt 1078 | code.language-ts "const stack: number[] = []; st" 
+concept-note-desktop 3 fcp 4108 lcp 6076 cls 0.059 tbt 1535 | code.language-ts "const stack: number[] = []; st" 
+friends-mobile 1 fcp 3844 lcp 4892 cls 0.000 tbt 195 | span.truncate.text-label2.text-text-3 "@chulsoo22" 
+friends-mobile 2 fcp 3184 lcp 4784 cls 0.000 tbt 259 | span.truncate.text-label2.text-text-3 "@chulsoo22" 
+friends-mobile 3 fcp 3256 lcp 4808 cls 0.000 tbt 215 | span.truncate.text-label2.text-text-3 "@chulsoo22" 
+friend-search-mobile 1 fcp 3472 lcp 3472 cls 0.002 tbt 100 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+friend-search-mobile 2 fcp 3596 lcp 3596 cls 0.002 tbt 112 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+friend-search-mobile 3 fcp 3936 lcp 3936 cls 0.002 tbt 217 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+lesson-mobile 1 fcp 3548 lcp 3880 cls 0.000 tbt 699 | img.h-[20.625rem].w-auto.max-w-full loading-mascot-DwzQU18I.webp
+lesson-mobile 2 fcp 3176 lcp 3544 cls 0.000 tbt 625 | img.h-[20.625rem].w-auto.max-w-full loading-mascot-DwzQU18I.webp
+lesson-mobile 3 fcp 3532 lcp 3916 cls 0.000 tbt 761 | img.h-[20.625rem].w-auto.max-w-full loading-mascot-DwzQU18I.webp
+lesson-result-mobile 1 fcp 3208 lcp 4224 cls 0.168 tbt 14 | img.absolute.top-[16.67%].left-0 mascot-qgxOBFbq.webp
+lesson-result-mobile 2 fcp 3444 lcp 4224 cls 0.168 tbt 0 | img.absolute.top-[16.67%].left-0 mascot-qgxOBFbq.webp
+lesson-result-mobile 3 fcp 3080 lcp 3912 cls 0.168 tbt 0 | img.absolute.top-[16.67%].left-0 mascot-qgxOBFbq.webp
+bookmarked-mobile 1 fcp 3172 lcp 3972 cls 0.000 tbt 986 | img.h-[20.625rem].w-auto.max-w-full loading-mascot-DwzQU18I.webp
+bookmarked-mobile 2 fcp 3444 lcp 3796 cls 0.000 tbt 682 | img.h-[20.625rem].w-auto.max-w-full loading-mascot-DwzQU18I.webp
+bookmarked-mobile 3 fcp 3368 lcp 3732 cls 0.000 tbt 695 | img.h-[20.625rem].w-auto.max-w-full loading-mascot-DwzQU18I.webp
+incorrect-mobile 1 fcp 3296 lcp 3712 cls 0.000 tbt 760 | img.h-[20.625rem].w-auto.max-w-full loading-mascot-DwzQU18I.webp
+incorrect-mobile 2 fcp 3288 lcp 3688 cls 0.000 tbt 712 | img.h-[20.625rem].w-auto.max-w-full loading-mascot-DwzQU18I.webp
+incorrect-mobile 3 fcp 3588 lcp 4104 cls 0.000 tbt 608 | img.h-[20.625rem].w-auto.max-w-full loading-mascot-DwzQU18I.webp
+my-edit-mobile 1 fcp 3668 lcp 3668 cls 0.000 tbt 0 | label.text-headline2.text-text-1 "닉네임 설정" 
+my-edit-mobile 2 fcp 3832 lcp 3832 cls 0.000 tbt 0 | label.text-headline2.text-text-1 "닉네임 설정" 
+my-edit-mobile 3 fcp 3716 lcp 3716 cls 0.000 tbt 0 | label.text-headline2.text-text-1 "닉네임 설정" 
+notifications-mobile 1 fcp 3060 lcp 3060 cls 0.009 tbt 569 | p.text-label1.md:text-headline1.text-text-3-w "궁금한 점이 있다면 문의하기를 통해 남겨주세요." 
+notifications-mobile 2 fcp 2992 lcp 2992 cls 0.009 tbt 514 | p.text-label1.md:text-headline1.text-text-3-w "궁금한 점이 있다면 문의하기를 통해 남겨주세요." 
+notifications-mobile 3 fcp 3168 lcp 3168 cls 0.009 tbt 497 | p.text-label1.md:text-headline1.text-text-3-w "궁금한 점이 있다면 문의하기를 통해 남겨주세요." 
+onboarding-mobile 1 fcp 3552 lcp 3552 cls 0.000 tbt 38 | - 
+onboarding-mobile 2 fcp 3396 lcp 3396 cls 0.000 tbt 51 | - 
+onboarding-mobile 3 fcp 3300 lcp 3300 cls 0.000 tbt 78 | - 
+onboarding-success-mobile 1 fcp 2432 lcp 2516 cls 0.004 tbt 113 | img.mt-10.w-52.5 mascot-celebrate-DGkz6uaw.webp
+onboarding-success-mobile 2 fcp 1728 lcp 1776 cls 0.004 tbt 4 | img.mt-10.w-52.5 mascot-celebrate-DGkz6uaw.webp
+onboarding-success-mobile 3 fcp 2520 lcp 2588 cls 0.004 tbt 26 | img.mt-10.w-52.5 mascot-celebrate-DGkz6uaw.webp
+settings-mobile 1 fcp 3412 lcp 3412 cls 0.006 tbt 114 | span.text-label1.text-text-1.md:text-heading2 "개인정보 처리 방침" 
+settings-mobile 2 fcp 3700 lcp 3700 cls 0.006 tbt 77 | span.text-label1.text-text-1.md:text-heading2 "개인정보 처리 방침" 
+settings-mobile 3 fcp 2972 lcp 2972 cls 0.006 tbt 95 | span.text-label1.text-text-1.md:text-heading2 "개인정보 처리 방침" 
+inquiry-mobile 1 fcp 3416 lcp 4632 cls 0.077 tbt 576 | h4.text-headline2.text-text-1.md:mb-2 "문의 3 · 레슨 결과 화면에서 점수가 다르게 보여요" 
+inquiry-mobile 2 fcp 3376 lcp 4508 cls 0.077 tbt 565 | h4.text-headline2.text-text-1.md:mb-2 "문의 3 · 레슨 결과 화면에서 점수가 다르게 보여요" 
+inquiry-mobile 3 fcp 4184 lcp 5152 cls 0.077 tbt 340 | h4.text-headline2.text-text-1.md:mb-2 "문의 3 · 레슨 결과 화면에서 점수가 다르게 보여요" 
+inquiry-new-mobile 1 fcp 3968 lcp 3968 cls 0.000 tbt 48 | h3.pl-1.text-headline2.md:text-heading1 "문의유형을 선택해주세요" 
+inquiry-new-mobile 2 fcp 4272 lcp 4272 cls 0.000 tbt 67 | h3.pl-1.text-headline2.md:text-heading1 "문의유형을 선택해주세요" 
+inquiry-new-mobile 3 fcp 3740 lcp 3740 cls 0.000 tbt 78 | h3.pl-1.text-headline2.md:text-heading1 "문의유형을 선택해주세요" 
+notice-mobile 1 fcp 3772 lcp 4708 cls 0.000 tbt 399 | span.truncate.text-headline2.text-text-1 "공지 10 · 11월 학습 리그 시즌 안내" 
+notice-mobile 2 fcp 3952 lcp 4816 cls 0.000 tbt 300 | span.truncate.text-headline2.text-text-1 "공지 10 · 11월 학습 리그 시즌 안내" 
+notice-mobile 3 fcp 3276 lcp 4392 cls 0.000 tbt 490 | span.truncate.text-headline2.text-text-1 "공지 10 · 11월 학습 리그 시즌 안내" 
+notice-detail-mobile 1 fcp 4296 lcp 5376 cls 0.000 tbt 404 | h1.text-heading1.text-text-1.md:text-title1 "공지 1 · 11월 학습 리그 시즌 안내" 
+notice-detail-mobile 2 fcp 3904 lcp 5156 cls 0.000 tbt 572 | h1.text-heading1.text-text-1.md:text-title1 "공지 1 · 11월 학습 리그 시즌 안내" 
+notice-detail-mobile 3 fcp 3580 lcp 4864 cls 0.000 tbt 643 | h1.text-heading1.text-text-1.md:text-title1 "공지 1 · 11월 학습 리그 시즌 안내" 

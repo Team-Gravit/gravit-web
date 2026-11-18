@@ -1,0 +1,915 @@
+{
+  "login-mobile": [
+    {
+      "fcp": 3672,
+      "lcp": 3672,
+      "el": "H2",
+      "cls": 0.0016800183917802891,
+      "shifts": [
+        {
+          "t": 4058,
+          "v": 0.0017,
+          "node": "DIV.mt-auto"
+        }
+      ],
+      "tbt": 98,
+      "api": [],
+      "finalPath": "/"
+    },
+    {
+      "fcp": 3228,
+      "lcp": 3228,
+      "el": "H2",
+      "cls": 0.0016800183917802891,
+      "shifts": [
+        {
+          "t": 3803,
+          "v": 0.0017,
+          "node": "DIV.mt-auto"
+        }
+      ],
+      "tbt": 129,
+      "api": [],
+      "finalPath": "/"
+    },
+    {
+      "fcp": 3256,
+      "lcp": 3256,
+      "el": "H2",
+      "cls": 0.0016800183917802891,
+      "shifts": [
+        {
+          "t": 3801,
+          "v": 0.0017,
+          "node": "DIV.mt-auto"
+        }
+      ],
+      "tbt": 257,
+      "api": [],
+      "finalPath": "/"
+    },
+    {
+      "fcp": 3516,
+      "lcp": 3516,
+      "el": "H2",
+      "cls": 0.0016800183917802891,
+      "shifts": [
+        {
+          "t": 4156,
+          "v": 0.0017,
+          "node": "DIV.mt-auto"
+        }
+      ],
+      "tbt": 169,
+      "api": [],
+      "finalPath": "/"
+    },
+    {
+      "fcp": 3260,
+      "lcp": 3260,
+      "el": "H2",
+      "cls": 0.0016800183917802891,
+      "shifts": [
+        {
+          "t": 3886,
+          "v": 0.0017,
+          "node": "DIV.mt-auto"
+        }
+      ],
+      "tbt": 146,
+      "api": [],
+      "finalPath": "/"
+    }
+  ],
+  "main-mobile": [
+    {
+      "fcp": 7772,
+      "lcp": 8172,
+      "el": "IMG hero-narrow-decoration.webp",
+      "cls": 0.004671013551181999,
+      "shifts": [
+        {
+          "t": 7961,
+          "v": 0.0047,
+          "node": "SECTION.flex"
+        }
+      ],
+      "tbt": 0,
+      "api": [
+        {
+          "path": "/api/v1/auth/reissue",
+          "start": 2760,
+          "end": 3040
+        },
+        {
+          "path": "/api/v1/users",
+          "start": 3286,
+          "end": 4188
+        },
+        {
+          "path": "/api/v1/main-pages/profile",
+          "start": 4362,
+          "end": 7299
+        },
+        {
+          "path": "/api/v1/main-pages/league",
+          "start": 4369,
+          "end": 7305
+        },
+        {
+          "path": "/api/v1/main-pages/weekly-record",
+          "start": 4380,
+          "end": 7308
+        },
+        {
+          "path": "/api/v1/main-pages/mission",
+          "start": 4390,
+          "end": 7311
+        },
+        {
+          "path": "/api/v1/main-pages/units",
+          "start": 4396,
+          "end": 7317
+        },
+        {
+          "path": "/api/v1/main-pages/learning",
+          "start": 4404,
+          "end": 7324
+        },
+        {
+          "path": "/api/v1/notifications",
+          "start": 6847,
+          "end": 8063
+        }
+      ],
+      "finalPath": "/main"
+    },
+    {
+      "fcp": 6608,
+      "lcp": 6912,
+      "el": "IMG hero-narrow-decoration.webp",
+      "cls": 0.2375544034601131,
+      "shifts": [
+        {
+          "t": 7399,
+          "v": 0.2376,
+          "node": "SECTION.flex"
+        }
+      ],
+      "tbt": 205,
+      "api": [
+        {
+          "path": "/api/v1/auth/reissue",
+          "start": 2630,
+          "end": 2893
+        },
+        {
+          "path": "/api/v1/users",
+          "start": 3169,
+          "end": 4037
+        },
+        {
+          "path": "/api/v1/main-pages/profile",
+          "start": 4186,
+          "end": 6884
+        },
+        {
+          "path": "/api/v1/main-pages/league",
+          "start": 4194,
+          "end": 6889
+        },
+        {
+          "path": "/api/v1/main-pages/weekly-record",
+          "start": 4201,
+          "end": 6895
+        },
+        {
+          "path": "/api/v1/main-pages/mission",
+          "start": 4208,
+          "end": 6905
+        },
+        {
+          "path": "/api/v1/main-pages/units",
+          "start": 4214,
+          "end": 6913
+        },
+        {
+          "path": "/api/v1/main-pages/learning",
+          "start": 4222,
+          "end": 6920
+        },
+        {
+          "path": "/api/v1/notifications",
+          "start": 6391,
+          "end": 7898
+        }
+      ],
+      "finalPath": "/main"
+    },
+    {
+      "fcp": 6724,
+      "lcp": 6924,
+      "el": "IMG hero-narrow-decoration.webp",
+      "cls": 0.2375544034601131,
+      "shifts": [
+        {
+          "t": 7216,
+          "v": 0.2376,
+          "node": "SECTION.flex"
+        }
+      ],
+      "tbt": 151,
+      "api": [
+        {
+          "path": "/api/v1/auth/reissue",
+          "start": 2591,
+          "end": 2853
+        },
+        {
+          "path": "/api/v1/users",
+          "start": 3173,
+          "end": 4048
+        },
+        {
+          "path": "/api/v1/main-pages/profile",
+          "start": 4184,
+          "end": 6937
+        },
+        {
+          "path": "/api/v1/main-pages/league",
+          "start": 4191,
+          "end": 6944
+        },
+        {
+          "path": "/api/v1/main-pages/weekly-record",
+          "start": 4197,
+          "end": 6948
+        },
+        {
+          "path": "/api/v1/main-pages/mission",
+          "start": 4204,
+          "end": 6952
+        },
+        {
+          "path": "/api/v1/main-pages/units",
+          "start": 4209,
+          "end": 6961
+        },
+        {
+          "path": "/api/v1/main-pages/learning",
+          "start": 4214,
+          "end": 6965
+        },
+        {
+          "path": "/api/v1/notifications",
+          "start": 6530,
+          "end": 7838
+        }
+      ],
+      "finalPath": "/main"
+    },
+    {
+      "fcp": 6264,
+      "lcp": 6468,
+      "el": "IMG hero-narrow-decoration.webp",
+      "cls": 0.2375544034601131,
+      "shifts": [
+        {
+          "t": 6710,
+          "v": 0.2376,
+          "node": "SECTION.flex"
+        }
+      ],
+      "tbt": 117,
+      "api": [
+        {
+          "path": "/api/v1/auth/reissue",
+          "start": 2416,
+          "end": 2621
+        },
+        {
+          "path": "/api/v1/users",
+          "start": 2668,
+          "end": 3693
+        },
+        {
+          "path": "/api/v1/main-pages/profile",
+          "start": 3880,
+          "end": 6442
+        },
+        {
+          "path": "/api/v1/main-pages/league",
+          "start": 3889,
+          "end": 6446
+        },
+        {
+          "path": "/api/v1/main-pages/weekly-record",
+          "start": 3893,
+          "end": 6451
+        },
+        {
+          "path": "/api/v1/main-pages/mission",
+          "start": 3901,
+          "end": 6456
+        },
+        {
+          "path": "/api/v1/main-pages/units",
+          "start": 3909,
+          "end": 6460
+        },
+        {
+          "path": "/api/v1/main-pages/learning",
+          "start": 3916,
+          "end": 6465
+        },
+        {
+          "path": "/api/v1/notifications",
+          "start": 6033,
+          "end": 7308
+        }
+      ],
+      "finalPath": "/main"
+    },
+    {
+      "fcp": 6672,
+      "lcp": 6872,
+      "el": "IMG hero-narrow-decoration.webp",
+      "cls": 0.004671013551181999,
+      "shifts": [
+        {
+          "t": 7477,
+          "v": 0.0047,
+          "node": "SECTION.flex"
+        }
+      ],
+      "tbt": 150,
+      "api": [
+        {
+          "path": "/api/v1/auth/reissue",
+          "start": 2530,
+          "end": 2784
+        },
+        {
+          "path": "/api/v1/users",
+          "start": 3111,
+          "end": 4007
+        },
+        {
+          "path": "/api/v1/main-pages/profile",
+          "start": 4178,
+          "end": 6910
+        },
+        {
+          "path": "/api/v1/main-pages/league",
+          "start": 4186,
+          "end": 6914
+        },
+        {
+          "path": "/api/v1/main-pages/weekly-record",
+          "start": 4193,
+          "end": 6921
+        },
+        {
+          "path": "/api/v1/main-pages/mission",
+          "start": 4199,
+          "end": 6925
+        },
+        {
+          "path": "/api/v1/main-pages/units",
+          "start": 4204,
+          "end": 6931
+        },
+        {
+          "path": "/api/v1/main-pages/learning",
+          "start": 4209,
+          "end": 6939
+        },
+        {
+          "path": "/api/v1/notifications",
+          "start": 6456,
+          "end": 7817
+        }
+      ],
+      "finalPath": "/main"
+    }
+  ],
+  "main-desktop": [
+    {
+      "fcp": 7684,
+      "lcp": 7836,
+      "el": "IMG space-banner.webp",
+      "cls": 0.002576264574759945,
+      "shifts": [
+        {
+          "t": 7814,
+          "v": 0.0026,
+          "node": "SECTION.flex"
+        }
+      ],
+      "tbt": 42,
+      "api": [
+        {
+          "path": "/api/v1/auth/reissue",
+          "start": 2539,
+          "end": 2766
+        },
+        {
+          "path": "/api/v1/users",
+          "start": 2816,
+          "end": 3831
+        },
+        {
+          "path": "/api/v1/main-pages/profile",
+          "start": 4008,
+          "end": 7120
+        },
+        {
+          "path": "/api/v1/main-pages/league",
+          "start": 4017,
+          "end": 7127
+        },
+        {
+          "path": "/api/v1/main-pages/weekly-record",
+          "start": 4026,
+          "end": 7134
+        },
+        {
+          "path": "/api/v1/main-pages/mission",
+          "start": 4034,
+          "end": 7142
+        },
+        {
+          "path": "/api/v1/main-pages/units",
+          "start": 4042,
+          "end": 7150
+        },
+        {
+          "path": "/api/v1/main-pages/learning",
+          "start": 4050,
+          "end": 7157
+        },
+        {
+          "path": "/api/v1/notifications",
+          "start": 6620,
+          "end": 8238
+        }
+      ],
+      "finalPath": "/main"
+    },
+    {
+      "fcp": 6732,
+      "lcp": 7032,
+      "el": "IMG space-banner.webp",
+      "cls": 0.029021523491083678,
+      "shifts": [
+        {
+          "t": 7339,
+          "v": 0.0281,
+          "node": "SECTION.flex"
+        },
+        {
+          "t": 7706,
+          "v": 0.001,
+          "node": "SECTION.flex"
+        }
+      ],
+      "tbt": 208,
+      "api": [
+        {
+          "path": "/api/v1/auth/reissue",
+          "start": 2487,
+          "end": 2791
+        },
+        {
+          "path": "/api/v1/users",
+          "start": 3140,
+          "end": 4001
+        },
+        {
+          "path": "/api/v1/main-pages/profile",
+          "start": 4146,
+          "end": 7023
+        },
+        {
+          "path": "/api/v1/main-pages/league",
+          "start": 4151,
+          "end": 7026
+        },
+        {
+          "path": "/api/v1/main-pages/weekly-record",
+          "start": 4157,
+          "end": 7030
+        },
+        {
+          "path": "/api/v1/main-pages/mission",
+          "start": 4167,
+          "end": 7036
+        },
+        {
+          "path": "/api/v1/main-pages/units",
+          "start": 4174,
+          "end": 7041
+        },
+        {
+          "path": "/api/v1/main-pages/learning",
+          "start": 4183,
+          "end": 7046
+        },
+        {
+          "path": "/api/v1/notifications",
+          "start": 6533,
+          "end": 8115
+        }
+      ],
+      "finalPath": "/main"
+    },
+    {
+      "fcp": 6200,
+      "lcp": 6404,
+      "el": "IMG space-banner.webp",
+      "cls": 0.029021523491083678,
+      "shifts": [
+        {
+          "t": 6683,
+          "v": 0.0281,
+          "node": "SECTION.flex"
+        },
+        {
+          "t": 6959,
+          "v": 0.001,
+          "node": "SECTION.flex"
+        }
+      ],
+      "tbt": 163,
+      "api": [
+        {
+          "path": "/api/v1/auth/reissue",
+          "start": 2296,
+          "end": 2519
+        },
+        {
+          "path": "/api/v1/users",
+          "start": 2560,
+          "end": 3428
+        },
+        {
+          "path": "/api/v1/main-pages/profile",
+          "start": 3572,
+          "end": 6389
+        },
+        {
+          "path": "/api/v1/main-pages/league",
+          "start": 3579,
+          "end": 6392
+        },
+        {
+          "path": "/api/v1/main-pages/weekly-record",
+          "start": 3587,
+          "end": 6395
+        },
+        {
+          "path": "/api/v1/main-pages/mission",
+          "start": 3594,
+          "end": 6398
+        },
+        {
+          "path": "/api/v1/main-pages/units",
+          "start": 3599,
+          "end": 6407
+        },
+        {
+          "path": "/api/v1/main-pages/learning",
+          "start": 3605,
+          "end": 6430
+        },
+        {
+          "path": "/api/v1/notifications",
+          "start": 5945,
+          "end": 7397
+        }
+      ],
+      "finalPath": "/main"
+    },
+    {
+      "fcp": 6856,
+      "lcp": 7156,
+      "el": "IMG space-banner.webp",
+      "cls": 0.0015809199245541837,
+      "shifts": [
+        {
+          "t": 7529,
+          "v": 0.0006,
+          "node": "SECTION.flex"
+        },
+        {
+          "t": 7750,
+          "v": 0.001,
+          "node": "SECTION.flex"
+        }
+      ],
+      "tbt": 227,
+      "api": [
+        {
+          "path": "/api/v1/auth/reissue",
+          "start": 2511,
+          "end": 2794
+        },
+        {
+          "path": "/api/v1/users",
+          "start": 3201,
+          "end": 4054
+        },
+        {
+          "path": "/api/v1/main-pages/profile",
+          "start": 4219,
+          "end": 7149
+        },
+        {
+          "path": "/api/v1/main-pages/league",
+          "start": 4225,
+          "end": 7154
+        },
+        {
+          "path": "/api/v1/main-pages/weekly-record",
+          "start": 4235,
+          "end": 7160
+        },
+        {
+          "path": "/api/v1/main-pages/mission",
+          "start": 4241,
+          "end": 7165
+        },
+        {
+          "path": "/api/v1/main-pages/units",
+          "start": 4247,
+          "end": 7169
+        },
+        {
+          "path": "/api/v1/main-pages/learning",
+          "start": 4255,
+          "end": 7173
+        },
+        {
+          "path": "/api/v1/notifications",
+          "start": 6607,
+          "end": 8145
+        }
+      ],
+      "finalPath": "/main"
+    },
+    {
+      "fcp": 6572,
+      "lcp": 6672,
+      "el": "IMG space-banner.webp",
+      "cls": 0.0015809199245541837,
+      "shifts": [
+        {
+          "t": 7200,
+          "v": 0.0006,
+          "node": "SECTION.flex"
+        },
+        {
+          "t": 7363,
+          "v": 0.001,
+          "node": "SECTION.flex"
+        }
+      ],
+      "tbt": 185,
+      "api": [
+        {
+          "path": "/api/v1/auth/reissue",
+          "start": 2398,
+          "end": 2667
+        },
+        {
+          "path": "/api/v1/users",
+          "start": 2922,
+          "end": 3783
+        },
+        {
+          "path": "/api/v1/main-pages/profile",
+          "start": 3941,
+          "end": 6687
+        },
+        {
+          "path": "/api/v1/main-pages/league",
+          "start": 3947,
+          "end": 6692
+        },
+        {
+          "path": "/api/v1/main-pages/weekly-record",
+          "start": 3955,
+          "end": 6698
+        },
+        {
+          "path": "/api/v1/main-pages/mission",
+          "start": 3963,
+          "end": 6701
+        },
+        {
+          "path": "/api/v1/main-pages/units",
+          "start": 3973,
+          "end": 6707
+        },
+        {
+          "path": "/api/v1/main-pages/learning",
+          "start": 3982,
+          "end": 6713
+        },
+        {
+          "path": "/api/v1/notifications",
+          "start": 6319,
+          "end": 7759
+        }
+      ],
+      "finalPath": "/main"
+    }
+  ],
+  "learning-mobile": [
+    {
+      "fcp": 6792,
+      "lcp": 7092,
+      "el": "IMG chapter-card-decoration.webp",
+      "cls": 0.00016122958212332872,
+      "shifts": [
+        {
+          "t": 7830,
+          "v": 0.0002,
+          "node": "#text"
+        }
+      ],
+      "tbt": 210,
+      "api": [
+        {
+          "path": "/api/v1/auth/reissue",
+          "start": 2648,
+          "end": 2948
+        },
+        {
+          "path": "/api/v1/users",
+          "start": 3396,
+          "end": 4246
+        },
+        {
+          "path": "/api/v1/chapters",
+          "start": 4363,
+          "end": 5678
+        },
+        {
+          "path": "/api/v1/notifications",
+          "start": 6602,
+          "end": 8675
+        }
+      ],
+      "finalPath": "/learning"
+    },
+    {
+      "fcp": 6096,
+      "lcp": 6300,
+      "el": "IMG chapter-card-decoration.webp",
+      "cls": 0.00016122958212332872,
+      "shifts": [
+        {
+          "t": 7006,
+          "v": 0.0002,
+          "node": "#text"
+        }
+      ],
+      "tbt": 140,
+      "api": [
+        {
+          "path": "/api/v1/auth/reissue",
+          "start": 2456,
+          "end": 2701
+        },
+        {
+          "path": "/api/v1/users",
+          "start": 2748,
+          "end": 3712
+        },
+        {
+          "path": "/api/v1/chapters",
+          "start": 3823,
+          "end": 5070
+        },
+        {
+          "path": "/api/v1/notifications",
+          "start": 5916,
+          "end": 7773
+        }
+      ],
+      "finalPath": "/learning"
+    },
+    {
+      "fcp": 6600,
+      "lcp": 6800,
+      "el": "IMG chapter-card-decoration.webp",
+      "cls": 0.00016122958212332872,
+      "shifts": [
+        {
+          "t": 7661,
+          "v": 0.0002,
+          "node": "#text"
+        }
+      ],
+      "tbt": 201,
+      "api": [
+        {
+          "path": "/api/v1/auth/reissue",
+          "start": 2528,
+          "end": 2872
+        },
+        {
+          "path": "/api/v1/users",
+          "start": 3248,
+          "end": 4118
+        },
+        {
+          "path": "/api/v1/chapters",
+          "start": 4224,
+          "end": 5462
+        },
+        {
+          "path": "/api/v1/notifications",
+          "start": 6355,
+          "end": 8237
+        }
+      ],
+      "finalPath": "/learning"
+    },
+    {
+      "fcp": 6184,
+      "lcp": 6384,
+      "el": "IMG chapter-card-decoration.webp",
+      "cls": 0.00016122958212332872,
+      "shifts": [
+        {
+          "t": 7044,
+          "v": 0.0002,
+          "node": "#text"
+        }
+      ],
+      "tbt": 139,
+      "api": [
+        {
+          "path": "/api/v1/auth/reissue",
+          "start": 2570,
+          "end": 2800
+        },
+        {
+          "path": "/api/v1/users",
+          "start": 2855,
+          "end": 3714
+        },
+        {
+          "path": "/api/v1/chapters",
+          "start": 3848,
+          "end": 5138
+        },
+        {
+          "path": "/api/v1/notifications",
+          "start": 5974,
+          "end": 7548
+        }
+      ],
+      "finalPath": "/learning"
+    },
+    {
+      "fcp": 6040,
+      "lcp": 6240,
+      "el": "IMG chapter-card-decoration.webp",
+      "cls": 0.00016122958212332872,
+      "shifts": [
+        {
+          "t": 6999,
+          "v": 0.0002,
+          "node": "#text"
+        }
+      ],
+      "tbt": 197,
+      "api": [
+        {
+          "path": "/api/v1/auth/reissue",
+          "start": 2334,
+          "end": 2599
+        },
+        {
+          "path": "/api/v1/users",
+          "start": 2827,
+          "end": 3692
+        },
+        {
+          "path": "/api/v1/chapters",
+          "start": 3797,
+          "end": 5036
+        },
+        {
+          "path": "/api/v1/notifications",
+          "start": 5833,
+          "end": 7500
+        }
+      ],
+      "finalPath": "/learning"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+main-mobile 1 base fcp 8236 lcp 8436 cls 0.238 users 4196
+main-mobile 1 issue1 fcp 7576 lcp 7944 cls 0.005 users 4402
+main-mobile 1 issue2 fcp 7580 lcp 8112 cls 0.238 users 6447
+main-mobile 2 base fcp 8088 lcp 8588 cls 0.238 users 4512
+main-mobile 2 issue1 fcp 6940 lcp 7356 cls 0.238 users 4046
+main-mobile 2 issue2 fcp 7500 lcp 8016 cls 0.238 users 6358
+main-mobile 3 base fcp 8200 lcp 8480 cls 0.238 users 4695
+main-mobile 3 issue1 fcp 7948 lcp 8448 cls 0.238 users 4617
+main-mobile 3 issue2 fcp 6684 lcp 7168 cls 0.238 users 5582
+main-mobile 4 base fcp 7520 lcp 7736 cls 0.238 users 4440
+main-mobile 4 issue1 fcp 7536 lcp 7956 cls 0.238 users 4433
+main-mobile 4 issue2 fcp 6744 lcp 7228 cls 0.238 users 5786
+main-mobile 5 base fcp 8824 lcp 9172 cls 0.238 users 4889
+main-mobile 5 issue1 fcp 8308 lcp 8840 cls 0.238 users 4709
+main-mobile 5 issue2 fcp 7828 lcp 8360 cls 0.238 users 6608
+main-mobile 6 base fcp 8524 lcp 8824 cls 0.238 users 4688
+main-mobile 6 issue1 fcp 9008 lcp 9540 cls 0.238 users 4986
+main-mobile 6 issue2 fcp 8548 lcp 9264 cls 0.238 users 6994
+main-mobile 7 base fcp 9336 lcp 9768 cls 0.238 users 5162
+main-mobile 7 issue1 fcp 9344 lcp 10008 cls 0.238 users 5009
+main-mobile 7 issue2 fcp 8780 lcp 9428 cls 0.238 users 7349
+main-desktop 1 base fcp 10072 lcp 10172 cls 0.029 users 4895
+main-desktop 1 issue1 fcp 9004 lcp 9604 cls 0.002 users 4948
+main-desktop 1 issue2 fcp 8788 lcp 9468 cls 0.029 users 7262
+main-desktop 2 base fcp 9128 lcp 9596 cls 0.002 users 4741
+main-desktop 2 issue1 fcp 9132 lcp 9700 cls 0.002 users 4832
+main-desktop 2 issue2 fcp 9032 lcp 9832 cls 0.029 users 7253
+main-desktop 3 base fcp 9372 lcp 9704 cls 0.002 users 4831
+main-desktop 3 issue1 fcp 9264 lcp 9948 cls 0.002 users 4829
+main-desktop 3 issue2 fcp 9056 lcp 9788 cls 0.029 users 7290
+main-desktop 4 base fcp 10208 lcp 10776 cls 0.002 users 5164
+main-desktop 4 issue1 fcp 9260 lcp 9892 cls 0.002 users 5020
+main-desktop 4 issue2 fcp 8872 lcp 9620 cls 0.029 users 7150
+main-desktop 5 base fcp 8712 lcp 9228 cls 0.029 users 4844
+main-desktop 5 issue1 fcp 9148 lcp 9680 cls 0.002 users 4877
+main-desktop 5 issue2 fcp 8920 lcp 9588 cls 0.029 users 7270
+main-desktop 6 base fcp 8900 lcp 9332 cls 0.002 users 4714
+main-desktop 6 issue1 fcp 9272 lcp 9888 cls 0.002 users 4760
+main-desktop 6 issue2 fcp 8832 lcp 9564 cls 0.029 users 7154
+main-desktop 7 base fcp 9268 lcp 9784 cls 0.029 users 4747
+main-desktop 7 issue1 fcp 8884 lcp 9500 cls 0.002 users 4571
+main-desktop 7 issue2 fcp 8416 lcp 9032 cls 0.029 users 6761
+file:///C:/Users/jhe93/AppData/Local/npm-cache/_npx/668c188756b835f3/node_modules/puppeteer-core/lib/puppeteer/util/decorators.js:99
+                throw new Error(message(this));
+                      ^
+
+Error: Attempted to use detached Frame 'BB75695C6A33A72A60443513716D5724'.
+    at CdpFrame.<anonymous> (file:///C:/Users/jhe93/AppData/Local/npm-cache/_npx/668c188756b835f3/node_modules/puppeteer-core/lib/puppeteer/util/decorators.js:99:23)
+    at CdpPage.evaluate (file:///C:/Users/jhe93/AppData/Local/npm-cache/_npx/668c188756b835f3/node_modules/puppeteer-core/lib/puppeteer/api/Page.js:826:43)
+    at measure (file:///C:/Users/jhe93/Desktop/project/gravit-workspace/gravit-harness-base/local-docs/performance/evidence/2026-11-10_ref062-issue1/compare.mjs:47:24)
+    at async file:///C:/Users/jhe93/Desktop/project/gravit-workspace/gravit-harness-base/local-docs/performance/evidence/2026-11-10_ref062-issue1/compare.mjs:62:17
+
+Node.js v24.4.1
+exit 1

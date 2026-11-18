@@ -1,0 +1,5379 @@
+{
+  "lesson-ios": [
+    {
+      "fcp": 412,
+      "lcp": {
+        "time": 832,
+        "element": "img.h-[20.625rem].w-auto.max-w-full",
+        "url": "loading-mascot-DwzQU18I.webp",
+        "size": 108240
+      },
+      "cls": 0,
+      "shifts": [],
+      "tbt": 0,
+      "longTasks": [],
+      "requests": [
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 47,
+          "end": 107,
+          "bytes": 22531
+        },
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 47,
+          "end": 172,
+          "bytes": 184840
+        },
+        {
+          "kind": "js",
+          "path": "learning.lessons._lessonId-CrNX3tPv.js",
+          "start": 197,
+          "end": 244,
+          "bytes": 2742
+        },
+        {
+          "kind": "js",
+          "path": "useLocation-XXFpt-56.js",
+          "start": 198,
+          "end": 240,
+          "bytes": 433
+        },
+        {
+          "kind": "js",
+          "path": "bookmark-fill-D4oSA3CT.js",
+          "start": 198,
+          "end": 241,
+          "bytes": 1314
+        },
+        {
+          "kind": "js",
+          "path": "progress-bar-CzBkYY83.js",
+          "start": 198,
+          "end": 242,
+          "bytes": 1031
+        },
+        {
+          "kind": "js",
+          "path": "quiz-screen-Crof2qpb.js",
+          "start": 198,
+          "end": 250,
+          "bytes": 15394
+        },
+        {
+          "kind": "js",
+          "path": "card-CPs_ThYK.js",
+          "start": 198,
+          "end": 241,
+          "bytes": 751
+        },
+        {
+          "kind": "js",
+          "path": "chevron-down-CfpM7iV-.js",
+          "start": 198,
+          "end": 281,
+          "bytes": 624
+        },
+        {
+          "kind": "js",
+          "path": "close-md-C0Z5hi5S.js",
+          "start": 198,
+          "end": 283,
+          "bytes": 641
+        },
+        {
+          "kind": "js",
+          "path": "floating-textarea-B4G8IqyP.js",
+          "start": 198,
+          "end": 284,
+          "bytes": 1451
+        },
+        {
+          "kind": "js",
+          "path": "modal-WYpVOrLw.js",
+          "start": 198,
+          "end": 285,
+          "bytes": 2797
+        },
+        {
+          "kind": "js",
+          "path": "Combination-FjqZfKcv.js",
+          "start": 198,
+          "end": 287,
+          "bytes": 5492
+        },
+        {
+          "kind": "js",
+          "path": "index-BCGeRuru.js",
+          "start": 198,
+          "end": 293,
+          "bytes": 4543
+        },
+        {
+          "kind": "js",
+          "path": "use-history-back-click-kzMbKS6-.js",
+          "start": 198,
+          "end": 324,
+          "bytes": 709
+        },
+        {
+          "kind": "js",
+          "path": "date-BCO4Wgza.js",
+          "start": 198,
+          "end": 324,
+          "bytes": 870
+        },
+        {
+          "kind": "js",
+          "path": "use-unit-lessons-_WcCPdMb.js",
+          "start": 198,
+          "end": 325,
+          "bytes": 582
+        },
+        {
+          "kind": "js",
+          "path": "lesson-BMQUk-oi.js",
+          "start": 198,
+          "end": 325,
+          "bytes": 831
+        },
+        {
+          "kind": "js",
+          "path": "use-league-ranking-f4wcdVGN.js",
+          "start": 198,
+          "end": 328,
+          "bytes": 1044
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 199,
+          "end": 334,
+          "bytes": 683
+        },
+        {
+          "kind": "js",
+          "path": "route-Cqjwpxiy.js",
+          "start": 199,
+          "end": 366,
+          "bytes": 374
+        },
+        {
+          "kind": "js",
+          "path": "markdown-C1Mb564d.js",
+          "start": 199,
+          "end": 398,
+          "bytes": 75553
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 200,
+          "end": 244,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 201,
+          "end": 368,
+          "bytes": 2227
+        },
+        {
+          "kind": "img",
+          "path": "loading-mascot-DwzQU18I.webp",
+          "start": 373,
+          "end": 786,
+          "bytes": 460298
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/problems/1",
+          "start": 374,
+          "end": 424,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 375,
+          "end": 864,
+          "bytes": 653756
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/lessons/1",
+          "start": 2889,
+          "end": 2932,
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "fcp": 400,
+      "lcp": {
+        "time": 832,
+        "element": "img.h-[20.625rem].w-auto.max-w-full",
+        "url": "loading-mascot-DwzQU18I.webp",
+        "size": 108240
+      },
+      "cls": 0,
+      "shifts": [],
+      "tbt": 0,
+      "longTasks": [],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 46,
+          "end": 171,
+          "bytes": 184840
+        },
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 46,
+          "end": 105,
+          "bytes": 22531
+        },
+        {
+          "kind": "js",
+          "path": "learning.lessons._lessonId-CrNX3tPv.js",
+          "start": 196,
+          "end": 241,
+          "bytes": 2742
+        },
+        {
+          "kind": "js",
+          "path": "useLocation-XXFpt-56.js",
+          "start": 196,
+          "end": 237,
+          "bytes": 433
+        },
+        {
+          "kind": "js",
+          "path": "bookmark-fill-D4oSA3CT.js",
+          "start": 196,
+          "end": 239,
+          "bytes": 1314
+        },
+        {
+          "kind": "js",
+          "path": "progress-bar-CzBkYY83.js",
+          "start": 196,
+          "end": 239,
+          "bytes": 1031
+        },
+        {
+          "kind": "js",
+          "path": "quiz-screen-Crof2qpb.js",
+          "start": 196,
+          "end": 248,
+          "bytes": 15394
+        },
+        {
+          "kind": "js",
+          "path": "card-CPs_ThYK.js",
+          "start": 196,
+          "end": 240,
+          "bytes": 751
+        },
+        {
+          "kind": "js",
+          "path": "chevron-down-CfpM7iV-.js",
+          "start": 196,
+          "end": 279,
+          "bytes": 624
+        },
+        {
+          "kind": "js",
+          "path": "close-md-C0Z5hi5S.js",
+          "start": 196,
+          "end": 280,
+          "bytes": 641
+        },
+        {
+          "kind": "js",
+          "path": "floating-textarea-B4G8IqyP.js",
+          "start": 196,
+          "end": 280,
+          "bytes": 1451
+        },
+        {
+          "kind": "js",
+          "path": "modal-WYpVOrLw.js",
+          "start": 196,
+          "end": 282,
+          "bytes": 2797
+        },
+        {
+          "kind": "js",
+          "path": "Combination-FjqZfKcv.js",
+          "start": 196,
+          "end": 284,
+          "bytes": 5492
+        },
+        {
+          "kind": "js",
+          "path": "index-BCGeRuru.js",
+          "start": 196,
+          "end": 291,
+          "bytes": 4543
+        },
+        {
+          "kind": "js",
+          "path": "use-history-back-click-kzMbKS6-.js",
+          "start": 197,
+          "end": 321,
+          "bytes": 709
+        },
+        {
+          "kind": "js",
+          "path": "date-BCO4Wgza.js",
+          "start": 197,
+          "end": 321,
+          "bytes": 870
+        },
+        {
+          "kind": "js",
+          "path": "use-unit-lessons-_WcCPdMb.js",
+          "start": 197,
+          "end": 322,
+          "bytes": 582
+        },
+        {
+          "kind": "js",
+          "path": "lesson-BMQUk-oi.js",
+          "start": 197,
+          "end": 323,
+          "bytes": 831
+        },
+        {
+          "kind": "js",
+          "path": "use-league-ranking-f4wcdVGN.js",
+          "start": 197,
+          "end": 325,
+          "bytes": 1044
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 198,
+          "end": 333,
+          "bytes": 683
+        },
+        {
+          "kind": "js",
+          "path": "route-Cqjwpxiy.js",
+          "start": 198,
+          "end": 362,
+          "bytes": 374
+        },
+        {
+          "kind": "js",
+          "path": "markdown-C1Mb564d.js",
+          "start": 198,
+          "end": 394,
+          "bytes": 75553
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 199,
+          "end": 241,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 200,
+          "end": 364,
+          "bytes": 2227
+        },
+        {
+          "kind": "img",
+          "path": "loading-mascot-DwzQU18I.webp",
+          "start": 369,
+          "end": 782,
+          "bytes": 460298
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/problems/1",
+          "start": 370,
+          "end": 420,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 371,
+          "end": 860,
+          "bytes": 653756
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/lessons/1",
+          "start": 2884,
+          "end": 2928,
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "fcp": 408,
+      "lcp": {
+        "time": 836,
+        "element": "img.h-[20.625rem].w-auto.max-w-full",
+        "url": "loading-mascot-DwzQU18I.webp",
+        "size": 108240
+      },
+      "cls": 0,
+      "shifts": [],
+      "tbt": 0,
+      "longTasks": [],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 47,
+          "end": 174,
+          "bytes": 184840
+        },
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 47,
+          "end": 108,
+          "bytes": 22531
+        },
+        {
+          "kind": "js",
+          "path": "learning.lessons._lessonId-CrNX3tPv.js",
+          "start": 199,
+          "end": 245,
+          "bytes": 2742
+        },
+        {
+          "kind": "js",
+          "path": "useLocation-XXFpt-56.js",
+          "start": 199,
+          "end": 242,
+          "bytes": 433
+        },
+        {
+          "kind": "js",
+          "path": "bookmark-fill-D4oSA3CT.js",
+          "start": 199,
+          "end": 243,
+          "bytes": 1314
+        },
+        {
+          "kind": "js",
+          "path": "quiz-screen-Crof2qpb.js",
+          "start": 199,
+          "end": 252,
+          "bytes": 15394
+        },
+        {
+          "kind": "js",
+          "path": "progress-bar-CzBkYY83.js",
+          "start": 199,
+          "end": 243,
+          "bytes": 1031
+        },
+        {
+          "kind": "js",
+          "path": "card-CPs_ThYK.js",
+          "start": 199,
+          "end": 244,
+          "bytes": 751
+        },
+        {
+          "kind": "js",
+          "path": "chevron-down-CfpM7iV-.js",
+          "start": 199,
+          "end": 284,
+          "bytes": 624
+        },
+        {
+          "kind": "js",
+          "path": "close-md-C0Z5hi5S.js",
+          "start": 199,
+          "end": 285,
+          "bytes": 641
+        },
+        {
+          "kind": "js",
+          "path": "floating-textarea-B4G8IqyP.js",
+          "start": 199,
+          "end": 286,
+          "bytes": 1451
+        },
+        {
+          "kind": "js",
+          "path": "modal-WYpVOrLw.js",
+          "start": 199,
+          "end": 288,
+          "bytes": 2797
+        },
+        {
+          "kind": "js",
+          "path": "Combination-FjqZfKcv.js",
+          "start": 199,
+          "end": 289,
+          "bytes": 5492
+        },
+        {
+          "kind": "js",
+          "path": "index-BCGeRuru.js",
+          "start": 200,
+          "end": 294,
+          "bytes": 4543
+        },
+        {
+          "kind": "js",
+          "path": "use-history-back-click-kzMbKS6-.js",
+          "start": 200,
+          "end": 325,
+          "bytes": 709
+        },
+        {
+          "kind": "js",
+          "path": "date-BCO4Wgza.js",
+          "start": 200,
+          "end": 326,
+          "bytes": 870
+        },
+        {
+          "kind": "js",
+          "path": "use-unit-lessons-_WcCPdMb.js",
+          "start": 200,
+          "end": 327,
+          "bytes": 582
+        },
+        {
+          "kind": "js",
+          "path": "lesson-BMQUk-oi.js",
+          "start": 200,
+          "end": 329,
+          "bytes": 831
+        },
+        {
+          "kind": "js",
+          "path": "use-league-ranking-f4wcdVGN.js",
+          "start": 200,
+          "end": 330,
+          "bytes": 1044
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 201,
+          "end": 335,
+          "bytes": 683
+        },
+        {
+          "kind": "js",
+          "path": "route-Cqjwpxiy.js",
+          "start": 201,
+          "end": 367,
+          "bytes": 374
+        },
+        {
+          "kind": "js",
+          "path": "markdown-C1Mb564d.js",
+          "start": 201,
+          "end": 399,
+          "bytes": 75553
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 202,
+          "end": 246,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 203,
+          "end": 370,
+          "bytes": 2227
+        },
+        {
+          "kind": "img",
+          "path": "loading-mascot-DwzQU18I.webp",
+          "start": 375,
+          "end": 784,
+          "bytes": 460298
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/problems/1",
+          "start": 376,
+          "end": 424,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 376,
+          "end": 864,
+          "bytes": 653756
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/lessons/1",
+          "start": 2890,
+          "end": 2933,
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "fcp": 428,
+      "lcp": {
+        "time": 844,
+        "element": "img.h-[20.625rem].w-auto.max-w-full",
+        "url": "loading-mascot-DwzQU18I.webp",
+        "size": 108240
+      },
+      "cls": 0,
+      "shifts": [],
+      "tbt": 0,
+      "longTasks": [],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 47,
+          "end": 173,
+          "bytes": 184840
+        },
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 47,
+          "end": 107,
+          "bytes": 22531
+        },
+        {
+          "kind": "js",
+          "path": "learning.lessons._lessonId-CrNX3tPv.js",
+          "start": 198,
+          "end": 243,
+          "bytes": 2742
+        },
+        {
+          "kind": "js",
+          "path": "useLocation-XXFpt-56.js",
+          "start": 198,
+          "end": 240,
+          "bytes": 433
+        },
+        {
+          "kind": "js",
+          "path": "bookmark-fill-D4oSA3CT.js",
+          "start": 198,
+          "end": 241,
+          "bytes": 1314
+        },
+        {
+          "kind": "js",
+          "path": "quiz-screen-Crof2qpb.js",
+          "start": 198,
+          "end": 250,
+          "bytes": 15394
+        },
+        {
+          "kind": "js",
+          "path": "card-CPs_ThYK.js",
+          "start": 198,
+          "end": 241,
+          "bytes": 751
+        },
+        {
+          "kind": "js",
+          "path": "progress-bar-CzBkYY83.js",
+          "start": 198,
+          "end": 242,
+          "bytes": 1031
+        },
+        {
+          "kind": "js",
+          "path": "chevron-down-CfpM7iV-.js",
+          "start": 198,
+          "end": 281,
+          "bytes": 624
+        },
+        {
+          "kind": "js",
+          "path": "close-md-C0Z5hi5S.js",
+          "start": 198,
+          "end": 282,
+          "bytes": 641
+        },
+        {
+          "kind": "js",
+          "path": "floating-textarea-B4G8IqyP.js",
+          "start": 198,
+          "end": 283,
+          "bytes": 1451
+        },
+        {
+          "kind": "js",
+          "path": "modal-WYpVOrLw.js",
+          "start": 198,
+          "end": 285,
+          "bytes": 2797
+        },
+        {
+          "kind": "js",
+          "path": "Combination-FjqZfKcv.js",
+          "start": 198,
+          "end": 287,
+          "bytes": 5492
+        },
+        {
+          "kind": "js",
+          "path": "index-BCGeRuru.js",
+          "start": 198,
+          "end": 293,
+          "bytes": 4543
+        },
+        {
+          "kind": "js",
+          "path": "use-history-back-click-kzMbKS6-.js",
+          "start": 198,
+          "end": 323,
+          "bytes": 709
+        },
+        {
+          "kind": "js",
+          "path": "date-BCO4Wgza.js",
+          "start": 198,
+          "end": 324,
+          "bytes": 870
+        },
+        {
+          "kind": "js",
+          "path": "use-unit-lessons-_WcCPdMb.js",
+          "start": 198,
+          "end": 324,
+          "bytes": 582
+        },
+        {
+          "kind": "js",
+          "path": "lesson-BMQUk-oi.js",
+          "start": 198,
+          "end": 325,
+          "bytes": 831
+        },
+        {
+          "kind": "js",
+          "path": "use-league-ranking-f4wcdVGN.js",
+          "start": 199,
+          "end": 327,
+          "bytes": 1044
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 199,
+          "end": 335,
+          "bytes": 683
+        },
+        {
+          "kind": "js",
+          "path": "route-Cqjwpxiy.js",
+          "start": 200,
+          "end": 364,
+          "bytes": 374
+        },
+        {
+          "kind": "js",
+          "path": "markdown-C1Mb564d.js",
+          "start": 200,
+          "end": 396,
+          "bytes": 75553
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 201,
+          "end": 244,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 202,
+          "end": 367,
+          "bytes": 2227
+        },
+        {
+          "kind": "img",
+          "path": "loading-mascot-DwzQU18I.webp",
+          "start": 371,
+          "end": 785,
+          "bytes": 460298
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/problems/1",
+          "start": 372,
+          "end": 422,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 373,
+          "end": 863,
+          "bytes": 653756
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/lessons/1",
+          "start": 2887,
+          "end": 2930,
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "fcp": 408,
+      "lcp": {
+        "time": 840,
+        "element": "img.h-[20.625rem].w-auto.max-w-full",
+        "url": "loading-mascot-DwzQU18I.webp",
+        "size": 108240
+      },
+      "cls": 0,
+      "shifts": [],
+      "tbt": 0,
+      "longTasks": [],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 47,
+          "end": 171,
+          "bytes": 184840
+        },
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 47,
+          "end": 106,
+          "bytes": 22531
+        },
+        {
+          "kind": "js",
+          "path": "useLocation-XXFpt-56.js",
+          "start": 196,
+          "end": 239,
+          "bytes": 433
+        },
+        {
+          "kind": "js",
+          "path": "learning.lessons._lessonId-CrNX3tPv.js",
+          "start": 196,
+          "end": 242,
+          "bytes": 2742
+        },
+        {
+          "kind": "js",
+          "path": "bookmark-fill-D4oSA3CT.js",
+          "start": 196,
+          "end": 240,
+          "bytes": 1314
+        },
+        {
+          "kind": "js",
+          "path": "progress-bar-CzBkYY83.js",
+          "start": 196,
+          "end": 241,
+          "bytes": 1031
+        },
+        {
+          "kind": "js",
+          "path": "quiz-screen-Crof2qpb.js",
+          "start": 196,
+          "end": 249,
+          "bytes": 15394
+        },
+        {
+          "kind": "js",
+          "path": "card-CPs_ThYK.js",
+          "start": 196,
+          "end": 240,
+          "bytes": 751
+        },
+        {
+          "kind": "js",
+          "path": "chevron-down-CfpM7iV-.js",
+          "start": 196,
+          "end": 281,
+          "bytes": 624
+        },
+        {
+          "kind": "js",
+          "path": "close-md-C0Z5hi5S.js",
+          "start": 196,
+          "end": 282,
+          "bytes": 641
+        },
+        {
+          "kind": "js",
+          "path": "floating-textarea-B4G8IqyP.js",
+          "start": 196,
+          "end": 283,
+          "bytes": 1451
+        },
+        {
+          "kind": "js",
+          "path": "modal-WYpVOrLw.js",
+          "start": 197,
+          "end": 284,
+          "bytes": 2797
+        },
+        {
+          "kind": "js",
+          "path": "Combination-FjqZfKcv.js",
+          "start": 197,
+          "end": 286,
+          "bytes": 5492
+        },
+        {
+          "kind": "js",
+          "path": "index-BCGeRuru.js",
+          "start": 197,
+          "end": 291,
+          "bytes": 4543
+        },
+        {
+          "kind": "js",
+          "path": "use-history-back-click-kzMbKS6-.js",
+          "start": 197,
+          "end": 322,
+          "bytes": 709
+        },
+        {
+          "kind": "js",
+          "path": "date-BCO4Wgza.js",
+          "start": 197,
+          "end": 322,
+          "bytes": 870
+        },
+        {
+          "kind": "js",
+          "path": "use-unit-lessons-_WcCPdMb.js",
+          "start": 197,
+          "end": 324,
+          "bytes": 582
+        },
+        {
+          "kind": "js",
+          "path": "lesson-BMQUk-oi.js",
+          "start": 197,
+          "end": 325,
+          "bytes": 831
+        },
+        {
+          "kind": "js",
+          "path": "use-league-ranking-f4wcdVGN.js",
+          "start": 197,
+          "end": 327,
+          "bytes": 1044
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 198,
+          "end": 332,
+          "bytes": 683
+        },
+        {
+          "kind": "js",
+          "path": "route-Cqjwpxiy.js",
+          "start": 198,
+          "end": 365,
+          "bytes": 374
+        },
+        {
+          "kind": "js",
+          "path": "markdown-C1Mb564d.js",
+          "start": 198,
+          "end": 396,
+          "bytes": 75553
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 199,
+          "end": 243,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 200,
+          "end": 367,
+          "bytes": 2227
+        },
+        {
+          "kind": "img",
+          "path": "loading-mascot-DwzQU18I.webp",
+          "start": 371,
+          "end": 785,
+          "bytes": 460298
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/problems/1",
+          "start": 372,
+          "end": 422,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 373,
+          "end": 863,
+          "bytes": 653756
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/lessons/1",
+          "start": 2887,
+          "end": 2931,
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "fcp": 408,
+      "lcp": {
+        "time": 828,
+        "element": "img.h-[20.625rem].w-auto.max-w-full",
+        "url": "loading-mascot-DwzQU18I.webp",
+        "size": 108240
+      },
+      "cls": 0,
+      "shifts": [],
+      "tbt": 0,
+      "longTasks": [],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 46,
+          "end": 171,
+          "bytes": 184840
+        },
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 47,
+          "end": 106,
+          "bytes": 22531
+        },
+        {
+          "kind": "js",
+          "path": "learning.lessons._lessonId-CrNX3tPv.js",
+          "start": 196,
+          "end": 242,
+          "bytes": 2742
+        },
+        {
+          "kind": "js",
+          "path": "useLocation-XXFpt-56.js",
+          "start": 196,
+          "end": 239,
+          "bytes": 433
+        },
+        {
+          "kind": "js",
+          "path": "bookmark-fill-D4oSA3CT.js",
+          "start": 196,
+          "end": 240,
+          "bytes": 1314
+        },
+        {
+          "kind": "js",
+          "path": "quiz-screen-Crof2qpb.js",
+          "start": 196,
+          "end": 249,
+          "bytes": 15394
+        },
+        {
+          "kind": "js",
+          "path": "card-CPs_ThYK.js",
+          "start": 196,
+          "end": 240,
+          "bytes": 751
+        },
+        {
+          "kind": "js",
+          "path": "progress-bar-CzBkYY83.js",
+          "start": 196,
+          "end": 241,
+          "bytes": 1031
+        },
+        {
+          "kind": "js",
+          "path": "chevron-down-CfpM7iV-.js",
+          "start": 196,
+          "end": 280,
+          "bytes": 624
+        },
+        {
+          "kind": "js",
+          "path": "close-md-C0Z5hi5S.js",
+          "start": 196,
+          "end": 281,
+          "bytes": 641
+        },
+        {
+          "kind": "js",
+          "path": "floating-textarea-B4G8IqyP.js",
+          "start": 196,
+          "end": 282,
+          "bytes": 1451
+        },
+        {
+          "kind": "js",
+          "path": "modal-WYpVOrLw.js",
+          "start": 196,
+          "end": 284,
+          "bytes": 2797
+        },
+        {
+          "kind": "js",
+          "path": "Combination-FjqZfKcv.js",
+          "start": 196,
+          "end": 285,
+          "bytes": 5492
+        },
+        {
+          "kind": "js",
+          "path": "index-BCGeRuru.js",
+          "start": 196,
+          "end": 292,
+          "bytes": 4543
+        },
+        {
+          "kind": "js",
+          "path": "use-history-back-click-kzMbKS6-.js",
+          "start": 196,
+          "end": 321,
+          "bytes": 709
+        },
+        {
+          "kind": "js",
+          "path": "date-BCO4Wgza.js",
+          "start": 197,
+          "end": 322,
+          "bytes": 870
+        },
+        {
+          "kind": "js",
+          "path": "use-unit-lessons-_WcCPdMb.js",
+          "start": 197,
+          "end": 322,
+          "bytes": 582
+        },
+        {
+          "kind": "js",
+          "path": "lesson-BMQUk-oi.js",
+          "start": 197,
+          "end": 324,
+          "bytes": 831
+        },
+        {
+          "kind": "js",
+          "path": "use-league-ranking-f4wcdVGN.js",
+          "start": 197,
+          "end": 326,
+          "bytes": 1044
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 198,
+          "end": 333,
+          "bytes": 683
+        },
+        {
+          "kind": "js",
+          "path": "route-Cqjwpxiy.js",
+          "start": 198,
+          "end": 363,
+          "bytes": 374
+        },
+        {
+          "kind": "js",
+          "path": "markdown-C1Mb564d.js",
+          "start": 198,
+          "end": 395,
+          "bytes": 75553
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 199,
+          "end": 243,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 200,
+          "end": 365,
+          "bytes": 2227
+        },
+        {
+          "kind": "img",
+          "path": "loading-mascot-DwzQU18I.webp",
+          "start": 371,
+          "end": 783,
+          "bytes": 460298
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/problems/1",
+          "start": 371,
+          "end": 421,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 372,
+          "end": 861,
+          "bytes": 653756
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/lessons/1",
+          "start": 2886,
+          "end": 2928,
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "fcp": 412,
+      "lcp": {
+        "time": 828,
+        "element": "img.h-[20.625rem].w-auto.max-w-full",
+        "url": "loading-mascot-DwzQU18I.webp",
+        "size": 108240
+      },
+      "cls": 0,
+      "shifts": [],
+      "tbt": 0,
+      "longTasks": [],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 47,
+          "end": 173,
+          "bytes": 184840
+        },
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 47,
+          "end": 107,
+          "bytes": 22531
+        },
+        {
+          "kind": "js",
+          "path": "learning.lessons._lessonId-CrNX3tPv.js",
+          "start": 198,
+          "end": 243,
+          "bytes": 2742
+        },
+        {
+          "kind": "js",
+          "path": "useLocation-XXFpt-56.js",
+          "start": 198,
+          "end": 239,
+          "bytes": 433
+        },
+        {
+          "kind": "js",
+          "path": "bookmark-fill-D4oSA3CT.js",
+          "start": 198,
+          "end": 240,
+          "bytes": 1314
+        },
+        {
+          "kind": "js",
+          "path": "quiz-screen-Crof2qpb.js",
+          "start": 198,
+          "end": 249,
+          "bytes": 15394
+        },
+        {
+          "kind": "js",
+          "path": "progress-bar-CzBkYY83.js",
+          "start": 198,
+          "end": 241,
+          "bytes": 1031
+        },
+        {
+          "kind": "js",
+          "path": "card-CPs_ThYK.js",
+          "start": 198,
+          "end": 241,
+          "bytes": 751
+        },
+        {
+          "kind": "js",
+          "path": "chevron-down-CfpM7iV-.js",
+          "start": 198,
+          "end": 280,
+          "bytes": 624
+        },
+        {
+          "kind": "js",
+          "path": "close-md-C0Z5hi5S.js",
+          "start": 198,
+          "end": 282,
+          "bytes": 641
+        },
+        {
+          "kind": "js",
+          "path": "floating-textarea-B4G8IqyP.js",
+          "start": 198,
+          "end": 282,
+          "bytes": 1451
+        },
+        {
+          "kind": "js",
+          "path": "modal-WYpVOrLw.js",
+          "start": 198,
+          "end": 284,
+          "bytes": 2797
+        },
+        {
+          "kind": "js",
+          "path": "Combination-FjqZfKcv.js",
+          "start": 198,
+          "end": 286,
+          "bytes": 5492
+        },
+        {
+          "kind": "js",
+          "path": "index-BCGeRuru.js",
+          "start": 198,
+          "end": 293,
+          "bytes": 4543
+        },
+        {
+          "kind": "js",
+          "path": "use-history-back-click-kzMbKS6-.js",
+          "start": 198,
+          "end": 323,
+          "bytes": 709
+        },
+        {
+          "kind": "js",
+          "path": "date-BCO4Wgza.js",
+          "start": 198,
+          "end": 323,
+          "bytes": 870
+        },
+        {
+          "kind": "js",
+          "path": "use-unit-lessons-_WcCPdMb.js",
+          "start": 198,
+          "end": 324,
+          "bytes": 582
+        },
+        {
+          "kind": "js",
+          "path": "lesson-BMQUk-oi.js",
+          "start": 198,
+          "end": 325,
+          "bytes": 831
+        },
+        {
+          "kind": "js",
+          "path": "use-league-ranking-f4wcdVGN.js",
+          "start": 198,
+          "end": 327,
+          "bytes": 1044
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 199,
+          "end": 335,
+          "bytes": 683
+        },
+        {
+          "kind": "js",
+          "path": "route-Cqjwpxiy.js",
+          "start": 199,
+          "end": 363,
+          "bytes": 374
+        },
+        {
+          "kind": "js",
+          "path": "markdown-C1Mb564d.js",
+          "start": 199,
+          "end": 395,
+          "bytes": 75553
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 201,
+          "end": 243,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 202,
+          "end": 366,
+          "bytes": 2227
+        },
+        {
+          "kind": "img",
+          "path": "loading-mascot-DwzQU18I.webp",
+          "start": 370,
+          "end": 781,
+          "bytes": 460298
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/problems/1",
+          "start": 371,
+          "end": 420,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 372,
+          "end": 860,
+          "bytes": 653756
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/lessons/1",
+          "start": 2887,
+          "end": 2930,
+          "bytes": 0
+        }
+      ]
+    }
+  ],
+  "lesson-result-ios": [
+    {
+      "fcp": 324,
+      "lcp": {
+        "time": 696,
+        "element": "img.w-full.-translate-y-[5.3%]",
+        "url": "moon-mobile-C_iMWppn.webp",
+        "size": 157169
+      },
+      "cls": 0,
+      "shifts": [],
+      "tbt": 0,
+      "longTasks": [],
+      "requests": [
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 47,
+          "end": 108,
+          "bytes": 22531
+        },
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 47,
+          "end": 173,
+          "bytes": 184840
+        },
+        {
+          "kind": "js",
+          "path": "learning.lessons._lessonId_.result._submissionId-D1GWshPA.js",
+          "start": 198,
+          "end": 246,
+          "bytes": 4890
+        },
+        {
+          "kind": "js",
+          "path": "useLocation-XXFpt-56.js",
+          "start": 198,
+          "end": 241,
+          "bytes": 433
+        },
+        {
+          "kind": "js",
+          "path": "use-history-back-click-kzMbKS6-.js",
+          "start": 198,
+          "end": 242,
+          "bytes": 709
+        },
+        {
+          "kind": "js",
+          "path": "skeleton-Bs5ijy6x.js",
+          "start": 198,
+          "end": 242,
+          "bytes": 1446
+        },
+        {
+          "kind": "js",
+          "path": "date-BCO4Wgza.js",
+          "start": 198,
+          "end": 243,
+          "bytes": 870
+        },
+        {
+          "kind": "js",
+          "path": "planets-CnsLAvoU.js",
+          "start": 198,
+          "end": 243,
+          "bytes": 1205
+        },
+        {
+          "kind": "js",
+          "path": "progress-bar-CzBkYY83.js",
+          "start": 198,
+          "end": 284,
+          "bytes": 1031
+        },
+        {
+          "kind": "js",
+          "path": "stat-item-DXZIptDw.js",
+          "start": 198,
+          "end": 284,
+          "bytes": 911
+        },
+        {
+          "kind": "js",
+          "path": "level-CHVQVDK5.js",
+          "start": 198,
+          "end": 285,
+          "bytes": 1013
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 199,
+          "end": 285,
+          "bytes": 683
+        },
+        {
+          "kind": "js",
+          "path": "route-Cqjwpxiy.js",
+          "start": 199,
+          "end": 286,
+          "bytes": 374
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 200,
+          "end": 245,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 201,
+          "end": 288,
+          "bytes": 2227
+        },
+        {
+          "kind": "img",
+          "path": "background-decoration-mobile-BkRmGENO.webp",
+          "start": 294,
+          "end": 349,
+          "bytes": 15480
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/lessons/results/1",
+          "start": 295,
+          "end": 336,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 297,
+          "end": 649,
+          "bytes": 653756
+        },
+        {
+          "kind": "img",
+          "path": "moon-mobile-C_iMWppn.webp",
+          "start": 340,
+          "end": 447,
+          "bytes": 56734
+        },
+        {
+          "kind": "img",
+          "path": "planet-01-mercury-DZsd0zpF.webp",
+          "start": 340,
+          "end": 407,
+          "bytes": 15066
+        },
+        {
+          "kind": "img",
+          "path": "mascot-qgxOBFbq.webp",
+          "start": 340,
+          "end": 431,
+          "bytes": 36264
+        }
+      ]
+    },
+    {
+      "fcp": 336,
+      "lcp": {
+        "time": 700,
+        "element": "img.w-full.-translate-y-[5.3%]",
+        "url": "moon-mobile-C_iMWppn.webp",
+        "size": 157169
+      },
+      "cls": 0,
+      "shifts": [],
+      "tbt": 0,
+      "longTasks": [],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 46,
+          "end": 172,
+          "bytes": 184840
+        },
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 46,
+          "end": 106,
+          "bytes": 22531
+        },
+        {
+          "kind": "js",
+          "path": "useLocation-XXFpt-56.js",
+          "start": 197,
+          "end": 239,
+          "bytes": 433
+        },
+        {
+          "kind": "js",
+          "path": "learning.lessons._lessonId_.result._submissionId-D1GWshPA.js",
+          "start": 197,
+          "end": 244,
+          "bytes": 4890
+        },
+        {
+          "kind": "js",
+          "path": "use-history-back-click-kzMbKS6-.js",
+          "start": 197,
+          "end": 240,
+          "bytes": 709
+        },
+        {
+          "kind": "js",
+          "path": "skeleton-Bs5ijy6x.js",
+          "start": 197,
+          "end": 241,
+          "bytes": 1446
+        },
+        {
+          "kind": "js",
+          "path": "date-BCO4Wgza.js",
+          "start": 197,
+          "end": 241,
+          "bytes": 870
+        },
+        {
+          "kind": "js",
+          "path": "planets-CnsLAvoU.js",
+          "start": 197,
+          "end": 242,
+          "bytes": 1205
+        },
+        {
+          "kind": "js",
+          "path": "progress-bar-CzBkYY83.js",
+          "start": 197,
+          "end": 282,
+          "bytes": 1031
+        },
+        {
+          "kind": "js",
+          "path": "stat-item-DXZIptDw.js",
+          "start": 197,
+          "end": 282,
+          "bytes": 911
+        },
+        {
+          "kind": "js",
+          "path": "level-CHVQVDK5.js",
+          "start": 197,
+          "end": 283,
+          "bytes": 1013
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 198,
+          "end": 283,
+          "bytes": 683
+        },
+        {
+          "kind": "js",
+          "path": "route-Cqjwpxiy.js",
+          "start": 198,
+          "end": 284,
+          "bytes": 374
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 199,
+          "end": 243,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 200,
+          "end": 286,
+          "bytes": 2227
+        },
+        {
+          "kind": "img",
+          "path": "background-decoration-mobile-BkRmGENO.webp",
+          "start": 292,
+          "end": 345,
+          "bytes": 15480
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/lessons/results/1",
+          "start": 293,
+          "end": 335,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 295,
+          "end": 646,
+          "bytes": 653756
+        },
+        {
+          "kind": "img",
+          "path": "planet-01-mercury-DZsd0zpF.webp",
+          "start": 338,
+          "end": 404,
+          "bytes": 15066
+        },
+        {
+          "kind": "img",
+          "path": "mascot-qgxOBFbq.webp",
+          "start": 338,
+          "end": 430,
+          "bytes": 36264
+        },
+        {
+          "kind": "img",
+          "path": "moon-mobile-C_iMWppn.webp",
+          "start": 338,
+          "end": 445,
+          "bytes": 56734
+        }
+      ]
+    },
+    {
+      "fcp": 328,
+      "lcp": {
+        "time": 700,
+        "element": "img.w-full.-translate-y-[5.3%]",
+        "url": "moon-mobile-C_iMWppn.webp",
+        "size": 157169
+      },
+      "cls": 0,
+      "shifts": [],
+      "tbt": 0,
+      "longTasks": [],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 45,
+          "end": 170,
+          "bytes": 184840
+        },
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 46,
+          "end": 104,
+          "bytes": 22531
+        },
+        {
+          "kind": "js",
+          "path": "learning.lessons._lessonId_.result._submissionId-D1GWshPA.js",
+          "start": 194,
+          "end": 240,
+          "bytes": 4890
+        },
+        {
+          "kind": "js",
+          "path": "useLocation-XXFpt-56.js",
+          "start": 194,
+          "end": 235,
+          "bytes": 433
+        },
+        {
+          "kind": "js",
+          "path": "use-history-back-click-kzMbKS6-.js",
+          "start": 194,
+          "end": 236,
+          "bytes": 709
+        },
+        {
+          "kind": "js",
+          "path": "skeleton-Bs5ijy6x.js",
+          "start": 194,
+          "end": 237,
+          "bytes": 1446
+        },
+        {
+          "kind": "js",
+          "path": "planets-CnsLAvoU.js",
+          "start": 194,
+          "end": 237,
+          "bytes": 1205
+        },
+        {
+          "kind": "js",
+          "path": "date-BCO4Wgza.js",
+          "start": 194,
+          "end": 238,
+          "bytes": 870
+        },
+        {
+          "kind": "js",
+          "path": "progress-bar-CzBkYY83.js",
+          "start": 194,
+          "end": 276,
+          "bytes": 1031
+        },
+        {
+          "kind": "js",
+          "path": "stat-item-DXZIptDw.js",
+          "start": 194,
+          "end": 277,
+          "bytes": 911
+        },
+        {
+          "kind": "js",
+          "path": "level-CHVQVDK5.js",
+          "start": 195,
+          "end": 278,
+          "bytes": 1013
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 195,
+          "end": 278,
+          "bytes": 683
+        },
+        {
+          "kind": "js",
+          "path": "route-Cqjwpxiy.js",
+          "start": 196,
+          "end": 279,
+          "bytes": 374
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 197,
+          "end": 239,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 198,
+          "end": 282,
+          "bytes": 2227
+        },
+        {
+          "kind": "img",
+          "path": "background-decoration-mobile-BkRmGENO.webp",
+          "start": 287,
+          "end": 341,
+          "bytes": 15480
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/lessons/results/1",
+          "start": 288,
+          "end": 329,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 290,
+          "end": 641,
+          "bytes": 653756
+        },
+        {
+          "kind": "img",
+          "path": "planet-01-mercury-DZsd0zpF.webp",
+          "start": 333,
+          "end": 399,
+          "bytes": 15066
+        },
+        {
+          "kind": "img",
+          "path": "mascot-qgxOBFbq.webp",
+          "start": 333,
+          "end": 423,
+          "bytes": 36264
+        },
+        {
+          "kind": "img",
+          "path": "moon-mobile-C_iMWppn.webp",
+          "start": 333,
+          "end": 440,
+          "bytes": 56734
+        }
+      ]
+    },
+    {
+      "fcp": 324,
+      "lcp": {
+        "time": 680,
+        "element": "img.w-full.-translate-y-[5.3%]",
+        "url": "moon-mobile-C_iMWppn.webp",
+        "size": 157169
+      },
+      "cls": 0,
+      "shifts": [],
+      "tbt": 0,
+      "longTasks": [],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 45,
+          "end": 170,
+          "bytes": 184840
+        },
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 45,
+          "end": 104,
+          "bytes": 22531
+        },
+        {
+          "kind": "js",
+          "path": "learning.lessons._lessonId_.result._submissionId-D1GWshPA.js",
+          "start": 194,
+          "end": 242,
+          "bytes": 4890
+        },
+        {
+          "kind": "js",
+          "path": "useLocation-XXFpt-56.js",
+          "start": 195,
+          "end": 236,
+          "bytes": 433
+        },
+        {
+          "kind": "js",
+          "path": "use-history-back-click-kzMbKS6-.js",
+          "start": 195,
+          "end": 238,
+          "bytes": 709
+        },
+        {
+          "kind": "js",
+          "path": "skeleton-Bs5ijy6x.js",
+          "start": 195,
+          "end": 238,
+          "bytes": 1446
+        },
+        {
+          "kind": "js",
+          "path": "date-BCO4Wgza.js",
+          "start": 195,
+          "end": 239,
+          "bytes": 870
+        },
+        {
+          "kind": "js",
+          "path": "planets-CnsLAvoU.js",
+          "start": 195,
+          "end": 239,
+          "bytes": 1205
+        },
+        {
+          "kind": "js",
+          "path": "progress-bar-CzBkYY83.js",
+          "start": 195,
+          "end": 278,
+          "bytes": 1031
+        },
+        {
+          "kind": "js",
+          "path": "stat-item-DXZIptDw.js",
+          "start": 195,
+          "end": 278,
+          "bytes": 911
+        },
+        {
+          "kind": "js",
+          "path": "level-CHVQVDK5.js",
+          "start": 195,
+          "end": 279,
+          "bytes": 1013
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 196,
+          "end": 280,
+          "bytes": 683
+        },
+        {
+          "kind": "js",
+          "path": "route-Cqjwpxiy.js",
+          "start": 196,
+          "end": 280,
+          "bytes": 374
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 197,
+          "end": 241,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 198,
+          "end": 284,
+          "bytes": 2227
+        },
+        {
+          "kind": "img",
+          "path": "background-decoration-mobile-BkRmGENO.webp",
+          "start": 288,
+          "end": 341,
+          "bytes": 15480
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/lessons/results/1",
+          "start": 289,
+          "end": 331,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 291,
+          "end": 642,
+          "bytes": 653756
+        },
+        {
+          "kind": "img",
+          "path": "mascot-qgxOBFbq.webp",
+          "start": 334,
+          "end": 426,
+          "bytes": 36264
+        },
+        {
+          "kind": "img",
+          "path": "moon-mobile-C_iMWppn.webp",
+          "start": 334,
+          "end": 442,
+          "bytes": 56734
+        },
+        {
+          "kind": "img",
+          "path": "planet-01-mercury-DZsd0zpF.webp",
+          "start": 334,
+          "end": 401,
+          "bytes": 15066
+        }
+      ]
+    },
+    {
+      "fcp": 324,
+      "lcp": {
+        "time": 680,
+        "element": "img.w-full.-translate-y-[5.3%]",
+        "url": "moon-mobile-C_iMWppn.webp",
+        "size": 157169
+      },
+      "cls": 0,
+      "shifts": [],
+      "tbt": 0,
+      "longTasks": [],
+      "requests": [
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 46,
+          "end": 106,
+          "bytes": 22531
+        },
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 46,
+          "end": 172,
+          "bytes": 184840
+        },
+        {
+          "kind": "js",
+          "path": "learning.lessons._lessonId_.result._submissionId-D1GWshPA.js",
+          "start": 196,
+          "end": 244,
+          "bytes": 4890
+        },
+        {
+          "kind": "js",
+          "path": "useLocation-XXFpt-56.js",
+          "start": 196,
+          "end": 239,
+          "bytes": 433
+        },
+        {
+          "kind": "js",
+          "path": "use-history-back-click-kzMbKS6-.js",
+          "start": 197,
+          "end": 240,
+          "bytes": 709
+        },
+        {
+          "kind": "js",
+          "path": "skeleton-Bs5ijy6x.js",
+          "start": 197,
+          "end": 241,
+          "bytes": 1446
+        },
+        {
+          "kind": "js",
+          "path": "date-BCO4Wgza.js",
+          "start": 197,
+          "end": 241,
+          "bytes": 870
+        },
+        {
+          "kind": "js",
+          "path": "planets-CnsLAvoU.js",
+          "start": 197,
+          "end": 242,
+          "bytes": 1205
+        },
+        {
+          "kind": "js",
+          "path": "progress-bar-CzBkYY83.js",
+          "start": 197,
+          "end": 282,
+          "bytes": 1031
+        },
+        {
+          "kind": "js",
+          "path": "stat-item-DXZIptDw.js",
+          "start": 197,
+          "end": 282,
+          "bytes": 911
+        },
+        {
+          "kind": "js",
+          "path": "level-CHVQVDK5.js",
+          "start": 197,
+          "end": 283,
+          "bytes": 1013
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 198,
+          "end": 283,
+          "bytes": 683
+        },
+        {
+          "kind": "js",
+          "path": "route-Cqjwpxiy.js",
+          "start": 198,
+          "end": 284,
+          "bytes": 374
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 199,
+          "end": 243,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 200,
+          "end": 286,
+          "bytes": 2227
+        },
+        {
+          "kind": "img",
+          "path": "background-decoration-mobile-BkRmGENO.webp",
+          "start": 292,
+          "end": 345,
+          "bytes": 15480
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/lessons/results/1",
+          "start": 293,
+          "end": 335,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 295,
+          "end": 646,
+          "bytes": 653756
+        },
+        {
+          "kind": "img",
+          "path": "moon-mobile-C_iMWppn.webp",
+          "start": 338,
+          "end": 445,
+          "bytes": 56734
+        },
+        {
+          "kind": "img",
+          "path": "planet-01-mercury-DZsd0zpF.webp",
+          "start": 339,
+          "end": 405,
+          "bytes": 15066
+        },
+        {
+          "kind": "img",
+          "path": "mascot-qgxOBFbq.webp",
+          "start": 339,
+          "end": 430,
+          "bytes": 36264
+        }
+      ]
+    },
+    {
+      "fcp": 324,
+      "lcp": {
+        "time": 688,
+        "element": "img.w-full.-translate-y-[5.3%]",
+        "url": "moon-mobile-C_iMWppn.webp",
+        "size": 157169
+      },
+      "cls": 0,
+      "shifts": [],
+      "tbt": 0,
+      "longTasks": [],
+      "requests": [
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 47,
+          "end": 108,
+          "bytes": 22531
+        },
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 47,
+          "end": 173,
+          "bytes": 184840
+        },
+        {
+          "kind": "js",
+          "path": "learning.lessons._lessonId_.result._submissionId-D1GWshPA.js",
+          "start": 198,
+          "end": 245,
+          "bytes": 4890
+        },
+        {
+          "kind": "js",
+          "path": "useLocation-XXFpt-56.js",
+          "start": 198,
+          "end": 240,
+          "bytes": 433
+        },
+        {
+          "kind": "js",
+          "path": "use-history-back-click-kzMbKS6-.js",
+          "start": 198,
+          "end": 241,
+          "bytes": 709
+        },
+        {
+          "kind": "js",
+          "path": "skeleton-Bs5ijy6x.js",
+          "start": 198,
+          "end": 242,
+          "bytes": 1446
+        },
+        {
+          "kind": "js",
+          "path": "date-BCO4Wgza.js",
+          "start": 198,
+          "end": 242,
+          "bytes": 870
+        },
+        {
+          "kind": "js",
+          "path": "planets-CnsLAvoU.js",
+          "start": 198,
+          "end": 243,
+          "bytes": 1205
+        },
+        {
+          "kind": "js",
+          "path": "progress-bar-CzBkYY83.js",
+          "start": 198,
+          "end": 281,
+          "bytes": 1031
+        },
+        {
+          "kind": "js",
+          "path": "stat-item-DXZIptDw.js",
+          "start": 198,
+          "end": 282,
+          "bytes": 911
+        },
+        {
+          "kind": "js",
+          "path": "level-CHVQVDK5.js",
+          "start": 198,
+          "end": 283,
+          "bytes": 1013
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 199,
+          "end": 283,
+          "bytes": 683
+        },
+        {
+          "kind": "js",
+          "path": "route-Cqjwpxiy.js",
+          "start": 199,
+          "end": 284,
+          "bytes": 374
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 200,
+          "end": 244,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 201,
+          "end": 287,
+          "bytes": 2227
+        },
+        {
+          "kind": "img",
+          "path": "background-decoration-mobile-BkRmGENO.webp",
+          "start": 292,
+          "end": 347,
+          "bytes": 15480
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/lessons/results/1",
+          "start": 293,
+          "end": 336,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 295,
+          "end": 647,
+          "bytes": 653756
+        },
+        {
+          "kind": "img",
+          "path": "planet-01-mercury-DZsd0zpF.webp",
+          "start": 339,
+          "end": 406,
+          "bytes": 15066
+        },
+        {
+          "kind": "img",
+          "path": "mascot-qgxOBFbq.webp",
+          "start": 339,
+          "end": 430,
+          "bytes": 36264
+        },
+        {
+          "kind": "img",
+          "path": "moon-mobile-C_iMWppn.webp",
+          "start": 339,
+          "end": 447,
+          "bytes": 56734
+        }
+      ]
+    },
+    {
+      "fcp": 328,
+      "lcp": {
+        "time": 712,
+        "element": "img.w-full.-translate-y-[5.3%]",
+        "url": "moon-mobile-C_iMWppn.webp",
+        "size": 157169
+      },
+      "cls": 0,
+      "shifts": [],
+      "tbt": 0,
+      "longTasks": [],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 46,
+          "end": 171,
+          "bytes": 184840
+        },
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 46,
+          "end": 106,
+          "bytes": 22531
+        },
+        {
+          "kind": "js",
+          "path": "useLocation-XXFpt-56.js",
+          "start": 196,
+          "end": 238,
+          "bytes": 433
+        },
+        {
+          "kind": "js",
+          "path": "learning.lessons._lessonId_.result._submissionId-D1GWshPA.js",
+          "start": 196,
+          "end": 243,
+          "bytes": 4890
+        },
+        {
+          "kind": "js",
+          "path": "use-history-back-click-kzMbKS6-.js",
+          "start": 196,
+          "end": 239,
+          "bytes": 709
+        },
+        {
+          "kind": "js",
+          "path": "skeleton-Bs5ijy6x.js",
+          "start": 196,
+          "end": 239,
+          "bytes": 1446
+        },
+        {
+          "kind": "js",
+          "path": "date-BCO4Wgza.js",
+          "start": 196,
+          "end": 240,
+          "bytes": 870
+        },
+        {
+          "kind": "js",
+          "path": "planets-CnsLAvoU.js",
+          "start": 196,
+          "end": 240,
+          "bytes": 1205
+        },
+        {
+          "kind": "js",
+          "path": "progress-bar-CzBkYY83.js",
+          "start": 196,
+          "end": 280,
+          "bytes": 1031
+        },
+        {
+          "kind": "js",
+          "path": "stat-item-DXZIptDw.js",
+          "start": 196,
+          "end": 280,
+          "bytes": 911
+        },
+        {
+          "kind": "js",
+          "path": "level-CHVQVDK5.js",
+          "start": 196,
+          "end": 281,
+          "bytes": 1013
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 197,
+          "end": 282,
+          "bytes": 683
+        },
+        {
+          "kind": "js",
+          "path": "route-Cqjwpxiy.js",
+          "start": 197,
+          "end": 282,
+          "bytes": 374
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 198,
+          "end": 242,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 199,
+          "end": 284,
+          "bytes": 2227
+        },
+        {
+          "kind": "img",
+          "path": "background-decoration-mobile-BkRmGENO.webp",
+          "start": 290,
+          "end": 344,
+          "bytes": 15480
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/lessons/results/1",
+          "start": 291,
+          "end": 333,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 293,
+          "end": 645,
+          "bytes": 653756
+        },
+        {
+          "kind": "img",
+          "path": "planet-01-mercury-DZsd0zpF.webp",
+          "start": 337,
+          "end": 403,
+          "bytes": 15066
+        },
+        {
+          "kind": "img",
+          "path": "mascot-qgxOBFbq.webp",
+          "start": 337,
+          "end": 428,
+          "bytes": 36264
+        },
+        {
+          "kind": "img",
+          "path": "moon-mobile-C_iMWppn.webp",
+          "start": 337,
+          "end": 444,
+          "bytes": 56734
+        }
+      ]
+    }
+  ],
+  "bookmarked-ios": [
+    {
+      "fcp": 384,
+      "lcp": {
+        "time": 804,
+        "element": "img.h-[20.625rem].w-auto.max-w-full",
+        "url": "loading-mascot-DwzQU18I.webp",
+        "size": 108240
+      },
+      "cls": 0,
+      "shifts": [],
+      "tbt": 0,
+      "longTasks": [],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 47,
+          "end": 172,
+          "bytes": 184840
+        },
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 47,
+          "end": 107,
+          "bytes": 22531
+        },
+        {
+          "kind": "js",
+          "path": "learning.units._unitId.bookmarked-problems-CpFlyoAn.js",
+          "start": 197,
+          "end": 240,
+          "bytes": 1039
+        },
+        {
+          "kind": "js",
+          "path": "bookmark-fill-D4oSA3CT.js",
+          "start": 197,
+          "end": 240,
+          "bytes": 1314
+        },
+        {
+          "kind": "js",
+          "path": "progress-bar-CzBkYY83.js",
+          "start": 197,
+          "end": 241,
+          "bytes": 1031
+        },
+        {
+          "kind": "js",
+          "path": "card-CPs_ThYK.js",
+          "start": 197,
+          "end": 242,
+          "bytes": 751
+        },
+        {
+          "kind": "js",
+          "path": "review-quiz-page-BL5OFjao.js",
+          "start": 197,
+          "end": 244,
+          "bytes": 2499
+        },
+        {
+          "kind": "js",
+          "path": "quiz-screen-Crof2qpb.js",
+          "start": 197,
+          "end": 250,
+          "bytes": 15394
+        },
+        {
+          "kind": "js",
+          "path": "chevron-down-CfpM7iV-.js",
+          "start": 197,
+          "end": 282,
+          "bytes": 624
+        },
+        {
+          "kind": "js",
+          "path": "close-md-C0Z5hi5S.js",
+          "start": 197,
+          "end": 284,
+          "bytes": 641
+        },
+        {
+          "kind": "js",
+          "path": "floating-textarea-B4G8IqyP.js",
+          "start": 197,
+          "end": 285,
+          "bytes": 1451
+        },
+        {
+          "kind": "js",
+          "path": "modal-WYpVOrLw.js",
+          "start": 198,
+          "end": 286,
+          "bytes": 2797
+        },
+        {
+          "kind": "js",
+          "path": "Combination-FjqZfKcv.js",
+          "start": 198,
+          "end": 288,
+          "bytes": 5492
+        },
+        {
+          "kind": "js",
+          "path": "index-BCGeRuru.js",
+          "start": 198,
+          "end": 293,
+          "bytes": 4543
+        },
+        {
+          "kind": "js",
+          "path": "use-history-back-click-kzMbKS6-.js",
+          "start": 198,
+          "end": 325,
+          "bytes": 709
+        },
+        {
+          "kind": "js",
+          "path": "date-BCO4Wgza.js",
+          "start": 198,
+          "end": 326,
+          "bytes": 870
+        },
+        {
+          "kind": "js",
+          "path": "lesson-BMQUk-oi.js",
+          "start": 198,
+          "end": 326,
+          "bytes": 831
+        },
+        {
+          "kind": "js",
+          "path": "learning-fill-CuNMTXZj.js",
+          "start": 198,
+          "end": 327,
+          "bytes": 842
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 199,
+          "end": 329,
+          "bytes": 683
+        },
+        {
+          "kind": "js",
+          "path": "route-Cqjwpxiy.js",
+          "start": 199,
+          "end": 333,
+          "bytes": 374
+        },
+        {
+          "kind": "js",
+          "path": "markdown-C1Mb564d.js",
+          "start": 199,
+          "end": 435,
+          "bytes": 75553
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 200,
+          "end": 243,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 201,
+          "end": 368,
+          "bytes": 2227
+        },
+        {
+          "kind": "img",
+          "path": "loading-mascot-DwzQU18I.webp",
+          "start": 340,
+          "end": 768,
+          "bytes": 460298
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/bookmarks/1",
+          "start": 341,
+          "end": 393,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 342,
+          "end": 847,
+          "bytes": 653756
+        }
+      ]
+    },
+    {
+      "fcp": 372,
+      "lcp": {
+        "time": 808,
+        "element": "img.h-[20.625rem].w-auto.max-w-full",
+        "url": "loading-mascot-DwzQU18I.webp",
+        "size": 108240
+      },
+      "cls": 0,
+      "shifts": [],
+      "tbt": 0,
+      "longTasks": [],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 46,
+          "end": 171,
+          "bytes": 184840
+        },
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 46,
+          "end": 105,
+          "bytes": 22531
+        },
+        {
+          "kind": "js",
+          "path": "learning.units._unitId.bookmarked-problems-CpFlyoAn.js",
+          "start": 196,
+          "end": 239,
+          "bytes": 1039
+        },
+        {
+          "kind": "js",
+          "path": "bookmark-fill-D4oSA3CT.js",
+          "start": 196,
+          "end": 240,
+          "bytes": 1314
+        },
+        {
+          "kind": "js",
+          "path": "card-CPs_ThYK.js",
+          "start": 196,
+          "end": 240,
+          "bytes": 751
+        },
+        {
+          "kind": "js",
+          "path": "progress-bar-CzBkYY83.js",
+          "start": 196,
+          "end": 241,
+          "bytes": 1031
+        },
+        {
+          "kind": "js",
+          "path": "review-quiz-page-BL5OFjao.js",
+          "start": 196,
+          "end": 243,
+          "bytes": 2499
+        },
+        {
+          "kind": "js",
+          "path": "quiz-screen-Crof2qpb.js",
+          "start": 196,
+          "end": 249,
+          "bytes": 15394
+        },
+        {
+          "kind": "js",
+          "path": "chevron-down-CfpM7iV-.js",
+          "start": 196,
+          "end": 281,
+          "bytes": 624
+        },
+        {
+          "kind": "js",
+          "path": "close-md-C0Z5hi5S.js",
+          "start": 196,
+          "end": 282,
+          "bytes": 641
+        },
+        {
+          "kind": "js",
+          "path": "floating-textarea-B4G8IqyP.js",
+          "start": 196,
+          "end": 284,
+          "bytes": 1451
+        },
+        {
+          "kind": "js",
+          "path": "modal-WYpVOrLw.js",
+          "start": 196,
+          "end": 285,
+          "bytes": 2797
+        },
+        {
+          "kind": "js",
+          "path": "Combination-FjqZfKcv.js",
+          "start": 196,
+          "end": 287,
+          "bytes": 5492
+        },
+        {
+          "kind": "js",
+          "path": "index-BCGeRuru.js",
+          "start": 196,
+          "end": 291,
+          "bytes": 4543
+        },
+        {
+          "kind": "js",
+          "path": "use-history-back-click-kzMbKS6-.js",
+          "start": 196,
+          "end": 324,
+          "bytes": 709
+        },
+        {
+          "kind": "js",
+          "path": "date-BCO4Wgza.js",
+          "start": 196,
+          "end": 324,
+          "bytes": 870
+        },
+        {
+          "kind": "js",
+          "path": "lesson-BMQUk-oi.js",
+          "start": 197,
+          "end": 325,
+          "bytes": 831
+        },
+        {
+          "kind": "js",
+          "path": "learning-fill-CuNMTXZj.js",
+          "start": 197,
+          "end": 326,
+          "bytes": 842
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 198,
+          "end": 327,
+          "bytes": 683
+        },
+        {
+          "kind": "js",
+          "path": "route-Cqjwpxiy.js",
+          "start": 198,
+          "end": 333,
+          "bytes": 374
+        },
+        {
+          "kind": "js",
+          "path": "markdown-C1Mb564d.js",
+          "start": 198,
+          "end": 434,
+          "bytes": 75553
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 199,
+          "end": 242,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 200,
+          "end": 368,
+          "bytes": 2227
+        },
+        {
+          "kind": "img",
+          "path": "loading-mascot-DwzQU18I.webp",
+          "start": 340,
+          "end": 768,
+          "bytes": 460298
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/bookmarks/1",
+          "start": 341,
+          "end": 392,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 341,
+          "end": 846,
+          "bytes": 653756
+        }
+      ]
+    },
+    {
+      "fcp": 376,
+      "lcp": {
+        "time": 800,
+        "element": "img.h-[20.625rem].w-auto.max-w-full",
+        "url": "loading-mascot-DwzQU18I.webp",
+        "size": 108240
+      },
+      "cls": 0,
+      "shifts": [],
+      "tbt": 0,
+      "longTasks": [],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 47,
+          "end": 171,
+          "bytes": 184840
+        },
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 47,
+          "end": 107,
+          "bytes": 22531
+        },
+        {
+          "kind": "js",
+          "path": "learning.units._unitId.bookmarked-problems-CpFlyoAn.js",
+          "start": 196,
+          "end": 239,
+          "bytes": 1039
+        },
+        {
+          "kind": "js",
+          "path": "bookmark-fill-D4oSA3CT.js",
+          "start": 196,
+          "end": 240,
+          "bytes": 1314
+        },
+        {
+          "kind": "js",
+          "path": "review-quiz-page-BL5OFjao.js",
+          "start": 196,
+          "end": 243,
+          "bytes": 2499
+        },
+        {
+          "kind": "js",
+          "path": "quiz-screen-Crof2qpb.js",
+          "start": 196,
+          "end": 249,
+          "bytes": 15394
+        },
+        {
+          "kind": "js",
+          "path": "progress-bar-CzBkYY83.js",
+          "start": 197,
+          "end": 241,
+          "bytes": 1031
+        },
+        {
+          "kind": "js",
+          "path": "card-CPs_ThYK.js",
+          "start": 197,
+          "end": 241,
+          "bytes": 751
+        },
+        {
+          "kind": "js",
+          "path": "chevron-down-CfpM7iV-.js",
+          "start": 197,
+          "end": 280,
+          "bytes": 624
+        },
+        {
+          "kind": "js",
+          "path": "close-md-C0Z5hi5S.js",
+          "start": 197,
+          "end": 282,
+          "bytes": 641
+        },
+        {
+          "kind": "js",
+          "path": "floating-textarea-B4G8IqyP.js",
+          "start": 197,
+          "end": 282,
+          "bytes": 1451
+        },
+        {
+          "kind": "js",
+          "path": "modal-WYpVOrLw.js",
+          "start": 197,
+          "end": 284,
+          "bytes": 2797
+        },
+        {
+          "kind": "js",
+          "path": "Combination-FjqZfKcv.js",
+          "start": 197,
+          "end": 286,
+          "bytes": 5492
+        },
+        {
+          "kind": "js",
+          "path": "index-BCGeRuru.js",
+          "start": 197,
+          "end": 293,
+          "bytes": 4543
+        },
+        {
+          "kind": "js",
+          "path": "use-history-back-click-kzMbKS6-.js",
+          "start": 197,
+          "end": 323,
+          "bytes": 709
+        },
+        {
+          "kind": "js",
+          "path": "date-BCO4Wgza.js",
+          "start": 197,
+          "end": 323,
+          "bytes": 870
+        },
+        {
+          "kind": "js",
+          "path": "lesson-BMQUk-oi.js",
+          "start": 197,
+          "end": 324,
+          "bytes": 831
+        },
+        {
+          "kind": "js",
+          "path": "learning-fill-CuNMTXZj.js",
+          "start": 197,
+          "end": 325,
+          "bytes": 842
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 198,
+          "end": 327,
+          "bytes": 683
+        },
+        {
+          "kind": "js",
+          "path": "route-Cqjwpxiy.js",
+          "start": 198,
+          "end": 335,
+          "bytes": 374
+        },
+        {
+          "kind": "js",
+          "path": "markdown-C1Mb564d.js",
+          "start": 198,
+          "end": 427,
+          "bytes": 75553
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 199,
+          "end": 243,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 200,
+          "end": 366,
+          "bytes": 2227
+        },
+        {
+          "kind": "img",
+          "path": "loading-mascot-DwzQU18I.webp",
+          "start": 341,
+          "end": 767,
+          "bytes": 460298
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/bookmarks/1",
+          "start": 342,
+          "end": 394,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 343,
+          "end": 845,
+          "bytes": 653756
+        }
+      ]
+    },
+    {
+      "fcp": 388,
+      "lcp": {
+        "time": 808,
+        "element": "img.h-[20.625rem].w-auto.max-w-full",
+        "url": "loading-mascot-DwzQU18I.webp",
+        "size": 108240
+      },
+      "cls": 0,
+      "shifts": [],
+      "tbt": 0,
+      "longTasks": [],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 47,
+          "end": 171,
+          "bytes": 184840
+        },
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 47,
+          "end": 106,
+          "bytes": 22531
+        },
+        {
+          "kind": "js",
+          "path": "learning.units._unitId.bookmarked-problems-CpFlyoAn.js",
+          "start": 196,
+          "end": 239,
+          "bytes": 1039
+        },
+        {
+          "kind": "js",
+          "path": "bookmark-fill-D4oSA3CT.js",
+          "start": 197,
+          "end": 240,
+          "bytes": 1314
+        },
+        {
+          "kind": "js",
+          "path": "progress-bar-CzBkYY83.js",
+          "start": 197,
+          "end": 241,
+          "bytes": 1031
+        },
+        {
+          "kind": "js",
+          "path": "review-quiz-page-BL5OFjao.js",
+          "start": 197,
+          "end": 243,
+          "bytes": 2499
+        },
+        {
+          "kind": "js",
+          "path": "quiz-screen-Crof2qpb.js",
+          "start": 197,
+          "end": 249,
+          "bytes": 15394
+        },
+        {
+          "kind": "js",
+          "path": "card-CPs_ThYK.js",
+          "start": 197,
+          "end": 242,
+          "bytes": 751
+        },
+        {
+          "kind": "js",
+          "path": "chevron-down-CfpM7iV-.js",
+          "start": 197,
+          "end": 281,
+          "bytes": 624
+        },
+        {
+          "kind": "js",
+          "path": "close-md-C0Z5hi5S.js",
+          "start": 197,
+          "end": 282,
+          "bytes": 641
+        },
+        {
+          "kind": "js",
+          "path": "floating-textarea-B4G8IqyP.js",
+          "start": 197,
+          "end": 284,
+          "bytes": 1451
+        },
+        {
+          "kind": "js",
+          "path": "modal-WYpVOrLw.js",
+          "start": 197,
+          "end": 285,
+          "bytes": 2797
+        },
+        {
+          "kind": "js",
+          "path": "Combination-FjqZfKcv.js",
+          "start": 197,
+          "end": 287,
+          "bytes": 5492
+        },
+        {
+          "kind": "js",
+          "path": "index-BCGeRuru.js",
+          "start": 197,
+          "end": 292,
+          "bytes": 4543
+        },
+        {
+          "kind": "js",
+          "path": "use-history-back-click-kzMbKS6-.js",
+          "start": 197,
+          "end": 324,
+          "bytes": 709
+        },
+        {
+          "kind": "js",
+          "path": "date-BCO4Wgza.js",
+          "start": 197,
+          "end": 324,
+          "bytes": 870
+        },
+        {
+          "kind": "js",
+          "path": "lesson-BMQUk-oi.js",
+          "start": 197,
+          "end": 325,
+          "bytes": 831
+        },
+        {
+          "kind": "js",
+          "path": "learning-fill-CuNMTXZj.js",
+          "start": 197,
+          "end": 326,
+          "bytes": 842
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 198,
+          "end": 327,
+          "bytes": 683
+        },
+        {
+          "kind": "js",
+          "path": "route-Cqjwpxiy.js",
+          "start": 198,
+          "end": 333,
+          "bytes": 374
+        },
+        {
+          "kind": "js",
+          "path": "markdown-C1Mb564d.js",
+          "start": 198,
+          "end": 433,
+          "bytes": 75553
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 200,
+          "end": 243,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 201,
+          "end": 368,
+          "bytes": 2227
+        },
+        {
+          "kind": "img",
+          "path": "loading-mascot-DwzQU18I.webp",
+          "start": 340,
+          "end": 768,
+          "bytes": 460298
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/bookmarks/1",
+          "start": 341,
+          "end": 393,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 342,
+          "end": 846,
+          "bytes": 653756
+        }
+      ]
+    },
+    {
+      "fcp": 380,
+      "lcp": {
+        "time": 800,
+        "element": "img.h-[20.625rem].w-auto.max-w-full",
+        "url": "loading-mascot-DwzQU18I.webp",
+        "size": 108240
+      },
+      "cls": 0,
+      "shifts": [],
+      "tbt": 0,
+      "longTasks": [],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 47,
+          "end": 174,
+          "bytes": 184840
+        },
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 47,
+          "end": 108,
+          "bytes": 22531
+        },
+        {
+          "kind": "js",
+          "path": "learning.units._unitId.bookmarked-problems-CpFlyoAn.js",
+          "start": 199,
+          "end": 241,
+          "bytes": 1039
+        },
+        {
+          "kind": "js",
+          "path": "review-quiz-page-BL5OFjao.js",
+          "start": 199,
+          "end": 245,
+          "bytes": 2499
+        },
+        {
+          "kind": "js",
+          "path": "bookmark-fill-D4oSA3CT.js",
+          "start": 199,
+          "end": 242,
+          "bytes": 1314
+        },
+        {
+          "kind": "js",
+          "path": "quiz-screen-Crof2qpb.js",
+          "start": 199,
+          "end": 251,
+          "bytes": 15394
+        },
+        {
+          "kind": "js",
+          "path": "progress-bar-CzBkYY83.js",
+          "start": 199,
+          "end": 243,
+          "bytes": 1031
+        },
+        {
+          "kind": "js",
+          "path": "card-CPs_ThYK.js",
+          "start": 199,
+          "end": 243,
+          "bytes": 751
+        },
+        {
+          "kind": "js",
+          "path": "chevron-down-CfpM7iV-.js",
+          "start": 199,
+          "end": 284,
+          "bytes": 624
+        },
+        {
+          "kind": "js",
+          "path": "close-md-C0Z5hi5S.js",
+          "start": 199,
+          "end": 285,
+          "bytes": 641
+        },
+        {
+          "kind": "js",
+          "path": "floating-textarea-B4G8IqyP.js",
+          "start": 199,
+          "end": 286,
+          "bytes": 1451
+        },
+        {
+          "kind": "js",
+          "path": "modal-WYpVOrLw.js",
+          "start": 199,
+          "end": 287,
+          "bytes": 2797
+        },
+        {
+          "kind": "js",
+          "path": "Combination-FjqZfKcv.js",
+          "start": 199,
+          "end": 289,
+          "bytes": 5492
+        },
+        {
+          "kind": "js",
+          "path": "index-BCGeRuru.js",
+          "start": 199,
+          "end": 294,
+          "bytes": 4543
+        },
+        {
+          "kind": "js",
+          "path": "use-history-back-click-kzMbKS6-.js",
+          "start": 199,
+          "end": 326,
+          "bytes": 709
+        },
+        {
+          "kind": "js",
+          "path": "date-BCO4Wgza.js",
+          "start": 199,
+          "end": 327,
+          "bytes": 870
+        },
+        {
+          "kind": "js",
+          "path": "lesson-BMQUk-oi.js",
+          "start": 199,
+          "end": 327,
+          "bytes": 831
+        },
+        {
+          "kind": "js",
+          "path": "learning-fill-CuNMTXZj.js",
+          "start": 199,
+          "end": 328,
+          "bytes": 842
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 201,
+          "end": 330,
+          "bytes": 683
+        },
+        {
+          "kind": "js",
+          "path": "route-Cqjwpxiy.js",
+          "start": 201,
+          "end": 335,
+          "bytes": 374
+        },
+        {
+          "kind": "js",
+          "path": "markdown-C1Mb564d.js",
+          "start": 201,
+          "end": 439,
+          "bytes": 75553
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 202,
+          "end": 245,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 203,
+          "end": 370,
+          "bytes": 2227
+        },
+        {
+          "kind": "img",
+          "path": "loading-mascot-DwzQU18I.webp",
+          "start": 341,
+          "end": 770,
+          "bytes": 460298
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/bookmarks/1",
+          "start": 342,
+          "end": 394,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 343,
+          "end": 849,
+          "bytes": 653756
+        }
+      ]
+    },
+    {
+      "fcp": 376,
+      "lcp": {
+        "time": 816,
+        "element": "img.h-[20.625rem].w-auto.max-w-full",
+        "url": "loading-mascot-DwzQU18I.webp",
+        "size": 108240
+      },
+      "cls": 0,
+      "shifts": [],
+      "tbt": 0,
+      "longTasks": [],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 45,
+          "end": 171,
+          "bytes": 184840
+        },
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 46,
+          "end": 106,
+          "bytes": 22531
+        },
+        {
+          "kind": "js",
+          "path": "learning.units._unitId.bookmarked-problems-CpFlyoAn.js",
+          "start": 197,
+          "end": 239,
+          "bytes": 1039
+        },
+        {
+          "kind": "js",
+          "path": "review-quiz-page-BL5OFjao.js",
+          "start": 197,
+          "end": 243,
+          "bytes": 2499
+        },
+        {
+          "kind": "js",
+          "path": "bookmark-fill-D4oSA3CT.js",
+          "start": 197,
+          "end": 240,
+          "bytes": 1314
+        },
+        {
+          "kind": "js",
+          "path": "progress-bar-CzBkYY83.js",
+          "start": 197,
+          "end": 241,
+          "bytes": 1031
+        },
+        {
+          "kind": "js",
+          "path": "card-CPs_ThYK.js",
+          "start": 197,
+          "end": 242,
+          "bytes": 751
+        },
+        {
+          "kind": "js",
+          "path": "quiz-screen-Crof2qpb.js",
+          "start": 197,
+          "end": 249,
+          "bytes": 15394
+        },
+        {
+          "kind": "js",
+          "path": "chevron-down-CfpM7iV-.js",
+          "start": 197,
+          "end": 282,
+          "bytes": 624
+        },
+        {
+          "kind": "js",
+          "path": "floating-textarea-B4G8IqyP.js",
+          "start": 197,
+          "end": 284,
+          "bytes": 1451
+        },
+        {
+          "kind": "js",
+          "path": "close-md-C0Z5hi5S.js",
+          "start": 197,
+          "end": 283,
+          "bytes": 641
+        },
+        {
+          "kind": "js",
+          "path": "modal-WYpVOrLw.js",
+          "start": 197,
+          "end": 285,
+          "bytes": 2797
+        },
+        {
+          "kind": "js",
+          "path": "Combination-FjqZfKcv.js",
+          "start": 197,
+          "end": 287,
+          "bytes": 5492
+        },
+        {
+          "kind": "js",
+          "path": "index-BCGeRuru.js",
+          "start": 197,
+          "end": 292,
+          "bytes": 4543
+        },
+        {
+          "kind": "js",
+          "path": "use-history-back-click-kzMbKS6-.js",
+          "start": 198,
+          "end": 324,
+          "bytes": 709
+        },
+        {
+          "kind": "js",
+          "path": "date-BCO4Wgza.js",
+          "start": 198,
+          "end": 325,
+          "bytes": 870
+        },
+        {
+          "kind": "js",
+          "path": "lesson-BMQUk-oi.js",
+          "start": 198,
+          "end": 326,
+          "bytes": 831
+        },
+        {
+          "kind": "js",
+          "path": "learning-fill-CuNMTXZj.js",
+          "start": 198,
+          "end": 326,
+          "bytes": 842
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 199,
+          "end": 328,
+          "bytes": 683
+        },
+        {
+          "kind": "js",
+          "path": "route-Cqjwpxiy.js",
+          "start": 199,
+          "end": 334,
+          "bytes": 374
+        },
+        {
+          "kind": "js",
+          "path": "markdown-C1Mb564d.js",
+          "start": 199,
+          "end": 435,
+          "bytes": 75553
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 200,
+          "end": 243,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 201,
+          "end": 368,
+          "bytes": 2227
+        },
+        {
+          "kind": "img",
+          "path": "loading-mascot-DwzQU18I.webp",
+          "start": 341,
+          "end": 768,
+          "bytes": 460298
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/bookmarks/1",
+          "start": 342,
+          "end": 393,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 342,
+          "end": 847,
+          "bytes": 653756
+        }
+      ]
+    },
+    {
+      "fcp": 380,
+      "lcp": {
+        "time": 824,
+        "element": "img.h-[20.625rem].w-auto.max-w-full",
+        "url": "loading-mascot-DwzQU18I.webp",
+        "size": 108240
+      },
+      "cls": 0,
+      "shifts": [],
+      "tbt": 0,
+      "longTasks": [],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 46,
+          "end": 173,
+          "bytes": 184840
+        },
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 47,
+          "end": 107,
+          "bytes": 22531
+        },
+        {
+          "kind": "js",
+          "path": "learning.units._unitId.bookmarked-problems-CpFlyoAn.js",
+          "start": 198,
+          "end": 240,
+          "bytes": 1039
+        },
+        {
+          "kind": "js",
+          "path": "review-quiz-page-BL5OFjao.js",
+          "start": 198,
+          "end": 245,
+          "bytes": 2499
+        },
+        {
+          "kind": "js",
+          "path": "bookmark-fill-D4oSA3CT.js",
+          "start": 198,
+          "end": 242,
+          "bytes": 1314
+        },
+        {
+          "kind": "js",
+          "path": "quiz-screen-Crof2qpb.js",
+          "start": 198,
+          "end": 251,
+          "bytes": 15394
+        },
+        {
+          "kind": "js",
+          "path": "card-CPs_ThYK.js",
+          "start": 198,
+          "end": 242,
+          "bytes": 751
+        },
+        {
+          "kind": "js",
+          "path": "progress-bar-CzBkYY83.js",
+          "start": 198,
+          "end": 243,
+          "bytes": 1031
+        },
+        {
+          "kind": "js",
+          "path": "chevron-down-CfpM7iV-.js",
+          "start": 198,
+          "end": 283,
+          "bytes": 624
+        },
+        {
+          "kind": "js",
+          "path": "floating-textarea-B4G8IqyP.js",
+          "start": 198,
+          "end": 285,
+          "bytes": 1451
+        },
+        {
+          "kind": "js",
+          "path": "close-md-C0Z5hi5S.js",
+          "start": 198,
+          "end": 284,
+          "bytes": 641
+        },
+        {
+          "kind": "js",
+          "path": "modal-WYpVOrLw.js",
+          "start": 198,
+          "end": 287,
+          "bytes": 2797
+        },
+        {
+          "kind": "js",
+          "path": "Combination-FjqZfKcv.js",
+          "start": 198,
+          "end": 288,
+          "bytes": 5492
+        },
+        {
+          "kind": "js",
+          "path": "index-BCGeRuru.js",
+          "start": 198,
+          "end": 293,
+          "bytes": 4543
+        },
+        {
+          "kind": "js",
+          "path": "use-history-back-click-kzMbKS6-.js",
+          "start": 198,
+          "end": 324,
+          "bytes": 709
+        },
+        {
+          "kind": "js",
+          "path": "date-BCO4Wgza.js",
+          "start": 198,
+          "end": 325,
+          "bytes": 870
+        },
+        {
+          "kind": "js",
+          "path": "lesson-BMQUk-oi.js",
+          "start": 198,
+          "end": 326,
+          "bytes": 831
+        },
+        {
+          "kind": "js",
+          "path": "learning-fill-CuNMTXZj.js",
+          "start": 198,
+          "end": 327,
+          "bytes": 842
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 199,
+          "end": 329,
+          "bytes": 683
+        },
+        {
+          "kind": "js",
+          "path": "route-Cqjwpxiy.js",
+          "start": 199,
+          "end": 335,
+          "bytes": 374
+        },
+        {
+          "kind": "js",
+          "path": "markdown-C1Mb564d.js",
+          "start": 199,
+          "end": 431,
+          "bytes": 75553
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 200,
+          "end": 244,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 201,
+          "end": 368,
+          "bytes": 2227
+        },
+        {
+          "kind": "img",
+          "path": "loading-mascot-DwzQU18I.webp",
+          "start": 342,
+          "end": 768,
+          "bytes": 460298
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/bookmarks/1",
+          "start": 343,
+          "end": 394,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 343,
+          "end": 846,
+          "bytes": 653756
+        }
+      ]
+    }
+  ],
+  "incorrect-ios": [
+    {
+      "fcp": 376,
+      "lcp": {
+        "time": 820,
+        "element": "img.h-[20.625rem].w-auto.max-w-full",
+        "url": "loading-mascot-DwzQU18I.webp",
+        "size": 108240
+      },
+      "cls": 0,
+      "shifts": [],
+      "tbt": 0,
+      "longTasks": [],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 46,
+          "end": 173,
+          "bytes": 184840
+        },
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 47,
+          "end": 107,
+          "bytes": 22531
+        },
+        {
+          "kind": "js",
+          "path": "learning.units._unitId.incorrect-problems-C7kefgtr.js",
+          "start": 198,
+          "end": 241,
+          "bytes": 1042
+        },
+        {
+          "kind": "js",
+          "path": "review-quiz-page-BL5OFjao.js",
+          "start": 198,
+          "end": 244,
+          "bytes": 2499
+        },
+        {
+          "kind": "js",
+          "path": "bookmark-fill-D4oSA3CT.js",
+          "start": 198,
+          "end": 241,
+          "bytes": 1314
+        },
+        {
+          "kind": "js",
+          "path": "quiz-screen-Crof2qpb.js",
+          "start": 198,
+          "end": 251,
+          "bytes": 15394
+        },
+        {
+          "kind": "js",
+          "path": "card-CPs_ThYK.js",
+          "start": 198,
+          "end": 242,
+          "bytes": 751
+        },
+        {
+          "kind": "js",
+          "path": "progress-bar-CzBkYY83.js",
+          "start": 198,
+          "end": 243,
+          "bytes": 1031
+        },
+        {
+          "kind": "js",
+          "path": "chevron-down-CfpM7iV-.js",
+          "start": 198,
+          "end": 282,
+          "bytes": 624
+        },
+        {
+          "kind": "js",
+          "path": "floating-textarea-B4G8IqyP.js",
+          "start": 198,
+          "end": 285,
+          "bytes": 1451
+        },
+        {
+          "kind": "js",
+          "path": "close-md-C0Z5hi5S.js",
+          "start": 198,
+          "end": 284,
+          "bytes": 641
+        },
+        {
+          "kind": "js",
+          "path": "modal-WYpVOrLw.js",
+          "start": 198,
+          "end": 286,
+          "bytes": 2797
+        },
+        {
+          "kind": "js",
+          "path": "Combination-FjqZfKcv.js",
+          "start": 198,
+          "end": 288,
+          "bytes": 5492
+        },
+        {
+          "kind": "js",
+          "path": "index-BCGeRuru.js",
+          "start": 198,
+          "end": 294,
+          "bytes": 4543
+        },
+        {
+          "kind": "js",
+          "path": "use-history-back-click-kzMbKS6-.js",
+          "start": 198,
+          "end": 325,
+          "bytes": 709
+        },
+        {
+          "kind": "js",
+          "path": "date-BCO4Wgza.js",
+          "start": 198,
+          "end": 326,
+          "bytes": 870
+        },
+        {
+          "kind": "js",
+          "path": "lesson-BMQUk-oi.js",
+          "start": 198,
+          "end": 326,
+          "bytes": 831
+        },
+        {
+          "kind": "js",
+          "path": "learning-fill-CuNMTXZj.js",
+          "start": 198,
+          "end": 327,
+          "bytes": 842
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 199,
+          "end": 329,
+          "bytes": 683
+        },
+        {
+          "kind": "js",
+          "path": "route-Cqjwpxiy.js",
+          "start": 199,
+          "end": 334,
+          "bytes": 374
+        },
+        {
+          "kind": "js",
+          "path": "markdown-C1Mb564d.js",
+          "start": 199,
+          "end": 435,
+          "bytes": 75553
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 200,
+          "end": 245,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 201,
+          "end": 369,
+          "bytes": 2227
+        },
+        {
+          "kind": "img",
+          "path": "loading-mascot-DwzQU18I.webp",
+          "start": 341,
+          "end": 769,
+          "bytes": 460298
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/wrong-answered-notes/1",
+          "start": 342,
+          "end": 394,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 343,
+          "end": 848,
+          "bytes": 653756
+        }
+      ]
+    },
+    {
+      "fcp": 384,
+      "lcp": {
+        "time": 816,
+        "element": "img.h-[20.625rem].w-auto.max-w-full",
+        "url": "loading-mascot-DwzQU18I.webp",
+        "size": 108240
+      },
+      "cls": 0,
+      "shifts": [],
+      "tbt": 0,
+      "longTasks": [],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 47,
+          "end": 171,
+          "bytes": 184840
+        },
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 47,
+          "end": 106,
+          "bytes": 22531
+        },
+        {
+          "kind": "js",
+          "path": "learning.units._unitId.incorrect-problems-C7kefgtr.js",
+          "start": 196,
+          "end": 238,
+          "bytes": 1042
+        },
+        {
+          "kind": "js",
+          "path": "review-quiz-page-BL5OFjao.js",
+          "start": 196,
+          "end": 242,
+          "bytes": 2499
+        },
+        {
+          "kind": "js",
+          "path": "quiz-screen-Crof2qpb.js",
+          "start": 196,
+          "end": 248,
+          "bytes": 15394
+        },
+        {
+          "kind": "js",
+          "path": "bookmark-fill-D4oSA3CT.js",
+          "start": 197,
+          "end": 239,
+          "bytes": 1314
+        },
+        {
+          "kind": "js",
+          "path": "card-CPs_ThYK.js",
+          "start": 197,
+          "end": 240,
+          "bytes": 751
+        },
+        {
+          "kind": "js",
+          "path": "progress-bar-CzBkYY83.js",
+          "start": 197,
+          "end": 240,
+          "bytes": 1031
+        },
+        {
+          "kind": "js",
+          "path": "chevron-down-CfpM7iV-.js",
+          "start": 197,
+          "end": 281,
+          "bytes": 624
+        },
+        {
+          "kind": "js",
+          "path": "close-md-C0Z5hi5S.js",
+          "start": 197,
+          "end": 282,
+          "bytes": 641
+        },
+        {
+          "kind": "js",
+          "path": "floating-textarea-B4G8IqyP.js",
+          "start": 197,
+          "end": 283,
+          "bytes": 1451
+        },
+        {
+          "kind": "js",
+          "path": "modal-WYpVOrLw.js",
+          "start": 197,
+          "end": 284,
+          "bytes": 2797
+        },
+        {
+          "kind": "js",
+          "path": "Combination-FjqZfKcv.js",
+          "start": 197,
+          "end": 286,
+          "bytes": 5492
+        },
+        {
+          "kind": "js",
+          "path": "index-BCGeRuru.js",
+          "start": 197,
+          "end": 291,
+          "bytes": 4543
+        },
+        {
+          "kind": "js",
+          "path": "use-history-back-click-kzMbKS6-.js",
+          "start": 197,
+          "end": 321,
+          "bytes": 709
+        },
+        {
+          "kind": "js",
+          "path": "date-BCO4Wgza.js",
+          "start": 197,
+          "end": 323,
+          "bytes": 870
+        },
+        {
+          "kind": "js",
+          "path": "lesson-BMQUk-oi.js",
+          "start": 197,
+          "end": 324,
+          "bytes": 831
+        },
+        {
+          "kind": "js",
+          "path": "learning-fill-CuNMTXZj.js",
+          "start": 197,
+          "end": 325,
+          "bytes": 842
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 198,
+          "end": 327,
+          "bytes": 683
+        },
+        {
+          "kind": "js",
+          "path": "route-Cqjwpxiy.js",
+          "start": 198,
+          "end": 332,
+          "bytes": 374
+        },
+        {
+          "kind": "js",
+          "path": "markdown-C1Mb564d.js",
+          "start": 198,
+          "end": 427,
+          "bytes": 75553
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 199,
+          "end": 242,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 200,
+          "end": 365,
+          "bytes": 2227
+        },
+        {
+          "kind": "img",
+          "path": "loading-mascot-DwzQU18I.webp",
+          "start": 339,
+          "end": 765,
+          "bytes": 460298
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/wrong-answered-notes/1",
+          "start": 340,
+          "end": 392,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 340,
+          "end": 843,
+          "bytes": 653756
+        }
+      ]
+    },
+    {
+      "fcp": 384,
+      "lcp": {
+        "time": 816,
+        "element": "img.h-[20.625rem].w-auto.max-w-full",
+        "url": "loading-mascot-DwzQU18I.webp",
+        "size": 108240
+      },
+      "cls": 0,
+      "shifts": [],
+      "tbt": 0,
+      "longTasks": [],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 47,
+          "end": 174,
+          "bytes": 184840
+        },
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 47,
+          "end": 108,
+          "bytes": 22531
+        },
+        {
+          "kind": "js",
+          "path": "learning.units._unitId.incorrect-problems-C7kefgtr.js",
+          "start": 199,
+          "end": 241,
+          "bytes": 1042
+        },
+        {
+          "kind": "js",
+          "path": "review-quiz-page-BL5OFjao.js",
+          "start": 199,
+          "end": 245,
+          "bytes": 2499
+        },
+        {
+          "kind": "js",
+          "path": "bookmark-fill-D4oSA3CT.js",
+          "start": 199,
+          "end": 243,
+          "bytes": 1314
+        },
+        {
+          "kind": "js",
+          "path": "card-CPs_ThYK.js",
+          "start": 199,
+          "end": 243,
+          "bytes": 751
+        },
+        {
+          "kind": "js",
+          "path": "progress-bar-CzBkYY83.js",
+          "start": 199,
+          "end": 244,
+          "bytes": 1031
+        },
+        {
+          "kind": "js",
+          "path": "quiz-screen-Crof2qpb.js",
+          "start": 199,
+          "end": 252,
+          "bytes": 15394
+        },
+        {
+          "kind": "js",
+          "path": "chevron-down-CfpM7iV-.js",
+          "start": 199,
+          "end": 283,
+          "bytes": 624
+        },
+        {
+          "kind": "js",
+          "path": "close-md-C0Z5hi5S.js",
+          "start": 199,
+          "end": 284,
+          "bytes": 641
+        },
+        {
+          "kind": "js",
+          "path": "floating-textarea-B4G8IqyP.js",
+          "start": 199,
+          "end": 285,
+          "bytes": 1451
+        },
+        {
+          "kind": "js",
+          "path": "modal-WYpVOrLw.js",
+          "start": 199,
+          "end": 287,
+          "bytes": 2797
+        },
+        {
+          "kind": "js",
+          "path": "Combination-FjqZfKcv.js",
+          "start": 199,
+          "end": 288,
+          "bytes": 5492
+        },
+        {
+          "kind": "js",
+          "path": "index-BCGeRuru.js",
+          "start": 199,
+          "end": 295,
+          "bytes": 4543
+        },
+        {
+          "kind": "js",
+          "path": "use-history-back-click-kzMbKS6-.js",
+          "start": 199,
+          "end": 326,
+          "bytes": 709
+        },
+        {
+          "kind": "js",
+          "path": "date-BCO4Wgza.js",
+          "start": 199,
+          "end": 326,
+          "bytes": 870
+        },
+        {
+          "kind": "js",
+          "path": "lesson-BMQUk-oi.js",
+          "start": 200,
+          "end": 327,
+          "bytes": 831
+        },
+        {
+          "kind": "js",
+          "path": "learning-fill-CuNMTXZj.js",
+          "start": 200,
+          "end": 327,
+          "bytes": 842
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 201,
+          "end": 329,
+          "bytes": 683
+        },
+        {
+          "kind": "js",
+          "path": "route-Cqjwpxiy.js",
+          "start": 201,
+          "end": 336,
+          "bytes": 374
+        },
+        {
+          "kind": "js",
+          "path": "markdown-C1Mb564d.js",
+          "start": 201,
+          "end": 433,
+          "bytes": 75553
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 202,
+          "end": 246,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 203,
+          "end": 369,
+          "bytes": 2227
+        },
+        {
+          "kind": "img",
+          "path": "loading-mascot-DwzQU18I.webp",
+          "start": 343,
+          "end": 770,
+          "bytes": 460298
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/wrong-answered-notes/1",
+          "start": 344,
+          "end": 395,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 344,
+          "end": 848,
+          "bytes": 653756
+        }
+      ]
+    },
+    {
+      "fcp": 380,
+      "lcp": {
+        "time": 808,
+        "element": "img.h-[20.625rem].w-auto.max-w-full",
+        "url": "loading-mascot-DwzQU18I.webp",
+        "size": 108240
+      },
+      "cls": 0,
+      "shifts": [],
+      "tbt": 0,
+      "longTasks": [],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 47,
+          "end": 173,
+          "bytes": 184840
+        },
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 47,
+          "end": 108,
+          "bytes": 22531
+        },
+        {
+          "kind": "js",
+          "path": "learning.units._unitId.incorrect-problems-C7kefgtr.js",
+          "start": 198,
+          "end": 240,
+          "bytes": 1042
+        },
+        {
+          "kind": "js",
+          "path": "review-quiz-page-BL5OFjao.js",
+          "start": 198,
+          "end": 243,
+          "bytes": 2499
+        },
+        {
+          "kind": "js",
+          "path": "quiz-screen-Crof2qpb.js",
+          "start": 198,
+          "end": 250,
+          "bytes": 15394
+        },
+        {
+          "kind": "js",
+          "path": "bookmark-fill-D4oSA3CT.js",
+          "start": 199,
+          "end": 241,
+          "bytes": 1314
+        },
+        {
+          "kind": "js",
+          "path": "progress-bar-CzBkYY83.js",
+          "start": 199,
+          "end": 242,
+          "bytes": 1031
+        },
+        {
+          "kind": "js",
+          "path": "card-CPs_ThYK.js",
+          "start": 199,
+          "end": 243,
+          "bytes": 751
+        },
+        {
+          "kind": "js",
+          "path": "chevron-down-CfpM7iV-.js",
+          "start": 199,
+          "end": 281,
+          "bytes": 624
+        },
+        {
+          "kind": "js",
+          "path": "floating-textarea-B4G8IqyP.js",
+          "start": 199,
+          "end": 283,
+          "bytes": 1451
+        },
+        {
+          "kind": "js",
+          "path": "close-md-C0Z5hi5S.js",
+          "start": 199,
+          "end": 282,
+          "bytes": 641
+        },
+        {
+          "kind": "js",
+          "path": "modal-WYpVOrLw.js",
+          "start": 199,
+          "end": 285,
+          "bytes": 2797
+        },
+        {
+          "kind": "js",
+          "path": "Combination-FjqZfKcv.js",
+          "start": 199,
+          "end": 287,
+          "bytes": 5492
+        },
+        {
+          "kind": "js",
+          "path": "index-BCGeRuru.js",
+          "start": 199,
+          "end": 293,
+          "bytes": 4543
+        },
+        {
+          "kind": "js",
+          "path": "use-history-back-click-kzMbKS6-.js",
+          "start": 199,
+          "end": 323,
+          "bytes": 709
+        },
+        {
+          "kind": "js",
+          "path": "date-BCO4Wgza.js",
+          "start": 199,
+          "end": 323,
+          "bytes": 870
+        },
+        {
+          "kind": "js",
+          "path": "lesson-BMQUk-oi.js",
+          "start": 199,
+          "end": 324,
+          "bytes": 831
+        },
+        {
+          "kind": "js",
+          "path": "learning-fill-CuNMTXZj.js",
+          "start": 199,
+          "end": 326,
+          "bytes": 842
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 200,
+          "end": 327,
+          "bytes": 683
+        },
+        {
+          "kind": "js",
+          "path": "route-Cqjwpxiy.js",
+          "start": 200,
+          "end": 335,
+          "bytes": 374
+        },
+        {
+          "kind": "js",
+          "path": "markdown-C1Mb564d.js",
+          "start": 200,
+          "end": 422,
+          "bytes": 75553
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 201,
+          "end": 244,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 202,
+          "end": 365,
+          "bytes": 2227
+        },
+        {
+          "kind": "img",
+          "path": "loading-mascot-DwzQU18I.webp",
+          "start": 342,
+          "end": 765,
+          "bytes": 460298
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/wrong-answered-notes/1",
+          "start": 343,
+          "end": 395,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 344,
+          "end": 844,
+          "bytes": 653756
+        }
+      ]
+    },
+    {
+      "fcp": 372,
+      "lcp": {
+        "time": 808,
+        "element": "img.h-[20.625rem].w-auto.max-w-full",
+        "url": "loading-mascot-DwzQU18I.webp",
+        "size": 108240
+      },
+      "cls": 0,
+      "shifts": [],
+      "tbt": 0,
+      "longTasks": [],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 45,
+          "end": 170,
+          "bytes": 184840
+        },
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 46,
+          "end": 105,
+          "bytes": 22531
+        },
+        {
+          "kind": "js",
+          "path": "learning.units._unitId.incorrect-problems-C7kefgtr.js",
+          "start": 195,
+          "end": 238,
+          "bytes": 1042
+        },
+        {
+          "kind": "js",
+          "path": "review-quiz-page-BL5OFjao.js",
+          "start": 195,
+          "end": 242,
+          "bytes": 2499
+        },
+        {
+          "kind": "js",
+          "path": "bookmark-fill-D4oSA3CT.js",
+          "start": 195,
+          "end": 239,
+          "bytes": 1314
+        },
+        {
+          "kind": "js",
+          "path": "progress-bar-CzBkYY83.js",
+          "start": 195,
+          "end": 240,
+          "bytes": 1031
+        },
+        {
+          "kind": "js",
+          "path": "quiz-screen-Crof2qpb.js",
+          "start": 195,
+          "end": 248,
+          "bytes": 15394
+        },
+        {
+          "kind": "js",
+          "path": "card-CPs_ThYK.js",
+          "start": 195,
+          "end": 240,
+          "bytes": 751
+        },
+        {
+          "kind": "js",
+          "path": "chevron-down-CfpM7iV-.js",
+          "start": 195,
+          "end": 281,
+          "bytes": 624
+        },
+        {
+          "kind": "js",
+          "path": "close-md-C0Z5hi5S.js",
+          "start": 195,
+          "end": 282,
+          "bytes": 641
+        },
+        {
+          "kind": "js",
+          "path": "floating-textarea-B4G8IqyP.js",
+          "start": 195,
+          "end": 283,
+          "bytes": 1451
+        },
+        {
+          "kind": "js",
+          "path": "modal-WYpVOrLw.js",
+          "start": 195,
+          "end": 284,
+          "bytes": 2797
+        },
+        {
+          "kind": "js",
+          "path": "Combination-FjqZfKcv.js",
+          "start": 196,
+          "end": 286,
+          "bytes": 5492
+        },
+        {
+          "kind": "js",
+          "path": "index-BCGeRuru.js",
+          "start": 196,
+          "end": 291,
+          "bytes": 4543
+        },
+        {
+          "kind": "js",
+          "path": "use-history-back-click-kzMbKS6-.js",
+          "start": 196,
+          "end": 322,
+          "bytes": 709
+        },
+        {
+          "kind": "js",
+          "path": "date-BCO4Wgza.js",
+          "start": 196,
+          "end": 323,
+          "bytes": 870
+        },
+        {
+          "kind": "js",
+          "path": "lesson-BMQUk-oi.js",
+          "start": 196,
+          "end": 324,
+          "bytes": 831
+        },
+        {
+          "kind": "js",
+          "path": "learning-fill-CuNMTXZj.js",
+          "start": 196,
+          "end": 325,
+          "bytes": 842
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 197,
+          "end": 327,
+          "bytes": 683
+        },
+        {
+          "kind": "js",
+          "path": "route-Cqjwpxiy.js",
+          "start": 197,
+          "end": 332,
+          "bytes": 374
+        },
+        {
+          "kind": "js",
+          "path": "markdown-C1Mb564d.js",
+          "start": 197,
+          "end": 429,
+          "bytes": 75553
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 198,
+          "end": 242,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 199,
+          "end": 365,
+          "bytes": 2227
+        },
+        {
+          "kind": "img",
+          "path": "loading-mascot-DwzQU18I.webp",
+          "start": 339,
+          "end": 765,
+          "bytes": 460298
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/wrong-answered-notes/1",
+          "start": 340,
+          "end": 391,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 340,
+          "end": 844,
+          "bytes": 653756
+        }
+      ]
+    },
+    {
+      "fcp": 380,
+      "lcp": {
+        "time": 816,
+        "element": "img.h-[20.625rem].w-auto.max-w-full",
+        "url": "loading-mascot-DwzQU18I.webp",
+        "size": 108240
+      },
+      "cls": 0,
+      "shifts": [],
+      "tbt": 0,
+      "longTasks": [],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 47,
+          "end": 171,
+          "bytes": 184840
+        },
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 47,
+          "end": 106,
+          "bytes": 22531
+        },
+        {
+          "kind": "js",
+          "path": "learning.units._unitId.incorrect-problems-C7kefgtr.js",
+          "start": 196,
+          "end": 239,
+          "bytes": 1042
+        },
+        {
+          "kind": "js",
+          "path": "review-quiz-page-BL5OFjao.js",
+          "start": 196,
+          "end": 243,
+          "bytes": 2499
+        },
+        {
+          "kind": "js",
+          "path": "quiz-screen-Crof2qpb.js",
+          "start": 196,
+          "end": 249,
+          "bytes": 15394
+        },
+        {
+          "kind": "js",
+          "path": "bookmark-fill-D4oSA3CT.js",
+          "start": 196,
+          "end": 240,
+          "bytes": 1314
+        },
+        {
+          "kind": "js",
+          "path": "progress-bar-CzBkYY83.js",
+          "start": 196,
+          "end": 242,
+          "bytes": 1031
+        },
+        {
+          "kind": "js",
+          "path": "card-CPs_ThYK.js",
+          "start": 197,
+          "end": 241,
+          "bytes": 751
+        },
+        {
+          "kind": "js",
+          "path": "chevron-down-CfpM7iV-.js",
+          "start": 197,
+          "end": 280,
+          "bytes": 624
+        },
+        {
+          "kind": "js",
+          "path": "floating-textarea-B4G8IqyP.js",
+          "start": 197,
+          "end": 281,
+          "bytes": 1451
+        },
+        {
+          "kind": "js",
+          "path": "close-md-C0Z5hi5S.js",
+          "start": 197,
+          "end": 282,
+          "bytes": 641
+        },
+        {
+          "kind": "js",
+          "path": "modal-WYpVOrLw.js",
+          "start": 197,
+          "end": 283,
+          "bytes": 2797
+        },
+        {
+          "kind": "js",
+          "path": "Combination-FjqZfKcv.js",
+          "start": 197,
+          "end": 286,
+          "bytes": 5492
+        },
+        {
+          "kind": "js",
+          "path": "index-BCGeRuru.js",
+          "start": 197,
+          "end": 292,
+          "bytes": 4543
+        },
+        {
+          "kind": "js",
+          "path": "use-history-back-click-kzMbKS6-.js",
+          "start": 197,
+          "end": 323,
+          "bytes": 709
+        },
+        {
+          "kind": "js",
+          "path": "date-BCO4Wgza.js",
+          "start": 197,
+          "end": 323,
+          "bytes": 870
+        },
+        {
+          "kind": "js",
+          "path": "lesson-BMQUk-oi.js",
+          "start": 197,
+          "end": 324,
+          "bytes": 831
+        },
+        {
+          "kind": "js",
+          "path": "learning-fill-CuNMTXZj.js",
+          "start": 197,
+          "end": 324,
+          "bytes": 842
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 198,
+          "end": 327,
+          "bytes": 683
+        },
+        {
+          "kind": "js",
+          "path": "route-Cqjwpxiy.js",
+          "start": 198,
+          "end": 334,
+          "bytes": 374
+        },
+        {
+          "kind": "js",
+          "path": "markdown-C1Mb564d.js",
+          "start": 198,
+          "end": 428,
+          "bytes": 75553
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 199,
+          "end": 243,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 200,
+          "end": 366,
+          "bytes": 2227
+        },
+        {
+          "kind": "img",
+          "path": "loading-mascot-DwzQU18I.webp",
+          "start": 341,
+          "end": 767,
+          "bytes": 460298
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/wrong-answered-notes/1",
+          "start": 342,
+          "end": 393,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 342,
+          "end": 845,
+          "bytes": 653756
+        }
+      ]
+    },
+    {
+      "fcp": 384,
+      "lcp": {
+        "time": 824,
+        "element": "img.h-[20.625rem].w-auto.max-w-full",
+        "url": "loading-mascot-DwzQU18I.webp",
+        "size": 108240
+      },
+      "cls": 0,
+      "shifts": [],
+      "tbt": 0,
+      "longTasks": [],
+      "requests": [
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 47,
+          "end": 106,
+          "bytes": 22531
+        },
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 47,
+          "end": 171,
+          "bytes": 184840
+        },
+        {
+          "kind": "js",
+          "path": "learning.units._unitId.incorrect-problems-C7kefgtr.js",
+          "start": 197,
+          "end": 238,
+          "bytes": 1042
+        },
+        {
+          "kind": "js",
+          "path": "review-quiz-page-BL5OFjao.js",
+          "start": 197,
+          "end": 242,
+          "bytes": 2499
+        },
+        {
+          "kind": "js",
+          "path": "quiz-screen-Crof2qpb.js",
+          "start": 197,
+          "end": 248,
+          "bytes": 15394
+        },
+        {
+          "kind": "js",
+          "path": "bookmark-fill-D4oSA3CT.js",
+          "start": 197,
+          "end": 239,
+          "bytes": 1314
+        },
+        {
+          "kind": "js",
+          "path": "card-CPs_ThYK.js",
+          "start": 197,
+          "end": 240,
+          "bytes": 751
+        },
+        {
+          "kind": "js",
+          "path": "progress-bar-CzBkYY83.js",
+          "start": 197,
+          "end": 240,
+          "bytes": 1031
+        },
+        {
+          "kind": "js",
+          "path": "chevron-down-CfpM7iV-.js",
+          "start": 197,
+          "end": 279,
+          "bytes": 624
+        },
+        {
+          "kind": "js",
+          "path": "close-md-C0Z5hi5S.js",
+          "start": 197,
+          "end": 281,
+          "bytes": 641
+        },
+        {
+          "kind": "js",
+          "path": "floating-textarea-B4G8IqyP.js",
+          "start": 197,
+          "end": 281,
+          "bytes": 1451
+        },
+        {
+          "kind": "js",
+          "path": "modal-WYpVOrLw.js",
+          "start": 197,
+          "end": 283,
+          "bytes": 2797
+        },
+        {
+          "kind": "js",
+          "path": "Combination-FjqZfKcv.js",
+          "start": 197,
+          "end": 285,
+          "bytes": 5492
+        },
+        {
+          "kind": "js",
+          "path": "index-BCGeRuru.js",
+          "start": 197,
+          "end": 291,
+          "bytes": 4543
+        },
+        {
+          "kind": "js",
+          "path": "use-history-back-click-kzMbKS6-.js",
+          "start": 197,
+          "end": 321,
+          "bytes": 709
+        },
+        {
+          "kind": "js",
+          "path": "date-BCO4Wgza.js",
+          "start": 197,
+          "end": 322,
+          "bytes": 870
+        },
+        {
+          "kind": "js",
+          "path": "lesson-BMQUk-oi.js",
+          "start": 197,
+          "end": 323,
+          "bytes": 831
+        },
+        {
+          "kind": "js",
+          "path": "learning-fill-CuNMTXZj.js",
+          "start": 197,
+          "end": 324,
+          "bytes": 842
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 198,
+          "end": 326,
+          "bytes": 683
+        },
+        {
+          "kind": "js",
+          "path": "route-Cqjwpxiy.js",
+          "start": 198,
+          "end": 333,
+          "bytes": 374
+        },
+        {
+          "kind": "js",
+          "path": "markdown-C1Mb564d.js",
+          "start": 198,
+          "end": 420,
+          "bytes": 75553
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 199,
+          "end": 242,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 200,
+          "end": 364,
+          "bytes": 2227
+        },
+        {
+          "kind": "img",
+          "path": "loading-mascot-DwzQU18I.webp",
+          "start": 340,
+          "end": 764,
+          "bytes": 460298
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/wrong-answered-notes/1",
+          "start": 341,
+          "end": 393,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 342,
+          "end": 842,
+          "bytes": 653756
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1055 @@
+{
+  "main-mobile": [
+    {
+      "interactions": [
+        {
+          "action": "전체 학습화면 보기",
+          "inp": 552,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 552
+    },
+    {
+      "interactions": [
+        {
+          "action": "전체 학습화면 보기",
+          "inp": 552,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 552
+    },
+    {
+      "interactions": [
+        {
+          "action": "전체 학습화면 보기",
+          "inp": 560,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 560
+    },
+    {
+      "interactions": [
+        {
+          "action": "전체 학습화면 보기",
+          "inp": 520,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 520
+    },
+    {
+      "interactions": [
+        {
+          "action": "전체 학습화면 보기",
+          "inp": 560,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 560
+    },
+    {
+      "interactions": [
+        {
+          "action": "전체 학습화면 보기",
+          "inp": 328,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 328
+    },
+    {
+      "interactions": [
+        {
+          "action": "전체 학습화면 보기",
+          "inp": 544,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 544
+    }
+  ],
+  "learning-mobile": [
+    {
+      "interactions": [
+        {
+          "action": "자료구조 학습하기",
+          "inp": 328,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 328
+    },
+    {
+      "interactions": [
+        {
+          "action": "자료구조 학습하기",
+          "inp": 368,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 368
+    },
+    {
+      "interactions": [
+        {
+          "action": "자료구조 학습하기",
+          "inp": 328,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 328
+    },
+    {
+      "interactions": [
+        {
+          "action": "자료구조 학습하기",
+          "inp": 360,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 360
+    },
+    {
+      "interactions": [
+        {
+          "action": "자료구조 학습하기",
+          "inp": 336,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 336
+    },
+    {
+      "interactions": [
+        {
+          "action": "자료구조 학습하기",
+          "inp": 0,
+          "event": null,
+          "target": null
+        }
+      ],
+      "inp": 0
+    },
+    {
+      "interactions": [
+        {
+          "action": "자료구조 학습하기",
+          "inp": 328,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 328
+    }
+  ],
+  "chapter-mobile": [
+    {
+      "interactions": [
+        {
+          "action": "Unit01",
+          "inp": 808,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 808
+    },
+    {
+      "interactions": [
+        {
+          "action": "Unit01",
+          "inp": 480,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 480
+    },
+    {
+      "interactions": [
+        {
+          "action": "Unit01",
+          "inp": 584,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 584
+    },
+    {
+      "interactions": [
+        {
+          "action": "Unit01",
+          "inp": 488,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 488
+    },
+    {
+      "interactions": [
+        {
+          "action": "Unit01",
+          "inp": 488,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 488
+    },
+    {
+      "interactions": [
+        {
+          "action": "Unit01",
+          "inp": 488,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 488
+    },
+    {
+      "interactions": [
+        {
+          "action": "Unit01",
+          "inp": 488,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 488
+    }
+  ],
+  "unit-mobile": [
+    {
+      "interactions": [
+        {
+          "action": "Lesson01",
+          "inp": 592,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 592
+    },
+    {
+      "interactions": [
+        {
+          "action": "Lesson01",
+          "inp": 488,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 488
+    },
+    {
+      "interactions": [
+        {
+          "action": "Lesson01",
+          "inp": 680,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 680
+    },
+    {
+      "interactions": [
+        {
+          "action": "Lesson01",
+          "inp": 688,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 688
+    },
+    {
+      "interactions": [
+        {
+          "action": "Lesson01",
+          "inp": 584,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 584
+    },
+    {
+      "interactions": [
+        {
+          "action": "Lesson01",
+          "inp": 648,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 648
+    },
+    {
+      "interactions": [
+        {
+          "action": "Lesson01",
+          "inp": 688,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 688
+    }
+  ],
+  "concept-note-mobile": [
+    {
+      "interactions": [
+        {
+          "action": "복사",
+          "inp": 40,
+          "event": "pointerdown",
+          "target": "span \"복사\""
+        }
+      ],
+      "inp": 40
+    },
+    {
+      "interactions": [
+        {
+          "action": "복사",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": "span \"복사\""
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "복사",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": "span \"복사\""
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "복사",
+          "inp": 40,
+          "event": "pointerdown",
+          "target": "span \"복사\""
+        }
+      ],
+      "inp": 40
+    },
+    {
+      "interactions": [
+        {
+          "action": "복사",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": "span \"복사\""
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "복사",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": "span \"복사\""
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "복사",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": "span \"복사\""
+        }
+      ],
+      "inp": 48
+    }
+  ],
+  "league-mobile": [
+    {
+      "interactions": [
+        {
+          "action": "실버 3",
+          "inp": 216,
+          "event": "pointerdown",
+          "target": "img.h-20.w-16.origin-bottom"
+        },
+        {
+          "action": "골드 1",
+          "inp": 136,
+          "event": "pointerdown",
+          "target": "img.h-20.w-16.origin-bottom"
+        }
+      ],
+      "inp": 216
+    },
+    {
+      "interactions": [
+        {
+          "action": "실버 3",
+          "inp": 192,
+          "event": "pointerdown",
+          "target": "img.h-20.w-16.origin-bottom"
+        },
+        {
+          "action": "골드 1",
+          "inp": 136,
+          "event": "pointerdown",
+          "target": "img.h-20.w-16.origin-bottom"
+        }
+      ],
+      "inp": 192
+    },
+    {
+      "interactions": [
+        {
+          "action": "실버 3",
+          "inp": 200,
+          "event": "pointerdown",
+          "target": "img.h-20.w-16.origin-bottom"
+        },
+        {
+          "action": "골드 1",
+          "inp": 128,
+          "event": "pointerdown",
+          "target": "img.h-20.w-16.origin-bottom"
+        }
+      ],
+      "inp": 200
+    },
+    {
+      "interactions": [
+        {
+          "action": "실버 3",
+          "inp": 168,
+          "event": "pointerdown",
+          "target": "img.h-20.w-16.origin-bottom"
+        },
+        {
+          "action": "골드 1",
+          "inp": 152,
+          "event": "pointerdown",
+          "target": "img.h-20.w-16.origin-bottom"
+        }
+      ],
+      "inp": 168
+    },
+    {
+      "interactions": [
+        {
+          "action": "실버 3",
+          "inp": 168,
+          "event": "pointerdown",
+          "target": "img.h-20.w-16.origin-bottom"
+        },
+        {
+          "action": "골드 1",
+          "inp": 136,
+          "event": "pointerdown",
+          "target": "img.h-20.w-16.origin-bottom"
+        }
+      ],
+      "inp": 168
+    },
+    {
+      "interactions": [
+        {
+          "action": "실버 3",
+          "inp": 176,
+          "event": "pointerdown",
+          "target": "img.h-20.w-16.origin-bottom"
+        },
+        {
+          "action": "골드 1",
+          "inp": 168,
+          "event": "pointerdown",
+          "target": "img.h-20.w-16.origin-bottom"
+        }
+      ],
+      "inp": 176
+    },
+    {
+      "interactions": [
+        {
+          "action": "실버 3",
+          "inp": 176,
+          "event": "pointerdown",
+          "target": "img.h-20.w-16.origin-bottom"
+        },
+        {
+          "action": "골드 1",
+          "inp": 168,
+          "event": "pointerdown",
+          "target": "img.h-20.w-16.origin-bottom"
+        }
+      ],
+      "inp": 176
+    }
+  ],
+  "friends-mobile": [
+    {
+      "interactions": [
+        {
+          "action": "8 팔로잉",
+          "inp": 312,
+          "event": "pointerdown",
+          "target": "button.flex.flex-1.items-center \"8 팔로잉\""
+        },
+        {
+          "action": "12 팔로우",
+          "inp": 200,
+          "event": "pointerdown",
+          "target": "button.flex.flex-1.items-center \"12 팔로우\""
+        }
+      ],
+      "inp": 312
+    },
+    {
+      "interactions": [
+        {
+          "action": "8 팔로잉",
+          "inp": 272,
+          "event": "pointerdown",
+          "target": "button.flex.flex-1.items-center \"8 팔로잉\""
+        },
+        {
+          "action": "12 팔로우",
+          "inp": 224,
+          "event": "pointerdown",
+          "target": "button.flex.flex-1.items-center \"12 팔로우\""
+        }
+      ],
+      "inp": 272
+    },
+    {
+      "interactions": [
+        {
+          "action": "8 팔로잉",
+          "inp": 256,
+          "event": "pointerdown",
+          "target": "button.flex.flex-1.items-center \"8 팔로잉\""
+        },
+        {
+          "action": "12 팔로우",
+          "inp": 240,
+          "event": "pointerdown",
+          "target": "button.flex.flex-1.items-center \"12 팔로우\""
+        }
+      ],
+      "inp": 256
+    },
+    {
+      "interactions": [
+        {
+          "action": "8 팔로잉",
+          "inp": 304,
+          "event": "pointerdown",
+          "target": "button.flex.flex-1.items-center \"8 팔로잉\""
+        },
+        {
+          "action": "12 팔로우",
+          "inp": 192,
+          "event": "pointerdown",
+          "target": "button.flex.flex-1.items-center \"12 팔로우\""
+        }
+      ],
+      "inp": 304
+    },
+    {
+      "interactions": [
+        {
+          "action": "8 팔로잉",
+          "inp": 328,
+          "event": "pointerdown",
+          "target": "button.flex.flex-1.items-center \"8 팔로잉\""
+        },
+        {
+          "action": "12 팔로우",
+          "inp": 200,
+          "event": "pointerdown",
+          "target": "button.flex.flex-1.items-center \"12 팔로우\""
+        }
+      ],
+      "inp": 328
+    },
+    {
+      "interactions": [
+        {
+          "action": "8 팔로잉",
+          "inp": 288,
+          "event": "pointerdown",
+          "target": "button.flex.flex-1.items-center \"8 팔로잉\""
+        },
+        {
+          "action": "12 팔로우",
+          "inp": 184,
+          "event": "pointerdown",
+          "target": "button.flex.flex-1.items-center \"12 팔로우\""
+        }
+      ],
+      "inp": 288
+    },
+    {
+      "interactions": [
+        {
+          "action": "8 팔로잉",
+          "inp": 280,
+          "event": "pointerdown",
+          "target": "button.flex.flex-1.items-center \"8 팔로잉\""
+        },
+        {
+          "action": "12 팔로우",
+          "inp": 224,
+          "event": "pointerdown",
+          "target": "button.flex.flex-1.items-center \"12 팔로우\""
+        }
+      ],
+      "inp": 280
+    }
+  ],
+  "my-summary-mobile": [
+    {
+      "interactions": [
+        {
+          "action": "학습 기록 연도 선택",
+          "inp": 576,
+          "event": "pointerdown",
+          "target": "button.group.flex.w-[100px] \"2026\""
+        },
+        {
+          "action": "a[href=\"/my/learning\"]",
+          "inp": 232,
+          "event": "pointerdown",
+          "target": "html \"한준서 LV. 3 브론즈 3 @4p9nfz5t 프로필 \""
+        }
+      ],
+      "inp": 576
+    },
+    {
+      "interactions": [
+        {
+          "action": "학습 기록 연도 선택",
+          "inp": 728,
+          "event": "pointerdown",
+          "target": "button.group.flex.w-[100px] \"2026\""
+        },
+        {
+          "action": "a[href=\"/my/learning\"]",
+          "inp": 224,
+          "event": "pointerdown",
+          "target": "html \"한준서 LV. 3 브론즈 3 @4p9nfz5t 프로필 \""
+        }
+      ],
+      "inp": 728
+    },
+    {
+      "interactions": [
+        {
+          "action": "학습 기록 연도 선택",
+          "inp": 736,
+          "event": "pointerdown",
+          "target": "button.group.flex.w-[100px] \"2026\""
+        },
+        {
+          "action": "a[href=\"/my/learning\"]",
+          "inp": 272,
+          "event": "pointerdown",
+          "target": "html \"한준서 LV. 3 브론즈 3 @4p9nfz5t 프로필 \""
+        }
+      ],
+      "inp": 736
+    },
+    {
+      "interactions": [
+        {
+          "action": "학습 기록 연도 선택",
+          "inp": 560,
+          "event": "pointerdown",
+          "target": "button.group.flex.w-[100px] \"2026\""
+        },
+        {
+          "action": "a[href=\"/my/learning\"]",
+          "inp": 216,
+          "event": "pointerdown",
+          "target": "html \"한준서 LV. 3 브론즈 3 @4p9nfz5t 프로필 \""
+        }
+      ],
+      "inp": 560
+    },
+    {
+      "interactions": [
+        {
+          "action": "학습 기록 연도 선택",
+          "inp": 816,
+          "event": "pointerdown",
+          "target": "button.group.flex.w-[100px] \"2026\""
+        },
+        {
+          "action": "a[href=\"/my/learning\"]",
+          "inp": 280,
+          "event": "pointerdown",
+          "target": "html \"한준서 LV. 3 브론즈 3 @4p9nfz5t 프로필 \""
+        }
+      ],
+      "inp": 816
+    },
+    {
+      "interactions": [
+        {
+          "action": "학습 기록 연도 선택",
+          "inp": 584,
+          "event": "pointerdown",
+          "target": "button.group.flex.w-[100px] \"2026\""
+        },
+        {
+          "action": "a[href=\"/my/learning\"]",
+          "inp": 240,
+          "event": "pointerdown",
+          "target": "html \"한준서 LV. 3 브론즈 3 @4p9nfz5t 프로필 \""
+        }
+      ],
+      "inp": 584
+    },
+    {
+      "interactions": [
+        {
+          "action": "학습 기록 연도 선택",
+          "inp": 560,
+          "event": "pointerdown",
+          "target": "button.group.flex.w-[100px] \"2026\""
+        },
+        {
+          "action": "a[href=\"/my/learning\"]",
+          "inp": 224,
+          "event": "pointerdown",
+          "target": "html \"한준서 LV. 3 브론즈 3 @4p9nfz5t 프로필 \""
+        }
+      ],
+      "inp": 560
+    }
+  ],
+  "my-learning-mobile": [
+    {
+      "interactions": [
+        {
+          "action": "a[href=\"/my/league\"]",
+          "inp": 208,
+          "event": "pointerdown",
+          "target": "a.flex.flex-1.items-center \"리그\""
+        }
+      ],
+      "inp": 208
+    },
+    {
+      "interactions": [
+        {
+          "action": "a[href=\"/my/league\"]",
+          "inp": 208,
+          "event": "pointerdown",
+          "target": "a.flex.flex-1.items-center \"리그\""
+        }
+      ],
+      "inp": 208
+    },
+    {
+      "interactions": [
+        {
+          "action": "a[href=\"/my/league\"]",
+          "inp": 224,
+          "event": "pointerdown",
+          "target": "a.flex.flex-1.items-center \"리그\""
+        }
+      ],
+      "inp": 224
+    },
+    {
+      "interactions": [
+        {
+          "action": "a[href=\"/my/league\"]",
+          "inp": 224,
+          "event": "pointerdown",
+          "target": "a.flex.flex-1.items-center \"리그\""
+        }
+      ],
+      "inp": 224
+    },
+    {
+      "interactions": [
+        {
+          "action": "a[href=\"/my/league\"]",
+          "inp": 192,
+          "event": "pointerdown",
+          "target": "a.flex.flex-1.items-center \"리그\""
+        }
+      ],
+      "inp": 192
+    },
+    {
+      "interactions": [
+        {
+          "action": "a[href=\"/my/league\"]",
+          "inp": 240,
+          "event": "pointerdown",
+          "target": "a.flex.flex-1.items-center \"리그\""
+        }
+      ],
+      "inp": 240
+    },
+    {
+      "interactions": [
+        {
+          "action": "a[href=\"/my/league\"]",
+          "inp": 272,
+          "event": "pointerdown",
+          "target": "a.flex.flex-1.items-center \"리그\""
+        }
+      ],
+      "inp": 272
+    }
+  ],
+  "my-league-mobile": [
+    {
+      "interactions": [
+        {
+          "action": "a[href=\"/my/social\"]",
+          "inp": 192,
+          "event": "pointerdown",
+          "target": "a.flex.flex-1.items-center \"소셜\""
+        }
+      ],
+      "inp": 192
+    },
+    {
+      "interactions": [
+        {
+          "action": "a[href=\"/my/social\"]",
+          "inp": 208,
+          "event": "pointerdown",
+          "target": "a.flex.flex-1.items-center \"소셜\""
+        }
+      ],
+      "inp": 208
+    },
+    {
+      "interactions": [
+        {
+          "action": "a[href=\"/my/social\"]",
+          "inp": 200,
+          "event": "pointerdown",
+          "target": "a.flex.flex-1.items-center \"소셜\""
+        }
+      ],
+      "inp": 200
+    },
+    {
+      "interactions": [
+        {
+          "action": "a[href=\"/my/social\"]",
+          "inp": 176,
+          "event": "pointerdown",
+          "target": "a.flex.flex-1.items-center \"소셜\""
+        }
+      ],
+      "inp": 176
+    },
+    {
+      "interactions": [
+        {
+          "action": "a[href=\"/my/social\"]",
+          "inp": 288,
+          "event": "pointerdown",
+          "target": "a.flex.flex-1.items-center \"소셜\""
+        }
+      ],
+      "inp": 288
+    },
+    {
+      "interactions": [
+        {
+          "action": "a[href=\"/my/social\"]",
+          "inp": 176,
+          "event": "pointerdown",
+          "target": "a.flex.flex-1.items-center \"소셜\""
+        }
+      ],
+      "inp": 176
+    },
+    {
+      "interactions": [
+        {
+          "action": "a[href=\"/my/social\"]",
+          "inp": 200,
+          "event": "pointerdown",
+          "target": "a.flex.flex-1.items-center \"소셜\""
+        }
+      ],
+      "inp": 200
+    }
+  ],
+  "my-social-mobile": [
+    {
+      "interactions": [
+        {
+          "action": "8 팔로잉",
+          "inp": 216,
+          "event": "pointerdown",
+          "target": null
+        },
+        {
+          "action": "a[href=\"/my/summary\"]",
+          "inp": null,
+          "note": "대상 없음"
+        }
+      ],
+      "inp": 216
+    },
+    {
+      "interactions": [
+        {
+          "action": "8 팔로잉",
+          "inp": 200,
+          "event": "pointerdown",
+          "target": null
+        },
+        {
+          "action": "a[href=\"/my/summary\"]",
+          "inp": null,
+          "note": "대상 없음"
+        }
+      ],
+      "inp": 200
+    },
+    {
+      "interactions": [
+        {
+          "action": "8 팔로잉",
+          "inp": 256,
+          "event": "pointerdown",
+          "target": null
+        },
+        {
+          "action": "a[href=\"/my/summary\"]",
+          "inp": null,
+          "note": "대상 없음"
+        }
+      ],
+      "inp": 256
+    },
+    {
+      "interactions": [
+        {
+          "action": "8 팔로잉",
+          "inp": 224,
+          "event": "pointerdown",
+          "target": null
+        },
+        {
+          "action": "a[href=\"/my/summary\"]",
+          "inp": null,
+          "note": "대상 없음"
+        }
+      ],
+      "inp": 224
+    },
+    {
+      "interactions": [
+        {
+          "action": "8 팔로잉",
+          "inp": 224,
+          "event": "pointerdown",
+          "target": null
+        },
+        {
+          "action": "a[href=\"/my/summary\"]",
+          "inp": null,
+          "note": "대상 없음"
+        }
+      ],
+      "inp": 224
+    },
+    {
+      "interactions": [
+        {
+          "action": "8 팔로잉",
+          "inp": 328,
+          "event": "pointerdown",
+          "target": "h3.flex.items-baseline.gap-1 \"8\""
+        },
+        {
+          "action": "a[href=\"/my/summary\"]",
+          "inp": null,
+          "note": "대상 없음"
+        }
+      ],
+      "inp": 328
+    },
+    {
+      "interactions": [
+        {
+          "action": "8 팔로잉",
+          "inp": 208,
+          "event": "pointerdown",
+          "target": null
+        },
+        {
+          "action": "a[href=\"/my/summary\"]",
+          "inp": null,
+          "note": "대상 없음"
+        }
+      ],
+      "inp": 208
+    }
+  ],
+  "friend-search-mobile": [
+    {
+      "error": "Node is either not clickable or not an Element"
+    },
+    {
+      "error": "Node is either not clickable or not an Element"
+    },
+    {
+      "error": "Node is either not clickable or not an Element"
+    },
+    {
+      "error": "Node is either not clickable or not an Element"
+    },
+    {
+      "error": "Node is either not clickable or not an Element"
+    },
+    {
+      "error": "Node is either not clickable or not an Element"
+    },
+    {
+      "error": "Node is either not clickable or not an Element"
+    }
+  ]
+}

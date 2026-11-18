@@ -1,0 +1,674 @@
+{
+  "/main before-self-host": [
+    {
+      "path": "/main",
+      "lcp": 4604,
+      "lcpElement": "img hero-narrow-CR3gwbPR.webp",
+      "fcp": 4604,
+      "cls": 0.018,
+      "pretendardLoaded": 7884,
+      "facesTotal": 1,
+      "facesLoaded": 1,
+      "facesError": 0,
+      "probeText": "브론즈 3",
+      "probeFamily": "Pretendard",
+      "platformFonts": "Pretendard Variable×5",
+      "font": {
+        "requests": 1,
+        "bytes": 2058012,
+        "lastEnd": 6412,
+        "cssEnd": null,
+        "errors": []
+      },
+      "misses": []
+    },
+    {
+      "path": "/main",
+      "lcp": 4308,
+      "lcpElement": "img hero-narrow-CR3gwbPR.webp",
+      "fcp": 4308,
+      "cls": 0.257,
+      "pretendardLoaded": 7371,
+      "facesTotal": 1,
+      "facesLoaded": 1,
+      "facesError": 0,
+      "probeText": "브론즈 3",
+      "probeFamily": "Pretendard",
+      "platformFonts": "Pretendard Variable×5",
+      "font": {
+        "requests": 1,
+        "bytes": 2058012,
+        "lastEnd": 6262,
+        "cssEnd": null,
+        "errors": []
+      },
+      "misses": []
+    },
+    {
+      "path": "/main",
+      "lcp": 3900,
+      "lcpElement": "img hero-narrow-CR3gwbPR.webp",
+      "fcp": 3900,
+      "cls": 0.257,
+      "pretendardLoaded": 6909,
+      "facesTotal": 1,
+      "facesLoaded": 1,
+      "facesError": 0,
+      "probeText": "브론즈 3",
+      "probeFamily": "Pretendard",
+      "platformFonts": "Pretendard Variable×5",
+      "font": {
+        "requests": 1,
+        "bytes": 2058012,
+        "lastEnd": 5849,
+        "cssEnd": null,
+        "errors": []
+      },
+      "misses": []
+    },
+    {
+      "path": "/main",
+      "lcp": 3916,
+      "lcpElement": "img hero-narrow-CR3gwbPR.webp",
+      "fcp": 3916,
+      "cls": 0.018,
+      "pretendardLoaded": 6938,
+      "facesTotal": 1,
+      "facesLoaded": 1,
+      "facesError": 0,
+      "probeText": "브론즈 3",
+      "probeFamily": "Pretendard",
+      "platformFonts": "Pretendard Variable×5",
+      "font": {
+        "requests": 1,
+        "bytes": 2058012,
+        "lastEnd": 5926,
+        "cssEnd": null,
+        "errors": []
+      },
+      "misses": []
+    },
+    {
+      "path": "/main",
+      "lcp": 3820,
+      "lcpElement": "img hero-narrow-CR3gwbPR.webp",
+      "fcp": 3820,
+      "cls": 0.018,
+      "pretendardLoaded": 6947,
+      "facesTotal": 1,
+      "facesLoaded": 1,
+      "facesError": 0,
+      "probeText": "브론즈 3",
+      "probeFamily": "Pretendard",
+      "platformFonts": "Pretendard Variable×5",
+      "font": {
+        "requests": 1,
+        "bytes": 2058012,
+        "lastEnd": 5801,
+        "cssEnd": null,
+        "errors": []
+      },
+      "misses": []
+    }
+  ],
+  "/main after-cdn-subset": [
+    {
+      "path": "/main",
+      "lcp": 5092,
+      "lcpElement": "img hero-narrow-CR3gwbPR.webp",
+      "fcp": 5092,
+      "cls": 0.245,
+      "pretendardLoaded": 7420,
+      "facesTotal": 92,
+      "facesLoaded": 9,
+      "facesError": 0,
+      "probeText": "브론즈 3",
+      "probeFamily": "\"Pretendard Variable\"",
+      "platformFonts": "Pretendard Variable×5",
+      "font": {
+        "requests": 10,
+        "bytes": 255486,
+        "lastEnd": 7193,
+        "cssEnd": 567,
+        "errors": []
+      },
+      "misses": []
+    },
+    {
+      "path": "/main",
+      "lcp": 3960,
+      "lcpElement": "img hero-narrow-CR3gwbPR.webp",
+      "fcp": 3960,
+      "cls": 0.245,
+      "pretendardLoaded": 5790,
+      "facesTotal": 92,
+      "facesLoaded": 9,
+      "facesError": 0,
+      "probeText": "브론즈 3",
+      "probeFamily": "\"Pretendard Variable\"",
+      "platformFonts": "Pretendard Variable×5",
+      "font": {
+        "requests": 10,
+        "bytes": 255394,
+        "lastEnd": 5564,
+        "cssEnd": 576,
+        "errors": []
+      },
+      "misses": []
+    },
+    {
+      "path": "/main",
+      "lcp": 3940,
+      "lcpElement": "img hero-narrow-CR3gwbPR.webp",
+      "fcp": 3940,
+      "cls": 0.245,
+      "pretendardLoaded": 5695,
+      "facesTotal": 92,
+      "facesLoaded": 9,
+      "facesError": 0,
+      "probeText": "브론즈 3",
+      "probeFamily": "\"Pretendard Variable\"",
+      "platformFonts": "Pretendard Variable×5",
+      "font": {
+        "requests": 10,
+        "bytes": 255409,
+        "lastEnd": 5407,
+        "cssEnd": 575,
+        "errors": []
+      },
+      "misses": []
+    },
+    {
+      "path": "/main",
+      "lcp": 4200,
+      "lcpElement": "img hero-narrow-CR3gwbPR.webp",
+      "fcp": 4200,
+      "cls": 0.005,
+      "pretendardLoaded": 5802,
+      "facesTotal": 92,
+      "facesLoaded": 9,
+      "facesError": 0,
+      "probeText": "브론즈 3",
+      "probeFamily": "\"Pretendard Variable\"",
+      "platformFonts": "Pretendard Variable×5",
+      "font": {
+        "requests": 10,
+        "bytes": 255375,
+        "lastEnd": 5484,
+        "cssEnd": 569,
+        "errors": []
+      },
+      "misses": []
+    },
+    {
+      "path": "/main",
+      "lcp": 4124,
+      "lcpElement": "img hero-narrow-CR3gwbPR.webp",
+      "fcp": 4124,
+      "cls": 0.245,
+      "pretendardLoaded": 5923,
+      "facesTotal": 92,
+      "facesLoaded": 9,
+      "facesError": 0,
+      "probeText": "브론즈 3",
+      "probeFamily": "\"Pretendard Variable\"",
+      "platformFonts": "Pretendard Variable×5",
+      "font": {
+        "requests": 10,
+        "bytes": 255385,
+        "lastEnd": 5705,
+        "cssEnd": 557,
+        "errors": []
+      },
+      "misses": []
+    }
+  ],
+  "/learning before-self-host": [
+    {
+      "path": "/learning",
+      "lcp": 4872,
+      "lcpElement": "div unit-card-background-DopPZ79m.webp",
+      "fcp": 3708,
+      "cls": 0,
+      "pretendardLoaded": 7103,
+      "facesTotal": 1,
+      "facesLoaded": 1,
+      "facesError": 0,
+      "probeText": "학습",
+      "probeFamily": "Pretendard",
+      "platformFonts": "Pretendard Variable×2",
+      "font": {
+        "requests": 1,
+        "bytes": 2058012,
+        "lastEnd": 6200,
+        "cssEnd": null,
+        "errors": []
+      },
+      "misses": []
+    },
+    {
+      "path": "/learning",
+      "lcp": 4552,
+      "lcpElement": "div unit-card-background-DopPZ79m.webp",
+      "fcp": 3252,
+      "cls": 0,
+      "pretendardLoaded": 6836,
+      "facesTotal": 1,
+      "facesLoaded": 1,
+      "facesError": 0,
+      "probeText": "학습",
+      "probeFamily": "Pretendard",
+      "platformFonts": "Pretendard Variable×2",
+      "font": {
+        "requests": 1,
+        "bytes": 2058012,
+        "lastEnd": 5929,
+        "cssEnd": null,
+        "errors": []
+      },
+      "misses": []
+    },
+    {
+      "path": "/learning",
+      "lcp": 4480,
+      "lcpElement": "div unit-card-background-DopPZ79m.webp",
+      "fcp": 3280,
+      "cls": 0,
+      "pretendardLoaded": 6725,
+      "facesTotal": 1,
+      "facesLoaded": 1,
+      "facesError": 0,
+      "probeText": "학습",
+      "probeFamily": "Pretendard",
+      "platformFonts": "Pretendard Variable×2",
+      "font": {
+        "requests": 1,
+        "bytes": 2058012,
+        "lastEnd": 5846,
+        "cssEnd": null,
+        "errors": []
+      },
+      "misses": []
+    },
+    {
+      "path": "/learning",
+      "lcp": 4576,
+      "lcpElement": "div unit-card-background-DopPZ79m.webp",
+      "fcp": 3376,
+      "cls": 0,
+      "pretendardLoaded": 6862,
+      "facesTotal": 1,
+      "facesLoaded": 1,
+      "facesError": 0,
+      "probeText": "학습",
+      "probeFamily": "Pretendard",
+      "platformFonts": "Pretendard Variable×2",
+      "font": {
+        "requests": 1,
+        "bytes": 2058012,
+        "lastEnd": 5986,
+        "cssEnd": null,
+        "errors": []
+      },
+      "misses": []
+    },
+    {
+      "path": "/learning",
+      "lcp": 4692,
+      "lcpElement": "div unit-card-background-DopPZ79m.webp",
+      "fcp": 3192,
+      "cls": 0,
+      "pretendardLoaded": 6734,
+      "facesTotal": 1,
+      "facesLoaded": 1,
+      "facesError": 0,
+      "probeText": "학습",
+      "probeFamily": "Pretendard",
+      "platformFonts": "Pretendard Variable×2",
+      "font": {
+        "requests": 1,
+        "bytes": 2058012,
+        "lastEnd": 5896,
+        "cssEnd": null,
+        "errors": []
+      },
+      "misses": []
+    }
+  ],
+  "/learning after-cdn-subset": [
+    {
+      "path": "/learning",
+      "lcp": 5268,
+      "lcpElement": "div unit-card-background-DopPZ79m.webp",
+      "fcp": 3384,
+      "cls": 0,
+      "pretendardLoaded": 5337,
+      "facesTotal": 92,
+      "facesLoaded": 6,
+      "facesError": 0,
+      "probeText": "학습",
+      "probeFamily": "\"Pretendard Variable\"",
+      "platformFonts": "Pretendard Variable×2",
+      "font": {
+        "requests": 7,
+        "bytes": 177284,
+        "lastEnd": 4618,
+        "cssEnd": 576,
+        "errors": []
+      },
+      "misses": []
+    },
+    {
+      "path": "/learning",
+      "lcp": 5108,
+      "lcpElement": "div unit-card-background-DopPZ79m.webp",
+      "fcp": 3476,
+      "cls": 0,
+      "pretendardLoaded": 5167,
+      "facesTotal": 92,
+      "facesLoaded": 6,
+      "facesError": 0,
+      "probeText": "학습",
+      "probeFamily": "\"Pretendard Variable\"",
+      "platformFonts": "Pretendard Variable×2",
+      "font": {
+        "requests": 7,
+        "bytes": 177286,
+        "lastEnd": 4637,
+        "cssEnd": 565,
+        "errors": []
+      },
+      "misses": []
+    },
+    {
+      "path": "/learning",
+      "lcp": 5056,
+      "lcpElement": "div unit-card-background-DopPZ79m.webp",
+      "fcp": 3340,
+      "cls": 0,
+      "pretendardLoaded": 5093,
+      "facesTotal": 92,
+      "facesLoaded": 6,
+      "facesError": 0,
+      "probeText": "학습",
+      "probeFamily": "\"Pretendard Variable\"",
+      "platformFonts": "Pretendard Variable×2",
+      "font": {
+        "requests": 7,
+        "bytes": 177193,
+        "lastEnd": 4595,
+        "cssEnd": 579,
+        "errors": []
+      },
+      "misses": []
+    },
+    {
+      "path": "/learning",
+      "lcp": 5160,
+      "lcpElement": "div unit-card-background-DopPZ79m.webp",
+      "fcp": 3628,
+      "cls": 0,
+      "pretendardLoaded": 5197,
+      "facesTotal": 92,
+      "facesLoaded": 6,
+      "facesError": 0,
+      "probeText": "학습",
+      "probeFamily": "\"Pretendard Variable\"",
+      "platformFonts": "Pretendard Variable×2",
+      "font": {
+        "requests": 7,
+        "bytes": 177210,
+        "lastEnd": 4658,
+        "cssEnd": 552,
+        "errors": []
+      },
+      "misses": []
+    },
+    {
+      "path": "/learning",
+      "lcp": 4960,
+      "lcpElement": "div unit-card-background-DopPZ79m.webp",
+      "fcp": 3476,
+      "cls": 0,
+      "pretendardLoaded": 5008,
+      "facesTotal": 92,
+      "facesLoaded": 6,
+      "facesError": 0,
+      "probeText": "학습",
+      "probeFamily": "\"Pretendard Variable\"",
+      "platformFonts": "Pretendard Variable×2",
+      "font": {
+        "requests": 7,
+        "bytes": 177203,
+        "lastEnd": 4481,
+        "cssEnd": 571,
+        "errors": []
+      },
+      "misses": []
+    }
+  ],
+  "/learning/units/11/concept-note before-self-host": [
+    {
+      "path": "/learning/units/11/concept-note",
+      "lcp": 7044,
+      "lcpElement": "p (텍스트)",
+      "fcp": 3332,
+      "cls": 0.345,
+      "pretendardLoaded": 8181,
+      "facesTotal": 1,
+      "facesLoaded": 1,
+      "facesError": 0,
+      "probeText": "개념노트",
+      "probeFamily": "Pretendard",
+      "platformFonts": "Pretendard Variable×4",
+      "font": {
+        "requests": 1,
+        "bytes": 2058012,
+        "lastEnd": 5631,
+        "cssEnd": null,
+        "errors": []
+      },
+      "misses": []
+    },
+    {
+      "path": "/learning/units/11/concept-note",
+      "lcp": 6988,
+      "lcpElement": "p (텍스트)",
+      "fcp": 3320,
+      "cls": 0.345,
+      "pretendardLoaded": 8034,
+      "facesTotal": 1,
+      "facesLoaded": 1,
+      "facesError": 0,
+      "probeText": "개념노트",
+      "probeFamily": "Pretendard",
+      "platformFonts": "Pretendard Variable×4",
+      "font": {
+        "requests": 1,
+        "bytes": 2058012,
+        "lastEnd": 5444,
+        "cssEnd": null,
+        "errors": []
+      },
+      "misses": []
+    },
+    {
+      "path": "/learning/units/11/concept-note",
+      "lcp": 7164,
+      "lcpElement": "p (텍스트)",
+      "fcp": 3452,
+      "cls": 0.345,
+      "pretendardLoaded": 8175,
+      "facesTotal": 1,
+      "facesLoaded": 1,
+      "facesError": 0,
+      "probeText": "개념노트",
+      "probeFamily": "Pretendard",
+      "platformFonts": "Pretendard Variable×4",
+      "font": {
+        "requests": 1,
+        "bytes": 2058012,
+        "lastEnd": 5577,
+        "cssEnd": null,
+        "errors": []
+      },
+      "misses": []
+    },
+    {
+      "path": "/learning/units/11/concept-note",
+      "lcp": 7336,
+      "lcpElement": "p (텍스트)",
+      "fcp": 3424,
+      "cls": 0.345,
+      "pretendardLoaded": 8548,
+      "facesTotal": 1,
+      "facesLoaded": 1,
+      "facesError": 0,
+      "probeText": "개념노트",
+      "probeFamily": "Pretendard",
+      "platformFonts": "Pretendard Variable×4",
+      "font": {
+        "requests": 1,
+        "bytes": 2058012,
+        "lastEnd": 5514,
+        "cssEnd": null,
+        "errors": []
+      },
+      "misses": []
+    },
+    {
+      "path": "/learning/units/11/concept-note",
+      "lcp": 7016,
+      "lcpElement": "p (텍스트)",
+      "fcp": 3256,
+      "cls": 0.345,
+      "pretendardLoaded": 8504,
+      "facesTotal": 1,
+      "facesLoaded": 1,
+      "facesError": 0,
+      "probeText": "개념노트",
+      "probeFamily": "Pretendard",
+      "platformFonts": "Pretendard Variable×4",
+      "font": {
+        "requests": 1,
+        "bytes": 2058012,
+        "lastEnd": 5396,
+        "cssEnd": null,
+        "errors": []
+      },
+      "misses": []
+    }
+  ],
+  "/learning/units/11/concept-note after-cdn-subset": [
+    {
+      "path": "/learning/units/11/concept-note",
+      "lcp": 8240,
+      "lcpElement": "p (텍스트)",
+      "fcp": 3308,
+      "cls": 0.32,
+      "pretendardLoaded": 9199,
+      "facesTotal": 92,
+      "facesLoaded": 14,
+      "facesError": 0,
+      "probeText": "개념노트",
+      "probeFamily": "\"Pretendard Variable\"",
+      "platformFonts": "Pretendard Variable×4",
+      "font": {
+        "requests": 15,
+        "bytes": 388164,
+        "lastEnd": 7551,
+        "cssEnd": 566,
+        "errors": []
+      },
+      "misses": []
+    },
+    {
+      "path": "/learning/units/11/concept-note",
+      "lcp": 8024,
+      "lcpElement": "p (텍스트)",
+      "fcp": 3312,
+      "cls": 0.32,
+      "pretendardLoaded": 8858,
+      "facesTotal": 92,
+      "facesLoaded": 14,
+      "facesError": 0,
+      "probeText": "개념노트",
+      "probeFamily": "\"Pretendard Variable\"",
+      "platformFonts": "Pretendard Variable×4",
+      "font": {
+        "requests": 15,
+        "bytes": 388148,
+        "lastEnd": 7395,
+        "cssEnd": 557,
+        "errors": []
+      },
+      "misses": []
+    },
+    {
+      "path": "/learning/units/11/concept-note",
+      "lcp": 8024,
+      "lcpElement": "p (텍스트)",
+      "fcp": 3212,
+      "cls": 0.32,
+      "pretendardLoaded": 8992,
+      "facesTotal": 92,
+      "facesLoaded": 14,
+      "facesError": 0,
+      "probeText": "개념노트",
+      "probeFamily": "\"Pretendard Variable\"",
+      "platformFonts": "Pretendard Variable×4",
+      "font": {
+        "requests": 15,
+        "bytes": 388201,
+        "lastEnd": 7367,
+        "cssEnd": 564,
+        "errors": []
+      },
+      "misses": []
+    },
+    {
+      "path": "/learning/units/11/concept-note",
+      "lcp": 8560,
+      "lcpElement": "p (텍스트)",
+      "fcp": 3532,
+      "cls": 0.32,
+      "pretendardLoaded": 9529,
+      "facesTotal": 92,
+      "facesLoaded": 14,
+      "facesError": 0,
+      "probeText": "개념노트",
+      "probeFamily": "\"Pretendard Variable\"",
+      "platformFonts": "Pretendard Variable×4",
+      "font": {
+        "requests": 15,
+        "bytes": 388182,
+        "lastEnd": 7926,
+        "cssEnd": 605,
+        "errors": []
+      },
+      "misses": []
+    },
+    {
+      "path": "/learning/units/11/concept-note",
+      "lcp": 8056,
+      "lcpElement": "p (텍스트)",
+      "fcp": 3160,
+      "cls": 0.32,
+      "pretendardLoaded": 9020,
+      "facesTotal": 92,
+      "facesLoaded": 14,
+      "facesError": 0,
+      "probeText": "개념노트",
+      "probeFamily": "\"Pretendard Variable\"",
+      "platformFonts": "Pretendard Variable×4",
+      "font": {
+        "requests": 15,
+        "bytes": 388187,
+        "lastEnd": 7307,
+        "cssEnd": 548,
+        "errors": []
+      },
+      "misses": []
+    }
+  ]
+}

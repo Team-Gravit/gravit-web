@@ -1,0 +1,19 @@
+/main  FCP 5595ms
+긴 작업 589 +588ms
+     522ms  v8.evaluateModule (inline)
+      31ms  RunMicrotasks
+      17ms  FunctionCall index-d89RXhZc.js
+긴 작업 1199 +305ms
+     232ms  FunctionCall index-d89RXhZc.js
+      63ms  RunMicrotasks
+긴 작업 1585 +382ms
+     329ms  RunMicrotasks
+긴 작업 2849 +1064ms
+     471ms  FunctionCall index-d89RXhZc.js
+     410ms  Layout
+     108ms  UpdateLayoutTree
+      49ms  RunMicrotasks
+      13ms  V8.BytecodeBudgetInterrupt
+긴 작업 4428 +333ms
+     298ms  Layout
+      15ms  Paint

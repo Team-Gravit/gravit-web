@@ -1,0 +1,18 @@
+427ms box main > *#0 section[card].flex.w-full.flex-col "연속 학습일 자세히 보기 ​ 일 연속"  y228 h147
+427ms box main > *#1 div[main-row-secondary].flex.h-39.gap-3 "오늘의 미션 ​ ​ ​ ​ ​ ​ ​"  y387 h156
+427ms box main > *#2 section[card].flex.w-full.flex-col "이어서 학습하기 ​ ​"  y555 h342
+770ms box main > *#0 section[card].flex.w-full.flex-col "연속 학습일 자세히 보기 ​ 일 연속"  y228 h145
+770ms box main > *#1 div[main-row-secondary].flex.h-39.gap-3 "오늘의 미션 ​ ​ ​ ​ ​ ​ ​"  y385 h156
+770ms box main > *#2 section[card].flex.w-full.flex-col "이어서 학습하기 ​ ​"  y553 h338
+824ms SHIFT 0.0021
+    div[continue-learning-body].flex.flex-col.gap-4 "​ ​"  y599 h286 -> y596 h283
+    div[mission-card-body].flex.flex-1.flex-col "​ ​ ​ ​"  y431 h100 -> y428 h101
+868ms box main > *#0 section[card].flex.w-full.flex-col "연속 학습일 자세히 보기 1 일 연속 월 화"  y228 h138
+868ms box main > *#1 div[main-row-secondary].flex.h-39.gap-3 "오늘의 미션 레슨 4개 완료하기 완료 시 +"  y378 h156
+868ms box main > *#2 section[card].flex.w-full.flex-col "이어서 학습하기 ​ ​"  y546 h338
+900ms box main > *#2 section[card].flex.w-full.flex-col "이어서 학습하기 전체 학습화면 보기 자료구조"  y546 h310
+922ms SHIFT 0.0047
+    section[card].flex.w-full.flex-col "이어서 학습하기 ​ ​"  y509 h406 -> y502 h413
+    section[card].flex.w-full.flex-col "오늘의 미션 레슨 4개 완료하기 완료 시 +"  y341 h252 -> y334 h252
+    div[main-row-secondary].flex.h-39.gap-3 "오늘의 미션 레슨 4개 완료하기 완료 시 +"  y385 h156 -> y378 h156
+CLS 합 0.007

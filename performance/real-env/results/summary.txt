@@ -1,0 +1,400 @@
+=== ../results/diagnose-desktop-inp-A.json
+main-desktop | INP 48 (48~64) | 전체 학습화면 보기: 48
+learning-desktop | INP 56 (56~64) | 자료구조 학습하기: 56
+chapter-desktop | INP 56 (48~64) | Unit01: 56
+unit-desktop | INP 48 (48~64) | Lesson01: 48
+concept-note-desktop | INP 0 (0~0) | 복사: 0
+league-desktop | INP 56 (48~168) | 실버 3: 56 / 골드 1: 56
+my-summary-desktop | INP 72 (56~80) | 학습 기록 연도 선택: 72 / a[href="/my/learning"]: 56
+my-learning-desktop | INP 56 (48~72) | a[href="/my/league"]: 56
+my-league-desktop | INP 56 (48~64) | a[href="/my/social"]: 56
+my-social-desktop | INP 72 (64~80) | 축하하기: 64 / 8 팔로잉: 72
+friend-search-desktop | INP 56 (48~64) | a[href="/my/summary"]: 56
+=== ../results/diagnose-desktop-inp-B.json
+lesson-desktop | INP 48 (40~48) | 1번 선지 가리기: 40 / 보기 1: 0 / 다음: 40
+lesson-result-desktop | INP 48 (40~64) | 이어서 학습하기: 48
+bookmarked-desktop | INP 40 (40~48) | 보기 1: 40 / 다음: 40
+incorrect-desktop | INP 48 (40~64) | 보기 1: 40 / 다음: 40
+=== ../results/diagnose-desktop-inp-C.json
+onboarding-desktop | INP 56 (48~72) | 다음 프로필 색: 56 / input 입력: 0
+onboarding-success-desktop | INP 64 (56~72) | 홈으로: 64
+settings-desktop | INP 48 (48~64) | 공지사항: 48
+inquiry-desktop | INP 72 (64~80) | 문의 1: 56 / 문의 2: 72
+inquiry-new-desktop | INP 80 (64~88) | 문의 유형을 선택해주세요.: 72 / input 입력: 80 / textarea 입력: 0
+notice-desktop | INP 56 (48~88) | 공지 1 ·: 56
+notice-detail-desktop ALL ERROR
+=== ../results/diagnose-desktop-load-A.json
+main-desktop | FCP 260 | LCP 292 (292~312) | CLS 0.000 | TBT 0 | n=7
+   LCP: img.size-full.object-cover.object-top space-banner-MwsmKPWE.webp(7)
+learning-desktop | FCP 276 | LCP 312 (292~320) | CLS 0.000 | TBT 0 | n=7
+   LCP: img.size-full.object-cover.object-top space-banner-MwsmKPWE.webp(7)
+chapter-desktop | FCP 260 | LCP 300 (292~308) | CLS 0.000 | TBT 0 | n=7
+   LCP: p.mt-1.text-label2.text-text-3 "자료구조의 핵심 (7)
+unit-desktop | FCP 268 | LCP 296 (280~312) | CLS 0.000 | TBT 0 | n=7
+   LCP: p.mt-1.text-label2.text-text-3 "리스트에 대한  (7)
+concept-note-desktop | FCP 268 | LCP 328 (324~336) | CLS 0.058 | TBT 0 | n=7
+   LCP: code.language-ts "const stack: number[]  (7)
+   CLS: section.mt-10.flex.flex-col "개념노트 스택과 큐 스택(Stack)과 큐(Queue)"(6) · section.mt-10.flex.flex-col "개념노트 ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​"(1)
+league-desktop | FCP 264 | LCP 336 (320~464) | CLS 0.000 | TBT 0 | n=7
+   LCP: img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg(7)
+my-summary-desktop | FCP 296 | LCP 320 (296~324) | CLS 0.003 | TBT 0 | n=7
+   LCP: img.size-full.object-cover.object-top space-banner-MwsmKPWE.webp(7)
+my-learning-desktop | FCP 296 | LCP 320 (308~332) | CLS 0.000 | TBT 0 | n=7
+   LCP: img.size-full.object-cover.object-top space-banner-MwsmKPWE.webp(7)
+my-league-desktop | FCP 304 | LCP 324 (312~340) | CLS 0.000 | TBT 0 | n=7
+   LCP: img.size-full.object-cover.object-top space-banner-MwsmKPWE.webp(7)
+my-social-desktop | FCP 300 | LCP 328 (324~348) | CLS 0.000 | TBT 0 | n=7
+   LCP: img.size-full.object-cover.object-top space-banner-MwsmKPWE.webp(7)
+friend-search-desktop | FCP 288 | LCP 316 (292~324) | CLS 0.000 | TBT 0 | n=7
+   LCP: img.size-full.object-cover.object-top space-banner-MwsmKPWE.webp(7)
+=== ../results/diagnose-desktop-load-B.json
+lesson-desktop | FCP 272 | LCP 488 (428~492) | CLS 0.000 | TBT 0 | n=7
+   LCP: img.h-[20.625rem].w-auto.max-w-full loading-mascot-DwzQU18I.webp(7)
+lesson-result-desktop | FCP 256 | LCP 392 (388~472) | CLS 0.000 | TBT 0 | n=7
+   LCP: img.absolute.top-[16.67%].left-0 mascot-qgxOBFbq.webp(7)
+bookmarked-desktop | FCP 256 | LCP 444 (416~468) | CLS 0.000 | TBT 0 | n=7
+   LCP: img.h-[20.625rem].w-auto.max-w-full loading-mascot-DwzQU18I.webp(7)
+incorrect-desktop | FCP 256 | LCP 448 (420~472) | CLS 0.000 | TBT 0 | n=7
+   LCP: img.h-[20.625rem].w-auto.max-w-full loading-mascot-DwzQU18I.webp(7)
+=== ../results/diagnose-desktop-load-C.json
+onboarding-desktop | FCP 216 | LCP 216 (204~240) | CLS 0.000 | TBT 0 | n=7
+   LCP: p.mt-4.text-heading2.text-text-1-w "그래빗과 (7)
+onboarding-success-desktop | FCP 208 | LCP 236 (228~264) | CLS 0.001 | TBT 0 | n=7
+   LCP: img.mt-4.w-39 mascot-end-C4kQY6YI.webp(7)
+settings-desktop | FCP 260 | LCP 260 (252~272) | CLS 0.000 | TBT 0 | n=7
+   LCP: span.text-label1.text-text-1.md:text-hea (7)
+inquiry-desktop | FCP 264 | LCP 288 (276~296) | CLS 0.000 | TBT 0 | n=7
+   LCP: h4.text-headline2.text-text-1.md:mb-2 "문 (7)
+inquiry-new-desktop | FCP 268 | LCP 268 (264~276) | CLS 0.000 | TBT 0 | n=7
+   LCP: h3.pl-1.text-headline2.md:text-heading1  (7)
+notice-desktop | FCP 264 | LCP 300 (288~308) | CLS 0.410 | TBT 0 | n=7
+   LCP: span.truncate.text-headline2.text-text-1 (7)
+   CLS: div.hidden.md:block "주소 문의 메일 인천광역시 연수구 아카데미로 119 정"(7)
+notice-detail-desktop | FCP 264 | LCP 296 (296~304) | CLS 0.031 | TBT 0 | n=7
+   LCP: h1.text-heading1.text-text-1.md:text-tit (7)
+   CLS: div.hidden.md:block "주소 문의 메일 인천광역시 연수구 아카데미로 119 정"(7)
+=== ../results/diagnose-desktop-load-delay600-A.json
+main-desktop | FCP 288 | LCP 304 (296~504) | CLS 0.049 | TBT 0 | n=3
+   LCP: img.size-full.object-cover.object-top space-banner-MwsmKPWE.webp(3)
+   CLS: section.flex.w-full.flex-col "새 주제 시작하기 전체보기 ​ ​ ​ ​ ​ ​",div.inline-block.bg-gray-300.relative,::after(3)
+learning-desktop | FCP 272 | LCP 292 (288~296) | CLS 0.000 | TBT 0 | n=3
+   LCP: img.size-full.object-cover.object-top space-banner-MwsmKPWE.webp(3)
+chapter-desktop | FCP 252 | LCP 888 (876~892) | CLS 0.000 | TBT 0 | n=3
+   LCP: p.mt-1.text-label2.text-text-3 "자료구조의 핵심 (3)
+unit-desktop | FCP 268 | LCP 892 (888~896) | CLS 0.000 | TBT 0 | n=3
+   LCP: p.mt-1.text-label2.text-text-3 "리스트에 대한  (3)
+concept-note-desktop | FCP 272 | LCP 920 (904~920) | CLS 0.058 | TBT 0 | n=3
+   LCP: code.language-ts "const stack: number[]  (3)
+   CLS: section.mt-10.flex.flex-col "개념노트 스택과 큐 스택(Stack)과 큐(Queue)"(3)
+league-desktop | FCP 264 | LCP 916 (912~920) | CLS 0.000 | TBT 0 | n=3
+   LCP: img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg(3)
+my-summary-desktop | FCP 284 | LCP 316 (304~340) | CLS 0.003 | TBT 0 | n=3
+   LCP: img.size-full.object-cover.object-top space-banner-MwsmKPWE.webp(3)
+my-learning-desktop | FCP 284 | LCP 320 (308~328) | CLS 0.000 | TBT 0 | n=3
+   LCP: img.size-full.object-cover.object-top space-banner-MwsmKPWE.webp(3)
+my-league-desktop | FCP 304 | LCP 336 (328~336) | CLS 0.000 | TBT 0 | n=3
+   LCP: img.size-full.object-cover.object-top space-banner-MwsmKPWE.webp(3)
+my-social-desktop | FCP 304 | LCP 324 (312~324) | CLS 0.000 | TBT 0 | n=3
+   LCP: img.size-full.object-cover.object-top space-banner-MwsmKPWE.webp(3)
+friend-search-desktop | FCP 292 | LCP 308 (292~324) | CLS 0.000 | TBT 0 | n=3
+   LCP: img.size-full.object-cover.object-top space-banner-MwsmKPWE.webp(3)
+=== ../results/diagnose-desktop-load-delay600-B.json
+lesson-desktop | FCP 276 | LCP 472 (444~476) | CLS 0.000 | TBT 0 | n=3
+   LCP: img.h-[20.625rem].w-auto.max-w-full loading-mascot-DwzQU18I.webp(3)
+lesson-result-desktop | FCP 844 | LCP 1380 (1376~1380) | CLS 0.000 | TBT 0 | n=3
+   LCP: img.absolute.top-[16.67%].left-0 mascot-qgxOBFbq.webp(3)
+bookmarked-desktop | FCP 256 | LCP 460 (460~468) | CLS 0.000 | TBT 0 | n=3
+   LCP: img.h-[20.625rem].w-auto.max-w-full loading-mascot-DwzQU18I.webp(3)
+incorrect-desktop | FCP 260 | LCP 460 (424~464) | CLS 0.000 | TBT 0 | n=3
+   LCP: img.h-[20.625rem].w-auto.max-w-full loading-mascot-DwzQU18I.webp(3)
+=== ../results/diagnose-desktop-load-delay600-C.json
+onboarding-desktop | FCP 212 | LCP 212 (200~236) | CLS 0.000 | TBT 0 | n=3
+   LCP: p.mt-4.text-heading2.text-text-1-w "그래빗과 (3)
+onboarding-success-desktop | FCP 204 | LCP 248 (228~252) | CLS 0.001 | TBT 0 | n=3
+   LCP: img.mt-4.w-39 mascot-end-C4kQY6YI.webp(3)
+settings-desktop | FCP 268 | LCP 268 (256~276) | CLS 0.000 | TBT 0 | n=3
+   LCP: span.text-label1.text-text-1.md:text-hea (3)
+inquiry-desktop | FCP 256 | LCP 880 (880~884) | CLS 0.000 | TBT 0 | n=3
+   LCP: h4.text-headline2.text-text-1.md:mb-2 "문 (3)
+inquiry-new-desktop | FCP 264 | LCP 264 (264~280) | CLS 0.000 | TBT 0 | n=3
+   LCP: h3.pl-1.text-headline2.md:text-heading1  (3)
+notice-desktop | FCP 260 | LCP 880 (876~884) | CLS 0.192 | TBT 0 | n=3
+   LCP: span.truncate.text-headline2.text-text-1 (3)
+   CLS: div.hidden.md:block "주소 문의 메일 인천광역시 연수구 아카데미로 119 정"(3)
+notice-detail-desktop | FCP 264 | LCP 884 (880~884) | CLS 0.028 | TBT 0 | n=3
+   LCP: h1.text-heading1.text-text-1.md:text-tit (3)
+   CLS: div.hidden.md:block "주소 문의 메일 인천광역시 연수구 아카데미로 119 정"(3)
+=== ../results/diagnose-ios-inp-A.json
+main-ios | INP 48 (48~64) | 전체 학습화면 보기: 48
+learning-ios | INP 48 (48~64) | 자료구조 학습하기: 48
+chapter-ios | INP 48 (48~64) | Unit01: 48
+unit-ios | INP 48 (48~56) | Lesson01: 48
+concept-note-ios | INP 24 (24~24) | 복사: 24
+league-ios | INP 56 (56~72) | 실버 3: 56 / 골드 1: 56
+friends-ios | INP 64 (56~72) | 8 팔로잉: 64 / 12 팔로우: 48
+my-summary-ios | INP 72 (64~72) | 학습 기록 연도 선택: 72 / a[href="/my/learning"]: 64
+my-learning-ios | INP 48 (48~56) | a[href="/my/league"]: 48
+my-league-ios | INP 48 (48~56) | a[href="/my/social"]: 48
+my-social-ios | INP 128 (112~144) | 축하하기: 128 / 8 팔로잉: 56
+friend-search-ios | INP 48 (48~72) | a[href="/my/summary"]: 48
+=== ../results/diagnose-ios-inp-B.json
+lesson-ios | INP 40 (32~48) | 1번 선지 가리기: 32 / 보기 1: 0 / 다음: 40
+lesson-result-ios | INP 72 (48~88) | 이어서 학습하기: 72
+bookmarked-ios | INP 40 (32~64) | 보기 1: 40 / 다음: 40
+incorrect-ios | INP 40 (32~64) | 보기 1: 40 / 다음: 40
+=== ../results/diagnose-ios-inp-C.json
+my-edit-ios | INP 56 (48~72) | 다음 프로필 색: 56 / input 입력: 0
+notifications-ios | INP 48 (48~56) | 학습하러 가기: 48
+onboarding-ios | INP 64 (48~72) | 다음 프로필 색: 64 / input 입력: 0
+onboarding-success-ios | INP 48 (48~88) | 홈으로: 48
+settings-ios | INP 56 (48~56) | 공지사항: 56
+inquiry-ios | INP 72 (64~72) | 문의 1: 72 / 문의 2: 56
+inquiry-new-ios | INP 64 (56~72) | 문의 유형을 선택해주세요.: 64 / input 입력: 56 / textarea 입력: 48
+notice-ios | INP 48 (48~64) | 공지 1 ·: 48
+notice-detail-ios | INP 48 (48~56) | 뒤로 가기: 48
+=== ../results/diagnose-ios-load-A.json
+main-ios | FCP 376 | LCP 480 (468~520) | CLS 0.000 | TBT 0 | n=7
+   LCP: img.size-full.object-cover.object-top hero-narrow-decoration-PVHiZoCX.webp(7)
+learning-ios | FCP 392 | LCP 496 (492~504) | CLS 0.000 | TBT 0 | n=7
+   LCP: img.size-full.object-cover.object-top chapter-card-decoration-BMW7jce4.webp(7)
+chapter-ios | FCP 376 | LCP 428 (416~432) | CLS 0.005 | TBT 0 | n=7
+   LCP: p.mt-1.text-label2.text-text-3 "자료구조의 핵심 (7)
+unit-ios | FCP 380 | LCP 432 (408~432) | CLS 0.006 | TBT 0 | n=7
+   LCP: p.mt-1.text-label2.text-text-3 "리스트에 대한  (7)
+concept-note-ios | FCP 372 | LCP 452 (444~460) | CLS 0.000 | TBT 0 | n=7
+   LCP: code.language-ts "const stack: number[]  (7)
+league-ios | FCP 376 | LCP 492 (488~500) | CLS 0.000 | TBT 0 | n=7
+   LCP: img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg(7)
+friends-ios | FCP 332 | LCP 432 (424~440) | CLS 0.000 | TBT 0 | n=7
+   LCP: span.truncate.text-label2.text-text-3 "@ (7)
+my-summary-ios | FCP 428 | LCP 520 (516~520) | CLS 0.000 | TBT 0 | n=7
+   LCP: img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp(7)
+my-learning-ios | FCP 432 | LCP 516 (508~520) | CLS 0.001 | TBT 0 | n=7
+   LCP: img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp(7)
+my-league-ios | FCP 460 | LCP 548 (544~556) | CLS 0.000 | TBT 0 | n=7
+   LCP: img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp(7)
+my-social-ios | FCP 460 | LCP 548 (544~552) | CLS 0.000 | TBT 0 | n=7
+   LCP: img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp(7)
+friend-search-ios | FCP 420 | LCP 516 (508~524) | CLS 0.000 | TBT 0 | n=7
+   LCP: img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp(7)
+=== ../results/diagnose-ios-load-B.json
+lesson-ios | FCP 408 | LCP 832 (828~844) | CLS 0.000 | TBT 0 | n=7
+   LCP: img.h-[20.625rem].w-auto.max-w-full loading-mascot-DwzQU18I.webp(7)
+lesson-result-ios | FCP 324 | LCP 696 (680~712) | CLS 0.000 | TBT 0 | n=7
+   LCP: img.w-full.-translate-y-[5.3%] moon-mobile-C_iMWppn.webp(7)
+bookmarked-ios | FCP 380 | LCP 808 (800~824) | CLS 0.000 | TBT 0 | n=7
+   LCP: img.h-[20.625rem].w-auto.max-w-full loading-mascot-DwzQU18I.webp(7)
+incorrect-ios | FCP 380 | LCP 816 (808~824) | CLS 0.000 | TBT 0 | n=7
+   LCP: img.h-[20.625rem].w-auto.max-w-full loading-mascot-DwzQU18I.webp(7)
+=== ../results/diagnose-ios-load-C.json
+my-edit-ios | FCP 376 | LCP 376 (364~380) | CLS 0.000 | TBT 0 | n=7
+   LCP: label.text-headline2.text-text-1 "닉네임 설정 (7)
+notifications-ios | FCP 328 | LCP 328 (312~368) | CLS 0.000 | TBT 0 | n=7
+   LCP: p.text-label1.md:text-heading1.text-text (5) · p..text-label1.text-text-1 "문의하신 내용에 답변이 (2)
+onboarding-ios | FCP 292 | LCP 292 (276~300) | CLS 0.000 | TBT 0 | n=7
+   LCP: - (7)
+onboarding-success-ios | FCP 280 | LCP 348 (344~364) | CLS 0.000 | TBT 0 | n=7
+   LCP: img.mt-10.w-52.5 mascot-celebrate-DGkz6uaw.webp(7)
+settings-ios | FCP 376 | LCP 376 (368~380) | CLS 0.000 | TBT 0 | n=7
+   LCP: span.text-label1.text-text-1.md:text-hea (7)
+inquiry-ios | FCP 372 | LCP 420 (412~444) | CLS 0.000 | TBT 0 | n=7
+   LCP: h4.text-headline2.text-text-1.md:mb-2 "문 (7)
+inquiry-new-ios | FCP 384 | LCP 384 (380~388) | CLS 0.000 | TBT 0 | n=7
+   LCP: h3.pl-1.text-headline2.md:text-heading1  (7)
+notice-ios | FCP 364 | LCP 416 (408~424) | CLS 0.000 | TBT 0 | n=7
+   LCP: span.truncate.text-headline2.text-text-1 (7)
+notice-detail-ios | FCP 368 | LCP 428 (412~440) | CLS 0.000 | TBT 0 | n=7
+   LCP: h1.text-heading1.text-text-1.md:text-tit (7)
+=== ../results/diagnose-ios-load-delay600-A.json
+main-ios | FCP 376 | LCP 480 (472~480) | CLS 0.347 | TBT 0 | n=3
+   LCP: img.size-full.object-cover.object-top hero-narrow-decoration-PVHiZoCX.webp(3)
+   CLS: div.flex.flex-col.gap-4 "​ ​",div.flex.flex-1.flex-col "​ ​ ​ ​",::after(3) · section.flex.w-full.flex-col "이어서 학습하기 ​ ​",section.flex.w-full.flex-col "오늘의 미션 레슨 4개 완료하기 완료 시 +15 XP ",div.flex.h-39.gap-3 "오늘의 미션 레슨 4개 완료하기 완료 시 +15 XP "(3)
+learning-ios | FCP 392 | LCP 484 (480~492) | CLS 0.000 | TBT 0 | n=3
+   LCP: img.size-full.object-cover.object-top chapter-card-decoration-BMW7jce4.webp(3)
+chapter-ios | FCP 384 | LCP 984 (984~992) | CLS 0.000 | TBT 0 | n=3
+   LCP: h2.break-keep.text-headline2.text-text-2 (3)
+unit-ios | FCP 384 | LCP 648 (644~656) | CLS 0.015 | TBT 0 | n=3
+   LCP: img.pointer-events-none.absolute.inset-0 starfield-C1CH_UIp.avif(3)
+   CLS: div.flex.w-full.items-center "​ ​",div.flex.w-full.items-center "​ ​",div.inline-block.bg-gray-300.relative(3)
+concept-note-ios | FCP 376 | LCP 1012 (1000~1016) | CLS 0.000 | TBT 0 | n=3
+   LCP: code.language-ts "const stack: number[]  (3)
+league-ios | FCP 380 | LCP 1040 (1036~1048) | CLS 0.000 | TBT 0 | n=3
+   LCP: img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg(3)
+friends-ios | FCP 332 | LCP 1544 (1536~1556) | CLS 0.000 | TBT 0 | n=3
+   LCP: span.truncate.text-label2.text-text-3 "@ (3)
+my-summary-ios | FCP 420 | LCP 512 (496~516) | CLS 0.007 | TBT 0 | n=3
+   LCP: img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp(3)
+my-learning-ios | FCP 420 | LCP 516 (512~524) | CLS 0.002 | TBT 0 | n=3
+   LCP: img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp(3)
+my-league-ios | FCP 460 | LCP 536 (536~544) | CLS 0.002 | TBT 0 | n=3
+   LCP: img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp(3)
+my-social-ios | FCP 464 | LCP 552 (540~552) | CLS 0.002 | TBT 0 | n=3
+   LCP: img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp(3)
+friend-search-ios | FCP 424 | LCP 512 (508~516) | CLS 0.002 | TBT 0 | n=3
+   LCP: img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp(3)
+=== ../results/diagnose-ios-load-delay600-B.json
+lesson-ios | FCP 412 | LCP 832 (828~836) | CLS 0.000 | TBT 0 | n=3
+   LCP: img.h-[20.625rem].w-auto.max-w-full loading-mascot-DwzQU18I.webp(3)
+lesson-result-ios | FCP 328 | LCP 1560 (1552~1580) | CLS 0.000 | TBT 0 | n=3
+   LCP: img.absolute.top-[16.67%].left-0 mascot-qgxOBFbq.webp(3)
+bookmarked-ios | FCP 376 | LCP 808 (808~808) | CLS 0.000 | TBT 0 | n=3
+   LCP: img.h-[20.625rem].w-auto.max-w-full loading-mascot-DwzQU18I.webp(3)
+incorrect-ios | FCP 380 | LCP 820 (804~824) | CLS 0.000 | TBT 0 | n=3
+   LCP: img.h-[20.625rem].w-auto.max-w-full loading-mascot-DwzQU18I.webp(3)
+=== ../results/diagnose-ios-load-delay600-C.json
+my-edit-ios | FCP 944 | LCP 944 (928~968) | CLS 0.000 | TBT 0 | n=3
+   LCP: label.text-headline2.text-text-1 "닉네임 설정 (3)
+notifications-ios | FCP 328 | LCP 328 (320~332) | CLS 0.000 | TBT 0 | n=3
+   LCP: p.text-label1.md:text-heading1.text-text (3)
+onboarding-ios | FCP 296 | LCP 296 (292~296) | CLS 0.000 | TBT 0 | n=3
+   LCP: - (3)
+onboarding-success-ios | FCP 284 | LCP 368 (336~372) | CLS 0.000 | TBT 0 | n=3
+   LCP: img.mt-10.w-52.5 mascot-celebrate-DGkz6uaw.webp(3)
+settings-ios | FCP 372 | LCP 372 (368~380) | CLS 0.000 | TBT 0 | n=3
+   LCP: span.text-label1.text-text-1.md:text-hea (3)
+inquiry-ios | FCP 372 | LCP 1000 (980~1004) | CLS 0.045 | TBT 0 | n=3
+   LCP: h4.text-headline2.text-text-1.md:mb-2 "문 (3)
+   CLS: li.border-b.border-divider-2.bg-white "​ ​",li.border-b.border-divider-2.bg-white "​ ​",::after(3)
+inquiry-new-ios | FCP 384 | LCP 384 (380~388) | CLS 0.000 | TBT 0 | n=3
+   LCP: h3.pl-1.text-headline2.md:text-heading1  (3)
+notice-ios | FCP 368 | LCP 992 (980~1012) | CLS 0.000 | TBT 0 | n=3
+   LCP: span.truncate.text-headline2.text-text-1 (3)
+notice-detail-ios | FCP 372 | LCP 996 (992~1004) | CLS 0.000 | TBT 0 | n=3
+   LCP: h1.text-heading1.text-text-1.md:text-tit (3)
+=== ../results/diagnose-mweb-inp-A.json
+main-mweb | INP 48 (48~176) | 전체 학습화면 보기: 48
+learning-mweb | INP 48 (48~56) | 자료구조 학습하기: 48
+chapter-mweb | INP 48 (48~56) | Unit01: 48
+unit-mweb | INP 56 (48~56) | Lesson01: 56
+concept-note-mweb | INP 24 (24~24) | 복사: 24
+league-mweb | INP 56 (48~64) | 실버 3: 48 / 골드 1: 48
+friends-mweb | INP 56 (48~64) | 8 팔로잉: 48 / 12 팔로우: 56
+my-summary-mweb | INP 64 (64~64) | 학습 기록 연도 선택: 64 / a[href="/my/learning"]: 56
+my-learning-mweb | INP 48 (48~64) | a[href="/my/league"]: 48
+my-league-mweb | INP 48 (48~48) | a[href="/my/social"]: 48
+my-social-mweb | INP 128 (128~144) | 축하하기: 128 / 8 팔로잉: 48
+friend-search-mweb | INP 48 (48~56) | a[href="/my/summary"]: 48
+=== ../results/diagnose-mweb-inp-B.json
+lesson-mweb | INP 40 (32~40) | 1번 선지 가리기: 32 / 보기 1: 0 / 다음: 32
+lesson-result-mweb | INP 80 (56~104) | 이어서 학습하기: 80
+bookmarked-mweb | INP 40 (32~40) | 보기 1: 40 / 다음: 40
+incorrect-mweb | INP 40 (32~40) | 보기 1: 40 / 다음: 40
+=== ../results/diagnose-mweb-inp-C.json
+my-edit-mweb | INP 56 (48~56) | 다음 프로필 색: 56 / input 입력: 0
+notifications-mweb | INP 48 (48~56) | 학습하러 가기: 48
+onboarding-mweb | INP 56 (48~56) | 다음 프로필 색: 56 / input 입력: 0
+onboarding-success-mweb | INP 48 (48~56) | 홈으로: 48
+settings-mweb | INP 48 (48~56) | 공지사항: 48
+inquiry-mweb | INP 56 (48~72) | 문의 1: 48 / 문의 2: 56
+inquiry-new-mweb | INP 64 (64~72) | 문의 유형을 선택해주세요.: 64 / input 입력: 48 / textarea 입력: 40
+notice-mweb | INP 48 (40~96) | 공지 1 ·: 48
+notice-detail-mweb | INP 56 (48~64) | 뒤로 가기: 56
+=== ../results/diagnose-mweb-load-A.json
+main-mweb | FCP 504 | LCP 604 (596~616) | CLS 0.000 | TBT 0 | n=7
+   LCP: img.size-full.object-cover.object-top hero-narrow-decoration-PVHiZoCX.webp(7)
+learning-mweb | FCP 528 | LCP 608 (600~624) | CLS 0.000 | TBT 0 | n=7
+   LCP: img.size-full.object-cover.object-top chapter-card-decoration-BMW7jce4.webp(7)
+chapter-mweb | FCP 508 | LCP 568 (556~576) | CLS 0.005 | TBT 0 | n=7
+   LCP: p.mt-1.text-label2.text-text-3 "자료구조의 핵심 (7)
+unit-mweb | FCP 512 | LCP 884 (876~896) | CLS 0.006 | TBT 0 | n=7
+   LCP: img.pointer-events-none.absolute.inset-0 starfield-C1CH_UIp.avif(7)
+concept-note-mweb | FCP 500 | LCP 624 (612~636) | CLS 0.000 | TBT 0 | n=7
+   LCP: code.language-ts "const stack: number[]  (7)
+league-mweb | FCP 500 | LCP 632 (624~664) | CLS 0.000 | TBT 0 | n=7
+   LCP: img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg(7)
+friends-mweb | FCP 460 | LCP 564 (552~576) | CLS 0.000 | TBT 0 | n=7
+   LCP: span.truncate.text-label2.text-text-3 "@ (7)
+my-summary-mweb | FCP 560 | LCP 632 (616~640) | CLS 0.004 | TBT 0 | n=7
+   LCP: img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp(7)
+my-learning-mweb | FCP 556 | LCP 636 (620~648) | CLS 0.001 | TBT 0 | n=7
+   LCP: img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp(7)
+my-league-mweb | FCP 584 | LCP 652 (644~668) | CLS 0.000 | TBT 0 | n=7
+   LCP: img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp(7)
+my-social-mweb | FCP 588 | LCP 668 (660~676) | CLS 0.000 | TBT 0 | n=7
+   LCP: img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp(7)
+friend-search-mweb | FCP 552 | LCP 624 (612~636) | CLS 0.000 | TBT 0 | n=7
+   LCP: img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp(7)
+=== ../results/diagnose-mweb-load-B.json
+lesson-mweb | FCP 528 | LCP 928 (920~948) | CLS 0.000 | TBT 0 | n=7
+   LCP: img.h-[20.625rem].w-auto.max-w-full loading-mascot-DwzQU18I.webp(7)
+lesson-result-mweb | FCP 488 | LCP 812 (800~820) | CLS 0.000 | TBT 0 | n=7
+   LCP: img.w-full.-translate-y-[5.3%] moon-mobile-C_iMWppn.webp(7)
+bookmarked-mweb | FCP 496 | LCP 904 (880~912) | CLS 0.000 | TBT 0 | n=7
+   LCP: img.h-[20.625rem].w-auto.max-w-full loading-mascot-DwzQU18I.webp(7)
+incorrect-mweb | FCP 500 | LCP 900 (876~908) | CLS 0.000 | TBT 0 | n=7
+   LCP: img.h-[20.625rem].w-auto.max-w-full loading-mascot-DwzQU18I.webp(7)
+=== ../results/diagnose-mweb-load-C.json
+my-edit-mweb | FCP 500 | LCP 500 (492~512) | CLS 0.000 | TBT 0 | n=7
+   LCP: label.text-headline2.text-text-1 "닉네임 설정 (7)
+notifications-mweb | FCP 444 | LCP 480 (432~500) | CLS 0.004 | TBT 0 | n=7
+   LCP: p..text-label1.text-text-1 "문의하신 내용에 답변이 (5) · p.text-label1.md:text-heading1.text-text (2)
+onboarding-mweb | FCP 408 | LCP 408 (396~420) | CLS 0.000 | TBT 0 | n=7
+   LCP: - (7)
+onboarding-success-mweb | FCP 400 | LCP 456 (448~476) | CLS 0.000 | TBT 0 | n=7
+   LCP: img.mt-10.w-52.5 mascot-celebrate-DGkz6uaw.webp(7)
+settings-mweb | FCP 500 | LCP 500 (496~508) | CLS 0.000 | TBT 0 | n=7
+   LCP: span.text-label1.text-text-1.md:text-hea (7)
+inquiry-mweb | FCP 500 | LCP 556 (548~564) | CLS 0.000 | TBT 0 | n=7
+   LCP: h4.text-headline2.text-text-1.md:mb-2 "문 (7)
+inquiry-new-mweb | FCP 512 | LCP 512 (508~520) | CLS 0.000 | TBT 0 | n=7
+   LCP: h3.pl-1.text-headline2.md:text-heading1  (7)
+notice-mweb | FCP 496 | LCP 552 (548~556) | CLS 0.000 | TBT 0 | n=7
+   LCP: span.truncate.text-headline2.text-text-1 (7)
+notice-detail-mweb | FCP 500 | LCP 568 (560~584) | CLS 0.000 | TBT 0 | n=7
+   LCP: h1.text-heading1.text-text-1.md:text-tit (7)
+=== ../results/diagnose-mweb-load-delay600-A.json
+main-mweb | FCP 512 | LCP 592 (588~592) | CLS 0.361 | TBT 0 | n=3
+   LCP: img.size-full.object-cover.object-top hero-narrow-decoration-PVHiZoCX.webp(3)
+   CLS: div.flex.flex-col.gap-4 "​ ​",div.flex.flex-1.flex-col "​ ​ ​ ​",::after(3) · section.flex.w-full.flex-col "이어서 학습하기 ​ ​",section.flex.w-full.flex-col "오늘의 미션 레슨 4개 완료하기 완료 시 +15 XP ",div.flex.h-39.gap-3 "오늘의 미션 레슨 4개 완료하기 완료 시 +15 XP "(3)
+learning-mweb | FCP 520 | LCP 592 (588~604) | CLS 0.000 | TBT 0 | n=3
+   LCP: img.size-full.object-cover.object-top chapter-card-decoration-BMW7jce4.webp(3)
+chapter-mweb | FCP 508 | LCP 1112 (1108~1124) | CLS 0.000 | TBT 0 | n=3
+   LCP: h2.break-keep.text-headline2.text-text-2 (3)
+unit-mweb | FCP 516 | LCP 1128 (1124~1144) | CLS 0.015 | TBT 0 | n=3
+   LCP: img.pointer-events-none.absolute.inset-0 starfield-C1CH_UIp.avif(3)
+   CLS: div.flex.w-full.items-center "​ ​",div.flex.w-full.items-center "​ ​",div.inline-block.bg-gray-300.relative(3)
+concept-note-mweb | FCP 504 | LCP 1184 (1180~1208) | CLS 0.000 | TBT 0 | n=3
+   LCP: code.language-ts "const stack: number[]  (3)
+league-mweb | FCP 496 | LCP 1188 (1168~1204) | CLS 0.000 | TBT 0 | n=3
+   LCP: img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg(3)
+friends-mweb | FCP 468 | LCP 1676 (1676~1696) | CLS 0.000 | TBT 0 | n=3
+   LCP: span.truncate.text-label2.text-text-3 "@ (3)
+my-summary-mweb | FCP 564 | LCP 636 (612~648) | CLS 0.006 | TBT 0 | n=3
+   LCP: img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp(3)
+my-learning-mweb | FCP 564 | LCP 628 (616~636) | CLS 0.002 | TBT 0 | n=3
+   LCP: img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp(3)
+my-league-mweb | FCP 572 | LCP 660 (656~660) | CLS 0.002 | TBT 0 | n=3
+   LCP: img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp(3)
+my-social-mweb | FCP 580 | LCP 644 (644~652) | CLS 0.002 | TBT 0 | n=3
+   LCP: img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp(3)
+friend-search-mweb | FCP 560 | LCP 620 (616~628) | CLS 0.002 | TBT 0 | n=3
+   LCP: img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp(3)
+=== ../results/diagnose-mweb-load-delay600-B.json
+lesson-mweb | FCP 524 | LCP 908 (904~936) | CLS 0.000 | TBT 0 | n=3
+   LCP: img.h-[20.625rem].w-auto.max-w-full loading-mascot-DwzQU18I.webp(3)
+lesson-result-mweb | FCP 1056 | LCP 1672 (1664~1708) | CLS 0.000 | TBT 0 | n=3
+   LCP: img.absolute.top-[16.67%].left-0 mascot-qgxOBFbq.webp(3)
+bookmarked-mweb | FCP 496 | LCP 880 (872~888) | CLS 0.000 | TBT 0 | n=3
+   LCP: img.h-[20.625rem].w-auto.max-w-full loading-mascot-DwzQU18I.webp(3)
+incorrect-mweb | FCP 484 | LCP 884 (880~892) | CLS 0.000 | TBT 0 | n=3
+   LCP: img.h-[20.625rem].w-auto.max-w-full loading-mascot-DwzQU18I.webp(3)
+=== ../results/diagnose-mweb-load-delay600-C.json
+my-edit-mweb | FCP 1064 | LCP 1064 (1060~1076) | CLS 0.000 | TBT 0 | n=3
+   LCP: label.text-headline2.text-text-1 "닉네임 설정 (3)
+notifications-mweb | FCP 448 | LCP 448 (444~452) | CLS 0.000 | TBT 0 | n=3
+   LCP: p.text-label1.md:text-heading1.text-text (3)
+onboarding-mweb | FCP 408 | LCP 408 (400~412) | CLS 0.000 | TBT 0 | n=3
+   LCP: - (3)
+onboarding-success-mweb | FCP 392 | LCP 464 (460~468) | CLS 0.000 | TBT 0 | n=3
+   LCP: img.mt-10.w-52.5 mascot-celebrate-DGkz6uaw.webp(3)
+settings-mweb | FCP 500 | LCP 500 (500~508) | CLS 0.000 | TBT 0 | n=3
+   LCP: span.text-label1.text-text-1.md:text-hea (3)
+inquiry-mweb | FCP 500 | LCP 1120 (1112~1124) | CLS 0.038 | TBT 0 | n=3
+   LCP: h4.text-headline2.text-text-1.md:mb-2 "문 (3)
+   CLS: li.border-b.border-divider-2.bg-white "​ ​",li.border-b.border-divider-2.bg-white "​ ​",::after(3)
+inquiry-new-mweb | FCP 512 | LCP 512 (508~516) | CLS 0.000 | TBT 0 | n=3
+   LCP: h3.pl-1.text-headline2.md:text-heading1  (3)
+notice-mweb | FCP 496 | LCP 1112 (1108~1128) | CLS 0.000 | TBT 0 | n=3
+   LCP: span.truncate.text-headline2.text-text-1 (3)
+notice-detail-mweb | FCP 488 | LCP 1132 (1120~1136) | CLS 0.000 | TBT 0 | n=3
+   LCP: h1.text-heading1.text-text-1.md:text-tit (3)

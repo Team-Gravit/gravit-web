@@ -1,0 +1,69 @@
+main-mobile 1 base fcp 7448 lcp 7632 cls 0.238 users 3937
+main-mobile 1 issue1 fcp 7512 lcp 7928 cls 0.238 users 4328
+main-mobile 1 issue2 fcp 7584 lcp 8064 cls 0.238 users 6397
+main-mobile 2 base fcp 7304 lcp 7520 cls 0.238 users 4318
+main-mobile 2 issue1 fcp 7080 lcp 7448 cls 0.238 users 4124
+main-mobile 2 issue2 fcp 6984 lcp 7468 cls 0.238 users 5859
+main-mobile 3 base fcp 7296 lcp 7512 cls 0.238 users 4185
+main-mobile 3 issue1 fcp 7056 lcp 7336 cls 0.238 users 4304
+main-mobile 3 issue2 fcp 6500 lcp 6900 cls 0.238 users 5594
+main-mobile 4 base fcp 7116 lcp 7332 cls 0.238 users 4129
+main-mobile 4 issue1 fcp 6808 lcp 7092 cls 0.238 users 3911
+main-mobile 4 issue2 fcp 6632 lcp 7164 cls 0.238 users 5658
+main-mobile 5 base fcp 7032 lcp 7264 cls 0.238 users 4100
+main-mobile 5 issue1 fcp 7184 lcp 7500 cls 0.238 users 4359
+main-mobile 5 issue2 fcp 6536 lcp 7104 cls 0.238 users 5576
+main-mobile 6 base fcp 7404 lcp 7600 cls 0.238 users 4326
+main-mobile 6 issue1 fcp 6956 lcp 7288 cls 0.238 users 4024
+main-mobile 6 issue2 fcp 6704 lcp 7204 cls 0.238 users 5636
+main-mobile 7 base fcp 6936 lcp 7168 cls 0.238 users 4126
+main-mobile 7 issue1 fcp 7260 lcp 7592 cls 0.238 users 4350
+main-mobile 7 issue2 fcp 7084 lcp 7588 cls 0.238 users 5822
+main-desktop 1 base fcp 8432 lcp 8432 cls 0.029 users 4360
+main-desktop 1 issue1 fcp 6664 lcp 6968 cls 0.002 users 3888
+main-desktop 1 issue2 fcp 6948 lcp 7348 cls 0.002 users 5653
+main-desktop 2 base fcp 6708 lcp 6912 cls 0.029 users 3833
+main-desktop 2 issue1 fcp 7132 lcp 7436 cls 0.029 users 4154
+main-desktop 2 issue2 fcp 6792 lcp 7296 cls 0.029 users 5596
+main-desktop 3 base fcp 7124 lcp 7228 cls 0.002 users 4049
+main-desktop 3 issue1 fcp 7032 lcp 7336 cls 0.002 users 3959
+main-desktop 3 issue2 fcp 7036 lcp 7640 cls 0.029 users 5721
+main-desktop 4 base fcp 7180 lcp 7384 cls 0.029 users 3819
+main-desktop 4 issue1 fcp 7736 lcp 8040 cls 0.002 users 4361
+main-desktop 4 issue2 fcp 7484 lcp 7888 cls 0.002 users 6195
+main-desktop 5 base fcp 7536 lcp 7736 cls 0.002 users 4270
+main-desktop 5 issue1 fcp 6896 lcp 7300 cls 0.002 users 3822
+main-desktop 5 issue2 fcp 7780 lcp 8384 cls 0.029 users 6301
+main-desktop 6 base fcp 7656 lcp 7856 cls 0.029 users 4395
+main-desktop 6 issue1 fcp 7376 lcp 7780 cls 0.002 users 4212
+main-desktop 6 issue2 fcp 7324 lcp 7728 cls 0.002 users 6030
+main-desktop 7 base fcp 7548 lcp 7648 cls 0.029 users 4274
+main-desktop 7 issue1 fcp 7340 lcp 7644 cls 0.029 users 4251
+main-desktop 7 issue2 fcp 7092 lcp 7496 cls 0.029 users 5726
+learning-mobile 1 base fcp 7328 lcp 8236 cls 0.000 users 4356
+learning-mobile 1 issue1 fcp 7168 lcp 7368 cls 0.000 users 4298
+learning-mobile 1 issue2 fcp 6480 lcp 6680 cls 0.000 users 5623
+learning-mobile 2 base fcp 7336 lcp 8444 cls 0.000 users 4353
+learning-mobile 2 issue1 fcp 7220 lcp 7520 cls 0.000 users 4294
+learning-mobile 2 issue2 fcp 7004 lcp 7304 cls 0.000 users 5856
+learning-mobile 3 base fcp 7664 lcp 8572 cls 0.000 users 4493
+learning-mobile 3 issue1 fcp 7408 lcp 7712 cls 0.000 users 4338
+learning-mobile 3 issue2 fcp 7056 lcp 7256 cls 0.000 users 5900
+learning-mobile 4 base fcp 7624 lcp 8428 cls 0.000 users 4334
+learning-mobile 4 issue1 fcp 7716 lcp 8120 cls 0.000 users 4455
+learning-mobile 4 issue2 fcp 6940 lcp 7344 cls 0.000 users 5883
+learning-mobile 5 base fcp 7336 lcp 8140 cls 0.000 users 4463
+learning-mobile 5 issue1 fcp 7400 lcp 7600 cls 0.000 users 4331
+learning-mobile 5 issue2 fcp 6596 lcp 6796 cls 0.000 users 5631
+learning-mobile 6 base fcp 7624 lcp 8732 cls 0.000 users 4385
+learning-mobile 6 issue1 fcp 7316 lcp 7616 cls 0.000 users 4120
+learning-mobile 6 issue2 fcp 6548 lcp 6852 cls 0.000 users 5686
+learning-mobile 7 base fcp 6832 lcp 7536 cls 0.000 users 4160
+learning-mobile 7 issue1 fcp 6588 lcp 6892 cls 0.000 users 4025
+learning-mobile 7 issue2 fcp 6584 lcp 6884 cls 0.000 users 5494
+
+SUMMARY (중앙값, ms)
+main-mobile {"base":{"fcp":7296,"lcp":7512,"cls":0.238,"usersEnd":4129},"issue1":{"fcp":7080,"lcp":7448,"cls":0.238,"usersEnd":4304},"issue2":{"fcp":6704,"lcp":7204,"cls":0.238,"usersEnd":5658}}
+main-desktop {"base":{"fcp":7536,"lcp":7648,"cls":0.029,"usersEnd":4270},"issue1":{"fcp":7132,"lcp":7436,"cls":0.002,"usersEnd":4154},"issue2":{"fcp":7092,"lcp":7640,"cls":0.029,"usersEnd":5726}}
+learning-mobile {"base":{"fcp":7336,"lcp":8428,"cls":0,"usersEnd":4356},"issue1":{"fcp":7316,"lcp":7600,"cls":0,"usersEnd":4298},"issue2":{"fcp":6596,"lcp":6884,"cls":0,"usersEnd":5686}}
+exit 0

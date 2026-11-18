@@ -1,0 +1,15 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>속도 보정</title>
+<style>body{font:16px -apple-system,system-ui,sans-serif;margin:24px}#s{font-size:20px;font-weight:600}.c{display:flex;gap:4px;padding:2px;border:1px solid #ddd}</style>
+<p id="s">측정 중… 화면을 끄지 말고 기다려 주세요 (약 20초)</p><pre id="o"></pre><div id="w"></div>
+<script>
+const med=(a)=>{const s=[...a].sort((x,y)=>x-y);return s[Math.floor(s.length/2)]};
+function js(){let x=0;for(let i=0;i<4e6;i++)x+=Math.sqrt(i)*Math.sin(i);const arr=[];for(let i=0;i<2e5;i++)arr.push({id:i,name:'item'+i,tags:[i%7,i%11]});const txt=JSON.stringify(arr);const back=JSON.parse(txt);return x+back.length}
+function dom(){const w=document.getElementById('w');w.textContent='';const f=document.createDocumentFragment();for(let i=0;i<3000;i++){const d=document.createElement('div');d.className='c';d.innerHTML='<span>항목 '+i+'</span><b>'+(i*7%13)+'</b>';f.appendChild(d)}w.appendChild(f);let h=w.offsetHeight;for(const d of w.children){d.style.paddingLeft=(h%5)+'px'}h+=w.offsetHeight;w.textContent='';return h}
+function time(fn){const t=performance.now();fn();return performance.now()-t}
+async function run(){await new Promise(r=>setTimeout(r,800));time(js);time(dom);const r={js:[],dom:[]};for(let i=0;i<7;i++){r.js.push(time(js));await new Promise(r=>setTimeout(r,50));r.dom.push(time(dom));await new Promise(r=>setTimeout(r,50))}
+const out={label:new URLSearchParams(location.search).get('label')||'',ua:navigator.userAgent,js:Math.round(med(r.js)),dom:Math.round(med(r.dom)),jsRuns:r.js.map(Math.round),domRuns:r.dom.map(Math.round)};
+out.total=out.js+out.dom;document.getElementById('o').textContent=JSON.stringify(out,null,2);
+try{await fetch('/result',{method:'POST',body:JSON.stringify(out)});document.getElementById('s').textContent='완료 — 결과를 보냈습니다. 창을 닫으셔도 됩니다'}catch(e){document.getElementById('s').textContent='완료 — 전송 실패. 아래 숫자를 알려 주세요'}}
+run();
+</script>

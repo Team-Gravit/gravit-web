@@ -1,0 +1,34 @@
+208ms box footer#0 footer.w-full.bg-[var(--primitive-gray-700)].pt-[50px] "주소 문의 메일 인천광역시 연수구 아카데미로"  y524 h376
+208ms box [data-slot]#0 header[header].fixed.inset-x-0.top-0 "홈 학습 리그 마이그래빗 로그아웃"  y0 h112
+208ms box [data-slot]#1 svg[logo].h-6.w-auto ""  y44 h24
+208ms box [data-slot]#2 button[button].group/button.relative.inline-flex ""  y36 h40
+208ms box [data-slot]#3 svg[icon].shrink-0 ""  y44 h24
+208ms box [data-slot]#4 svg[profile-avatar].shrink-0.size-8 ""  y40 h32
+208ms box [data-slot]#5 button[logout-button].cursor-pointer.text-heading2.font-medium "로그아웃"  y44 h25
+208ms box [data-slot]#6 header[page-title-bar].sticky.top-0.z-50 "공지사항"  y0 h0
+208ms box [data-slot]#7 svg[icon].shrink-0.text-text-3 ""  y0 h0
+208ms box [data-slot]#8 nav[breadcrumb].flex.items-center.gap-1 "설정 공지사항"  y152 h24
+208ms box [data-slot]#9 svg[icon].shrink-0.text-text-3 ""  y156 h16
+208ms box [data-slot]#10 svg[logo].h-9.w-auto.text-text-1-w ""  y576 h36
+235ms box footer#0 footer.w-full.bg-[var(--primitive-gray-700)].pt-[50px] "주소 문의 메일 인천광역시 연수구 아카데미로"  y1936 h376
+235ms box [data-slot]#10 svg[icon].size-5.shrink-0.text-cta ""  y282 h24
+235ms box [data-slot]#11 svg[icon].size-6.shrink-0.text-text-4 ""  y293 h24
+235ms box [data-slot]#12 svg[icon].size-5.shrink-0.text-cta ""  y389 h24
+235ms box [data-slot]#13 svg[icon].size-6.shrink-0.text-text-4 ""  y400 h24
+235ms box [data-slot]#14 svg[icon].size-6.shrink-0.text-text-4 ""  y507 h24
+235ms box [data-slot]#15 svg[icon].size-6.shrink-0.text-text-4 ""  y614 h24
+235ms box [data-slot]#16 svg[icon].size-6.shrink-0.text-text-4 ""  y721 h24
+235ms box [data-slot]#17 svg[icon].size-6.shrink-0.text-text-4 ""  y828 h24
+235ms box [data-slot]#18 svg[icon].size-6.shrink-0.text-text-4 ""  y935 h24
+235ms box [data-slot]#19 svg[icon].size-6.shrink-0.text-text-4 ""  y1042 h24
+235ms box [data-slot]#20 svg[icon].size-6.shrink-0.text-text-4 ""  y1149 h24
+235ms box [data-slot]#21 svg[icon].size-6.shrink-0.text-text-4 ""  y1256 h24
+235ms box [data-slot]#22 svg[icon].size-6.shrink-0.text-text-4 ""  y1363 h24
+235ms box [data-slot]#23 svg[icon].size-6.shrink-0.text-text-4 ""  y1470 h24
+235ms box [data-slot]#24 svg[icon].size-6.shrink-0.text-text-4 ""  y1577 h24
+235ms box [data-slot]#25 svg[icon].size-6.shrink-0.text-text-4 ""  y1684 h24
+235ms box [data-slot]#26 svg[icon].size-6.shrink-0.text-text-4 ""  y1791 h24
+235ms box [data-slot]#27 svg[logo].h-9.w-auto.text-text-1-w ""  y1988 h36
+263ms SHIFT 0.4097
+    div.hidden.md:block "주소 문의 메일 인천광역시 연수구 아카데미로"  y524 h376 -> y0 h0
+CLS 합 0.410

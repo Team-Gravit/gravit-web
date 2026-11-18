@@ -1,0 +1,39 @@
+login-mobile 1 fcp 3836 lcp 3836 H2 cls 0.002 tbt 91 reissue - /
+login-mobile 2 fcp 3656 lcp 3656 H2 cls 0.002 tbt 213 reissue - /
+login-mobile 3 fcp 3636 lcp 3636 H2 cls 0.002 tbt 441 reissue - /
+login-mobile 4 fcp 3500 lcp 3500 H2 cls 0.002 tbt 113 reissue - /
+login-mobile 5 fcp 3552 lcp 3552 H2 cls 0.002 tbt 439 reissue - /
+main-mobile 1 fcp 7972 lcp 8208 IMG hero-narrow-decoration.webp cls 0.238 tbt 287 reissue 2547-2803 /main
+main-mobile 2 fcp 7236 lcp 7484 IMG hero-narrow-decoration.webp cls 0.238 tbt 240 reissue 2646-2922 /main
+main-mobile 3 fcp 7988 lcp 8288 IMG hero-narrow-decoration.webp cls 0.238 tbt 326 reissue 2725-3065 /main
+main-mobile 4 fcp 7716 lcp 7984 IMG hero-narrow-decoration.webp cls 0.238 tbt 353 reissue 2897-3232 /main
+main-mobile 5 fcp 7396 lcp 7696 IMG hero-narrow-decoration.webp cls 0.238 tbt 359 reissue 2715-3016 /main
+main-desktop 1 fcp 8844 lcp 8924 IMG space-banner.webp cls 0.029 tbt 315 reissue 2777-3107 /main
+main-desktop 2 fcp 7116 lcp 7416 IMG space-banner.webp cls 0.029 tbt 362 reissue 2588-2911 /main
+main-desktop 3 fcp 7644 lcp 7912 IMG space-banner.webp cls 0.029 tbt 374 reissue 2681-3024 /main
+main-desktop 4 fcp 7896 lcp 8164 IMG space-banner.webp cls 0.029 tbt 347 reissue 2575-2871 /main
+main-desktop 5 fcp 7872 lcp 8188 IMG space-banner.webp cls 0.029 tbt 413 reissue 2968-3290 /main
+learning-mobile 1 fcp 7544 lcp 8544 IMG chapter-card-decoration.webp cls 0.000 tbt 740 reissue 2862-3194 /learning
+learning-mobile 2 fcp 7320 lcp 8568 IMG chapter-card-decoration.webp cls 0.000 tbt 884 reissue 2765-3071 /learning
+learning-mobile 3 fcp 7224 lcp 8340 IMG chapter-card-decoration.webp cls 0.000 tbt 784 reissue 2587-2896 /learning
+learning-mobile 4 fcp 7796 lcp 8812 IMG chapter-card-decoration.webp cls 0.000 tbt 763 reissue 2768-3162 /learning
+learning-mobile 5 fcp 7020 lcp 7936 IMG chapter-card-decoration.webp cls 0.000 tbt 554 reissue 2712-3039 /learning
+league-mobile 1 fcp 6124 lcp 7472 IMG bronze-3.svg cls 0.000 tbt 844 reissue 2570-2917 /league
+league-mobile 2 fcp 6984 lcp 8500 IMG bronze-3.svg cls 0.000 tbt 1436 reissue 2874-3216 /league
+league-mobile 3 fcp 6288 lcp 7688 IMG bronze-3.svg cls 0.000 tbt 1208 reissue 2462-2816 /league
+league-mobile 4 fcp 5692 lcp 6992 IMG bronze-3.svg cls 0.000 tbt 891 reissue 2552-2768 /league
+league-mobile 5 fcp 5940 lcp 7336 IMG bronze-3.svg cls 0.000 tbt 1632 reissue 2629-2930 /league
+my-mobile 1 fcp 8236 lcp 8520 IMG space-banner.webp cls 0.002 tbt 359 reissue 2765-3108 /my/summary
+my-mobile 2 fcp 9148 lcp 9416 IMG space-banner.webp cls 0.002 tbt 387 reissue 2939-3316 /my/summary
+my-mobile 3 fcp 7444 lcp 7744 IMG space-banner.webp cls 0.002 tbt 375 reissue 2544-2827 /my/summary
+my-mobile 4 fcp 7532 lcp 7832 IMG space-banner.webp cls 0.002 tbt 374 reissue 2684-2937 /my/summary
+my-mobile 5 fcp 6872 lcp 7120 IMG space-banner.webp cls 0.002 tbt 216 reissue 2538-2768 /my/summary
+
+SUMMARY (중앙값, ms)
+login-mobile {"fcp":3636,"lcp":3636,"cls":0.002,"tbt":213,"reissueEnd":0,"el":"H2","finalPath":"/"}
+main-mobile {"fcp":7716,"lcp":7984,"cls":0.238,"tbt":326,"reissueEnd":3016,"el":"IMG hero-narrow-decoration.webp","finalPath":"/main"}
+main-desktop {"fcp":7872,"lcp":8164,"cls":0.029,"tbt":362,"reissueEnd":3024,"el":"IMG space-banner.webp","finalPath":"/main"}
+learning-mobile {"fcp":7320,"lcp":8544,"cls":0,"tbt":763,"reissueEnd":3071,"el":"IMG chapter-card-decoration.webp","finalPath":"/learning"}
+league-mobile {"fcp":6124,"lcp":7472,"cls":0,"tbt":1208,"reissueEnd":2917,"el":"IMG bronze-3.svg","finalPath":"/league"}
+my-mobile {"fcp":7532,"lcp":7832,"cls":0.002,"tbt":374,"reissueEnd":2937,"el":"IMG space-banner.webp","finalPath":"/my/summary"}
+exit 0

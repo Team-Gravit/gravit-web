@@ -1,0 +1,36 @@
+main-ios 1 fcp 408 lcp 480 cls 0.347 tbt 0 | img.size-full.object-cover.object-top hero-narrow-decoration-PVHiZoCX.webp
+main-ios 2 fcp 364 lcp 480 cls 0.347 tbt 0 | img.size-full.object-cover.object-top hero-narrow-decoration-PVHiZoCX.webp
+main-ios 3 fcp 376 lcp 472 cls 0.347 tbt 0 | img.size-full.object-cover.object-top hero-narrow-decoration-PVHiZoCX.webp
+learning-ios 1 fcp 376 lcp 480 cls 0.000 tbt 0 | img.size-full.object-cover.object-top chapter-card-decoration-BMW7jce4.webp
+learning-ios 2 fcp 392 lcp 484 cls 0.000 tbt 0 | img.size-full.object-cover.object-top chapter-card-decoration-BMW7jce4.webp
+learning-ios 3 fcp 392 lcp 492 cls 0.000 tbt 0 | img.size-full.object-cover.object-top chapter-card-decoration-BMW7jce4.webp
+chapter-ios 1 fcp 384 lcp 992 cls 0.000 tbt 0 | h2.break-keep.text-headline2.text-text-2 "Unit04 - 유닛 4 · 스택과 큐" 
+chapter-ios 2 fcp 384 lcp 984 cls 0.000 tbt 0 | h2.break-keep.text-headline2.text-text-2 "Unit04 - 유닛 4 · 스택과 큐" 
+chapter-ios 3 fcp 376 lcp 984 cls 0.000 tbt 0 | h2.break-keep.text-headline2.text-text-2 "Unit04 - 유닛 4 · 스택과 큐" 
+unit-ios 1 fcp 388 lcp 644 cls 0.015 tbt 0 | img.pointer-events-none.absolute.inset-0 starfield-C1CH_UIp.avif
+unit-ios 2 fcp 384 lcp 656 cls 0.015 tbt 0 | img.pointer-events-none.absolute.inset-0 starfield-C1CH_UIp.avif
+unit-ios 3 fcp 376 lcp 648 cls 0.015 tbt 0 | img.pointer-events-none.absolute.inset-0 starfield-C1CH_UIp.avif
+concept-note-ios 1 fcp 376 lcp 1016 cls 0.000 tbt 0 | code.language-ts "const stack: number[] = []; st" 
+concept-note-ios 2 fcp 364 lcp 1012 cls 0.000 tbt 0 | code.language-ts "const stack: number[] = []; st" 
+concept-note-ios 3 fcp 376 lcp 1000 cls 0.000 tbt 0 | code.language-ts "const stack: number[] = []; st" 
+league-ios 1 fcp 380 lcp 1048 cls 0.000 tbt 0 | img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg
+league-ios 2 fcp 392 lcp 1036 cls 0.000 tbt 0 | img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg
+league-ios 3 fcp 376 lcp 1040 cls 0.000 tbt 0 | img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg
+friends-ios 1 fcp 320 lcp 1556 cls 0.000 tbt 0 | span.truncate.text-label2.text-text-3 "@chulsoo22" 
+friends-ios 2 fcp 332 lcp 1544 cls 0.000 tbt 0 | span.truncate.text-label2.text-text-3 "@chulsoo22" 
+friends-ios 3 fcp 332 lcp 1536 cls 0.000 tbt 0 | span.truncate.text-label2.text-text-3 "@chulsoo22" 
+my-summary-ios 1 fcp 420 lcp 512 cls 0.007 tbt 0 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+my-summary-ios 2 fcp 416 lcp 496 cls 0.007 tbt 0 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+my-summary-ios 3 fcp 432 lcp 516 cls 0.007 tbt 0 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+my-learning-ios 1 fcp 424 lcp 516 cls 0.002 tbt 0 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+my-learning-ios 2 fcp 416 lcp 524 cls 0.002 tbt 0 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+my-learning-ios 3 fcp 420 lcp 512 cls 0.002 tbt 0 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+my-league-ios 1 fcp 452 lcp 544 cls 0.002 tbt 0 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+my-league-ios 2 fcp 460 lcp 536 cls 0.002 tbt 0 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+my-league-ios 3 fcp 460 lcp 536 cls 0.002 tbt 0 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+my-social-ios 1 fcp 456 lcp 540 cls 0.002 tbt 0 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+my-social-ios 2 fcp 476 lcp 552 cls 0.002 tbt 0 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+my-social-ios 3 fcp 464 lcp 552 cls 0.002 tbt 0 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+friend-search-ios 1 fcp 424 lcp 508 cls 0.002 tbt 0 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+friend-search-ios 2 fcp 432 lcp 512 cls 0.002 tbt 0 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+friend-search-ios 3 fcp 420 lcp 516 cls 0.002 tbt 0 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp

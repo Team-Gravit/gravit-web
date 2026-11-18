@@ -1,0 +1,84 @@
+main-ios 1 inp 48 전체 학습화면 보기:48
+main-ios 2 inp 48 전체 학습화면 보기:48
+main-ios 3 inp 64 전체 학습화면 보기:64
+main-ios 4 inp 48 전체 학습화면 보기:48
+main-ios 5 inp 48 전체 학습화면 보기:48
+main-ios 6 inp 64 전체 학습화면 보기:64
+main-ios 7 inp 48 전체 학습화면 보기:48
+learning-ios 1 inp 56 자료구조 학습하기:56
+learning-ios 2 inp 48 자료구조 학습하기:48
+learning-ios 3 inp 48 자료구조 학습하기:48
+learning-ios 4 inp 48 자료구조 학습하기:48
+learning-ios 5 inp 64 자료구조 학습하기:64
+learning-ios 6 inp 56 자료구조 학습하기:56
+learning-ios 7 inp 48 자료구조 학습하기:48
+chapter-ios 1 inp 48 Unit01:48
+chapter-ios 2 inp 48 Unit01:48
+chapter-ios 3 inp 64 Unit01:64
+chapter-ios 4 inp 56 Unit01:56
+chapter-ios 5 inp 48 Unit01:48
+chapter-ios 6 inp 64 Unit01:64
+chapter-ios 7 inp 48 Unit01:48
+unit-ios 1 inp 48 Lesson01:48
+unit-ios 2 inp 56 Lesson01:56
+unit-ios 3 inp 48 Lesson01:48
+unit-ios 4 inp 48 Lesson01:48
+unit-ios 5 inp 56 Lesson01:56
+unit-ios 6 inp 48 Lesson01:48
+unit-ios 7 inp 56 Lesson01:56
+concept-note-ios 1 inp 24 복사:24
+concept-note-ios 2 inp 24 복사:24
+concept-note-ios 3 inp 24 복사:24
+concept-note-ios 4 inp 24 복사:24
+concept-note-ios 5 inp 24 복사:24
+concept-note-ios 6 inp 24 복사:24
+concept-note-ios 7 inp 24 복사:24
+league-ios 1 inp 56 실버 3:56 골드 1:56
+league-ios 2 inp 56 실버 3:56 골드 1:56
+league-ios 3 inp 56 실버 3:56 골드 1:48
+league-ios 4 inp 72 실버 3:72 골드 1:64
+league-ios 5 inp 56 실버 3:56 골드 1:56
+league-ios 6 inp 56 실버 3:56 골드 1:48
+league-ios 7 inp 56 실버 3:56 골드 1:48
+friends-ios 1 inp 56 8 팔로잉:48 12 팔로우:56
+friends-ios 2 inp 56 8 팔로잉:48 12 팔로우:56
+friends-ios 3 inp 72 8 팔로잉:72 12 팔로우:48
+friends-ios 4 inp 72 8 팔로잉:72 12 팔로우:48
+friends-ios 5 inp 72 8 팔로잉:72 12 팔로우:48
+friends-ios 6 inp 64 8 팔로잉:64 12 팔로우:56
+friends-ios 7 inp 64 8 팔로잉:64 12 팔로우:48
+my-summary-ios 1 inp 64 학습 기록 연도 선택:64 a[href="/my/learning"]:48
+my-summary-ios 2 inp 72 학습 기록 연도 선택:72 a[href="/my/learning"]:64
+my-summary-ios 3 inp 72 학습 기록 연도 선택:72 a[href="/my/learning"]:56
+my-summary-ios 4 inp 72 학습 기록 연도 선택:72 a[href="/my/learning"]:72
+my-summary-ios 5 inp 64 학습 기록 연도 선택:64 a[href="/my/learning"]:64
+my-summary-ios 6 inp 72 학습 기록 연도 선택:72 a[href="/my/learning"]:64
+my-summary-ios 7 inp 72 학습 기록 연도 선택:72 a[href="/my/learning"]:64
+my-learning-ios 1 inp 48 a[href="/my/league"]:48
+my-learning-ios 2 inp 56 a[href="/my/league"]:56
+my-learning-ios 3 inp 48 a[href="/my/league"]:48
+my-learning-ios 4 inp 48 a[href="/my/league"]:48
+my-learning-ios 5 inp 48 a[href="/my/league"]:48
+my-learning-ios 6 inp 48 a[href="/my/league"]:48
+my-learning-ios 7 inp 48 a[href="/my/league"]:48
+my-league-ios 1 inp 48 a[href="/my/social"]:48
+my-league-ios 2 inp 48 a[href="/my/social"]:48
+my-league-ios 3 inp 56 a[href="/my/social"]:56
+my-league-ios 4 inp 56 a[href="/my/social"]:56
+my-league-ios 5 inp 48 a[href="/my/social"]:48
+my-league-ios 6 inp 48 a[href="/my/social"]:48
+my-league-ios 7 inp 48 a[href="/my/social"]:48
+my-social-ios 1 inp 112 축하하기:112 8 팔로잉:64
+my-social-ios 2 inp 144 축하하기:144 8 팔로잉:56
+my-social-ios 3 inp 128 축하하기:128 8 팔로잉:56
+my-social-ios 4 inp 136 축하하기:136 8 팔로잉:64
+my-social-ios 5 inp 128 축하하기:128 8 팔로잉:48
+my-social-ios 6 inp 136 축하하기:136 8 팔로잉:56
+my-social-ios 7 inp 128 축하하기:128 8 팔로잉:48
+friend-search-ios 1 inp 48 a[href="/my/summary"]:48
+friend-search-ios 2 inp 48 a[href="/my/summary"]:48
+friend-search-ios 3 inp 48 a[href="/my/summary"]:48
+friend-search-ios 4 inp 48 a[href="/my/summary"]:48
+friend-search-ios 5 inp 48 a[href="/my/summary"]:48
+friend-search-ios 6 inp 48 a[href="/my/summary"]:48
+friend-search-ios 7 inp 72 a[href="/my/summary"]:72

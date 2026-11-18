@@ -1,0 +1,5 @@
+1059ms box main > *#0 div.flex.min-h-0.flex-1 "2026-W45 94시간 06분 32초 브론"  y0 h855
+1059ms box main > * > *#0 div.relative.h-full.min-h-0 "2026-W45 94시간 06분 32초 브론"  y0 h855
+1250ms SHIFT 0.0001
+    h1.font-mbc.text-[22px].tracking-[-0.6px] "2026-W45"  y40 h33 -> y40 h33
+CLS 합 0.000

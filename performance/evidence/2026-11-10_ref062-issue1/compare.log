@@ -1,0 +1,47 @@
+login-mobile 1 base fcp 3684 lcp 3684 cls 0.002
+login-mobile 1 ref062 fcp 3420 lcp 3420 cls 0.002
+login-mobile 2 base fcp 3332 lcp 3332 cls 0.002
+login-mobile 2 ref062 fcp 3400 lcp 3400 cls 0.002
+login-mobile 3 base fcp 3336 lcp 3336 cls 0.002
+login-mobile 3 ref062 fcp 3412 lcp 3412 cls 0.002
+login-mobile 4 base fcp 3324 lcp 3324 cls 0.002
+login-mobile 4 ref062 fcp 3408 lcp 3408 cls 0.002
+login-mobile 5 base fcp 3340 lcp 3340 cls 0.002
+login-mobile 5 ref062 fcp 3444 lcp 3444 cls 0.002
+main-mobile 1 base fcp 8432 lcp 8832 cls 0.238
+main-mobile 1 ref062 fcp 6872 lcp 7172 cls 0.238
+main-mobile 2 base fcp 7516 lcp 7616 cls 0.238
+main-mobile 2 ref062 fcp 7144 lcp 7348 cls 0.238
+main-mobile 3 base fcp 7580 lcp 7684 cls 0.238
+main-mobile 3 ref062 fcp 7256 lcp 7456 cls 0.238
+main-mobile 4 base fcp 7468 lcp 7568 cls 0.238
+main-mobile 4 ref062 fcp 7200 lcp 7400 cls 0.238
+main-mobile 5 base fcp 7108 lcp 7312 cls 0.238
+main-mobile 5 ref062 fcp 7256 lcp 7556 cls 0.238
+main-desktop 1 base fcp 8224 lcp 8324 cls 0.002
+main-desktop 1 ref062 fcp 7172 lcp 7576 cls 0.029
+main-desktop 2 base fcp 7472 lcp 7772 cls 0.002
+main-desktop 2 ref062 fcp 7364 lcp 7668 cls 0.002
+main-desktop 3 base fcp 7632 lcp 7732 cls 0.002
+main-desktop 3 ref062 fcp 7708 lcp 8108 cls 0.002
+main-desktop 4 base fcp 7860 lcp 8060 cls 0.029
+main-desktop 4 ref062 fcp 7428 lcp 7728 cls 0.002
+main-desktop 5 base fcp 7532 lcp 7732 cls 0.029
+main-desktop 5 ref062 fcp 7176 lcp 7480 cls 0.002
+learning-mobile 1 base fcp 7272 lcp 8176 cls 0.000
+learning-mobile 1 ref062 fcp 6908 lcp 7212 cls 0.000
+learning-mobile 2 base fcp 6932 lcp 7636 cls 0.000
+learning-mobile 2 ref062 fcp 6792 lcp 6996 cls 0.000
+learning-mobile 3 base fcp 6796 lcp 7500 cls 0.000
+learning-mobile 3 ref062 fcp 6408 lcp 6708 cls 0.000
+learning-mobile 4 base fcp 6872 lcp 7576 cls 0.000
+learning-mobile 4 ref062 fcp 6568 lcp 6868 cls 0.000
+learning-mobile 5 base fcp 6812 lcp 7620 cls 0.000
+learning-mobile 5 ref062 fcp 6468 lcp 6672 cls 0.000
+
+SUMMARY (중앙값, ms)
+login-mobile {"base":{"fcp":3336,"lcp":3336,"cls":0.002},"ref062":{"fcp":3412,"lcp":3412,"cls":0.002}}
+main-mobile {"base":{"fcp":7516,"lcp":7616,"cls":0.238},"ref062":{"fcp":7200,"lcp":7400,"cls":0.238}}
+main-desktop {"base":{"fcp":7632,"lcp":7772,"cls":0.002},"ref062":{"fcp":7364,"lcp":7668,"cls":0.002}}
+learning-mobile {"base":{"fcp":6872,"lcp":7620,"cls":0},"ref062":{"fcp":6568,"lcp":6868,"cls":0}}
+exit 0

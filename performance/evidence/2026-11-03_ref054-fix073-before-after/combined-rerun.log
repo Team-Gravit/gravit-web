@@ -1,0 +1,34 @@
+login-mobile 1 base 3856 H2 0.0KB 1
+login-mobile 1 now 3648 H2 0.0KB 1
+login-mobile 1 now2 3512 H2 0.0KB 1
+login-mobile 2 base 3460 H2 0.0KB 1
+login-mobile 2 now 3576 H2 0.0KB 1
+login-mobile 2 now2 3376 H2 0.0KB 1
+login-mobile 3 base 3316 H2 0.0KB 1
+login-mobile 3 now 3228 H2 0.0KB 1
+login-mobile 3 now2 3392 H2 0.0KB 1
+login-mobile 4 base 3380 H2 0.0KB 1
+login-mobile 4 now 3364 H2 0.0KB 1
+login-mobile 4 now2 3304 H2 0.0KB 1
+login-mobile 5 base 3324 H2 0.0KB 1
+login-mobile 5 now 3408 H2 0.0KB 1
+login-mobile 5 now2 3292 H2 0.0KB 1
+my-mobile 1 base 5032 SECTION profile-banner.webp 0.0KB 1
+my-mobile 1 now 5292 IMG space-banner.webp 0.0KB 1
+my-mobile 1 now2 5648 IMG space-banner.webp 0.0KB 1
+my-mobile 2 base 5448 SECTION profile-banner.webp 0.0KB 1
+my-mobile 2 now 5124 IMG space-banner.webp 0.0KB 1
+my-mobile 2 now2 5052 IMG space-banner.webp 0.0KB 1
+my-mobile 3 base 5348 SECTION profile-banner.webp 0.0KB 1
+my-mobile 3 now 5084 IMG space-banner.webp 0.0KB 1
+my-mobile 3 now2 5108 IMG space-banner.webp 0.0KB 1
+my-mobile 4 base 5692 SECTION profile-banner.webp 0.0KB 1
+my-mobile 4 now 5588 IMG space-banner.webp 0.0KB 1
+my-mobile 4 now2 5944 IMG space-banner.webp 0.0KB 1
+my-mobile 5 base 5440 SECTION profile-banner.webp 0.0KB 1
+my-mobile 5 now 6648 IMG space-banner.webp 0.0KB 1
+my-mobile 5 now2 6000 IMG space-banner.webp 0.0KB 1
+
+SUMMARY
+login-mobile {"base":{"lcp":3380,"kb":0,"n":1,"el":"H2"},"now":{"lcp":3408,"kb":0,"n":1,"el":"H2"},"now2":{"lcp":3376,"kb":0,"n":1,"el":"H2"}} jitter 32 PASS
+my-mobile {"base":{"lcp":5440,"kb":0,"n":1,"el":"SECTION profile-banner.webp"},"now":{"lcp":5292,"kb":0,"n":1,"el":"IMG space-banner.webp"},"now2":{"lcp":5648,"kb":0,"n":1,"el":"IMG space-banner.webp"}} jitter 356 PASS

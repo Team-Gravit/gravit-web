@@ -1,0 +1,202 @@
+{
+  "lesson-result-mobile": [
+    {
+      "interactions": [
+        {
+          "action": "이어서 학습하기",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "이어서 학습하기",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "이어서 학습하기",
+          "inp": 88,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 88
+    },
+    {
+      "interactions": [
+        {
+          "action": "이어서 학습하기",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "이어서 학습하기",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "이어서 학습하기",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "이어서 학습하기",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    }
+  ],
+  "incorrect-mobile": [
+    {
+      "interactions": [
+        {
+          "action": "보기 1",
+          "inp": 40,
+          "event": "pointerdown",
+          "target": null
+        },
+        {
+          "action": "다음",
+          "inp": 32,
+          "event": "pointerdown",
+          "target": "button.group/button.relative.inline-flex \"다음\""
+        }
+      ],
+      "inp": 40
+    },
+    {
+      "interactions": [
+        {
+          "action": "보기 1",
+          "inp": 64,
+          "event": "pointerdown",
+          "target": null
+        },
+        {
+          "action": "다음",
+          "inp": 40,
+          "event": "pointerdown",
+          "target": "button.group/button.relative.inline-flex \"다음\""
+        }
+      ],
+      "inp": 64
+    },
+    {
+      "interactions": [
+        {
+          "action": "보기 1",
+          "inp": 40,
+          "event": "pointerdown",
+          "target": null
+        },
+        {
+          "action": "다음",
+          "inp": 40,
+          "event": "pointerdown",
+          "target": "button.group/button.relative.inline-flex \"다음\""
+        }
+      ],
+      "inp": 40
+    },
+    {
+      "interactions": [
+        {
+          "action": "보기 1",
+          "inp": 32,
+          "event": "pointerdown",
+          "target": null
+        },
+        {
+          "action": "다음",
+          "inp": 40,
+          "event": "pointerdown",
+          "target": "button.group/button.relative.inline-flex \"다음\""
+        }
+      ],
+      "inp": 40
+    },
+    {
+      "interactions": [
+        {
+          "action": "보기 1",
+          "inp": 40,
+          "event": "pointerdown",
+          "target": null
+        },
+        {
+          "action": "다음",
+          "inp": 32,
+          "event": "pointerdown",
+          "target": "button.group/button.relative.inline-flex \"다음\""
+        }
+      ],
+      "inp": 40
+    },
+    {
+      "interactions": [
+        {
+          "action": "보기 1",
+          "inp": 32,
+          "event": "pointerdown",
+          "target": null
+        },
+        {
+          "action": "다음",
+          "inp": 40,
+          "event": "pointerdown",
+          "target": "button.group/button.relative.inline-flex \"다음\""
+        }
+      ],
+      "inp": 40
+    },
+    {
+      "interactions": [
+        {
+          "action": "보기 1",
+          "inp": 40,
+          "event": "pointerdown",
+          "target": null
+        },
+        {
+          "action": "다음",
+          "inp": 32,
+          "event": "pointerdown",
+          "target": "button.group/button.relative.inline-flex \"다음\""
+        }
+      ],
+      "inp": 40
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+unit-desktop | INP 56 (48~56) | Lesson01: 56
+my-learning-desktop | INP 48 (48~56) | a[href="/my/league"]: 48
+lesson-result-desktop | INP 56 (40~64) | 이어서 학습하기: 56
+incorrect-desktop | INP 48 (48~56) | 보기 1: 40 / 다음: 48
+notice-desktop | INP 56 (48~64) | 공지 1 ·: 56
+learning-ios | INP 48 (48~56) | 자료구조 학습하기: 48
+chapter-ios | INP 48 (48~56) | Unit01: 48
+lesson-result-ios | INP 48 (48~168) | 이어서 학습하기: 48
+onboarding-success-ios | INP 64 (48~80) | 홈으로: 64
+notice-ios | INP 48 (48~64) | 공지 1 ·: 48
+main-mweb | INP 56 (48~176) | 전체 학습화면 보기: 56
+my-learning-mweb | INP 56 (48~64) | a[href="/my/league"]: 56
+lesson-result-mweb | INP 48 (48~88) | 이어서 학습하기: 48

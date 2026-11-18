@@ -1,0 +1,63 @@
+my-edit-mweb 1 inp 56 다음 프로필 색:56 input 입력:0
+my-edit-mweb 2 inp 56 다음 프로필 색:56 input 입력:0
+my-edit-mweb 3 inp 48 다음 프로필 색:48 input 입력:0
+my-edit-mweb 4 inp 56 다음 프로필 색:56 input 입력:0
+my-edit-mweb 5 inp 48 다음 프로필 색:48 input 입력:0
+my-edit-mweb 6 inp 56 다음 프로필 색:56 input 입력:0
+my-edit-mweb 7 inp 48 다음 프로필 색:48 input 입력:0
+notifications-mweb 1 inp 56 학습하러 가기:56
+notifications-mweb 2 inp 48 학습하러 가기:48
+notifications-mweb 3 inp 48 학습하러 가기:48
+notifications-mweb 4 inp 56 학습하러 가기:56
+notifications-mweb 5 inp 56 학습하러 가기:56
+notifications-mweb 6 inp 48 학습하러 가기:48
+notifications-mweb 7 inp 48 학습하러 가기:48
+onboarding-mweb 1 inp 56 다음 프로필 색:56 input 입력:0
+onboarding-mweb 2 inp 48 다음 프로필 색:48 input 입력:0
+onboarding-mweb 3 inp 48 다음 프로필 색:48 input 입력:0
+onboarding-mweb 4 inp 56 다음 프로필 색:56 input 입력:0
+onboarding-mweb 5 inp 56 다음 프로필 색:56 input 입력:0
+onboarding-mweb 6 inp 56 다음 프로필 색:56 input 입력:0
+onboarding-mweb 7 inp 48 다음 프로필 색:48 input 입력:0
+onboarding-success-mweb 1 inp 48 홈으로:48
+onboarding-success-mweb 2 inp 48 홈으로:48
+onboarding-success-mweb 3 inp 48 홈으로:48
+onboarding-success-mweb 4 inp 56 홈으로:56
+onboarding-success-mweb 5 inp 56 홈으로:56
+onboarding-success-mweb 6 inp 48 홈으로:48
+onboarding-success-mweb 7 inp 48 홈으로:48
+settings-mweb 1 inp 56 공지사항:56
+settings-mweb 2 inp 48 공지사항:48
+settings-mweb 3 inp 48 공지사항:48
+settings-mweb 4 inp 48 공지사항:48
+settings-mweb 5 inp 56 공지사항:56
+settings-mweb 6 inp 48 공지사항:48
+settings-mweb 7 inp 56 공지사항:56
+inquiry-mweb 1 inp 56 문의 1:48 문의 2:56
+inquiry-mweb 2 inp 48 문의 1:48 문의 2:48
+inquiry-mweb 3 inp 72 문의 1:56 문의 2:72
+inquiry-mweb 4 inp 64 문의 1:64 문의 2:64
+inquiry-mweb 5 inp 56 문의 1:48 문의 2:56
+inquiry-mweb 6 inp 64 문의 1:64 문의 2:64
+inquiry-mweb 7 inp 48 문의 1:48 문의 2:48
+inquiry-new-mweb 1 inp 64 문의 유형을 선택해주세요.:64 input 입력:56 textarea 입력:40
+inquiry-new-mweb 2 inp 64 문의 유형을 선택해주세요.:64 input 입력:40 textarea 입력:48
+inquiry-new-mweb 3 inp 64 문의 유형을 선택해주세요.:64 input 입력:40 textarea 입력:48
+inquiry-new-mweb 4 inp 64 문의 유형을 선택해주세요.:64 input 입력:56 textarea 입력:40
+inquiry-new-mweb 5 inp 64 문의 유형을 선택해주세요.:64 input 입력:40 textarea 입력:48
+inquiry-new-mweb 6 inp 72 문의 유형을 선택해주세요.:64 input 입력:72 textarea 입력:32
+inquiry-new-mweb 7 inp 64 문의 유형을 선택해주세요.:64 input 입력:48 textarea 입력:40
+notice-mweb 1 inp 48 공지 1 ·:48
+notice-mweb 2 inp 96 공지 1 ·:96
+notice-mweb 3 inp 56 공지 1 ·:56
+notice-mweb 4 inp 48 공지 1 ·:48
+notice-mweb 5 inp 48 공지 1 ·:48
+notice-mweb 6 inp 48 공지 1 ·:48
+notice-mweb 7 inp 40 공지 1 ·:40
+notice-detail-mweb 1 inp 64 뒤로 가기:64
+notice-detail-mweb 2 inp 48 뒤로 가기:48
+notice-detail-mweb 3 inp 56 뒤로 가기:56
+notice-detail-mweb 4 inp 56 뒤로 가기:56
+notice-detail-mweb 5 inp 56 뒤로 가기:56
+notice-detail-mweb 6 inp 64 뒤로 가기:64
+notice-detail-mweb 7 inp 56 뒤로 가기:56

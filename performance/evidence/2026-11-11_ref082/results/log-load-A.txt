@@ -1,0 +1,119 @@
+main-mobile 1 fcp 5524 lcp 5524 cls 0.009 tbt 0 | img.size-full.object-cover.object-top hero-narrow-decoration-PVHiZoCX.webp
+main-mobile 2 fcp 3780 lcp 3780 cls 0.009 tbt 236 | img.size-full.object-cover.object-top hero-narrow-decoration-PVHiZoCX.webp
+main-mobile 3 fcp 4264 lcp 4264 cls 0.009 tbt 301 | img.size-full.object-cover.object-top hero-narrow-decoration-PVHiZoCX.webp
+main-mobile 4 fcp 4044 lcp 4044 cls 0.009 tbt 230 | img.size-full.object-cover.object-top hero-narrow-decoration-PVHiZoCX.webp
+main-mobile 5 fcp 3984 lcp 3984 cls 0.009 tbt 239 | img.size-full.object-cover.object-top hero-narrow-decoration-PVHiZoCX.webp
+main-mobile 6 fcp 4084 lcp 4084 cls 0.009 tbt 184 | img.size-full.object-cover.object-top hero-narrow-decoration-PVHiZoCX.webp
+main-mobile 7 fcp 3700 lcp 3700 cls 0.009 tbt 224 | img.size-full.object-cover.object-top hero-narrow-decoration-PVHiZoCX.webp
+main-desktop 1 fcp 5220 lcp 5220 cls 0.001 tbt 0 | img.size-full.object-cover.object-top space-banner-MwsmKPWE.webp
+main-desktop 2 fcp 3832 lcp 3832 cls 0.001 tbt 202 | img.size-full.object-cover.object-top space-banner-MwsmKPWE.webp
+main-desktop 3 fcp 3992 lcp 3992 cls 0.001 tbt 237 | img.size-full.object-cover.object-top space-banner-MwsmKPWE.webp
+main-desktop 4 fcp 3948 lcp 3948 cls 0.001 tbt 272 | img.size-full.object-cover.object-top space-banner-MwsmKPWE.webp
+main-desktop 5 fcp 4124 lcp 4124 cls 0.001 tbt 239 | img.size-full.object-cover.object-top space-banner-MwsmKPWE.webp
+main-desktop 6 fcp 4440 lcp 4440 cls 0.001 tbt 320 | img.size-full.object-cover.object-top space-banner-MwsmKPWE.webp
+main-desktop 7 fcp 3752 lcp 3752 cls 0.001 tbt 194 | img.size-full.object-cover.object-top space-banner-MwsmKPWE.webp
+learning-mobile 1 fcp 4052 lcp 4052 cls 0.000 tbt 105 | img.size-full.object-cover.object-top chapter-card-decoration-BMW7jce4.webp
+learning-mobile 2 fcp 3516 lcp 3516 cls 0.000 tbt 74 | img.size-full.object-cover.object-top chapter-card-decoration-BMW7jce4.webp
+learning-mobile 3 fcp 3588 lcp 3588 cls 0.000 tbt 88 | img.size-full.object-cover.object-top chapter-card-decoration-BMW7jce4.webp
+learning-mobile 4 fcp 3568 lcp 3568 cls 0.000 tbt 71 | img.size-full.object-cover.object-top chapter-card-decoration-BMW7jce4.webp
+learning-mobile 5 fcp 3560 lcp 3560 cls 0.000 tbt 49 | img.size-full.object-cover.object-top chapter-card-decoration-BMW7jce4.webp
+learning-mobile 6 fcp 3464 lcp 3464 cls 0.000 tbt 71 | img.size-full.object-cover.object-top chapter-card-decoration-BMW7jce4.webp
+learning-mobile 7 fcp 3640 lcp 3640 cls 0.000 tbt 71 | img.size-full.object-cover.object-top chapter-card-decoration-BMW7jce4.webp
+learning-desktop 1 fcp 4140 lcp 4140 cls 0.007 tbt 144 | img.size-full.object-cover.object-top space-banner-MwsmKPWE.webp
+learning-desktop 2 fcp 3808 lcp 3808 cls 0.007 tbt 122 | img.size-full.object-cover.object-top space-banner-MwsmKPWE.webp
+learning-desktop 3 fcp 3904 lcp 3904 cls 0.007 tbt 128 | img.size-full.object-cover.object-top space-banner-MwsmKPWE.webp
+learning-desktop 4 fcp 3700 lcp 3700 cls 0.007 tbt 126 | img.size-full.object-cover.object-top space-banner-MwsmKPWE.webp
+learning-desktop 5 fcp 4088 lcp 4088 cls 0.007 tbt 147 | img.size-full.object-cover.object-top space-banner-MwsmKPWE.webp
+learning-desktop 6 fcp 3680 lcp 3680 cls 0.007 tbt 107 | img.size-full.object-cover.object-top space-banner-MwsmKPWE.webp
+learning-desktop 7 fcp 3972 lcp 3972 cls 0.007 tbt 128 | img.size-full.object-cover.object-top space-banner-MwsmKPWE.webp
+chapter-mobile 1 fcp 4500 lcp 4880 cls 0.006 tbt 207 | h2.break-keep.text-headline2.text-text-2 "Unit03 - 유닛 3 · 스택과 큐" 
+chapter-mobile 2 fcp 4048 lcp 4248 cls 0.006 tbt 115 | h2.break-keep.text-headline2.text-text-2 "Unit03 - 유닛 3 · 스택과 큐" 
+chapter-mobile 3 fcp 3864 lcp 4044 cls 0.006 tbt 89 | h2.break-keep.text-headline2.text-text-2 "Unit03 - 유닛 3 · 스택과 큐" 
+chapter-mobile 4 fcp 4320 lcp 4520 cls 0.006 tbt 134 | h2.break-keep.text-headline2.text-text-2 "Unit03 - 유닛 3 · 스택과 큐" 
+chapter-mobile 5 fcp 3840 lcp 3956 cls 0.006 tbt 52 | h2.break-keep.text-headline2.text-text-2 "Unit03 - 유닛 3 · 스택과 큐" 
+chapter-mobile 6 fcp 3928 lcp 4180 cls 0.006 tbt 157 | h2.break-keep.text-headline2.text-text-2 "Unit03 - 유닛 3 · 스택과 큐" 
+chapter-mobile 7 fcp 4068 lcp 4388 cls 0.006 tbt 188 | h2.break-keep.text-headline2.text-text-2 "Unit03 - 유닛 3 · 스택과 큐" 
+unit-mobile 1 fcp 5056 lcp 5188 cls 0.020 tbt 0 | img.pointer-events-none.absolute.inset-0 starfield-B6KO2C6x.avif
+unit-mobile 2 fcp 4068 lcp 4288 cls 0.020 tbt 128 | img.pointer-events-none.absolute.inset-0 starfield-B6KO2C6x.avif
+unit-mobile 3 fcp 4000 lcp 4316 cls 0.020 tbt 148 | img.pointer-events-none.absolute.inset-0 starfield-B6KO2C6x.avif
+unit-mobile 4 fcp 3868 lcp 4068 cls 0.020 tbt 101 | img.pointer-events-none.absolute.inset-0 starfield-B6KO2C6x.avif
+unit-mobile 5 fcp 4184 lcp 4448 cls 0.020 tbt 173 | img.pointer-events-none.absolute.inset-0 starfield-B6KO2C6x.avif
+unit-mobile 6 fcp 4328 lcp 4464 cls 0.020 tbt 0 | img.pointer-events-none.absolute.inset-0 starfield-B6KO2C6x.avif
+unit-mobile 7 fcp 4116 lcp 4448 cls 0.020 tbt 144 | img.pointer-events-none.absolute.inset-0 starfield-B6KO2C6x.avif
+concept-note-mobile 1 fcp 3868 lcp 5568 cls 0.291 tbt 1296 | code.language-ts "const stack: number[] = []; st" 
+concept-note-mobile 2 fcp 3252 lcp 4852 cls 0.291 tbt 1233 | code.language-ts "const stack: number[] = []; st" 
+concept-note-mobile 3 fcp 3428 lcp 4980 cls 0.291 tbt 1182 | code.language-ts "const stack: number[] = []; st" 
+concept-note-mobile 4 fcp 3336 lcp 4952 cls 0.291 tbt 1263 | code.language-ts "const stack: number[] = []; st" 
+concept-note-mobile 5 fcp 3256 lcp 4704 cls 0.291 tbt 1063 | code.language-ts "const stack: number[] = []; st" 
+concept-note-mobile 6 fcp 3124 lcp 4672 cls 0.291 tbt 1177 | code.language-ts "const stack: number[] = []; st" 
+concept-note-mobile 7 fcp 3460 lcp 5092 cls 0.291 tbt 1269 | code.language-ts "const stack: number[] = []; st" 
+concept-note-desktop 1 fcp 4536 lcp 6084 cls 0.059 tbt 1338 | code.language-ts "const stack: number[] = []; st" 
+concept-note-desktop 2 fcp 4384 lcp 5636 cls 0.059 tbt 1171 | code.language-ts "const stack: number[] = []; st" 
+concept-note-desktop 3 fcp 4440 lcp 5788 cls 0.059 tbt 606 | code.language-ts "const stack: number[] = []; st" 
+concept-note-desktop 4 fcp 4276 lcp 5624 cls 0.059 tbt 1133 | code.language-ts "const stack: number[] = []; st" 
+concept-note-desktop 5 fcp 4300 lcp 5864 cls 0.059 tbt 1323 | code.language-ts "const stack: number[] = []; st" 
+concept-note-desktop 6 fcp 4724 lcp 5856 cls 0.059 tbt 557 | code.language-ts "const stack: number[] = []; st" 
+concept-note-desktop 7 fcp 4048 lcp 5596 cls 0.059 tbt 1314 | code.language-ts "const stack: number[] = []; st" 
+league-mobile 1 fcp 3532 lcp 5300 cls 0.000 tbt 642 | img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg
+league-mobile 2 fcp 3112 lcp 4292 cls 0.000 tbt 642 | img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg
+league-mobile 3 fcp 3112 lcp 4396 cls 0.000 tbt 577 | img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg
+league-mobile 4 fcp 3016 lcp 4164 cls 0.000 tbt 561 | img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg
+league-mobile 5 fcp 3136 lcp 4352 cls 0.000 tbt 532 | img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg
+league-mobile 6 fcp 3168 lcp 4416 cls 0.000 tbt 546 | img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg
+league-mobile 7 fcp 3040 lcp 4240 cls 0.000 tbt 459 | img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg
+league-desktop 1 fcp 3584 lcp 5416 cls 0.004 tbt 833 | img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg
+league-desktop 2 fcp 3608 lcp 4924 cls 0.000 tbt 882 | img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg
+league-desktop 3 fcp 3396 lcp 4676 cls 0.000 tbt 874 | img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg
+league-desktop 4 fcp 3740 lcp 4948 cls 0.003 tbt 595 | img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg
+league-desktop 5 fcp 3128 lcp 4344 cls 0.003 tbt 671 | img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg
+league-desktop 6 fcp 3396 lcp 4628 cls 0.003 tbt 578 | img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg
+league-desktop 7 fcp 3464 lcp 4696 cls 0.003 tbt 869 | img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg
+friends-mobile 1 fcp 3444 lcp 4096 cls 0.000 tbt 207 | span.truncate.text-label2.text-text-3 "@chulsoo22" 
+friends-mobile 2 fcp 3336 lcp 3968 cls 0.000 tbt 189 | span.truncate.text-label2.text-text-3 "@chulsoo22" 
+friends-mobile 3 fcp 3152 lcp 3784 cls 0.000 tbt 178 | span.truncate.text-label2.text-text-3 "@chulsoo22" 
+friends-mobile 4 fcp 3412 lcp 4076 cls 0.000 tbt 235 | span.truncate.text-label2.text-text-3 "@chulsoo22" 
+friends-mobile 5 fcp 3424 lcp 4088 cls 0.000 tbt 207 | span.truncate.text-label2.text-text-3 "@chulsoo22" 
+friends-mobile 6 fcp 3380 lcp 4044 cls 0.000 tbt 220 | span.truncate.text-label2.text-text-3 "@chulsoo22" 
+friends-mobile 7 fcp 3316 lcp 4032 cls 0.000 tbt 274 | span.truncate.text-label2.text-text-3 "@chulsoo22" 
+my-summary-mobile 1 fcp 3584 lcp 3584 cls 0.006 tbt 798 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+my-summary-mobile 2 fcp 3528 lcp 3528 cls 0.006 tbt 696 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+my-summary-mobile 3 fcp 3452 lcp 3452 cls 0.006 tbt 831 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+my-summary-mobile 4 fcp 3496 lcp 3496 cls 0.006 tbt 701 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+my-summary-mobile 5 fcp 3364 lcp 3364 cls 0.006 tbt 679 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+my-summary-mobile 6 fcp 3296 lcp 3296 cls 0.006 tbt 590 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+my-summary-mobile 7 fcp 3536 lcp 3536 cls 0.006 tbt 789 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+my-summary-desktop 1 fcp 3696 lcp 3696 cls 0.003 tbt 694 | img.size-full.object-cover.object-top space-banner-MwsmKPWE.webp
+my-summary-desktop 2 fcp 3320 lcp 3320 cls 0.003 tbt 635 | img.size-full.object-cover.object-top space-banner-MwsmKPWE.webp
+my-summary-desktop 3 fcp 3520 lcp 3520 cls 0.003 tbt 613 | img.size-full.object-cover.object-top space-banner-MwsmKPWE.webp
+my-summary-desktop 4 fcp 3376 lcp 3376 cls 0.003 tbt 719 | img.size-full.object-cover.object-top space-banner-MwsmKPWE.webp
+my-summary-desktop 5 fcp 3360 lcp 3360 cls 0.003 tbt 617 | img.size-full.object-cover.object-top space-banner-MwsmKPWE.webp
+my-summary-desktop 6 fcp 3332 lcp 3332 cls 0.003 tbt 711 | img.size-full.object-cover.object-top space-banner-MwsmKPWE.webp
+my-summary-desktop 7 fcp 3364 lcp 3364 cls 0.003 tbt 687 | img.size-full.object-cover.object-top space-banner-MwsmKPWE.webp
+my-learning-mobile 1 fcp 3848 lcp 3848 cls 0.002 tbt 487 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+my-learning-mobile 2 fcp 3292 lcp 3292 cls 0.002 tbt 312 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+my-learning-mobile 3 fcp 3368 lcp 3368 cls 0.002 tbt 287 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+my-learning-mobile 4 fcp 3368 lcp 3368 cls 0.002 tbt 279 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+my-learning-mobile 5 fcp 3332 lcp 3332 cls 0.002 tbt 288 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+my-learning-mobile 6 fcp 3560 lcp 3560 cls 0.002 tbt 273 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+my-learning-mobile 7 fcp 3428 lcp 3428 cls 0.002 tbt 314 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+my-league-mobile 1 fcp 3680 lcp 3680 cls 0.002 tbt 353 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+my-league-mobile 2 fcp 3636 lcp 3636 cls 0.002 tbt 208 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+my-league-mobile 3 fcp 3492 lcp 3492 cls 0.002 tbt 155 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+my-league-mobile 4 fcp 3372 lcp 3372 cls 0.002 tbt 187 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+my-league-mobile 5 fcp 3380 lcp 3380 cls 0.002 tbt 199 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+my-league-mobile 6 fcp 3456 lcp 3456 cls 0.002 tbt 208 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+my-league-mobile 7 fcp 3184 lcp 3184 cls 0.002 tbt 180 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+my-social-mobile 1 fcp 3784 lcp 3784 cls 0.002 tbt 384 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+my-social-mobile 2 fcp 3564 lcp 3564 cls 0.002 tbt 222 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+my-social-mobile 3 fcp 3492 lcp 3492 cls 0.002 tbt 224 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+my-social-mobile 4 fcp 3460 lcp 3460 cls 0.002 tbt 186 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+my-social-mobile 5 fcp 3500 lcp 3500 cls 0.002 tbt 207 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+my-social-mobile 6 fcp 3456 lcp 3456 cls 0.002 tbt 189 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+my-social-mobile 7 fcp 3424 lcp 3424 cls 0.180 tbt 242 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+friend-search-mobile 1 fcp 3780 lcp 3780 cls 0.002 tbt 66 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+friend-search-mobile 2 fcp 3436 lcp 3436 cls 0.002 tbt 68 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+friend-search-mobile 3 fcp 3308 lcp 3308 cls 0.002 tbt 48 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+friend-search-mobile 4 fcp 3396 lcp 3396 cls 0.002 tbt 39 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+friend-search-mobile 5 fcp 3240 lcp 3240 cls 0.002 tbt 31 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+friend-search-mobile 6 fcp 3352 lcp 3352 cls 0.002 tbt 38 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp
+friend-search-mobile 7 fcp 3696 lcp 3696 cls 0.002 tbt 31 | img.size-full.object-cover.object-top space-banner-B9SXw_Av.webp

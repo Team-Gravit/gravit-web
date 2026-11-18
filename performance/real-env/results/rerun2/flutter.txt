@@ -1,0 +1,6 @@
+diagnose-desktop-inp-X.json lesson-result-desktop INP 중앙 56 범위 40~64 범위>30%  | 56,56,48,40,56,56,64
+diagnose-ios-inp-X.json lesson-result-ios INP 중앙 48 범위 48~168 범위>30% 2배 튐 | 48,48,48,48,48,168,48
+diagnose-ios-inp-X.json onboarding-success-ios INP 중앙 64 범위 48~80 범위>30%  | 48,48,64,72,80,64,48
+diagnose-ios-inp-X.json notice-ios INP 중앙 48 범위 48~64 범위>30%  | 48,48,48,56,48,64,48
+diagnose-mweb-inp-X.json main-mweb INP 중앙 56 범위 48~176 범위>30% 2배 튐 | 56,48,176,56,56,56,48
+diagnose-mweb-inp-X.json lesson-result-mweb INP 중앙 48 범위 48~88 범위>30%  | 48,56,48,48,48,88,48

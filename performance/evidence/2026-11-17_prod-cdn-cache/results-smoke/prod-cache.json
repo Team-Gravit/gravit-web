@@ -1,0 +1,731 @@
+[
+  {
+    "screen": "learning",
+    "run": 1,
+    "cold": {
+      "url": "/learning",
+      "html": {
+        "requestStart": 122,
+        "responseStart": 264,
+        "responseEnd": 266,
+        "transfer": 899
+      },
+      "dcl": 1357,
+      "load": 1381,
+      "lcp": null,
+      "resources": [
+        {
+          "name": "/assets/index-DQ5BPaR2.js",
+          "type": "script",
+          "start": 382,
+          "end": 678,
+          "transfer": 185265,
+          "delivery": "",
+          "status": 200
+        },
+        {
+          "name": "/assets/index-CHWtTX0K.css",
+          "type": "link",
+          "start": 384,
+          "end": 615,
+          "transfer": 22315,
+          "delivery": "",
+          "status": 200
+        },
+        {
+          "name": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "type": "script",
+          "start": 385,
+          "end": 451,
+          "transfer": 0,
+          "delivery": "",
+          "status": 200
+        },
+        {
+          "name": "https://grav-it.inuappcenter.kr/api/v1/auth/reissue",
+          "type": "xmlhttprequest",
+          "start": 2065,
+          "end": 2223,
+          "transfer": 0,
+          "delivery": "",
+          "status": 200
+        },
+        {
+          "name": "/cdn-cgi/rum?",
+          "type": "xmlhttprequest",
+          "start": 2127,
+          "end": 2232,
+          "transfer": 300,
+          "delivery": "",
+          "status": 204
+        },
+        {
+          "name": "/favicon.ico",
+          "type": "other",
+          "start": 2191,
+          "end": 2332,
+          "transfer": 2187,
+          "delivery": "",
+          "status": 200
+        },
+        {
+          "name": "/assets/route-CntO6Mt-.js",
+          "type": "script",
+          "start": 2323,
+          "end": 2443,
+          "transfer": 3650,
+          "delivery": "",
+          "status": 200
+        },
+        {
+          "name": "/assets/useLocation-Bh_EJ5xZ.js",
+          "type": "script",
+          "start": 2327,
+          "end": 2419,
+          "transfer": 423,
+          "delivery": "",
+          "status": 200
+        },
+        {
+          "name": "/assets/learning.index-C9U_jSKk.js",
+          "type": "script",
+          "start": 2344,
+          "end": 2440,
+          "transfer": 17188,
+          "delivery": "",
+          "status": 200
+        },
+        {
+          "name": "/assets/pull-to-refresh-pP76phqT.js",
+          "type": "script",
+          "start": 2349,
+          "end": 2467,
+          "transfer": 3021,
+          "delivery": "",
+          "status": 200
+        },
+        {
+          "name": "/assets/card-status-friiAVw7.js",
+          "type": "script",
+          "start": 2352,
+          "end": 2462,
+          "transfer": 1156,
+          "delivery": "",
+          "status": 200
+        },
+        {
+          "name": "/assets/Combination-aaN-06ob.js",
+          "type": "script",
+          "start": 2356,
+          "end": 2467,
+          "transfer": 5710,
+          "delivery": "",
+          "status": 200
+        },
+        {
+          "name": "/assets/floating-ui.react-dom-Ntx46kvW.js",
+          "type": "script",
+          "start": 2361,
+          "end": 2453,
+          "transfer": 9344,
+          "delivery": "",
+          "status": 200
+        },
+        {
+          "name": "/assets/progress-bar-BSNk0s74.js",
+          "type": "script",
+          "start": 2364,
+          "end": 2481,
+          "transfer": 1058,
+          "delivery": "",
+          "status": 200
+        },
+        {
+          "name": "/assets/skeleton-NmxH31sA.js",
+          "type": "script",
+          "start": 2369,
+          "end": 2479,
+          "transfer": 1518,
+          "delivery": "",
+          "status": 200
+        },
+        {
+          "name": "/assets/hero-greeting-CeVyTSHS.js",
+          "type": "script",
+          "start": 2372,
+          "end": 2496,
+          "transfer": 2048,
+          "delivery": "",
+          "status": 200
+        },
+        {
+          "name": "/assets/space-banner-DeCurbPM.js",
+          "type": "script",
+          "start": 2376,
+          "end": 2482,
+          "transfer": 515,
+          "delivery": "",
+          "status": 200
+        },
+        {
+          "name": "/assets/planets-CnsLAvoU.js",
+          "type": "script",
+          "start": 2379,
+          "end": 2472,
+          "transfer": 1162,
+          "delivery": "",
+          "status": 200
+        },
+        {
+          "name": "/assets/page-title-bar-DFIqe5A_.js",
+          "type": "script",
+          "start": 2383,
+          "end": 2484,
+          "transfer": 1067,
+          "delivery": "",
+          "status": 200
+        },
+        {
+          "name": "/assets/use-history-back-click-BvLGiz-U.js",
+          "type": "script",
+          "start": 2387,
+          "end": 2486,
+          "transfer": 613,
+          "delivery": "",
+          "status": 200
+        },
+        {
+          "name": "/assets/chevron-left-GQ02HbVx.js",
+          "type": "script",
+          "start": 2391,
+          "end": 2490,
+          "transfer": 538,
+          "delivery": "",
+          "status": 200
+        },
+        {
+          "name": "/assets/close-md-CucTSnDF.js",
+          "type": "script",
+          "start": 2394,
+          "end": 2492,
+          "transfer": 551,
+          "delivery": "",
+          "status": 200
+        },
+        {
+          "name": "/assets/route-pVuY1i6h.js",
+          "type": "script",
+          "start": 2408,
+          "end": 2500,
+          "transfer": 565,
+          "delivery": "",
+          "status": 200
+        },
+        {
+          "name": "https://grav-it.inuappcenter.kr/api/v1/users",
+          "type": "xmlhttprequest",
+          "start": 2423,
+          "end": 2438,
+          "transfer": 0,
+          "delivery": "",
+          "status": 200
+        },
+        {
+          "name": "https://grav-it.inuappcenter.kr/api/v1/chapters",
+          "type": "xmlhttprequest",
+          "start": 2433,
+          "end": 2455,
+          "transfer": 0,
+          "delivery": "",
+          "status": 200
+        },
+        {
+          "name": "/assets/PretendardVariable.subset-BIeUhq4T.woff2",
+          "type": "css",
+          "start": 2823,
+          "end": 3253,
+          "transfer": 653756,
+          "delivery": "",
+          "status": 200
+        },
+        {
+          "name": "/assets/chapter-card-decoration-BMW7jce4.webp",
+          "type": "img",
+          "start": 4072,
+          "end": 4166,
+          "transfer": 50062,
+          "delivery": "",
+          "status": 200
+        },
+        {
+          "name": "/assets/planet-01-mercury-DZsd0zpF.webp",
+          "type": "img",
+          "start": 4076,
+          "end": 4190,
+          "transfer": 15066,
+          "delivery": "",
+          "status": 200
+        },
+        {
+          "name": "/assets/planet-02-venus-DfVKs9En.webp",
+          "type": "img",
+          "start": 4080,
+          "end": 4198,
+          "transfer": 15426,
+          "delivery": "",
+          "status": 200
+        },
+        {
+          "name": "/assets/planet-03-earth-DOpvlxUt.webp",
+          "type": "img",
+          "start": 4082,
+          "end": 4185,
+          "transfer": 22002,
+          "delivery": "",
+          "status": 200
+        },
+        {
+          "name": "/assets/planet-04-mars-Bzu45apF.webp",
+          "type": "img",
+          "start": 4086,
+          "end": 4179,
+          "transfer": 16500,
+          "delivery": "",
+          "status": 200
+        },
+        {
+          "name": "/assets/planet-05-jupiter-DnC52Bua.webp",
+          "type": "img",
+          "start": 4089,
+          "end": 4190,
+          "transfer": 16820,
+          "delivery": "",
+          "status": 200
+        },
+        {
+          "name": "/assets/planet-06-saturn-B3PHQ8XV.webp",
+          "type": "img",
+          "start": 4092,
+          "end": 4190,
+          "transfer": 17000,
+          "delivery": "",
+          "status": 200
+        },
+        {
+          "name": "/assets/planet-07-uranus-_EBQyJBH.webp",
+          "type": "img",
+          "start": 4095,
+          "end": 4194,
+          "transfer": 16356,
+          "delivery": "",
+          "status": 200
+        },
+        {
+          "name": "/assets/planet-08-neptune-B5EHHlk5.webp",
+          "type": "img",
+          "start": 4098,
+          "end": 4197,
+          "transfer": 14810,
+          "delivery": "",
+          "status": 200
+        },
+        {
+          "name": "https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961GulimM.woff2",
+          "type": "css",
+          "start": 4213,
+          "end": 4685,
+          "transfer": 131244,
+          "delivery": "",
+          "status": 200
+        },
+        {
+          "name": "https://grav-it.inuappcenter.kr/api/v1/notifications",
+          "type": "xmlhttprequest",
+          "start": 4436,
+          "end": 4461,
+          "transfer": 0,
+          "delivery": "",
+          "status": 200
+        },
+        {
+          "name": "/assets/planet-09-sun-BbBcZX5c.webp",
+          "type": "img",
+          "start": 4855,
+          "end": 4950,
+          "transfer": 25838,
+          "delivery": "",
+          "status": 200
+        },
+        {
+          "name": "/assets/planet-10-pluto-Z6zjAtq6.webp",
+          "type": "img",
+          "start": 4857,
+          "end": 4951,
+          "transfer": 14284,
+          "delivery": "",
+          "status": 200
+        }
+      ]
+    },
+    "warm": {
+      "url": "/learning",
+      "html": {
+        "requestStart": 26,
+        "responseStart": 204,
+        "responseEnd": 207,
+        "transfer": 300
+      },
+      "dcl": 1232,
+      "load": 1237,
+      "lcp": {
+        "time": 5728,
+        "url": "chapter-card-decoration-BMW7jce4.webp",
+        "tag": "img"
+      },
+      "resources": [
+        {
+          "name": "/assets/index-DQ5BPaR2.js",
+          "type": "script",
+          "start": 325,
+          "end": 349,
+          "transfer": 0,
+          "delivery": "cache",
+          "status": 200
+        },
+        {
+          "name": "/assets/index-CHWtTX0K.css",
+          "type": "link",
+          "start": 334,
+          "end": 351,
+          "transfer": 0,
+          "delivery": "cache",
+          "status": 200
+        },
+        {
+          "name": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "type": "script",
+          "start": 339,
+          "end": 353,
+          "transfer": 0,
+          "delivery": "",
+          "status": 200
+        },
+        {
+          "name": "https://grav-it.inuappcenter.kr/api/v1/auth/reissue",
+          "type": "xmlhttprequest",
+          "start": 1515,
+          "end": 1526,
+          "transfer": 0,
+          "delivery": "",
+          "status": 200
+        },
+        {
+          "name": "/cdn-cgi/rum?",
+          "type": "xmlhttprequest",
+          "start": 1562,
+          "end": 1641,
+          "transfer": 300,
+          "delivery": "",
+          "status": 204
+        },
+        {
+          "name": "/assets/route-CntO6Mt-.js",
+          "type": "script",
+          "start": 1660,
+          "end": 1664,
+          "transfer": 0,
+          "delivery": "cache",
+          "status": 200
+        },
+        {
+          "name": "/assets/useLocation-Bh_EJ5xZ.js",
+          "type": "script",
+          "start": 1663,
+          "end": 1669,
+          "transfer": 0,
+          "delivery": "cache",
+          "status": 200
+        },
+        {
+          "name": "/assets/learning.index-C9U_jSKk.js",
+          "type": "script",
+          "start": 1676,
+          "end": 1681,
+          "transfer": 0,
+          "delivery": "cache",
+          "status": 200
+        },
+        {
+          "name": "/assets/pull-to-refresh-pP76phqT.js",
+          "type": "script",
+          "start": 1679,
+          "end": 1685,
+          "transfer": 0,
+          "delivery": "cache",
+          "status": 200
+        },
+        {
+          "name": "/assets/card-status-friiAVw7.js",
+          "type": "script",
+          "start": 1683,
+          "end": 1689,
+          "transfer": 0,
+          "delivery": "cache",
+          "status": 200
+        },
+        {
+          "name": "/assets/Combination-aaN-06ob.js",
+          "type": "script",
+          "start": 1689,
+          "end": 1692,
+          "transfer": 0,
+          "delivery": "cache",
+          "status": 200
+        },
+        {
+          "name": "/assets/floating-ui.react-dom-Ntx46kvW.js",
+          "type": "script",
+          "start": 1692,
+          "end": 1698,
+          "transfer": 0,
+          "delivery": "cache",
+          "status": 200
+        },
+        {
+          "name": "/assets/progress-bar-BSNk0s74.js",
+          "type": "script",
+          "start": 1696,
+          "end": 1700,
+          "transfer": 0,
+          "delivery": "cache",
+          "status": 200
+        },
+        {
+          "name": "/assets/skeleton-NmxH31sA.js",
+          "type": "script",
+          "start": 1700,
+          "end": 1704,
+          "transfer": 0,
+          "delivery": "cache",
+          "status": 200
+        },
+        {
+          "name": "/assets/hero-greeting-CeVyTSHS.js",
+          "type": "script",
+          "start": 1704,
+          "end": 1708,
+          "transfer": 0,
+          "delivery": "cache",
+          "status": 200
+        },
+        {
+          "name": "/assets/space-banner-DeCurbPM.js",
+          "type": "script",
+          "start": 1709,
+          "end": 1714,
+          "transfer": 0,
+          "delivery": "cache",
+          "status": 200
+        },
+        {
+          "name": "/assets/planets-CnsLAvoU.js",
+          "type": "script",
+          "start": 1712,
+          "end": 1717,
+          "transfer": 0,
+          "delivery": "cache",
+          "status": 200
+        },
+        {
+          "name": "/assets/page-title-bar-DFIqe5A_.js",
+          "type": "script",
+          "start": 1716,
+          "end": 1721,
+          "transfer": 0,
+          "delivery": "cache",
+          "status": 200
+        },
+        {
+          "name": "/assets/use-history-back-click-BvLGiz-U.js",
+          "type": "script",
+          "start": 1719,
+          "end": 1725,
+          "transfer": 0,
+          "delivery": "cache",
+          "status": 200
+        },
+        {
+          "name": "/assets/chevron-left-GQ02HbVx.js",
+          "type": "script",
+          "start": 1723,
+          "end": 1731,
+          "transfer": 0,
+          "delivery": "cache",
+          "status": 200
+        },
+        {
+          "name": "/assets/close-md-CucTSnDF.js",
+          "type": "script",
+          "start": 1726,
+          "end": 1731,
+          "transfer": 0,
+          "delivery": "cache",
+          "status": 200
+        },
+        {
+          "name": "/assets/route-pVuY1i6h.js",
+          "type": "script",
+          "start": 1741,
+          "end": 1745,
+          "transfer": 0,
+          "delivery": "cache",
+          "status": 200
+        },
+        {
+          "name": "https://grav-it.inuappcenter.kr/api/v1/users",
+          "type": "xmlhttprequest",
+          "start": 1755,
+          "end": 1766,
+          "transfer": 0,
+          "delivery": "",
+          "status": 200
+        },
+        {
+          "name": "https://grav-it.inuappcenter.kr/api/v1/chapters",
+          "type": "xmlhttprequest",
+          "start": 1764,
+          "end": 1772,
+          "transfer": 0,
+          "delivery": "",
+          "status": 200
+        },
+        {
+          "name": "/assets/PretendardVariable.subset-BIeUhq4T.woff2",
+          "type": "css",
+          "start": 2196,
+          "end": 2203,
+          "transfer": 0,
+          "delivery": "cache",
+          "status": 200
+        },
+        {
+          "name": "/assets/chapter-card-decoration-BMW7jce4.webp",
+          "type": "img",
+          "start": 3449,
+          "end": 3904,
+          "transfer": 300,
+          "delivery": "cache",
+          "status": 200
+        },
+        {
+          "name": "/assets/planet-01-mercury-DZsd0zpF.webp",
+          "type": "img",
+          "start": 3452,
+          "end": 3540,
+          "transfer": 300,
+          "delivery": "cache",
+          "status": 200
+        },
+        {
+          "name": "/assets/planet-02-venus-DfVKs9En.webp",
+          "type": "img",
+          "start": 3455,
+          "end": 3540,
+          "transfer": 300,
+          "delivery": "cache",
+          "status": 200
+        },
+        {
+          "name": "/assets/planet-03-earth-DOpvlxUt.webp",
+          "type": "img",
+          "start": 3456,
+          "end": 3547,
+          "transfer": 300,
+          "delivery": "cache",
+          "status": 200
+        },
+        {
+          "name": "/assets/planet-04-mars-Bzu45apF.webp",
+          "type": "img",
+          "start": 3457,
+          "end": 3540,
+          "transfer": 300,
+          "delivery": "cache",
+          "status": 200
+        },
+        {
+          "name": "/assets/planet-05-jupiter-DnC52Bua.webp",
+          "type": "img",
+          "start": 3460,
+          "end": 3547,
+          "transfer": 300,
+          "delivery": "cache",
+          "status": 200
+        },
+        {
+          "name": "/assets/planet-06-saturn-B3PHQ8XV.webp",
+          "type": "img",
+          "start": 3462,
+          "end": 3561,
+          "transfer": 300,
+          "delivery": "cache",
+          "status": 200
+        },
+        {
+          "name": "/assets/planet-07-uranus-_EBQyJBH.webp",
+          "type": "img",
+          "start": 3466,
+          "end": 3554,
+          "transfer": 300,
+          "delivery": "cache",
+          "status": 200
+        },
+        {
+          "name": "/assets/planet-08-neptune-B5EHHlk5.webp",
+          "type": "img",
+          "start": 3469,
+          "end": 3551,
+          "transfer": 300,
+          "delivery": "cache",
+          "status": 200
+        },
+        {
+          "name": "https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961GulimM.woff2",
+          "type": "css",
+          "start": 3563,
+          "end": 3567,
+          "transfer": 0,
+          "delivery": "cache",
+          "status": 200
+        },
+        {
+          "name": "https://grav-it.inuappcenter.kr/api/v1/notifications",
+          "type": "xmlhttprequest",
+          "start": 3736,
+          "end": 3748,
+          "transfer": 0,
+          "delivery": "",
+          "status": 200
+        },
+        {
+          "name": "/assets/planet-09-sun-BbBcZX5c.webp",
+          "type": "img",
+          "start": 3919,
+          "end": 4001,
+          "transfer": 300,
+          "delivery": "cache",
+          "status": 200
+        },
+        {
+          "name": "/assets/planet-10-pluto-Z6zjAtq6.webp",
+          "type": "img",
+          "start": 3921,
+          "end": 4025,
+          "transfer": 300,
+          "delivery": "cache",
+          "status": 200
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<style>
+  body { margin: 0; padding: 24px; width: 1552px; background: #fff; font-family: Pretendard, 'Malgun Gothic', sans-serif; color: #1f1e1c; }
+  h2 { margin: 0 0 6px; font-size: 26px; }
+  p.lead { margin: 0 0 18px; font-size: 17px; color: #5f5d58; line-height: 1.5; }
+  .row { display: flex; gap: 40px; align-items: flex-start; }
+  figure { margin: 0; position: relative; }
+  figure img { display: block; height: 860px; border: 1px solid #e8e7e3; }
+  .box { position: absolute; border: 4px dashed; border-radius: 4px; box-sizing: border-box; }
+  .icon { border-color: #eb6834; }
+  .quiz { border-color: #2a78d6; }
+  figcaption { margin-top: 10px; font-size: 18px; }
+  figcaption b { margin-right: 4px; }
+  .legend { margin: 0 0 14px; font-size: 16px; display: flex; gap: 20px; }
+  .legend span::before { content: ''; display: inline-block; width: 22px; height: 12px; border: 3px dashed; margin-right: 6px; vertical-align: middle; }
+  .legend .l-icon::before { border-color: #eb6834; }
+  .legend .l-quiz::before { border-color: #2a78d6; }
+</style>
+</head>
+<body>
+  <h2>첫 번들 구성 — 번들 지도 (vite-bundle-visualizer)</h2>
+  <p class="lead">이전 첫 청크에는 아이콘 SVG 전체와 퀴즈 화면 코드가 들어 있었다. 이후에는 쓰는 아이콘만 남고, 퀴즈 코드는 퀴즈 화면에서만 받는 별도 청크가 됐다.</p>
+  <div class="legend"><span class="l-icon">아이콘 SVG 90개</span><span class="l-quiz">퀴즈 화면 코드</span></div>
+  <div class="row">
+    <figure>
+      <img src="bundle-crop-before.png" />
+      <!-- 크롭 원본 1364×1596 → 표시 높이 860 (배율 0.5388) -->
+      <div class="box icon" style="left: 46px; top: 625px; width: 116px; height: 223px"></div>
+      <div class="box quiz" style="left: 8px; top: 311px; width: 158px; height: 120px"></div>
+      <div class="box quiz" style="left: 85px; top: 143px; width: 79px; height: 82px"></div>
+      <figcaption><b>이전</b>· index-*.js 664 KiB</figcaption>
+    </figure>
+    <figure>
+      <img src="bundle-crop-after.png" />
+      <figcaption><b>이후</b>· index-*.js 507 KiB (−24%)</figcaption>
+    </figure>
+  </div>
+</body>
+</html>

@@ -1,0 +1,291 @@
+[
+  {
+    "path": "/main",
+    "finalPath": "/main",
+    "api": [
+      "POST /api/v1/auth/reissue 200",
+      "OPTIONS /api/v1/users 204",
+      "OPTIONS /api/v1/main-pages/profile 204",
+      "OPTIONS /api/v1/main-pages/league 204",
+      "OPTIONS /api/v1/main-pages/weekly-record 204",
+      "OPTIONS /api/v1/main-pages/mission 204",
+      "OPTIONS /api/v1/main-pages/units 204",
+      "OPTIONS /api/v1/main-pages/learning 204",
+      "GET /api/v1/users 200",
+      "GET /api/v1/main-pages/profile 200",
+      "GET /api/v1/main-pages/league 200",
+      "GET /api/v1/main-pages/weekly-record 200",
+      "GET /api/v1/main-pages/mission 200",
+      "GET /api/v1/main-pages/units 200",
+      "GET /api/v1/main-pages/learning 200",
+      "OPTIONS /api/v1/notifications 204",
+      "GET /api/v1/notifications 200"
+    ]
+  },
+  {
+    "path": "/learning",
+    "finalPath": "/learning",
+    "api": [
+      "POST /api/v1/auth/reissue 200",
+      "OPTIONS /api/v1/users 204",
+      "OPTIONS /api/v1/chapters 204",
+      "GET /api/v1/users 200",
+      "GET /api/v1/chapters 200",
+      "OPTIONS /api/v1/notifications 204",
+      "GET /api/v1/notifications 200"
+    ]
+  },
+  {
+    "path": "/learning/chapters/1",
+    "finalPath": "/learning/chapters/1",
+    "api": [
+      "POST /api/v1/auth/reissue 200",
+      "GET /api/v1/users 200",
+      "OPTIONS /api/v1/units/1 204",
+      "GET /api/v1/notifications 200",
+      "GET /api/v1/units/1 200"
+    ]
+  },
+  {
+    "path": "/learning/units/1",
+    "finalPath": "/learning/units/1",
+    "api": [
+      "POST /api/v1/auth/reissue 200",
+      "OPTIONS /api/v1/users 204",
+      "GET /api/v1/users 200",
+      "OPTIONS /api/v1/notifications 204",
+      "OPTIONS /api/v1/lessons/1 204",
+      "GET /api/v1/notifications 200",
+      "GET /api/v1/lessons/1 200"
+    ]
+  },
+  {
+    "path": "/learning/units/1/concept-note",
+    "finalPath": "/learning/units/1/concept-note",
+    "api": [
+      "POST /api/v1/auth/reissue 200",
+      "GET /api/v1/users 200",
+      "OPTIONS /api/v1/cs-notes/units/1 204",
+      "GET /api/v1/notifications 200",
+      "GET /api/v1/cs-notes/units/1 200",
+      "GET /api/v1/lessons/1 200"
+    ]
+  },
+  {
+    "path": "/league",
+    "finalPath": "/league",
+    "api": [
+      "POST /api/v1/auth/reissue 200",
+      "OPTIONS /api/v1/users 204",
+      "GET /api/v1/users 200",
+      "OPTIONS /api/v1/notifications 204",
+      "OPTIONS /api/v1/league/home 204",
+      "OPTIONS /api/v1/ranking/me 204",
+      "GET /api/v1/notifications 200",
+      "GET /api/v1/league/home 200",
+      "GET /api/v1/ranking/me 200",
+      "GET /api/v1/league/1 200",
+      "OPTIONS /api/v1/league/1 204",
+      "OPTIONS /api/v1/ranking/user-leagues/page/0 204",
+      "GET /api/v1/ranking/user-leagues/page/0 200"
+    ]
+  },
+  {
+    "path": "/friends",
+    "finalPath": "/friends",
+    "api": [
+      "POST /api/v1/auth/reissue 200",
+      "GET /api/v1/users 200",
+      "OPTIONS /api/v1/friends/count 204",
+      "GET /api/v1/notifications 200",
+      "GET /api/v1/friends/count 200",
+      "OPTIONS /api/v1/friends/follower 204",
+      "GET /api/v1/friends/follower 200"
+    ]
+  },
+  {
+    "path": "/my/summary",
+    "finalPath": "/my/summary",
+    "api": [
+      "POST /api/v1/auth/reissue 200",
+      "OPTIONS /api/v1/users 204",
+      "GET /api/v1/users 200",
+      "OPTIONS /api/v1/notifications 204",
+      "OPTIONS /api/v1/my-pages/learning/summaries 204",
+      "OPTIONS /api/v1/my-pages/banners 204",
+      "GET /api/v1/notifications 200",
+      "GET /api/v1/my-pages/learning/summaries 200",
+      "GET /api/v1/my-pages/banners 200",
+      "OPTIONS /api/v1/my-pages/learning/history 204",
+      "GET /api/v1/my-pages/learning/history 200"
+    ]
+  },
+  {
+    "path": "/my/learning",
+    "finalPath": "/my/learning",
+    "api": [
+      "POST /api/v1/auth/reissue 200",
+      "GET /api/v1/users 200",
+      "OPTIONS /api/v1/my-pages/learning/weekly-report 204",
+      "OPTIONS /api/v1/my-pages/learning/top-chapters 204",
+      "GET /api/v1/notifications 200",
+      "OPTIONS /api/v1/my-pages/learning/weak-concepts 204",
+      "GET /api/v1/my-pages/learning/weekly-report 200",
+      "GET /api/v1/my-pages/learning/top-chapters 200",
+      "GET /api/v1/my-pages/banners 200",
+      "GET /api/v1/my-pages/learning/weak-concepts 200"
+    ]
+  },
+  {
+    "path": "/my/league",
+    "finalPath": "/my/league",
+    "api": [
+      "POST /api/v1/auth/reissue 200",
+      "OPTIONS /api/v1/users 204",
+      "GET /api/v1/users 200",
+      "OPTIONS /api/v1/notifications 204",
+      "OPTIONS /api/v1/league-history/me 204",
+      "GET /api/v1/notifications 200",
+      "GET /api/v1/league-history/me 200",
+      "OPTIONS /api/v1/my-pages/banners 204",
+      "GET /api/v1/my-pages/banners 200"
+    ]
+  },
+  {
+    "path": "/my/social",
+    "finalPath": "/my/social",
+    "api": [
+      "POST /api/v1/auth/reissue 200",
+      "GET /api/v1/users 200",
+      "OPTIONS /api/v1/friends/count 204",
+      "OPTIONS /api/v1/social/feed 204",
+      "GET /api/v1/notifications 200",
+      "OPTIONS /api/v1/social/recommend 204",
+      "GET /api/v1/friends/count 200",
+      "GET /api/v1/social/feed 200",
+      "GET /api/v1/my-pages/banners 200",
+      "GET /api/v1/social/recommend 200"
+    ]
+  },
+  {
+    "path": "/my/friends/search",
+    "finalPath": "/my/friends/search",
+    "api": [
+      "POST /api/v1/auth/reissue 200",
+      "OPTIONS /api/v1/users 204",
+      "GET /api/v1/users 200",
+      "OPTIONS /api/v1/notifications 204",
+      "OPTIONS /api/v1/my-pages/banners 204",
+      "GET /api/v1/notifications 200",
+      "GET /api/v1/my-pages/banners 200"
+    ]
+  },
+  {
+    "path": "/learning/lessons/1",
+    "finalPath": "/learning/lessons/1",
+    "api": [
+      "POST /api/v1/auth/reissue 200",
+      "GET /api/v1/users 200",
+      "OPTIONS /api/v1/problems/1 204",
+      "GET /api/v1/problems/1 200"
+    ]
+  },
+  {
+    "path": "/learning/units/1/bookmarked-problems",
+    "finalPath": "/learning/units/1/bookmarked-problems",
+    "api": [
+      "POST /api/v1/auth/reissue 200",
+      "OPTIONS /api/v1/users 204",
+      "GET /api/v1/users 200",
+      "OPTIONS /api/v1/bookmarks/1 204",
+      "GET /api/v1/bookmarks/1 200"
+    ]
+  },
+  {
+    "path": "/learning/units/1/incorrect-problems",
+    "finalPath": "/learning/units/1/incorrect-problems",
+    "api": [
+      "POST /api/v1/auth/reissue 200",
+      "GET /api/v1/users 200",
+      "OPTIONS /api/v1/wrong-answered-notes/1 204",
+      "GET /api/v1/wrong-answered-notes/1 200"
+    ]
+  },
+  {
+    "path": "/my/edit",
+    "finalPath": "/my/edit",
+    "api": [
+      "POST /api/v1/auth/reissue 200",
+      "OPTIONS /api/v1/users 204",
+      "GET /api/v1/users 200",
+      "OPTIONS /api/v1/my-pages/banners 204",
+      "GET /api/v1/my-pages/banners 200"
+    ]
+  },
+  {
+    "path": "/notifications",
+    "finalPath": "/notifications",
+    "api": [
+      "POST /api/v1/auth/reissue 200",
+      "GET /api/v1/users 200",
+      "OPTIONS /api/v1/notifications 204",
+      "GET /api/v1/notifications 200"
+    ]
+  },
+  {
+    "path": "/settings",
+    "finalPath": "/settings",
+    "api": [
+      "POST /api/v1/auth/reissue 200",
+      "OPTIONS /api/v1/users 204",
+      "GET /api/v1/users 200",
+      "GET /api/v1/notifications 200"
+    ]
+  },
+  {
+    "path": "/settings/inquiry",
+    "finalPath": "/settings/inquiry",
+    "api": [
+      "POST /api/v1/auth/reissue 200",
+      "GET /api/v1/users 200",
+      "OPTIONS /api/v1/notifications 204",
+      "OPTIONS /api/v1/inquiries 204",
+      "GET /api/v1/notifications 200",
+      "GET /api/v1/inquiries 200"
+    ]
+  },
+  {
+    "path": "/settings/inquiry/new",
+    "finalPath": "/settings/inquiry/new",
+    "api": [
+      "POST /api/v1/auth/reissue 200",
+      "OPTIONS /api/v1/users 204",
+      "GET /api/v1/users 200",
+      "GET /api/v1/notifications 200"
+    ]
+  },
+  {
+    "path": "/settings/notice",
+    "finalPath": "/settings/notice",
+    "api": [
+      "POST /api/v1/auth/reissue 200",
+      "GET /api/v1/users 200",
+      "OPTIONS /api/v1/notifications 204",
+      "OPTIONS /api/v1/notice/summaries/1 204",
+      "GET /api/v1/notifications 200",
+      "GET /api/v1/notice/summaries/1 200"
+    ]
+  },
+  {
+    "path": "/settings/notice/1",
+    "finalPath": "/settings/notice/1",
+    "api": [
+      "POST /api/v1/auth/reissue 200",
+      "OPTIONS /api/v1/users 204",
+      "GET /api/v1/users 200",
+      "OPTIONS /api/v1/notice/1 204",
+      "GET /api/v1/notifications 200",
+      "GET /api/v1/notice/1 200"
+    ]
+  }
+]

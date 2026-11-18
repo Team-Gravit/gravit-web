@@ -1,0 +1,16 @@
+481ms box main > *#0 div.mx-auto.flex.h-full "프로필 편집 요약 학습 리그 소셜"  y0 h280
+481ms box main > * > *#0 section.relative.box-content.w-full "프로필 편집"  y0 h196
+481ms box main > * > *#1 div.flex.flex-1.flex-col "요약 학습 리그 소셜"  y196 h84
+769ms box main > *#0 div.mx-auto.flex.h-full "​ ​ ​ ​ 프로필 편집 요약 학습 리그 "  y0 h779
+769ms box main > * > *#1 div.flex.flex-1.flex-col "요약 학습 리그 소셜 ​ ​ ​ ​ ​ ​ "  y196 h583
+802ms box main > *#0 div.mx-auto.flex.h-full "​ ​ ​ ​ 프로필 편집 요약 학습 리그 "  y0 h776
+802ms box main > * > *#1 div.flex.flex-1.flex-col "요약 학습 리그 소셜 ​ ​ ​ ​ ​ ​ "  y196 h580
+821ms SHIFT 0.002
+    button[button].group/button.relative.inline-flex "프로필 편집"  y106 h37 -> y134 h37
+1111ms box main > *#0 div.mx-auto.flex.h-full "한준서 LV. 3 브론즈 3 @4p9nfz5"  y0 h606
+1111ms box main > * > *#1 div.flex.flex-1.flex-col "요약 학습 리그 소셜 상위 23% 전체 학습"  y196 h410
+1729ms box main > *#0 div.mx-auto.flex.h-full "한준서 LV. 3 브론즈 3 @4p9nfz5"  y0 h790
+1729ms box main > * > *#1 div.flex.flex-1.flex-col "요약 학습 리그 소셜 상위 23% 전체 학습"  y196 h594
+1782ms SHIFT 0.0038
+    div.flex.w-full.items-center "적음 많음"  y556 h14 -> y692 h14
+CLS 합 0.006

@@ -1,0 +1,403 @@
+{
+  "onboarding-mobile": [
+    {
+      "fcp": 2844,
+      "lcp": {
+        "time": 2844,
+        "element": null,
+        "url": null,
+        "size": 3768
+      },
+      "cls": 0.00006609908426676546,
+      "shifts": [
+        {
+          "time": 3033.0999999940395,
+          "value": 0.00006609908426676546,
+          "sources": [
+            "p \"*공백, 특수문자 제외\""
+          ]
+        }
+      ],
+      "tbt": 29,
+      "longTasks": [
+        {
+          "start": 690.8999999910593,
+          "duration": 482
+        },
+        {
+          "start": 1191.2000000029802,
+          "duration": 303
+        },
+        {
+          "start": 1586.5,
+          "duration": 137
+        },
+        {
+          "start": 1749.3999999910593,
+          "duration": 197
+        },
+        {
+          "start": 1947.2999999970198,
+          "duration": 128
+        },
+        {
+          "start": 2450.2000000029802,
+          "duration": 198
+        },
+        {
+          "start": 2648.3999999910593,
+          "duration": 182
+        },
+        {
+          "start": 2969.5,
+          "duration": 79
+        }
+      ],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-d89RXhZc.js",
+          "start": 372,
+          "end": 649,
+          "bytes": 181505
+        },
+        {
+          "kind": "css",
+          "path": "index-DdTWRpSS.css",
+          "start": 379,
+          "end": 495,
+          "bytes": 22279
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/auth/reissue",
+          "start": 1493,
+          "end": 1586,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 1538,
+          "end": 1618,
+          "bytes": 2227
+        },
+        {
+          "kind": "js",
+          "path": "index-BhJl3pJ5.js",
+          "start": 1684,
+          "end": 1770,
+          "bytes": 2614
+        },
+        {
+          "kind": "js",
+          "path": "nickname-field-BCs-QH1E.js",
+          "start": 1688,
+          "end": 1771,
+          "bytes": 2700
+        },
+        {
+          "kind": "js",
+          "path": "chevron-left-BTFWqNBH.js",
+          "start": 1692,
+          "end": 1771,
+          "bytes": 613
+        },
+        {
+          "kind": "js",
+          "path": "route-D9CX7TEL.js",
+          "start": 1704,
+          "end": 1786,
+          "bytes": 683
+        },
+        {
+          "kind": "js",
+          "path": "route-BAkw-PlE.js",
+          "start": 1708,
+          "end": 1787,
+          "bytes": 374
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 1720,
+          "end": 1817,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 1957,
+          "end": 2635,
+          "bytes": 653756
+        }
+      ]
+    },
+    {
+      "fcp": 3072,
+      "lcp": {
+        "time": 3072,
+        "element": null,
+        "url": null,
+        "size": 3768
+      },
+      "cls": 0.00006609908426676546,
+      "shifts": [
+        {
+          "time": 3342.0999999940395,
+          "value": 0.00006609908426676546,
+          "sources": [
+            "p \"*공백, 특수문자 제외\""
+          ]
+        }
+      ],
+      "tbt": 43,
+      "longTasks": [
+        {
+          "start": 574,
+          "duration": 694
+        },
+        {
+          "start": 1285.2000000029802,
+          "duration": 348
+        },
+        {
+          "start": 1713.9000000059605,
+          "duration": 142
+        },
+        {
+          "start": 1887.5999999940395,
+          "duration": 227
+        },
+        {
+          "start": 2115.4000000059605,
+          "duration": 141
+        },
+        {
+          "start": 2617.9000000059605,
+          "duration": 227
+        },
+        {
+          "start": 2846,
+          "duration": 249
+        },
+        {
+          "start": 3261.4000000059605,
+          "duration": 93
+        }
+      ],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-d89RXhZc.js",
+          "start": 247,
+          "end": 530,
+          "bytes": 181505
+        },
+        {
+          "kind": "css",
+          "path": "index-DdTWRpSS.css",
+          "start": 255,
+          "end": 391,
+          "bytes": 22279
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/auth/reissue",
+          "start": 1631,
+          "end": 1713,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 1675,
+          "end": 1758,
+          "bytes": 2227
+        },
+        {
+          "kind": "js",
+          "path": "index-BhJl3pJ5.js",
+          "start": 1806,
+          "end": 1897,
+          "bytes": 2614
+        },
+        {
+          "kind": "js",
+          "path": "nickname-field-BCs-QH1E.js",
+          "start": 1810,
+          "end": 1897,
+          "bytes": 2700
+        },
+        {
+          "kind": "js",
+          "path": "chevron-left-BTFWqNBH.js",
+          "start": 1814,
+          "end": 1897,
+          "bytes": 613
+        },
+        {
+          "kind": "js",
+          "path": "route-D9CX7TEL.js",
+          "start": 1830,
+          "end": 1897,
+          "bytes": 683
+        },
+        {
+          "kind": "js",
+          "path": "route-BAkw-PlE.js",
+          "start": 1835,
+          "end": 1926,
+          "bytes": 374
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 1852,
+          "end": 1927,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 2126,
+          "end": 2802,
+          "bytes": 653756
+        }
+      ]
+    },
+    {
+      "fcp": 3020,
+      "lcp": {
+        "time": 3020,
+        "element": null,
+        "url": null,
+        "size": 3768
+      },
+      "cls": 0.00006609908426676546,
+      "shifts": [
+        {
+          "time": 3261.4000000059605,
+          "value": 0.00006609908426676546,
+          "sources": [
+            "p \"*공백, 특수문자 제외\""
+          ]
+        }
+      ],
+      "tbt": 59,
+      "longTasks": [
+        {
+          "start": 566.2999999970198,
+          "duration": 739
+        },
+        {
+          "start": 1323,
+          "duration": 333
+        },
+        {
+          "start": 1736,
+          "duration": 140
+        },
+        {
+          "start": 1908.1000000089407,
+          "duration": 224
+        },
+        {
+          "start": 2132.5,
+          "duration": 115
+        },
+        {
+          "start": 2636,
+          "duration": 173
+        },
+        {
+          "start": 2810.2999999970198,
+          "duration": 198
+        },
+        {
+          "start": 3168.7000000029802,
+          "duration": 109
+        }
+      ],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-d89RXhZc.js",
+          "start": 229,
+          "end": 511,
+          "bytes": 181505
+        },
+        {
+          "kind": "css",
+          "path": "index-DdTWRpSS.css",
+          "start": 239,
+          "end": 357,
+          "bytes": 22279
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/auth/reissue",
+          "start": 1653,
+          "end": 1735,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 1700,
+          "end": 1782,
+          "bytes": 2227
+        },
+        {
+          "kind": "js",
+          "path": "index-BhJl3pJ5.js",
+          "start": 1825,
+          "end": 1905,
+          "bytes": 2614
+        },
+        {
+          "kind": "js",
+          "path": "nickname-field-BCs-QH1E.js",
+          "start": 1830,
+          "end": 1908,
+          "bytes": 2700
+        },
+        {
+          "kind": "js",
+          "path": "chevron-left-BTFWqNBH.js",
+          "start": 1835,
+          "end": 1908,
+          "bytes": 613
+        },
+        {
+          "kind": "js",
+          "path": "route-D9CX7TEL.js",
+          "start": 1851,
+          "end": 1936,
+          "bytes": 683
+        },
+        {
+          "kind": "js",
+          "path": "route-BAkw-PlE.js",
+          "start": 1857,
+          "end": 1936,
+          "bytes": 374
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 1873,
+          "end": 1966,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 2142,
+          "end": 2811,
+          "bytes": 653756
+        }
+      ]
+    }
+  ]
+}

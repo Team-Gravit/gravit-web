@@ -1,0 +1,15 @@
+/learning  FCP 4592ms
+긴 작업 575 +675ms
+     592ms  v8.evaluateModule (inline)
+      26ms  RunMicrotasks
+      23ms  UpdateLayoutTree
+      15ms  FunctionCall index-d89RXhZc.js
+긴 작업 1277 +342ms
+     274ms  FunctionCall index-d89RXhZc.js
+      56ms  RunMicrotasks
+긴 작업 2663 +772ms
+     399ms  FunctionCall index-d89RXhZc.js
+     199ms  Layout
+      74ms  UpdateLayoutTree
+      66ms  RunMicrotasks
+      12ms  V8.BytecodeBudgetInterrupt

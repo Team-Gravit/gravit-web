@@ -1,0 +1,27 @@
+my-edit-ios 1 fcp 968 lcp 968 cls 0.000 tbt 0 | label.text-headline2.text-text-1 "닉네임 설정" 
+my-edit-ios 2 fcp 928 lcp 928 cls 0.000 tbt 0 | label.text-headline2.text-text-1 "닉네임 설정" 
+my-edit-ios 3 fcp 944 lcp 944 cls 0.000 tbt 0 | label.text-headline2.text-text-1 "닉네임 설정" 
+notifications-ios 1 fcp 320 lcp 320 cls 0.000 tbt 0 | p.text-label1.md:text-heading1.text-text-4 "알림이 없어요. 궁금한 점이 있다면 문의하기를 통해 남" 
+notifications-ios 2 fcp 328 lcp 328 cls 0.000 tbt 0 | p.text-label1.md:text-heading1.text-text-4 "알림이 없어요. 궁금한 점이 있다면 문의하기를 통해 남" 
+notifications-ios 3 fcp 332 lcp 332 cls 0.000 tbt 0 | p.text-label1.md:text-heading1.text-text-4 "알림이 없어요. 궁금한 점이 있다면 문의하기를 통해 남" 
+onboarding-ios 1 fcp 296 lcp 296 cls 0.000 tbt 0 | - 
+onboarding-ios 2 fcp 296 lcp 296 cls 0.000 tbt 0 | - 
+onboarding-ios 3 fcp 292 lcp 292 cls 0.000 tbt 0 | - 
+onboarding-success-ios 1 fcp 284 lcp 372 cls 0.000 tbt 0 | img.mt-10.w-52.5 mascot-celebrate-DGkz6uaw.webp
+onboarding-success-ios 2 fcp 296 lcp 368 cls 0.000 tbt 0 | img.mt-10.w-52.5 mascot-celebrate-DGkz6uaw.webp
+onboarding-success-ios 3 fcp 272 lcp 336 cls 0.000 tbt 0 | img.mt-10.w-52.5 mascot-celebrate-DGkz6uaw.webp
+settings-ios 1 fcp 368 lcp 368 cls 0.000 tbt 0 | span.text-label1.text-text-1.md:text-heading2 "개인정보 처리 방침" 
+settings-ios 2 fcp 380 lcp 380 cls 0.000 tbt 0 | span.text-label1.text-text-1.md:text-heading2 "개인정보 처리 방침" 
+settings-ios 3 fcp 372 lcp 372 cls 0.000 tbt 0 | span.text-label1.text-text-1.md:text-heading2 "개인정보 처리 방침" 
+inquiry-ios 1 fcp 380 lcp 1004 cls 0.045 tbt 0 | h4.text-headline2.text-text-1.md:mb-2 "문의 3 · 레슨 결과 화면에서 점수가 다르게 보여요" 
+inquiry-ios 2 fcp 360 lcp 1000 cls 0.045 tbt 0 | h4.text-headline2.text-text-1.md:mb-2 "문의 3 · 레슨 결과 화면에서 점수가 다르게 보여요" 
+inquiry-ios 3 fcp 372 lcp 980 cls 0.045 tbt 0 | h4.text-headline2.text-text-1.md:mb-2 "문의 3 · 레슨 결과 화면에서 점수가 다르게 보여요" 
+inquiry-new-ios 1 fcp 384 lcp 384 cls 0.000 tbt 0 | h3.pl-1.text-headline2.md:text-heading1 "문의유형을 선택해주세요" 
+inquiry-new-ios 2 fcp 380 lcp 380 cls 0.000 tbt 0 | h3.pl-1.text-headline2.md:text-heading1 "문의유형을 선택해주세요" 
+inquiry-new-ios 3 fcp 388 lcp 388 cls 0.000 tbt 0 | h3.pl-1.text-headline2.md:text-heading1 "문의유형을 선택해주세요" 
+notice-ios 1 fcp 364 lcp 992 cls 0.000 tbt 0 | span.truncate.text-headline2.text-text-1 "공지 10 · 11월 학습 리그 시즌 안내" 
+notice-ios 2 fcp 368 lcp 1012 cls 0.000 tbt 0 | span.truncate.text-headline2.text-text-1 "공지 10 · 11월 학습 리그 시즌 안내" 
+notice-ios 3 fcp 368 lcp 980 cls 0.000 tbt 0 | span.truncate.text-headline2.text-text-1 "공지 10 · 11월 학습 리그 시즌 안내" 
+notice-detail-ios 1 fcp 372 lcp 1004 cls 0.000 tbt 0 | h1.text-heading1.text-text-1.md:text-title1 "공지 1 · 11월 학습 리그 시즌 안내" 
+notice-detail-ios 2 fcp 372 lcp 996 cls 0.000 tbt 0 | h1.text-heading1.text-text-1.md:text-title1 "공지 1 · 11월 학습 리그 시즌 안내" 
+notice-detail-ios 3 fcp 364 lcp 992 cls 0.000 tbt 0 | h1.text-heading1.text-text-1.md:text-title1 "공지 1 · 11월 학습 리그 시즌 안내" 

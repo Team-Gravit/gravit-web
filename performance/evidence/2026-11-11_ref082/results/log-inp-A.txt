@@ -1,0 +1,84 @@
+main-mobile 1 inp 552 전체 학습화면 보기:552
+main-mobile 2 inp 552 전체 학습화면 보기:552
+main-mobile 3 inp 560 전체 학습화면 보기:560
+main-mobile 4 inp 520 전체 학습화면 보기:520
+main-mobile 5 inp 560 전체 학습화면 보기:560
+main-mobile 6 inp 328 전체 학습화면 보기:328
+main-mobile 7 inp 544 전체 학습화면 보기:544
+learning-mobile 1 inp 328 자료구조 학습하기:328
+learning-mobile 2 inp 368 자료구조 학습하기:368
+learning-mobile 3 inp 328 자료구조 학습하기:328
+learning-mobile 4 inp 360 자료구조 학습하기:360
+learning-mobile 5 inp 336 자료구조 학습하기:336
+learning-mobile 6 inp 0 자료구조 학습하기:0
+learning-mobile 7 inp 328 자료구조 학습하기:328
+chapter-mobile 1 inp 808 Unit01:808
+chapter-mobile 2 inp 480 Unit01:480
+chapter-mobile 3 inp 584 Unit01:584
+chapter-mobile 4 inp 488 Unit01:488
+chapter-mobile 5 inp 488 Unit01:488
+chapter-mobile 6 inp 488 Unit01:488
+chapter-mobile 7 inp 488 Unit01:488
+unit-mobile 1 inp 592 Lesson01:592
+unit-mobile 2 inp 488 Lesson01:488
+unit-mobile 3 inp 680 Lesson01:680
+unit-mobile 4 inp 688 Lesson01:688
+unit-mobile 5 inp 584 Lesson01:584
+unit-mobile 6 inp 648 Lesson01:648
+unit-mobile 7 inp 688 Lesson01:688
+concept-note-mobile 1 inp 40 복사:40
+concept-note-mobile 2 inp 48 복사:48
+concept-note-mobile 3 inp 56 복사:56
+concept-note-mobile 4 inp 40 복사:40
+concept-note-mobile 5 inp 56 복사:56
+concept-note-mobile 6 inp 48 복사:48
+concept-note-mobile 7 inp 48 복사:48
+league-mobile 1 inp 216 실버 3:216 골드 1:136
+league-mobile 2 inp 192 실버 3:192 골드 1:136
+league-mobile 3 inp 200 실버 3:200 골드 1:128
+league-mobile 4 inp 168 실버 3:168 골드 1:152
+league-mobile 5 inp 168 실버 3:168 골드 1:136
+league-mobile 6 inp 176 실버 3:176 골드 1:168
+league-mobile 7 inp 176 실버 3:176 골드 1:168
+friends-mobile 1 inp 312 8 팔로잉:312 12 팔로우:200
+friends-mobile 2 inp 272 8 팔로잉:272 12 팔로우:224
+friends-mobile 3 inp 256 8 팔로잉:256 12 팔로우:240
+friends-mobile 4 inp 304 8 팔로잉:304 12 팔로우:192
+friends-mobile 5 inp 328 8 팔로잉:328 12 팔로우:200
+friends-mobile 6 inp 288 8 팔로잉:288 12 팔로우:184
+friends-mobile 7 inp 280 8 팔로잉:280 12 팔로우:224
+my-summary-mobile 1 inp 576 학습 기록 연도 선택:576 a[href="/my/learning"]:232
+my-summary-mobile 2 inp 728 학습 기록 연도 선택:728 a[href="/my/learning"]:224
+my-summary-mobile 3 inp 736 학습 기록 연도 선택:736 a[href="/my/learning"]:272
+my-summary-mobile 4 inp 560 학습 기록 연도 선택:560 a[href="/my/learning"]:216
+my-summary-mobile 5 inp 816 학습 기록 연도 선택:816 a[href="/my/learning"]:280
+my-summary-mobile 6 inp 584 학습 기록 연도 선택:584 a[href="/my/learning"]:240
+my-summary-mobile 7 inp 560 학습 기록 연도 선택:560 a[href="/my/learning"]:224
+my-learning-mobile 1 inp 208 a[href="/my/league"]:208
+my-learning-mobile 2 inp 208 a[href="/my/league"]:208
+my-learning-mobile 3 inp 224 a[href="/my/league"]:224
+my-learning-mobile 4 inp 224 a[href="/my/league"]:224
+my-learning-mobile 5 inp 192 a[href="/my/league"]:192
+my-learning-mobile 6 inp 240 a[href="/my/league"]:240
+my-learning-mobile 7 inp 272 a[href="/my/league"]:272
+my-league-mobile 1 inp 192 a[href="/my/social"]:192
+my-league-mobile 2 inp 208 a[href="/my/social"]:208
+my-league-mobile 3 inp 200 a[href="/my/social"]:200
+my-league-mobile 4 inp 176 a[href="/my/social"]:176
+my-league-mobile 5 inp 288 a[href="/my/social"]:288
+my-league-mobile 6 inp 176 a[href="/my/social"]:176
+my-league-mobile 7 inp 200 a[href="/my/social"]:200
+my-social-mobile 1 inp 216 8 팔로잉:216 a[href="/my/summary"]:대상 없음
+my-social-mobile 2 inp 200 8 팔로잉:200 a[href="/my/summary"]:대상 없음
+my-social-mobile 3 inp 256 8 팔로잉:256 a[href="/my/summary"]:대상 없음
+my-social-mobile 4 inp 224 8 팔로잉:224 a[href="/my/summary"]:대상 없음
+my-social-mobile 5 inp 224 8 팔로잉:224 a[href="/my/summary"]:대상 없음
+my-social-mobile 6 inp 328 8 팔로잉:328 a[href="/my/summary"]:대상 없음
+my-social-mobile 7 inp 208 8 팔로잉:208 a[href="/my/summary"]:대상 없음
+friend-search-mobile 1 ERROR Node is either not clickable or not an Element
+friend-search-mobile 2 ERROR Node is either not clickable or not an Element
+friend-search-mobile 3 ERROR Node is either not clickable or not an Element
+friend-search-mobile 4 ERROR Node is either not clickable or not an Element
+friend-search-mobile 5 ERROR Node is either not clickable or not an Element
+friend-search-mobile 6 ERROR Node is either not clickable or not an Element
+friend-search-mobile 7 ERROR Node is either not clickable or not an Element

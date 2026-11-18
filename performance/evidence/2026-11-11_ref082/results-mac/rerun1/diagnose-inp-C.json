@@ -1,0 +1,202 @@
+{
+  "my-edit-mobile": [
+    {
+      "interactions": [
+        {
+          "action": "다음 프로필 색",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": "svg"
+        },
+        {
+          "action": "input 입력",
+          "inp": 0,
+          "event": null,
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "다음 프로필 색",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": "svg"
+        },
+        {
+          "action": "input 입력",
+          "inp": 0,
+          "event": null,
+          "target": null
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "다음 프로필 색",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": "svg"
+        },
+        {
+          "action": "input 입력",
+          "inp": 0,
+          "event": null,
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "다음 프로필 색",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": "svg"
+        },
+        {
+          "action": "input 입력",
+          "inp": 0,
+          "event": null,
+          "target": null
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "다음 프로필 색",
+          "inp": 64,
+          "event": "pointerdown",
+          "target": "svg"
+        },
+        {
+          "action": "input 입력",
+          "inp": 0,
+          "event": null,
+          "target": null
+        }
+      ],
+      "inp": 64
+    },
+    {
+      "interactions": [
+        {
+          "action": "다음 프로필 색",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": "svg"
+        },
+        {
+          "action": "input 입력",
+          "inp": 0,
+          "event": null,
+          "target": null
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "다음 프로필 색",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": "svg"
+        },
+        {
+          "action": "input 입력",
+          "inp": 0,
+          "event": null,
+          "target": null
+        }
+      ],
+      "inp": 48
+    }
+  ],
+  "settings-mobile": [
+    {
+      "interactions": [
+        {
+          "action": "공지사항",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "공지사항",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "공지사항",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "공지사항",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "공지사항",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "공지사항",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "공지사항",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    }
+  ]
+}

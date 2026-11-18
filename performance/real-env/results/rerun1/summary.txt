@@ -1,0 +1,34 @@
+main-desktop | INP 56 (48~56) | 전체 학습화면 보기: 56
+unit-desktop | INP 48 (48~64) | Lesson01: 48
+league-desktop | INP 64 (56~72) | 실버 3: 56 / 골드 1: 56
+my-summary-desktop | INP 64 (56~72) | 학습 기록 연도 선택: 56 / a[href="/my/learning"]: 56
+my-learning-desktop | INP 56 (48~72) | a[href="/my/league"]: 56
+lesson-result-desktop | INP 48 (40~56) | 이어서 학습하기: 48
+incorrect-desktop | INP 48 (40~56) | 보기 1: 40 / 다음: 48
+onboarding-desktop | INP 56 (48~64) | 다음 프로필 색: 56 / input 입력: 0
+settings-desktop | INP 56 (48~64) | 공지사항: 56
+notice-desktop | INP 64 (48~72) | 공지 1 ·: 64
+notice-detail-desktop | INP 48 (48~56) | 목록으로: 48
+main-desktop | FCP 276 | LCP 292 (284~304) | CLS 0.049 | TBT 0 | n=3
+   LCP: img.size-full.object-cover.object-top space-banner-MwsmKPWE.webp(3)
+   CLS: section.flex.w-full.flex-col "새 주제 시작하기 전체보기 ​ ​ ​ ​ ​ ​",div.inline-block.bg-gray-300.relative,::after(3)
+league-desktop | FCP 260 | LCP 324 (308~336) | CLS 0.000 | TBT 0 | n=7
+   LCP: img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg(7)
+main-ios | INP 48 (48~56) | 전체 학습화면 보기: 48
+learning-ios | INP 48 (48~64) | 자료구조 학습하기: 48
+chapter-ios | INP 48 (48~64) | Unit01: 48
+friend-search-ios | INP 48 (48~48) | a[href="/my/summary"]: 48
+lesson-ios | INP 40 (32~40) | 1번 선지 가리기: 40 / 보기 1: 0 / 다음: 16
+lesson-result-ios | INP 72 (48~176) | 이어서 학습하기: 72
+bookmarked-ios | INP 40 (32~40) | 보기 1: 32 / 다음: 40
+incorrect-ios | INP 40 (32~40) | 보기 1: 32 / 다음: 40
+my-edit-ios | INP 64 (48~64) | 다음 프로필 색: 64 / input 입력: 0
+onboarding-ios | INP 64 (56~72) | 다음 프로필 색: 64 / input 입력: 0
+onboarding-success-ios | INP 56 (48~80) | 홈으로: 56
+notice-ios | INP 64 (48~80) | 공지 1 ·: 64
+main-mweb | INP 48 (40~168) | 전체 학습화면 보기: 48
+my-learning-mweb | INP 48 (48~64) | a[href="/my/league"]: 48
+lesson-result-mweb | INP 48 (48~88) | 이어서 학습하기: 48
+incorrect-mweb | INP 40 (40~40) | 보기 1: 40 / 다음: 32
+inquiry-mweb | INP 56 (48~64) | 문의 1: 48 / 문의 2: 56
+notice-mweb | INP 48 (48~56) | 공지 1 ·: 48

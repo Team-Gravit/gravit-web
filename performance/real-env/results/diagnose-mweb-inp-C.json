@@ -1,0 +1,923 @@
+{
+  "my-edit-mweb": [
+    {
+      "interactions": [
+        {
+          "action": "다음 프로필 색",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": "svg"
+        },
+        {
+          "action": "input 입력",
+          "inp": 0,
+          "event": null,
+          "target": null
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "다음 프로필 색",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": "svg"
+        },
+        {
+          "action": "input 입력",
+          "inp": 0,
+          "event": null,
+          "target": null
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "다음 프로필 색",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": "svg"
+        },
+        {
+          "action": "input 입력",
+          "inp": 0,
+          "event": null,
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "다음 프로필 색",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": "svg"
+        },
+        {
+          "action": "input 입력",
+          "inp": 0,
+          "event": null,
+          "target": null
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "다음 프로필 색",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": "svg"
+        },
+        {
+          "action": "input 입력",
+          "inp": 0,
+          "event": null,
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "다음 프로필 색",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": "svg"
+        },
+        {
+          "action": "input 입력",
+          "inp": 0,
+          "event": null,
+          "target": null
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "다음 프로필 색",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": "svg"
+        },
+        {
+          "action": "input 입력",
+          "inp": 0,
+          "event": null,
+          "target": null
+        }
+      ],
+      "inp": 48
+    }
+  ],
+  "notifications-mweb": [
+    {
+      "interactions": [
+        {
+          "action": "학습하러 가기",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "학습하러 가기",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "학습하러 가기",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "학습하러 가기",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "학습하러 가기",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "학습하러 가기",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "학습하러 가기",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    }
+  ],
+  "onboarding-mweb": [
+    {
+      "interactions": [
+        {
+          "action": "다음 프로필 색",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": "svg"
+        },
+        {
+          "action": "input 입력",
+          "inp": 0,
+          "event": null,
+          "target": null
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "다음 프로필 색",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": "svg"
+        },
+        {
+          "action": "input 입력",
+          "inp": 0,
+          "event": null,
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "다음 프로필 색",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": "svg"
+        },
+        {
+          "action": "input 입력",
+          "inp": 0,
+          "event": null,
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "다음 프로필 색",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": "svg"
+        },
+        {
+          "action": "input 입력",
+          "inp": 0,
+          "event": null,
+          "target": null
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "다음 프로필 색",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": "svg"
+        },
+        {
+          "action": "input 입력",
+          "inp": 0,
+          "event": null,
+          "target": null
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "다음 프로필 색",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": "svg"
+        },
+        {
+          "action": "input 입력",
+          "inp": 0,
+          "event": null,
+          "target": null
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "다음 프로필 색",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": "svg"
+        },
+        {
+          "action": "input 입력",
+          "inp": 0,
+          "event": null,
+          "target": null
+        }
+      ],
+      "inp": 48
+    }
+  ],
+  "onboarding-success-mweb": [
+    {
+      "interactions": [
+        {
+          "action": "홈으로",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "홈으로",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "홈으로",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "홈으로",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "홈으로",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "홈으로",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "홈으로",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    }
+  ],
+  "settings-mweb": [
+    {
+      "interactions": [
+        {
+          "action": "공지사항",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "공지사항",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "공지사항",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "공지사항",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "공지사항",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "공지사항",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "공지사항",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 56
+    }
+  ],
+  "inquiry-mweb": [
+    {
+      "interactions": [
+        {
+          "action": "문의 1",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": "h4.text-headline2.text-text-1.md:mb-2 \"문의 1 · 레슨 결과 화면에서 점수가 다르게 보여요\""
+        },
+        {
+          "action": "문의 2",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": "h4.text-headline2.text-text-1.md:mb-2 \"문의 2 · 레슨 결과 화면에서 점수가 다르게 보여요\""
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "문의 1",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": "h4.text-headline2.text-text-1.md:mb-2 \"문의 1 · 레슨 결과 화면에서 점수가 다르게 보여요\""
+        },
+        {
+          "action": "문의 2",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": "h4.text-headline2.text-text-1.md:mb-2 \"문의 2 · 레슨 결과 화면에서 점수가 다르게 보여요\""
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "문의 1",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": "h4.text-headline2.text-text-1.md:mb-2 \"문의 1 · 레슨 결과 화면에서 점수가 다르게 보여요\""
+        },
+        {
+          "action": "문의 2",
+          "inp": 72,
+          "event": "pointerdown",
+          "target": "h4.text-headline2.text-text-1.md:mb-2 \"문의 2 · 레슨 결과 화면에서 점수가 다르게 보여요\""
+        }
+      ],
+      "inp": 72
+    },
+    {
+      "interactions": [
+        {
+          "action": "문의 1",
+          "inp": 64,
+          "event": "pointerdown",
+          "target": "h4.text-headline2.text-text-1.md:mb-2 \"문의 1 · 레슨 결과 화면에서 점수가 다르게 보여요\""
+        },
+        {
+          "action": "문의 2",
+          "inp": 64,
+          "event": "pointerdown",
+          "target": "h4.text-headline2.text-text-1.md:mb-2 \"문의 2 · 레슨 결과 화면에서 점수가 다르게 보여요\""
+        }
+      ],
+      "inp": 64
+    },
+    {
+      "interactions": [
+        {
+          "action": "문의 1",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": "h4.text-headline2.text-text-1.md:mb-2 \"문의 1 · 레슨 결과 화면에서 점수가 다르게 보여요\""
+        },
+        {
+          "action": "문의 2",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": "h4.text-headline2.text-text-1.md:mb-2 \"문의 2 · 레슨 결과 화면에서 점수가 다르게 보여요\""
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "문의 1",
+          "inp": 64,
+          "event": "pointerdown",
+          "target": "h4.text-headline2.text-text-1.md:mb-2 \"문의 1 · 레슨 결과 화면에서 점수가 다르게 보여요\""
+        },
+        {
+          "action": "문의 2",
+          "inp": 64,
+          "event": "pointerdown",
+          "target": "h4.text-headline2.text-text-1.md:mb-2 \"문의 2 · 레슨 결과 화면에서 점수가 다르게 보여요\""
+        }
+      ],
+      "inp": 64
+    },
+    {
+      "interactions": [
+        {
+          "action": "문의 1",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": "h4.text-headline2.text-text-1.md:mb-2 \"문의 1 · 레슨 결과 화면에서 점수가 다르게 보여요\""
+        },
+        {
+          "action": "문의 2",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": "h4.text-headline2.text-text-1.md:mb-2 \"문의 2 · 레슨 결과 화면에서 점수가 다르게 보여요\""
+        }
+      ],
+      "inp": 48
+    }
+  ],
+  "inquiry-new-mweb": [
+    {
+      "interactions": [
+        {
+          "action": "문의 유형을 선택해주세요.",
+          "inp": 64,
+          "event": "pointerdown",
+          "target": "span.flex-1.truncate.text-left \"문의 유형을 선택해주세요.\""
+        },
+        {
+          "action": "input 입력",
+          "inp": 56,
+          "event": "keyup",
+          "target": "button.w-full.border.bg-white \"문의유형 버그 신고\""
+        },
+        {
+          "action": "textarea 입력",
+          "inp": 40,
+          "event": "keydown",
+          "target": "textarea.h-full.flex-1.resize-none"
+        }
+      ],
+      "inp": 64
+    },
+    {
+      "interactions": [
+        {
+          "action": "문의 유형을 선택해주세요.",
+          "inp": 64,
+          "event": "pointerdown",
+          "target": "span.flex-1.truncate.text-left \"문의 유형을 선택해주세요.\""
+        },
+        {
+          "action": "input 입력",
+          "inp": 40,
+          "event": "keydown",
+          "target": null
+        },
+        {
+          "action": "textarea 입력",
+          "inp": 48,
+          "event": "keydown",
+          "target": "textarea.h-full.flex-1.resize-none"
+        }
+      ],
+      "inp": 64
+    },
+    {
+      "interactions": [
+        {
+          "action": "문의 유형을 선택해주세요.",
+          "inp": 64,
+          "event": "pointerdown",
+          "target": "span.flex-1.truncate.text-left \"문의 유형을 선택해주세요.\""
+        },
+        {
+          "action": "input 입력",
+          "inp": 40,
+          "event": "keydown",
+          "target": null
+        },
+        {
+          "action": "textarea 입력",
+          "inp": 48,
+          "event": "keydown",
+          "target": "textarea.h-full.flex-1.resize-none"
+        }
+      ],
+      "inp": 64
+    },
+    {
+      "interactions": [
+        {
+          "action": "문의 유형을 선택해주세요.",
+          "inp": 64,
+          "event": "pointerdown",
+          "target": "span.flex-1.truncate.text-left \"문의 유형을 선택해주세요.\""
+        },
+        {
+          "action": "input 입력",
+          "inp": 56,
+          "event": "keyup",
+          "target": "button.w-full.border.bg-white \"문의유형 버그 신고\""
+        },
+        {
+          "action": "textarea 입력",
+          "inp": 40,
+          "event": "keydown",
+          "target": "textarea.h-full.flex-1.resize-none"
+        }
+      ],
+      "inp": 64
+    },
+    {
+      "interactions": [
+        {
+          "action": "문의 유형을 선택해주세요.",
+          "inp": 64,
+          "event": "pointerdown",
+          "target": "span.flex-1.truncate.text-left \"문의 유형을 선택해주세요.\""
+        },
+        {
+          "action": "input 입력",
+          "inp": 40,
+          "event": "keydown",
+          "target": null
+        },
+        {
+          "action": "textarea 입력",
+          "inp": 48,
+          "event": "keydown",
+          "target": "textarea.h-full.flex-1.resize-none"
+        }
+      ],
+      "inp": 64
+    },
+    {
+      "interactions": [
+        {
+          "action": "문의 유형을 선택해주세요.",
+          "inp": 64,
+          "event": "pointerdown",
+          "target": "span.flex-1.truncate.text-left \"문의 유형을 선택해주세요.\""
+        },
+        {
+          "action": "input 입력",
+          "inp": 72,
+          "event": "keyup",
+          "target": "button.w-full.border.bg-white \"문의유형 버그 신고\""
+        },
+        {
+          "action": "textarea 입력",
+          "inp": 32,
+          "event": "keydown",
+          "target": "textarea.h-full.flex-1.resize-none"
+        }
+      ],
+      "inp": 72
+    },
+    {
+      "interactions": [
+        {
+          "action": "문의 유형을 선택해주세요.",
+          "inp": 64,
+          "event": "pointerdown",
+          "target": "span.flex-1.truncate.text-left \"문의 유형을 선택해주세요.\""
+        },
+        {
+          "action": "input 입력",
+          "inp": 48,
+          "event": "keydown",
+          "target": null
+        },
+        {
+          "action": "textarea 입력",
+          "inp": 40,
+          "event": "keydown",
+          "target": "textarea.h-full.flex-1.resize-none"
+        }
+      ],
+      "inp": 64
+    }
+  ],
+  "notice-mweb": [
+    {
+      "interactions": [
+        {
+          "action": "공지 1 ·",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "공지 1 ·",
+          "inp": 96,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 96
+    },
+    {
+      "interactions": [
+        {
+          "action": "공지 1 ·",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "공지 1 ·",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "공지 1 ·",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "공지 1 ·",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "공지 1 ·",
+          "inp": 40,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 40
+    }
+  ],
+  "notice-detail-mweb": [
+    {
+      "interactions": [
+        {
+          "action": "뒤로 가기",
+          "inp": 64,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 64
+    },
+    {
+      "interactions": [
+        {
+          "action": "뒤로 가기",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "뒤로 가기",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "뒤로 가기",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "뒤로 가기",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "뒤로 가기",
+          "inp": 64,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 64
+    },
+    {
+      "interactions": [
+        {
+          "action": "뒤로 가기",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 56
+    }
+  ]
+}

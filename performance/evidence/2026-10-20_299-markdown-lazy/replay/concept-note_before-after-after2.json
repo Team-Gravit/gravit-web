@@ -1,0 +1,820 @@
+{
+  "/learning/units/11/concept-note before": [
+    {
+      "path": "/learning/units/11/concept-note",
+      "entry": "index-CCXeuaZ6.js",
+      "lcp": 11220,
+      "lcpElement": "p. (텍스트)",
+      "fcp": 4988,
+      "cls": 0.345,
+      "resources": [
+        "learning.units._unitId.concept-note-wov167VP.js 3068→3256",
+        "users 4895→5073",
+        "11 4904→5089"
+      ],
+      "lcpCandidates": [
+        "4988 h1.text-label1.text-text-2",
+        "11220 p."
+      ],
+      "longtasksAfter4s": [
+        [
+          5036,
+          66
+        ],
+        [
+          5200,
+          99
+        ],
+        [
+          5432,
+          984
+        ],
+        [
+          11379,
+          170
+        ]
+      ],
+      "shifts": [
+        [
+          5401,
+          0.32
+        ],
+        [
+          13006,
+          0.025
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning/units/11/concept-note",
+      "entry": "index-CCXeuaZ6.js",
+      "lcp": 11160,
+      "lcpElement": "p. (텍스트)",
+      "fcp": 5132,
+      "cls": 0.345,
+      "resources": [
+        "learning.units._unitId.concept-note-wov167VP.js 3033→3231",
+        "users 4992→5171",
+        "11 5013→5186"
+      ],
+      "lcpCandidates": [
+        "5132 h1.text-label1.text-text-2",
+        "11160 p."
+      ],
+      "longtasksAfter4s": [
+        [
+          5158,
+          79
+        ],
+        [
+          5306,
+          88
+        ],
+        [
+          5513,
+          875
+        ],
+        [
+          11420,
+          305
+        ],
+        [
+          11725,
+          555
+        ]
+      ],
+      "shifts": [
+        [
+          5429,
+          0.32
+        ],
+        [
+          13165,
+          0.025
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning/units/11/concept-note",
+      "entry": "index-CCXeuaZ6.js",
+      "lcp": 10072,
+      "lcpElement": "p. (텍스트)",
+      "fcp": 4556,
+      "cls": 0.345,
+      "resources": [
+        "learning.units._unitId.concept-note-wov167VP.js 2656→2852",
+        "users 4433→4611",
+        "11 4454→4626"
+      ],
+      "lcpCandidates": [
+        "4556 h1.text-label1.text-text-2",
+        "10072 p."
+      ],
+      "longtasksAfter4s": [
+        [
+          4573,
+          82
+        ],
+        [
+          4783,
+          86
+        ],
+        [
+          4991,
+          711
+        ],
+        [
+          10261,
+          213
+        ]
+      ],
+      "shifts": [
+        [
+          4910,
+          0.32
+        ],
+        [
+          11946,
+          0.025
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning/units/11/concept-note",
+      "entry": "index-CCXeuaZ6.js",
+      "lcp": 11460,
+      "lcpElement": "p. (텍스트)",
+      "fcp": 5212,
+      "cls": 0.345,
+      "resources": [
+        "learning.units._unitId.concept-note-wov167VP.js 3050→3238",
+        "users 5081→5263",
+        "11 5096→5280"
+      ],
+      "lcpCandidates": [
+        "5212 h1.text-label1.text-text-2",
+        "11460 p."
+      ],
+      "longtasksAfter4s": [
+        [
+          5283,
+          51
+        ],
+        [
+          5342,
+          111
+        ],
+        [
+          5501,
+          119
+        ],
+        [
+          5750,
+          966
+        ],
+        [
+          11692,
+          289
+        ],
+        [
+          11981,
+          452
+        ]
+      ],
+      "shifts": [
+        [
+          5709,
+          0.32
+        ],
+        [
+          13362,
+          0.025
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning/units/11/concept-note",
+      "entry": "index-CCXeuaZ6.js",
+      "lcp": 11696,
+      "lcpElement": "p. (텍스트)",
+      "fcp": 4636,
+      "cls": 0.345,
+      "resources": [
+        "learning.units._unitId.concept-note-wov167VP.js 2758→2944",
+        "users 4535→4709",
+        "11 4547→4725"
+      ],
+      "lcpCandidates": [
+        "4636 h1.text-label1.text-text-2",
+        "11696 p."
+      ],
+      "longtasksAfter4s": [
+        [
+          4665,
+          59
+        ],
+        [
+          4819,
+          93
+        ],
+        [
+          5045,
+          1016
+        ],
+        [
+          11922,
+          214
+        ],
+        [
+          12136,
+          524
+        ]
+      ],
+      "shifts": [
+        [
+          5018,
+          0.32
+        ],
+        [
+          13490,
+          0.025
+        ]
+      ],
+      "misses": []
+    }
+  ],
+  "/learning/units/11/concept-note after": [
+    {
+      "path": "/learning/units/11/concept-note",
+      "entry": "index-ebQ2w0FM.js",
+      "lcp": 13960,
+      "lcpElement": "p. (텍스트)",
+      "fcp": 4420,
+      "cls": 0.627,
+      "resources": [
+        "learning.units._unitId.concept-note-DG2XbzE3.js 2373→2561",
+        "markdown-B7qiDLrA.js 2437→2845",
+        "users 4306→4482",
+        "11 4320→4499"
+      ],
+      "lcpCandidates": [
+        "4420 h1.text-label1.text-text-2",
+        "13960 p."
+      ],
+      "longtasksAfter4s": [
+        [
+          4546,
+          74
+        ],
+        [
+          4622,
+          490
+        ],
+        [
+          5186,
+          154
+        ],
+        [
+          5616,
+          112
+        ],
+        [
+          5948,
+          926
+        ],
+        [
+          6950,
+          261
+        ]
+      ],
+      "shifts": [
+        [
+          5522,
+          0.32
+        ],
+        [
+          8133,
+          0.306
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning/units/11/concept-note",
+      "entry": "index-ebQ2w0FM.js",
+      "lcp": 13028,
+      "lcpElement": "p. (텍스트)",
+      "fcp": 4220,
+      "cls": 0.627,
+      "resources": [
+        "learning.units._unitId.concept-note-DG2XbzE3.js 2317→2513",
+        "markdown-B7qiDLrA.js 2387→2781",
+        "users 4132→4303",
+        "11 4144→4325"
+      ],
+      "lcpCandidates": [
+        "4220 h1.text-label1.text-text-2",
+        "13028 p."
+      ],
+      "longtasksAfter4s": [
+        [
+          4311,
+          79
+        ],
+        [
+          4427,
+          435
+        ],
+        [
+          4938,
+          133
+        ],
+        [
+          5311,
+          102
+        ],
+        [
+          5838,
+          823
+        ],
+        [
+          6734,
+          356
+        ],
+        [
+          7090,
+          539
+        ]
+      ],
+      "shifts": [
+        [
+          5233,
+          0.32
+        ],
+        [
+          7836,
+          0.306
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning/units/11/concept-note",
+      "entry": "index-ebQ2w0FM.js",
+      "lcp": 13592,
+      "lcpElement": "p. (텍스트)",
+      "fcp": 4280,
+      "cls": 0.627,
+      "resources": [
+        "learning.units._unitId.concept-note-DG2XbzE3.js 2177→2359",
+        "markdown-B7qiDLrA.js 2233→2647",
+        "users 4171→4350",
+        "11 4190→4366"
+      ],
+      "lcpCandidates": [
+        "4280 h1.text-label1.text-text-2",
+        "13592 p."
+      ],
+      "longtasksAfter4s": [
+        [
+          4374,
+          55
+        ],
+        [
+          4437,
+          95
+        ],
+        [
+          4574,
+          424
+        ],
+        [
+          5022,
+          123
+        ],
+        [
+          5440,
+          109
+        ],
+        [
+          5915,
+          1079
+        ],
+        [
+          7073,
+          303
+        ],
+        [
+          7377,
+          659
+        ]
+      ],
+      "shifts": [
+        [
+          5319,
+          0.32
+        ],
+        [
+          8206,
+          0.306
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning/units/11/concept-note",
+      "entry": "index-ebQ2w0FM.js",
+      "lcp": 12700,
+      "lcpElement": "p. (텍스트)",
+      "fcp": 4156,
+      "cls": 0.627,
+      "resources": [
+        "learning.units._unitId.concept-note-DG2XbzE3.js 2425→2620",
+        "markdown-B7qiDLrA.js 2487→2906",
+        "users 4065→4246",
+        "11 4071→4247"
+      ],
+      "lcpCandidates": [
+        "4156 h1.text-label1.text-text-2",
+        "12700 p."
+      ],
+      "longtasksAfter4s": [
+        [
+          4232,
+          78
+        ],
+        [
+          4313,
+          443
+        ],
+        [
+          4895,
+          92
+        ],
+        [
+          5129,
+          126
+        ],
+        [
+          5640,
+          862
+        ],
+        [
+          6588,
+          216
+        ]
+      ],
+      "shifts": [
+        [
+          5054,
+          0.32
+        ],
+        [
+          7506,
+          0.306
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning/units/11/concept-note",
+      "entry": "index-ebQ2w0FM.js",
+      "lcp": 13292,
+      "lcpElement": "p. (텍스트)",
+      "fcp": 4212,
+      "cls": 0.627,
+      "resources": [
+        "learning.units._unitId.concept-note-DG2XbzE3.js 2326→2515",
+        "markdown-B7qiDLrA.js 2378→2785",
+        "users 4115→4288",
+        "11 4127→4303"
+      ],
+      "lcpCandidates": [
+        "4212 h1.text-label1.text-text-2",
+        "13292 p."
+      ],
+      "longtasksAfter4s": [
+        [
+          4243,
+          52
+        ],
+        [
+          4297,
+          370
+        ],
+        [
+          4840,
+          107
+        ],
+        [
+          5212,
+          140
+        ],
+        [
+          5651,
+          853
+        ],
+        [
+          6588,
+          353
+        ],
+        [
+          6942,
+          683
+        ]
+      ],
+      "shifts": [
+        [
+          5108,
+          0.32
+        ],
+        [
+          7770,
+          0.306
+        ]
+      ],
+      "misses": []
+    }
+  ],
+  "/learning/units/11/concept-note after2": [
+    {
+      "path": "/learning/units/11/concept-note",
+      "entry": "index-BZYPDfT9.js",
+      "lcp": 10620,
+      "lcpElement": "p. (텍스트)",
+      "fcp": 4424,
+      "cls": 0.345,
+      "resources": [
+        "learning.units._unitId.concept-note-D8_BXWu6.js 2332→2529",
+        "markdown-DQr3stNs.js 2388→2817",
+        "users 4312→4485",
+        "11 4329→4516"
+      ],
+      "lcpCandidates": [
+        "4424 h1.text-label1.text-text-2",
+        "10620 p."
+      ],
+      "longtasksAfter4s": [
+        [
+          4547,
+          71
+        ],
+        [
+          4620,
+          386
+        ],
+        [
+          5075,
+          115
+        ],
+        [
+          5381,
+          941
+        ],
+        [
+          10790,
+          288
+        ],
+        [
+          11079,
+          716
+        ]
+      ],
+      "shifts": [
+        [
+          5337,
+          0.32
+        ],
+        [
+          12544,
+          0.025
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning/units/11/concept-note",
+      "entry": "index-BZYPDfT9.js",
+      "lcp": 10192,
+      "lcpElement": "p. (텍스트)",
+      "fcp": 4128,
+      "cls": 0.345,
+      "resources": [
+        "learning.units._unitId.concept-note-D8_BXWu6.js 2257→2453",
+        "markdown-DQr3stNs.js 2318→2728",
+        "users 4048→4218",
+        "11 4059→4239"
+      ],
+      "lcpCandidates": [
+        "4128 h1.text-label1.text-text-2",
+        "10192 p."
+      ],
+      "longtasksAfter4s": [
+        [
+          4222,
+          61
+        ],
+        [
+          4312,
+          280
+        ],
+        [
+          4634,
+          70
+        ],
+        [
+          4794,
+          674
+        ],
+        [
+          10327,
+          234
+        ],
+        [
+          10562,
+          493
+        ]
+      ],
+      "shifts": [
+        [
+          4770,
+          0.32
+        ],
+        [
+          11952,
+          0.025
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning/units/11/concept-note",
+      "entry": "index-BZYPDfT9.js",
+      "lcp": 12620,
+      "lcpElement": "p. (텍스트)",
+      "fcp": 4440,
+      "cls": 0.345,
+      "resources": [
+        "learning.units._unitId.concept-note-D8_BXWu6.js 2219→2407",
+        "markdown-DQr3stNs.js 2285→2697",
+        "users 4341→4515",
+        "11 4375→4560"
+      ],
+      "lcpCandidates": [
+        "4440 h1.text-label1.text-text-2",
+        "12620 p."
+      ],
+      "longtasksAfter4s": [
+        [
+          4620,
+          108
+        ],
+        [
+          4772,
+          537
+        ],
+        [
+          5325,
+          121
+        ],
+        [
+          5719,
+          958
+        ],
+        [
+          12648,
+          419
+        ],
+        [
+          13067,
+          701
+        ]
+      ],
+      "shifts": [
+        [
+          5604,
+          0.32
+        ],
+        [
+          14686,
+          0.025
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning/units/11/concept-note",
+      "entry": "index-BZYPDfT9.js",
+      "lcp": 10456,
+      "lcpElement": "p. (텍스트)",
+      "fcp": 4160,
+      "cls": 0.345,
+      "resources": [
+        "learning.units._unitId.concept-note-D8_BXWu6.js 2187→2386",
+        "markdown-DQr3stNs.js 2241→2657",
+        "users 4056→4231",
+        "11 4074→4247"
+      ],
+      "lcpCandidates": [
+        "4160 h1.text-label1.text-text-2",
+        "10456 p."
+      ],
+      "longtasksAfter4s": [
+        [
+          4328,
+          85
+        ],
+        [
+          4448,
+          475
+        ],
+        [
+          4958,
+          144
+        ],
+        [
+          5371,
+          1017
+        ],
+        [
+          10637,
+          230
+        ],
+        [
+          10867,
+          604
+        ]
+      ],
+      "shifts": [
+        [
+          5287,
+          0.32
+        ],
+        [
+          12389,
+          0.025
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning/units/11/concept-note",
+      "entry": "index-BZYPDfT9.js",
+      "lcp": 10972,
+      "lcpElement": "p. (텍스트)",
+      "fcp": 4328,
+      "cls": 0.345,
+      "resources": [
+        "learning.units._unitId.concept-note-D8_BXWu6.js 2386→2571",
+        "markdown-DQr3stNs.js 2460→2842",
+        "users 4231→4414",
+        "11 4241→4415"
+      ],
+      "lcpCandidates": [
+        "4328 h1.text-label1.text-text-2",
+        "10972 p."
+      ],
+      "longtasksAfter4s": [
+        [
+          4395,
+          65
+        ],
+        [
+          4464,
+          330
+        ],
+        [
+          4929,
+          95
+        ],
+        [
+          5165,
+          908
+        ],
+        [
+          11234,
+          294
+        ],
+        [
+          11529,
+          650
+        ]
+      ],
+      "shifts": [
+        [
+          5118,
+          0.32
+        ],
+        [
+          12977,
+          0.025
+        ]
+      ],
+      "misses": []
+    }
+  ]
+}

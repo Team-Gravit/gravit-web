@@ -1,0 +1,365 @@
+{
+  "lesson-mobile": [
+    {
+      "interactions": [
+        {
+          "action": "1번 선지 가리기",
+          "inp": 32,
+          "event": "pointerdown",
+          "target": null
+        },
+        {
+          "action": "보기 1",
+          "inp": 16,
+          "event": "pointerdown",
+          "target": "span.min-w-0.flex-1 \"보기 1 — 1\""
+        },
+        {
+          "action": "다음",
+          "inp": 32,
+          "event": "pointerdown",
+          "target": "button.group/button.relative.inline-flex \"다음\""
+        }
+      ],
+      "inp": 32
+    },
+    {
+      "interactions": [
+        {
+          "action": "1번 선지 가리기",
+          "inp": 40,
+          "event": "pointerdown",
+          "target": null
+        },
+        {
+          "action": "보기 1",
+          "inp": 16,
+          "event": "pointerdown",
+          "target": "span.min-w-0.flex-1 \"보기 1 — 1\""
+        },
+        {
+          "action": "다음",
+          "inp": 24,
+          "event": "pointerdown",
+          "target": "button.group/button.relative.inline-flex \"다음\""
+        }
+      ],
+      "inp": 40
+    },
+    {
+      "interactions": [
+        {
+          "action": "1번 선지 가리기",
+          "inp": 40,
+          "event": "pointerdown",
+          "target": null
+        },
+        {
+          "action": "보기 1",
+          "inp": 16,
+          "event": "pointerdown",
+          "target": "span.min-w-0.flex-1 \"보기 1 — 1\""
+        },
+        {
+          "action": "다음",
+          "inp": 24,
+          "event": "pointerdown",
+          "target": "button.group/button.relative.inline-flex \"다음\""
+        }
+      ],
+      "inp": 40
+    },
+    {
+      "interactions": [
+        {
+          "action": "1번 선지 가리기",
+          "inp": 40,
+          "event": "pointerdown",
+          "target": null
+        },
+        {
+          "action": "보기 1",
+          "inp": 16,
+          "event": "pointerdown",
+          "target": "span.min-w-0.flex-1 \"보기 1 — 1\""
+        },
+        {
+          "action": "다음",
+          "inp": 32,
+          "event": "pointerdown",
+          "target": "button.group/button.relative.inline-flex \"다음\""
+        }
+      ],
+      "inp": 40
+    },
+    {
+      "interactions": [
+        {
+          "action": "1번 선지 가리기",
+          "inp": 32,
+          "event": "pointerdown",
+          "target": null
+        },
+        {
+          "action": "보기 1",
+          "inp": 0,
+          "event": null,
+          "target": null
+        },
+        {
+          "action": "다음",
+          "inp": 24,
+          "event": "pointerdown",
+          "target": "button.group/button.relative.inline-flex \"다음\""
+        }
+      ],
+      "inp": 32
+    },
+    {
+      "interactions": [
+        {
+          "action": "1번 선지 가리기",
+          "inp": 40,
+          "event": "pointerdown",
+          "target": null
+        },
+        {
+          "action": "보기 1",
+          "inp": 16,
+          "event": "pointerdown",
+          "target": "span.min-w-0.flex-1 \"보기 1 — 1\""
+        },
+        {
+          "action": "다음",
+          "inp": 40,
+          "event": "pointerdown",
+          "target": "button.group/button.relative.inline-flex \"다음\""
+        }
+      ],
+      "inp": 40
+    },
+    {
+      "interactions": [
+        {
+          "action": "1번 선지 가리기",
+          "inp": 32,
+          "event": "pointerdown",
+          "target": null
+        },
+        {
+          "action": "보기 1",
+          "inp": 0,
+          "event": null,
+          "target": null
+        },
+        {
+          "action": "다음",
+          "inp": 32,
+          "event": "pointerdown",
+          "target": "button.group/button.relative.inline-flex \"다음\""
+        }
+      ],
+      "inp": 32
+    }
+  ],
+  "lesson-result-mobile": [
+    {
+      "interactions": [
+        {
+          "action": "이어서 학습하기",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "이어서 학습하기",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "이어서 학습하기",
+          "inp": 80,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 80
+    },
+    {
+      "interactions": [
+        {
+          "action": "이어서 학습하기",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "이어서 학습하기",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "이어서 학습하기",
+          "inp": 80,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 80
+    },
+    {
+      "interactions": [
+        {
+          "action": "이어서 학습하기",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 56
+    }
+  ],
+  "incorrect-mobile": [
+    {
+      "interactions": [
+        {
+          "action": "보기 1",
+          "inp": 40,
+          "event": "pointerdown",
+          "target": null
+        },
+        {
+          "action": "다음",
+          "inp": 40,
+          "event": "pointerdown",
+          "target": "button.group/button.relative.inline-flex \"다음\""
+        }
+      ],
+      "inp": 40
+    },
+    {
+      "interactions": [
+        {
+          "action": "보기 1",
+          "inp": 64,
+          "event": "pointerdown",
+          "target": null
+        },
+        {
+          "action": "다음",
+          "inp": 32,
+          "event": "pointerdown",
+          "target": "button.group/button.relative.inline-flex \"다음\""
+        }
+      ],
+      "inp": 64
+    },
+    {
+      "interactions": [
+        {
+          "action": "보기 1",
+          "inp": 40,
+          "event": "pointerdown",
+          "target": null
+        },
+        {
+          "action": "다음",
+          "inp": 40,
+          "event": "pointerdown",
+          "target": "button.group/button.relative.inline-flex \"다음\""
+        }
+      ],
+      "inp": 40
+    },
+    {
+      "interactions": [
+        {
+          "action": "보기 1",
+          "inp": 40,
+          "event": "pointerdown",
+          "target": null
+        },
+        {
+          "action": "다음",
+          "inp": 40,
+          "event": "pointerdown",
+          "target": "button.group/button.relative.inline-flex \"다음\""
+        }
+      ],
+      "inp": 40
+    },
+    {
+      "interactions": [
+        {
+          "action": "보기 1",
+          "inp": 40,
+          "event": "pointerdown",
+          "target": null
+        },
+        {
+          "action": "다음",
+          "inp": 32,
+          "event": "pointerdown",
+          "target": "button.group/button.relative.inline-flex \"다음\""
+        }
+      ],
+      "inp": 40
+    },
+    {
+      "interactions": [
+        {
+          "action": "보기 1",
+          "inp": 40,
+          "event": "pointerdown",
+          "target": null
+        },
+        {
+          "action": "다음",
+          "inp": 40,
+          "event": "pointerdown",
+          "target": "button.group/button.relative.inline-flex \"다음\""
+        }
+      ],
+      "inp": 40
+    },
+    {
+      "interactions": [
+        {
+          "action": "보기 1",
+          "inp": 40,
+          "event": "pointerdown",
+          "target": null
+        },
+        {
+          "action": "다음",
+          "inp": 32,
+          "event": "pointerdown",
+          "target": "button.group/button.relative.inline-flex \"다음\""
+        }
+      ],
+      "inp": 40
+    }
+  ]
+}

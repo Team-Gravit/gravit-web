@@ -1,0 +1,28 @@
+lesson-mobile 1 inp 24 1번 선지 가리기:24 보기 1:16 다음:24
+lesson-mobile 2 inp 32 1번 선지 가리기:32 보기 1:16 다음:32
+lesson-mobile 3 inp 40 1번 선지 가리기:40 보기 1:16 다음:32
+lesson-mobile 4 inp 40 1번 선지 가리기:32 보기 1:0 다음:40
+lesson-mobile 5 inp 40 1번 선지 가리기:32 보기 1:0 다음:40
+lesson-mobile 6 inp 40 1번 선지 가리기:40 보기 1:16 다음:40
+lesson-mobile 7 inp 32 1번 선지 가리기:32 보기 1:0 다음:32
+lesson-result-mobile 1 inp 48 이어서 학습하기:48
+lesson-result-mobile 2 inp 88 이어서 학습하기:88
+lesson-result-mobile 3 inp 48 이어서 학습하기:48
+lesson-result-mobile 4 inp 88 이어서 학습하기:88
+lesson-result-mobile 5 inp 48 이어서 학습하기:48
+lesson-result-mobile 6 inp 56 이어서 학습하기:56
+lesson-result-mobile 7 inp 96 이어서 학습하기:96
+bookmarked-mobile 1 inp 40 보기 1:40 다음:24
+bookmarked-mobile 2 inp 40 보기 1:40 다음:40
+bookmarked-mobile 3 inp 40 보기 1:40 다음:32
+bookmarked-mobile 4 inp 40 보기 1:40 다음:32
+bookmarked-mobile 5 inp 40 보기 1:32 다음:40
+bookmarked-mobile 6 inp 40 보기 1:32 다음:40
+bookmarked-mobile 7 inp 32 보기 1:32 다음:32
+incorrect-mobile 1 inp 40 보기 1:40 다음:40
+incorrect-mobile 2 inp 64 보기 1:64 다음:40
+incorrect-mobile 3 inp 40 보기 1:40 다음:40
+incorrect-mobile 4 inp 40 보기 1:40 다음:40
+incorrect-mobile 5 inp 40 보기 1:40 다음:40
+incorrect-mobile 6 inp 32 보기 1:32 다음:24
+incorrect-mobile 7 inp 40 보기 1:40 다음:32

@@ -1,0 +1,27 @@
+login-mobile 1 fcp 3672 lcp 3672 H2 cls 0.002 tbt 98 reissue - /
+login-mobile 2 fcp 3228 lcp 3228 H2 cls 0.002 tbt 129 reissue - /
+login-mobile 3 fcp 3256 lcp 3256 H2 cls 0.002 tbt 257 reissue - /
+login-mobile 4 fcp 3516 lcp 3516 H2 cls 0.002 tbt 169 reissue - /
+login-mobile 5 fcp 3260 lcp 3260 H2 cls 0.002 tbt 146 reissue - /
+main-mobile 1 fcp 7772 lcp 8172 IMG hero-narrow-decoration.webp cls 0.005 tbt 0 reissue 2760-3040 /main
+main-mobile 2 fcp 6608 lcp 6912 IMG hero-narrow-decoration.webp cls 0.238 tbt 205 reissue 2630-2893 /main
+main-mobile 3 fcp 6724 lcp 6924 IMG hero-narrow-decoration.webp cls 0.238 tbt 151 reissue 2591-2853 /main
+main-mobile 4 fcp 6264 lcp 6468 IMG hero-narrow-decoration.webp cls 0.238 tbt 117 reissue 2416-2621 /main
+main-mobile 5 fcp 6672 lcp 6872 IMG hero-narrow-decoration.webp cls 0.005 tbt 150 reissue 2530-2784 /main
+main-desktop 1 fcp 7684 lcp 7836 IMG space-banner.webp cls 0.003 tbt 42 reissue 2539-2766 /main
+main-desktop 2 fcp 6732 lcp 7032 IMG space-banner.webp cls 0.029 tbt 208 reissue 2487-2791 /main
+main-desktop 3 fcp 6200 lcp 6404 IMG space-banner.webp cls 0.029 tbt 163 reissue 2296-2519 /main
+main-desktop 4 fcp 6856 lcp 7156 IMG space-banner.webp cls 0.002 tbt 227 reissue 2511-2794 /main
+main-desktop 5 fcp 6572 lcp 6672 IMG space-banner.webp cls 0.002 tbt 185 reissue 2398-2667 /main
+learning-mobile 1 fcp 6792 lcp 7092 IMG chapter-card-decoration.webp cls 0.000 tbt 210 reissue 2648-2948 /learning
+learning-mobile 2 fcp 6096 lcp 6300 IMG chapter-card-decoration.webp cls 0.000 tbt 140 reissue 2456-2701 /learning
+learning-mobile 3 fcp 6600 lcp 6800 IMG chapter-card-decoration.webp cls 0.000 tbt 201 reissue 2528-2872 /learning
+learning-mobile 4 fcp 6184 lcp 6384 IMG chapter-card-decoration.webp cls 0.000 tbt 139 reissue 2570-2800 /learning
+learning-mobile 5 fcp 6040 lcp 6240 IMG chapter-card-decoration.webp cls 0.000 tbt 197 reissue 2334-2599 /learning
+
+SUMMARY (중앙값, ms)
+login-mobile {"fcp":3260,"lcp":3260,"cls":0.002,"tbt":146,"reissueEnd":0,"el":"H2","finalPath":"/"}
+main-mobile {"fcp":6672,"lcp":6912,"cls":0.238,"tbt":150,"reissueEnd":2853,"el":"IMG hero-narrow-decoration.webp","finalPath":"/main"}
+main-desktop {"fcp":6732,"lcp":7032,"cls":0.003,"tbt":185,"reissueEnd":2766,"el":"IMG space-banner.webp","finalPath":"/main"}
+learning-mobile {"fcp":6184,"lcp":6384,"cls":0,"tbt":197,"reissueEnd":2800,"el":"IMG chapter-card-decoration.webp","finalPath":"/learning"}
+exit 0

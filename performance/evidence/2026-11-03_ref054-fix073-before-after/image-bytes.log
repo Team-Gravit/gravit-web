@@ -1,0 +1,21 @@
+  login-desktop base: google-logo.png 4.6, background.webp 298.2
+  login-desktop now: space-decoration.avif 63.0, google-logo.png 4.6
+login-desktop base 302.8KB (2) | now 67.6KB (2)
+  login-mobile base: google-logo.png 4.6
+  login-mobile now: google-logo.png 4.6
+login-mobile base 4.6KB (1) | now 4.6KB (1)
+  main-mobile base: hero-narrow.webp 13.3, bronze-3.svg 24.5, planet-03-earth.webp 21.2, unit-card-background.webp 18.7
+  main-mobile now: hero-narrow-decoration.webp 61.9, bronze-3.svg 11.4, unit-card-decoration.webp 50.0, planet-03-earth.webp 21.2
+main-mobile base 77.8KB (4) | now 144.5KB (4)
+  learning-mobile base: planet-01-mercury.webp 14.4, planet-02-venus.webp 14.8, planet-03-earth.webp 21.2, planet-04-mars.webp 15.8, planet-05-jupiter.webp 16.1, planet-06-saturn.webp 16.3, planet-07-uranus.webp 15.7, planet-08-neptune.webp 14.2, planet-09-sun.webp 24.9, planet-10-pluto.webp 13.7, unit-card-background.webp 18.7
+  learning-mobile now: chapter-card-decoration.webp 48.6, planet-01-mercury.webp 14.4, planet-02-venus.webp 14.8, planet-03-earth.webp 21.2, planet-04-mars.webp 15.8, planet-05-jupiter.webp 16.1, planet-06-saturn.webp 16.3, planet-07-uranus.webp 15.7, planet-08-neptune.webp 14.2, planet-09-sun.webp 24.9, planet-10-pluto.webp 13.7
+learning-mobile base 185.8KB (11) | now 215.7KB (11)
+  league-mobile base: league-bg-mobile.png 64.9, bronze-3.svg 24.5, bronze-2.svg 20.8, bronze-1.svg 15.0, silver-3.svg 31.2, silver-2.svg 58.5, silver-1.svg 21.6, gold-3.svg 30.4, gold-2.svg 26.8, gold-1.svg 20.9, platinum-3.svg 42.6, platinum-2.svg 38.9, platinum-1.svg 33.1, diamond-3.svg 44.6, diamond-2.svg 40.9, diamond-1.svg 35.1
+  league-mobile now: league-bg-mobile.webp 17.9, bronze-3.svg 11.4, bronze-2.svg 10.1, bronze-1.svg 7.4, silver-3.svg 15.8, silver-2.svg 30.2, silver-1.svg 11.7, gold-3.svg 15.2, gold-2.svg 14.0, gold-1.svg 11.3, platinum-3.svg 22.9, platinum-2.svg 21.7, platinum-1.svg 19.0, diamond-3.svg 24.6, diamond-2.svg 23.4, diamond-1.svg 20.6
+league-mobile base 549.9KB (16) | now 277.2KB (16)
+  league-desktop base: league-bg-desktop.png 1834.7, bronze-3.svg 24.5, bronze-2.svg 20.8, bronze-1.svg 15.0, silver-3.svg 31.2, silver-2.svg 58.5, silver-1.svg 21.6, gold-3.svg 30.4, gold-2.svg 26.8, gold-1.svg 20.9, platinum-3.svg 42.6, platinum-2.svg 38.9, platinum-1.svg 33.1, diamond-3.svg 44.6, diamond-2.svg 40.9, diamond-1.svg 35.1
+  league-desktop now: league-bg-desktop.avif 35.2, bronze-3.svg 11.4, bronze-2.svg 10.1, bronze-1.svg 7.4, silver-3.svg 15.8, silver-2.svg 30.2, silver-1.svg 11.7, gold-3.svg 15.2, gold-2.svg 14.0, gold-1.svg 11.3, platinum-3.svg 22.9, platinum-2.svg 21.7, platinum-1.svg 19.0, diamond-3.svg 24.6, diamond-2.svg 23.4, diamond-1.svg 20.6
+league-desktop base 2319.6KB (16) | now 294.5KB (16)
+  my-mobile base: profile-banner.webp 16.8
+  my-mobile now: space-banner.webp 57.7
+my-mobile base 16.8KB (1) | now 57.7KB (1)

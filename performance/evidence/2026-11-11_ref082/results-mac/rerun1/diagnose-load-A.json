@@ -1,0 +1,4619 @@
+{
+  "league-mobile": [
+    {
+      "fcp": 748,
+      "lcp": {
+        "time": 948,
+        "element": "img.h-20.w-16.origin-bottom",
+        "url": "bronze-3-BLcvg7lT.svg",
+        "size": 9331
+      },
+      "cls": 0.00028050780766442074,
+      "shifts": [
+        {
+          "time": 1174.7000000011176,
+          "value": 0.00009191469043450582,
+          "sources": [
+            "h1.font-mbc.text-[22px].tracking-[-0.6px] \"2026-W45\""
+          ]
+        },
+        {
+          "time": 1595.5,
+          "value": 0.00018859311722991493,
+          "sources": [
+            "div.flex.flex-col.items-center \"2026-W45 101시간 56분 53초\""
+          ]
+        }
+      ],
+      "tbt": 0,
+      "longTasks": [
+        {
+          "start": 648.3000000007451,
+          "duration": 50
+        }
+      ],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 74,
+          "end": 321,
+          "bytes": 184840
+        },
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 74,
+          "end": 176,
+          "bytes": 22531
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/auth/reissue",
+          "start": 388,
+          "end": 451,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 389,
+          "end": 454,
+          "bytes": 2227
+        },
+        {
+          "kind": "js",
+          "path": "route-BLwBms9_.js",
+          "start": 456,
+          "end": 531,
+          "bytes": 3502
+        },
+        {
+          "kind": "js",
+          "path": "useLocation-XXFpt-56.js",
+          "start": 457,
+          "end": 520,
+          "bytes": 433
+        },
+        {
+          "kind": "js",
+          "path": "use-refetch-active-queries-DEsTamu6.js",
+          "start": 457,
+          "end": 521,
+          "bytes": 503
+        },
+        {
+          "kind": "js",
+          "path": "use-league-ranking-f4wcdVGN.js",
+          "start": 457,
+          "end": 523,
+          "bytes": 1044
+        },
+        {
+          "kind": "js",
+          "path": "league-DWKA6hZ5.js",
+          "start": 457,
+          "end": 539,
+          "bytes": 11537
+        },
+        {
+          "kind": "js",
+          "path": "tier-icon-eYRfUCJ2.js",
+          "start": 458,
+          "end": 525,
+          "bytes": 1054
+        },
+        {
+          "kind": "js",
+          "path": "use-delayed-flag-CHmHZEkC.js",
+          "start": 458,
+          "end": 581,
+          "bytes": 628
+        },
+        {
+          "kind": "js",
+          "path": "skeleton-Bs5ijy6x.js",
+          "start": 458,
+          "end": 583,
+          "bytes": 1446
+        },
+        {
+          "kind": "js",
+          "path": "level-CHVQVDK5.js",
+          "start": 458,
+          "end": 584,
+          "bytes": 1013
+        },
+        {
+          "kind": "js",
+          "path": "date-BCO4Wgza.js",
+          "start": 458,
+          "end": 587,
+          "bytes": 870
+        },
+        {
+          "kind": "js",
+          "path": "modal-WYpVOrLw.js",
+          "start": 458,
+          "end": 593,
+          "bytes": 2797
+        },
+        {
+          "kind": "js",
+          "path": "Combination-FjqZfKcv.js",
+          "start": 458,
+          "end": 604,
+          "bytes": 5492
+        },
+        {
+          "kind": "js",
+          "path": "index-BCGeRuru.js",
+          "start": 458,
+          "end": 648,
+          "bytes": 4543
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 459,
+          "end": 645,
+          "bytes": 683
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 460,
+          "end": 528,
+          "bytes": 0
+        },
+        {
+          "kind": "img",
+          "path": "league-bg-mobile-DVU7B5kC.webp",
+          "start": 679,
+          "end": 828,
+          "bytes": 46902
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 682,
+          "end": 1569,
+          "bytes": 653756
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/notifications",
+          "start": 698,
+          "end": 768,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/league/home",
+          "start": 698,
+          "end": 764,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/ranking/me",
+          "start": 699,
+          "end": 765,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961GulimM.woff2",
+          "start": 775,
+          "end": 1164,
+          "bytes": 131244
+        },
+        {
+          "kind": "img",
+          "path": "bronze-2-BBue98Nc.svg",
+          "start": 784,
+          "end": 865,
+          "bytes": 3947
+        },
+        {
+          "kind": "img",
+          "path": "bronze-1-CYVp9QIx.svg",
+          "start": 784,
+          "end": 859,
+          "bytes": 2871
+        },
+        {
+          "kind": "img",
+          "path": "silver-3-Bn2ZBK0U.svg",
+          "start": 784,
+          "end": 871,
+          "bytes": 5427
+        },
+        {
+          "kind": "img",
+          "path": "bronze-3-BLcvg7lT.svg",
+          "start": 784,
+          "end": 861,
+          "bytes": 4343
+        },
+        {
+          "kind": "img",
+          "path": "silver-2-BYgXtetO.svg",
+          "start": 784,
+          "end": 912,
+          "bytes": 8815
+        },
+        {
+          "kind": "img",
+          "path": "silver-1-Dy3NFxiR.svg",
+          "start": 784,
+          "end": 935,
+          "bytes": 3890
+        },
+        {
+          "kind": "img",
+          "path": "gold-3-j6lfzWes.svg",
+          "start": 784,
+          "end": 948,
+          "bytes": 5384
+        },
+        {
+          "kind": "img",
+          "path": "gold-1-qG_JdfaI.svg",
+          "start": 784,
+          "end": 952,
+          "bytes": 3926
+        },
+        {
+          "kind": "img",
+          "path": "gold-2-BPwu2leb.svg",
+          "start": 784,
+          "end": 953,
+          "bytes": 4963
+        },
+        {
+          "kind": "img",
+          "path": "platinum-3-Be_NUyF-.svg",
+          "start": 785,
+          "end": 992,
+          "bytes": 6750
+        },
+        {
+          "kind": "img",
+          "path": "platinum-2-Bx8hi80m.svg",
+          "start": 785,
+          "end": 1016,
+          "bytes": 6359
+        },
+        {
+          "kind": "img",
+          "path": "platinum-1-BW5Q6X0F.svg",
+          "start": 785,
+          "end": 1035,
+          "bytes": 5276
+        },
+        {
+          "kind": "img",
+          "path": "diamond-3-BG-N0wgL.svg",
+          "start": 785,
+          "end": 1044,
+          "bytes": 7070
+        },
+        {
+          "kind": "img",
+          "path": "diamond-2-BU12uZnL.svg",
+          "start": 785,
+          "end": 1045,
+          "bytes": 6601
+        },
+        {
+          "kind": "img",
+          "path": "diamond-1-D1dLUUQN.svg",
+          "start": 785,
+          "end": 1068,
+          "bytes": 5548
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/league/1",
+          "start": 785,
+          "end": 853,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/ranking/user-leagues/page/0",
+          "start": 786,
+          "end": 855,
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "fcp": 728,
+      "lcp": {
+        "time": 908,
+        "element": "img.h-20.w-16.origin-bottom",
+        "url": "bronze-3-BLcvg7lT.svg",
+        "size": 9331
+      },
+      "cls": 0.0002651622384628832,
+      "shifts": [
+        {
+          "time": 1166.3999999985099,
+          "value": 0.00009174726841185644,
+          "sources": [
+            "h1.font-mbc.text-[22px].tracking-[-0.6px] \"2026-W45\""
+          ]
+        },
+        {
+          "time": 1588.0999999996275,
+          "value": 0.00017341497005102677,
+          "sources": [
+            "div.flex.flex-col.items-center \"2026-W45 101시간 56분 41초\""
+          ]
+        }
+      ],
+      "tbt": 0,
+      "longTasks": [],
+      "requests": [
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 72,
+          "end": 174,
+          "bytes": 22531
+        },
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 72,
+          "end": 319,
+          "bytes": 184840
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/auth/reissue",
+          "start": 384,
+          "end": 447,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 386,
+          "end": 450,
+          "bytes": 2227
+        },
+        {
+          "kind": "js",
+          "path": "route-BLwBms9_.js",
+          "start": 452,
+          "end": 526,
+          "bytes": 3502
+        },
+        {
+          "kind": "js",
+          "path": "useLocation-XXFpt-56.js",
+          "start": 453,
+          "end": 515,
+          "bytes": 433
+        },
+        {
+          "kind": "js",
+          "path": "league-DWKA6hZ5.js",
+          "start": 453,
+          "end": 534,
+          "bytes": 11537
+        },
+        {
+          "kind": "js",
+          "path": "use-refetch-active-queries-DEsTamu6.js",
+          "start": 454,
+          "end": 519,
+          "bytes": 503
+        },
+        {
+          "kind": "js",
+          "path": "use-league-ranking-f4wcdVGN.js",
+          "start": 454,
+          "end": 520,
+          "bytes": 1044
+        },
+        {
+          "kind": "js",
+          "path": "tier-icon-eYRfUCJ2.js",
+          "start": 454,
+          "end": 522,
+          "bytes": 1054
+        },
+        {
+          "kind": "js",
+          "path": "use-delayed-flag-CHmHZEkC.js",
+          "start": 454,
+          "end": 576,
+          "bytes": 628
+        },
+        {
+          "kind": "js",
+          "path": "skeleton-Bs5ijy6x.js",
+          "start": 454,
+          "end": 581,
+          "bytes": 1446
+        },
+        {
+          "kind": "js",
+          "path": "level-CHVQVDK5.js",
+          "start": 454,
+          "end": 582,
+          "bytes": 1013
+        },
+        {
+          "kind": "js",
+          "path": "date-BCO4Wgza.js",
+          "start": 454,
+          "end": 583,
+          "bytes": 870
+        },
+        {
+          "kind": "js",
+          "path": "modal-WYpVOrLw.js",
+          "start": 454,
+          "end": 588,
+          "bytes": 2797
+        },
+        {
+          "kind": "js",
+          "path": "Combination-FjqZfKcv.js",
+          "start": 454,
+          "end": 599,
+          "bytes": 5492
+        },
+        {
+          "kind": "js",
+          "path": "index-BCGeRuru.js",
+          "start": 454,
+          "end": 642,
+          "bytes": 4543
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 455,
+          "end": 643,
+          "bytes": 683
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 456,
+          "end": 523,
+          "bytes": 0
+        },
+        {
+          "kind": "img",
+          "path": "league-bg-mobile-DVU7B5kC.webp",
+          "start": 673,
+          "end": 820,
+          "bytes": 46902
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 677,
+          "end": 1563,
+          "bytes": 653756
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/notifications",
+          "start": 692,
+          "end": 762,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/league/home",
+          "start": 692,
+          "end": 758,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/ranking/me",
+          "start": 692,
+          "end": 759,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961GulimM.woff2",
+          "start": 768,
+          "end": 1156,
+          "bytes": 131244
+        },
+        {
+          "kind": "img",
+          "path": "bronze-1-CYVp9QIx.svg",
+          "start": 777,
+          "end": 848,
+          "bytes": 2871
+        },
+        {
+          "kind": "img",
+          "path": "bronze-3-BLcvg7lT.svg",
+          "start": 777,
+          "end": 855,
+          "bytes": 4343
+        },
+        {
+          "kind": "img",
+          "path": "bronze-2-BBue98Nc.svg",
+          "start": 777,
+          "end": 858,
+          "bytes": 3947
+        },
+        {
+          "kind": "img",
+          "path": "silver-3-Bn2ZBK0U.svg",
+          "start": 777,
+          "end": 863,
+          "bytes": 5427
+        },
+        {
+          "kind": "img",
+          "path": "silver-2-BYgXtetO.svg",
+          "start": 777,
+          "end": 904,
+          "bytes": 8815
+        },
+        {
+          "kind": "img",
+          "path": "silver-1-Dy3NFxiR.svg",
+          "start": 777,
+          "end": 922,
+          "bytes": 3890
+        },
+        {
+          "kind": "img",
+          "path": "gold-3-j6lfzWes.svg",
+          "start": 777,
+          "end": 940,
+          "bytes": 5384
+        },
+        {
+          "kind": "img",
+          "path": "gold-2-BPwu2leb.svg",
+          "start": 777,
+          "end": 944,
+          "bytes": 4963
+        },
+        {
+          "kind": "img",
+          "path": "gold-1-qG_JdfaI.svg",
+          "start": 777,
+          "end": 943,
+          "bytes": 3926
+        },
+        {
+          "kind": "img",
+          "path": "platinum-3-Be_NUyF-.svg",
+          "start": 777,
+          "end": 984,
+          "bytes": 6750
+        },
+        {
+          "kind": "img",
+          "path": "platinum-2-Bx8hi80m.svg",
+          "start": 777,
+          "end": 1003,
+          "bytes": 6359
+        },
+        {
+          "kind": "img",
+          "path": "platinum-1-BW5Q6X0F.svg",
+          "start": 777,
+          "end": 1026,
+          "bytes": 5276
+        },
+        {
+          "kind": "img",
+          "path": "diamond-3-BG-N0wgL.svg",
+          "start": 777,
+          "end": 1034,
+          "bytes": 7070
+        },
+        {
+          "kind": "img",
+          "path": "diamond-2-BU12uZnL.svg",
+          "start": 777,
+          "end": 1036,
+          "bytes": 6601
+        },
+        {
+          "kind": "img",
+          "path": "diamond-1-D1dLUUQN.svg",
+          "start": 777,
+          "end": 1060,
+          "bytes": 5548
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/league/1",
+          "start": 778,
+          "end": 846,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/ranking/user-leagues/page/0",
+          "start": 778,
+          "end": 847,
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "fcp": 708,
+      "lcp": {
+        "time": 912,
+        "element": "img.h-20.w-16.origin-bottom",
+        "url": "bronze-3-BLcvg7lT.svg",
+        "size": 9331
+      },
+      "cls": 0.00009174726841185644,
+      "shifts": [
+        {
+          "time": 1164.2000000011176,
+          "value": 0.00009174726841185644,
+          "sources": [
+            "h1.font-mbc.text-[22px].tracking-[-0.6px] \"2026-W45\""
+          ]
+        }
+      ],
+      "tbt": 0,
+      "longTasks": [],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 72,
+          "end": 318,
+          "bytes": 184840
+        },
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 72,
+          "end": 173,
+          "bytes": 22531
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/auth/reissue",
+          "start": 382,
+          "end": 445,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 384,
+          "end": 447,
+          "bytes": 2227
+        },
+        {
+          "kind": "js",
+          "path": "route-BLwBms9_.js",
+          "start": 450,
+          "end": 524,
+          "bytes": 3502
+        },
+        {
+          "kind": "js",
+          "path": "useLocation-XXFpt-56.js",
+          "start": 451,
+          "end": 514,
+          "bytes": 433
+        },
+        {
+          "kind": "js",
+          "path": "league-DWKA6hZ5.js",
+          "start": 451,
+          "end": 533,
+          "bytes": 11537
+        },
+        {
+          "kind": "js",
+          "path": "use-refetch-active-queries-DEsTamu6.js",
+          "start": 451,
+          "end": 517,
+          "bytes": 503
+        },
+        {
+          "kind": "js",
+          "path": "use-league-ranking-f4wcdVGN.js",
+          "start": 451,
+          "end": 518,
+          "bytes": 1044
+        },
+        {
+          "kind": "js",
+          "path": "tier-icon-eYRfUCJ2.js",
+          "start": 451,
+          "end": 519,
+          "bytes": 1054
+        },
+        {
+          "kind": "js",
+          "path": "use-delayed-flag-CHmHZEkC.js",
+          "start": 451,
+          "end": 575,
+          "bytes": 628
+        },
+        {
+          "kind": "js",
+          "path": "skeleton-Bs5ijy6x.js",
+          "start": 451,
+          "end": 578,
+          "bytes": 1446
+        },
+        {
+          "kind": "js",
+          "path": "level-CHVQVDK5.js",
+          "start": 452,
+          "end": 579,
+          "bytes": 1013
+        },
+        {
+          "kind": "js",
+          "path": "date-BCO4Wgza.js",
+          "start": 452,
+          "end": 581,
+          "bytes": 870
+        },
+        {
+          "kind": "js",
+          "path": "modal-WYpVOrLw.js",
+          "start": 452,
+          "end": 587,
+          "bytes": 2797
+        },
+        {
+          "kind": "js",
+          "path": "Combination-FjqZfKcv.js",
+          "start": 452,
+          "end": 598,
+          "bytes": 5492
+        },
+        {
+          "kind": "js",
+          "path": "index-BCGeRuru.js",
+          "start": 452,
+          "end": 642,
+          "bytes": 4543
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 453,
+          "end": 640,
+          "bytes": 683
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 454,
+          "end": 522,
+          "bytes": 0
+        },
+        {
+          "kind": "img",
+          "path": "league-bg-mobile-DVU7B5kC.webp",
+          "start": 672,
+          "end": 820,
+          "bytes": 46902
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 675,
+          "end": 1562,
+          "bytes": 653756
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/notifications",
+          "start": 690,
+          "end": 760,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/league/home",
+          "start": 690,
+          "end": 755,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/ranking/me",
+          "start": 691,
+          "end": 758,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961GulimM.woff2",
+          "start": 767,
+          "end": 1154,
+          "bytes": 131244
+        },
+        {
+          "kind": "img",
+          "path": "bronze-3-BLcvg7lT.svg",
+          "start": 774,
+          "end": 852,
+          "bytes": 4343
+        },
+        {
+          "kind": "img",
+          "path": "bronze-1-CYVp9QIx.svg",
+          "start": 775,
+          "end": 848,
+          "bytes": 2871
+        },
+        {
+          "kind": "img",
+          "path": "bronze-2-BBue98Nc.svg",
+          "start": 775,
+          "end": 855,
+          "bytes": 3947
+        },
+        {
+          "kind": "img",
+          "path": "silver-3-Bn2ZBK0U.svg",
+          "start": 775,
+          "end": 862,
+          "bytes": 5427
+        },
+        {
+          "kind": "img",
+          "path": "silver-2-BYgXtetO.svg",
+          "start": 775,
+          "end": 904,
+          "bytes": 8815
+        },
+        {
+          "kind": "img",
+          "path": "silver-1-Dy3NFxiR.svg",
+          "start": 775,
+          "end": 923,
+          "bytes": 3890
+        },
+        {
+          "kind": "img",
+          "path": "gold-3-j6lfzWes.svg",
+          "start": 775,
+          "end": 938,
+          "bytes": 5384
+        },
+        {
+          "kind": "img",
+          "path": "gold-2-BPwu2leb.svg",
+          "start": 775,
+          "end": 942,
+          "bytes": 4963
+        },
+        {
+          "kind": "img",
+          "path": "gold-1-qG_JdfaI.svg",
+          "start": 775,
+          "end": 943,
+          "bytes": 3926
+        },
+        {
+          "kind": "img",
+          "path": "platinum-3-Be_NUyF-.svg",
+          "start": 775,
+          "end": 984,
+          "bytes": 6750
+        },
+        {
+          "kind": "img",
+          "path": "platinum-2-Bx8hi80m.svg",
+          "start": 775,
+          "end": 1006,
+          "bytes": 6359
+        },
+        {
+          "kind": "img",
+          "path": "platinum-1-BW5Q6X0F.svg",
+          "start": 775,
+          "end": 1023,
+          "bytes": 5276
+        },
+        {
+          "kind": "img",
+          "path": "diamond-3-BG-N0wgL.svg",
+          "start": 775,
+          "end": 1034,
+          "bytes": 7070
+        },
+        {
+          "kind": "img",
+          "path": "diamond-2-BU12uZnL.svg",
+          "start": 775,
+          "end": 1035,
+          "bytes": 6601
+        },
+        {
+          "kind": "img",
+          "path": "diamond-1-D1dLUUQN.svg",
+          "start": 775,
+          "end": 1060,
+          "bytes": 5548
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/league/1",
+          "start": 776,
+          "end": 843,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/ranking/user-leagues/page/0",
+          "start": 776,
+          "end": 846,
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "fcp": 728,
+      "lcp": {
+        "time": 912,
+        "element": "img.h-20.w-16.origin-bottom",
+        "url": "bronze-3-BLcvg7lT.svg",
+        "size": 9331
+      },
+      "cls": 0.0002569043827461676,
+      "shifts": [
+        {
+          "time": 1166.2000000011176,
+          "value": 0.00009174726841185644,
+          "sources": [
+            "h1.font-mbc.text-[22px].tracking-[-0.6px] \"2026-W45\""
+          ]
+        },
+        {
+          "time": 1588,
+          "value": 0.0001651571143343112,
+          "sources": [
+            "div.flex.flex-col.items-center \"2026-W45 101시간 56분 16초\""
+          ]
+        }
+      ],
+      "tbt": 0,
+      "longTasks": [],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 72,
+          "end": 319,
+          "bytes": 184840
+        },
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 73,
+          "end": 175,
+          "bytes": 22531
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/auth/reissue",
+          "start": 383,
+          "end": 446,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 385,
+          "end": 449,
+          "bytes": 2227
+        },
+        {
+          "kind": "js",
+          "path": "route-BLwBms9_.js",
+          "start": 451,
+          "end": 526,
+          "bytes": 3502
+        },
+        {
+          "kind": "js",
+          "path": "useLocation-XXFpt-56.js",
+          "start": 452,
+          "end": 515,
+          "bytes": 433
+        },
+        {
+          "kind": "js",
+          "path": "use-refetch-active-queries-DEsTamu6.js",
+          "start": 452,
+          "end": 517,
+          "bytes": 503
+        },
+        {
+          "kind": "js",
+          "path": "league-DWKA6hZ5.js",
+          "start": 452,
+          "end": 534,
+          "bytes": 11537
+        },
+        {
+          "kind": "js",
+          "path": "use-league-ranking-f4wcdVGN.js",
+          "start": 452,
+          "end": 519,
+          "bytes": 1044
+        },
+        {
+          "kind": "js",
+          "path": "tier-icon-eYRfUCJ2.js",
+          "start": 452,
+          "end": 520,
+          "bytes": 1054
+        },
+        {
+          "kind": "js",
+          "path": "use-delayed-flag-CHmHZEkC.js",
+          "start": 452,
+          "end": 576,
+          "bytes": 628
+        },
+        {
+          "kind": "js",
+          "path": "skeleton-Bs5ijy6x.js",
+          "start": 452,
+          "end": 578,
+          "bytes": 1446
+        },
+        {
+          "kind": "js",
+          "path": "level-CHVQVDK5.js",
+          "start": 453,
+          "end": 581,
+          "bytes": 1013
+        },
+        {
+          "kind": "js",
+          "path": "date-BCO4Wgza.js",
+          "start": 453,
+          "end": 582,
+          "bytes": 870
+        },
+        {
+          "kind": "js",
+          "path": "modal-WYpVOrLw.js",
+          "start": 453,
+          "end": 589,
+          "bytes": 2797
+        },
+        {
+          "kind": "js",
+          "path": "Combination-FjqZfKcv.js",
+          "start": 453,
+          "end": 599,
+          "bytes": 5492
+        },
+        {
+          "kind": "js",
+          "path": "index-BCGeRuru.js",
+          "start": 453,
+          "end": 643,
+          "bytes": 4543
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 454,
+          "end": 641,
+          "bytes": 683
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 455,
+          "end": 523,
+          "bytes": 0
+        },
+        {
+          "kind": "img",
+          "path": "league-bg-mobile-DVU7B5kC.webp",
+          "start": 674,
+          "end": 820,
+          "bytes": 46902
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 677,
+          "end": 1563,
+          "bytes": 653756
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/notifications",
+          "start": 691,
+          "end": 762,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/league/home",
+          "start": 692,
+          "end": 758,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/ranking/me",
+          "start": 692,
+          "end": 759,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961GulimM.woff2",
+          "start": 768,
+          "end": 1156,
+          "bytes": 131244
+        },
+        {
+          "kind": "img",
+          "path": "bronze-1-CYVp9QIx.svg",
+          "start": 777,
+          "end": 851,
+          "bytes": 2871
+        },
+        {
+          "kind": "img",
+          "path": "bronze-3-BLcvg7lT.svg",
+          "start": 777,
+          "end": 857,
+          "bytes": 4343
+        },
+        {
+          "kind": "img",
+          "path": "bronze-2-BBue98Nc.svg",
+          "start": 777,
+          "end": 858,
+          "bytes": 3947
+        },
+        {
+          "kind": "img",
+          "path": "silver-3-Bn2ZBK0U.svg",
+          "start": 777,
+          "end": 863,
+          "bytes": 5427
+        },
+        {
+          "kind": "img",
+          "path": "silver-2-BYgXtetO.svg",
+          "start": 777,
+          "end": 904,
+          "bytes": 8815
+        },
+        {
+          "kind": "img",
+          "path": "silver-1-Dy3NFxiR.svg",
+          "start": 777,
+          "end": 926,
+          "bytes": 3890
+        },
+        {
+          "kind": "img",
+          "path": "gold-3-j6lfzWes.svg",
+          "start": 777,
+          "end": 942,
+          "bytes": 5384
+        },
+        {
+          "kind": "img",
+          "path": "gold-1-qG_JdfaI.svg",
+          "start": 777,
+          "end": 945,
+          "bytes": 3926
+        },
+        {
+          "kind": "img",
+          "path": "gold-2-BPwu2leb.svg",
+          "start": 777,
+          "end": 946,
+          "bytes": 4963
+        },
+        {
+          "kind": "img",
+          "path": "platinum-3-Be_NUyF-.svg",
+          "start": 777,
+          "end": 984,
+          "bytes": 6750
+        },
+        {
+          "kind": "img",
+          "path": "platinum-2-Bx8hi80m.svg",
+          "start": 777,
+          "end": 1006,
+          "bytes": 6359
+        },
+        {
+          "kind": "img",
+          "path": "platinum-1-BW5Q6X0F.svg",
+          "start": 777,
+          "end": 1027,
+          "bytes": 5276
+        },
+        {
+          "kind": "img",
+          "path": "diamond-3-BG-N0wgL.svg",
+          "start": 777,
+          "end": 1036,
+          "bytes": 7070
+        },
+        {
+          "kind": "img",
+          "path": "diamond-2-BU12uZnL.svg",
+          "start": 777,
+          "end": 1038,
+          "bytes": 6601
+        },
+        {
+          "kind": "img",
+          "path": "diamond-1-D1dLUUQN.svg",
+          "start": 777,
+          "end": 1060,
+          "bytes": 5548
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/league/1",
+          "start": 778,
+          "end": 846,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/ranking/user-leagues/page/0",
+          "start": 779,
+          "end": 847,
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "fcp": 720,
+      "lcp": {
+        "time": 904,
+        "element": "img.h-20.w-16.origin-bottom",
+        "url": "bronze-3-BLcvg7lT.svg",
+        "size": 9331
+      },
+      "cls": 0.00009191469043450582,
+      "shifts": [
+        {
+          "time": 1165,
+          "value": 0.00009191469043450582,
+          "sources": [
+            "h1.font-mbc.text-[22px].tracking-[-0.6px] \"2026-W45\""
+          ]
+        }
+      ],
+      "tbt": 0,
+      "longTasks": [],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 71,
+          "end": 319,
+          "bytes": 184840
+        },
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 72,
+          "end": 174,
+          "bytes": 22531
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/auth/reissue",
+          "start": 383,
+          "end": 446,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 384,
+          "end": 449,
+          "bytes": 2227
+        },
+        {
+          "kind": "js",
+          "path": "useLocation-XXFpt-56.js",
+          "start": 452,
+          "end": 512,
+          "bytes": 433
+        },
+        {
+          "kind": "js",
+          "path": "route-BLwBms9_.js",
+          "start": 452,
+          "end": 524,
+          "bytes": 3502
+        },
+        {
+          "kind": "js",
+          "path": "use-refetch-active-queries-DEsTamu6.js",
+          "start": 452,
+          "end": 517,
+          "bytes": 503
+        },
+        {
+          "kind": "js",
+          "path": "use-league-ranking-f4wcdVGN.js",
+          "start": 452,
+          "end": 518,
+          "bytes": 1044
+        },
+        {
+          "kind": "js",
+          "path": "league-DWKA6hZ5.js",
+          "start": 452,
+          "end": 532,
+          "bytes": 11537
+        },
+        {
+          "kind": "js",
+          "path": "tier-icon-eYRfUCJ2.js",
+          "start": 452,
+          "end": 519,
+          "bytes": 1054
+        },
+        {
+          "kind": "js",
+          "path": "use-delayed-flag-CHmHZEkC.js",
+          "start": 452,
+          "end": 574,
+          "bytes": 628
+        },
+        {
+          "kind": "js",
+          "path": "skeleton-Bs5ijy6x.js",
+          "start": 452,
+          "end": 578,
+          "bytes": 1446
+        },
+        {
+          "kind": "js",
+          "path": "level-CHVQVDK5.js",
+          "start": 452,
+          "end": 579,
+          "bytes": 1013
+        },
+        {
+          "kind": "js",
+          "path": "date-BCO4Wgza.js",
+          "start": 452,
+          "end": 580,
+          "bytes": 870
+        },
+        {
+          "kind": "js",
+          "path": "modal-WYpVOrLw.js",
+          "start": 453,
+          "end": 587,
+          "bytes": 2797
+        },
+        {
+          "kind": "js",
+          "path": "Combination-FjqZfKcv.js",
+          "start": 453,
+          "end": 598,
+          "bytes": 5492
+        },
+        {
+          "kind": "js",
+          "path": "index-BCGeRuru.js",
+          "start": 453,
+          "end": 639,
+          "bytes": 4543
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 454,
+          "end": 640,
+          "bytes": 683
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 454,
+          "end": 522,
+          "bytes": 0
+        },
+        {
+          "kind": "img",
+          "path": "league-bg-mobile-DVU7B5kC.webp",
+          "start": 671,
+          "end": 819,
+          "bytes": 46902
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 674,
+          "end": 1560,
+          "bytes": 653756
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/notifications",
+          "start": 689,
+          "end": 760,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/league/home",
+          "start": 689,
+          "end": 755,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/ranking/me",
+          "start": 690,
+          "end": 756,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961GulimM.woff2",
+          "start": 766,
+          "end": 1155,
+          "bytes": 131244
+        },
+        {
+          "kind": "img",
+          "path": "bronze-2-BBue98Nc.svg",
+          "start": 774,
+          "end": 852,
+          "bytes": 3947
+        },
+        {
+          "kind": "img",
+          "path": "bronze-3-BLcvg7lT.svg",
+          "start": 774,
+          "end": 854,
+          "bytes": 4343
+        },
+        {
+          "kind": "img",
+          "path": "bronze-1-CYVp9QIx.svg",
+          "start": 774,
+          "end": 848,
+          "bytes": 2871
+        },
+        {
+          "kind": "img",
+          "path": "silver-3-Bn2ZBK0U.svg",
+          "start": 774,
+          "end": 859,
+          "bytes": 5427
+        },
+        {
+          "kind": "img",
+          "path": "silver-2-BYgXtetO.svg",
+          "start": 775,
+          "end": 903,
+          "bytes": 8815
+        },
+        {
+          "kind": "img",
+          "path": "silver-1-Dy3NFxiR.svg",
+          "start": 775,
+          "end": 924,
+          "bytes": 3890
+        },
+        {
+          "kind": "img",
+          "path": "gold-3-j6lfzWes.svg",
+          "start": 775,
+          "end": 938,
+          "bytes": 5384
+        },
+        {
+          "kind": "img",
+          "path": "gold-2-BPwu2leb.svg",
+          "start": 775,
+          "end": 942,
+          "bytes": 4963
+        },
+        {
+          "kind": "img",
+          "path": "gold-1-qG_JdfaI.svg",
+          "start": 775,
+          "end": 940,
+          "bytes": 3926
+        },
+        {
+          "kind": "img",
+          "path": "platinum-3-Be_NUyF-.svg",
+          "start": 775,
+          "end": 983,
+          "bytes": 6750
+        },
+        {
+          "kind": "img",
+          "path": "platinum-2-Bx8hi80m.svg",
+          "start": 775,
+          "end": 1006,
+          "bytes": 6359
+        },
+        {
+          "kind": "img",
+          "path": "platinum-1-BW5Q6X0F.svg",
+          "start": 775,
+          "end": 1024,
+          "bytes": 5276
+        },
+        {
+          "kind": "img",
+          "path": "diamond-3-BG-N0wgL.svg",
+          "start": 775,
+          "end": 1032,
+          "bytes": 7070
+        },
+        {
+          "kind": "img",
+          "path": "diamond-2-BU12uZnL.svg",
+          "start": 775,
+          "end": 1035,
+          "bytes": 6601
+        },
+        {
+          "kind": "img",
+          "path": "diamond-1-D1dLUUQN.svg",
+          "start": 775,
+          "end": 1059,
+          "bytes": 5548
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/league/1",
+          "start": 776,
+          "end": 843,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/ranking/user-leagues/page/0",
+          "start": 776,
+          "end": 846,
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "fcp": 720,
+      "lcp": {
+        "time": 908,
+        "element": "img.h-20.w-16.origin-bottom",
+        "url": "bronze-3-BLcvg7lT.svg",
+        "size": 9331
+      },
+      "cls": 0.00029420995939254943,
+      "shifts": [
+        {
+          "time": 1165.0999999996275,
+          "value": 0.00009191469043450582,
+          "sources": [
+            "h1.font-mbc.text-[22px].tracking-[-0.6px] \"2026-W45\""
+          ]
+        },
+        {
+          "time": 1586.2000000011176,
+          "value": 0.00020229526895804362,
+          "sources": [
+            "div.flex.flex-col.items-center \"2026-W45 101시간 55분 51초\""
+          ]
+        }
+      ],
+      "tbt": 0,
+      "longTasks": [],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 72,
+          "end": 319,
+          "bytes": 184840
+        },
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 73,
+          "end": 175,
+          "bytes": 22531
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/auth/reissue",
+          "start": 384,
+          "end": 446,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 385,
+          "end": 449,
+          "bytes": 2227
+        },
+        {
+          "kind": "js",
+          "path": "route-BLwBms9_.js",
+          "start": 452,
+          "end": 526,
+          "bytes": 3502
+        },
+        {
+          "kind": "js",
+          "path": "useLocation-XXFpt-56.js",
+          "start": 452,
+          "end": 514,
+          "bytes": 433
+        },
+        {
+          "kind": "js",
+          "path": "use-refetch-active-queries-DEsTamu6.js",
+          "start": 452,
+          "end": 516,
+          "bytes": 503
+        },
+        {
+          "kind": "js",
+          "path": "use-league-ranking-f4wcdVGN.js",
+          "start": 452,
+          "end": 518,
+          "bytes": 1044
+        },
+        {
+          "kind": "js",
+          "path": "tier-icon-eYRfUCJ2.js",
+          "start": 452,
+          "end": 519,
+          "bytes": 1054
+        },
+        {
+          "kind": "js",
+          "path": "league-DWKA6hZ5.js",
+          "start": 452,
+          "end": 534,
+          "bytes": 11537
+        },
+        {
+          "kind": "js",
+          "path": "use-delayed-flag-CHmHZEkC.js",
+          "start": 452,
+          "end": 575,
+          "bytes": 628
+        },
+        {
+          "kind": "js",
+          "path": "skeleton-Bs5ijy6x.js",
+          "start": 452,
+          "end": 578,
+          "bytes": 1446
+        },
+        {
+          "kind": "js",
+          "path": "level-CHVQVDK5.js",
+          "start": 453,
+          "end": 579,
+          "bytes": 1013
+        },
+        {
+          "kind": "js",
+          "path": "date-BCO4Wgza.js",
+          "start": 453,
+          "end": 580,
+          "bytes": 870
+        },
+        {
+          "kind": "js",
+          "path": "modal-WYpVOrLw.js",
+          "start": 453,
+          "end": 588,
+          "bytes": 2797
+        },
+        {
+          "kind": "js",
+          "path": "Combination-FjqZfKcv.js",
+          "start": 453,
+          "end": 599,
+          "bytes": 5492
+        },
+        {
+          "kind": "js",
+          "path": "index-BCGeRuru.js",
+          "start": 453,
+          "end": 642,
+          "bytes": 4543
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 454,
+          "end": 640,
+          "bytes": 683
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 455,
+          "end": 523,
+          "bytes": 0
+        },
+        {
+          "kind": "img",
+          "path": "league-bg-mobile-DVU7B5kC.webp",
+          "start": 672,
+          "end": 819,
+          "bytes": 46902
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 675,
+          "end": 1562,
+          "bytes": 653756
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/notifications",
+          "start": 691,
+          "end": 762,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/league/home",
+          "start": 691,
+          "end": 756,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/ranking/me",
+          "start": 691,
+          "end": 758,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961GulimM.woff2",
+          "start": 767,
+          "end": 1155,
+          "bytes": 131244
+        },
+        {
+          "kind": "img",
+          "path": "bronze-3-BLcvg7lT.svg",
+          "start": 775,
+          "end": 854,
+          "bytes": 4343
+        },
+        {
+          "kind": "img",
+          "path": "bronze-2-BBue98Nc.svg",
+          "start": 776,
+          "end": 855,
+          "bytes": 3947
+        },
+        {
+          "kind": "img",
+          "path": "bronze-1-CYVp9QIx.svg",
+          "start": 776,
+          "end": 850,
+          "bytes": 2871
+        },
+        {
+          "kind": "img",
+          "path": "silver-3-Bn2ZBK0U.svg",
+          "start": 776,
+          "end": 862,
+          "bytes": 5427
+        },
+        {
+          "kind": "img",
+          "path": "silver-2-BYgXtetO.svg",
+          "start": 776,
+          "end": 903,
+          "bytes": 8815
+        },
+        {
+          "kind": "img",
+          "path": "silver-1-Dy3NFxiR.svg",
+          "start": 776,
+          "end": 924,
+          "bytes": 3890
+        },
+        {
+          "kind": "img",
+          "path": "gold-3-j6lfzWes.svg",
+          "start": 776,
+          "end": 939,
+          "bytes": 5384
+        },
+        {
+          "kind": "img",
+          "path": "gold-2-BPwu2leb.svg",
+          "start": 776,
+          "end": 940,
+          "bytes": 4963
+        },
+        {
+          "kind": "img",
+          "path": "gold-1-qG_JdfaI.svg",
+          "start": 776,
+          "end": 943,
+          "bytes": 3926
+        },
+        {
+          "kind": "img",
+          "path": "platinum-3-Be_NUyF-.svg",
+          "start": 776,
+          "end": 983,
+          "bytes": 6750
+        },
+        {
+          "kind": "img",
+          "path": "platinum-2-Bx8hi80m.svg",
+          "start": 776,
+          "end": 1006,
+          "bytes": 6359
+        },
+        {
+          "kind": "img",
+          "path": "platinum-1-BW5Q6X0F.svg",
+          "start": 776,
+          "end": 1026,
+          "bytes": 5276
+        },
+        {
+          "kind": "img",
+          "path": "diamond-3-BG-N0wgL.svg",
+          "start": 777,
+          "end": 1032,
+          "bytes": 7070
+        },
+        {
+          "kind": "img",
+          "path": "diamond-2-BU12uZnL.svg",
+          "start": 777,
+          "end": 1036,
+          "bytes": 6601
+        },
+        {
+          "kind": "img",
+          "path": "diamond-1-D1dLUUQN.svg",
+          "start": 777,
+          "end": 1059,
+          "bytes": 5548
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/league/1",
+          "start": 777,
+          "end": 844,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/ranking/user-leagues/page/0",
+          "start": 778,
+          "end": 847,
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "fcp": 724,
+      "lcp": {
+        "time": 904,
+        "element": "img.h-20.w-16.origin-bottom",
+        "url": "bronze-3-BLcvg7lT.svg",
+        "size": 9331
+      },
+      "cls": 0.0002720151262535996,
+      "shifts": [
+        {
+          "time": 1165.300000000745,
+          "value": 0.00009174726841185644,
+          "sources": [
+            "h1.font-mbc.text-[22px].tracking-[-0.6px] \"2026-W45\""
+          ]
+        },
+        {
+          "time": 1586.199999999255,
+          "value": 0.00018026785784174316,
+          "sources": [
+            "div.flex.flex-col.items-center \"2026-W45 101시간 55분 38초\""
+          ]
+        }
+      ],
+      "tbt": 0,
+      "longTasks": [],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 72,
+          "end": 319,
+          "bytes": 184840
+        },
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 73,
+          "end": 174,
+          "bytes": 22531
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/auth/reissue",
+          "start": 385,
+          "end": 447,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 386,
+          "end": 450,
+          "bytes": 2227
+        },
+        {
+          "kind": "js",
+          "path": "useLocation-XXFpt-56.js",
+          "start": 452,
+          "end": 514,
+          "bytes": 433
+        },
+        {
+          "kind": "js",
+          "path": "route-BLwBms9_.js",
+          "start": 452,
+          "end": 526,
+          "bytes": 3502
+        },
+        {
+          "kind": "js",
+          "path": "league-DWKA6hZ5.js",
+          "start": 453,
+          "end": 534,
+          "bytes": 11537
+        },
+        {
+          "kind": "js",
+          "path": "use-refetch-active-queries-DEsTamu6.js",
+          "start": 453,
+          "end": 516,
+          "bytes": 503
+        },
+        {
+          "kind": "js",
+          "path": "use-league-ranking-f4wcdVGN.js",
+          "start": 453,
+          "end": 518,
+          "bytes": 1044
+        },
+        {
+          "kind": "js",
+          "path": "tier-icon-eYRfUCJ2.js",
+          "start": 453,
+          "end": 521,
+          "bytes": 1054
+        },
+        {
+          "kind": "js",
+          "path": "use-delayed-flag-CHmHZEkC.js",
+          "start": 453,
+          "end": 575,
+          "bytes": 628
+        },
+        {
+          "kind": "js",
+          "path": "skeleton-Bs5ijy6x.js",
+          "start": 453,
+          "end": 578,
+          "bytes": 1446
+        },
+        {
+          "kind": "js",
+          "path": "level-CHVQVDK5.js",
+          "start": 453,
+          "end": 579,
+          "bytes": 1013
+        },
+        {
+          "kind": "js",
+          "path": "date-BCO4Wgza.js",
+          "start": 453,
+          "end": 582,
+          "bytes": 870
+        },
+        {
+          "kind": "js",
+          "path": "modal-WYpVOrLw.js",
+          "start": 453,
+          "end": 589,
+          "bytes": 2797
+        },
+        {
+          "kind": "js",
+          "path": "Combination-FjqZfKcv.js",
+          "start": 453,
+          "end": 599,
+          "bytes": 5492
+        },
+        {
+          "kind": "js",
+          "path": "index-BCGeRuru.js",
+          "start": 454,
+          "end": 642,
+          "bytes": 4543
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 454,
+          "end": 641,
+          "bytes": 683
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 455,
+          "end": 523,
+          "bytes": 0
+        },
+        {
+          "kind": "img",
+          "path": "league-bg-mobile-DVU7B5kC.webp",
+          "start": 671,
+          "end": 818,
+          "bytes": 46902
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 675,
+          "end": 1560,
+          "bytes": 653756
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/notifications",
+          "start": 690,
+          "end": 760,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/league/home",
+          "start": 690,
+          "end": 755,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/ranking/me",
+          "start": 690,
+          "end": 757,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961GulimM.woff2",
+          "start": 766,
+          "end": 1155,
+          "bytes": 131244
+        },
+        {
+          "kind": "img",
+          "path": "bronze-1-CYVp9QIx.svg",
+          "start": 774,
+          "end": 847,
+          "bytes": 2871
+        },
+        {
+          "kind": "img",
+          "path": "bronze-3-BLcvg7lT.svg",
+          "start": 774,
+          "end": 854,
+          "bytes": 4343
+        },
+        {
+          "kind": "img",
+          "path": "silver-3-Bn2ZBK0U.svg",
+          "start": 774,
+          "end": 859,
+          "bytes": 5427
+        },
+        {
+          "kind": "img",
+          "path": "bronze-2-BBue98Nc.svg",
+          "start": 774,
+          "end": 852,
+          "bytes": 3947
+        },
+        {
+          "kind": "img",
+          "path": "silver-2-BYgXtetO.svg",
+          "start": 774,
+          "end": 902,
+          "bytes": 8815
+        },
+        {
+          "kind": "img",
+          "path": "silver-1-Dy3NFxiR.svg",
+          "start": 775,
+          "end": 922,
+          "bytes": 3890
+        },
+        {
+          "kind": "img",
+          "path": "gold-3-j6lfzWes.svg",
+          "start": 775,
+          "end": 938,
+          "bytes": 5384
+        },
+        {
+          "kind": "img",
+          "path": "gold-1-qG_JdfaI.svg",
+          "start": 775,
+          "end": 940,
+          "bytes": 3926
+        },
+        {
+          "kind": "img",
+          "path": "gold-2-BPwu2leb.svg",
+          "start": 775,
+          "end": 942,
+          "bytes": 4963
+        },
+        {
+          "kind": "img",
+          "path": "platinum-3-Be_NUyF-.svg",
+          "start": 775,
+          "end": 982,
+          "bytes": 6750
+        },
+        {
+          "kind": "img",
+          "path": "platinum-2-Bx8hi80m.svg",
+          "start": 775,
+          "end": 1002,
+          "bytes": 6359
+        },
+        {
+          "kind": "img",
+          "path": "platinum-1-BW5Q6X0F.svg",
+          "start": 775,
+          "end": 1023,
+          "bytes": 5276
+        },
+        {
+          "kind": "img",
+          "path": "diamond-3-BG-N0wgL.svg",
+          "start": 775,
+          "end": 1032,
+          "bytes": 7070
+        },
+        {
+          "kind": "img",
+          "path": "diamond-2-BU12uZnL.svg",
+          "start": 775,
+          "end": 1034,
+          "bytes": 6601
+        },
+        {
+          "kind": "img",
+          "path": "diamond-1-D1dLUUQN.svg",
+          "start": 775,
+          "end": 1058,
+          "bytes": 5548
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/league/1",
+          "start": 776,
+          "end": 843,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/ranking/user-leagues/page/0",
+          "start": 776,
+          "end": 844,
+          "bytes": 0
+        }
+      ]
+    }
+  ],
+  "league-desktop": [
+    {
+      "fcp": 728,
+      "lcp": {
+        "time": 924,
+        "element": "img.h-20.w-16.origin-bottom",
+        "url": "bronze-3-BLcvg7lT.svg",
+        "size": 43511
+      },
+      "cls": 0.00036257381346000073,
+      "shifts": [
+        {
+          "time": 1165.7000000011176,
+          "value": 0.00027668286493285694,
+          "sources": [
+            "h1.font-mbc.text-[22px].tracking-[-0.6px] \"2026-W45\""
+          ]
+        },
+        {
+          "time": 5772.300000000745,
+          "value": 0.000028683946947011435,
+          "sources": []
+        },
+        {
+          "time": 6771.800000000745,
+          "value": 0.000031978072125888816,
+          "sources": []
+        },
+        {
+          "time": 7773,
+          "value": 0.000025228929454243557,
+          "sources": []
+        }
+      ],
+      "tbt": 0,
+      "longTasks": [
+        {
+          "start": 638.7000000011176,
+          "duration": 52
+        }
+      ],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 68,
+          "end": 315,
+          "bytes": 184840
+        },
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 68,
+          "end": 170,
+          "bytes": 22531
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/auth/reissue",
+          "start": 379,
+          "end": 442,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 381,
+          "end": 444,
+          "bytes": 2227
+        },
+        {
+          "kind": "js",
+          "path": "route-BLwBms9_.js",
+          "start": 447,
+          "end": 522,
+          "bytes": 3502
+        },
+        {
+          "kind": "js",
+          "path": "useLocation-XXFpt-56.js",
+          "start": 448,
+          "end": 510,
+          "bytes": 433
+        },
+        {
+          "kind": "js",
+          "path": "use-refetch-active-queries-DEsTamu6.js",
+          "start": 448,
+          "end": 512,
+          "bytes": 503
+        },
+        {
+          "kind": "js",
+          "path": "league-DWKA6hZ5.js",
+          "start": 448,
+          "end": 530,
+          "bytes": 11537
+        },
+        {
+          "kind": "js",
+          "path": "use-league-ranking-f4wcdVGN.js",
+          "start": 448,
+          "end": 514,
+          "bytes": 1044
+        },
+        {
+          "kind": "js",
+          "path": "tier-icon-eYRfUCJ2.js",
+          "start": 448,
+          "end": 515,
+          "bytes": 1054
+        },
+        {
+          "kind": "js",
+          "path": "use-delayed-flag-CHmHZEkC.js",
+          "start": 448,
+          "end": 571,
+          "bytes": 628
+        },
+        {
+          "kind": "js",
+          "path": "skeleton-Bs5ijy6x.js",
+          "start": 448,
+          "end": 574,
+          "bytes": 1446
+        },
+        {
+          "kind": "js",
+          "path": "level-CHVQVDK5.js",
+          "start": 448,
+          "end": 575,
+          "bytes": 1013
+        },
+        {
+          "kind": "js",
+          "path": "date-BCO4Wgza.js",
+          "start": 449,
+          "end": 576,
+          "bytes": 870
+        },
+        {
+          "kind": "js",
+          "path": "modal-WYpVOrLw.js",
+          "start": 449,
+          "end": 584,
+          "bytes": 2797
+        },
+        {
+          "kind": "js",
+          "path": "Combination-FjqZfKcv.js",
+          "start": 449,
+          "end": 595,
+          "bytes": 5492
+        },
+        {
+          "kind": "js",
+          "path": "index-BCGeRuru.js",
+          "start": 449,
+          "end": 638,
+          "bytes": 4543
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 450,
+          "end": 637,
+          "bytes": 683
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 451,
+          "end": 518,
+          "bytes": 0
+        },
+        {
+          "kind": "img",
+          "path": "league-bg-desktop-C8LafyIP.avif",
+          "start": 669,
+          "end": 795,
+          "bytes": 35902
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 673,
+          "end": 1548,
+          "bytes": 653756
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/notifications",
+          "start": 690,
+          "end": 760,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/league/home",
+          "start": 691,
+          "end": 756,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/ranking/me",
+          "start": 692,
+          "end": 758,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961GulimM.woff2",
+          "start": 767,
+          "end": 1154,
+          "bytes": 131244
+        },
+        {
+          "kind": "img",
+          "path": "bronze-3-BLcvg7lT.svg",
+          "start": 774,
+          "end": 852,
+          "bytes": 4343
+        },
+        {
+          "kind": "img",
+          "path": "bronze-2-BBue98Nc.svg",
+          "start": 774,
+          "end": 854,
+          "bytes": 3947
+        },
+        {
+          "kind": "img",
+          "path": "bronze-1-CYVp9QIx.svg",
+          "start": 774,
+          "end": 848,
+          "bytes": 2871
+        },
+        {
+          "kind": "img",
+          "path": "silver-3-Bn2ZBK0U.svg",
+          "start": 774,
+          "end": 859,
+          "bytes": 5427
+        },
+        {
+          "kind": "img",
+          "path": "silver-2-BYgXtetO.svg",
+          "start": 774,
+          "end": 880,
+          "bytes": 8815
+        },
+        {
+          "kind": "img",
+          "path": "silver-1-Dy3NFxiR.svg",
+          "start": 774,
+          "end": 923,
+          "bytes": 3890
+        },
+        {
+          "kind": "img",
+          "path": "gold-3-j6lfzWes.svg",
+          "start": 774,
+          "end": 938,
+          "bytes": 5384
+        },
+        {
+          "kind": "img",
+          "path": "gold-2-BPwu2leb.svg",
+          "start": 774,
+          "end": 942,
+          "bytes": 4963
+        },
+        {
+          "kind": "img",
+          "path": "gold-1-qG_JdfaI.svg",
+          "start": 774,
+          "end": 940,
+          "bytes": 3926
+        },
+        {
+          "kind": "img",
+          "path": "platinum-3-Be_NUyF-.svg",
+          "start": 774,
+          "end": 962,
+          "bytes": 6750
+        },
+        {
+          "kind": "img",
+          "path": "platinum-2-Bx8hi80m.svg",
+          "start": 775,
+          "end": 1004,
+          "bytes": 6359
+        },
+        {
+          "kind": "img",
+          "path": "platinum-1-BW5Q6X0F.svg",
+          "start": 775,
+          "end": 1024,
+          "bytes": 5276
+        },
+        {
+          "kind": "img",
+          "path": "diamond-3-BG-N0wgL.svg",
+          "start": 775,
+          "end": 1034,
+          "bytes": 7070
+        },
+        {
+          "kind": "img",
+          "path": "diamond-2-BU12uZnL.svg",
+          "start": 775,
+          "end": 1038,
+          "bytes": 6601
+        },
+        {
+          "kind": "img",
+          "path": "diamond-1-D1dLUUQN.svg",
+          "start": 775,
+          "end": 1046,
+          "bytes": 5548
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/league/1",
+          "start": 775,
+          "end": 843,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/ranking/user-leagues/page/0",
+          "start": 775,
+          "end": 844,
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "fcp": 724,
+      "lcp": {
+        "time": 912,
+        "element": "img.h-20.w-16.origin-bottom",
+        "url": "bronze-3-BLcvg7lT.svg",
+        "size": 43511
+      },
+      "cls": 0.0003729385035682281,
+      "shifts": [
+        {
+          "time": 1167.199999999255,
+          "value": 0.00027668286493285694,
+          "sources": [
+            "h1.font-mbc.text-[22px].tracking-[-0.6px] \"2026-W45\""
+          ]
+        },
+        {
+          "time": 2775.199999999255,
+          "value": 0.000028764211918918518,
+          "sources": []
+        },
+        {
+          "time": 3775.699999999255,
+          "value": 0.000032058518282834066,
+          "sources": []
+        },
+        {
+          "time": 4774.800000000745,
+          "value": 0.000035432908433618534,
+          "sources": []
+        }
+      ],
+      "tbt": 0,
+      "longTasks": [
+        {
+          "start": 640.6999999992549,
+          "duration": 53
+        }
+      ],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 68,
+          "end": 315,
+          "bytes": 184840
+        },
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 69,
+          "end": 171,
+          "bytes": 22531
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/auth/reissue",
+          "start": 379,
+          "end": 442,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 381,
+          "end": 444,
+          "bytes": 2227
+        },
+        {
+          "kind": "js",
+          "path": "route-BLwBms9_.js",
+          "start": 447,
+          "end": 522,
+          "bytes": 3502
+        },
+        {
+          "kind": "js",
+          "path": "useLocation-XXFpt-56.js",
+          "start": 447,
+          "end": 510,
+          "bytes": 433
+        },
+        {
+          "kind": "js",
+          "path": "use-refetch-active-queries-DEsTamu6.js",
+          "start": 448,
+          "end": 512,
+          "bytes": 503
+        },
+        {
+          "kind": "js",
+          "path": "use-league-ranking-f4wcdVGN.js",
+          "start": 448,
+          "end": 514,
+          "bytes": 1044
+        },
+        {
+          "kind": "js",
+          "path": "league-DWKA6hZ5.js",
+          "start": 448,
+          "end": 530,
+          "bytes": 11537
+        },
+        {
+          "kind": "js",
+          "path": "tier-icon-eYRfUCJ2.js",
+          "start": 448,
+          "end": 515,
+          "bytes": 1054
+        },
+        {
+          "kind": "js",
+          "path": "use-delayed-flag-CHmHZEkC.js",
+          "start": 448,
+          "end": 572,
+          "bytes": 628
+        },
+        {
+          "kind": "js",
+          "path": "skeleton-Bs5ijy6x.js",
+          "start": 448,
+          "end": 574,
+          "bytes": 1446
+        },
+        {
+          "kind": "js",
+          "path": "level-CHVQVDK5.js",
+          "start": 448,
+          "end": 575,
+          "bytes": 1013
+        },
+        {
+          "kind": "js",
+          "path": "date-BCO4Wgza.js",
+          "start": 448,
+          "end": 576,
+          "bytes": 870
+        },
+        {
+          "kind": "js",
+          "path": "modal-WYpVOrLw.js",
+          "start": 448,
+          "end": 584,
+          "bytes": 2797
+        },
+        {
+          "kind": "js",
+          "path": "Combination-FjqZfKcv.js",
+          "start": 448,
+          "end": 595,
+          "bytes": 5492
+        },
+        {
+          "kind": "js",
+          "path": "index-BCGeRuru.js",
+          "start": 448,
+          "end": 640,
+          "bytes": 4543
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 449,
+          "end": 636,
+          "bytes": 683
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 450,
+          "end": 518,
+          "bytes": 0
+        },
+        {
+          "kind": "img",
+          "path": "league-bg-desktop-C8LafyIP.avif",
+          "start": 671,
+          "end": 795,
+          "bytes": 35902
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 675,
+          "end": 1550,
+          "bytes": 653756
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/notifications",
+          "start": 693,
+          "end": 763,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/league/home",
+          "start": 694,
+          "end": 759,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/ranking/me",
+          "start": 694,
+          "end": 760,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961GulimM.woff2",
+          "start": 770,
+          "end": 1156,
+          "bytes": 131244
+        },
+        {
+          "kind": "img",
+          "path": "bronze-3-BLcvg7lT.svg",
+          "start": 776,
+          "end": 856,
+          "bytes": 4343
+        },
+        {
+          "kind": "img",
+          "path": "bronze-1-CYVp9QIx.svg",
+          "start": 776,
+          "end": 851,
+          "bytes": 2871
+        },
+        {
+          "kind": "img",
+          "path": "silver-3-Bn2ZBK0U.svg",
+          "start": 776,
+          "end": 864,
+          "bytes": 5427
+        },
+        {
+          "kind": "img",
+          "path": "bronze-2-BBue98Nc.svg",
+          "start": 776,
+          "end": 855,
+          "bytes": 3947
+        },
+        {
+          "kind": "img",
+          "path": "silver-2-BYgXtetO.svg",
+          "start": 776,
+          "end": 883,
+          "bytes": 8815
+        },
+        {
+          "kind": "img",
+          "path": "silver-1-Dy3NFxiR.svg",
+          "start": 776,
+          "end": 927,
+          "bytes": 3890
+        },
+        {
+          "kind": "img",
+          "path": "gold-3-j6lfzWes.svg",
+          "start": 777,
+          "end": 940,
+          "bytes": 5384
+        },
+        {
+          "kind": "img",
+          "path": "gold-2-BPwu2leb.svg",
+          "start": 777,
+          "end": 943,
+          "bytes": 4963
+        },
+        {
+          "kind": "img",
+          "path": "gold-1-qG_JdfaI.svg",
+          "start": 777,
+          "end": 946,
+          "bytes": 3926
+        },
+        {
+          "kind": "img",
+          "path": "platinum-3-Be_NUyF-.svg",
+          "start": 777,
+          "end": 964,
+          "bytes": 6750
+        },
+        {
+          "kind": "img",
+          "path": "platinum-2-Bx8hi80m.svg",
+          "start": 777,
+          "end": 1008,
+          "bytes": 6359
+        },
+        {
+          "kind": "img",
+          "path": "platinum-1-BW5Q6X0F.svg",
+          "start": 777,
+          "end": 1026,
+          "bytes": 5276
+        },
+        {
+          "kind": "img",
+          "path": "diamond-3-BG-N0wgL.svg",
+          "start": 777,
+          "end": 1036,
+          "bytes": 7070
+        },
+        {
+          "kind": "img",
+          "path": "diamond-2-BU12uZnL.svg",
+          "start": 777,
+          "end": 1040,
+          "bytes": 6601
+        },
+        {
+          "kind": "img",
+          "path": "diamond-1-D1dLUUQN.svg",
+          "start": 778,
+          "end": 1048,
+          "bytes": 5548
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/league/1",
+          "start": 778,
+          "end": 846,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/ranking/user-leagues/page/0",
+          "start": 778,
+          "end": 847,
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "fcp": 712,
+      "lcp": {
+        "time": 936,
+        "element": "img.h-20.w-16.origin-bottom",
+        "url": "bronze-3-BLcvg7lT.svg",
+        "size": 43511
+      },
+      "cls": 0.0003693227749466078,
+      "shifts": [
+        {
+          "time": 1173.0999999996275,
+          "value": 0.00027668286493285694,
+          "sources": [
+            "h1.font-mbc.text-[22px].tracking-[-0.6px] \"2026-W45\""
+          ]
+        },
+        {
+          "time": 1773.699999999255,
+          "value": 0.000031978072125888816,
+          "sources": []
+        },
+        {
+          "time": 10774.299999998882,
+          "value": 0.00002868376576197327,
+          "sources": []
+        },
+        {
+          "time": 11773.099999999627,
+          "value": 0.000031978072125888816,
+          "sources": []
+        }
+      ],
+      "tbt": 0,
+      "longTasks": [
+        {
+          "start": 640.6999999992549,
+          "duration": 52
+        }
+      ],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 68,
+          "end": 315,
+          "bytes": 184840
+        },
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 68,
+          "end": 170,
+          "bytes": 22531
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/auth/reissue",
+          "start": 380,
+          "end": 442,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 382,
+          "end": 445,
+          "bytes": 2227
+        },
+        {
+          "kind": "js",
+          "path": "route-BLwBms9_.js",
+          "start": 448,
+          "end": 522,
+          "bytes": 3502
+        },
+        {
+          "kind": "js",
+          "path": "useLocation-XXFpt-56.js",
+          "start": 448,
+          "end": 511,
+          "bytes": 433
+        },
+        {
+          "kind": "js",
+          "path": "league-DWKA6hZ5.js",
+          "start": 448,
+          "end": 530,
+          "bytes": 11537
+        },
+        {
+          "kind": "js",
+          "path": "use-refetch-active-queries-DEsTamu6.js",
+          "start": 448,
+          "end": 512,
+          "bytes": 503
+        },
+        {
+          "kind": "js",
+          "path": "use-league-ranking-f4wcdVGN.js",
+          "start": 448,
+          "end": 514,
+          "bytes": 1044
+        },
+        {
+          "kind": "js",
+          "path": "tier-icon-eYRfUCJ2.js",
+          "start": 449,
+          "end": 517,
+          "bytes": 1054
+        },
+        {
+          "kind": "js",
+          "path": "use-delayed-flag-CHmHZEkC.js",
+          "start": 449,
+          "end": 573,
+          "bytes": 628
+        },
+        {
+          "kind": "js",
+          "path": "skeleton-Bs5ijy6x.js",
+          "start": 449,
+          "end": 574,
+          "bytes": 1446
+        },
+        {
+          "kind": "js",
+          "path": "level-CHVQVDK5.js",
+          "start": 449,
+          "end": 575,
+          "bytes": 1013
+        },
+        {
+          "kind": "js",
+          "path": "date-BCO4Wgza.js",
+          "start": 449,
+          "end": 578,
+          "bytes": 870
+        },
+        {
+          "kind": "js",
+          "path": "modal-WYpVOrLw.js",
+          "start": 450,
+          "end": 585,
+          "bytes": 2797
+        },
+        {
+          "kind": "js",
+          "path": "Combination-FjqZfKcv.js",
+          "start": 450,
+          "end": 595,
+          "bytes": 5492
+        },
+        {
+          "kind": "js",
+          "path": "index-BCGeRuru.js",
+          "start": 450,
+          "end": 641,
+          "bytes": 4543
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 450,
+          "end": 637,
+          "bytes": 683
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 451,
+          "end": 519,
+          "bytes": 0
+        },
+        {
+          "kind": "img",
+          "path": "league-bg-desktop-C8LafyIP.avif",
+          "start": 671,
+          "end": 796,
+          "bytes": 35902
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 675,
+          "end": 1550,
+          "bytes": 653756
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/notifications",
+          "start": 693,
+          "end": 763,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/league/home",
+          "start": 693,
+          "end": 758,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/ranking/me",
+          "start": 693,
+          "end": 761,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961GulimM.woff2",
+          "start": 769,
+          "end": 1156,
+          "bytes": 131244
+        },
+        {
+          "kind": "img",
+          "path": "bronze-1-CYVp9QIx.svg",
+          "start": 775,
+          "end": 850,
+          "bytes": 2871
+        },
+        {
+          "kind": "img",
+          "path": "bronze-2-BBue98Nc.svg",
+          "start": 775,
+          "end": 854,
+          "bytes": 3947
+        },
+        {
+          "kind": "img",
+          "path": "bronze-3-BLcvg7lT.svg",
+          "start": 775,
+          "end": 855,
+          "bytes": 4343
+        },
+        {
+          "kind": "img",
+          "path": "silver-3-Bn2ZBK0U.svg",
+          "start": 775,
+          "end": 861,
+          "bytes": 5427
+        },
+        {
+          "kind": "img",
+          "path": "silver-2-BYgXtetO.svg",
+          "start": 775,
+          "end": 882,
+          "bytes": 8815
+        },
+        {
+          "kind": "img",
+          "path": "silver-1-Dy3NFxiR.svg",
+          "start": 775,
+          "end": 926,
+          "bytes": 3890
+        },
+        {
+          "kind": "img",
+          "path": "gold-3-j6lfzWes.svg",
+          "start": 775,
+          "end": 939,
+          "bytes": 5384
+        },
+        {
+          "kind": "img",
+          "path": "gold-1-qG_JdfaI.svg",
+          "start": 775,
+          "end": 942,
+          "bytes": 3926
+        },
+        {
+          "kind": "img",
+          "path": "gold-2-BPwu2leb.svg",
+          "start": 775,
+          "end": 943,
+          "bytes": 4963
+        },
+        {
+          "kind": "img",
+          "path": "platinum-3-Be_NUyF-.svg",
+          "start": 776,
+          "end": 963,
+          "bytes": 6750
+        },
+        {
+          "kind": "img",
+          "path": "platinum-2-Bx8hi80m.svg",
+          "start": 776,
+          "end": 1007,
+          "bytes": 6359
+        },
+        {
+          "kind": "img",
+          "path": "platinum-1-BW5Q6X0F.svg",
+          "start": 776,
+          "end": 1026,
+          "bytes": 5276
+        },
+        {
+          "kind": "img",
+          "path": "diamond-3-BG-N0wgL.svg",
+          "start": 776,
+          "end": 1035,
+          "bytes": 7070
+        },
+        {
+          "kind": "img",
+          "path": "diamond-2-BU12uZnL.svg",
+          "start": 776,
+          "end": 1039,
+          "bytes": 6601
+        },
+        {
+          "kind": "img",
+          "path": "diamond-1-D1dLUUQN.svg",
+          "start": 776,
+          "end": 1047,
+          "bytes": 5548
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/league/1",
+          "start": 777,
+          "end": 845,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/ranking/user-leagues/page/0",
+          "start": 777,
+          "end": 846,
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "fcp": 732,
+      "lcp": {
+        "time": 876,
+        "element": "img.h-20.w-16.origin-bottom",
+        "url": "bronze-3-BLcvg7lT.svg",
+        "size": 43511
+      },
+      "cls": 0.0003373452463758335,
+      "shifts": [
+        {
+          "time": 1174.4000000003725,
+          "value": 0.00027668286493285694,
+          "sources": [
+            "h1.font-mbc.text-[22px].tracking-[-0.6px] \"2026-W45\""
+          ]
+        },
+        {
+          "time": 8774.200000001118,
+          "value": 0.000028684128132049603,
+          "sources": []
+        },
+        {
+          "time": 9774,
+          "value": 0.00003197825331092699,
+          "sources": []
+        }
+      ],
+      "tbt": 0,
+      "longTasks": [
+        {
+          "start": 638.7000000011176,
+          "duration": 55
+        }
+      ],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 68,
+          "end": 315,
+          "bytes": 184840
+        },
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 68,
+          "end": 170,
+          "bytes": 22531
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/auth/reissue",
+          "start": 379,
+          "end": 442,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 382,
+          "end": 444,
+          "bytes": 2227
+        },
+        {
+          "kind": "js",
+          "path": "route-BLwBms9_.js",
+          "start": 447,
+          "end": 520,
+          "bytes": 3502
+        },
+        {
+          "kind": "js",
+          "path": "useLocation-XXFpt-56.js",
+          "start": 448,
+          "end": 510,
+          "bytes": 433
+        },
+        {
+          "kind": "js",
+          "path": "use-refetch-active-queries-DEsTamu6.js",
+          "start": 448,
+          "end": 512,
+          "bytes": 503
+        },
+        {
+          "kind": "js",
+          "path": "league-DWKA6hZ5.js",
+          "start": 448,
+          "end": 528,
+          "bytes": 11537
+        },
+        {
+          "kind": "js",
+          "path": "use-league-ranking-f4wcdVGN.js",
+          "start": 448,
+          "end": 514,
+          "bytes": 1044
+        },
+        {
+          "kind": "js",
+          "path": "tier-icon-eYRfUCJ2.js",
+          "start": 448,
+          "end": 515,
+          "bytes": 1054
+        },
+        {
+          "kind": "js",
+          "path": "use-delayed-flag-CHmHZEkC.js",
+          "start": 448,
+          "end": 571,
+          "bytes": 628
+        },
+        {
+          "kind": "js",
+          "path": "skeleton-Bs5ijy6x.js",
+          "start": 448,
+          "end": 574,
+          "bytes": 1446
+        },
+        {
+          "kind": "js",
+          "path": "level-CHVQVDK5.js",
+          "start": 449,
+          "end": 575,
+          "bytes": 1013
+        },
+        {
+          "kind": "js",
+          "path": "date-BCO4Wgza.js",
+          "start": 449,
+          "end": 576,
+          "bytes": 870
+        },
+        {
+          "kind": "js",
+          "path": "modal-WYpVOrLw.js",
+          "start": 449,
+          "end": 583,
+          "bytes": 2797
+        },
+        {
+          "kind": "js",
+          "path": "Combination-FjqZfKcv.js",
+          "start": 449,
+          "end": 594,
+          "bytes": 5492
+        },
+        {
+          "kind": "js",
+          "path": "index-BCGeRuru.js",
+          "start": 449,
+          "end": 638,
+          "bytes": 4543
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 450,
+          "end": 635,
+          "bytes": 683
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 451,
+          "end": 519,
+          "bytes": 0
+        },
+        {
+          "kind": "img",
+          "path": "league-bg-desktop-C8LafyIP.avif",
+          "start": 668,
+          "end": 794,
+          "bytes": 35902
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 671,
+          "end": 1547,
+          "bytes": 653756
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/notifications",
+          "start": 693,
+          "end": 763,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/league/home",
+          "start": 694,
+          "end": 759,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/ranking/me",
+          "start": 694,
+          "end": 760,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961GulimM.woff2",
+          "start": 770,
+          "end": 1156,
+          "bytes": 131244
+        },
+        {
+          "kind": "img",
+          "path": "bronze-1-CYVp9QIx.svg",
+          "start": 776,
+          "end": 850,
+          "bytes": 2871
+        },
+        {
+          "kind": "img",
+          "path": "bronze-2-BBue98Nc.svg",
+          "start": 776,
+          "end": 854,
+          "bytes": 3947
+        },
+        {
+          "kind": "img",
+          "path": "bronze-3-BLcvg7lT.svg",
+          "start": 776,
+          "end": 855,
+          "bytes": 4343
+        },
+        {
+          "kind": "img",
+          "path": "silver-3-Bn2ZBK0U.svg",
+          "start": 776,
+          "end": 862,
+          "bytes": 5427
+        },
+        {
+          "kind": "img",
+          "path": "silver-2-BYgXtetO.svg",
+          "start": 776,
+          "end": 880,
+          "bytes": 8815
+        },
+        {
+          "kind": "img",
+          "path": "silver-1-Dy3NFxiR.svg",
+          "start": 776,
+          "end": 924,
+          "bytes": 3890
+        },
+        {
+          "kind": "img",
+          "path": "gold-3-j6lfzWes.svg",
+          "start": 776,
+          "end": 939,
+          "bytes": 5384
+        },
+        {
+          "kind": "img",
+          "path": "gold-2-BPwu2leb.svg",
+          "start": 776,
+          "end": 942,
+          "bytes": 4963
+        },
+        {
+          "kind": "img",
+          "path": "gold-1-qG_JdfaI.svg",
+          "start": 776,
+          "end": 943,
+          "bytes": 3926
+        },
+        {
+          "kind": "img",
+          "path": "platinum-3-Be_NUyF-.svg",
+          "start": 776,
+          "end": 963,
+          "bytes": 6750
+        },
+        {
+          "kind": "img",
+          "path": "platinum-2-Bx8hi80m.svg",
+          "start": 776,
+          "end": 1006,
+          "bytes": 6359
+        },
+        {
+          "kind": "img",
+          "path": "platinum-1-BW5Q6X0F.svg",
+          "start": 776,
+          "end": 1026,
+          "bytes": 5276
+        },
+        {
+          "kind": "img",
+          "path": "diamond-3-BG-N0wgL.svg",
+          "start": 776,
+          "end": 1035,
+          "bytes": 7070
+        },
+        {
+          "kind": "img",
+          "path": "diamond-2-BU12uZnL.svg",
+          "start": 776,
+          "end": 1039,
+          "bytes": 6601
+        },
+        {
+          "kind": "img",
+          "path": "diamond-1-D1dLUUQN.svg",
+          "start": 777,
+          "end": 1047,
+          "bytes": 5548
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/league/1",
+          "start": 777,
+          "end": 844,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/ranking/user-leagues/page/0",
+          "start": 778,
+          "end": 847,
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "fcp": 712,
+      "lcp": {
+        "time": 896,
+        "element": "img.h-20.w-16.origin-bottom",
+        "url": "bronze-3-BLcvg7lT.svg",
+        "size": 43511
+      },
+      "cls": 0.000337344702820719,
+      "shifts": [
+        {
+          "time": 1179.5999999996275,
+          "value": 0.00027668286493285694,
+          "sources": [
+            "h1.font-mbc.text-[22px].tracking-[-0.6px] \"2026-W45\""
+          ]
+        },
+        {
+          "time": 5769.39999999851,
+          "value": 0.00002868376576197327,
+          "sources": []
+        },
+        {
+          "time": 6769.39999999851,
+          "value": 0.000031978072125888816,
+          "sources": []
+        }
+      ],
+      "tbt": 0,
+      "longTasks": [
+        {
+          "start": 635.2999999988824,
+          "duration": 52
+        }
+      ],
+      "requests": [
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 69,
+          "end": 170,
+          "bytes": 22531
+        },
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 69,
+          "end": 315,
+          "bytes": 184840
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/auth/reissue",
+          "start": 379,
+          "end": 440,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 381,
+          "end": 443,
+          "bytes": 2227
+        },
+        {
+          "kind": "js",
+          "path": "route-BLwBms9_.js",
+          "start": 446,
+          "end": 519,
+          "bytes": 3502
+        },
+        {
+          "kind": "js",
+          "path": "useLocation-XXFpt-56.js",
+          "start": 446,
+          "end": 507,
+          "bytes": 433
+        },
+        {
+          "kind": "js",
+          "path": "league-DWKA6hZ5.js",
+          "start": 446,
+          "end": 527,
+          "bytes": 11537
+        },
+        {
+          "kind": "js",
+          "path": "use-refetch-active-queries-DEsTamu6.js",
+          "start": 447,
+          "end": 511,
+          "bytes": 503
+        },
+        {
+          "kind": "js",
+          "path": "use-league-ranking-f4wcdVGN.js",
+          "start": 447,
+          "end": 512,
+          "bytes": 1044
+        },
+        {
+          "kind": "js",
+          "path": "tier-icon-eYRfUCJ2.js",
+          "start": 447,
+          "end": 514,
+          "bytes": 1054
+        },
+        {
+          "kind": "js",
+          "path": "use-delayed-flag-CHmHZEkC.js",
+          "start": 447,
+          "end": 568,
+          "bytes": 628
+        },
+        {
+          "kind": "js",
+          "path": "skeleton-Bs5ijy6x.js",
+          "start": 447,
+          "end": 572,
+          "bytes": 1446
+        },
+        {
+          "kind": "js",
+          "path": "level-CHVQVDK5.js",
+          "start": 447,
+          "end": 574,
+          "bytes": 1013
+        },
+        {
+          "kind": "js",
+          "path": "date-BCO4Wgza.js",
+          "start": 447,
+          "end": 575,
+          "bytes": 870
+        },
+        {
+          "kind": "js",
+          "path": "modal-WYpVOrLw.js",
+          "start": 447,
+          "end": 582,
+          "bytes": 2797
+        },
+        {
+          "kind": "js",
+          "path": "Combination-FjqZfKcv.js",
+          "start": 447,
+          "end": 592,
+          "bytes": 5492
+        },
+        {
+          "kind": "js",
+          "path": "index-BCGeRuru.js",
+          "start": 447,
+          "end": 634,
+          "bytes": 4543
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 448,
+          "end": 635,
+          "bytes": 683
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 449,
+          "end": 517,
+          "bytes": 0
+        },
+        {
+          "kind": "img",
+          "path": "league-bg-desktop-C8LafyIP.avif",
+          "start": 666,
+          "end": 794,
+          "bytes": 35902
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 669,
+          "end": 1546,
+          "bytes": 653756
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/notifications",
+          "start": 687,
+          "end": 758,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/league/home",
+          "start": 687,
+          "end": 752,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/ranking/me",
+          "start": 688,
+          "end": 755,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961GulimM.woff2",
+          "start": 764,
+          "end": 1151,
+          "bytes": 131244
+        },
+        {
+          "kind": "img",
+          "path": "bronze-3-BLcvg7lT.svg",
+          "start": 771,
+          "end": 848,
+          "bytes": 4343
+        },
+        {
+          "kind": "img",
+          "path": "bronze-2-BBue98Nc.svg",
+          "start": 771,
+          "end": 850,
+          "bytes": 3947
+        },
+        {
+          "kind": "img",
+          "path": "bronze-1-CYVp9QIx.svg",
+          "start": 771,
+          "end": 846,
+          "bytes": 2871
+        },
+        {
+          "kind": "img",
+          "path": "silver-3-Bn2ZBK0U.svg",
+          "start": 771,
+          "end": 856,
+          "bytes": 5427
+        },
+        {
+          "kind": "img",
+          "path": "silver-2-BYgXtetO.svg",
+          "start": 771,
+          "end": 879,
+          "bytes": 8815
+        },
+        {
+          "kind": "img",
+          "path": "silver-1-Dy3NFxiR.svg",
+          "start": 771,
+          "end": 923,
+          "bytes": 3890
+        },
+        {
+          "kind": "img",
+          "path": "gold-3-j6lfzWes.svg",
+          "start": 771,
+          "end": 935,
+          "bytes": 5384
+        },
+        {
+          "kind": "img",
+          "path": "gold-2-BPwu2leb.svg",
+          "start": 771,
+          "end": 936,
+          "bytes": 4963
+        },
+        {
+          "kind": "img",
+          "path": "gold-1-qG_JdfaI.svg",
+          "start": 771,
+          "end": 938,
+          "bytes": 3926
+        },
+        {
+          "kind": "img",
+          "path": "platinum-3-Be_NUyF-.svg",
+          "start": 771,
+          "end": 959,
+          "bytes": 6750
+        },
+        {
+          "kind": "img",
+          "path": "platinum-2-Bx8hi80m.svg",
+          "start": 771,
+          "end": 1007,
+          "bytes": 6359
+        },
+        {
+          "kind": "img",
+          "path": "platinum-1-BW5Q6X0F.svg",
+          "start": 771,
+          "end": 1022,
+          "bytes": 5276
+        },
+        {
+          "kind": "img",
+          "path": "diamond-3-BG-N0wgL.svg",
+          "start": 771,
+          "end": 1031,
+          "bytes": 7070
+        },
+        {
+          "kind": "img",
+          "path": "diamond-2-BU12uZnL.svg",
+          "start": 771,
+          "end": 1035,
+          "bytes": 6601
+        },
+        {
+          "kind": "img",
+          "path": "diamond-1-D1dLUUQN.svg",
+          "start": 771,
+          "end": 1043,
+          "bytes": 5548
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/league/1",
+          "start": 773,
+          "end": 840,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/ranking/user-leagues/page/0",
+          "start": 773,
+          "end": 842,
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "fcp": 728,
+      "lcp": {
+        "time": 920,
+        "element": "img.h-20.w-16.origin-bottom",
+        "url": "bronze-3-BLcvg7lT.svg",
+        "size": 43511
+      },
+      "cls": 0.0003625739946450389,
+      "shifts": [
+        {
+          "time": 1177.800000000745,
+          "value": 0.00027668286493285694,
+          "sources": [
+            "h1.font-mbc.text-[22px].tracking-[-0.6px] \"2026-W45\""
+          ]
+        },
+        {
+          "time": 3774,
+          "value": 0.000028683946947011435,
+          "sources": []
+        },
+        {
+          "time": 4773.700000001118,
+          "value": 0.00003197825331092699,
+          "sources": []
+        },
+        {
+          "time": 5773.10000000149,
+          "value": 0.000025228929454243557,
+          "sources": []
+        }
+      ],
+      "tbt": 0,
+      "longTasks": [
+        {
+          "start": 640.5,
+          "duration": 53
+        }
+      ],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 68,
+          "end": 315,
+          "bytes": 184840
+        },
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 68,
+          "end": 170,
+          "bytes": 22531
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/auth/reissue",
+          "start": 379,
+          "end": 441,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 381,
+          "end": 443,
+          "bytes": 2227
+        },
+        {
+          "kind": "js",
+          "path": "route-BLwBms9_.js",
+          "start": 447,
+          "end": 516,
+          "bytes": 3502
+        },
+        {
+          "kind": "js",
+          "path": "useLocation-XXFpt-56.js",
+          "start": 447,
+          "end": 510,
+          "bytes": 433
+        },
+        {
+          "kind": "js",
+          "path": "use-refetch-active-queries-DEsTamu6.js",
+          "start": 447,
+          "end": 512,
+          "bytes": 503
+        },
+        {
+          "kind": "js",
+          "path": "use-league-ranking-f4wcdVGN.js",
+          "start": 447,
+          "end": 514,
+          "bytes": 1044
+        },
+        {
+          "kind": "js",
+          "path": "league-DWKA6hZ5.js",
+          "start": 447,
+          "end": 527,
+          "bytes": 11537
+        },
+        {
+          "kind": "js",
+          "path": "tier-icon-eYRfUCJ2.js",
+          "start": 447,
+          "end": 515,
+          "bytes": 1054
+        },
+        {
+          "kind": "js",
+          "path": "use-delayed-flag-CHmHZEkC.js",
+          "start": 447,
+          "end": 572,
+          "bytes": 628
+        },
+        {
+          "kind": "js",
+          "path": "skeleton-Bs5ijy6x.js",
+          "start": 448,
+          "end": 574,
+          "bytes": 1446
+        },
+        {
+          "kind": "js",
+          "path": "level-CHVQVDK5.js",
+          "start": 448,
+          "end": 575,
+          "bytes": 1013
+        },
+        {
+          "kind": "js",
+          "path": "date-BCO4Wgza.js",
+          "start": 448,
+          "end": 576,
+          "bytes": 870
+        },
+        {
+          "kind": "js",
+          "path": "modal-WYpVOrLw.js",
+          "start": 448,
+          "end": 579,
+          "bytes": 2797
+        },
+        {
+          "kind": "js",
+          "path": "Combination-FjqZfKcv.js",
+          "start": 448,
+          "end": 592,
+          "bytes": 5492
+        },
+        {
+          "kind": "js",
+          "path": "index-BCGeRuru.js",
+          "start": 448,
+          "end": 640,
+          "bytes": 4543
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 449,
+          "end": 636,
+          "bytes": 683
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 450,
+          "end": 518,
+          "bytes": 0
+        },
+        {
+          "kind": "img",
+          "path": "league-bg-desktop-C8LafyIP.avif",
+          "start": 671,
+          "end": 796,
+          "bytes": 35902
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 675,
+          "end": 1550,
+          "bytes": 653756
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/notifications",
+          "start": 693,
+          "end": 763,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/league/home",
+          "start": 693,
+          "end": 758,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/ranking/me",
+          "start": 693,
+          "end": 760,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961GulimM.woff2",
+          "start": 769,
+          "end": 1156,
+          "bytes": 131244
+        },
+        {
+          "kind": "img",
+          "path": "bronze-3-BLcvg7lT.svg",
+          "start": 775,
+          "end": 854,
+          "bytes": 4343
+        },
+        {
+          "kind": "img",
+          "path": "bronze-1-CYVp9QIx.svg",
+          "start": 775,
+          "end": 850,
+          "bytes": 2871
+        },
+        {
+          "kind": "img",
+          "path": "bronze-2-BBue98Nc.svg",
+          "start": 775,
+          "end": 855,
+          "bytes": 3947
+        },
+        {
+          "kind": "img",
+          "path": "silver-3-Bn2ZBK0U.svg",
+          "start": 775,
+          "end": 860,
+          "bytes": 5427
+        },
+        {
+          "kind": "img",
+          "path": "silver-2-BYgXtetO.svg",
+          "start": 775,
+          "end": 882,
+          "bytes": 8815
+        },
+        {
+          "kind": "img",
+          "path": "silver-1-Dy3NFxiR.svg",
+          "start": 775,
+          "end": 924,
+          "bytes": 3890
+        },
+        {
+          "kind": "img",
+          "path": "gold-3-j6lfzWes.svg",
+          "start": 776,
+          "end": 939,
+          "bytes": 5384
+        },
+        {
+          "kind": "img",
+          "path": "gold-1-qG_JdfaI.svg",
+          "start": 776,
+          "end": 942,
+          "bytes": 3926
+        },
+        {
+          "kind": "img",
+          "path": "gold-2-BPwu2leb.svg",
+          "start": 776,
+          "end": 943,
+          "bytes": 4963
+        },
+        {
+          "kind": "img",
+          "path": "platinum-3-Be_NUyF-.svg",
+          "start": 776,
+          "end": 963,
+          "bytes": 6750
+        },
+        {
+          "kind": "img",
+          "path": "platinum-2-Bx8hi80m.svg",
+          "start": 776,
+          "end": 1006,
+          "bytes": 6359
+        },
+        {
+          "kind": "img",
+          "path": "platinum-1-BW5Q6X0F.svg",
+          "start": 776,
+          "end": 1026,
+          "bytes": 5276
+        },
+        {
+          "kind": "img",
+          "path": "diamond-3-BG-N0wgL.svg",
+          "start": 776,
+          "end": 1035,
+          "bytes": 7070
+        },
+        {
+          "kind": "img",
+          "path": "diamond-2-BU12uZnL.svg",
+          "start": 776,
+          "end": 1039,
+          "bytes": 6601
+        },
+        {
+          "kind": "img",
+          "path": "diamond-1-D1dLUUQN.svg",
+          "start": 776,
+          "end": 1047,
+          "bytes": 5548
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/league/1",
+          "start": 776,
+          "end": 844,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/ranking/user-leagues/page/0",
+          "start": 777,
+          "end": 846,
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "fcp": 724,
+      "lcp": {
+        "time": 896,
+        "element": "img.h-20.w-16.origin-bottom",
+        "url": "bronze-3-BLcvg7lT.svg",
+        "size": 43511
+      },
+      "cls": 0.000404756408120379,
+      "shifts": [
+        {
+          "time": 1170.4000000003725,
+          "value": 0.00027668286493285694,
+          "sources": [
+            "h1.font-mbc.text-[22px].tracking-[-0.6px] \"2026-W45\""
+          ]
+        },
+        {
+          "time": 1769.199999999255,
+          "value": 0.00003197825331092699,
+          "sources": []
+        },
+        {
+          "time": 2769,
+          "value": 0.0000354330896186567,
+          "sources": []
+        },
+        {
+          "time": 10769.5,
+          "value": 0.000028683946947011435,
+          "sources": []
+        },
+        {
+          "time": 11768.900000000373,
+          "value": 0.00003197825331092699,
+          "sources": []
+        }
+      ],
+      "tbt": 0,
+      "longTasks": [
+        {
+          "start": 637.6999999992549,
+          "duration": 51
+        }
+      ],
+      "requests": [
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 69,
+          "end": 170,
+          "bytes": 22531
+        },
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 69,
+          "end": 315,
+          "bytes": 184840
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/auth/reissue",
+          "start": 380,
+          "end": 442,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 382,
+          "end": 445,
+          "bytes": 2227
+        },
+        {
+          "kind": "js",
+          "path": "useLocation-XXFpt-56.js",
+          "start": 448,
+          "end": 509,
+          "bytes": 433
+        },
+        {
+          "kind": "js",
+          "path": "route-BLwBms9_.js",
+          "start": 448,
+          "end": 521,
+          "bytes": 3502
+        },
+        {
+          "kind": "js",
+          "path": "use-refetch-active-queries-DEsTamu6.js",
+          "start": 448,
+          "end": 513,
+          "bytes": 503
+        },
+        {
+          "kind": "js",
+          "path": "use-league-ranking-f4wcdVGN.js",
+          "start": 448,
+          "end": 514,
+          "bytes": 1044
+        },
+        {
+          "kind": "js",
+          "path": "league-DWKA6hZ5.js",
+          "start": 448,
+          "end": 529,
+          "bytes": 11537
+        },
+        {
+          "kind": "js",
+          "path": "tier-icon-eYRfUCJ2.js",
+          "start": 448,
+          "end": 516,
+          "bytes": 1054
+        },
+        {
+          "kind": "js",
+          "path": "use-delayed-flag-CHmHZEkC.js",
+          "start": 448,
+          "end": 570,
+          "bytes": 628
+        },
+        {
+          "kind": "js",
+          "path": "skeleton-Bs5ijy6x.js",
+          "start": 448,
+          "end": 574,
+          "bytes": 1446
+        },
+        {
+          "kind": "js",
+          "path": "level-CHVQVDK5.js",
+          "start": 448,
+          "end": 576,
+          "bytes": 1013
+        },
+        {
+          "kind": "js",
+          "path": "date-BCO4Wgza.js",
+          "start": 449,
+          "end": 577,
+          "bytes": 870
+        },
+        {
+          "kind": "js",
+          "path": "modal-WYpVOrLw.js",
+          "start": 449,
+          "end": 584,
+          "bytes": 2797
+        },
+        {
+          "kind": "js",
+          "path": "Combination-FjqZfKcv.js",
+          "start": 449,
+          "end": 594,
+          "bytes": 5492
+        },
+        {
+          "kind": "js",
+          "path": "index-BCGeRuru.js",
+          "start": 449,
+          "end": 636,
+          "bytes": 4543
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 450,
+          "end": 637,
+          "bytes": 683
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 451,
+          "end": 518,
+          "bytes": 0
+        },
+        {
+          "kind": "img",
+          "path": "league-bg-desktop-C8LafyIP.avif",
+          "start": 667,
+          "end": 790,
+          "bytes": 35902
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 670,
+          "end": 1545,
+          "bytes": 653756
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/notifications",
+          "start": 689,
+          "end": 759,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/league/home",
+          "start": 689,
+          "end": 754,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/ranking/me",
+          "start": 689,
+          "end": 755,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961GulimM.woff2",
+          "start": 765,
+          "end": 1150,
+          "bytes": 131244
+        },
+        {
+          "kind": "img",
+          "path": "bronze-2-BBue98Nc.svg",
+          "start": 771,
+          "end": 849,
+          "bytes": 3947
+        },
+        {
+          "kind": "img",
+          "path": "bronze-3-BLcvg7lT.svg",
+          "start": 771,
+          "end": 850,
+          "bytes": 4343
+        },
+        {
+          "kind": "img",
+          "path": "bronze-1-CYVp9QIx.svg",
+          "start": 771,
+          "end": 845,
+          "bytes": 2871
+        },
+        {
+          "kind": "img",
+          "path": "silver-3-Bn2ZBK0U.svg",
+          "start": 771,
+          "end": 857,
+          "bytes": 5427
+        },
+        {
+          "kind": "img",
+          "path": "silver-2-BYgXtetO.svg",
+          "start": 771,
+          "end": 877,
+          "bytes": 8815
+        },
+        {
+          "kind": "img",
+          "path": "silver-1-Dy3NFxiR.svg",
+          "start": 771,
+          "end": 921,
+          "bytes": 3890
+        },
+        {
+          "kind": "img",
+          "path": "gold-3-j6lfzWes.svg",
+          "start": 771,
+          "end": 934,
+          "bytes": 5384
+        },
+        {
+          "kind": "img",
+          "path": "gold-2-BPwu2leb.svg",
+          "start": 771,
+          "end": 937,
+          "bytes": 4963
+        },
+        {
+          "kind": "img",
+          "path": "gold-1-qG_JdfaI.svg",
+          "start": 771,
+          "end": 938,
+          "bytes": 3926
+        },
+        {
+          "kind": "img",
+          "path": "platinum-3-Be_NUyF-.svg",
+          "start": 772,
+          "end": 958,
+          "bytes": 6750
+        },
+        {
+          "kind": "img",
+          "path": "platinum-2-Bx8hi80m.svg",
+          "start": 772,
+          "end": 1002,
+          "bytes": 6359
+        },
+        {
+          "kind": "img",
+          "path": "platinum-1-BW5Q6X0F.svg",
+          "start": 772,
+          "end": 1021,
+          "bytes": 5276
+        },
+        {
+          "kind": "img",
+          "path": "diamond-3-BG-N0wgL.svg",
+          "start": 772,
+          "end": 1030,
+          "bytes": 7070
+        },
+        {
+          "kind": "img",
+          "path": "diamond-2-BU12uZnL.svg",
+          "start": 772,
+          "end": 1034,
+          "bytes": 6601
+        },
+        {
+          "kind": "img",
+          "path": "diamond-1-D1dLUUQN.svg",
+          "start": 772,
+          "end": 1042,
+          "bytes": 5548
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/league/1",
+          "start": 772,
+          "end": 840,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/ranking/user-leagues/page/0",
+          "start": 772,
+          "end": 841,
+          "bytes": 0
+        }
+      ]
+    }
+  ]
+}

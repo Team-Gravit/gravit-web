@@ -30,3 +30,6 @@ docs/_reference
 
 # 완료된 작업 기록 — 끝나면 수정하지 않는 동결 문서다 (work-management.md §5)
 work/done
+
+# 성능 측정 원본 · 측정 스크립트 · 기록 — 측정 당시 그대로 보존한다 (perf/web-performance 브랜치에서 공유)
+performance

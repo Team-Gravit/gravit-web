@@ -1,0 +1,7 @@
+league-desktop 1 fcp 296 lcp 336 cls 0.000 tbt 0 | img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg
+league-desktop 2 fcp 252 lcp 332 cls 0.000 tbt 0 | img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg
+league-desktop 3 fcp 256 lcp 336 cls 0.000 tbt 0 | img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg
+league-desktop 4 fcp 264 lcp 308 cls 0.000 tbt 0 | img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg
+league-desktop 5 fcp 260 lcp 324 cls 0.000 tbt 0 | img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg
+league-desktop 6 fcp 272 lcp 324 cls 0.000 tbt 0 | img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg
+league-desktop 7 fcp 256 lcp 324 cls 0.000 tbt 0 | img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg

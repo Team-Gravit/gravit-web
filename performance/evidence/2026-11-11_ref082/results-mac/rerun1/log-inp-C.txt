@@ -1,0 +1,14 @@
+my-edit-mobile 1 inp 48 다음 프로필 색:48 input 입력:0
+my-edit-mobile 2 inp 56 다음 프로필 색:56 input 입력:0
+my-edit-mobile 3 inp 48 다음 프로필 색:48 input 입력:0
+my-edit-mobile 4 inp 56 다음 프로필 색:56 input 입력:0
+my-edit-mobile 5 inp 64 다음 프로필 색:64 input 입력:0
+my-edit-mobile 6 inp 56 다음 프로필 색:56 input 입력:0
+my-edit-mobile 7 inp 48 다음 프로필 색:48 input 입력:0
+settings-mobile 1 inp 56 공지사항:56
+settings-mobile 2 inp 48 공지사항:48
+settings-mobile 3 inp 56 공지사항:56
+settings-mobile 4 inp 56 공지사항:56
+settings-mobile 5 inp 48 공지사항:48
+settings-mobile 6 inp 48 공지사항:48
+settings-mobile 7 inp 48 공지사항:48

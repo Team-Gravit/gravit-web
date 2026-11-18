@@ -1,0 +1,778 @@
+{
+  "main-desktop": [
+    {
+      "fcp": 304,
+      "lcp": {
+        "time": 304,
+        "element": "img.size-full.object-cover.object-top",
+        "url": "space-banner-MwsmKPWE.webp",
+        "size": 394560
+      },
+      "cls": 0.04929333419067215,
+      "shifts": [
+        {
+          "time": 390.5,
+          "value": 0.04771241426611797,
+          "sources": [
+            "section.flex.w-full.flex-col \"새 주제 시작하기 전체보기 ​ ​ ​ ​ ​ ​\"",
+            "div.inline-block.bg-gray-300.relative",
+            "::after"
+          ]
+        },
+        {
+          "time": 764,
+          "value": 0.0006126200274348423,
+          "sources": [
+            "section.flex.w-full.flex-col \"오늘의 미션 레슨 4개 완료하기 완료 시 +15 XP \""
+          ]
+        },
+        {
+          "time": 772.7000000029802,
+          "value": 0.0009682998971193414,
+          "sources": [
+            "section.flex.w-full.flex-col \"새 주제 시작하기 전체보기 자료구조 Lesson 01 \"",
+            "div.pointer-events-none.absolute.-z-10",
+            "div.pointer-events-none.absolute.-z-10"
+          ]
+        }
+      ],
+      "tbt": 0,
+      "longTasks": [],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 27,
+          "end": 82,
+          "bytes": 184840
+        },
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 27,
+          "end": 56,
+          "bytes": 22531
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/auth/reissue",
+          "start": 116,
+          "end": 137,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 117,
+          "end": 138,
+          "bytes": 2227
+        },
+        {
+          "kind": "js",
+          "path": "route-BLwBms9_.js",
+          "start": 140,
+          "end": 164,
+          "bytes": 3502
+        },
+        {
+          "kind": "js",
+          "path": "useLocation-XXFpt-56.js",
+          "start": 140,
+          "end": 162,
+          "bytes": 433
+        },
+        {
+          "kind": "js",
+          "path": "main-CXLuylfy.js",
+          "start": 142,
+          "end": 165,
+          "bytes": 8260
+        },
+        {
+          "kind": "js",
+          "path": "use-refetch-active-queries-DEsTamu6.js",
+          "start": 142,
+          "end": 163,
+          "bytes": 503
+        },
+        {
+          "kind": "js",
+          "path": "card-CPs_ThYK.js",
+          "start": 142,
+          "end": 163,
+          "bytes": 751
+        },
+        {
+          "kind": "js",
+          "path": "card-header-rkpSEdSQ.js",
+          "start": 142,
+          "end": 163,
+          "bytes": 1015
+        },
+        {
+          "kind": "js",
+          "path": "progress-bar-CzBkYY83.js",
+          "start": 142,
+          "end": 183,
+          "bytes": 1031
+        },
+        {
+          "kind": "js",
+          "path": "skeleton-Bs5ijy6x.js",
+          "start": 142,
+          "end": 183,
+          "bytes": 1446
+        },
+        {
+          "kind": "js",
+          "path": "space-banner-DeCurbPM.js",
+          "start": 142,
+          "end": 184,
+          "bytes": 613
+        },
+        {
+          "kind": "js",
+          "path": "hero-greeting-BkuOb-7e.js",
+          "start": 142,
+          "end": 184,
+          "bytes": 1985
+        },
+        {
+          "kind": "js",
+          "path": "tier-icon-eYRfUCJ2.js",
+          "start": 142,
+          "end": 184,
+          "bytes": 1054
+        },
+        {
+          "kind": "js",
+          "path": "planets-CnsLAvoU.js",
+          "start": 142,
+          "end": 185,
+          "bytes": 1205
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 143,
+          "end": 204,
+          "bytes": 683
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 143,
+          "end": 164,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/main-pages/profile",
+          "start": 143,
+          "end": 746,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/main-pages/league",
+          "start": 143,
+          "end": 746,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/main-pages/weekly-record",
+          "start": 143,
+          "end": 746,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/main-pages/mission",
+          "start": 144,
+          "end": 746,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/main-pages/units",
+          "start": 144,
+          "end": 747,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/main-pages/learning",
+          "start": 144,
+          "end": 765,
+          "bytes": 0
+        },
+        {
+          "kind": "img",
+          "path": "space-banner-MwsmKPWE.webp",
+          "start": 219,
+          "end": 250,
+          "bytes": 28346
+        },
+        {
+          "kind": "img",
+          "path": "unit-card-decoration-CtXvjo1m.webp",
+          "start": 219,
+          "end": 258,
+          "bytes": 51458
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 224,
+          "end": 357,
+          "bytes": 653756
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/notifications",
+          "start": 236,
+          "end": 1348,
+          "bytes": 0
+        },
+        {
+          "kind": "img",
+          "path": "bronze-3-BLcvg7lT.svg",
+          "start": 750,
+          "end": 771,
+          "bytes": 4343
+        },
+        {
+          "kind": "img",
+          "path": "planet-03-earth-DOpvlxUt.webp",
+          "start": 757,
+          "end": 784,
+          "bytes": 22002
+        },
+        {
+          "kind": "img",
+          "path": "planet-05-jupiter-DnC52Bua.webp",
+          "start": 757,
+          "end": 783,
+          "bytes": 16820
+        }
+      ]
+    },
+    {
+      "fcp": 276,
+      "lcp": {
+        "time": 292,
+        "element": "img.size-full.object-cover.object-top",
+        "url": "space-banner-MwsmKPWE.webp",
+        "size": 394560
+      },
+      "cls": 0.04929333419067215,
+      "shifts": [
+        {
+          "time": 372.70000000298023,
+          "value": 0.04771241426611797,
+          "sources": [
+            "section.flex.w-full.flex-col \"새 주제 시작하기 전체보기 ​ ​ ​ ​ ​ ​\"",
+            "div.inline-block.bg-gray-300.relative",
+            "::after"
+          ]
+        },
+        {
+          "time": 755.7000000029802,
+          "value": 0.0006126200274348423,
+          "sources": [
+            "section.flex.w-full.flex-col \"오늘의 미션 레슨 4개 완료하기 완료 시 +15 XP \""
+          ]
+        },
+        {
+          "time": 773.2999999970198,
+          "value": 0.0009682998971193414,
+          "sources": [
+            "section.flex.w-full.flex-col \"새 주제 시작하기 전체보기 자료구조 Lesson 01 \"",
+            "div.pointer-events-none.absolute.-z-10",
+            "div.pointer-events-none.absolute.-z-10"
+          ]
+        }
+      ],
+      "tbt": 0,
+      "longTasks": [],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 25,
+          "end": 79,
+          "bytes": 184840
+        },
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 25,
+          "end": 53,
+          "bytes": 22531
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/auth/reissue",
+          "start": 112,
+          "end": 134,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 113,
+          "end": 135,
+          "bytes": 2227
+        },
+        {
+          "kind": "js",
+          "path": "route-BLwBms9_.js",
+          "start": 137,
+          "end": 160,
+          "bytes": 3502
+        },
+        {
+          "kind": "js",
+          "path": "useLocation-XXFpt-56.js",
+          "start": 137,
+          "end": 158,
+          "bytes": 433
+        },
+        {
+          "kind": "js",
+          "path": "main-CXLuylfy.js",
+          "start": 138,
+          "end": 162,
+          "bytes": 8260
+        },
+        {
+          "kind": "js",
+          "path": "use-refetch-active-queries-DEsTamu6.js",
+          "start": 138,
+          "end": 159,
+          "bytes": 503
+        },
+        {
+          "kind": "js",
+          "path": "card-CPs_ThYK.js",
+          "start": 138,
+          "end": 160,
+          "bytes": 751
+        },
+        {
+          "kind": "js",
+          "path": "card-header-rkpSEdSQ.js",
+          "start": 138,
+          "end": 160,
+          "bytes": 1015
+        },
+        {
+          "kind": "js",
+          "path": "progress-bar-CzBkYY83.js",
+          "start": 139,
+          "end": 180,
+          "bytes": 1031
+        },
+        {
+          "kind": "js",
+          "path": "skeleton-Bs5ijy6x.js",
+          "start": 139,
+          "end": 180,
+          "bytes": 1446
+        },
+        {
+          "kind": "js",
+          "path": "space-banner-DeCurbPM.js",
+          "start": 139,
+          "end": 181,
+          "bytes": 613
+        },
+        {
+          "kind": "js",
+          "path": "hero-greeting-BkuOb-7e.js",
+          "start": 139,
+          "end": 181,
+          "bytes": 1985
+        },
+        {
+          "kind": "js",
+          "path": "tier-icon-eYRfUCJ2.js",
+          "start": 139,
+          "end": 181,
+          "bytes": 1054
+        },
+        {
+          "kind": "js",
+          "path": "planets-CnsLAvoU.js",
+          "start": 139,
+          "end": 182,
+          "bytes": 1205
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 139,
+          "end": 201,
+          "bytes": 683
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 140,
+          "end": 161,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/main-pages/profile",
+          "start": 140,
+          "end": 742,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/main-pages/league",
+          "start": 140,
+          "end": 742,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/main-pages/weekly-record",
+          "start": 140,
+          "end": 742,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/main-pages/mission",
+          "start": 140,
+          "end": 742,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/main-pages/units",
+          "start": 140,
+          "end": 743,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/main-pages/learning",
+          "start": 140,
+          "end": 762,
+          "bytes": 0
+        },
+        {
+          "kind": "img",
+          "path": "space-banner-MwsmKPWE.webp",
+          "start": 215,
+          "end": 247,
+          "bytes": 28346
+        },
+        {
+          "kind": "img",
+          "path": "unit-card-decoration-CtXvjo1m.webp",
+          "start": 215,
+          "end": 256,
+          "bytes": 51458
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 220,
+          "end": 354,
+          "bytes": 653756
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/notifications",
+          "start": 232,
+          "end": 1343,
+          "bytes": 0
+        },
+        {
+          "kind": "img",
+          "path": "bronze-3-BLcvg7lT.svg",
+          "start": 746,
+          "end": 767,
+          "bytes": 4343
+        },
+        {
+          "kind": "img",
+          "path": "planet-05-jupiter-DnC52Bua.webp",
+          "start": 749,
+          "end": 776,
+          "bytes": 16820
+        },
+        {
+          "kind": "img",
+          "path": "planet-03-earth-DOpvlxUt.webp",
+          "start": 749,
+          "end": 776,
+          "bytes": 22002
+        }
+      ]
+    },
+    {
+      "fcp": 260,
+      "lcp": {
+        "time": 284,
+        "element": "img.size-full.object-cover.object-top",
+        "url": "space-banner-MwsmKPWE.webp",
+        "size": 394560
+      },
+      "cls": 0.04929333419067215,
+      "shifts": [
+        {
+          "time": 371,
+          "value": 0.04771241426611797,
+          "sources": [
+            "section.flex.w-full.flex-col \"새 주제 시작하기 전체보기 ​ ​ ​ ​ ​ ​\"",
+            "div.inline-block.bg-gray-300.relative",
+            "::after"
+          ]
+        },
+        {
+          "time": 757.3000000044703,
+          "value": 0.0006126200274348423,
+          "sources": [
+            "section.flex.w-full.flex-col \"오늘의 미션 레슨 4개 완료하기 완료 시 +15 XP \""
+          ]
+        },
+        {
+          "time": 766.8000000044703,
+          "value": 0.0009682998971193414,
+          "sources": [
+            "section.flex.w-full.flex-col \"새 주제 시작하기 전체보기 자료구조 Lesson 01 \"",
+            "div.pointer-events-none.absolute.-z-10",
+            "div.pointer-events-none.absolute.-z-10"
+          ]
+        }
+      ],
+      "tbt": 0,
+      "longTasks": [],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-Bh9BN7Nc.js",
+          "start": 24,
+          "end": 79,
+          "bytes": 184840
+        },
+        {
+          "kind": "css",
+          "path": "index-DrTWomJW.css",
+          "start": 24,
+          "end": 53,
+          "bytes": 22531
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/auth/reissue",
+          "start": 112,
+          "end": 134,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 113,
+          "end": 134,
+          "bytes": 2227
+        },
+        {
+          "kind": "js",
+          "path": "useLocation-XXFpt-56.js",
+          "start": 137,
+          "end": 158,
+          "bytes": 433
+        },
+        {
+          "kind": "js",
+          "path": "route-BLwBms9_.js",
+          "start": 137,
+          "end": 159,
+          "bytes": 3502
+        },
+        {
+          "kind": "js",
+          "path": "main-CXLuylfy.js",
+          "start": 138,
+          "end": 161,
+          "bytes": 8260
+        },
+        {
+          "kind": "js",
+          "path": "use-refetch-active-queries-DEsTamu6.js",
+          "start": 138,
+          "end": 159,
+          "bytes": 503
+        },
+        {
+          "kind": "js",
+          "path": "card-CPs_ThYK.js",
+          "start": 138,
+          "end": 160,
+          "bytes": 751
+        },
+        {
+          "kind": "js",
+          "path": "card-header-rkpSEdSQ.js",
+          "start": 138,
+          "end": 160,
+          "bytes": 1015
+        },
+        {
+          "kind": "js",
+          "path": "progress-bar-CzBkYY83.js",
+          "start": 138,
+          "end": 179,
+          "bytes": 1031
+        },
+        {
+          "kind": "js",
+          "path": "skeleton-Bs5ijy6x.js",
+          "start": 138,
+          "end": 179,
+          "bytes": 1446
+        },
+        {
+          "kind": "js",
+          "path": "hero-greeting-BkuOb-7e.js",
+          "start": 138,
+          "end": 180,
+          "bytes": 1985
+        },
+        {
+          "kind": "js",
+          "path": "space-banner-DeCurbPM.js",
+          "start": 138,
+          "end": 180,
+          "bytes": 613
+        },
+        {
+          "kind": "js",
+          "path": "tier-icon-eYRfUCJ2.js",
+          "start": 138,
+          "end": 180,
+          "bytes": 1054
+        },
+        {
+          "kind": "js",
+          "path": "planets-CnsLAvoU.js",
+          "start": 139,
+          "end": 182,
+          "bytes": 1205
+        },
+        {
+          "kind": "js",
+          "path": "route-lXgFjCMJ.js",
+          "start": 139,
+          "end": 200,
+          "bytes": 683
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 139,
+          "end": 160,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/main-pages/profile",
+          "start": 139,
+          "end": 742,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/main-pages/league",
+          "start": 140,
+          "end": 743,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/main-pages/weekly-record",
+          "start": 140,
+          "end": 743,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/main-pages/mission",
+          "start": 140,
+          "end": 743,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/main-pages/units",
+          "start": 140,
+          "end": 743,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/main-pages/learning",
+          "start": 140,
+          "end": 762,
+          "bytes": 0
+        },
+        {
+          "kind": "img",
+          "path": "space-banner-MwsmKPWE.webp",
+          "start": 215,
+          "end": 245,
+          "bytes": 28346
+        },
+        {
+          "kind": "img",
+          "path": "unit-card-decoration-CtXvjo1m.webp",
+          "start": 215,
+          "end": 254,
+          "bytes": 51458
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 220,
+          "end": 352,
+          "bytes": 653756
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/notifications",
+          "start": 231,
+          "end": 1345,
+          "bytes": 0
+        },
+        {
+          "kind": "img",
+          "path": "bronze-3-BLcvg7lT.svg",
+          "start": 748,
+          "end": 769,
+          "bytes": 4343
+        },
+        {
+          "kind": "img",
+          "path": "planet-05-jupiter-DnC52Bua.webp",
+          "start": 751,
+          "end": 777,
+          "bytes": 16820
+        },
+        {
+          "kind": "img",
+          "path": "planet-03-earth-DOpvlxUt.webp",
+          "start": 751,
+          "end": 778,
+          "bytes": 22002
+        }
+      ]
+    }
+  ]
+}

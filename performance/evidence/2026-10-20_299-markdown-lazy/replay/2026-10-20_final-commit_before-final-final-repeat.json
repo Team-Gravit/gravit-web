@@ -1,0 +1,1969 @@
+{
+  "/main before": [
+    {
+      "path": "/main",
+      "entry": "index-CCXeuaZ6.js",
+      "lcp": 4876,
+      "lcpElement": "img.size-full.object-cover.object-right hero-narrow-CR3gwbPR.webp",
+      "fcp": 4876,
+      "cls": 0.257,
+      "resources": [
+        "hero-greeting-BqN-rS9m.js 2640→2999",
+        "hero-narrow-CR3gwbPR.webp 3980→4175",
+        "users 4683→4858",
+        "learning 4724→4893",
+        "unit-card-background-DopPZ79m.webp 5427→5650"
+      ],
+      "lcpCandidates": [
+        "4876 img.size-full.object-cover.object-right"
+      ],
+      "longtasksAfter4s": [
+        [
+          4967,
+          51
+        ],
+        [
+          5344,
+          77
+        ],
+        [
+          6920,
+          165
+        ],
+        [
+          7085,
+          463
+        ]
+      ],
+      "shifts": [
+        [
+          5245,
+          0.243
+        ],
+        [
+          7887,
+          0.014
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/main",
+      "entry": "index-CCXeuaZ6.js",
+      "lcp": 4432,
+      "lcpElement": "img.size-full.object-cover.object-right hero-narrow-CR3gwbPR.webp",
+      "fcp": 4432,
+      "cls": 0.018,
+      "resources": [
+        "hero-greeting-BqN-rS9m.js 2556→2913",
+        "hero-narrow-CR3gwbPR.webp 3647→3838",
+        "users 4285→4459",
+        "learning 4328→4505",
+        "unit-card-background-DopPZ79m.webp 4971→5205"
+      ],
+      "lcpCandidates": [
+        "4432 img.size-full.object-cover.object-right"
+      ],
+      "longtasksAfter4s": [
+        [
+          4849,
+          75
+        ],
+        [
+          6513,
+          165
+        ],
+        [
+          6679,
+          501
+        ]
+      ],
+      "shifts": [
+        [
+          5131,
+          0.003
+        ],
+        [
+          7452,
+          0.014
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/main",
+      "entry": "index-CCXeuaZ6.js",
+      "lcp": 4504,
+      "lcpElement": "img.size-full.object-cover.object-right hero-narrow-CR3gwbPR.webp",
+      "fcp": 4504,
+      "cls": 0.018,
+      "resources": [
+        "hero-greeting-BqN-rS9m.js 2535→2887",
+        "hero-narrow-CR3gwbPR.webp 3634→3829",
+        "users 4344→4524",
+        "learning 4393→4569",
+        "unit-card-background-DopPZ79m.webp 5093→5317"
+      ],
+      "lcpCandidates": [
+        "4504 img.size-full.object-cover.object-right"
+      ],
+      "longtasksAfter4s": [
+        [
+          4696,
+          55
+        ],
+        [
+          4962,
+          83
+        ],
+        [
+          6610,
+          146
+        ],
+        [
+          6756,
+          414
+        ]
+      ],
+      "shifts": [
+        [
+          5245,
+          0.003
+        ],
+        [
+          7539,
+          0.014
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/main",
+      "entry": "index-CCXeuaZ6.js",
+      "lcp": 4344,
+      "lcpElement": "img.size-full.object-cover.object-right hero-narrow-CR3gwbPR.webp",
+      "fcp": 4344,
+      "cls": 0.018,
+      "resources": [
+        "hero-greeting-BqN-rS9m.js 2475→2821",
+        "hero-narrow-CR3gwbPR.webp 3571→3766",
+        "users 4193→4368",
+        "learning 4227→4400",
+        "unit-card-background-DopPZ79m.webp 4921→5147"
+      ],
+      "lcpCandidates": [
+        "4344 img.size-full.object-cover.object-right"
+      ],
+      "longtasksAfter4s": [
+        [
+          4775,
+          80
+        ],
+        [
+          6520,
+          160
+        ]
+      ],
+      "shifts": [
+        [
+          5152,
+          0.003
+        ],
+        [
+          7428,
+          0.014
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/main",
+      "entry": "index-CCXeuaZ6.js",
+      "lcp": 4704,
+      "lcpElement": "img.size-full.object-cover.object-right hero-narrow-CR3gwbPR.webp",
+      "fcp": 4704,
+      "cls": 0.257,
+      "resources": [
+        "hero-greeting-BqN-rS9m.js 2654→2997",
+        "hero-narrow-CR3gwbPR.webp 3845→4057",
+        "users 4503→4680",
+        "learning 4569→4742",
+        "unit-card-background-DopPZ79m.webp 5273→5506"
+      ],
+      "lcpCandidates": [
+        "4704 img.size-full.object-cover.object-right"
+      ],
+      "longtasksAfter4s": [
+        [
+          4912,
+          54
+        ],
+        [
+          5419,
+          82
+        ],
+        [
+          6865,
+          154
+        ],
+        [
+          7020,
+          434
+        ]
+      ],
+      "shifts": [
+        [
+          5358,
+          0.243
+        ],
+        [
+          7837,
+          0.014
+        ]
+      ],
+      "misses": []
+    }
+  ],
+  "/main final": [
+    {
+      "path": "/main",
+      "entry": "index-BZYPDfT9.js",
+      "lcp": 4068,
+      "lcpElement": "img.size-full.object-cover.object-right hero-narrow-CR3gwbPR.webp",
+      "fcp": 4068,
+      "cls": 0.257,
+      "resources": [
+        "hero-greeting-C9Ws5Sv2.js 2027→2373",
+        "hero-narrow-CR3gwbPR.webp 3245→3440",
+        "users 3907→4076",
+        "learning 3953→4122",
+        "unit-card-background-DopPZ79m.webp 4681→4910"
+      ],
+      "lcpCandidates": [
+        "4068 img.size-full.object-cover.object-right"
+      ],
+      "longtasksAfter4s": [
+        [
+          4246,
+          60
+        ],
+        [
+          4611,
+          66
+        ],
+        [
+          6184,
+          144
+        ],
+        [
+          6329,
+          140
+        ]
+      ],
+      "shifts": [
+        [
+          4521,
+          0.243
+        ],
+        [
+          6830,
+          0.014
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/main",
+      "entry": "index-BZYPDfT9.js",
+      "lcp": 3820,
+      "lcpElement": "img.size-full.object-cover.object-right hero-narrow-CR3gwbPR.webp",
+      "fcp": 3820,
+      "cls": 0.257,
+      "resources": [
+        "hero-greeting-C9Ws5Sv2.js 1706→2152",
+        "hero-narrow-CR3gwbPR.webp 2987→3201",
+        "users 3666→3838",
+        "learning 3706→3874",
+        "unit-card-background-DopPZ79m.webp 4398→4629"
+      ],
+      "lcpCandidates": [
+        "3820 img.size-full.object-cover.object-right"
+      ],
+      "longtasksAfter4s": [
+        [
+          4313,
+          79
+        ],
+        [
+          6035,
+          155
+        ],
+        [
+          6190,
+          430
+        ]
+      ],
+      "shifts": [
+        [
+          4227,
+          0.243
+        ],
+        [
+          6830,
+          0.014
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/main",
+      "entry": "index-BZYPDfT9.js",
+      "lcp": 3872,
+      "lcpElement": "img.size-full.object-cover.object-right hero-narrow-CR3gwbPR.webp",
+      "fcp": 3872,
+      "cls": 0.257,
+      "resources": [
+        "hero-greeting-C9Ws5Sv2.js 1960→2308",
+        "hero-narrow-CR3gwbPR.webp 3103→3295",
+        "users 3730→3900",
+        "learning 3768→3946",
+        "unit-card-background-DopPZ79m.webp 4467→4692"
+      ],
+      "lcpCandidates": [
+        "3872 img.size-full.object-cover.object-right"
+      ],
+      "longtasksAfter4s": [
+        [
+          4347,
+          78
+        ],
+        [
+          6028,
+          142
+        ],
+        [
+          6170,
+          315
+        ]
+      ],
+      "shifts": [
+        [
+          4261,
+          0.243
+        ],
+        [
+          6808,
+          0.014
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/main",
+      "entry": "index-BZYPDfT9.js",
+      "lcp": 3952,
+      "lcpElement": "img.size-full.object-cover.object-right hero-narrow-CR3gwbPR.webp",
+      "fcp": 3952,
+      "cls": 0.257,
+      "resources": [
+        "hero-greeting-C9Ws5Sv2.js 2054→2407",
+        "hero-narrow-CR3gwbPR.webp 3214→3412",
+        "users 3804→3986",
+        "learning 3842→4017",
+        "unit-card-background-DopPZ79m.webp 4339→4564"
+      ],
+      "lcpCandidates": [
+        "3952 img.size-full.object-cover.object-right"
+      ],
+      "longtasksAfter4s": [
+        [
+          4108,
+          54
+        ],
+        [
+          4535,
+          87
+        ],
+        [
+          6052,
+          172
+        ],
+        [
+          6225,
+          394
+        ]
+      ],
+      "shifts": [
+        [
+          4459,
+          0.243
+        ],
+        [
+          6925,
+          0.014
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/main",
+      "entry": "index-BZYPDfT9.js",
+      "lcp": 3972,
+      "lcpElement": "img.size-full.object-cover.object-right hero-narrow-CR3gwbPR.webp",
+      "fcp": 3972,
+      "cls": 0.257,
+      "resources": [
+        "hero-greeting-C9Ws5Sv2.js 1817→2172",
+        "hero-narrow-CR3gwbPR.webp 3136→3344",
+        "users 3810→3979",
+        "learning 3850→4023",
+        "unit-card-background-DopPZ79m.webp 4750→4986"
+      ],
+      "lcpCandidates": [
+        "3972 img.size-full.object-cover.object-right"
+      ],
+      "longtasksAfter4s": [
+        [
+          4182,
+          69
+        ],
+        [
+          4275,
+          55
+        ],
+        [
+          4625,
+          118
+        ],
+        [
+          6102,
+          161
+        ],
+        [
+          6263,
+          434
+        ]
+      ],
+      "shifts": [
+        [
+          4513,
+          0.243
+        ],
+        [
+          7100,
+          0.014
+        ]
+      ],
+      "misses": []
+    }
+  ],
+  "/main final-repeat": [
+    {
+      "path": "/main",
+      "entry": "index-BZYPDfT9.js",
+      "lcp": 4132,
+      "lcpElement": "img.size-full.object-cover.object-right hero-narrow-CR3gwbPR.webp",
+      "fcp": 4132,
+      "cls": 0.018,
+      "resources": [
+        "hero-greeting-C9Ws5Sv2.js 2060→2402",
+        "hero-narrow-CR3gwbPR.webp 3255→3451",
+        "users 3964→4135",
+        "learning 4004→4180",
+        "unit-card-background-DopPZ79m.webp 4677→4915"
+      ],
+      "lcpCandidates": [
+        "4132 img.size-full.object-cover.object-right"
+      ],
+      "longtasksAfter4s": [
+        [
+          4302,
+          51
+        ],
+        [
+          4356,
+          50
+        ],
+        [
+          4550,
+          79
+        ],
+        [
+          6269,
+          167
+        ],
+        [
+          6437,
+          422
+        ]
+      ],
+      "shifts": [
+        [
+          4844,
+          0.003
+        ],
+        [
+          7187,
+          0.014
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/main",
+      "entry": "index-BZYPDfT9.js",
+      "lcp": 3832,
+      "lcpElement": "img.size-full.object-cover.object-right hero-narrow-CR3gwbPR.webp",
+      "fcp": 3832,
+      "cls": 0.257,
+      "resources": [
+        "hero-greeting-C9Ws5Sv2.js 1923→2271",
+        "hero-narrow-CR3gwbPR.webp 3012→3212",
+        "users 3686→3856",
+        "learning 3731→3900",
+        "unit-card-background-DopPZ79m.webp 4497→4729"
+      ],
+      "lcpCandidates": [
+        "3832 img.size-full.object-cover.object-right"
+      ],
+      "longtasksAfter4s": [
+        [
+          4413,
+          78
+        ],
+        [
+          5927,
+          157
+        ],
+        [
+          6084,
+          403
+        ]
+      ],
+      "shifts": [
+        [
+          4313,
+          0.243
+        ],
+        [
+          6807,
+          0.014
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/main",
+      "entry": "index-BZYPDfT9.js",
+      "lcp": 3744,
+      "lcpElement": "img.size-full.object-cover.object-right hero-narrow-CR3gwbPR.webp",
+      "fcp": 3744,
+      "cls": 0.257,
+      "resources": [
+        "hero-greeting-C9Ws5Sv2.js 1865→2206",
+        "hero-narrow-CR3gwbPR.webp 3005→3196",
+        "users 3597→3769",
+        "learning 3633→3816",
+        "unit-card-background-DopPZ79m.webp 4293→4521"
+      ],
+      "lcpCandidates": [
+        "3744 img.size-full.object-cover.object-right"
+      ],
+      "longtasksAfter4s": [
+        [
+          4184,
+          65
+        ],
+        [
+          5942,
+          182
+        ],
+        [
+          6124,
+          405
+        ]
+      ],
+      "shifts": [
+        [
+          4138,
+          0.243
+        ],
+        [
+          6881,
+          0.014
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/main",
+      "entry": "index-BZYPDfT9.js",
+      "lcp": 3972,
+      "lcpElement": "img.size-full.object-cover.object-right hero-narrow-CR3gwbPR.webp",
+      "fcp": 3972,
+      "cls": 0.018,
+      "resources": [
+        "hero-greeting-C9Ws5Sv2.js 1909→2307",
+        "hero-narrow-CR3gwbPR.webp 3216→3410",
+        "users 3832→4009",
+        "learning 3870→4039",
+        "unit-card-background-DopPZ79m.webp 4539→4759"
+      ],
+      "lcpCandidates": [
+        "3972 img.size-full.object-cover.object-right"
+      ],
+      "longtasksAfter4s": [
+        [
+          4144,
+          60
+        ],
+        [
+          4397,
+          89
+        ],
+        [
+          6112,
+          175
+        ],
+        [
+          6287,
+          534
+        ]
+      ],
+      "shifts": [
+        [
+          4694,
+          0.003
+        ],
+        [
+          7145,
+          0.014
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/main",
+      "entry": "index-BZYPDfT9.js",
+      "lcp": 3956,
+      "lcpElement": "img.size-full.object-cover.object-right hero-narrow-CR3gwbPR.webp",
+      "fcp": 3956,
+      "cls": 0.257,
+      "resources": [
+        "hero-greeting-C9Ws5Sv2.js 1876→2213",
+        "hero-narrow-CR3gwbPR.webp 3108→3305",
+        "users 3860→4030",
+        "learning 3868→4051",
+        "unit-card-background-DopPZ79m.webp 4641→4866"
+      ],
+      "lcpCandidates": [
+        "3956 img.size-full.object-cover.object-right"
+      ],
+      "longtasksAfter4s": [
+        [
+          4120,
+          58
+        ],
+        [
+          4527,
+          106
+        ],
+        [
+          6212,
+          198
+        ],
+        [
+          6411,
+          467
+        ]
+      ],
+      "shifts": [
+        [
+          4430,
+          0.243
+        ],
+        [
+          7217,
+          0.014
+        ]
+      ],
+      "misses": []
+    }
+  ],
+  "/learning before": [
+    {
+      "path": "/learning",
+      "entry": "index-CCXeuaZ6.js",
+      "lcp": 6068,
+      "lcpElement": "div.relative.flex.h-full.w-full unit-card-background-DopPZ79m.webp",
+      "fcp": 4436,
+      "cls": 0,
+      "resources": [
+        "hero-greeting-BqN-rS9m.js 2509→2884",
+        "users 4340→4514",
+        "chapters 4347→4530",
+        "planet-01-mercury-DZsd0zpF.webp 5002→5277",
+        "unit-card-background-DopPZ79m.webp 5084→5733"
+      ],
+      "lcpCandidates": [
+        "4436 span.text-caption1.text-icon",
+        "5400 span.pointer-events-none.line-clamp-2.break-keep.font-mbc",
+        "5936 img.pointer-events-none.absolute.right-0.bottom-0",
+        "6068 div.relative.flex.h-full.w-full"
+      ],
+      "longtasksAfter4s": [
+        [
+          4478,
+          55
+        ],
+        [
+          4609,
+          87
+        ],
+        [
+          4699,
+          361
+        ],
+        [
+          7139,
+          169
+        ],
+        [
+          7308,
+          83
+        ]
+      ],
+      "shifts": [
+        [
+          5831,
+          0
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning",
+      "entry": "index-CCXeuaZ6.js",
+      "lcp": 5280,
+      "lcpElement": "div.relative.flex.h-full.w-full unit-card-background-DopPZ79m.webp",
+      "fcp": 3900,
+      "cls": 0,
+      "resources": [
+        "hero-greeting-BqN-rS9m.js 2518→2866",
+        "users 3804→3975",
+        "chapters 3811→3994",
+        "planet-01-mercury-DZsd0zpF.webp 4387→4662",
+        "unit-card-background-DopPZ79m.webp 4448→4915"
+      ],
+      "lcpCandidates": [
+        "3900 span.text-caption1.text-icon",
+        "4720 span.pointer-events-none.line-clamp-2.break-keep.font-mbc",
+        "4808 img.pointer-events-none.absolute.right-0.bottom-0",
+        "5280 div.relative.flex.h-full.w-full"
+      ],
+      "longtasksAfter4s": [
+        [
+          4027,
+          67
+        ],
+        [
+          4123,
+          306
+        ],
+        [
+          6527,
+          135
+        ],
+        [
+          6663,
+          359
+        ]
+      ],
+      "shifts": [
+        [
+          5022,
+          0
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning",
+      "entry": "index-CCXeuaZ6.js",
+      "lcp": 5296,
+      "lcpElement": "div.relative.flex.h-full.w-full unit-card-background-DopPZ79m.webp",
+      "fcp": 3764,
+      "cls": 0,
+      "resources": [
+        "hero-greeting-BqN-rS9m.js 2150→2596",
+        "users 3697→3877",
+        "chapters 3704→3878",
+        "planet-01-mercury-DZsd0zpF.webp 4252→4531",
+        "unit-card-background-DopPZ79m.webp 4313→4795"
+      ],
+      "lcpCandidates": [
+        "3764 span.text-caption1.text-icon",
+        "4588 span.pointer-events-none.line-clamp-2.break-keep.font-mbc",
+        "4696 img.pointer-events-none.absolute.right-0.bottom-0",
+        "5296 div.relative.flex.h-full.w-full"
+      ],
+      "longtasksAfter4s": [
+        [
+          6479,
+          112
+        ],
+        [
+          6592,
+          323
+        ]
+      ],
+      "shifts": [
+        [
+          4899,
+          0
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning",
+      "entry": "index-CCXeuaZ6.js",
+      "lcp": 5488,
+      "lcpElement": "div.relative.flex.h-full.w-full unit-card-background-DopPZ79m.webp",
+      "fcp": 4156,
+      "cls": 0,
+      "resources": [
+        "hero-greeting-BqN-rS9m.js 2458→2809",
+        "users 4050→4220",
+        "chapters 4060→4237",
+        "planet-01-mercury-DZsd0zpF.webp 4729→5005",
+        "unit-card-background-DopPZ79m.webp 4783→5218"
+      ],
+      "lcpCandidates": [
+        "4156 span.text-caption1.text-icon",
+        "5040 span.pointer-events-none.line-clamp-2.break-keep.font-mbc",
+        "5488 div.relative.flex.h-full.w-full"
+      ],
+      "longtasksAfter4s": [
+        [
+          4224,
+          70
+        ],
+        [
+          4364,
+          78
+        ],
+        [
+          4445,
+          322
+        ],
+        [
+          6888,
+          129
+        ],
+        [
+          7017,
+          80
+        ]
+      ],
+      "shifts": [
+        [
+          5396,
+          0
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning",
+      "entry": "index-CCXeuaZ6.js",
+      "lcp": 6272,
+      "lcpElement": "div.relative.flex.h-full.w-full unit-card-background-DopPZ79m.webp",
+      "fcp": 4604,
+      "cls": 0,
+      "resources": [
+        "hero-greeting-BqN-rS9m.js 2706→3060",
+        "users 4514→4695",
+        "chapters 4524→4696",
+        "planet-01-mercury-DZsd0zpF.webp 5155→5427",
+        "unit-card-background-DopPZ79m.webp 5232→5930"
+      ],
+      "lcpCandidates": [
+        "4604 span.text-caption1.text-icon",
+        "5540 span.pointer-events-none.line-clamp-2.break-keep.font-mbc",
+        "5672 img.pointer-events-none.absolute.right-0.bottom-0",
+        "6272 div.relative.flex.h-full.w-full"
+      ],
+      "longtasksAfter4s": [
+        [
+          4644,
+          51
+        ],
+        [
+          4765,
+          76
+        ],
+        [
+          4869,
+          346
+        ],
+        [
+          7261,
+          213
+        ],
+        [
+          7474,
+          463
+        ]
+      ],
+      "shifts": [
+        [
+          5920,
+          0
+        ]
+      ],
+      "misses": []
+    }
+  ],
+  "/learning final": [
+    {
+      "path": "/learning",
+      "entry": "index-BZYPDfT9.js",
+      "lcp": 5568,
+      "lcpElement": "div.relative.flex.h-full.w-full unit-card-background-DopPZ79m.webp",
+      "fcp": 3736,
+      "cls": 0,
+      "resources": [
+        "hero-greeting-C9Ws5Sv2.js 2176→2523",
+        "users 3668→3837",
+        "chapters 3677→3853",
+        "planet-01-mercury-DZsd0zpF.webp 4404→4675",
+        "unit-card-background-DopPZ79m.webp 4481→5077"
+      ],
+      "lcpCandidates": [
+        "3736 span.text-caption1.text-icon",
+        "4820 span.pointer-events-none.line-clamp-2.break-keep.font-mbc",
+        "5152 img.pointer-events-none.absolute.right-0.bottom-0",
+        "5568 div.relative.flex.h-full.w-full"
+      ],
+      "longtasksAfter4s": [
+        [
+          4054,
+          404
+        ],
+        [
+          6544,
+          163
+        ],
+        [
+          6707,
+          438
+        ]
+      ],
+      "shifts": [
+        [
+          5073,
+          0
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning",
+      "entry": "index-BZYPDfT9.js",
+      "lcp": 4932,
+      "lcpElement": "div.relative.flex.h-full.w-full unit-card-background-DopPZ79m.webp",
+      "fcp": 3484,
+      "cls": 0,
+      "resources": [
+        "hero-greeting-C9Ws5Sv2.js 1965→2319",
+        "users 3418→3598",
+        "chapters 3428→3600",
+        "planet-01-mercury-DZsd0zpF.webp 3985→4259",
+        "unit-card-background-DopPZ79m.webp 4054→4732"
+      ],
+      "lcpCandidates": [
+        "3484 span.text-caption1.text-icon",
+        "4416 span.pointer-events-none.line-clamp-2.break-keep.font-mbc",
+        "4736 img.pointer-events-none.absolute.right-0.bottom-0",
+        "4932 div.relative.flex.h-full.w-full"
+      ],
+      "longtasksAfter4s": [
+        [
+          6288,
+          158
+        ],
+        [
+          6447,
+          474
+        ]
+      ],
+      "shifts": [
+        [
+          4665,
+          0
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning",
+      "entry": "index-BZYPDfT9.js",
+      "lcp": 5748,
+      "lcpElement": "div.relative.flex.h-full.w-full unit-card-background-DopPZ79m.webp",
+      "fcp": 3816,
+      "cls": 0,
+      "resources": [
+        "hero-greeting-C9Ws5Sv2.js 2012→2378",
+        "users 3721→3895",
+        "chapters 3728→3911",
+        "planet-01-mercury-DZsd0zpF.webp 4470→4742",
+        "unit-card-background-DopPZ79m.webp 4573→5132"
+      ],
+      "lcpCandidates": [
+        "3816 span.text-caption1.text-icon",
+        "4964 span.pointer-events-none.line-clamp-2.break-keep.font-mbc",
+        "5016 img.pointer-events-none.absolute.right-0.bottom-0",
+        "5748 div.relative.flex.h-full.w-full"
+      ],
+      "longtasksAfter4s": [
+        [
+          4034,
+          105
+        ],
+        [
+          4149,
+          399
+        ],
+        [
+          6613,
+          137
+        ],
+        [
+          6751,
+          498
+        ]
+      ],
+      "shifts": [
+        [
+          5358,
+          0
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning",
+      "entry": "index-BZYPDfT9.js",
+      "lcp": 5640,
+      "lcpElement": "div.relative.flex.h-full.w-full unit-card-background-DopPZ79m.webp",
+      "fcp": 3944,
+      "cls": 0,
+      "resources": [
+        "hero-greeting-C9Ws5Sv2.js 2057→2418",
+        "users 3850→4031",
+        "chapters 3857→4032",
+        "planet-01-mercury-DZsd0zpF.webp 4568→4844",
+        "unit-card-background-DopPZ79m.webp 4663→5329"
+      ],
+      "lcpCandidates": [
+        "3944 span.text-caption1.text-icon",
+        "5076 span.pointer-events-none.line-clamp-2.break-keep.font-mbc",
+        "5640 div.relative.flex.h-full.w-full"
+      ],
+      "longtasksAfter4s": [
+        [
+          4128,
+          82
+        ],
+        [
+          4212,
+          438
+        ],
+        [
+          6819,
+          224
+        ],
+        [
+          7044,
+          554
+        ]
+      ],
+      "shifts": [
+        [
+          5536,
+          0
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning",
+      "entry": "index-BZYPDfT9.js",
+      "lcp": 5248,
+      "lcpElement": "div.relative.flex.h-full.w-full unit-card-background-DopPZ79m.webp",
+      "fcp": 3868,
+      "cls": 0,
+      "resources": [
+        "hero-greeting-C9Ws5Sv2.js 2128→2492",
+        "users 3778→3949",
+        "chapters 3787→3960",
+        "planet-01-mercury-DZsd0zpF.webp 4511→4776",
+        "unit-card-background-DopPZ79m.webp 4586→5036"
+      ],
+      "lcpCandidates": [
+        "3868 span.text-caption1.text-icon",
+        "4852 span.pointer-events-none.line-clamp-2.break-keep.font-mbc",
+        "4948 img.pointer-events-none.absolute.right-0.bottom-0",
+        "5248 div.relative.flex.h-full.w-full"
+      ],
+      "longtasksAfter4s": [
+        [
+          4026,
+          98
+        ],
+        [
+          4158,
+          408
+        ],
+        [
+          6640,
+          125
+        ],
+        [
+          6765,
+          333
+        ]
+      ],
+      "shifts": [
+        [
+          5202,
+          0
+        ]
+      ],
+      "misses": []
+    }
+  ],
+  "/learning final-repeat": [
+    {
+      "path": "/learning",
+      "entry": "index-BZYPDfT9.js",
+      "lcp": 5464,
+      "lcpElement": "div.relative.flex.h-full.w-full unit-card-background-DopPZ79m.webp",
+      "fcp": 3564,
+      "cls": 0,
+      "resources": [
+        "hero-greeting-C9Ws5Sv2.js 1871→2224",
+        "users 3444→3627",
+        "chapters 3453→3628",
+        "planet-01-mercury-DZsd0zpF.webp 4294→4591",
+        "unit-card-background-DopPZ79m.webp 4360→5068"
+      ],
+      "lcpCandidates": [
+        "3564 span.text-caption1.text-icon",
+        "4692 span.pointer-events-none.line-clamp-2.break-keep.font-mbc",
+        "4800 img.pointer-events-none.absolute.right-0.bottom-0",
+        "5464 div.relative.flex.h-full.w-full"
+      ],
+      "longtasksAfter4s": [
+        [
+          6299,
+          209
+        ],
+        [
+          6508,
+          484
+        ]
+      ],
+      "shifts": [
+        [
+          5045,
+          0
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning",
+      "entry": "index-BZYPDfT9.js",
+      "lcp": 4608,
+      "lcpElement": "div.relative.flex.h-full.w-full unit-card-background-DopPZ79m.webp",
+      "fcp": 3268,
+      "cls": 0,
+      "resources": [
+        "hero-greeting-C9Ws5Sv2.js 1871→2234",
+        "users 3201→3380",
+        "chapters 3207→3381",
+        "planet-01-mercury-DZsd0zpF.webp 3838→4103",
+        "unit-card-background-DopPZ79m.webp 3902→4367"
+      ],
+      "lcpCandidates": [
+        "3268 span.text-caption1.text-icon",
+        "4180 span.pointer-events-none.line-clamp-2.break-keep.font-mbc",
+        "4272 img.pointer-events-none.absolute.right-0.bottom-0",
+        "4608 div.relative.flex.h-full.w-full"
+      ],
+      "longtasksAfter4s": [
+        [
+          6129,
+          136
+        ],
+        [
+          6266,
+          419
+        ]
+      ],
+      "shifts": [
+        [
+          4532,
+          0
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning",
+      "entry": "index-BZYPDfT9.js",
+      "lcp": 5376,
+      "lcpElement": "div.relative.flex.h-full.w-full unit-card-background-DopPZ79m.webp",
+      "fcp": 3908,
+      "cls": 0,
+      "resources": [
+        "hero-greeting-C9Ws5Sv2.js 2237→2588",
+        "users 3837→4006",
+        "chapters 3844→4021",
+        "planet-01-mercury-DZsd0zpF.webp 4442→4712",
+        "unit-card-background-DopPZ79m.webp 4503→5115"
+      ],
+      "lcpCandidates": [
+        "3908 span.text-caption1.text-icon",
+        "4844 span.pointer-events-none.line-clamp-2.break-keep.font-mbc",
+        "5144 img.pointer-events-none.absolute.right-0.bottom-0",
+        "5376 div.relative.flex.h-full.w-full"
+      ],
+      "longtasksAfter4s": [
+        [
+          4060,
+          81
+        ],
+        [
+          4169,
+          315
+        ],
+        [
+          6671,
+          168
+        ],
+        [
+          6840,
+          511
+        ]
+      ],
+      "shifts": [
+        [
+          5077,
+          0
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning",
+      "entry": "index-BZYPDfT9.js",
+      "lcp": 5380,
+      "lcpElement": "div.relative.flex.h-full.w-full unit-card-background-DopPZ79m.webp",
+      "fcp": 3864,
+      "cls": 0,
+      "resources": [
+        "hero-greeting-C9Ws5Sv2.js 2110→2448",
+        "users 3749→3928",
+        "chapters 3759→3933",
+        "planet-01-mercury-DZsd0zpF.webp 4580→4855",
+        "unit-card-background-DopPZ79m.webp 4643→5126"
+      ],
+      "lcpCandidates": [
+        "3864 span.text-caption1.text-icon",
+        "4948 span.pointer-events-none.line-clamp-2.break-keep.font-mbc",
+        "5048 img.pointer-events-none.absolute.right-0.bottom-0",
+        "5380 div.relative.flex.h-full.w-full"
+      ],
+      "longtasksAfter4s": [
+        [
+          4111,
+          110
+        ],
+        [
+          4249,
+          377
+        ],
+        [
+          6624,
+          148
+        ],
+        [
+          6773,
+          444
+        ]
+      ],
+      "shifts": [
+        [
+          5321,
+          0
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning",
+      "entry": "index-BZYPDfT9.js",
+      "lcp": 4352,
+      "lcpElement": "div.relative.flex.h-full.w-full unit-card-background-DopPZ79m.webp",
+      "fcp": 3120,
+      "cls": 0,
+      "resources": [
+        "hero-greeting-C9Ws5Sv2.js 1661→2021",
+        "users 3038→3216",
+        "chapters 3045→3217",
+        "planet-01-mercury-DZsd0zpF.webp 3580→3846",
+        "unit-card-background-DopPZ79m.webp 3655→4073"
+      ],
+      "lcpCandidates": [
+        "3120 span.text-caption1.text-icon",
+        "3904 span.pointer-events-none.line-clamp-2.break-keep.font-mbc",
+        "4036 img.pointer-events-none.absolute.right-0.bottom-0",
+        "4352 div.relative.flex.h-full.w-full"
+      ],
+      "longtasksAfter4s": [
+        [
+          5914,
+          121
+        ],
+        [
+          6035,
+          401
+        ]
+      ],
+      "shifts": [
+        [
+          4293,
+          0
+        ]
+      ],
+      "misses": []
+    }
+  ],
+  "/learning/units/11/concept-note before": [
+    {
+      "path": "/learning/units/11/concept-note",
+      "entry": "index-CCXeuaZ6.js",
+      "lcp": 7520,
+      "lcpElement": "p. (텍스트)",
+      "fcp": 3708,
+      "cls": 0.345,
+      "resources": [
+        "learning.units._unitId.concept-note-wov167VP.js 2321→2506",
+        "users 3628→3804",
+        "11 3637→3820"
+      ],
+      "lcpCandidates": [
+        "3708 h1.text-label1.text-text-2",
+        "7520 p."
+      ],
+      "longtasksAfter4s": [
+        [
+          4024,
+          490
+        ],
+        [
+          7671,
+          156
+        ],
+        [
+          7828,
+          413
+        ]
+      ],
+      "shifts": [
+        [
+          4000,
+          0.32
+        ],
+        [
+          8691,
+          0.025
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning/units/11/concept-note",
+      "entry": "index-CCXeuaZ6.js",
+      "lcp": 7420,
+      "lcpElement": "p. (텍스트)",
+      "fcp": 3888,
+      "cls": 0.345,
+      "resources": [
+        "learning.units._unitId.concept-note-wov167VP.js 2477→2685",
+        "users 3831→4008",
+        "11 3841→4024"
+      ],
+      "lcpCandidates": [
+        "3888 h1.text-label1.text-text-2",
+        "7420 p."
+      ],
+      "longtasksAfter4s": [
+        [
+          4049,
+          54
+        ],
+        [
+          4170,
+          448
+        ],
+        [
+          7547,
+          134
+        ],
+        [
+          7681,
+          287
+        ]
+      ],
+      "shifts": [
+        [
+          4151,
+          0.32
+        ],
+        [
+          8353,
+          0.025
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning/units/11/concept-note",
+      "entry": "index-CCXeuaZ6.js",
+      "lcp": 7444,
+      "lcpElement": "p. (텍스트)",
+      "fcp": 3832,
+      "cls": 0.345,
+      "resources": [
+        "learning.units._unitId.concept-note-wov167VP.js 2362→2562",
+        "users 3774→3945",
+        "11 3783→3960"
+      ],
+      "lcpCandidates": [
+        "3832 h1.text-label1.text-text-2",
+        "7444 p."
+      ],
+      "longtasksAfter4s": [
+        [
+          4141,
+          558
+        ],
+        [
+          7570,
+          148
+        ],
+        [
+          7718,
+          397
+        ]
+      ],
+      "shifts": [
+        [
+          4123,
+          0.32
+        ],
+        [
+          8587,
+          0.025
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning/units/11/concept-note",
+      "entry": "index-CCXeuaZ6.js",
+      "lcp": 7108,
+      "lcpElement": "p. (텍스트)",
+      "fcp": 3712,
+      "cls": 0.345,
+      "resources": [
+        "learning.units._unitId.concept-note-wov167VP.js 2408→2601",
+        "users 3651→3822",
+        "11 3660→3838"
+      ],
+      "lcpCandidates": [
+        "3712 h1.text-label1.text-text-2",
+        "7108 p."
+      ],
+      "longtasksAfter4s": [
+        [
+          4023,
+          546
+        ],
+        [
+          7233,
+          155
+        ],
+        [
+          7388,
+          449
+        ]
+      ],
+      "shifts": [
+        [
+          4002,
+          0.32
+        ],
+        [
+          8360,
+          0.025
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning/units/11/concept-note",
+      "entry": "index-CCXeuaZ6.js",
+      "lcp": 7284,
+      "lcpElement": "p. (텍스트)",
+      "fcp": 3688,
+      "cls": 0.345,
+      "resources": [
+        "learning.units._unitId.concept-note-wov167VP.js 2344→2543",
+        "users 3629→3801",
+        "11 3639→3816"
+      ],
+      "lcpCandidates": [
+        "3688 h1.text-label1.text-text-2",
+        "7284 p."
+      ],
+      "longtasksAfter4s": [
+        [
+          4010,
+          539
+        ],
+        [
+          7414,
+          142
+        ],
+        [
+          7557,
+          571
+        ]
+      ],
+      "shifts": [
+        [
+          3991,
+          0.32
+        ],
+        [
+          8565,
+          0.025
+        ]
+      ],
+      "misses": []
+    }
+  ],
+  "/learning/units/11/concept-note final": [
+    {
+      "path": "/learning/units/11/concept-note",
+      "entry": "index-BZYPDfT9.js",
+      "lcp": 7344,
+      "lcpElement": "p. (텍스트)",
+      "fcp": 3344,
+      "cls": 0.345,
+      "resources": [
+        "learning.units._unitId.concept-note-D8_BXWu6.js 1811→2008",
+        "markdown-DQr3stNs.js 1867→2279",
+        "users 3263→3433",
+        "11 3272→3449"
+      ],
+      "lcpCandidates": [
+        "3344 h1.text-label1.text-text-2",
+        "7344 p."
+      ],
+      "longtasksAfter4s": [
+        [
+          7460,
+          158
+        ],
+        [
+          7619,
+          400
+        ]
+      ],
+      "shifts": [
+        [
+          3868,
+          0.32
+        ],
+        [
+          8510,
+          0.025
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning/units/11/concept-note",
+      "entry": "index-BZYPDfT9.js",
+      "lcp": 6984,
+      "lcpElement": "p. (텍스트)",
+      "fcp": 3304,
+      "cls": 0.345,
+      "resources": [
+        "learning.units._unitId.concept-note-D8_BXWu6.js 1849→2041",
+        "markdown-DQr3stNs.js 1901→2314",
+        "users 3235→3403",
+        "11 3242→3419"
+      ],
+      "lcpCandidates": [
+        "3304 h1.text-label1.text-text-2",
+        "6984 p."
+      ],
+      "longtasksAfter4s": [
+        [
+          7104,
+          143
+        ],
+        [
+          7247,
+          387
+        ]
+      ],
+      "shifts": [
+        [
+          3717,
+          0.32
+        ],
+        [
+          8083,
+          0.025
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning/units/11/concept-note",
+      "entry": "index-BZYPDfT9.js",
+      "lcp": 7040,
+      "lcpElement": "p. (텍스트)",
+      "fcp": 3276,
+      "cls": 0.345,
+      "resources": [
+        "learning.units._unitId.concept-note-D8_BXWu6.js 1837→2032",
+        "markdown-DQr3stNs.js 1886→2306",
+        "users 3199→3368",
+        "11 3205→3384"
+      ],
+      "lcpCandidates": [
+        "3276 h1.text-label1.text-text-2",
+        "7040 p."
+      ],
+      "longtasksAfter4s": [
+        [
+          7146,
+          150
+        ],
+        [
+          7297,
+          283
+        ]
+      ],
+      "shifts": [
+        [
+          3752,
+          0.32
+        ],
+        [
+          8011,
+          0.025
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning/units/11/concept-note",
+      "entry": "index-BZYPDfT9.js",
+      "lcp": 7276,
+      "lcpElement": "p. (텍스트)",
+      "fcp": 3332,
+      "cls": 0.345,
+      "resources": [
+        "learning.units._unitId.concept-note-D8_BXWu6.js 1848→2042",
+        "markdown-DQr3stNs.js 1898→2317",
+        "users 3261→3436",
+        "11 3271→3452"
+      ],
+      "lcpCandidates": [
+        "3332 h1.text-label1.text-text-2",
+        "7276 p."
+      ],
+      "longtasksAfter4s": [
+        [
+          7407,
+          155
+        ],
+        [
+          7562,
+          237
+        ]
+      ],
+      "shifts": [
+        [
+          3820,
+          0.32
+        ],
+        [
+          8355,
+          0.025
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning/units/11/concept-note",
+      "entry": "index-BZYPDfT9.js",
+      "lcp": 7036,
+      "lcpElement": "p. (텍스트)",
+      "fcp": 3220,
+      "cls": 0.345,
+      "resources": [
+        "learning.units._unitId.concept-note-D8_BXWu6.js 1821→2005",
+        "markdown-DQr3stNs.js 1881→2281",
+        "users 3156→3337",
+        "11 3163→3338"
+      ],
+      "lcpCandidates": [
+        "3220 h1.text-label1.text-text-2",
+        "7036 p."
+      ],
+      "longtasksAfter4s": [
+        [
+          7140,
+          142
+        ],
+        [
+          7283,
+          500
+        ]
+      ],
+      "shifts": [
+        [
+          3664,
+          0.32
+        ],
+        [
+          8219,
+          0.025
+        ]
+      ],
+      "misses": []
+    }
+  ],
+  "/learning/units/11/concept-note final-repeat": [
+    {
+      "path": "/learning/units/11/concept-note",
+      "entry": "index-BZYPDfT9.js",
+      "lcp": 7372,
+      "lcpElement": "p. (텍스트)",
+      "fcp": 3592,
+      "cls": 0.345,
+      "resources": [
+        "learning.units._unitId.concept-note-D8_BXWu6.js 1998→2197",
+        "markdown-DQr3stNs.js 2055→2483",
+        "users 3533→3706",
+        "11 3544→3723"
+      ],
+      "lcpCandidates": [
+        "3592 h1.text-label1.text-text-2",
+        "7372 p."
+      ],
+      "longtasksAfter4s": [
+        [
+          4104,
+          508
+        ],
+        [
+          7531,
+          144
+        ],
+        [
+          7675,
+          374
+        ]
+      ],
+      "shifts": [
+        [
+          4085,
+          0.32
+        ],
+        [
+          8464,
+          0.025
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning/units/11/concept-note",
+      "entry": "index-BZYPDfT9.js",
+      "lcp": 7128,
+      "lcpElement": "p. (텍스트)",
+      "fcp": 3280,
+      "cls": 0.345,
+      "resources": [
+        "learning.units._unitId.concept-note-D8_BXWu6.js 1732→1919",
+        "markdown-DQr3stNs.js 1791→2208",
+        "users 3213→3390",
+        "11 3222→3406"
+      ],
+      "lcpCandidates": [
+        "3280 h1.text-label1.text-text-2",
+        "7128 p."
+      ],
+      "longtasksAfter4s": [
+        [
+          7237,
+          160
+        ],
+        [
+          7397,
+          389
+        ]
+      ],
+      "shifts": [
+        [
+          3764,
+          0.32
+        ],
+        [
+          8254,
+          0.025
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning/units/11/concept-note",
+      "entry": "index-BZYPDfT9.js",
+      "lcp": 7056,
+      "lcpElement": "p. (텍스트)",
+      "fcp": 3240,
+      "cls": 0.345,
+      "resources": [
+        "learning.units._unitId.concept-note-D8_BXWu6.js 1955→2141",
+        "markdown-DQr3stNs.js 2011→2414",
+        "users 3185→3362",
+        "11 3192→3364"
+      ],
+      "lcpCandidates": [
+        "3240 h1.text-label1.text-text-2",
+        "7056 p."
+      ],
+      "longtasksAfter4s": [
+        [
+          7181,
+          125
+        ],
+        [
+          7307,
+          446
+        ]
+      ],
+      "shifts": [
+        [
+          3666,
+          0.32
+        ],
+        [
+          8142,
+          0.025
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning/units/11/concept-note",
+      "entry": "index-BZYPDfT9.js",
+      "lcp": 7308,
+      "lcpElement": "p. (텍스트)",
+      "fcp": 3244,
+      "cls": 0.345,
+      "resources": [
+        "learning.units._unitId.concept-note-D8_BXWu6.js 1843→2040",
+        "markdown-DQr3stNs.js 1901→2332",
+        "users 3167→3342",
+        "11 3177→3359"
+      ],
+      "lcpCandidates": [
+        "3244 h1.text-label1.text-text-2",
+        "7308 p."
+      ],
+      "longtasksAfter4s": [
+        [
+          7424,
+          147
+        ],
+        [
+          7572,
+          416
+        ]
+      ],
+      "shifts": [
+        [
+          3765,
+          0.32
+        ],
+        [
+          8463,
+          0.025
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning/units/11/concept-note",
+      "entry": "index-BZYPDfT9.js",
+      "lcp": 7072,
+      "lcpElement": "p. (텍스트)",
+      "fcp": 3240,
+      "cls": 0.345,
+      "resources": [
+        "learning.units._unitId.concept-note-D8_BXWu6.js 1868→2049",
+        "markdown-DQr3stNs.js 1921→2325",
+        "users 3171→3348",
+        "11 3178→3363"
+      ],
+      "lcpCandidates": [
+        "3240 h1.text-label1.text-text-2",
+        "7072 p."
+      ],
+      "longtasksAfter4s": [
+        [
+          7180,
+          128
+        ],
+        [
+          7309,
+          431
+        ]
+      ],
+      "shifts": [
+        [
+          3659,
+          0.32
+        ],
+        [
+          8258,
+          0.025
+        ]
+      ],
+      "misses": []
+    }
+  ]
+}

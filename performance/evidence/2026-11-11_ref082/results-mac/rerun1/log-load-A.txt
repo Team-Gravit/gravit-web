@@ -1,0 +1,14 @@
+league-mobile 1 fcp 748 lcp 948 cls 0.000 tbt 0 | img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg
+league-mobile 2 fcp 728 lcp 908 cls 0.000 tbt 0 | img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg
+league-mobile 3 fcp 708 lcp 912 cls 0.000 tbt 0 | img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg
+league-mobile 4 fcp 728 lcp 912 cls 0.000 tbt 0 | img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg
+league-mobile 5 fcp 720 lcp 904 cls 0.000 tbt 0 | img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg
+league-mobile 6 fcp 720 lcp 908 cls 0.000 tbt 0 | img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg
+league-mobile 7 fcp 724 lcp 904 cls 0.000 tbt 0 | img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg
+league-desktop 1 fcp 728 lcp 924 cls 0.000 tbt 0 | img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg
+league-desktop 2 fcp 724 lcp 912 cls 0.000 tbt 0 | img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg
+league-desktop 3 fcp 712 lcp 936 cls 0.000 tbt 0 | img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg
+league-desktop 4 fcp 732 lcp 876 cls 0.000 tbt 0 | img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg
+league-desktop 5 fcp 712 lcp 896 cls 0.000 tbt 0 | img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg
+league-desktop 6 fcp 728 lcp 920 cls 0.000 tbt 0 | img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg
+league-desktop 7 fcp 724 lcp 896 cls 0.000 tbt 0 | img.h-20.w-16.origin-bottom bronze-3-BLcvg7lT.svg

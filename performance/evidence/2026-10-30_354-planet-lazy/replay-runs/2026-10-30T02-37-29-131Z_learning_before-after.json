@@ -1,0 +1,674 @@
+{
+  "/learning before": [
+    {
+      "path": "/learning",
+      "entry": "index-CWWVvq3C.js",
+      "lcp": 6328,
+      "lcpElement": "div.relative.flex.h-full.w-full unit-card-background-DopPZ79m.webp",
+      "fcp": 4596,
+      "cls": 0,
+      "resources": [
+        "users 4256→4434",
+        "chapters 4278→4459",
+        "planet-02-venus-DfVKs9En.webp 5123→5397",
+        "planet-03-earth-DOpvlxUt.webp 5128→5420",
+        "planet-04-mars-Bzu45apF.webp 5133→5398",
+        "planet-05-jupiter-DnC52Bua.webp 5136→5407",
+        "planet-01-mercury-DZsd0zpF.webp 5140→5406",
+        "planet-06-saturn-B3PHQ8XV.webp 5144→5415",
+        "planet-07-uranus-_EBQyJBH.webp 5149→5681",
+        "planet-08-neptune-B5EHHlk5.webp 5154→5676",
+        "planet-09-sun-BbBcZX5c.webp 5159→5706",
+        "planet-10-pluto-Z6zjAtq6.webp 5164→5681",
+        "planet-11-ceres-BcElpr0o.webp 5169→5688",
+        "planet-12-eris-DlRg0rLp.webp 5175→5693",
+        "planet-13-vesta-DrSrGMxv.webp 5180→5941",
+        "planet-14-io-DdTzg8sU.webp 5184→5978",
+        "planet-15-europa-Ce5WrFEG.webp 5190→5985",
+        "planet-16-titan-B-KQLye6.webp 5194→5972",
+        "planet-17-triton-CuSvoQYf.webp 5198→5984",
+        "planet-18-charon-BOh4NMZ3.webp 5201→6111",
+        "planet-19-phobos-DY5y8Vo1.webp 5205→6159",
+        "planet-20-deimos-CGsgq0Tw.webp 5208→6201",
+        "planet-21-mimas-DV7T6Ya0.webp 5213→6222",
+        "planet-22-rhea-CXsNjRgJ.webp 5217→6221",
+        "unit-card-background-DopPZ79m.webp 5250→5896"
+      ],
+      "lcpCandidates": [
+        "4596 span.text-caption1.text-icon",
+        "5696 span.pointer-events-none.line-clamp-2.break-keep.font-mbc",
+        "6328 div.relative.flex.h-full.w-full"
+      ],
+      "longtasksAfter4s": [
+        [
+          4472,
+          67
+        ],
+        [
+          4541,
+          678
+        ],
+        [
+          6280,
+          78
+        ]
+      ],
+      "shifts": [
+        [
+          7043,
+          0
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning",
+      "entry": "index-CWWVvq3C.js",
+      "lcp": 6556,
+      "lcpElement": "div.relative.flex.h-full.w-full unit-card-background-DopPZ79m.webp",
+      "fcp": 4724,
+      "cls": 0,
+      "resources": [
+        "users 4589→4768",
+        "chapters 4603→4788",
+        "planet-02-venus-DfVKs9En.webp 5720→5996",
+        "planet-03-earth-DOpvlxUt.webp 5725→6024",
+        "planet-04-mars-Bzu45apF.webp 5729→5999",
+        "planet-05-jupiter-DnC52Bua.webp 5731→6008",
+        "planet-01-mercury-DZsd0zpF.webp 5736→6005",
+        "planet-06-saturn-B3PHQ8XV.webp 5739→6006",
+        "planet-07-uranus-_EBQyJBH.webp 5743→6189",
+        "planet-08-neptune-B5EHHlk5.webp 5746→6232",
+        "planet-09-sun-BbBcZX5c.webp 5749→6293",
+        "planet-10-pluto-Z6zjAtq6.webp 5753→6264",
+        "planet-11-ceres-BcElpr0o.webp 5756→6275",
+        "planet-12-eris-DlRg0rLp.webp 5761→6283",
+        "planet-13-vesta-DrSrGMxv.webp 5764→6423",
+        "planet-14-io-DdTzg8sU.webp 5768→6478",
+        "planet-15-europa-Ce5WrFEG.webp 5772→6543",
+        "planet-16-titan-B-KQLye6.webp 5776→6524",
+        "planet-17-triton-CuSvoQYf.webp 5778→6536",
+        "planet-18-charon-BOh4NMZ3.webp 5784→6615",
+        "planet-19-phobos-DY5y8Vo1.webp 5788→6631",
+        "planet-20-deimos-CGsgq0Tw.webp 5793→6692",
+        "planet-21-mimas-DV7T6Ya0.webp 5795→6739",
+        "planet-22-rhea-CXsNjRgJ.webp 5798→6755",
+        "unit-card-background-DopPZ79m.webp 5824→6396"
+      ],
+      "lcpCandidates": [
+        "4724 span.text-caption1.text-icon",
+        "6272 span.pointer-events-none.line-clamp-2.break-keep.font-mbc",
+        "6556 div.relative.flex.h-full.w-full"
+      ],
+      "longtasksAfter4s": [
+        [
+          4844,
+          101
+        ],
+        [
+          4988,
+          146
+        ],
+        [
+          5194,
+          604
+        ],
+        [
+          6590,
+          69
+        ],
+        [
+          6660,
+          229
+        ]
+      ],
+      "shifts": [
+        [
+          7242,
+          0
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning",
+      "entry": "index-CWWVvq3C.js",
+      "lcp": 6864,
+      "lcpElement": "div.relative.flex.h-full.w-full unit-card-background-DopPZ79m.webp",
+      "fcp": 4780,
+      "cls": 0,
+      "resources": [
+        "users 4632→4811",
+        "chapters 4644→4828",
+        "planet-02-venus-DfVKs9En.webp 5604→5874",
+        "planet-03-earth-DOpvlxUt.webp 5605→5904",
+        "planet-04-mars-Bzu45apF.webp 5605→5906",
+        "planet-05-jupiter-DnC52Bua.webp 5605→5905",
+        "planet-01-mercury-DZsd0zpF.webp 5605→5906",
+        "planet-06-saturn-B3PHQ8XV.webp 5605→5925",
+        "planet-07-uranus-_EBQyJBH.webp 5607→6156",
+        "planet-08-neptune-B5EHHlk5.webp 5607→6156",
+        "planet-09-sun-BbBcZX5c.webp 5607→6198",
+        "planet-10-pluto-Z6zjAtq6.webp 5607→6173",
+        "planet-11-ceres-BcElpr0o.webp 5608→6184",
+        "planet-12-eris-DlRg0rLp.webp 5608→6294",
+        "planet-13-vesta-DrSrGMxv.webp 5608→6413",
+        "planet-14-io-DdTzg8sU.webp 5608→6437",
+        "planet-15-europa-Ce5WrFEG.webp 5609→6464",
+        "planet-16-titan-B-KQLye6.webp 5609→6450",
+        "planet-17-triton-CuSvoQYf.webp 5609→6458",
+        "planet-18-charon-BOh4NMZ3.webp 5609→6489",
+        "planet-19-phobos-DY5y8Vo1.webp 5609→6637",
+        "planet-20-deimos-CGsgq0Tw.webp 5610→6682",
+        "planet-21-mimas-DV7T6Ya0.webp 5610→6685",
+        "planet-22-rhea-CXsNjRgJ.webp 5614→6697",
+        "unit-card-background-DopPZ79m.webp 5616→6075"
+      ],
+      "lcpCandidates": [
+        "4780 span.text-caption1.text-icon",
+        "5728 span.pointer-events-none.line-clamp-2.break-keep.font-mbc",
+        "6864 div.relative.flex.h-full.w-full"
+      ],
+      "longtasksAfter4s": [
+        [
+          4881,
+          102
+        ],
+        [
+          5016,
+          116
+        ],
+        [
+          5183,
+          431
+        ],
+        [
+          5758,
+          69
+        ]
+      ],
+      "shifts": [
+        [
+          6738,
+          0
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning",
+      "entry": "index-CWWVvq3C.js",
+      "lcp": 6708,
+      "lcpElement": "div.relative.flex.h-full.w-full unit-card-background-DopPZ79m.webp",
+      "fcp": 4724,
+      "cls": 0,
+      "resources": [
+        "users 4599→4782",
+        "chapters 4613→4785",
+        "planet-02-venus-DfVKs9En.webp 5686→5965",
+        "planet-03-earth-DOpvlxUt.webp 5690→5983",
+        "planet-04-mars-Bzu45apF.webp 5695→5966",
+        "planet-05-jupiter-DnC52Bua.webp 5699→5975",
+        "planet-01-mercury-DZsd0zpF.webp 5703→5982",
+        "planet-06-saturn-B3PHQ8XV.webp 5706→5988",
+        "planet-07-uranus-_EBQyJBH.webp 5708→6244",
+        "planet-08-neptune-B5EHHlk5.webp 5713→6241",
+        "planet-09-sun-BbBcZX5c.webp 5718→6277",
+        "planet-10-pluto-Z6zjAtq6.webp 5722→6253",
+        "planet-11-ceres-BcElpr0o.webp 5729→6260",
+        "planet-12-eris-DlRg0rLp.webp 5735→6259",
+        "planet-13-vesta-DrSrGMxv.webp 5740→6510",
+        "planet-14-io-DdTzg8sU.webp 5745→6540",
+        "planet-15-europa-Ce5WrFEG.webp 5750→6557",
+        "planet-16-titan-B-KQLye6.webp 5755→6535",
+        "planet-17-triton-CuSvoQYf.webp 5760→6550",
+        "planet-18-charon-BOh4NMZ3.webp 5763→6653",
+        "planet-19-phobos-DY5y8Vo1.webp 5767→6726",
+        "planet-20-deimos-CGsgq0Tw.webp 5771→6773",
+        "planet-21-mimas-DV7T6Ya0.webp 5776→6788",
+        "planet-22-rhea-CXsNjRgJ.webp 5780→6793",
+        "unit-card-background-DopPZ79m.webp 5807→6451"
+      ],
+      "lcpCandidates": [
+        "4724 span.text-caption1.text-icon",
+        "6356 span.pointer-events-none.line-clamp-2.break-keep.font-mbc",
+        "6708 div.relative.flex.h-full.w-full"
+      ],
+      "longtasksAfter4s": [
+        [
+          4763,
+          93
+        ],
+        [
+          4984,
+          125
+        ],
+        [
+          5151,
+          630
+        ],
+        [
+          6703,
+          95
+        ],
+        [
+          6799,
+          237
+        ]
+      ],
+      "shifts": [
+        [
+          7405,
+          0
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning",
+      "entry": "index-CWWVvq3C.js",
+      "lcp": 6572,
+      "lcpElement": "div.relative.flex.h-full.w-full unit-card-background-DopPZ79m.webp",
+      "fcp": 4724,
+      "cls": 0,
+      "resources": [
+        "users 4603→4780",
+        "chapters 4611→4782",
+        "planet-02-venus-DfVKs9En.webp 5633→5891",
+        "planet-03-earth-DOpvlxUt.webp 5635→5925",
+        "planet-04-mars-Bzu45apF.webp 5639→5908",
+        "planet-05-jupiter-DnC52Bua.webp 5644→5919",
+        "planet-01-mercury-DZsd0zpF.webp 5649→5919",
+        "planet-06-saturn-B3PHQ8XV.webp 5653→5928",
+        "planet-07-uranus-_EBQyJBH.webp 5659→6085",
+        "planet-08-neptune-B5EHHlk5.webp 5666→6113",
+        "planet-09-sun-BbBcZX5c.webp 5672→6206",
+        "planet-10-pluto-Z6zjAtq6.webp 5678→6173",
+        "planet-11-ceres-BcElpr0o.webp 5681→6191",
+        "planet-12-eris-DlRg0rLp.webp 5683→6191",
+        "planet-13-vesta-DrSrGMxv.webp 5686→6300",
+        "planet-14-io-DdTzg8sU.webp 5691→6332",
+        "planet-15-europa-Ce5WrFEG.webp 5699→6457",
+        "planet-16-titan-B-KQLye6.webp 5703→6442",
+        "planet-17-triton-CuSvoQYf.webp 5707→6450",
+        "planet-18-charon-BOh4NMZ3.webp 5713→6492",
+        "planet-19-phobos-DY5y8Vo1.webp 5718→6525",
+        "planet-20-deimos-CGsgq0Tw.webp 5724→6555",
+        "planet-21-mimas-DV7T6Ya0.webp 5729→6685",
+        "planet-22-rhea-CXsNjRgJ.webp 5733→6680",
+        "unit-card-background-DopPZ79m.webp 5767→6365"
+      ],
+      "lcpCandidates": [
+        "4724 span.text-caption1.text-icon",
+        "6256 span.pointer-events-none.line-clamp-2.break-keep.font-mbc",
+        "6572 div.relative.flex.h-full.w-full"
+      ],
+      "longtasksAfter4s": [
+        [
+          4784,
+          92
+        ],
+        [
+          4994,
+          127
+        ],
+        [
+          5152,
+          582
+        ],
+        [
+          6585,
+          72
+        ],
+        [
+          6658,
+          109
+        ]
+      ],
+      "shifts": [
+        [
+          7082,
+          0
+        ]
+      ],
+      "misses": []
+    }
+  ],
+  "/learning after": [
+    {
+      "path": "/learning",
+      "entry": "index-DS3whw1e.js",
+      "lcp": 6504,
+      "lcpElement": "div.relative.flex.h-full.w-full unit-card-background-DopPZ79m.webp",
+      "fcp": 4640,
+      "cls": 0,
+      "resources": [
+        "users 4493→4663",
+        "chapters 4508→4694",
+        "planet-02-venus-DfVKs9En.webp 5746→5979",
+        "planet-03-earth-DOpvlxUt.webp 5750→6010",
+        "planet-04-mars-Bzu45apF.webp 5754→5998",
+        "planet-05-jupiter-DnC52Bua.webp 5759→5999",
+        "unit-card-background-DopPZ79m.webp 5799→6027",
+        "planet-01-mercury-DZsd0zpF.webp 6246→6496",
+        "planet-06-saturn-B3PHQ8XV.webp 6252→6511",
+        "planet-07-uranus-_EBQyJBH.webp 6256→6512",
+        "planet-08-neptune-B5EHHlk5.webp 6260→6511",
+        "planet-09-sun-BbBcZX5c.webp 6265→6534",
+        "planet-10-pluto-Z6zjAtq6.webp 6270→6521",
+        "planet-11-ceres-BcElpr0o.webp 6273→6695",
+        "planet-12-eris-DlRg0rLp.webp 6279→6787",
+        "planet-13-vesta-DrSrGMxv.webp 6282→6794",
+        "planet-14-io-DdTzg8sU.webp 6286→6812",
+        "planet-15-europa-Ce5WrFEG.webp 6289→6818",
+        "planet-16-titan-B-KQLye6.webp 6292→6800",
+        "planet-17-triton-CuSvoQYf.webp 6296→6911",
+        "planet-18-charon-BOh4NMZ3.webp 6300→7038",
+        "planet-19-phobos-DY5y8Vo1.webp 6306→7037",
+        "planet-20-deimos-CGsgq0Tw.webp 6309→7037"
+      ],
+      "lcpCandidates": [
+        "4640 span.text-caption1.text-icon",
+        "6256 span.pointer-events-none.line-clamp-2.break-keep.font-mbc",
+        "6504 div.relative.flex.h-full.w-full"
+      ],
+      "longtasksAfter4s": [
+        [
+          4760,
+          51
+        ],
+        [
+          4865,
+          63
+        ],
+        [
+          4940,
+          128
+        ],
+        [
+          5147,
+          640
+        ],
+        [
+          6464,
+          89
+        ],
+        [
+          6553,
+          214
+        ]
+      ],
+      "shifts": [
+        [
+          7179,
+          0
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning",
+      "entry": "index-DS3whw1e.js",
+      "lcp": 6384,
+      "lcpElement": "div.relative.flex.h-full.w-full unit-card-background-DopPZ79m.webp",
+      "fcp": 4672,
+      "cls": 0,
+      "resources": [
+        "users 4556→4726",
+        "chapters 4565→4746",
+        "planet-02-venus-DfVKs9En.webp 5437→5637",
+        "planet-03-earth-DOpvlxUt.webp 5442→5707",
+        "planet-04-mars-Bzu45apF.webp 5446→5692",
+        "planet-05-jupiter-DnC52Bua.webp 5449→5696",
+        "unit-card-background-DopPZ79m.webp 5476→5723",
+        "planet-01-mercury-DZsd0zpF.webp 6175→6469",
+        "planet-06-saturn-B3PHQ8XV.webp 6179→6484",
+        "planet-07-uranus-_EBQyJBH.webp 6185→6485",
+        "planet-08-neptune-B5EHHlk5.webp 6190→6472",
+        "planet-09-sun-BbBcZX5c.webp 6194→6511",
+        "planet-10-pluto-Z6zjAtq6.webp 6195→6458",
+        "planet-11-ceres-BcElpr0o.webp 6197→6677",
+        "planet-12-eris-DlRg0rLp.webp 6205→6738",
+        "planet-13-vesta-DrSrGMxv.webp 6206→6739",
+        "planet-14-io-DdTzg8sU.webp 6207→6771",
+        "planet-15-europa-Ce5WrFEG.webp 6207→6800",
+        "planet-16-titan-B-KQLye6.webp 6209→6779",
+        "planet-17-triton-CuSvoQYf.webp 6209→6893",
+        "planet-18-charon-BOh4NMZ3.webp 6209→6980",
+        "planet-19-phobos-DY5y8Vo1.webp 6210→7008",
+        "planet-20-deimos-CGsgq0Tw.webp 6210→7033"
+      ],
+      "lcpCandidates": [
+        "4672 span.text-caption1.text-icon",
+        "5984 span.pointer-events-none.line-clamp-2.break-keep.font-mbc",
+        "6384 div.relative.flex.h-full.w-full"
+      ],
+      "longtasksAfter4s": [
+        [
+          4679,
+          75
+        ],
+        [
+          4804,
+          94
+        ],
+        [
+          4900,
+          568
+        ],
+        [
+          6340,
+          77
+        ],
+        [
+          6417,
+          150
+        ]
+      ],
+      "shifts": [
+        [
+          6974,
+          0
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning",
+      "entry": "index-DS3whw1e.js",
+      "lcp": 6324,
+      "lcpElement": "div.relative.flex.h-full.w-full unit-card-background-DopPZ79m.webp",
+      "fcp": 4624,
+      "cls": 0,
+      "resources": [
+        "users 4477→4646",
+        "chapters 4489→4679",
+        "planet-02-venus-DfVKs9En.webp 5292→5542",
+        "planet-03-earth-DOpvlxUt.webp 5297→5571",
+        "planet-04-mars-Bzu45apF.webp 5302→5558",
+        "planet-05-jupiter-DnC52Bua.webp 5306→5565",
+        "unit-card-background-DopPZ79m.webp 5351→5587",
+        "planet-01-mercury-DZsd0zpF.webp 6057→6320",
+        "planet-06-saturn-B3PHQ8XV.webp 6062→6328",
+        "planet-07-uranus-_EBQyJBH.webp 6066→6328",
+        "planet-08-neptune-B5EHHlk5.webp 6070→6340",
+        "planet-09-sun-BbBcZX5c.webp 6075→6358",
+        "planet-10-pluto-Z6zjAtq6.webp 6076→6341",
+        "planet-11-ceres-BcElpr0o.webp 6078→6608",
+        "planet-12-eris-DlRg0rLp.webp 6082→6608",
+        "planet-13-vesta-DrSrGMxv.webp 6086→6602",
+        "planet-14-io-DdTzg8sU.webp 6089→6652",
+        "planet-15-europa-Ce5WrFEG.webp 6094→6659",
+        "planet-16-titan-B-KQLye6.webp 6098→6648",
+        "planet-17-triton-CuSvoQYf.webp 6102→6887",
+        "planet-18-charon-BOh4NMZ3.webp 6107→6867",
+        "planet-19-phobos-DY5y8Vo1.webp 6111→6881",
+        "planet-20-deimos-CGsgq0Tw.webp 6114→6896"
+      ],
+      "lcpCandidates": [
+        "4624 span.text-caption1.text-icon",
+        "5804 span.pointer-events-none.line-clamp-2.break-keep.font-mbc",
+        "6324 div.relative.flex.h-full.w-full"
+      ],
+      "longtasksAfter4s": [
+        [
+          4770,
+          109
+        ],
+        [
+          4881,
+          65
+        ],
+        [
+          4948,
+          389
+        ],
+        [
+          6290,
+          88
+        ]
+      ],
+      "shifts": [
+        [
+          7070,
+          0
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning",
+      "entry": "index-DS3whw1e.js",
+      "lcp": 6180,
+      "lcpElement": "div.relative.flex.h-full.w-full unit-card-background-DopPZ79m.webp",
+      "fcp": 4528,
+      "cls": 0,
+      "resources": [
+        "users 4410→4589",
+        "chapters 4423→4602",
+        "planet-02-venus-DfVKs9En.webp 5441→5704",
+        "planet-03-earth-DOpvlxUt.webp 5446→5720",
+        "planet-04-mars-Bzu45apF.webp 5451→5705",
+        "planet-05-jupiter-DnC52Bua.webp 5454→5720",
+        "unit-card-background-DopPZ79m.webp 5495→5735",
+        "planet-01-mercury-DZsd0zpF.webp 5926→6207",
+        "planet-06-saturn-B3PHQ8XV.webp 5930→6222",
+        "planet-07-uranus-_EBQyJBH.webp 5934→6221",
+        "planet-08-neptune-B5EHHlk5.webp 5938→6213",
+        "planet-09-sun-BbBcZX5c.webp 5942→6250",
+        "planet-10-pluto-Z6zjAtq6.webp 5945→6217",
+        "planet-11-ceres-BcElpr0o.webp 5948→6479",
+        "planet-12-eris-DlRg0rLp.webp 5952→6473",
+        "planet-13-vesta-DrSrGMxv.webp 5955→6502",
+        "planet-14-io-DdTzg8sU.webp 5959→6522",
+        "planet-15-europa-Ce5WrFEG.webp 5961→6534",
+        "planet-16-titan-B-KQLye6.webp 5965→6516",
+        "planet-17-triton-CuSvoQYf.webp 5970→6725",
+        "planet-18-charon-BOh4NMZ3.webp 5972→6724",
+        "planet-19-phobos-DY5y8Vo1.webp 5977→6738",
+        "planet-20-deimos-CGsgq0Tw.webp 5983→6753"
+      ],
+      "lcpCandidates": [
+        "4528 span.text-caption1.text-icon",
+        "5944 span.pointer-events-none.line-clamp-2.break-keep.font-mbc",
+        "6180 div.relative.flex.h-full.w-full"
+      ],
+      "longtasksAfter4s": [
+        [
+          4658,
+          96
+        ],
+        [
+          4787,
+          106
+        ],
+        [
+          4949,
+          535
+        ],
+        [
+          6135,
+          98
+        ],
+        [
+          6233,
+          240
+        ]
+      ],
+      "shifts": [
+        [
+          6924,
+          0
+        ]
+      ],
+      "misses": []
+    },
+    {
+      "path": "/learning",
+      "entry": "index-DS3whw1e.js",
+      "lcp": 6264,
+      "lcpElement": "div.relative.flex.h-full.w-full unit-card-background-DopPZ79m.webp",
+      "fcp": 4516,
+      "cls": 0,
+      "resources": [
+        "users 4418→4600",
+        "chapters 4427→4600",
+        "planet-02-venus-DfVKs9En.webp 5521→5755",
+        "planet-03-earth-DOpvlxUt.webp 5524→5785",
+        "planet-04-mars-Bzu45apF.webp 5528→5771",
+        "planet-05-jupiter-DnC52Bua.webp 5533→5785",
+        "unit-card-background-DopPZ79m.webp 5575→5817",
+        "planet-01-mercury-DZsd0zpF.webp 6023→6283",
+        "planet-06-saturn-B3PHQ8XV.webp 6027→6288",
+        "planet-07-uranus-_EBQyJBH.webp 6033→6302",
+        "planet-08-neptune-B5EHHlk5.webp 6037→6298",
+        "planet-09-sun-BbBcZX5c.webp 6041→6326",
+        "planet-10-pluto-Z6zjAtq6.webp 6044→6303",
+        "planet-11-ceres-BcElpr0o.webp 6048→6550",
+        "planet-12-eris-DlRg0rLp.webp 6051→6558",
+        "planet-13-vesta-DrSrGMxv.webp 6055→6579",
+        "planet-14-io-DdTzg8sU.webp 6058→6593",
+        "planet-15-europa-Ce5WrFEG.webp 6061→6605",
+        "planet-16-titan-B-KQLye6.webp 6064→6599",
+        "planet-17-triton-CuSvoQYf.webp 6067→6801",
+        "planet-18-charon-BOh4NMZ3.webp 6070→6787",
+        "planet-19-phobos-DY5y8Vo1.webp 6074→6816",
+        "planet-20-deimos-CGsgq0Tw.webp 6077→6831"
+      ],
+      "lcpCandidates": [
+        "4516 span.text-caption1.text-icon",
+        "6048 span.pointer-events-none.line-clamp-2.break-keep.font-mbc",
+        "6264 div.relative.flex.h-full.w-full"
+      ],
+      "longtasksAfter4s": [
+        [
+          4586,
+          114
+        ],
+        [
+          4823,
+          117
+        ],
+        [
+          4968,
+          592
+        ],
+        [
+          6217,
+          83
+        ],
+        [
+          6300,
+          240
+        ]
+      ],
+      "shifts": [
+        [
+          6941,
+          0
+        ]
+      ],
+      "misses": []
+    }
+  ]
+}

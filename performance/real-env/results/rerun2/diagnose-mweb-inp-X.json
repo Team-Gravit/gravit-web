@@ -1,0 +1,239 @@
+{
+  "main-mweb": [
+    {
+      "interactions": [
+        {
+          "action": "전체 학습화면 보기",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "전체 학습화면 보기",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "전체 학습화면 보기",
+          "inp": 176,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 176
+    },
+    {
+      "interactions": [
+        {
+          "action": "전체 학습화면 보기",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "전체 학습화면 보기",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "전체 학습화면 보기",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "전체 학습화면 보기",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    }
+  ],
+  "my-learning-mweb": [
+    {
+      "interactions": [
+        {
+          "action": "a[href=\"/my/league\"]",
+          "inp": 64,
+          "event": "pointerdown",
+          "target": "a.flex.flex-1.items-center \"리그\""
+        }
+      ],
+      "inp": 64
+    },
+    {
+      "interactions": [
+        {
+          "action": "a[href=\"/my/league\"]",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": "a.flex.flex-1.items-center \"리그\""
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "a[href=\"/my/league\"]",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": "a.flex.flex-1.items-center \"리그\""
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "a[href=\"/my/league\"]",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": "a.flex.flex-1.items-center \"리그\""
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "a[href=\"/my/league\"]",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": "a.flex.flex-1.items-center \"리그\""
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "a[href=\"/my/league\"]",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": "a.flex.flex-1.items-center \"리그\""
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "a[href=\"/my/league\"]",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": "a.flex.flex-1.items-center \"리그\""
+        }
+      ],
+      "inp": 48
+    }
+  ],
+  "lesson-result-mweb": [
+    {
+      "interactions": [
+        {
+          "action": "이어서 학습하기",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "이어서 학습하기",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "이어서 학습하기",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "이어서 학습하기",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "이어서 학습하기",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "이어서 학습하기",
+          "inp": 88,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 88
+    },
+    {
+      "interactions": [
+        {
+          "action": "이어서 학습하기",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    }
+  ]
+}

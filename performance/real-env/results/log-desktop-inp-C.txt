@@ -1,0 +1,49 @@
+onboarding-desktop 1 inp 48 다음 프로필 색:48 input 입력:0
+onboarding-desktop 2 inp 56 다음 프로필 색:56 input 입력:0
+onboarding-desktop 3 inp 72 다음 프로필 색:72 input 입력:0
+onboarding-desktop 4 inp 56 다음 프로필 색:56 input 입력:0
+onboarding-desktop 5 inp 56 다음 프로필 색:56 input 입력:0
+onboarding-desktop 6 inp 64 다음 프로필 색:64 input 입력:0
+onboarding-desktop 7 inp 56 다음 프로필 색:56 input 입력:0
+onboarding-success-desktop 1 inp 64 홈으로:64
+onboarding-success-desktop 2 inp 64 홈으로:64
+onboarding-success-desktop 3 inp 56 홈으로:56
+onboarding-success-desktop 4 inp 56 홈으로:56
+onboarding-success-desktop 5 inp 72 홈으로:72
+onboarding-success-desktop 6 inp 56 홈으로:56
+onboarding-success-desktop 7 inp 64 홈으로:64
+settings-desktop 1 inp 48 공지사항:48
+settings-desktop 2 inp 48 공지사항:48
+settings-desktop 3 inp 48 공지사항:48
+settings-desktop 4 inp 56 공지사항:56
+settings-desktop 5 inp 48 공지사항:48
+settings-desktop 6 inp 64 공지사항:64
+settings-desktop 7 inp 48 공지사항:48
+inquiry-desktop 1 inp 80 문의 1:56 문의 2:80
+inquiry-desktop 2 inp 64 문의 1:56 문의 2:64
+inquiry-desktop 3 inp 72 문의 1:56 문의 2:72
+inquiry-desktop 4 inp 72 문의 1:56 문의 2:72
+inquiry-desktop 5 inp 64 문의 1:56 문의 2:64
+inquiry-desktop 6 inp 80 문의 1:56 문의 2:80
+inquiry-desktop 7 inp 72 문의 1:56 문의 2:72
+inquiry-new-desktop 1 inp 80 문의 유형을 선택해주세요.:56 input 입력:80 textarea 입력:0
+inquiry-new-desktop 2 inp 88 문의 유형을 선택해주세요.:72 input 입력:88 textarea 입력:0
+inquiry-new-desktop 3 inp 88 문의 유형을 선택해주세요.:80 input 입력:88 textarea 입력:0
+inquiry-new-desktop 4 inp 72 문의 유형을 선택해주세요.:72 input 입력:56 textarea 입력:0
+inquiry-new-desktop 5 inp 64 문의 유형을 선택해주세요.:56 input 입력:64 textarea 입력:0
+inquiry-new-desktop 6 inp 80 문의 유형을 선택해주세요.:72 input 입력:80 textarea 입력:0
+inquiry-new-desktop 7 inp 88 문의 유형을 선택해주세요.:72 input 입력:88 textarea 입력:0
+notice-desktop 1 inp 56 공지 1 ·:56
+notice-desktop 2 inp 64 공지 1 ·:64
+notice-desktop 3 inp 48 공지 1 ·:48
+notice-desktop 4 inp 56 공지 1 ·:56
+notice-desktop 5 inp 56 공지 1 ·:56
+notice-desktop 6 inp 88 공지 1 ·:88
+notice-desktop 7 inp 64 공지 1 ·:64
+notice-detail-desktop 1 ERROR Node is either not clickable or not an Element
+notice-detail-desktop 2 ERROR Node is either not clickable or not an Element
+notice-detail-desktop 3 ERROR Node is either not clickable or not an Element
+notice-detail-desktop 4 ERROR Node is either not clickable or not an Element
+notice-detail-desktop 5 ERROR Node is either not clickable or not an Element
+notice-detail-desktop 6 ERROR Node is either not clickable or not an Element
+notice-detail-desktop 7 ERROR Node is either not clickable or not an Element

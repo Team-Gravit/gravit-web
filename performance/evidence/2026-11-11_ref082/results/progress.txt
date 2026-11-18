@@ -1,0 +1,36 @@
+20:27:31 === 측정 시작 ===
+20:27:31 시작 cls-delay600-rest (1회차)
+20:42:42 완료 cls-delay600-rest
+20:42:43 시작 cls-delay600-my-social (1회차)
+20:43:44 완료 cls-delay600-my-social
+20:43:45 시작 cls-nav-delay0 (1회차)
+20:44:16 실패 cls-nav-delay0 (종료 코드 1)
+20:44:16 시작 cls-nav-delay0 (2회차)
+20:44:47 실패 cls-nav-delay0 (종료 코드 1)
+20:44:47 시작 cls-nav-delay0 (3회차)
+20:45:18 실패 cls-nav-delay0 (종료 코드 1)
+20:45:18 포기 cls-nav-delay0 — 3회 모두 실패
+20:45:18 시작 cls-nav-delay600 (1회차)
+20:45:49 실패 cls-nav-delay600 (종료 코드 1)
+20:45:49 시작 cls-nav-delay600 (2회차)
+20:46:20 실패 cls-nav-delay600 (종료 코드 1)
+20:46:20 시작 cls-nav-delay600 (3회차)
+20:46:51 실패 cls-nav-delay600 (종료 코드 1)
+20:46:51 포기 cls-nav-delay600 — 3회 모두 실패
+20:46:51 건너뜀 load-B (이미 끝남)
+20:46:51 건너뜀 inp-B (이미 끝남)
+20:46:52 건너뜀 load-C (이미 끝남)
+20:46:52 건너뜀 inp-C (이미 끝남)
+20:46:52 === 전체 끝 ===
+20:48:38 === 측정 시작 ===
+20:48:39 건너뜀 cls-delay600-rest (이미 끝남)
+20:48:39 건너뜀 cls-delay600-my-social (이미 끝남)
+20:48:39 시작 cls-nav-delay0 (1회차)
+21:04:22 완료 cls-nav-delay0
+21:04:22 시작 cls-nav-delay600 (1회차)
+21:20:36 완료 cls-nav-delay600
+21:20:36 건너뜀 load-B (이미 끝남)
+21:20:36 건너뜀 inp-B (이미 끝남)
+21:20:36 건너뜀 load-C (이미 끝남)
+21:20:37 건너뜀 inp-C (이미 끝남)
+21:20:37 === 전체 끝 ===

@@ -1,0 +1,56 @@
+19:45:25 === 측정 시작 ( ios-load-A ios-load-B ios-load-C ios-inp-A ios-inp-B ios-inp-C ios-cls-A ios-cls-B ios-cls-C mweb-load-A mweb-load-B mweb-load-C mweb-inp-A mweb-inp-B mweb-inp-C mweb-cls-A mweb-cls-B mweb-cls-C desktop-load-A desktop-load-B desktop-load-C desktop-inp-A desktop-inp-B desktop-inp-C desktop-cls-A desktop-cls-B desktop-cls-C) ===
+19:45:25 시작 ios-load-A (1회차)
+20:02:56 완료 ios-load-A
+20:02:56 시작 ios-load-B (1회차)
+20:08:56 완료 ios-load-B
+20:08:56 시작 ios-load-C (1회차)
+20:21:56 완료 ios-load-C
+20:21:56 시작 ios-inp-A (1회차)
+20:32:27 완료 ios-inp-A
+20:32:27 시작 ios-inp-B (1회차)
+20:40:57 완료 ios-inp-B
+20:40:57 시작 ios-inp-C (1회차)
+20:53:57 완료 ios-inp-C
+20:53:57 시작 ios-cls-A (1회차)
+21:01:27 완료 ios-cls-A
+21:01:28 시작 ios-cls-B (1회차)
+21:03:58 완료 ios-cls-B
+21:03:58 시작 ios-cls-C (1회차)
+21:09:58 완료 ios-cls-C
+21:09:58 시작 mweb-load-A (1회차)
+21:27:28 완료 mweb-load-A
+21:27:28 시작 mweb-load-B (1회차)
+21:33:28 완료 mweb-load-B
+21:33:28 시작 mweb-load-C (1회차)
+21:46:29 완료 mweb-load-C
+21:46:29 시작 mweb-inp-A (1회차)
+21:56:59 완료 mweb-inp-A
+21:56:59 시작 mweb-inp-B (1회차)
+22:07:59 완료 mweb-inp-B
+22:07:59 시작 mweb-inp-C (1회차)
+22:16:59 완료 mweb-inp-C
+22:16:59 시작 mweb-cls-A (1회차)
+22:24:29 완료 mweb-cls-A
+22:24:29 시작 mweb-cls-B (1회차)
+22:27:00 완료 mweb-cls-B
+22:27:00 시작 mweb-cls-C (1회차)
+22:33:00 완료 mweb-cls-C
+22:33:00 시작 desktop-load-A (1회차)
+22:49:00 완료 desktop-load-A
+22:49:00 시작 desktop-load-B (1회차)
+22:55:00 완료 desktop-load-B
+22:55:00 시작 desktop-load-C (1회차)
+23:05:01 완료 desktop-load-C
+23:05:01 시작 desktop-inp-A (1회차)
+23:14:31 완료 desktop-inp-A
+23:14:31 시작 desktop-inp-B (1회차)
+23:25:01 완료 desktop-inp-B
+23:25:01 시작 desktop-inp-C (1회차)
+23:34:30 완료 desktop-inp-C
+23:34:30 시작 desktop-cls-A (1회차)
+23:41:30 완료 desktop-cls-A
+23:41:30 시작 desktop-cls-B (1회차)
+23:44:00 완료 desktop-cls-B
+23:44:00 시작 desktop-cls-C (1회차)
+23:48:32 완료 desktop-cls-C
+23:48:32 === 전체 끝 ===

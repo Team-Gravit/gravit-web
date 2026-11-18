@@ -1,0 +1,982 @@
+{
+  "my-social-mobile": [
+    {
+      "fcp": 4896,
+      "lcp": {
+        "time": 4896,
+        "element": "img.size-full.object-cover.object-top",
+        "url": "space-banner-B9SXw_Av.webp",
+        "size": 80752
+      },
+      "cls": 0.0019036536268828457,
+      "shifts": [
+        {
+          "time": 5138.4000000059605,
+          "value": 0.0019036536268828457,
+          "sources": [
+            "button.group/button.relative.inline-flex \"프로필 편집\""
+          ]
+        }
+      ],
+      "tbt": 0,
+      "longTasks": [
+        {
+          "start": 454.80000001192093,
+          "duration": 50
+        },
+        {
+          "start": 581.2000000029802,
+          "duration": 773
+        },
+        {
+          "start": 1377.800000011921,
+          "duration": 367
+        },
+        {
+          "start": 1824.7000000029802,
+          "duration": 257
+        },
+        {
+          "start": 2242.5,
+          "duration": 311
+        },
+        {
+          "start": 2554.2000000029802,
+          "duration": 157
+        },
+        {
+          "start": 3057.300000011921,
+          "duration": 738
+        },
+        {
+          "start": 3813,
+          "duration": 50
+        },
+        {
+          "start": 4001.1000000089407,
+          "duration": 82
+        },
+        {
+          "start": 4136.4000000059605,
+          "duration": 64
+        },
+        {
+          "start": 4474.100000008941,
+          "duration": 138
+        },
+        {
+          "start": 4613.4000000059605,
+          "duration": 79
+        },
+        {
+          "start": 4693.300000011921,
+          "duration": 98
+        },
+        {
+          "start": 4887.5,
+          "duration": 322
+        }
+      ],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-d89RXhZc.js",
+          "start": 244,
+          "end": 521,
+          "bytes": 181505
+        },
+        {
+          "kind": "css",
+          "path": "index-DdTWRpSS.css",
+          "start": 253,
+          "end": 366,
+          "bytes": 22279
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/auth/reissue",
+          "start": 1743,
+          "end": 1824,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 1795,
+          "end": 1886,
+          "bytes": 2227
+        },
+        {
+          "kind": "js",
+          "path": "route-BIarp8Fo.js",
+          "start": 1932,
+          "end": 2002,
+          "bytes": 3501
+        },
+        {
+          "kind": "js",
+          "path": "useLocation-_8dNwvDG.js",
+          "start": 1937,
+          "end": 2003,
+          "bytes": 433
+        },
+        {
+          "kind": "js",
+          "path": "route-BQyL1tPG.js",
+          "start": 1944,
+          "end": 2024,
+          "bytes": 6228
+        },
+        {
+          "kind": "js",
+          "path": "pull-to-refresh-BzeLKM2y.js",
+          "start": 1949,
+          "end": 2026,
+          "bytes": 2924
+        },
+        {
+          "kind": "js",
+          "path": "use-delayed-flag-5rqCpR45.js",
+          "start": 1954,
+          "end": 2025,
+          "bytes": 628
+        },
+        {
+          "kind": "js",
+          "path": "mypage-api-2hv7Ek2v.js",
+          "start": 1959,
+          "end": 2026,
+          "bytes": 1077
+        },
+        {
+          "kind": "js",
+          "path": "tab-DfzTyVfF.js",
+          "start": 1964,
+          "end": 2076,
+          "bytes": 916
+        },
+        {
+          "kind": "js",
+          "path": "space-banner-DeCurbPM.js",
+          "start": 1969,
+          "end": 2076,
+          "bytes": 613
+        },
+        {
+          "kind": "js",
+          "path": "skeleton-gqQdNdVN.js",
+          "start": 1974,
+          "end": 2087,
+          "bytes": 1446
+        },
+        {
+          "kind": "js",
+          "path": "close-md-DSL9NQPD.js",
+          "start": 1980,
+          "end": 2088,
+          "bytes": 641
+        },
+        {
+          "kind": "js",
+          "path": "modal-OnwVThz_.js",
+          "start": 1983,
+          "end": 2097,
+          "bytes": 2779
+        },
+        {
+          "kind": "js",
+          "path": "index-D4cLlJsC.js",
+          "start": 1986,
+          "end": 2106,
+          "bytes": 9325
+        },
+        {
+          "kind": "js",
+          "path": "profile-edit-form-C-Z1gUcb.js",
+          "start": 1990,
+          "end": 2165,
+          "bytes": 1579
+        },
+        {
+          "kind": "js",
+          "path": "nickname-field-BCs-QH1E.js",
+          "start": 1994,
+          "end": 2164,
+          "bytes": 2700
+        },
+        {
+          "kind": "js",
+          "path": "study-heatmap-CgrDYW9D.js",
+          "start": 1999,
+          "end": 2171,
+          "bytes": 4418
+        },
+        {
+          "kind": "js",
+          "path": "card-NUlmOKZu.js",
+          "start": 2004,
+          "end": 2166,
+          "bytes": 751
+        },
+        {
+          "kind": "js",
+          "path": "index-C40lex17.js",
+          "start": 2010,
+          "end": 2185,
+          "bytes": 19041
+        },
+        {
+          "kind": "js",
+          "path": "chevron-down-aRvO2cNk.js",
+          "start": 2015,
+          "end": 2169,
+          "bytes": 624
+        },
+        {
+          "kind": "js",
+          "path": "follow-list-tab-Dz5TWj0-.js",
+          "start": 2020,
+          "end": 2255,
+          "bytes": 982
+        },
+        {
+          "kind": "js",
+          "path": "social-CzBhC2Lk.js",
+          "start": 2026,
+          "end": 2267,
+          "bytes": 5469
+        },
+        {
+          "kind": "js",
+          "path": "follow-list-container-ZopJKh2m.js",
+          "start": 2032,
+          "end": 2255,
+          "bytes": 2844
+        },
+        {
+          "kind": "js",
+          "path": "stat-item-Blfu5ZUj.js",
+          "start": 2036,
+          "end": 2255,
+          "bytes": 911
+        },
+        {
+          "kind": "js",
+          "path": "route-D9CX7TEL.js",
+          "start": 2055,
+          "end": 2255,
+          "bytes": 683
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 2072,
+          "end": 2164,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 2563,
+          "end": 3243,
+          "bytes": 653756
+        },
+        {
+          "kind": "img",
+          "path": "space-banner-B9SXw_Av.webp",
+          "start": 3543,
+          "end": 3673,
+          "bytes": 59432
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/notifications",
+          "start": 3748,
+          "end": 4369,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/friends/count",
+          "start": 3755,
+          "end": 4385,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/social/feed",
+          "start": 3773,
+          "end": 4401,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/social/recommend",
+          "start": 3781,
+          "end": 4417,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/my-pages/banners",
+          "start": 3790,
+          "end": 4416,
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "fcp": 6088,
+      "lcp": {
+        "time": 6088,
+        "element": "img.size-full.object-cover.object-top",
+        "url": "space-banner-B9SXw_Av.webp",
+        "size": 80752
+      },
+      "cls": 0.0019036536268828457,
+      "shifts": [
+        {
+          "time": 6411.5,
+          "value": 0.0019036536268828457,
+          "sources": [
+            "button.group/button.relative.inline-flex \"프로필 편집\""
+          ]
+        }
+      ],
+      "tbt": 848,
+      "longTasks": [
+        {
+          "start": 523.5,
+          "duration": 73
+        },
+        {
+          "start": 777.9000000059605,
+          "duration": 1289
+        },
+        {
+          "start": 2120.4000000059605,
+          "duration": 899
+        },
+        {
+          "start": 3118.1000000089407,
+          "duration": 832
+        },
+        {
+          "start": 3979.800000011921,
+          "duration": 286
+        },
+        {
+          "start": 4447.5,
+          "duration": 97
+        },
+        {
+          "start": 4700,
+          "duration": 86
+        },
+        {
+          "start": 4799.20000000298,
+          "duration": 1158
+        },
+        {
+          "start": 5974.300000011921,
+          "duration": 65
+        },
+        {
+          "start": 6069.600000008941,
+          "duration": 84
+        },
+        {
+          "start": 6218.600000008941,
+          "duration": 231
+        },
+        {
+          "start": 6594.800000011921,
+          "duration": 52
+        },
+        {
+          "start": 6665.9000000059605,
+          "duration": 80
+        },
+        {
+          "start": 6746.4000000059605,
+          "duration": 164
+        },
+        {
+          "start": 6911.20000000298,
+          "duration": 269
+        },
+        {
+          "start": 7184.5,
+          "duration": 134
+        },
+        {
+          "start": 7323.4000000059605,
+          "duration": 145
+        },
+        {
+          "start": 7476.20000000298,
+          "duration": 88
+        },
+        {
+          "start": 7568.20000000298,
+          "duration": 135
+        }
+      ],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-d89RXhZc.js",
+          "start": 259,
+          "end": 533,
+          "bytes": 181505
+        },
+        {
+          "kind": "css",
+          "path": "index-DdTWRpSS.css",
+          "start": 266,
+          "end": 392,
+          "bytes": 22279
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/auth/reissue",
+          "start": 3015,
+          "end": 3102,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 3096,
+          "end": 3183,
+          "bytes": 2227
+        },
+        {
+          "kind": "js",
+          "path": "route-BIarp8Fo.js",
+          "start": 3729,
+          "end": 3801,
+          "bytes": 3501
+        },
+        {
+          "kind": "js",
+          "path": "useLocation-_8dNwvDG.js",
+          "start": 3735,
+          "end": 3799,
+          "bytes": 433
+        },
+        {
+          "kind": "js",
+          "path": "route-BQyL1tPG.js",
+          "start": 3745,
+          "end": 3823,
+          "bytes": 6228
+        },
+        {
+          "kind": "js",
+          "path": "pull-to-refresh-BzeLKM2y.js",
+          "start": 3759,
+          "end": 3831,
+          "bytes": 2924
+        },
+        {
+          "kind": "js",
+          "path": "use-delayed-flag-5rqCpR45.js",
+          "start": 3767,
+          "end": 3838,
+          "bytes": 628
+        },
+        {
+          "kind": "js",
+          "path": "mypage-api-2hv7Ek2v.js",
+          "start": 3775,
+          "end": 3851,
+          "bytes": 1077
+        },
+        {
+          "kind": "js",
+          "path": "tab-DfzTyVfF.js",
+          "start": 3785,
+          "end": 3867,
+          "bytes": 916
+        },
+        {
+          "kind": "js",
+          "path": "space-banner-DeCurbPM.js",
+          "start": 3789,
+          "end": 3866,
+          "bytes": 613
+        },
+        {
+          "kind": "js",
+          "path": "skeleton-gqQdNdVN.js",
+          "start": 3795,
+          "end": 3890,
+          "bytes": 1446
+        },
+        {
+          "kind": "js",
+          "path": "close-md-DSL9NQPD.js",
+          "start": 3801,
+          "end": 3903,
+          "bytes": 641
+        },
+        {
+          "kind": "js",
+          "path": "modal-OnwVThz_.js",
+          "start": 3802,
+          "end": 3904,
+          "bytes": 2779
+        },
+        {
+          "kind": "js",
+          "path": "index-D4cLlJsC.js",
+          "start": 3806,
+          "end": 3936,
+          "bytes": 9325
+        },
+        {
+          "kind": "js",
+          "path": "profile-edit-form-C-Z1gUcb.js",
+          "start": 3809,
+          "end": 3940,
+          "bytes": 1579
+        },
+        {
+          "kind": "js",
+          "path": "nickname-field-BCs-QH1E.js",
+          "start": 3816,
+          "end": 3941,
+          "bytes": 2700
+        },
+        {
+          "kind": "js",
+          "path": "study-heatmap-CgrDYW9D.js",
+          "start": 3817,
+          "end": 3955,
+          "bytes": 4418
+        },
+        {
+          "kind": "js",
+          "path": "card-NUlmOKZu.js",
+          "start": 3820,
+          "end": 3968,
+          "bytes": 751
+        },
+        {
+          "kind": "js",
+          "path": "index-C40lex17.js",
+          "start": 3825,
+          "end": 3999,
+          "bytes": 19041
+        },
+        {
+          "kind": "js",
+          "path": "chevron-down-aRvO2cNk.js",
+          "start": 3828,
+          "end": 4007,
+          "bytes": 624
+        },
+        {
+          "kind": "js",
+          "path": "follow-list-tab-Dz5TWj0-.js",
+          "start": 3832,
+          "end": 4010,
+          "bytes": 982
+        },
+        {
+          "kind": "js",
+          "path": "social-CzBhC2Lk.js",
+          "start": 3838,
+          "end": 4017,
+          "bytes": 5469
+        },
+        {
+          "kind": "js",
+          "path": "follow-list-container-ZopJKh2m.js",
+          "start": 3851,
+          "end": 4031,
+          "bytes": 2844
+        },
+        {
+          "kind": "js",
+          "path": "stat-item-Blfu5ZUj.js",
+          "start": 3858,
+          "end": 4031,
+          "bytes": 911
+        },
+        {
+          "kind": "js",
+          "path": "route-D9CX7TEL.js",
+          "start": 3900,
+          "end": 4094,
+          "bytes": 683
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 3938,
+          "end": 4011,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 3996,
+          "end": 4697,
+          "bytes": 653756
+        },
+        {
+          "kind": "img",
+          "path": "space-banner-B9SXw_Av.webp",
+          "start": 5567,
+          "end": 5699,
+          "bytes": 59432
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/notifications",
+          "start": 5876,
+          "end": 6507,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/friends/count",
+          "start": 5890,
+          "end": 6522,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/social/feed",
+          "start": 5923,
+          "end": 6553,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/social/recommend",
+          "start": 5936,
+          "end": 6569,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/my-pages/banners",
+          "start": 5949,
+          "end": 6584,
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "fcp": 3180,
+      "lcp": {
+        "time": 3180,
+        "element": "img.size-full.object-cover.object-top",
+        "url": "space-banner-B9SXw_Av.webp",
+        "size": 80752
+      },
+      "cls": 0.0025029519909015186,
+      "shifts": [
+        {
+          "time": 3259.5,
+          "value": 0.0023222811605723595,
+          "sources": [
+            "button.group/button.relative.inline-flex \"프로필 편집\""
+          ]
+        },
+        {
+          "time": 3342.5,
+          "value": 0.00018067083032915893,
+          "sources": [
+            "button.group/button.relative.inline-flex \"프로필 편집\""
+          ]
+        }
+      ],
+      "tbt": 430,
+      "longTasks": [
+        {
+          "start": 520.0999999940395,
+          "duration": 390
+        },
+        {
+          "start": 913.4000000059605,
+          "duration": 170
+        },
+        {
+          "start": 1176.4000000059605,
+          "duration": 344
+        },
+        {
+          "start": 2087.9000000059605,
+          "duration": 912
+        },
+        {
+          "start": 3107.5999999940395,
+          "duration": 155
+        },
+        {
+          "start": 3790.4000000059605,
+          "duration": 65
+        },
+        {
+          "start": 3857,
+          "duration": 427
+        },
+        {
+          "start": 4285.20000000298,
+          "duration": 88
+        }
+      ],
+      "requests": [
+        {
+          "kind": "js",
+          "path": "index-d89RXhZc.js",
+          "start": 219,
+          "end": 485,
+          "bytes": 181505
+        },
+        {
+          "kind": "css",
+          "path": "index-DdTWRpSS.css",
+          "start": 220,
+          "end": 392,
+          "bytes": 22279
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/auth/reissue",
+          "start": 1083,
+          "end": 1175,
+          "bytes": 0
+        },
+        {
+          "kind": "other",
+          "path": "/favicon.ico",
+          "start": 1096,
+          "end": 1176,
+          "bytes": 2227
+        },
+        {
+          "kind": "js",
+          "path": "route-BIarp8Fo.js",
+          "start": 1257,
+          "end": 1332,
+          "bytes": 3501
+        },
+        {
+          "kind": "js",
+          "path": "useLocation-_8dNwvDG.js",
+          "start": 1263,
+          "end": 1332,
+          "bytes": 433
+        },
+        {
+          "kind": "js",
+          "path": "route-BQyL1tPG.js",
+          "start": 1265,
+          "end": 1360,
+          "bytes": 6228
+        },
+        {
+          "kind": "js",
+          "path": "pull-to-refresh-BzeLKM2y.js",
+          "start": 1268,
+          "end": 1387,
+          "bytes": 2924
+        },
+        {
+          "kind": "js",
+          "path": "use-delayed-flag-5rqCpR45.js",
+          "start": 1273,
+          "end": 1401,
+          "bytes": 628
+        },
+        {
+          "kind": "js",
+          "path": "mypage-api-2hv7Ek2v.js",
+          "start": 1276,
+          "end": 1403,
+          "bytes": 1077
+        },
+        {
+          "kind": "js",
+          "path": "tab-DfzTyVfF.js",
+          "start": 1305,
+          "end": 1405,
+          "bytes": 916
+        },
+        {
+          "kind": "js",
+          "path": "space-banner-DeCurbPM.js",
+          "start": 1315,
+          "end": 1402,
+          "bytes": 613
+        },
+        {
+          "kind": "js",
+          "path": "skeleton-gqQdNdVN.js",
+          "start": 1317,
+          "end": 1439,
+          "bytes": 1446
+        },
+        {
+          "kind": "js",
+          "path": "close-md-DSL9NQPD.js",
+          "start": 1334,
+          "end": 1464,
+          "bytes": 641
+        },
+        {
+          "kind": "js",
+          "path": "modal-OnwVThz_.js",
+          "start": 1337,
+          "end": 1470,
+          "bytes": 2779
+        },
+        {
+          "kind": "js",
+          "path": "index-D4cLlJsC.js",
+          "start": 1338,
+          "end": 1484,
+          "bytes": 9325
+        },
+        {
+          "kind": "js",
+          "path": "profile-edit-form-C-Z1gUcb.js",
+          "start": 1342,
+          "end": 1473,
+          "bytes": 1579
+        },
+        {
+          "kind": "js",
+          "path": "nickname-field-BCs-QH1E.js",
+          "start": 1342,
+          "end": 1488,
+          "bytes": 2700
+        },
+        {
+          "kind": "js",
+          "path": "study-heatmap-CgrDYW9D.js",
+          "start": 1343,
+          "end": 1510,
+          "bytes": 4418
+        },
+        {
+          "kind": "js",
+          "path": "card-NUlmOKZu.js",
+          "start": 1349,
+          "end": 1536,
+          "bytes": 751
+        },
+        {
+          "kind": "js",
+          "path": "index-C40lex17.js",
+          "start": 1350,
+          "end": 1570,
+          "bytes": 19041
+        },
+        {
+          "kind": "js",
+          "path": "chevron-down-aRvO2cNk.js",
+          "start": 1351,
+          "end": 1538,
+          "bytes": 624
+        },
+        {
+          "kind": "js",
+          "path": "follow-list-tab-Dz5TWj0-.js",
+          "start": 1351,
+          "end": 1562,
+          "bytes": 982
+        },
+        {
+          "kind": "js",
+          "path": "social-CzBhC2Lk.js",
+          "start": 1354,
+          "end": 1577,
+          "bytes": 5469
+        },
+        {
+          "kind": "js",
+          "path": "follow-list-container-ZopJKh2m.js",
+          "start": 1361,
+          "end": 1582,
+          "bytes": 2844
+        },
+        {
+          "kind": "js",
+          "path": "stat-item-Blfu5ZUj.js",
+          "start": 1376,
+          "end": 1600,
+          "bytes": 911
+        },
+        {
+          "kind": "js",
+          "path": "route-D9CX7TEL.js",
+          "start": 1517,
+          "end": 1600,
+          "bytes": 683
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/users",
+          "start": 1520,
+          "end": 1599,
+          "bytes": 0
+        },
+        {
+          "kind": "font",
+          "path": "PretendardVariable.subset-BIeUhq4T.woff2",
+          "start": 1596,
+          "end": 2267,
+          "bytes": 653756
+        },
+        {
+          "kind": "img",
+          "path": "space-banner-B9SXw_Av.webp",
+          "start": 2742,
+          "end": 2870,
+          "bytes": 59432
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/notifications",
+          "start": 2971,
+          "end": 3598,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/friends/count",
+          "start": 2974,
+          "end": 3601,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/social/feed",
+          "start": 2979,
+          "end": 3604,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/social/recommend",
+          "start": 2989,
+          "end": 3604,
+          "bytes": 0
+        },
+        {
+          "kind": "api",
+          "path": "/api/v1/my-pages/banners",
+          "start": 2996,
+          "end": 3630,
+          "bytes": 0
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+lesson-mweb 1 fcp 524 lcp 936 cls 0.000 tbt 0 | img.h-[20.625rem].w-auto.max-w-full loading-mascot-DwzQU18I.webp
+lesson-mweb 2 fcp 532 lcp 904 cls 0.000 tbt 0 | img.h-[20.625rem].w-auto.max-w-full loading-mascot-DwzQU18I.webp
+lesson-mweb 3 fcp 524 lcp 908 cls 0.000 tbt 0 | img.h-[20.625rem].w-auto.max-w-full loading-mascot-DwzQU18I.webp
+lesson-result-mweb 1 fcp 1056 lcp 1664 cls 0.000 tbt 0 | img.absolute.top-[16.67%].left-0 mascot-qgxOBFbq.webp
+lesson-result-mweb 2 fcp 1040 lcp 1672 cls 0.000 tbt 0 | img.absolute.top-[16.67%].left-0 mascot-qgxOBFbq.webp
+lesson-result-mweb 3 fcp 1072 lcp 1708 cls 0.000 tbt 0 | img.absolute.top-[16.67%].left-0 mascot-qgxOBFbq.webp
+bookmarked-mweb 1 fcp 496 lcp 880 cls 0.000 tbt 0 | img.h-[20.625rem].w-auto.max-w-full loading-mascot-DwzQU18I.webp
+bookmarked-mweb 2 fcp 496 lcp 872 cls 0.000 tbt 0 | img.h-[20.625rem].w-auto.max-w-full loading-mascot-DwzQU18I.webp
+bookmarked-mweb 3 fcp 492 lcp 888 cls 0.000 tbt 0 | img.h-[20.625rem].w-auto.max-w-full loading-mascot-DwzQU18I.webp
+incorrect-mweb 1 fcp 484 lcp 892 cls 0.000 tbt 0 | img.h-[20.625rem].w-auto.max-w-full loading-mascot-DwzQU18I.webp
+incorrect-mweb 2 fcp 480 lcp 884 cls 0.000 tbt 0 | img.h-[20.625rem].w-auto.max-w-full loading-mascot-DwzQU18I.webp
+incorrect-mweb 3 fcp 492 lcp 880 cls 0.000 tbt 0 | img.h-[20.625rem].w-auto.max-w-full loading-mascot-DwzQU18I.webp

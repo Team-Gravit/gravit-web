@@ -1,0 +1,1358 @@
+[
+ {
+  "rel": "src/entities/league/ui/assets/tier-icons/bronze-1.svg",
+  "ext": "svg",
+  "bytes": 15315,
+  "w": 166,
+  "h": 214,
+  "anim": false,
+  "raster": false,
+  "uses": [
+   {
+    "src": "src/entities/league/ui/tier-icon.tsx",
+    "line": 6,
+    "how": "변수 Bronze1 (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/league/ui/assets/tier-icons/bronze-2.svg",
+  "ext": "svg",
+  "bytes": 21298,
+  "w": 166,
+  "h": 214,
+  "anim": false,
+  "raster": false,
+  "uses": [
+   {
+    "src": "src/entities/league/ui/tier-icon.tsx",
+    "line": 7,
+    "how": "변수 Bronze2 (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/league/ui/assets/tier-icons/bronze-3.svg",
+  "ext": "svg",
+  "bytes": 25072,
+  "w": 165,
+  "h": 214,
+  "anim": false,
+  "raster": false,
+  "uses": [
+   {
+    "src": "src/entities/league/ui/tier-icon.tsx",
+    "line": 8,
+    "how": "변수 Bronze3 (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/league/ui/assets/tier-icons/diamond-1.svg",
+  "ext": "svg",
+  "bytes": 35916,
+  "w": 221,
+  "h": 208,
+  "anim": false,
+  "raster": false,
+  "uses": [
+   {
+    "src": "src/entities/league/ui/tier-icon.tsx",
+    "line": 9,
+    "how": "변수 Diamond1 (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/league/ui/assets/tier-icons/diamond-2.svg",
+  "ext": "svg",
+  "bytes": 41926,
+  "w": 220,
+  "h": 206,
+  "anim": false,
+  "raster": false,
+  "uses": [
+   {
+    "src": "src/entities/league/ui/tier-icon.tsx",
+    "line": 10,
+    "how": "변수 Diamond2 (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/league/ui/assets/tier-icons/diamond-3.svg",
+  "ext": "svg",
+  "bytes": 45685,
+  "w": 221,
+  "h": 206,
+  "anim": false,
+  "raster": false,
+  "uses": [
+   {
+    "src": "src/entities/league/ui/tier-icon.tsx",
+    "line": 11,
+    "how": "변수 Diamond3 (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/league/ui/assets/tier-icons/gold-1.svg",
+  "ext": "svg",
+  "bytes": 21386,
+  "w": 154,
+  "h": 204,
+  "anim": false,
+  "raster": false,
+  "uses": [
+   {
+    "src": "src/entities/league/ui/tier-icon.tsx",
+    "line": 12,
+    "how": "변수 Gold1 (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/league/ui/assets/tier-icons/gold-2.svg",
+  "ext": "svg",
+  "bytes": 27427,
+  "w": 155,
+  "h": 206,
+  "anim": false,
+  "raster": false,
+  "uses": [
+   {
+    "src": "src/entities/league/ui/tier-icon.tsx",
+    "line": 13,
+    "how": "변수 Gold2 (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/league/ui/assets/tier-icons/gold-3.svg",
+  "ext": "svg",
+  "bytes": 31126,
+  "w": 154,
+  "h": 206,
+  "anim": false,
+  "raster": false,
+  "uses": [
+   {
+    "src": "src/entities/league/ui/tier-icon.tsx",
+    "line": 14,
+    "how": "변수 Gold3 (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/league/ui/assets/tier-icons/platinum-1.svg",
+  "ext": "svg",
+  "bytes": 33888,
+  "w": 198,
+  "h": 208,
+  "anim": false,
+  "raster": false,
+  "uses": [
+   {
+    "src": "src/entities/league/ui/tier-icon.tsx",
+    "line": 15,
+    "how": "변수 Platinum1 (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/league/ui/assets/tier-icons/platinum-2.svg",
+  "ext": "svg",
+  "bytes": 39879,
+  "w": 198,
+  "h": 208,
+  "anim": false,
+  "raster": false,
+  "uses": [
+   {
+    "src": "src/entities/league/ui/tier-icon.tsx",
+    "line": 16,
+    "how": "변수 Platinum2 (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/league/ui/assets/tier-icons/platinum-3.svg",
+  "ext": "svg",
+  "bytes": 43666,
+  "w": 199,
+  "h": 208,
+  "anim": false,
+  "raster": false,
+  "uses": [
+   {
+    "src": "src/entities/league/ui/tier-icon.tsx",
+    "line": 17,
+    "how": "변수 Platinum3 (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/league/ui/assets/tier-icons/silver-1.svg",
+  "ext": "svg",
+  "bytes": 22157,
+  "w": 166,
+  "h": 220,
+  "anim": false,
+  "raster": false,
+  "uses": [
+   {
+    "src": "src/entities/league/ui/tier-icon.tsx",
+    "line": 18,
+    "how": "변수 Silver1 (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/league/ui/assets/tier-icons/silver-2.svg",
+  "ext": "svg",
+  "bytes": 59930,
+  "w": 166,
+  "h": 220,
+  "anim": false,
+  "raster": false,
+  "uses": [
+   {
+    "src": "src/entities/league/ui/tier-icon.tsx",
+    "line": 19,
+    "how": "변수 Silver2 (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/league/ui/assets/tier-icons/silver-3.svg",
+  "ext": "svg",
+  "bytes": 31945,
+  "w": 165,
+  "h": 220,
+  "anim": false,
+  "raster": false,
+  "uses": [
+   {
+    "src": "src/entities/league/ui/tier-icon.tsx",
+    "line": 20,
+    "how": "변수 Silver3 (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/learning/ui/assets/planet-01-mercury.webp",
+  "ext": "webp",
+  "bytes": 14766,
+  "w": 396,
+  "h": 400,
+  "anim": false,
+  "alpha": true,
+  "uses": [
+   {
+    "src": "src/entities/learning/ui/planets.ts",
+    "line": 1,
+    "how": "변수 mercury (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/learning/ui/assets/planet-02-venus.webp",
+  "ext": "webp",
+  "bytes": 15126,
+  "w": 395,
+  "h": 400,
+  "anim": false,
+  "alpha": true,
+  "uses": [
+   {
+    "src": "src/entities/learning/ui/planets.ts",
+    "line": 2,
+    "how": "변수 venus (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/learning/ui/assets/planet-03-earth.webp",
+  "ext": "webp",
+  "bytes": 21702,
+  "w": 398,
+  "h": 400,
+  "anim": false,
+  "alpha": true,
+  "uses": [
+   {
+    "src": "src/entities/learning/ui/planets.ts",
+    "line": 3,
+    "how": "변수 earth (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/learning/ui/assets/planet-04-mars.webp",
+  "ext": "webp",
+  "bytes": 16200,
+  "w": 392,
+  "h": 400,
+  "anim": false,
+  "alpha": true,
+  "uses": [
+   {
+    "src": "src/entities/learning/ui/planets.ts",
+    "line": 4,
+    "how": "변수 mars (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/learning/ui/assets/planet-05-jupiter.webp",
+  "ext": "webp",
+  "bytes": 16520,
+  "w": 399,
+  "h": 400,
+  "anim": false,
+  "alpha": true,
+  "uses": [
+   {
+    "src": "src/entities/learning/ui/planets.ts",
+    "line": 5,
+    "how": "변수 jupiter (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/learning/ui/assets/planet-06-saturn.webp",
+  "ext": "webp",
+  "bytes": 16700,
+  "w": 400,
+  "h": 314,
+  "anim": false,
+  "alpha": true,
+  "uses": [
+   {
+    "src": "src/entities/learning/ui/planets.ts",
+    "line": 6,
+    "how": "변수 saturn (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/learning/ui/assets/planet-07-uranus.webp",
+  "ext": "webp",
+  "bytes": 16056,
+  "w": 386,
+  "h": 400,
+  "anim": false,
+  "alpha": true,
+  "uses": [
+   {
+    "src": "src/entities/learning/ui/planets.ts",
+    "line": 7,
+    "how": "변수 uranus (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/learning/ui/assets/planet-08-neptune.webp",
+  "ext": "webp",
+  "bytes": 14510,
+  "w": 390,
+  "h": 400,
+  "anim": false,
+  "alpha": true,
+  "uses": [
+   {
+    "src": "src/entities/learning/ui/planets.ts",
+    "line": 8,
+    "how": "변수 neptune (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/learning/ui/assets/planet-09-sun.webp",
+  "ext": "webp",
+  "bytes": 25538,
+  "w": 401,
+  "h": 400,
+  "anim": false,
+  "alpha": true,
+  "uses": [
+   {
+    "src": "src/entities/learning/ui/planets.ts",
+    "line": 9,
+    "how": "변수 sun (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/learning/ui/assets/planet-10-pluto.webp",
+  "ext": "webp",
+  "bytes": 13984,
+  "w": 401,
+  "h": 400,
+  "anim": false,
+  "alpha": true,
+  "uses": [
+   {
+    "src": "src/entities/learning/ui/planets.ts",
+    "line": 10,
+    "how": "변수 pluto (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/learning/ui/assets/planet-11-ceres.webp",
+  "ext": "webp",
+  "bytes": 17642,
+  "w": 401,
+  "h": 400,
+  "anim": false,
+  "alpha": true,
+  "uses": [
+   {
+    "src": "src/entities/learning/ui/planets.ts",
+    "line": 11,
+    "how": "변수 ceres (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/learning/ui/assets/planet-12-eris.webp",
+  "ext": "webp",
+  "bytes": 16836,
+  "w": 401,
+  "h": 400,
+  "anim": false,
+  "alpha": true,
+  "uses": [
+   {
+    "src": "src/entities/learning/ui/planets.ts",
+    "line": 12,
+    "how": "변수 eris (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/learning/ui/assets/planet-13-vesta.webp",
+  "ext": "webp",
+  "bytes": 16628,
+  "w": 401,
+  "h": 400,
+  "anim": false,
+  "alpha": true,
+  "uses": [
+   {
+    "src": "src/entities/learning/ui/planets.ts",
+    "line": 13,
+    "how": "변수 vesta (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/learning/ui/assets/planet-14-io.webp",
+  "ext": "webp",
+  "bytes": 22504,
+  "w": 401,
+  "h": 400,
+  "anim": false,
+  "alpha": true,
+  "uses": [
+   {
+    "src": "src/entities/learning/ui/planets.ts",
+    "line": 14,
+    "how": "변수 io (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/learning/ui/assets/planet-15-europa.webp",
+  "ext": "webp",
+  "bytes": 24552,
+  "w": 401,
+  "h": 400,
+  "anim": false,
+  "alpha": true,
+  "uses": [
+   {
+    "src": "src/entities/learning/ui/planets.ts",
+    "line": 15,
+    "how": "변수 europa (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/learning/ui/assets/planet-16-titan.webp",
+  "ext": "webp",
+  "bytes": 18198,
+  "w": 401,
+  "h": 400,
+  "anim": false,
+  "alpha": true,
+  "uses": [
+   {
+    "src": "src/entities/learning/ui/planets.ts",
+    "line": 16,
+    "how": "변수 titan (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/learning/ui/assets/planet-17-triton.webp",
+  "ext": "webp",
+  "bytes": 19206,
+  "w": 401,
+  "h": 400,
+  "anim": false,
+  "alpha": true,
+  "uses": [
+   {
+    "src": "src/entities/learning/ui/planets.ts",
+    "line": 17,
+    "how": "변수 triton (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/learning/ui/assets/planet-18-charon.webp",
+  "ext": "webp",
+  "bytes": 15874,
+  "w": 401,
+  "h": 400,
+  "anim": false,
+  "alpha": true,
+  "uses": [
+   {
+    "src": "src/entities/learning/ui/planets.ts",
+    "line": 18,
+    "how": "변수 charon (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/learning/ui/assets/planet-19-phobos.webp",
+  "ext": "webp",
+  "bytes": 16860,
+  "w": 401,
+  "h": 400,
+  "anim": false,
+  "alpha": true,
+  "uses": [
+   {
+    "src": "src/entities/learning/ui/planets.ts",
+    "line": 19,
+    "how": "변수 phobos (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/learning/ui/assets/planet-20-deimos.webp",
+  "ext": "webp",
+  "bytes": 15382,
+  "w": 401,
+  "h": 400,
+  "anim": false,
+  "alpha": true,
+  "uses": [
+   {
+    "src": "src/entities/learning/ui/planets.ts",
+    "line": 20,
+    "how": "변수 deimos (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/learning/ui/assets/planet-21-mimas.webp",
+  "ext": "webp",
+  "bytes": 17368,
+  "w": 401,
+  "h": 400,
+  "anim": false,
+  "alpha": true,
+  "uses": [
+   {
+    "src": "src/entities/learning/ui/planets.ts",
+    "line": 21,
+    "how": "변수 mimas (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/learning/ui/assets/planet-22-rhea.webp",
+  "ext": "webp",
+  "bytes": 15822,
+  "w": 401,
+  "h": 400,
+  "anim": false,
+  "alpha": true,
+  "uses": [
+   {
+    "src": "src/entities/learning/ui/planets.ts",
+    "line": 22,
+    "how": "변수 rhea (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/learning/ui/assets/planet-23-tethys.webp",
+  "ext": "webp",
+  "bytes": 16802,
+  "w": 401,
+  "h": 400,
+  "anim": false,
+  "alpha": true,
+  "uses": [
+   {
+    "src": "src/entities/learning/ui/planets.ts",
+    "line": 23,
+    "how": "변수 tethys (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/learning/ui/assets/planet-24-dione.webp",
+  "ext": "webp",
+  "bytes": 14708,
+  "w": 401,
+  "h": 400,
+  "anim": false,
+  "alpha": true,
+  "uses": [
+   {
+    "src": "src/entities/learning/ui/planets.ts",
+    "line": 24,
+    "how": "변수 dione (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/learning/ui/assets/planet-25-oberon.webp",
+  "ext": "webp",
+  "bytes": 16556,
+  "w": 401,
+  "h": 400,
+  "anim": false,
+  "alpha": true,
+  "uses": [
+   {
+    "src": "src/entities/learning/ui/planets.ts",
+    "line": 25,
+    "how": "변수 oberon (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/learning/ui/assets/unit-card-background.webp",
+  "ext": "webp",
+  "bytes": 19176,
+  "w": 800,
+  "h": 512,
+  "anim": false,
+  "alpha": false,
+  "uses": [
+   {
+    "src": "src/entities/learning/ui/chapter-card.tsx",
+    "line": 10,
+    "how": "CSS 배경(style)"
+   },
+   {
+    "src": "src/entities/learning/ui/unit-card.tsx",
+    "line": 8,
+    "how": "CSS 배경(style)"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/user/ui/assets/arrow-left.svg",
+  "ext": "svg",
+  "bytes": 219,
+  "w": 32,
+  "h": 64,
+  "anim": false,
+  "raster": false,
+  "uses": [
+   {
+    "src": "src/entities/user/ui/profile-color-picker.tsx",
+    "line": 9,
+    "how": "svg컴포넌트"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/user/ui/assets/arrow-right.svg",
+  "ext": "svg",
+  "bytes": 218,
+  "w": 32,
+  "h": 64,
+  "anim": false,
+  "raster": false,
+  "uses": [
+   {
+    "src": "src/entities/user/ui/profile-color-picker.tsx",
+    "line": 10,
+    "how": "svg컴포넌트"
+   }
+  ]
+ },
+ {
+  "rel": "src/entities/user/ui/assets/profile-avatar.svg",
+  "ext": "svg",
+  "bytes": 417,
+  "w": 140,
+  "h": 140,
+  "anim": false,
+  "raster": false,
+  "uses": [
+   {
+    "src": "src/entities/user/ui/profile-avatar.tsx",
+    "line": 5,
+    "how": "svg컴포넌트"
+   }
+  ]
+ },
+ {
+  "rel": "src/features/auth-login/ui/assets/google-logo.png",
+  "ext": "png",
+  "bytes": 4701,
+  "w": 56,
+  "h": 57,
+  "anim": false,
+  "uses": [
+   {
+    "src": "src/features/auth-login/ui/social-login-button.tsx",
+    "line": 9,
+    "how": "<img src>"
+   }
+  ]
+ },
+ {
+  "rel": "src/features/auth-login/ui/assets/kakao-logo.svg",
+  "ext": "svg",
+  "bytes": 649,
+  "w": 18,
+  "h": 18,
+  "anim": false,
+  "raster": false,
+  "uses": [
+   {
+    "src": "src/features/auth-login/ui/social-login-button.tsx",
+    "line": 10,
+    "how": "svg컴포넌트"
+   }
+  ]
+ },
+ {
+  "rel": "src/features/auth-login/ui/assets/naver-logo.svg",
+  "ext": "svg",
+  "bytes": 249,
+  "w": 20,
+  "h": 20,
+  "anim": false,
+  "raster": false,
+  "uses": [
+   {
+    "src": "src/features/auth-login/ui/social-login-button.tsx",
+    "line": 11,
+    "how": "svg컴포넌트"
+   }
+  ]
+ },
+ {
+  "rel": "src/features/problem-report/ui/assets/report-success-check.svg",
+  "ext": "svg",
+  "bytes": 765,
+  "w": 107,
+  "h": 107,
+  "anim": false,
+  "raster": false,
+  "uses": [
+   {
+    "src": "src/features/problem-report/ui/problem-report-success-modal.tsx",
+    "line": 4,
+    "how": "svg컴포넌트"
+   }
+  ]
+ },
+ {
+  "rel": "src/features/user-withdraw/ui/assets/withdraw-mascot.webp",
+  "ext": "webp",
+  "bytes": 7486,
+  "w": 317,
+  "h": 358,
+  "anim": false,
+  "alpha": true,
+  "uses": [
+   {
+    "src": "src/features/user-withdraw/ui/withdraw-confirm-modal.tsx",
+    "line": 6,
+    "how": "<img src>"
+   }
+  ]
+ },
+ {
+  "rel": "src/pages/league/ui/assets/league-bg-desktop.png",
+  "ext": "png",
+  "bytes": 1878698,
+  "w": 1920,
+  "h": 1080,
+  "anim": false,
+  "uses": [
+   {
+    "src": "src/pages/league/ui/league-page.tsx",
+    "line": 9,
+    "how": "srcSet"
+   }
+  ]
+ },
+ {
+  "rel": "src/pages/league/ui/assets/league-bg-mobile.png",
+  "ext": "png",
+  "bytes": 66486,
+  "w": 360,
+  "h": 692,
+  "anim": false,
+  "uses": [
+   {
+    "src": "src/pages/league/ui/league-page.tsx",
+    "line": 10,
+    "how": "<img src>"
+   }
+  ]
+ },
+ {
+  "rel": "src/pages/lesson-result/ui/assets/background-decoration-desktop.webp",
+  "ext": "webp",
+  "bytes": 420218,
+  "w": 4320,
+  "h": 3051,
+  "anim": false,
+  "alpha": true,
+  "uses": [
+   {
+    "src": "src/pages/lesson-result/ui/result-background.tsx",
+    "line": 4,
+    "how": "srcSet"
+   }
+  ]
+ },
+ {
+  "rel": "src/pages/lesson-result/ui/assets/background-decoration-mobile.webp",
+  "ext": "webp",
+  "bytes": 15180,
+  "w": 1161,
+  "h": 2220,
+  "anim": false,
+  "uses": [
+   {
+    "src": "src/pages/lesson-result/ui/result-background.tsx",
+    "line": 5,
+    "how": "<img src>"
+   }
+  ]
+ },
+ {
+  "rel": "src/pages/lesson-result/ui/assets/mascot.webp",
+  "ext": "webp",
+  "bytes": 35964,
+  "w": 456,
+  "h": 780,
+  "anim": false,
+  "alpha": true,
+  "uses": [
+   {
+    "src": "src/pages/lesson-result/ui/result-hero.tsx",
+    "line": 8,
+    "how": "<img src>"
+   }
+  ]
+ },
+ {
+  "rel": "src/pages/lesson-result/ui/assets/moon-mobile.webp",
+  "ext": "webp",
+  "bytes": 72572,
+  "w": 1595,
+  "h": 1685,
+  "anim": false,
+  "alpha": true,
+  "uses": [
+   {
+    "src": "src/pages/lesson-result/ui/result-hero.tsx",
+    "line": 9,
+    "how": "<img src>"
+   }
+  ]
+ },
+ {
+  "rel": "src/pages/my/ui/assets/crown.svg",
+  "ext": "svg",
+  "bytes": 2367,
+  "w": 20,
+  "h": 16,
+  "anim": false,
+  "raster": false,
+  "uses": [
+   {
+    "src": "src/pages/my/ui/summary-card.tsx",
+    "line": 5,
+    "how": "svg컴포넌트"
+   }
+  ]
+ },
+ {
+  "rel": "src/pages/my/ui/assets/profile-banner.webp",
+  "ext": "webp",
+  "bytes": 17202,
+  "w": 1920,
+  "h": 274,
+  "anim": false,
+  "alpha": true,
+  "uses": [
+   {
+    "src": "src/pages/my/ui/profile-card.tsx",
+    "line": 12,
+    "how": "CSS 배경(style)"
+   }
+  ]
+ },
+ {
+  "rel": "src/pages/onboarding-success/ui/assets/mascot-celebrate.png",
+  "ext": "png",
+  "bytes": 80181,
+  "w": 837,
+  "h": 707,
+  "anim": false,
+  "uses": [
+   {
+    "src": "src/pages/onboarding-success/ui/onboarding-success-page-narrow.tsx",
+    "line": 5,
+    "how": "<img src>"
+   }
+  ]
+ },
+ {
+  "rel": "src/pages/onboarding-success/ui/assets/mascot-end.png",
+  "ext": "png",
+  "bytes": 71716,
+  "w": 561,
+  "h": 707,
+  "anim": false,
+  "uses": [
+   {
+    "src": "src/pages/onboarding-success/ui/onboarding-success-page-wide.tsx",
+    "line": 7,
+    "how": "<img src>"
+   }
+  ]
+ },
+ {
+  "rel": "src/pages/restore/ui/assets/restore-mascot.webp",
+  "ext": "webp",
+  "bytes": 35856,
+  "w": 353,
+  "h": 375,
+  "anim": false,
+  "alpha": true,
+  "uses": [
+   {
+    "src": "src/pages/restore/ui/restore-page.tsx",
+    "line": 8,
+    "how": "<img src>"
+   }
+  ]
+ },
+ {
+  "rel": "src/pages/withdraw/ui/assets/withdraw-failed-mascot.webp",
+  "ext": "webp",
+  "bytes": 8656,
+  "w": 315,
+  "h": 375,
+  "anim": false,
+  "alpha": true,
+  "uses": [
+   {
+    "src": "src/pages/withdraw/ui/account-deletion-page.tsx",
+    "line": 11,
+    "how": "<img src>"
+   },
+   {
+    "src": "src/pages/withdraw/ui/withdraw-email-sent.tsx",
+    "line": 3,
+    "how": "변수 WithdrawFailedMascot (간접 사용)"
+   },
+   {
+    "src": "src/pages/withdraw/ui/withdraw-result.tsx",
+    "line": 1,
+    "how": "변수 WithdrawFailedMascot (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/pages/withdraw/ui/assets/withdraw-success-mascot.webp",
+  "ext": "webp",
+  "bytes": 30876,
+  "w": 314,
+  "h": 375,
+  "anim": false,
+  "alpha": true,
+  "uses": [
+   {
+    "src": "src/pages/withdraw/ui/withdraw-result.tsx",
+    "line": 2,
+    "how": "변수 WithdrawSuccessMascot (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/shared/ui/error-status/assets/error-404.svg",
+  "ext": "svg",
+  "bytes": 8484,
+  "w": 400,
+  "h": 408,
+  "anim": false,
+  "raster": false,
+  "uses": [
+   {
+    "src": "src/shared/ui/error-status/error-status.tsx",
+    "line": 5,
+    "how": "변수 error404Illustration (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/shared/ui/layout/assets/background.webp",
+  "ext": "webp",
+  "bytes": 305362,
+  "w": 2560,
+  "h": 1440,
+  "anim": false,
+  "alpha": true,
+  "uses": [
+   {
+    "src": "src/shared/ui/layout/space-background.tsx",
+    "line": 5,
+    "how": "변수 backgroundImage (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/shared/ui/layout/assets/starfield.webp",
+  "ext": "webp",
+  "bytes": 295698,
+  "w": 3840,
+  "h": 5122,
+  "anim": false,
+  "alpha": true,
+  "uses": [
+   {
+    "src": "src/shared/ui/layout/space-background.tsx",
+    "line": 6,
+    "how": "변수 starfieldImage (간접 사용)"
+   }
+  ]
+ },
+ {
+  "rel": "src/shared/ui/logo/assets/logo-gradient.svg",
+  "ext": "svg",
+  "bytes": 13608,
+  "w": 100,
+  "h": 24,
+  "anim": false,
+  "raster": false,
+  "uses": [
+   {
+    "src": "src/shared/ui/logo/logo.tsx",
+    "line": 3,
+    "how": "svg컴포넌트"
+   }
+  ]
+ },
+ {
+  "rel": "src/shared/ui/logo/assets/logo-mono.svg",
+  "ext": "svg",
+  "bytes": 11743,
+  "w": 372,
+  "h": 91,
+  "anim": false,
+  "raster": false,
+  "uses": [
+   {
+    "src": "src/shared/ui/logo/logo.tsx",
+    "line": 4,
+    "how": "svg컴포넌트"
+   }
+  ]
+ },
+ {
+  "rel": "src/shared/ui/logo/assets/logo-rabbit.svg",
+  "ext": "svg",
+  "bytes": 417,
+  "w": 72,
+  "h": 74,
+  "anim": false,
+  "raster": false,
+  "uses": [
+   {
+    "src": "src/shared/ui/logo/symbol.tsx",
+    "line": 3,
+    "how": "svg컴포넌트"
+   }
+  ]
+ },
+ {
+  "rel": "src/widgets/bottom-tab-bar/ui/assets/home-fill.svg",
+  "ext": "svg",
+  "bytes": 1468,
+  "w": 24,
+  "h": 24,
+  "anim": false,
+  "raster": false,
+  "uses": [
+   {
+    "src": "src/widgets/bottom-tab-bar/model/nav.ts",
+    "line": 6,
+    "how": "svg컴포넌트"
+   }
+  ]
+ },
+ {
+  "rel": "src/widgets/bottom-tab-bar/ui/assets/home.svg",
+  "ext": "svg",
+  "bytes": 1287,
+  "w": 24,
+  "h": 24,
+  "anim": false,
+  "raster": false,
+  "uses": [
+   {
+    "src": "src/widgets/bottom-tab-bar/model/nav.ts",
+    "line": 5,
+    "how": "svg컴포넌트"
+   }
+  ]
+ },
+ {
+  "rel": "src/widgets/bottom-tab-bar/ui/assets/league-fill.svg",
+  "ext": "svg",
+  "bytes": 905,
+  "w": 24,
+  "h": 24,
+  "anim": false,
+  "raster": false,
+  "uses": [
+   {
+    "src": "src/widgets/bottom-tab-bar/model/nav.ts",
+    "line": 8,
+    "how": "svg컴포넌트"
+   }
+  ]
+ },
+ {
+  "rel": "src/widgets/bottom-tab-bar/ui/assets/league.svg",
+  "ext": "svg",
+  "bytes": 751,
+  "w": 24,
+  "h": 24,
+  "anim": false,
+  "raster": false,
+  "uses": [
+   {
+    "src": "src/widgets/bottom-tab-bar/model/nav.ts",
+    "line": 7,
+    "how": "svg컴포넌트"
+   }
+  ]
+ },
+ {
+  "rel": "src/widgets/bottom-tab-bar/ui/assets/learning-fill.svg",
+  "ext": "svg",
+  "bytes": 1255,
+  "w": 24,
+  "h": 24,
+  "anim": false,
+  "raster": false,
+  "uses": [
+   {
+    "src": "src/widgets/bottom-tab-bar/model/nav.ts",
+    "line": 10,
+    "how": "svg컴포넌트"
+   }
+  ]
+ },
+ {
+  "rel": "src/widgets/bottom-tab-bar/ui/assets/learning.svg",
+  "ext": "svg",
+  "bytes": 723,
+  "w": 24,
+  "h": 24,
+  "anim": false,
+  "raster": false,
+  "uses": [
+   {
+    "src": "src/widgets/bottom-tab-bar/model/nav.ts",
+    "line": 9,
+    "how": "svg컴포넌트"
+   }
+  ]
+ },
+ {
+  "rel": "src/widgets/bottom-tab-bar/ui/assets/my-fill.svg",
+  "ext": "svg",
+  "bytes": 1454,
+  "w": 24,
+  "h": 24,
+  "anim": false,
+  "raster": false,
+  "uses": [
+   {
+    "src": "src/widgets/bottom-tab-bar/model/nav.ts",
+    "line": 12,
+    "how": "svg컴포넌트"
+   }
+  ]
+ },
+ {
+  "rel": "src/widgets/bottom-tab-bar/ui/assets/my.svg",
+  "ext": "svg",
+  "bytes": 464,
+  "w": 24,
+  "h": 24,
+  "anim": false,
+  "raster": false,
+  "uses": [
+   {
+    "src": "src/widgets/bottom-tab-bar/model/nav.ts",
+    "line": 11,
+    "how": "svg컴포넌트"
+   }
+  ]
+ },
+ {
+  "rel": "src/widgets/footer/ui/assets/logo-appcenter.png",
+  "ext": "png",
+  "bytes": 16903,
+  "w": 388,
+  "h": 72,
+  "anim": false,
+  "uses": [
+   {
+    "src": "src/widgets/footer/ui/footer.tsx",
+    "line": 5,
+    "how": "<img src>"
+   }
+  ]
+ },
+ {
+  "rel": "src/widgets/hero-greeting/ui/assets/hero-narrow.webp",
+  "ext": "webp",
+  "bytes": 13666,
+  "w": 360,
+  "h": 266,
+  "anim": false,
+  "alpha": true,
+  "uses": [
+   {
+    "src": "src/widgets/hero-greeting/ui/hero-greeting.tsx",
+    "line": 7,
+    "how": "<img src>"
+   }
+  ]
+ },
+ {
+  "rel": "src/widgets/hero-greeting/ui/assets/hero-wide.webp",
+  "ext": "webp",
+  "bytes": 12878,
+  "w": 1920,
+  "h": 274,
+  "anim": false,
+  "alpha": true,
+  "uses": [
+   {
+    "src": "src/widgets/hero-greeting/ui/hero-greeting.tsx",
+    "line": 8,
+    "how": "srcSet"
+   }
+  ]
+ },
+ {
+  "rel": "src/widgets/league-season-modal/ui/sparkle.svg",
+  "ext": "svg",
+  "bytes": 533,
+  "w": 25.6424,
+  "h": 25.6424,
+  "anim": false,
+  "raster": false,
+  "uses": [
+   {
+    "src": "src/widgets/league-season-modal/ui/modal-tier-badge.tsx",
+    "line": 3,
+    "how": "svg컴포넌트"
+   }
+  ]
+ },
+ {
+  "rel": "src/widgets/quiz-screen/ui/assets/loading-mascot-static.webp",
+  "ext": "webp",
+  "bytes": 22212,
+  "w": 1080,
+  "h": 1089,
+  "anim": false,
+  "alpha": true,
+  "uses": [
+   {
+    "src": "src/widgets/quiz-screen/ui/quiz-loading-screen.tsx",
+    "line": 6,
+    "how": "srcSet"
+   }
+  ]
+ },
+ {
+  "rel": "src/widgets/quiz-screen/ui/assets/loading-mascot.webp",
+  "ext": "webp",
+  "bytes": 459998,
+  "w": 1080,
+  "h": 1089,
+  "anim": true,
+  "alpha": true,
+  "uses": [
+   {
+    "src": "src/widgets/quiz-screen/ui/quiz-loading-screen.tsx",
+    "line": 5,
+    "how": "<img src>"
+   }
+  ]
+ },
+ {
+  "rel": "src/widgets/quiz-screen/ui/assets/quit-mascot.webp",
+  "ext": "webp",
+  "bytes": 17026,
+  "w": 422,
+  "h": 478,
+  "anim": false,
+  "alpha": true,
+  "uses": [
+   {
+    "src": "src/widgets/quiz-screen/ui/quiz-quit-modal.tsx",
+    "line": 7,
+    "how": "<img src>"
+   }
+  ]
+ },
+ {
+  "rel": "public/typescript.svg",
+  "ext": "svg",
+  "bytes": 1435,
+  "w": 32,
+  "h": 32,
+  "anim": false,
+  "raster": false,
+  "uses": []
+ },
+ {
+  "rel": "public/vite.svg",
+  "ext": "svg",
+  "bytes": 1497,
+  "w": 31.88,
+  "h": 32,
+  "anim": false,
+  "raster": false,
+  "uses": []
+ }
+]

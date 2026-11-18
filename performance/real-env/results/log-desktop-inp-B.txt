@@ -1,0 +1,28 @@
+lesson-desktop 1 inp 48 1번 선지 가리기:40 보기 1:0 다음:48
+lesson-desktop 2 inp 40 1번 선지 가리기:40 보기 1:0 다음:40
+lesson-desktop 3 inp 40 1번 선지 가리기:40 보기 1:0 다음:40
+lesson-desktop 4 inp 48 1번 선지 가리기:48 보기 1:0 다음:40
+lesson-desktop 5 inp 48 1번 선지 가리기:48 보기 1:0 다음:48
+lesson-desktop 6 inp 40 1번 선지 가리기:40 보기 1:0 다음:40
+lesson-desktop 7 inp 48 1번 선지 가리기:48 보기 1:0 다음:40
+lesson-result-desktop 1 inp 56 이어서 학습하기:56
+lesson-result-desktop 2 inp 48 이어서 학습하기:48
+lesson-result-desktop 3 inp 48 이어서 학습하기:48
+lesson-result-desktop 4 inp 48 이어서 학습하기:48
+lesson-result-desktop 5 inp 56 이어서 학습하기:56
+lesson-result-desktop 6 inp 40 이어서 학습하기:40
+lesson-result-desktop 7 inp 64 이어서 학습하기:64
+bookmarked-desktop 1 inp 48 보기 1:48 다음:32
+bookmarked-desktop 2 inp 40 보기 1:40 다음:32
+bookmarked-desktop 3 inp 48 보기 1:48 다음:48
+bookmarked-desktop 4 inp 40 보기 1:40 다음:40
+bookmarked-desktop 5 inp 40 보기 1:32 다음:40
+bookmarked-desktop 6 inp 48 보기 1:48 다음:48
+bookmarked-desktop 7 inp 40 보기 1:40 다음:40
+incorrect-desktop 1 inp 48 보기 1:48 다음:48
+incorrect-desktop 2 inp 40 보기 1:40 다음:40
+incorrect-desktop 3 inp 64 보기 1:64 다음:40
+incorrect-desktop 4 inp 48 보기 1:48 다음:32
+incorrect-desktop 5 inp 40 보기 1:40 다음:24
+incorrect-desktop 6 inp 56 보기 1:40 다음:56
+incorrect-desktop 7 inp 48 보기 1:40 다음:48

@@ -1,0 +1,77 @@
+main-desktop 1 inp 56 전체 학습화면 보기:56
+main-desktop 2 inp 48 전체 학습화면 보기:48
+main-desktop 3 inp 48 전체 학습화면 보기:48
+main-desktop 4 inp 56 전체 학습화면 보기:56
+main-desktop 5 inp 56 전체 학습화면 보기:56
+main-desktop 6 inp 56 전체 학습화면 보기:56
+main-desktop 7 inp 56 전체 학습화면 보기:56
+unit-desktop 1 inp 48 Lesson01:48
+unit-desktop 2 inp 48 Lesson01:48
+unit-desktop 3 inp 56 Lesson01:56
+unit-desktop 4 inp 48 Lesson01:48
+unit-desktop 5 inp 48 Lesson01:48
+unit-desktop 6 inp 56 Lesson01:56
+unit-desktop 7 inp 64 Lesson01:64
+league-desktop 1 inp 72 실버 3:72 골드 1:48
+league-desktop 2 inp 56 실버 3:48 골드 1:56
+league-desktop 3 inp 64 실버 3:56 골드 1:64
+league-desktop 4 inp 56 실버 3:48 골드 1:56
+league-desktop 5 inp 56 실버 3:56 골드 1:56
+league-desktop 6 inp 72 실버 3:72 골드 1:48
+league-desktop 7 inp 64 실버 3:56 골드 1:64
+my-summary-desktop 1 inp 56 학습 기록 연도 선택:56 a[href="/my/learning"]:56
+my-summary-desktop 2 inp 56 학습 기록 연도 선택:48 a[href="/my/learning"]:56
+my-summary-desktop 3 inp 72 학습 기록 연도 선택:72 a[href="/my/learning"]:64
+my-summary-desktop 4 inp 56 학습 기록 연도 선택:56 a[href="/my/learning"]:56
+my-summary-desktop 5 inp 64 학습 기록 연도 선택:56 a[href="/my/learning"]:64
+my-summary-desktop 6 inp 72 학습 기록 연도 선택:72 a[href="/my/learning"]:48
+my-summary-desktop 7 inp 64 학습 기록 연도 선택:56 a[href="/my/learning"]:64
+my-learning-desktop 1 inp 56 a[href="/my/league"]:56
+my-learning-desktop 2 inp 56 a[href="/my/league"]:56
+my-learning-desktop 3 inp 56 a[href="/my/league"]:56
+my-learning-desktop 4 inp 64 a[href="/my/league"]:64
+my-learning-desktop 5 inp 48 a[href="/my/league"]:48
+my-learning-desktop 6 inp 72 a[href="/my/league"]:72
+my-learning-desktop 7 inp 56 a[href="/my/league"]:56
+lesson-result-desktop 1 inp 48 이어서 학습하기:48
+lesson-result-desktop 2 inp 48 이어서 학습하기:48
+lesson-result-desktop 3 inp 40 이어서 학습하기:40
+lesson-result-desktop 4 inp 48 이어서 학습하기:48
+lesson-result-desktop 5 inp 48 이어서 학습하기:48
+lesson-result-desktop 6 inp 56 이어서 학습하기:56
+lesson-result-desktop 7 inp 40 이어서 학습하기:40
+incorrect-desktop 1 inp 48 보기 1:48 다음:48
+incorrect-desktop 2 inp 40 보기 1:32 다음:40
+incorrect-desktop 3 inp 48 보기 1:48 다음:48
+incorrect-desktop 4 inp 56 보기 1:40 다음:56
+incorrect-desktop 5 inp 48 보기 1:32 다음:48
+incorrect-desktop 6 inp 48 보기 1:40 다음:48
+incorrect-desktop 7 inp 48 보기 1:48 다음:40
+onboarding-desktop 1 inp 56 다음 프로필 색:56 input 입력:0
+onboarding-desktop 2 inp 64 다음 프로필 색:64 input 입력:0
+onboarding-desktop 3 inp 64 다음 프로필 색:64 input 입력:0
+onboarding-desktop 4 inp 48 다음 프로필 색:48 input 입력:0
+onboarding-desktop 5 inp 56 다음 프로필 색:56 input 입력:0
+onboarding-desktop 6 inp 56 다음 프로필 색:56 input 입력:0
+onboarding-desktop 7 inp 56 다음 프로필 색:56 input 입력:0
+settings-desktop 1 inp 48 공지사항:48
+settings-desktop 2 inp 56 공지사항:56
+settings-desktop 3 inp 56 공지사항:56
+settings-desktop 4 inp 64 공지사항:64
+settings-desktop 5 inp 48 공지사항:48
+settings-desktop 6 inp 56 공지사항:56
+settings-desktop 7 inp 48 공지사항:48
+notice-desktop 1 inp 56 공지 1 ·:56
+notice-desktop 2 inp 48 공지 1 ·:48
+notice-desktop 3 inp 64 공지 1 ·:64
+notice-desktop 4 inp 64 공지 1 ·:64
+notice-desktop 5 inp 72 공지 1 ·:72
+notice-desktop 6 inp 64 공지 1 ·:64
+notice-desktop 7 inp 56 공지 1 ·:56
+notice-detail-desktop 1 inp 48 목록으로:48
+notice-detail-desktop 2 inp 48 목록으로:48
+notice-detail-desktop 3 inp 48 목록으로:48
+notice-detail-desktop 4 inp 48 목록으로:48
+notice-detail-desktop 5 inp 56 목록으로:56
+notice-detail-desktop 6 inp 48 목록으로:48
+notice-detail-desktop 7 inp 56 목록으로:56

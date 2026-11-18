@@ -1,0 +1,108 @@
+{
+  "after": [
+    {
+      "run": 1,
+      "entry": "assets/index-ebQ2w0FM.js",
+      "lcp": 14400,
+      "fcp": 12525,
+      "tbt": 0,
+      "cls": 0,
+      "score": 55,
+      "lcpElement": "main.flex-1 > div.grid > article.group > div.relative",
+      "phases": {
+        "TTFB": 475,
+        "Load Delay": 12230,
+        "Load Time": 650,
+        "Render Delay": 1045
+      },
+      "finalUrl": "http://localhost:5173/learning"
+    },
+    {
+      "run": 2,
+      "entry": "assets/index-ebQ2w0FM.js",
+      "lcp": 14655,
+      "fcp": 2403,
+      "tbt": 965,
+      "cls": 0,
+      "score": 50,
+      "lcpElement": "main.flex-1 > div.grid > article.group > div.relative",
+      "phases": {
+        "TTFB": 480,
+        "Load Delay": 11080,
+        "Load Time": 1219,
+        "Render Delay": 1877
+      },
+      "finalUrl": "http://localhost:5173/learning"
+    },
+    {
+      "run": 3,
+      "entry": "assets/index-ebQ2w0FM.js",
+      "lcp": 15143,
+      "fcp": 2364,
+      "tbt": 810,
+      "cls": 0,
+      "score": 53,
+      "lcpElement": "main.flex-1 > div.grid > article.group > div.relative",
+      "phases": {
+        "TTFB": 473,
+        "Load Delay": 13037,
+        "Load Time": 822,
+        "Render Delay": 811
+      },
+      "finalUrl": "http://localhost:5173/learning"
+    }
+  ],
+  "exp-noscroll": [
+    {
+      "run": 1,
+      "entry": "assets/index-NHD6U5rV.js",
+      "lcp": 14579,
+      "fcp": 2459,
+      "tbt": 1163,
+      "cls": 0,
+      "score": 48,
+      "lcpElement": "main.flex-1 > div.grid > article.group > div.relative",
+      "phases": {
+        "TTFB": 485,
+        "Load Delay": 11895,
+        "Load Time": 1211,
+        "Render Delay": 989
+      },
+      "finalUrl": "http://localhost:5173/learning"
+    },
+    {
+      "run": 2,
+      "entry": "assets/index-NHD6U5rV.js",
+      "lcp": 15236,
+      "fcp": 2441,
+      "tbt": 1159,
+      "cls": 0,
+      "score": 48,
+      "lcpElement": "main.flex-1 > div.grid > article.group > div.relative",
+      "phases": {
+        "TTFB": 479,
+        "Load Delay": 12314,
+        "Load Time": 812,
+        "Render Delay": 1632
+      },
+      "finalUrl": "http://localhost:5173/learning"
+    },
+    {
+      "run": 3,
+      "entry": "assets/index-NHD6U5rV.js",
+      "lcp": 14727,
+      "fcp": 2449,
+      "tbt": 929,
+      "cls": 0,
+      "score": 51,
+      "lcpElement": "main.flex-1 > div.grid > article.group > div.relative",
+      "phases": {
+        "TTFB": 484,
+        "Load Delay": 12080,
+        "Load Time": 902,
+        "Render Delay": 1261
+      },
+      "finalUrl": "http://localhost:5173/learning"
+    }
+  ]
+}

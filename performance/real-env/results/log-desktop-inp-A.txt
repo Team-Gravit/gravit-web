@@ -1,0 +1,77 @@
+main-desktop 1 inp 56 전체 학습화면 보기:56
+main-desktop 2 inp 56 전체 학습화면 보기:56
+main-desktop 3 inp 64 전체 학습화면 보기:64
+main-desktop 4 inp 48 전체 학습화면 보기:48
+main-desktop 5 inp 48 전체 학습화면 보기:48
+main-desktop 6 inp 48 전체 학습화면 보기:48
+main-desktop 7 inp 48 전체 학습화면 보기:48
+learning-desktop 1 inp 56 자료구조 학습하기:56
+learning-desktop 2 inp 56 자료구조 학습하기:56
+learning-desktop 3 inp 56 자료구조 학습하기:56
+learning-desktop 4 inp 56 자료구조 학습하기:56
+learning-desktop 5 inp 64 자료구조 학습하기:64
+learning-desktop 6 inp 64 자료구조 학습하기:64
+learning-desktop 7 inp 56 자료구조 학습하기:56
+chapter-desktop 1 inp 64 Unit01:64
+chapter-desktop 2 inp 64 Unit01:64
+chapter-desktop 3 inp 56 Unit01:56
+chapter-desktop 4 inp 48 Unit01:48
+chapter-desktop 5 inp 64 Unit01:64
+chapter-desktop 6 inp 56 Unit01:56
+chapter-desktop 7 inp 56 Unit01:56
+unit-desktop 1 inp 48 Lesson01:48
+unit-desktop 2 inp 64 Lesson01:64
+unit-desktop 3 inp 64 Lesson01:64
+unit-desktop 4 inp 48 Lesson01:48
+unit-desktop 5 inp 56 Lesson01:56
+unit-desktop 6 inp 48 Lesson01:48
+unit-desktop 7 inp 48 Lesson01:48
+concept-note-desktop 1 inp 0 복사:0
+concept-note-desktop 2 inp 0 복사:0
+concept-note-desktop 3 inp 0 복사:0
+concept-note-desktop 4 inp 0 복사:0
+concept-note-desktop 5 inp 0 복사:0
+concept-note-desktop 6 inp 0 복사:0
+concept-note-desktop 7 inp 0 복사:0
+league-desktop 1 inp 168 실버 3:168 골드 1:64
+league-desktop 2 inp 56 실버 3:56 골드 1:56
+league-desktop 3 inp 56 실버 3:56 골드 1:56
+league-desktop 4 inp 56 실버 3:56 골드 1:56
+league-desktop 5 inp 56 실버 3:48 골드 1:56
+league-desktop 6 inp 48 실버 3:48 골드 1:48
+league-desktop 7 inp 64 실버 3:56 골드 1:64
+my-summary-desktop 1 inp 64 학습 기록 연도 선택:56 a[href="/my/learning"]:64
+my-summary-desktop 2 inp 64 학습 기록 연도 선택:64 a[href="/my/learning"]:56
+my-summary-desktop 3 inp 80 학습 기록 연도 선택:80 a[href="/my/learning"]:48
+my-summary-desktop 4 inp 72 학습 기록 연도 선택:72 a[href="/my/learning"]:48
+my-summary-desktop 5 inp 56 학습 기록 연도 선택:56 a[href="/my/learning"]:56
+my-summary-desktop 6 inp 80 학습 기록 연도 선택:80 a[href="/my/learning"]:56
+my-summary-desktop 7 inp 72 학습 기록 연도 선택:72 a[href="/my/learning"]:56
+my-learning-desktop 1 inp 56 a[href="/my/league"]:56
+my-learning-desktop 2 inp 48 a[href="/my/league"]:48
+my-learning-desktop 3 inp 64 a[href="/my/league"]:64
+my-learning-desktop 4 inp 56 a[href="/my/league"]:56
+my-learning-desktop 5 inp 72 a[href="/my/league"]:72
+my-learning-desktop 6 inp 56 a[href="/my/league"]:56
+my-learning-desktop 7 inp 56 a[href="/my/league"]:56
+my-league-desktop 1 inp 56 a[href="/my/social"]:56
+my-league-desktop 2 inp 64 a[href="/my/social"]:64
+my-league-desktop 3 inp 64 a[href="/my/social"]:64
+my-league-desktop 4 inp 48 a[href="/my/social"]:48
+my-league-desktop 5 inp 56 a[href="/my/social"]:56
+my-league-desktop 6 inp 48 a[href="/my/social"]:48
+my-league-desktop 7 inp 56 a[href="/my/social"]:56
+my-social-desktop 1 inp 72 축하하기:56 8 팔로잉:72
+my-social-desktop 2 inp 80 축하하기:64 8 팔로잉:80
+my-social-desktop 3 inp 64 축하하기:64 8 팔로잉:56
+my-social-desktop 4 inp 72 축하하기:72 8 팔로잉:56
+my-social-desktop 5 inp 64 축하하기:48 8 팔로잉:64
+my-social-desktop 6 inp 72 축하하기:56 8 팔로잉:72
+my-social-desktop 7 inp 72 축하하기:64 8 팔로잉:72
+friend-search-desktop 1 inp 64 a[href="/my/summary"]:64
+friend-search-desktop 2 inp 56 a[href="/my/summary"]:56
+friend-search-desktop 3 inp 56 a[href="/my/summary"]:56
+friend-search-desktop 4 inp 56 a[href="/my/summary"]:56
+friend-search-desktop 5 inp 48 a[href="/my/summary"]:48
+friend-search-desktop 6 inp 64 a[href="/my/summary"]:64
+friend-search-desktop 7 inp 64 a[href="/my/summary"]:64

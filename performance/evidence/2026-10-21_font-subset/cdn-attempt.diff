@@ -1,0 +1,49 @@
+diff --git a/apps/web/index.html b/apps/web/index.html
+index 820c707a..5e41f94a 100644
+--- a/apps/web/index.html
++++ b/apps/web/index.html
+@@ -1,6 +1,12 @@
+ <!doctype html>
+ <html lang="ko">
+   <head>
++    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="anonymous" />
++    <link
++      rel="stylesheet"
++      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
++      precedence="default"
++    />
+     <meta charset="UTF-8" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+     <title>Gravit</title>
+diff --git a/apps/web/src/app/styles/base.css b/apps/web/src/app/styles/base.css
+index 07b62fc4..ff5eea7f 100644
+--- a/apps/web/src/app/styles/base.css
++++ b/apps/web/src/app/styles/base.css
+@@ -1,10 +1,10 @@
+-@font-face {
++/* @font-face {
+   font-family: 'Pretendard';
+   src: url('./fonts/PretendardVariable.woff2') format('woff2');
+   font-weight: 100 900;
+   font-style: normal;
+   font-display: swap;
+-}
++} */
+ 
+ @font-face {
+   font-family: 'MBC1961GulimM';
+diff --git a/apps/web/src/app/styles/tokens.css b/apps/web/src/app/styles/tokens.css
+index 16c94202..24b27d60 100644
+--- a/apps/web/src/app/styles/tokens.css
++++ b/apps/web/src/app/styles/tokens.css
+@@ -249,7 +249,9 @@
+   --breakpoint-xl: 1280px;
+ 
+   /*폰트*/
+-  --font-pretendard: 'Pretendard', sans-serif;
++  --font-pretendard:
++    'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui,
++    'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+   --font-mbc: 'MBC1961GulimM', sans-serif;
+ 
+   /*헤더*/

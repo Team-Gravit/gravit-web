@@ -1,0 +1,17 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+  body { margin: 0; background: #fff; font-family: 'Pretendard', 'Malgun Gothic', sans-serif; }
+  .fig { width: 516px; display: flex; gap: 28px; padding: 0; }
+  .panel h3 { font-size: 10.5px; margin: 0 0 2px; color: #1f1e1c; font-weight: 700; }
+  .panel p { font-size: 8.5px; margin: 0 0 8px; color: #5f5d58; }
+  .legend { display: flex; gap: 10px; font-size: 8.5px; color: #5f5d58; margin-top: 4px; }
+  .legend span::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 4px; vertical-align: -1px; background: var(--c); }
+  .lab { font-size: 9px; fill: #1f1e1c; } .note { font-size: 8.5px; fill: #5f5d58; } .axis { font-size: 8px; fill: #5f5d58; }
+  .delta { font-size: 9px; font-weight: 700; fill: #1f1e1c; } .delta.muted { font-weight: 400; fill: #9a9893; }
+</style></head><body><div class="fig">
+  <div class="panel" style="width:236px"><h3>첫 번들 구성</h3><p>vite build 산출물 크기</p>
+    <svg width="236" height="124"><text x="0" y="22" class="lab">이전 · 첫 번들 861KB</text><rect x="8" y="28" width="151.9709111111111" height="18" rx="3" fill="#b9b7b0"/><rect x="161.9709111111111" y="28" width="56.53022222222222" height="18" rx="3" fill="#eb6834"/><text x="0" y="72" class="lab">이후 · 첫 번들 630KB (−27%)</text><rect x="8" y="78" width="153.9709111111111" height="18" rx="3" fill="#b9b7b0"/><rect x="8" y="104" width="56.53022222222222" height="12" rx="3" fill="none" stroke="#eb6834" stroke-width="1.5" stroke-dasharray="3 2"/><text x="70.53022222222222" y="113" class="note">마크다운 231KB → 퀴즈·개념 노트에서만</text></svg>
+    <div class="legend"><span style="--c:#b9b7b0">그 외 코드</span><span style="--c:#eb6834">마크다운 렌더링</span></div></div>
+  <div class="panel" style="width:252px"><h3>LCP 전후</h3><p>모바일 · CPU 4배 · Fast 4G · 5회 중앙값</p>
+    <svg width="252" height="146"><line x1="52" x2="52" y1="6" y2="128" stroke="#e8e7e3"/><text x="52" y="140" text-anchor="middle" class="axis">0초</text><line x1="130" x2="130" y1="6" y2="128" stroke="#e8e7e3"/><text x="130" y="140" text-anchor="middle" class="axis">4초</text><line x1="208" x2="208" y1="6" y2="128" stroke="#e8e7e3"/><text x="208" y="140" text-anchor="middle" class="axis">8초</text><text x="46" y="26" text-anchor="end" class="lab">메인</text><rect x="52" y="10" width="87.75" height="11" rx="2" fill="#b9b7b0"/><rect x="52" y="23" width="77.025" height="11" rx="2" fill="#2a78d6"/><text x="143.75" y="27" class="delta">−0.55초</text><text x="46" y="66" text-anchor="end" class="lab">개념 노트</text><rect x="52" y="50" width="144.69" height="11" rx="2" fill="#b9b7b0"/><rect x="52" y="63" width="137.28" height="11" rx="2" fill="#2a78d6"/><text x="200.69" y="67" class="delta">−0.38초</text><text x="46" y="106" text-anchor="end" class="lab">학습 홈</text><rect x="52" y="90" width="107.055" height="11" rx="2" fill="#b9b7b0"/><rect x="52" y="103" width="108.61500000000001" height="11" rx="2" fill="#2a78d6"/><text x="164.615" y="107" class="delta muted">+0.08초</text></svg>
+    <div class="legend"><span style="--c:#b9b7b0">이전</span><span style="--c:#2a78d6">이후</span><span style="--c:#ffffff00">회색 숫자 = 측정 흔들림 안</span></div></div>
+</div></body></html>

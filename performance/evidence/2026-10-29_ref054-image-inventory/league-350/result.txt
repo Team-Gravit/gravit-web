@@ -1,0 +1,7 @@
+base run1 rc=0 78.2s
+base run2 rc=0 78.4s
+base run3 rc=0 78.8s
+new run1 rc=0 81.5s
+new run2 rc=0 87.8s
+new run3 rc=0 84.1s
+ 3 files changed, 29 insertions(+), 4 deletions(-)

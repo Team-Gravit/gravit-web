@@ -1,0 +1,198 @@
+{
+  "login-mobile": {
+    "base": [
+      {
+        "lcp": 3856,
+        "el": "H2",
+        "imgBytes": 0,
+        "imgCount": 1
+      },
+      {
+        "lcp": 3460,
+        "el": "H2",
+        "imgBytes": 0,
+        "imgCount": 1
+      },
+      {
+        "lcp": 3316,
+        "el": "H2",
+        "imgBytes": 0,
+        "imgCount": 1
+      },
+      {
+        "lcp": 3380,
+        "el": "H2",
+        "imgBytes": 0,
+        "imgCount": 1
+      },
+      {
+        "lcp": 3324,
+        "el": "H2",
+        "imgBytes": 0,
+        "imgCount": 1
+      }
+    ],
+    "now": [
+      {
+        "lcp": 3648,
+        "el": "H2",
+        "imgBytes": 0,
+        "imgCount": 1
+      },
+      {
+        "lcp": 3576,
+        "el": "H2",
+        "imgBytes": 0,
+        "imgCount": 1
+      },
+      {
+        "lcp": 3228,
+        "el": "H2",
+        "imgBytes": 0,
+        "imgCount": 1
+      },
+      {
+        "lcp": 3364,
+        "el": "H2",
+        "imgBytes": 0,
+        "imgCount": 1
+      },
+      {
+        "lcp": 3408,
+        "el": "H2",
+        "imgBytes": 0,
+        "imgCount": 1
+      }
+    ],
+    "now2": [
+      {
+        "lcp": 3512,
+        "el": "H2",
+        "imgBytes": 0,
+        "imgCount": 1
+      },
+      {
+        "lcp": 3376,
+        "el": "H2",
+        "imgBytes": 0,
+        "imgCount": 1
+      },
+      {
+        "lcp": 3392,
+        "el": "H2",
+        "imgBytes": 0,
+        "imgCount": 1
+      },
+      {
+        "lcp": 3304,
+        "el": "H2",
+        "imgBytes": 0,
+        "imgCount": 1
+      },
+      {
+        "lcp": 3292,
+        "el": "H2",
+        "imgBytes": 0,
+        "imgCount": 1
+      }
+    ]
+  },
+  "my-mobile": {
+    "base": [
+      {
+        "lcp": 5032,
+        "el": "SECTION profile-banner.webp",
+        "imgBytes": 0,
+        "imgCount": 1
+      },
+      {
+        "lcp": 5448,
+        "el": "SECTION profile-banner.webp",
+        "imgBytes": 0,
+        "imgCount": 1
+      },
+      {
+        "lcp": 5348,
+        "el": "SECTION profile-banner.webp",
+        "imgBytes": 0,
+        "imgCount": 1
+      },
+      {
+        "lcp": 5692,
+        "el": "SECTION profile-banner.webp",
+        "imgBytes": 0,
+        "imgCount": 1
+      },
+      {
+        "lcp": 5440,
+        "el": "SECTION profile-banner.webp",
+        "imgBytes": 0,
+        "imgCount": 1
+      }
+    ],
+    "now": [
+      {
+        "lcp": 5292,
+        "el": "IMG space-banner.webp",
+        "imgBytes": 0,
+        "imgCount": 1
+      },
+      {
+        "lcp": 5124,
+        "el": "IMG space-banner.webp",
+        "imgBytes": 0,
+        "imgCount": 1
+      },
+      {
+        "lcp": 5084,
+        "el": "IMG space-banner.webp",
+        "imgBytes": 0,
+        "imgCount": 1
+      },
+      {
+        "lcp": 5588,
+        "el": "IMG space-banner.webp",
+        "imgBytes": 0,
+        "imgCount": 1
+      },
+      {
+        "lcp": 6648,
+        "el": "IMG space-banner.webp",
+        "imgBytes": 0,
+        "imgCount": 1
+      }
+    ],
+    "now2": [
+      {
+        "lcp": 5648,
+        "el": "IMG space-banner.webp",
+        "imgBytes": 0,
+        "imgCount": 1
+      },
+      {
+        "lcp": 5052,
+        "el": "IMG space-banner.webp",
+        "imgBytes": 0,
+        "imgCount": 1
+      },
+      {
+        "lcp": 5108,
+        "el": "IMG space-banner.webp",
+        "imgBytes": 0,
+        "imgCount": 1
+      },
+      {
+        "lcp": 5944,
+        "el": "IMG space-banner.webp",
+        "imgBytes": 0,
+        "imgCount": 1
+      },
+      {
+        "lcp": 6000,
+        "el": "IMG space-banner.webp",
+        "imgBytes": 0,
+        "imgCount": 1
+      }
+    ]
+  }
+}

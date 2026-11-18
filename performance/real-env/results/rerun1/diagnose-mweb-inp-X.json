@@ -1,0 +1,560 @@
+{
+  "main-mweb": [
+    {
+      "interactions": [
+        {
+          "action": "전체 학습화면 보기",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "전체 학습화면 보기",
+          "inp": 168,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 168
+    },
+    {
+      "interactions": [
+        {
+          "action": "전체 학습화면 보기",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "전체 학습화면 보기",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "전체 학습화면 보기",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "전체 학습화면 보기",
+          "inp": 40,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 40
+    },
+    {
+      "interactions": [
+        {
+          "action": "전체 학습화면 보기",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    }
+  ],
+  "my-learning-mweb": [
+    {
+      "interactions": [
+        {
+          "action": "a[href=\"/my/league\"]",
+          "inp": 64,
+          "event": "pointerdown",
+          "target": "a.flex.flex-1.items-center \"리그\""
+        }
+      ],
+      "inp": 64
+    },
+    {
+      "interactions": [
+        {
+          "action": "a[href=\"/my/league\"]",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": "a.flex.flex-1.items-center \"리그\""
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "a[href=\"/my/league\"]",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": "a.flex.flex-1.items-center \"리그\""
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "a[href=\"/my/league\"]",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": "a.flex.flex-1.items-center \"리그\""
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "a[href=\"/my/league\"]",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": "a.flex.flex-1.items-center \"리그\""
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "a[href=\"/my/league\"]",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": "a.flex.flex-1.items-center \"리그\""
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "a[href=\"/my/league\"]",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": "a.flex.flex-1.items-center \"리그\""
+        }
+      ],
+      "inp": 48
+    }
+  ],
+  "lesson-result-mweb": [
+    {
+      "interactions": [
+        {
+          "action": "이어서 학습하기",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "이어서 학습하기",
+          "inp": 80,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 80
+    },
+    {
+      "interactions": [
+        {
+          "action": "이어서 학습하기",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "이어서 학습하기",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "이어서 학습하기",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "이어서 학습하기",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "이어서 학습하기",
+          "inp": 88,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 88
+    }
+  ],
+  "incorrect-mweb": [
+    {
+      "interactions": [
+        {
+          "action": "보기 1",
+          "inp": 40,
+          "event": "pointerdown",
+          "target": null
+        },
+        {
+          "action": "다음",
+          "inp": 32,
+          "event": "pointerdown",
+          "target": "button.group/button.relative.inline-flex \"다음\""
+        }
+      ],
+      "inp": 40
+    },
+    {
+      "interactions": [
+        {
+          "action": "보기 1",
+          "inp": 40,
+          "event": "pointerdown",
+          "target": null
+        },
+        {
+          "action": "다음",
+          "inp": 32,
+          "event": "pointerdown",
+          "target": "button.group/button.relative.inline-flex \"다음\""
+        }
+      ],
+      "inp": 40
+    },
+    {
+      "interactions": [
+        {
+          "action": "보기 1",
+          "inp": 40,
+          "event": "pointerdown",
+          "target": null
+        },
+        {
+          "action": "다음",
+          "inp": 32,
+          "event": "pointerdown",
+          "target": "button.group/button.relative.inline-flex \"다음\""
+        }
+      ],
+      "inp": 40
+    },
+    {
+      "interactions": [
+        {
+          "action": "보기 1",
+          "inp": 40,
+          "event": "pointerdown",
+          "target": null
+        },
+        {
+          "action": "다음",
+          "inp": 32,
+          "event": "pointerdown",
+          "target": "button.group/button.relative.inline-flex \"다음\""
+        }
+      ],
+      "inp": 40
+    },
+    {
+      "interactions": [
+        {
+          "action": "보기 1",
+          "inp": 40,
+          "event": "pointerdown",
+          "target": null
+        },
+        {
+          "action": "다음",
+          "inp": 40,
+          "event": "pointerdown",
+          "target": "button.group/button.relative.inline-flex \"다음\""
+        }
+      ],
+      "inp": 40
+    },
+    {
+      "interactions": [
+        {
+          "action": "보기 1",
+          "inp": 40,
+          "event": "pointerdown",
+          "target": null
+        },
+        {
+          "action": "다음",
+          "inp": 24,
+          "event": "pointerdown",
+          "target": "button.group/button.relative.inline-flex \"다음\""
+        }
+      ],
+      "inp": 40
+    },
+    {
+      "interactions": [
+        {
+          "action": "보기 1",
+          "inp": 40,
+          "event": "pointerdown",
+          "target": null
+        },
+        {
+          "action": "다음",
+          "inp": 32,
+          "event": "pointerdown",
+          "target": "button.group/button.relative.inline-flex \"다음\""
+        }
+      ],
+      "inp": 40
+    }
+  ],
+  "inquiry-mweb": [
+    {
+      "interactions": [
+        {
+          "action": "문의 1",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": "h4.text-headline2.text-text-1.md:mb-2 \"문의 1 · 레슨 결과 화면에서 점수가 다르게 보여요\""
+        },
+        {
+          "action": "문의 2",
+          "inp": 64,
+          "event": "pointerdown",
+          "target": "h4.text-headline2.text-text-1.md:mb-2 \"문의 2 · 레슨 결과 화면에서 점수가 다르게 보여요\""
+        }
+      ],
+      "inp": 64
+    },
+    {
+      "interactions": [
+        {
+          "action": "문의 1",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": "h4.text-headline2.text-text-1.md:mb-2 \"문의 1 · 레슨 결과 화면에서 점수가 다르게 보여요\""
+        },
+        {
+          "action": "문의 2",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": "h4.text-headline2.text-text-1.md:mb-2 \"문의 2 · 레슨 결과 화면에서 점수가 다르게 보여요\""
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "문의 1",
+          "inp": 64,
+          "event": "pointerdown",
+          "target": "h4.text-headline2.text-text-1.md:mb-2 \"문의 1 · 레슨 결과 화면에서 점수가 다르게 보여요\""
+        },
+        {
+          "action": "문의 2",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": "h4.text-headline2.text-text-1.md:mb-2 \"문의 2 · 레슨 결과 화면에서 점수가 다르게 보여요\""
+        }
+      ],
+      "inp": 64
+    },
+    {
+      "interactions": [
+        {
+          "action": "문의 1",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": "h4.text-headline2.text-text-1.md:mb-2 \"문의 1 · 레슨 결과 화면에서 점수가 다르게 보여요\""
+        },
+        {
+          "action": "문의 2",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": "h4.text-headline2.text-text-1.md:mb-2 \"문의 2 · 레슨 결과 화면에서 점수가 다르게 보여요\""
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "문의 1",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": "h4.text-headline2.text-text-1.md:mb-2 \"문의 1 · 레슨 결과 화면에서 점수가 다르게 보여요\""
+        },
+        {
+          "action": "문의 2",
+          "inp": 64,
+          "event": "pointerdown",
+          "target": "h4.text-headline2.text-text-1.md:mb-2 \"문의 2 · 레슨 결과 화면에서 점수가 다르게 보여요\""
+        }
+      ],
+      "inp": 64
+    },
+    {
+      "interactions": [
+        {
+          "action": "문의 1",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": "h4.text-headline2.text-text-1.md:mb-2 \"문의 1 · 레슨 결과 화면에서 점수가 다르게 보여요\""
+        },
+        {
+          "action": "문의 2",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": "h4.text-headline2.text-text-1.md:mb-2 \"문의 2 · 레슨 결과 화면에서 점수가 다르게 보여요\""
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "문의 1",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": "h4.text-headline2.text-text-1.md:mb-2 \"문의 1 · 레슨 결과 화면에서 점수가 다르게 보여요\""
+        },
+        {
+          "action": "문의 2",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": "h4.text-headline2.text-text-1.md:mb-2 \"문의 2 · 레슨 결과 화면에서 점수가 다르게 보여요\""
+        }
+      ],
+      "inp": 56
+    }
+  ],
+  "notice-mweb": [
+    {
+      "interactions": [
+        {
+          "action": "공지 1 ·",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "공지 1 ·",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "공지 1 ·",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "공지 1 ·",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "공지 1 ·",
+          "inp": 56,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 56
+    },
+    {
+      "interactions": [
+        {
+          "action": "공지 1 ·",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    },
+    {
+      "interactions": [
+        {
+          "action": "공지 1 ·",
+          "inp": 48,
+          "event": "pointerdown",
+          "target": null
+        }
+      ],
+      "inp": 48
+    }
+  ]
+}

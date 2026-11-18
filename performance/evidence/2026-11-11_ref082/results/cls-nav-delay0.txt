@@ -1,0 +1,84 @@
+메인→학습 [지연 0ms]
+    → /learning | 점수 0.000 · 전체 0.000 · 최대 0.000 +1501ms  ?
+    → /learning | 점수 0.000 · 전체 0.000 · 최대 0.000 +1455ms  ?
+    → /learning | 점수 0.000 · 전체 0.000 · 최대 0.000 +1440ms  ?
+메인→리그 [지연 0ms]
+    → /league | 점수 0.000 · 전체 0.000
+    → /league | 점수 0.000 · 전체 0.000
+    → /league | 점수 0.000 · 전체 0.000
+메인→마이 [지연 0ms]
+    → /my/summary | 점수 0.006 · 전체 0.006 · 최대 0.004 +2764ms  div "적음 많음"
+    → /my/summary | 점수 0.002 · 전체 0.002 · 최대 0.002 +5304ms  button "프로필 편집"
+    → /my/summary | 점수 0.006 · 전체 0.006 · 최대 0.004 +2261ms  div "적음 많음"
+메인→알림 [지연 0ms]
+    → /notifications | 점수 0.000 · 전체 0.000
+    → /notifications | 점수 0.000 · 전체 0.000
+    → /notifications | 점수 0.000 · 전체 0.000
+학습→챕터 [지연 0ms]
+    → /learning/chapters/1 | 점수 0.000 · 전체 0.000
+    → /learning/chapters/1 | 점수 0.000 · 전체 0.000
+    → /learning/chapters/1 | 점수 0.000 · 전체 0.000
+챕터→유닛 [지연 0ms]
+    → /learning/units/1 | 점수 0.000 · 전체 0.000
+    → /learning/units/1 | 점수 0.000 · 전체 0.000
+    → /learning/units/1 | 점수 0.000 · 전체 0.000
+유닛→개념노트 [지연 0ms]
+    → /learning/units/1/concept-note | 점수 0.000 · 전체 0.000
+    → /learning/units/1/concept-note | 점수 0.000 · 전체 0.000
+    → /learning/units/1/concept-note | 점수 0.000 · 전체 0.000
+유닛→레슨 [지연 0ms]
+    → /learning/lessons/1 | 점수 0.000 · 전체 0.000
+    → /learning/lessons/1 | 점수 0.000 · 전체 0.000
+    → /learning/lessons/1 | 점수 0.000 · 전체 0.000
+유닛→북마크 [지연 0ms]
+    → /learning/units/1/bookmarked-problems | 점수 0.000 · 전체 0.000
+    → /learning/units/1/bookmarked-problems | 점수 0.000 · 전체 0.000
+    → /learning/units/1/bookmarked-problems | 점수 0.000 · 전체 0.000
+유닛→오답 [지연 0ms]
+    → /learning/units/1/incorrect-problems | 점수 0.000 · 전체 0.000
+    → /learning/units/1/incorrect-problems | 점수 0.000 · 전체 0.000
+    → /learning/units/1/incorrect-problems | 점수 0.000 · 전체 0.000
+my 요약→학습 [지연 0ms]
+    → /my/learning | 점수 0.000 · 전체 0.000
+    → /my/learning | 점수 0.000 · 전체 0.000
+    → /my/learning | 점수 0.000 · 전체 0.000
+my 학습→리그 [지연 0ms]
+    → /my/league | 점수 0.000 · 전체 0.000
+    → /my/league | 점수 0.000 · 전체 0.000
+    → /my/league | 점수 0.000 · 전체 0.000
+my 리그→소셜 [지연 0ms]
+    → /my/social | 점수 0.000 · 전체 0.000
+    → /my/social | 점수 0.000 · 전체 0.000
+    → /my/social | 점수 0.000 · 전체 0.000
+my 소셜→요약 [지연 0ms]
+    → /my/summary | 점수 0.004 · 전체 0.004 · 최대 0.004 +1344ms  div "적음 많음"
+    → /my/summary | 점수 0.004 · 전체 0.004 · 최대 0.004 +1251ms  div "적음 많음"
+    → /my/summary | 점수 0.004 · 전체 0.004 · 최대 0.004 +1295ms  div "적음 많음"
+my→프로필 편집 [지연 0ms]
+    → /my/edit | 점수 0.000 · 전체 0.000
+    → /my/edit | 점수 0.000 · 전체 0.000
+    → /my/edit | 점수 0.000 · 전체 0.000
+my 소셜→친구 [지연 0ms]
+    → /friends | 점수 0.000 · 전체 0.000
+    → /friends | 점수 0.000 · 전체 0.000
+    → /friends | 점수 0.000 · 전체 0.000
+my→설정 [지연 0ms]
+    → /settings | 점수 0.000 · 전체 0.000
+    → /settings | 점수 0.000 · 전체 0.000
+    → /settings | 점수 0.000 · 전체 0.000
+설정→공지 [지연 0ms]
+    → /settings/notice | 점수 0.000 · 전체 0.000
+    → /settings/notice | 점수 0.000 · 전체 0.000
+    → /settings/notice | 점수 0.000 · 전체 0.000
+공지→상세 [지연 0ms]
+    → /settings/notice/1 | 점수 0.000 · 전체 0.000
+    → /settings/notice/1 | 점수 0.000 · 전체 0.000
+    → /settings/notice/1 | 점수 0.000 · 전체 0.000
+설정→문의 [지연 0ms]
+    → /settings/inquiry | 점수 0.000 · 전체 0.000
+    → /settings/inquiry | 점수 0.000 · 전체 0.000
+    → /settings/inquiry | 점수 0.000 · 전체 0.000
+문의 내역→작성 [지연 0ms]
+    → /settings/inquiry/new | 점수 0.000 · 전체 0.000
+    → /settings/inquiry/new | 점수 0.000 · 전체 0.000
+    → /settings/inquiry/new | 점수 0.000 · 전체 0.000

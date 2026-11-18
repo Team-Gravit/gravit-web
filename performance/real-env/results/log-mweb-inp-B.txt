@@ -1,0 +1,28 @@
+lesson-mweb 1 inp 32 1번 선지 가리기:24 보기 1:24 다음:32
+lesson-mweb 2 inp 40 1번 선지 가리기:40 보기 1:16 다음:40
+lesson-mweb 3 inp 40 1번 선지 가리기:32 보기 1:0 다음:40
+lesson-mweb 4 inp 40 1번 선지 가리기:40 보기 1:0 다음:32
+lesson-mweb 5 inp 40 1번 선지 가리기:32 보기 1:0 다음:40
+lesson-mweb 6 inp 32 1번 선지 가리기:32 보기 1:0 다음:24
+lesson-mweb 7 inp 40 1번 선지 가리기:40 보기 1:0 다음:32
+lesson-result-mweb 1 inp 104 이어서 학습하기:104
+lesson-result-mweb 2 inp 80 이어서 학습하기:80
+lesson-result-mweb 3 inp 88 이어서 학습하기:88
+lesson-result-mweb 4 inp 80 이어서 학습하기:80
+lesson-result-mweb 5 inp 56 이어서 학습하기:56
+lesson-result-mweb 6 inp 56 이어서 학습하기:56
+lesson-result-mweb 7 inp 56 이어서 학습하기:56
+bookmarked-mweb 1 inp 32 보기 1:32 다음:32
+bookmarked-mweb 2 inp 40 보기 1:40 다음:40
+bookmarked-mweb 3 inp 40 보기 1:40 다음:40
+bookmarked-mweb 4 inp 40 보기 1:40 다음:40
+bookmarked-mweb 5 inp 40 보기 1:40 다음:32
+bookmarked-mweb 6 inp 40 보기 1:40 다음:32
+bookmarked-mweb 7 inp 40 보기 1:40 다음:40
+incorrect-mweb 1 inp 40 보기 1:40 다음:40
+incorrect-mweb 2 inp 32 보기 1:32 다음:32
+incorrect-mweb 3 inp 40 보기 1:40 다음:32
+incorrect-mweb 4 ERROR 3분 초과
+incorrect-mweb 5 ERROR Protocol error (Target.createTarget): Failed to open a new tab
+incorrect-mweb 6 ERROR Protocol error (Target.createBrowserContext): Target closed
+incorrect-mweb 7 inp 40 보기 1:40 다음:40

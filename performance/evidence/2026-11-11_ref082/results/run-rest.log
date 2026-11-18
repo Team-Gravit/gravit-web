@@ -1,0 +1,22 @@
+20:48:38 === 측정 시작 ===
+20:48:39 건너뜀 cls-delay600-rest (이미 끝남)
+mv: cannot stat 'results/diagnose-load-learning+chapter*.json': No such file or directory
+20:48:39 건너뜀 cls-delay600-my-social (이미 끝남)
+mv: cannot stat 'results/diagnose-load-my-social.json': No such file or directory
+20:48:39 시작 cls-nav-delay0 (1회차)
+Cannot convert argument "f", with value: "-2147483647", for "SetThreadExecutionState" to type "System.UInt32": "Cannot 
+convert value "-2147483647" to type "System.UInt32". Error: "Value was either too large or too small for a UInt32.""
+At line:1 char:139
++ ... (uint f);'; [W.P]::SetThreadExecutionState(0x80000001) | Out-Null; wh ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodException
+    + FullyQualifiedErrorId : MethodArgumentConversionInvalidCastArgument
+ 
+21:04:22 완료 cls-nav-delay0
+21:04:22 시작 cls-nav-delay600 (1회차)
+21:20:36 완료 cls-nav-delay600
+21:20:36 건너뜀 load-B (이미 끝남)
+21:20:36 건너뜀 inp-B (이미 끝남)
+21:20:36 건너뜀 load-C (이미 끝남)
+21:20:37 건너뜀 inp-C (이미 끝남)
+21:20:37 === 전체 끝 ===

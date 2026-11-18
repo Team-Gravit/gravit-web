@@ -1,0 +1,21 @@
+onboarding-desktop 1 fcp 236 lcp 236 cls 0.000 tbt 0 | p.mt-4.text-heading2.text-text-1-w "그래빗과 함께 CS 지식을 마스터해요!" 
+onboarding-desktop 2 fcp 212 lcp 212 cls 0.000 tbt 0 | p.mt-4.text-heading2.text-text-1-w "그래빗과 함께 CS 지식을 마스터해요!" 
+onboarding-desktop 3 fcp 200 lcp 200 cls 0.000 tbt 0 | p.mt-4.text-heading2.text-text-1-w "그래빗과 함께 CS 지식을 마스터해요!" 
+onboarding-success-desktop 1 fcp 208 lcp 252 cls 0.001 tbt 0 | img.mt-4.w-39 mascot-end-C4kQY6YI.webp
+onboarding-success-desktop 2 fcp 200 lcp 228 cls 0.001 tbt 0 | img.mt-4.w-39 mascot-end-C4kQY6YI.webp
+onboarding-success-desktop 3 fcp 204 lcp 248 cls 0.001 tbt 0 | img.mt-4.w-39 mascot-end-C4kQY6YI.webp
+settings-desktop 1 fcp 268 lcp 268 cls 0.000 tbt 0 | span.text-label1.text-text-1.md:text-heading2 "개인정보 처리 방침" 
+settings-desktop 2 fcp 276 lcp 276 cls 0.000 tbt 0 | span.text-label1.text-text-1.md:text-heading2 "개인정보 처리 방침" 
+settings-desktop 3 fcp 256 lcp 256 cls 0.000 tbt 0 | span.text-label1.text-text-1.md:text-heading2 "개인정보 처리 방침" 
+inquiry-desktop 1 fcp 264 lcp 884 cls 0.000 tbt 0 | h4.text-headline2.text-text-1.md:mb-2 "문의 3 · 레슨 결과 화면에서 점수가 다르게 보여요" 
+inquiry-desktop 2 fcp 256 lcp 880 cls 0.000 tbt 0 | h4.text-headline2.text-text-1.md:mb-2 "문의 3 · 레슨 결과 화면에서 점수가 다르게 보여요" 
+inquiry-desktop 3 fcp 252 lcp 880 cls 0.000 tbt 0 | h4.text-headline2.text-text-1.md:mb-2 "문의 3 · 레슨 결과 화면에서 점수가 다르게 보여요" 
+inquiry-new-desktop 1 fcp 280 lcp 280 cls 0.000 tbt 0 | h3.pl-1.text-headline2.md:text-heading1 "문의유형을 선택해주세요" 
+inquiry-new-desktop 2 fcp 264 lcp 264 cls 0.000 tbt 0 | h3.pl-1.text-headline2.md:text-heading1 "문의유형을 선택해주세요" 
+inquiry-new-desktop 3 fcp 264 lcp 264 cls 0.000 tbt 0 | h3.pl-1.text-headline2.md:text-heading1 "문의유형을 선택해주세요" 
+notice-desktop 1 fcp 252 lcp 884 cls 0.192 tbt 0 | span.truncate.text-headline2.text-text-1 "공지 2 · 11월 학습 리그 시즌 안내" 
+notice-desktop 2 fcp 260 lcp 876 cls 0.192 tbt 0 | span.truncate.text-headline2.text-text-1 "공지 2 · 11월 학습 리그 시즌 안내" 
+notice-desktop 3 fcp 264 lcp 880 cls 0.192 tbt 0 | span.truncate.text-headline2.text-text-1 "공지 2 · 11월 학습 리그 시즌 안내" 
+notice-detail-desktop 1 fcp 264 lcp 880 cls 0.028 tbt 0 | h1.text-heading1.text-text-1.md:text-title1 "공지 1 · 11월 학습 리그 시즌 안내" 
+notice-detail-desktop 2 fcp 256 lcp 884 cls 0.028 tbt 0 | h1.text-heading1.text-text-1.md:text-title1 "공지 1 · 11월 학습 리그 시즌 안내" 
+notice-detail-desktop 3 fcp 268 lcp 884 cls 0.028 tbt 0 | h1.text-heading1.text-text-1.md:text-title1 "공지 1 · 11월 학습 리그 시즌 안내" 
