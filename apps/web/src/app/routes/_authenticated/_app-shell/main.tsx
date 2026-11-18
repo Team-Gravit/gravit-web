@@ -17,6 +17,8 @@ export const Route = createFileRoute('/_authenticated/_app-shell/main')({
     headerVariant: 'overlay',
     statusBarStyle: 'light',
     browserTopColor: SPACE_TOP_COLOR,
+    // 탭 최상위라 돌아갈 화면이 없다. 탭 이동이 쌓은 기록으로 직전 탭에 가지 않게 한다.
+    swipeBack: false,
   },
   // 첫 화면 위젯의 데이터를 화면 코드와 함께 받기 시작한다. 기다리지 않아 첫 렌더를 막지 않는다.
   // 실패는 .catch(noop)으로 삼키고, 위젯의 useQuery가 같은 키로 다시 받아 지금처럼 다시 시도 상태를 보인다. (REF-062)
