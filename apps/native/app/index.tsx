@@ -131,7 +131,7 @@ export default function WebviewPage() {
   const insets = useSafeAreaInsets();
   const [webUri, setWebUri] = useState(WEB_URL);
   const [statusBarStyle, setStatusBarStyle] = useState<StatusBarStyle>('dark');
-  // 문제 풀이 · 온보딩처럼 확인 없이 나가면 안 되는 화면에서는 웹이 끄라고 알린다.
+  // 탭 최상위 · 문제 풀이 · 온보딩처럼 스와이프로 나가면 안 되는 화면에서는 웹이 끄라고 알린다.
   const [isSwipeBackEnabled, setIsSwipeBackEnabled] = useState(true);
   const [loadError, setLoadError] = useState<WebLoadErrorKind | null>(null);
   // 값이 바뀌면 WebView를 새로 만든다. 실패한 페이지는 reload()로 다시 불러오지 않는 경우가 있다.
@@ -237,7 +237,9 @@ export default function WebviewPage() {
         // 웹 화면이 스크롤을 직접 관리한다. WebView 가 튕기면 고정 헤더 · 바텀탭까지 함께 끌려간다.
         bounces={false}
         // iOS 왼쪽 끝 스와이프로 웹의 이동 기록을 따라 뒤로 간다. Android는 이 값을 쓰지 않는다.
-        allowsBackForwardNavigationGestures={isSwipeBackEnabled}
+        // 항상 켠다. 끄면 WebKit이 떠나는 화면의 사진을 찍지 않아, 그 화면으로 스와이프해 돌아올 때 빈 화면이
+        // 보인다. 막아야 하는 화면은 아래 `edgeSwipeBlocker`가 막는다.
+        allowsBackForwardNavigationGestures
         // WebView의 자동 inset 보정을 꺼 웹의 상단 여백과 중복되지 않게 한다.
         contentInsetAdjustmentBehavior="never"
         overScrollMode="never"
@@ -303,6 +305,11 @@ export default function WebviewPage() {
         onRenderProcessGone={() => remountWebView()}
         onMessage={handleMessage}
       />
+      {/* 왼쪽 끝 터치를 WebView 대신 받아 iOS 뒤로 스와이프가 시작되지 않게 한다. 투명하고 아무 동작도 없다.
+          제스처를 네이티브 코드로 막으면 새 스토어 빌드가 필요해, OTA로 낼 수 있는 이 방법을 쓴다. */}
+      {Platform.OS === 'ios' && !isSwipeBackEnabled ? (
+        <View style={styles.edgeSwipeBlocker} />
+      ) : null}
       {loadError ? <WebLoadErrorScreen kind={loadError} onRetry={handleRetry} /> : null}
     </View>
   );
@@ -318,6 +325,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  // iOS 화면 끝 스와이프가 시작되는 폭보다 넉넉하게 덮는다. 웹 화면 좌우 여백(16px) 안쪽이라 가리는 버튼은 거의 없다.
+  edgeSwipeBlocker: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    width: 24,
   },
   header: {
     fontWeight: 'bold',
