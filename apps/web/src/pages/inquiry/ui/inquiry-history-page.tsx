@@ -13,7 +13,7 @@ interface InquiryHistoryPageProps {
  * 무한스크롤 대신 페이지네이션을 붙였다. 페이지는 URL search가 소유한다.
  */
 export function InquiryHistoryPage({ page, onPageChange }: InquiryHistoryPageProps) {
-  const { data, isPending } = useMyInquiries(page);
+  const { data, isPending, isError, refetch } = useMyInquiries(page);
 
   const inquiries = data?.contents ?? [];
   const totalPages = data?.totalPages ?? 0;
@@ -28,7 +28,13 @@ export function InquiryHistoryPage({ page, onPageChange }: InquiryHistoryPagePro
         <span className="text-caption1 text-text-4">최신순</span>
       </div>
 
-      <MyInquiriesList inquiries={inquiries} isPending={isPending} />
+      <MyInquiriesList
+        inquiries={inquiries}
+        isPending={isPending}
+        // 받아 둔 목록이 있으면 재조회가 실패해도 목록을 그대로 둔다.
+        hasLoadError={isError && !data}
+        onRetry={() => refetch({ throwOnError: true })}
+      />
 
       {totalPages > 1 && (
         <Pagination
