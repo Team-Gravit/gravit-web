@@ -20,7 +20,7 @@ export interface NoticePageProps {
  * 데스크톱은 셸이 앱 헤더를 주므로 breadcrumb+타이틀만, 모바일은 자체 `PageTitleBar`를 둔다.
  */
 export function NoticePage({ page, onPageChange }: NoticePageProps) {
-  const { data, isPending } = useNotices(page);
+  const { data, isPending, isError, refetch } = useNotices(page);
   const notices = data?.contents ?? [];
   const totalPages = data?.totalPages ?? 0;
   // 임계값(기본 300ms)보다 오래 걸릴 때만 스켈레톤을 띄워 빠른 응답 깜빡임을 막는다.
@@ -43,7 +43,14 @@ export function NoticePage({ page, onPageChange }: NoticePageProps) {
       <div className="flex-1 px-4 py-5 md:px-[90px] md:pt-10 md:pb-20">
         <DesktopHeader />
         <div className="mx-auto w-full max-w-[1200px]">
-          <NoticeList notices={notices} isPending={isPending} showSkeleton={showSkeleton} />
+          <NoticeList
+            notices={notices}
+            isPending={isPending}
+            showSkeleton={showSkeleton}
+            // 받아 둔 목록이 있으면 재조회가 실패해도 목록을 그대로 둔다.
+            hasLoadError={isError && !data}
+            onRetry={() => refetch({ throwOnError: true })}
+          />
           {totalPages > 1 && (
             <Pagination
               currentPage={page}

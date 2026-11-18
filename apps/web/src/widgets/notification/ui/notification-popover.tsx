@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 
+import { CardRetryStatus } from '@/shared/ui/card';
 import { BellIcon } from '@/shared/ui/icon';
 import { IconButton } from '@/shared/ui/icon-button';
 import { ScrollArea } from '@/shared/ui/scroll';
@@ -16,7 +17,9 @@ import { NotificationAction } from './notification-action';
 export function NotificationPopover() {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const { data: notifications } = useInboxQuery();
+  const { data: notifications, isError, refetch } = useInboxQuery();
+  // 받아 둔 알림이 있으면 재조회가 실패해도 목록을 그대로 둔다.
+  const hasLoadError = isError && !notifications;
 
   usePopoverDismiss({ isOpen, onDismiss: () => setIsOpen(false), containerRef });
 
@@ -37,7 +40,12 @@ export function NotificationPopover() {
           스크롤바를 시안 위치(우측 끝에서 16px 안쪽)에 맞춘다. */}
       {isOpen && (
         <div className="h-[595px] max-h-[calc(100vh-10rem)] flex flex-col absolute top-full -right-12 z-50 mt-8 w-[500px] rounded-12 bg-white py-7 pr-4 shadow-elevation-1">
-          {notifications && notifications.length > 0 ? (
+          {hasLoadError && (
+            <div className="flex flex-1 flex-col pl-8 pr-4">
+              <CardRetryStatus sectionName="알림" onRetry={() => refetch({ throwOnError: true })} />
+            </div>
+          )}
+          {!hasLoadError && notifications && notifications.length > 0 && (
             <ScrollArea className="min-h-0 flex-1" viewportClassName="pl-8 pr-4">
               <ul className="flex flex-col gap-4">
                 {notifications.map((notification) => (
@@ -67,7 +75,8 @@ export function NotificationPopover() {
                 ))}
               </ul>
             </ScrollArea>
-          ) : (
+          )}
+          {!hasLoadError && (!notifications || notifications.length === 0) && (
             <div className="flex flex-1 flex-col pl-8 pr-4">
               <NotificationFallback />
             </div>

@@ -50,7 +50,7 @@ export function ChapterGrid({ size = 'sm', className }: ChapterGridProps) {
   if (chapters.length === 0) {
     return (
       <div data-slot="chapter-grid-status" className={cn('flex min-h-40', className)}>
-        <CardStatus message="챕터가 없습니다." />
+        <CardStatus message="아직 챕터가 없어요." />
       </div>
     );
   }

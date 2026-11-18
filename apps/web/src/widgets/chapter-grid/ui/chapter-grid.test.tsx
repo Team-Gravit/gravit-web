@@ -78,11 +78,11 @@ describe('ChapterGrid', () => {
     expect(await screen.findByText('자료를 다루는 방법')).toBeInTheDocument();
   });
 
-  it('빈 배열이면 「챕터가 없습니다.」를 표시한다', async () => {
+  it('빈 배열이면 「아직 챕터가 없어요.」를 표시한다', async () => {
     server.use(http.get(CHAPTERS_URL, () => HttpResponse.json([])));
     await renderGrid();
 
-    expect(await screen.findByRole('status')).toHaveTextContent('챕터가 없습니다.');
+    expect(await screen.findByRole('status')).toHaveTextContent('아직 챕터가 없어요.');
     expect(screen.queryByRole('link')).not.toBeInTheDocument();
   });
 

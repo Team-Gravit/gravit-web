@@ -1,3 +1,4 @@
+import { CardRetryStatus, CardStatus } from '@/shared/ui/card';
 import {
   NoticeListItem,
   NoticeListItemSkeleton,
@@ -6,7 +7,8 @@ import {
 
 /** 한 페이지에 표시되는 공지 수에 맞춘 스켈레톤 행 수(시안 기준 8행). */
 const SKELETON_ROW_COUNT = 8;
-const EMPTY_MESSAGE = '등록된 공지사항이 없어요';
+const EMPTY_MESSAGE = '등록된 공지사항이 없어요.';
+const STATUS_BOX_CLASS = 'flex h-[300px] w-full rounded-8 bg-white md:rounded-12';
 
 interface NoticeListProps {
   notices: NoticeSummaryResponse[];
@@ -14,10 +16,19 @@ interface NoticeListProps {
   isPending: boolean;
   /** 조회가 300ms 이상 지연됐는지. 이때만 스켈레톤을 띄운다. */
   showSkeleton: boolean;
+  /** 받은 공지 없이 조회가 실패했는지. 빈 상태 대신 재시도를 보여 준다. */
+  hasLoadError: boolean;
+  onRetry: () => Promise<unknown>;
 }
 
-/** 공지 목록 카드. 로딩(지연 시 스켈레톤)·빈 상태·목록을 그린다. */
-export function NoticeList({ notices, isPending, showSkeleton }: NoticeListProps) {
+/** 공지 목록 카드. 로딩(지연 시 스켈레톤)·실패·빈 상태·목록을 그린다. */
+export function NoticeList({
+  notices,
+  isPending,
+  showSkeleton,
+  hasLoadError,
+  onRetry,
+}: NoticeListProps) {
   if (showSkeleton) {
     return (
       <ul className="overflow-hidden rounded-8 md:rounded-12">
@@ -33,10 +44,18 @@ export function NoticeList({ notices, isPending, showSkeleton }: NoticeListProps
     return null;
   }
 
+  if (hasLoadError) {
+    return (
+      <div className={STATUS_BOX_CLASS}>
+        <CardRetryStatus sectionName="공지사항" onRetry={onRetry} />
+      </div>
+    );
+  }
+
   if (notices.length === 0) {
     return (
-      <div className="flex h-[300px] w-full items-center justify-center rounded-8 bg-white md:rounded-12">
-        <p className="text-headline1 text-text-2 md:text-heading1">{EMPTY_MESSAGE}</p>
+      <div className={STATUS_BOX_CLASS}>
+        <CardStatus message={EMPTY_MESSAGE} />
       </div>
     );
   }
