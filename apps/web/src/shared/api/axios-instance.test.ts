@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { http, HttpResponse } from 'msw';
 
 import { configureAuth, type AuthConfig } from './auth-token';
-import { AXIOS_INSTANCE } from './axios-instance';
+import { API_READ_TIMEOUT_MS, API_WRITE_TIMEOUT_MS, AXIOS_INSTANCE } from './axios-instance';
 import { server } from './mocks/server';
 
 // baseURL 이 환경변수에 의존하므로 테스트에서는 절대 URL 로 호출해 결과를 고정한다.
@@ -61,6 +61,41 @@ describe('요청 인터셉터', () => {
     await AXIOS_INSTANCE.get(TEST_URL);
 
     expect(authorization).toBeNull();
+  });
+});
+
+describe('타임아웃', () => {
+  it('GET 은 조회 타임아웃(8초), POST · PATCH · DELETE 는 저장 타임아웃(15초)을 쓴다', async () => {
+    server.use(
+      http.get(TEST_URL, () => HttpResponse.json({ ok: true })),
+      http.post(TEST_URL, () => HttpResponse.json({ ok: true })),
+      http.patch(TEST_URL, () => HttpResponse.json({ ok: true })),
+      http.delete(TEST_URL, () => HttpResponse.json({ ok: true })),
+    );
+
+    expect((await AXIOS_INSTANCE.get(TEST_URL)).config.timeout).toBe(API_READ_TIMEOUT_MS);
+    expect((await AXIOS_INSTANCE.post(TEST_URL)).config.timeout).toBe(API_WRITE_TIMEOUT_MS);
+    expect((await AXIOS_INSTANCE.patch(TEST_URL)).config.timeout).toBe(API_WRITE_TIMEOUT_MS);
+    expect((await AXIOS_INSTANCE.delete(TEST_URL)).config.timeout).toBe(API_WRITE_TIMEOUT_MS);
+  });
+
+  it('401 뒤 재시도한 GET 도 조회 타임아웃을 쓴다', async () => {
+    configureExpiredSession({ onTokenRefreshed: () => {} });
+    let callCount = 0;
+    server.use(
+      http.get(TEST_URL, () => {
+        callCount += 1;
+        return callCount === 1
+          ? new HttpResponse(null, { status: 401 })
+          : HttpResponse.json({ ok: true });
+      }),
+      http.post(REISSUE_URL, () => HttpResponse.json({ accessToken: 'tok_new' })),
+    );
+
+    const response = await AXIOS_INSTANCE.get(TEST_URL);
+
+    expect(callCount).toBe(2);
+    expect(response.config.timeout).toBe(API_READ_TIMEOUT_MS);
   });
 });
 

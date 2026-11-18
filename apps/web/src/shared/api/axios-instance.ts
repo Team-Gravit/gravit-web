@@ -20,16 +20,27 @@ declare module 'axios' {
   }
 }
 
-export const API_REQUEST_TIMEOUT_MS = 15_000;
+// 조회는 다시 불러도 손해가 없으니 빨리 실패를 보여 주고 다시 시도하게 한다.
+export const API_READ_TIMEOUT_MS = 8_000;
+// 저장 · 변경 · 토큰 재발급은 앱이 포기해도 서버가 이미 처리했을 수 있다.
+// 짧으면 다시 눌러 두 번 저장되거나, 바뀐 토큰을 못 받아 로그아웃될 수 있어 길게 둔다.
+export const API_WRITE_TIMEOUT_MS = 15_000;
+
+function resolveTimeoutMs(method: string | undefined): number {
+  return (method ?? 'get').toLowerCase() === 'get' ? API_READ_TIMEOUT_MS : API_WRITE_TIMEOUT_MS;
+}
 
 export const AXIOS_INSTANCE = Axios.create({
   baseURL: getApiBaseUrl(),
-  timeout: API_REQUEST_TIMEOUT_MS,
+  timeout: API_WRITE_TIMEOUT_MS,
   // 웹 refreshToken 쿠키를 주고받는다. 쿠키는 Path=/api/v1/auth 라 다른 API 요청에는 실리지 않는다.
   withCredentials: true,
 });
 
 AXIOS_INSTANCE.interceptors.request.use((config) => {
+  // 재시도 요청도 같은 기준을 받도록 아래 조기 반환보다 먼저 정한다.
+  config.timeout = resolveTimeoutMs(config.method);
+
   // 재발급 요청은 토큰을 싣지 않고, 재시도 요청은 갱신으로 받은 토큰을 이미 달고 있다.
   if (config.skipAuthRefresh || config.isRetried) {
     return config;
