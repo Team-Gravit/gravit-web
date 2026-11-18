@@ -49,6 +49,29 @@ function readStatusBarStyle(data: string): StatusBarStyle | null {
   return null;
 }
 
+/** 웹의 `native-swipe-back.ts`에서 보내는 메시지 타입과 일치해야 한다. */
+const SWIPE_BACK_MESSAGE_TYPE = 'swipeBack';
+
+/** 웹 메시지에서 뒤로 스와이프 허용 여부를 읽는다. 형식이 다르면 `null`. */
+function readSwipeBackEnabled(data: string): boolean | null {
+  try {
+    const message: unknown = JSON.parse(data);
+    if (
+      typeof message === 'object' &&
+      message !== null &&
+      'type' in message &&
+      message.type === SWIPE_BACK_MESSAGE_TYPE &&
+      'enabled' in message &&
+      typeof message.enabled === 'boolean'
+    ) {
+      return message.enabled;
+    }
+  } catch {
+    // JSON으로 읽을 수 없는 메시지는 스와이프 설정으로 처리하지 않는다.
+  }
+  return null;
+}
+
 /** 웹이 `dest=local`로 인가 URL을 받으면 제공자가 이 origin으로 돌려보낸다. */
 const LOCAL_DEV_ORIGIN = 'http://localhost:5173';
 
@@ -108,6 +131,8 @@ export default function WebviewPage() {
   const insets = useSafeAreaInsets();
   const [webUri, setWebUri] = useState(WEB_URL);
   const [statusBarStyle, setStatusBarStyle] = useState<StatusBarStyle>('dark');
+  // 문제 풀이 · 온보딩처럼 확인 없이 나가면 안 되는 화면에서는 웹이 끄라고 알린다.
+  const [isSwipeBackEnabled, setIsSwipeBackEnabled] = useState(true);
   const [loadError, setLoadError] = useState<WebLoadErrorKind | null>(null);
   // 값이 바뀌면 WebView를 새로 만든다. 실패한 페이지는 reload()로 다시 불러오지 않는 경우가 있다.
   const [webViewKey, setWebViewKey] = useState(0);
@@ -177,6 +202,12 @@ export default function WebviewPage() {
       return;
     }
 
+    const nextSwipeBackEnabled = readSwipeBackEnabled(event.nativeEvent.data);
+    if (nextSwipeBackEnabled !== null) {
+      setIsSwipeBackEnabled(nextSwipeBackEnabled);
+      return;
+    }
+
     bridge.handleMessage(event);
   };
 
@@ -205,6 +236,8 @@ export default function WebviewPage() {
         applicationNameForUserAgent={`${NATIVE_USER_AGENT_MARKER}/${APP_VERSION}`}
         // 웹 화면이 스크롤을 직접 관리한다. WebView 가 튕기면 고정 헤더 · 바텀탭까지 함께 끌려간다.
         bounces={false}
+        // iOS 왼쪽 끝 스와이프로 웹의 이동 기록을 따라 뒤로 간다. Android는 이 값을 쓰지 않는다.
+        allowsBackForwardNavigationGestures={isSwipeBackEnabled}
         // WebView의 자동 inset 보정을 꺼 웹의 상단 여백과 중복되지 않게 한다.
         contentInsetAdjustmentBehavior="never"
         overScrollMode="never"
