@@ -308,7 +308,9 @@ export default function WebviewPage() {
       {/* 왼쪽 끝 터치를 WebView 대신 받아 iOS 뒤로 스와이프가 시작되지 않게 한다. 투명하고 아무 동작도 없다.
           제스처를 네이티브 코드로 막으면 새 스토어 빌드가 필요해, OTA로 낼 수 있는 이 방법을 쓴다. */}
       {Platform.OS === 'ios' && !isSwipeBackEnabled ? (
-        <View style={styles.edgeSwipeBlocker} />
+        // 색 · 이벤트 없이 위치만 있는 View는 New Architecture가 화면에 만들지 않고 합쳐 버려(view flattening)
+        // 터치를 받지 못한다. `collapsable={false}`로 실제 뷰를 남긴다.
+        <View collapsable={false} style={styles.edgeSwipeBlocker} />
       ) : null}
       {loadError ? <WebLoadErrorScreen kind={loadError} onRetry={handleRetry} /> : null}
     </View>
