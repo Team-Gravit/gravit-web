@@ -35,7 +35,7 @@ export const Failed: Story = {
       <CardHeader>
         <CardTitle>이어서 학습하기</CardTitle>
       </CardHeader>
-      <CardRetryStatus sectionName="이어서 학습하기" onRetry={() => {}} />
+      <CardRetryStatus sectionName="이어서 학습하기" onRetry={() => Promise.resolve()} />
     </Card>
   ),
 };

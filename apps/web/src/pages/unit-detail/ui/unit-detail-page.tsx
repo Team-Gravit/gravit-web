@@ -5,6 +5,7 @@ import { Link, type LinkProps } from '@tanstack/react-router';
 import { LessonItem, LessonItemSkeleton, useUnitLessons } from '@/entities/learning';
 import { cn } from '@/shared/lib/cn';
 import { useIsWideViewport } from '@/shared/lib/use-is-wide-viewport';
+import { CardStatus } from '@/shared/ui/card';
 import { BookmarkFillIcon, ChevronRightIcon, Icon, LearningFillIcon } from '@/shared/ui/icon';
 import { SpaceBackground } from '@/shared/ui/layout';
 import { PageHeading } from '@/shared/ui/page-heading';
@@ -13,6 +14,7 @@ import { toast } from '@/shared/ui/toast';
 import { PageTitleBar } from '@/widgets/page-title-bar';
 
 // 풀 문제가 없어 진입을 막을 때 띄우는 안내 (FIX-036).
+const EMPTY_LESSON_MESSAGE = '아직 등록된 레슨이 없어요.\n곧 새로운 레슨이 추가될 예정이에요.';
 const BOOKMARK_BLOCKED_MESSAGE = '아직 북마크한 문제가 없어요.';
 const INCORRECT_NOTE_BLOCKED_MESSAGE = '아직 틀린 문제가 없어요.';
 
@@ -158,15 +160,7 @@ export function UnitDetailPage({ unitId }: UnitDetailPageProps) {
                   ))}
                 </ul>
               ) : (
-                <div className="w-full h-full flex items-center justify-center flex-1">
-                  <p
-                    role="status"
-                    className="text-center text-label1 text-text-4 md:text-headline1"
-                  >
-                    아직 등록된 레슨이 없어요.
-                    <br />곧 새로운 레슨이 추가될 예정이에요.
-                  </p>
-                </div>
+                <CardStatus message={EMPTY_LESSON_MESSAGE} className="w-full whitespace-pre-line" />
               )}
             </section>
           </div>

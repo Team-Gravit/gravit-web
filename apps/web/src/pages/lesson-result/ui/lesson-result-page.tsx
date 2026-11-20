@@ -5,7 +5,7 @@ import { Link, useLocation } from '@tanstack/react-router';
 import { cn } from '@/shared/lib/cn';
 import { useHistoryBackClick } from '@/shared/lib/use-history-back-click';
 import { Button } from '@/shared/ui/button';
-import { CardRetryStatus, CardStatus } from '@/shared/ui/card';
+import { CardRetryStatus, CardStatus, CardStatusButton } from '@/shared/ui/card';
 import { useLessonResult } from '@/entities/learning';
 
 import { LessonResultPageSkeleton } from './lesson-result-page-skeleton';
@@ -56,15 +56,19 @@ export function LessonResultPage({ lessonSubmissionId }: LessonResultPageProps) 
             message="결과를 찾을 수 없어요."
             className="z-10"
             action={
-              <Button asChild variant="stroke-default">
+              <CardStatusButton asChild>
                 <Link to={HOME_ROUTE} replace>
                   홈으로
                 </Link>
-              </Button>
+              </CardStatusButton>
             }
           />
         ) : (
-          <CardRetryStatus sectionName="결과" onRetry={() => void refetch()} className="z-10" />
+          <CardRetryStatus
+            sectionName="결과"
+            onRetry={() => refetch({ throwOnError: true })}
+            className="z-10"
+          />
         )}
       </div>
     );

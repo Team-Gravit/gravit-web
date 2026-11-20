@@ -4,7 +4,11 @@ import { useEffect, useState } from 'react';
 import { WebView, type WebViewMessageEvent } from 'react-native-webview';
 import Constants from 'expo-constants';
 import * as SplashScreen from 'expo-splash-screen';
-import { StatusBar, type StatusBarStyle } from 'expo-status-bar';
+import {
+  setStatusBarStyle as applyStatusBarStyle,
+  StatusBar,
+  type StatusBarStyle,
+} from 'expo-status-bar';
 import { isAllowedBridgeOrigin, NATIVE_USER_AGENT_MARKER } from '@repo/bridge-protocol';
 
 import { createBridge } from '../bridge/create-bridge';
@@ -41,6 +45,29 @@ function readStatusBarStyle(data: string): StatusBarStyle | null {
     }
   } catch {
     // JSON으로 읽을 수 없는 메시지는 상태 표시줄 스타일로 처리하지 않는다.
+  }
+  return null;
+}
+
+/** 웹의 `native-swipe-back.ts`에서 보내는 메시지 타입과 일치해야 한다. */
+const SWIPE_BACK_MESSAGE_TYPE = 'swipeBack';
+
+/** 웹 메시지에서 뒤로 스와이프 허용 여부를 읽는다. 형식이 다르면 `null`. */
+function readSwipeBackEnabled(data: string): boolean | null {
+  try {
+    const message: unknown = JSON.parse(data);
+    if (
+      typeof message === 'object' &&
+      message !== null &&
+      'type' in message &&
+      message.type === SWIPE_BACK_MESSAGE_TYPE &&
+      'enabled' in message &&
+      typeof message.enabled === 'boolean'
+    ) {
+      return message.enabled;
+    }
+  } catch {
+    // JSON으로 읽을 수 없는 메시지는 스와이프 설정으로 처리하지 않는다.
   }
   return null;
 }
@@ -104,6 +131,8 @@ export default function WebviewPage() {
   const insets = useSafeAreaInsets();
   const [webUri, setWebUri] = useState(WEB_URL);
   const [statusBarStyle, setStatusBarStyle] = useState<StatusBarStyle>('dark');
+  // 탭 최상위 · 문제 풀이 · 온보딩처럼 스와이프로 나가면 안 되는 화면에서는 웹이 끄라고 알린다.
+  const [isSwipeBackEnabled, setIsSwipeBackEnabled] = useState(true);
   const [loadError, setLoadError] = useState<WebLoadErrorKind | null>(null);
   // 값이 바뀌면 WebView를 새로 만든다. 실패한 페이지는 reload()로 다시 불러오지 않는 경우가 있다.
   const [webViewKey, setWebViewKey] = useState(0);
@@ -133,6 +162,19 @@ export default function WebviewPage() {
     return () => subscription.remove();
   }, []);
 
+  // iOS는 앱이 오래 백그라운드에 있다 돌아오면 상태 표시줄을 기본(검은 글자)으로 되돌리기도 한다.
+  // 기억한 값이 그대로라 `<StatusBar>`는 다시 그리지 않고, 웹도 화면이 같으면 다시 보내지 않으므로
+  // 앱이 앞으로 올 때마다 직접 다시 적용한다.
+  useEffect(() => {
+    const subscription = AppState.addEventListener('change', (state) => {
+      if (state === 'active') {
+        applyStatusBarStyle(statusBarStyle);
+      }
+    });
+
+    return () => subscription.remove();
+  }, [statusBarStyle]);
+
   const handleShouldStartLoad = ({ url, isTopFrame }: ShouldStartLoadRequest) => {
     const rewrittenUrl = rewriteLocalDevCallback(url);
     if (rewrittenUrl) {
@@ -157,6 +199,12 @@ export default function WebviewPage() {
     const nextStatusBarStyle = readStatusBarStyle(event.nativeEvent.data);
     if (nextStatusBarStyle) {
       setStatusBarStyle(nextStatusBarStyle);
+      return;
+    }
+
+    const nextSwipeBackEnabled = readSwipeBackEnabled(event.nativeEvent.data);
+    if (nextSwipeBackEnabled !== null) {
+      setIsSwipeBackEnabled(nextSwipeBackEnabled);
       return;
     }
 
@@ -188,6 +236,10 @@ export default function WebviewPage() {
         applicationNameForUserAgent={`${NATIVE_USER_AGENT_MARKER}/${APP_VERSION}`}
         // 웹 화면이 스크롤을 직접 관리한다. WebView 가 튕기면 고정 헤더 · 바텀탭까지 함께 끌려간다.
         bounces={false}
+        // iOS 왼쪽 끝 스와이프로 웹의 이동 기록을 따라 뒤로 간다. Android는 이 값을 쓰지 않는다.
+        // 항상 켠다. 끄면 WebKit이 떠나는 화면의 사진을 찍지 않아, 그 화면으로 스와이프해 돌아올 때 빈 화면이
+        // 보인다. 막아야 하는 화면은 아래 `edgeSwipeBlocker`가 막는다.
+        allowsBackForwardNavigationGestures
         // WebView의 자동 inset 보정을 꺼 웹의 상단 여백과 중복되지 않게 한다.
         contentInsetAdjustmentBehavior="never"
         overScrollMode="never"
@@ -253,6 +305,13 @@ export default function WebviewPage() {
         onRenderProcessGone={() => remountWebView()}
         onMessage={handleMessage}
       />
+      {/* 왼쪽 끝 터치를 WebView 대신 받아 iOS 뒤로 스와이프가 시작되지 않게 한다. 투명하고 아무 동작도 없다.
+          제스처를 네이티브 코드로 막으면 새 스토어 빌드가 필요해, OTA로 낼 수 있는 이 방법을 쓴다. */}
+      {Platform.OS === 'ios' && !isSwipeBackEnabled ? (
+        // 색 · 이벤트 없이 위치만 있는 View는 New Architecture가 화면에 만들지 않고 합쳐 버려(view flattening)
+        // 터치를 받지 못한다. `collapsable={false}`로 실제 뷰를 남긴다.
+        <View collapsable={false} style={styles.edgeSwipeBlocker} />
+      ) : null}
       {loadError ? <WebLoadErrorScreen kind={loadError} onRetry={handleRetry} /> : null}
     </View>
   );
@@ -268,6 +327,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  // iOS 화면 끝 스와이프가 시작되는 폭보다 넉넉하게 덮는다. 웹 화면 좌우 여백(16px) 안쪽이라 가리는 버튼은 거의 없다.
+  edgeSwipeBlocker: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    width: 24,
   },
   header: {
     fontWeight: 'bold',

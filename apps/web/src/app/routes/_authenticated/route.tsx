@@ -48,7 +48,7 @@ function AuthenticatedRouteError({ error }: ErrorComponentProps) {
     return <ErrorComponent error={error} />;
   }
 
-  return <SessionCheckError onRetry={() => void router.invalidate()} />;
+  return <SessionCheckError onRetry={() => router.invalidate()} />;
 }
 
 function redirectByOnboarding(pathname: string, isOnboarded: boolean) {

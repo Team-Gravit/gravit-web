@@ -25,8 +25,15 @@ export function ChapterGrid({ size = 'sm', className }: ChapterGridProps) {
   if (isPending) {
     return (
       <div data-slot="chapter-grid" aria-busy="true" className={cn(GRID_LAYOUT_CLASS, className)}>
+        {/* 챕터 목록은 개편 전까지 고정이라 i번째 칸을 챕터 i+1로 보고 행성을 미리 그린다.
+            서버 순서가 ID 순이 아니게 되면 응답 후 행성이 바뀌어 보이므로 이 가정을 다시 본다. */}
         {Array.from({ length: SKELETON_CARD_COUNT }, (_, index) => (
-          <ChapterCardSkeleton key={index} size={size} />
+          <ChapterCardSkeleton
+            key={index}
+            chapterId={index + 1}
+            planetLoading={index < EAGER_PLANET_COUNT ? 'eager' : 'lazy'}
+            size={size}
+          />
         ))}
       </div>
     );
@@ -35,7 +42,7 @@ export function ChapterGrid({ size = 'sm', className }: ChapterGridProps) {
   if (isError) {
     return (
       <div data-slot="chapter-grid-status" className={cn('flex min-h-40', className)}>
-        <CardRetryStatus sectionName="챕터 목록" onRetry={() => void refetch()} />
+        <CardRetryStatus sectionName="챕터 목록" onRetry={() => refetch({ throwOnError: true })} />
       </div>
     );
   }
@@ -43,7 +50,7 @@ export function ChapterGrid({ size = 'sm', className }: ChapterGridProps) {
   if (chapters.length === 0) {
     return (
       <div data-slot="chapter-grid-status" className={cn('flex min-h-40', className)}>
-        <CardStatus message="챕터가 없습니다." />
+        <CardStatus message="아직 챕터가 없어요." />
       </div>
     );
   }

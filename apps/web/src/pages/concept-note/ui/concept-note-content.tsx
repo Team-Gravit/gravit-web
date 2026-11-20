@@ -21,7 +21,12 @@ export function ConceptNoteContent({ unitId, size }: ConceptNoteContentProps) {
   }
 
   if (isError) {
-    return <CardRetryStatus sectionName={CONCEPT_NOTE_TITLE} onRetry={() => void refetch()} />;
+    return (
+      <CardRetryStatus
+        sectionName={CONCEPT_NOTE_TITLE}
+        onRetry={() => refetch({ throwOnError: true })}
+      />
+    );
   }
 
   if (isEmptyConceptNote(conceptNote)) {

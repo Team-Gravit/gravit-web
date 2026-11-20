@@ -13,7 +13,7 @@ const MAX_PULL_DISTANCE_PX = 260;
 const PULL_ELASTICITY = 0.55;
 const DIRECTION_LOCK_DISTANCE_PX = 6;
 // 응답이 빨라도 로고가 깜빡이고 사라지지 않게 한다.
-const MIN_REFRESH_DURATION_MS = 600;
+export const MIN_REFRESH_DURATION_MS = 600;
 
 export type PullStatus = 'idle' | 'pulling' | 'canRelease' | 'refreshing';
 

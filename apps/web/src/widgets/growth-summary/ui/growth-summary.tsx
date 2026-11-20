@@ -20,8 +20,14 @@ export function GrowthSummary({ className }: GrowthSummaryProps) {
   const league = useLeagueSummary();
 
   const handleRetry = () => {
-    if (profile.isError) void profile.refetch();
-    if (league.isError) void league.refetch();
+    const retries: Promise<unknown>[] = [];
+    if (profile.isError) {
+      retries.push(profile.refetch({ throwOnError: true }));
+    }
+    if (league.isError) {
+      retries.push(league.refetch({ throwOnError: true }));
+    }
+    return Promise.all(retries);
   };
 
   if (profile.isError || league.isError) {

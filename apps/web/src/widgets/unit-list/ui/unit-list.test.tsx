@@ -66,13 +66,13 @@ describe('UnitList', () => {
     expect(screen.getByText('33%')).toBeInTheDocument();
   });
 
-  it('유닛이 없으면 「유닛이 없습니다.」를 표시한다', async () => {
+  it('유닛이 없으면 「아직 유닛이 없어요.」를 표시한다', async () => {
     server.use(
       http.get(UNITS_URL, () => HttpResponse.json({ ...UNIT_PAGE, unitDetailResponses: [] })),
     );
     await renderList();
 
-    expect(await screen.findByRole('status')).toHaveTextContent('유닛이 없습니다.');
+    expect(await screen.findByRole('status')).toHaveTextContent('아직 유닛이 없어요.');
     expect(screen.queryByRole('link')).not.toBeInTheDocument();
   });
 

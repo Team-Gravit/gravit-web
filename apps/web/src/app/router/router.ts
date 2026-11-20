@@ -31,6 +31,8 @@ declare module '@tanstack/react-router' {
     statusBarStyle?: 'light' | 'dark';
     /** 브라우저 상단 색. 기본은 흰색이며, `null`이면 색 지정을 해제한다. */
     browserTopColor?: string | null;
+    /** 앱(iOS)에서 왼쪽 끝을 밀어 뒤로 가기를 허용하는지. 기본 `true`. 하위 라우트가 상속한다. */
+    swipeBack?: boolean;
   }
 }
 
