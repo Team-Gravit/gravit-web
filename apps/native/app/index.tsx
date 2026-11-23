@@ -1,14 +1,10 @@
 import { AppState, Linking, StyleSheet, View, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { WebView, type WebViewMessageEvent } from 'react-native-webview';
 import Constants from 'expo-constants';
 import * as SplashScreen from 'expo-splash-screen';
-import {
-  setStatusBarStyle as applyStatusBarStyle,
-  StatusBar,
-  type StatusBarStyle,
-} from 'expo-status-bar';
+import { StatusBar, type StatusBarStyle } from 'expo-status-bar';
 import { isAllowedBridgeOrigin, NATIVE_USER_AGENT_MARKER } from '@repo/bridge-protocol';
 
 import { createBridge } from '../bridge/create-bridge';
@@ -110,6 +106,16 @@ function isInAppUrl(url: string): boolean {
  */
 const SPLASH_MAX_WAIT_MS = 10_000;
 
+/** 앱 복귀 후 상태 표시줄 스타일을 다시 적용하는 지연 시간. 복귀 직후 적용은 따로 한다. */
+const STATUS_BAR_REAPPLY_DELAYS_MS = [100, 300, 700, 1500];
+
+/**
+ * 스크롤 중 상태 표시줄 스타일을 다시 적용하는 최소 간격.
+ * iOS 26 에서 앱 복귀 후 문서를 빠르게 스크롤하면 스타일이 기본값으로 돌아가므로 스크롤 중에도 덮는다.
+ * iOS 가 고치면 제거한다.
+ */
+const STATUS_BAR_SCROLL_REAPPLY_INTERVAL_MS = 200;
+
 function hideSplash() {
   SplashScreen.hide();
 }
@@ -163,17 +169,48 @@ export default function WebviewPage() {
   }, []);
 
   // iOS는 앱이 오래 백그라운드에 있다 돌아오면 상태 표시줄을 기본(검은 글자)으로 되돌리기도 한다.
-  // 기억한 값이 그대로라 `<StatusBar>`는 다시 그리지 않고, 웹도 화면이 같으면 다시 보내지 않으므로
-  // 앱이 앞으로 올 때마다 직접 다시 적용한다.
+  // `<StatusBar>`는 마지막으로 보낸 값을 기억해 같은 값이면 네이티브를 다시 부르지 않고, 웹도 화면이
+  // 같으면 다시 보내지 않는다. 그래서 앱이 앞으로 올 때 직접 다시 적용한다.
+  // 복귀 이벤트 직후 한 번만 적용하면 iOS가 그 뒤에 되돌리는 경우를 놓치므로 간격을 두고 여러 번 적용한다.
+  // 기기에서 어느 시점이 필요한지 확인되면 필요한 횟수만 남긴다.
   useEffect(() => {
+    let timers: ReturnType<typeof setTimeout>[] = [];
+
     const subscription = AppState.addEventListener('change', (state) => {
-      if (state === 'active') {
-        applyStatusBarStyle(statusBarStyle);
+      timers.forEach(clearTimeout);
+      timers = [];
+
+      if (state !== 'active') {
+        return;
       }
+
+      StatusBar.setStyle(statusBarStyle);
+      timers = STATUS_BAR_REAPPLY_DELAYS_MS.map((delay) =>
+        setTimeout(() => StatusBar.setStyle(statusBarStyle), delay),
+      );
     });
 
-    return () => subscription.remove();
+    return () => {
+      subscription.remove();
+      timers.forEach(clearTimeout);
+    };
   }, [statusBarStyle]);
+
+  const lastScrollReapplyAtRef = useRef(0);
+
+  const handleScroll = () => {
+    if (Platform.OS !== 'ios') {
+      return;
+    }
+
+    const now = Date.now();
+    if (now - lastScrollReapplyAtRef.current < STATUS_BAR_SCROLL_REAPPLY_INTERVAL_MS) {
+      return;
+    }
+
+    lastScrollReapplyAtRef.current = now;
+    StatusBar.setStyle(statusBarStyle);
+  };
 
   const handleShouldStartLoad = ({ url, isTopFrame }: ShouldStartLoadRequest) => {
     const rewrittenUrl = rewriteLocalDevCallback(url);
@@ -231,6 +268,7 @@ export default function WebviewPage() {
         style={styles.container}
         source={{ uri: webUri }}
         onShouldStartLoadWithRequest={handleShouldStartLoad}
+        onScroll={handleScroll}
         // 기본 UA 뒤에 덧붙인다. `userAgent`로 통째로 바꾸면 WebKit 정보가 사라져 네이버·구글 로그인이
         // 알 수 없는 브라우저로 판단해 차단한다. 웹은 마커 포함 여부로 앱 환경을 판별한다.
         applicationNameForUserAgent={`${NATIVE_USER_AGENT_MARKER}/${APP_VERSION}`}
