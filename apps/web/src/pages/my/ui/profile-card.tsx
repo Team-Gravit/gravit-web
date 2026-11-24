@@ -130,15 +130,16 @@ function Nickname({ data, isLoading }: SlotProps) {
   if (data) {
     return <h3 className="text-heading2 text-text-1-w md:text-display1">{data.nickname}</h3>;
   }
-  if (isLoading) {
-    return (
-      <Skeleton
-        variant="text"
-        className="w-28 bg-white/20 text-heading2 md:w-60 md:text-display1"
-      />
-    );
-  }
-  return null;
+
+  return (
+    <Skeleton
+      variant="text"
+      className={cn(
+        'w-28 bg-white/20 text-heading2 md:w-60 md:text-display1',
+        !isLoading && 'invisible',
+      )}
+    />
+  );
 }
 
 /** 데스크톱 핸들(프로필 컬럼 내). 모바일에서는 카드 하단의 `MobileHandle`이 담당한다. */
@@ -148,20 +149,24 @@ function DesktopHandle({ data, isLoading }: SlotProps) {
       <p className="text-body1-normal text-semantic-info max-md:hidden">{`@${data.handle}`}</p>
     );
   }
-  if (isLoading) {
-    return <Skeleton variant="text" className="w-24 bg-white/20 text-body1-normal max-md:hidden" />;
-  }
-  return null;
+  return (
+    <Skeleton
+      variant="text"
+      className={cn('w-24 bg-white/20 text-body1-normal max-md:hidden', !isLoading && 'invisible')}
+    />
+  );
 }
 
 function MobileHandle({ data, isLoading }: SlotProps) {
   if (data) {
     return <p className="text-label2 text-semantic-info md:hidden">{`@${data.handle}`}</p>;
   }
-  if (isLoading) {
-    return <Skeleton variant="text" className="w-24 bg-white/20 text-label2 md:hidden" />;
-  }
-  return null;
+  return (
+    <Skeleton
+      variant="text"
+      className={cn('w-24 bg-white/20 text-label2 md:hidden', !isLoading && 'invisible')}
+    />
+  );
 }
 
 /** 레벨·리그·연속학습 라벨. 연속학습은 데스크톱에서만 보인다. */
@@ -175,16 +180,13 @@ function LabelRow({ data, isLoading }: SlotProps) {
       </div>
     );
   }
-  if (isLoading) {
-    return (
-      <div className="flex items-center gap-1 md:gap-2">
-        <CardLabelSkeleton className="w-12 md:w-20" />
-        <CardLabelSkeleton className="w-16 md:w-24" />
-        <CardLabelSkeleton className="w-28 max-md:hidden" />
-      </div>
-    );
-  }
-  return null;
+  return (
+    <div className={cn('flex items-center gap-1 md:gap-2', !isLoading && 'invisible')}>
+      <CardLabelSkeleton className="w-12 md:w-20" />
+      <CardLabelSkeleton className="w-16 md:w-24" />
+      <CardLabelSkeleton className="w-28 max-md:hidden" />
+    </div>
+  );
 }
 
 /**
