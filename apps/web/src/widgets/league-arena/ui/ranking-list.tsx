@@ -62,7 +62,7 @@ export function RankingList({
 
   if (showSkeleton) {
     return (
-      <div className="flex w-full flex-col pt-6 md:px-5.5 md:py-1 gap-3 md:gap-6">
+      <div className="flex w-full flex-col px-4 pt-6 md:px-5.5 md:py-1 gap-3 md:gap-6">
         {Array.from({ length: SKELETON_ROW_COUNT }).map((_, index) => (
           <RankingRowSkeleton key={index} />
         ))}

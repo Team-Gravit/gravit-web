@@ -13,7 +13,7 @@ export function RankingRowSkeleton() {
           <Skeleton variant="text" animation="pulse" className="w-24 md:w-40" />
         </div>
       </div>
-      <div className="flex shrink-0 flex-col items-start gap-1 py-3 md:h-full md:justify-center md:gap-1.5 md:rounded-r-8 md:bg-[rgba(254,241,255,0.25)] md:px-6 md:backdrop-blur-[15px]">
+      <div className="flex shrink-0 flex-col items-start gap-1 py-3 md:h-full md:justify-center md:gap-3 md:rounded-r-8 md:bg-[rgba(254,241,255,0.25)] md:px-6 md:backdrop-blur-[15px]">
         <Skeleton variant="text" animation="pulse" className="w-11 md:w-16" />
         <Skeleton variant="text" animation="pulse" className="w-11 md:w-16" />
       </div>
