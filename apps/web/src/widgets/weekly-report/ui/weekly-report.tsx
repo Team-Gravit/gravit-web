@@ -1,58 +1,83 @@
+import type { ReactNode } from 'react';
+
 import { useMyPageWeeklyReport } from '@/entities/learning';
 import { cn } from '@/shared/lib/cn';
 import { useDelayedFlag } from '@/shared/lib/use-delayed-flag';
-import { Card } from '@/shared/ui/card';
-import { Skeleton } from '@/shared/ui/skeleton';
+import { Card, CardRetryStatus } from '@/shared/ui/card';
+import { Skeleton, SkeletonReserve } from '@/shared/ui/skeleton';
 
 import { WeeklyBarChart } from './weekly-bar-chart';
 
 const CARD_CLASS =
   'gap-4 rounded-8 border border-[#fbf1ff]/60 px-4 py-5 shadow-elevation-1 md:gap-6 md:rounded-12 md:px-8 md:py-7';
 
+// 실제 막대 차트처럼 요일별 높이를 다르게 둔 로딩용 더미 높이(px). 위아래 라벨이 없어 막대로 영역을 채운다.
+const SKELETON_BAR_HEIGHTS_PX = [100, 160, 120, 180, 140, 90, 170];
+
 /**
  * 이번주 리포트 카드. 요일별 완료 막대·이번 주 완료 레슨 수·주차별 증감을 보여준다.
  * 데스크톱은 "이번주 리포트" 라벨과 완료 수(큰 타이포)를 막대 위에, 모바일은
  * "일별 완료한 레슨 수" 라벨을 막대 위에·완료 수(작은 타이포)를 막대 아래에 둔다(시안).
+ * 내용이 대부분 데이터에 딸리므로 카드 셸만 유지하고 본문 전체를 상태별로 바꾼다.
  */
 export function WeeklyReport() {
-  const { data, isPending } = useMyPageWeeklyReport();
+  const { data, isPending, isError, refetch } = useMyPageWeeklyReport();
+  // 임계값(기본 300ms)보다 오래 걸릴 때만 스켈레톤을 띄워 빠른 응답 깜빡임을 막는다.
   const showSkeleton = useDelayedFlag(isPending);
 
-  if (!data) {
-    return showSkeleton ? <WeeklyReportSkeleton /> : null;
+  let body: ReactNode;
+  if (isError) {
+    body = (
+      <CardRetryStatus
+        className="py-8"
+        sectionName="이번주 리포트"
+        onRetry={() => refetch({ throwOnError: true })}
+      />
+    );
+  } else if (isPending) {
+    // 지연되면 스켈레톤을 보이고, 그 전(delay 구간)엔 같은 높이를 invisible 로 잡아 깜빡임·시프트를 막는다.
+    body = <WeeklyReportBodySkeleton isHidden={!showSkeleton} />;
+  } else if (!data) {
+    body = null;
+  } else {
+    const dailyCounts = [
+      data.MONDAY,
+      data.TUESDAY,
+      data.WEDNESDAY,
+      data.THURSDAY,
+      data.FRIDAY,
+      data.SATURDAY,
+      data.SUNDAY,
+    ];
+
+    body = (
+      <>
+        {/* 데스크톱: "이번주 리포트" 라벨 + 완료 수 */}
+        <div className="hidden flex-col gap-2 md:flex">
+          <p className="text-body1-normal text-text-4">이번주 리포트</p>
+          <CompletedLessonStat count={data.thisWeekCompletedLessonCount} />
+        </div>
+
+        {/* 모바일: 막대 위 라벨 */}
+        <p className="text-label2 text-text-4 md:hidden">일별 완료한 레슨 수</p>
+
+        <WeeklyBarChart dailyCounts={dailyCounts} />
+
+        {/* 모바일: 막대 아래 완료 수 */}
+        <CompletedLessonStat count={data.thisWeekCompletedLessonCount} className="md:hidden" />
+
+        <ul className="flex flex-col gap-3">
+          {data.weekOverWeekDeltas.map((delta, index) => (
+            <WeekComparisonItem key={index} weeksAgo={index + 1} delta={delta} />
+          ))}
+        </ul>
+      </>
+    );
   }
 
-  const dailyCounts = [
-    data.MONDAY,
-    data.TUESDAY,
-    data.WEDNESDAY,
-    data.THURSDAY,
-    data.FRIDAY,
-    data.SATURDAY,
-    data.SUNDAY,
-  ];
-
   return (
-    <Card className={CARD_CLASS}>
-      {/* 데스크톱: "이번주 리포트" 라벨 + 완료 수 */}
-      <div className="hidden flex-col gap-2 md:flex">
-        <p className="text-body1-normal text-text-4">이번주 리포트</p>
-        <CompletedLessonStat count={data.thisWeekCompletedLessonCount} />
-      </div>
-
-      {/* 모바일: 막대 위 라벨 */}
-      <p className="text-label2 text-text-4 md:hidden">일별 완료한 레슨 수</p>
-
-      <WeeklyBarChart dailyCounts={dailyCounts} />
-
-      {/* 모바일: 막대 아래 완료 수 */}
-      <CompletedLessonStat count={data.thisWeekCompletedLessonCount} className="md:hidden" />
-
-      <ul className="flex flex-col gap-3">
-        {data.weekOverWeekDeltas.map((delta, index) => (
-          <WeekComparisonItem key={index} weeksAgo={index + 1} delta={delta} />
-        ))}
-      </ul>
+    <Card className={CARD_CLASS} aria-busy={isPending || undefined}>
+      {body}
     </Card>
   );
 }
@@ -96,20 +121,37 @@ function WeekComparisonItem({ weeksAgo, delta }: WeekComparisonItemProps) {
   );
 }
 
-function WeeklyReportSkeleton() {
+function WeeklyReportBodySkeleton({ isHidden = false }: { isHidden?: boolean }) {
   return (
-    <Card className={CARD_CLASS}>
+    // Card 의 gap(gap-4 md:gap-6)을 그대로 재현해 데이터 본문과 높이를 맞춘다.
+    <SkeletonReserve isHidden={isHidden} className="flex flex-col gap-4 md:gap-6">
       <Skeleton variant="text" className="w-24 text-body1-normal" />
-      <Skeleton variant="block" className="h-[130px] w-full rounded-8" />
-      <div className="flex flex-col gap-2">
-        <Skeleton variant="text" className="w-24 text-label1" />
-        <Skeleton variant="text" className="ml-auto w-16 text-heading1" />
-      </div>
+      <WeeklyChartSkeleton />
       <div className="flex flex-col gap-3">
-        <Skeleton variant="block" className="h-11 w-full rounded-4 md:rounded-8" />
-        <Skeleton variant="block" className="h-11 w-full rounded-4 md:rounded-8" />
-        <Skeleton variant="block" className="h-11 w-full rounded-4 md:rounded-8" />
+        <Skeleton
+          variant="block"
+          className="h-[41.5px] md:h-[56.5px] w-full rounded-4 md:rounded-8"
+        />
+        <Skeleton
+          variant="block"
+          className="h-[41.5px] md:h-[56.5px] w-full rounded-4 md:rounded-8"
+        />
+        <Skeleton
+          variant="block"
+          className="h-[41.5px] md:h-[56.5px] w-full rounded-4 md:rounded-8"
+        />
       </div>
-    </Card>
+    </SkeletonReserve>
+  );
+}
+
+/** WeeklyBarChart 의 차트 영역을 요일별 다른 높이의 막대만으로 미러링한다(개수·요일 라벨은 생략). */
+function WeeklyChartSkeleton() {
+  return (
+    <div className="flex h-[243px] md:min-h-68 items-end gap-2 md:gap-4">
+      {SKELETON_BAR_HEIGHTS_PX.map((height, index) => (
+        <Skeleton key={index} variant="block" height={height} className="flex-1 rounded-8" />
+      ))}
+    </div>
   );
 }
