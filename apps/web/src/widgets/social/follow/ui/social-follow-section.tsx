@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { type FollowType, useFollowCount } from '@/entities/follow';
 import { useIsWideViewport } from '@/shared/lib/use-is-wide-viewport';
-import { Card } from '@/shared/ui/card';
+import { Card, CardRetryStatus } from '@/shared/ui/card';
 import { StatItem } from '@/shared/ui/stat-item';
 
 import { FollowModal } from './follow-modal';
@@ -19,17 +19,20 @@ interface SocialFollowSectionProps {
   onOpenFollowPage?: (tab: FollowType) => void;
 }
 
-/** 팔로우/팔로잉 수 카드. 데스크톱은 클릭 시 모달, 모바일은 페이지로 이동한다. */
+/**
+ * 팔로우/팔로잉 수 카드. 데스크톱은 클릭 시 모달, 모바일은 페이지로 이동한다.
+ * 로딩 중에는 스켈레톤 대신 초기값 0을 보여주고(숫자만 갱신되어 시프트가 없다), 에러만 재시도로 바꾼다.
+ */
 export function SocialFollowSection({ onOpenFollowPage }: SocialFollowSectionProps) {
   const isWide = useIsWideViewport();
   const [modalTab, setModalTab] = useState<FollowType | null>(null);
-  const { data } = useFollowCount();
-
-  if (!data) {
-    return null;
-  }
+  const { data, isPending, isError, refetch } = useFollowCount();
 
   const handleClick = (type: FollowType) => {
+    // 로딩·에러로 아직 수치가 없으면 상호작용하지 않는다.
+    if (!data) {
+      return;
+    }
     if (isWide) {
       setModalTab(type);
       return;
@@ -39,31 +42,39 @@ export function SocialFollowSection({ onOpenFollowPage }: SocialFollowSectionPro
 
   return (
     <>
-      <Card className={CARD_CLASS}>
+      <Card className={CARD_CLASS} aria-busy={isPending || undefined}>
         {/* 헤더는 데스크톱에서만 노출(시안) */}
         <div className="hidden flex-col gap-2 md:flex">
           <p className="text-body1-normal text-text-4">팔로우</p>
           <p className="text-title3 text-text-1">나와 함께 학습하는 사람들</p>
         </div>
 
-        <div className="flex items-center md:gap-6">
-          <StatItem
-            onClick={() => handleClick('followers')}
-            value={String(data.followerCount)}
-            label="팔로우"
-            className={STAT_ITEM_CLASS}
+        {isError ? (
+          <CardRetryStatus
+            className="py-8"
+            sectionName="팔로우 정보"
+            onRetry={() => refetch({ throwOnError: true })}
           />
-          <div aria-hidden className="h-10 w-px shrink-0 bg-divider-1 md:hidden" />
-          <StatItem
-            onClick={() => handleClick('following')}
-            value={String(data.followingCount)}
-            label="팔로잉"
-            className={STAT_ITEM_CLASS}
-          />
-        </div>
+        ) : (
+          <div className="flex items-center md:gap-6">
+            <StatItem
+              onClick={() => handleClick('followers')}
+              value={String(data?.followerCount ?? 0)}
+              label="팔로우"
+              className={STAT_ITEM_CLASS}
+            />
+            <div aria-hidden className="h-10 w-px shrink-0 bg-divider-1 md:hidden" />
+            <StatItem
+              onClick={() => handleClick('following')}
+              value={String(data?.followingCount ?? 0)}
+              label="팔로잉"
+              className={STAT_ITEM_CLASS}
+            />
+          </div>
+        )}
       </Card>
 
-      {modalTab && (
+      {modalTab && data && (
         <FollowModal
           open
           onClose={() => setModalTab(null)}
