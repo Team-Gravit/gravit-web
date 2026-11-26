@@ -97,6 +97,11 @@ export function TierSelector({
     }, SCROLL_IDLE_MS);
   }
 
+  // 사용자가 직접 스크롤을 시작하면 탭의 smooth 스크롤은 끝난 것으로 본다.
+  function handleUserScrollStart() {
+    isProgrammaticScrollRef.current = false;
+  }
+
   function handleTierClick(tierId: number) {
     if (tapLockedRef.current) return; // 가드: 쿨다운 중 연타 무시
     tapLockedRef.current = true;
@@ -105,7 +110,9 @@ export function TierSelector({
       tapLockedRef.current = false;
     }, TAP_COOLDOWN_MS);
 
-    isProgrammaticScrollRef.current = true; // 아래 smooth 스크롤 동안 handleScroll의 하이라이트 덮기 차단
+    // 아래 smooth 스크롤 동안 handleScroll의 하이라이트 덮기를 막는다.
+    // 이미 가운데인 티어는 scroll 이벤트가 없어, 플래그를 켜면 내릴 기회가 없다.
+    isProgrammaticScrollRef.current = tierId !== findCenteredTierId();
     setCenteredTierId(tierId); // 아래 센터링 효과가 탭의 smooth 스크롤과 싸우지 않도록 먼저 맞춘다.
     centeredIdRef.current = tierId;
     onSelectTier(tierId); // 탭은 즉시 확정(즉각 반응). 스와이프만 idle 확정에 맡긴다.
@@ -146,6 +153,8 @@ export function TierSelector({
       <div
         ref={scrollRef}
         onScroll={handleScroll}
+        onTouchStart={handleUserScrollStart}
+        onWheel={handleUserScrollStart}
         className="scrollbar-hide mx-auto flex w-full snap-x snap-mandatory items-end gap-4 overflow-x-auto [mask-image:linear-gradient(to_right,transparent_0%,#000_15%,#000_85%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_right,transparent_0%,#000_15%,#000_85%,transparent_100%)] md:w-[664px] md:items-center md:gap-8 md:py-10"
       >
         <div className="w-[calc(50%-32px)] shrink-0 md:w-[calc(50%-100px)]" />
