@@ -107,6 +107,56 @@ describe('LeaguePage', () => {
     expect(screen.getByRole('button', { name: '다시 시도' })).toBeInTheDocument();
   });
 
+  it('아레나를 보여준 뒤 재조회가 실패하면 아레나를 유지한다', async () => {
+    let homeRequestCount = 0;
+    server.use(
+      http.get(HOME_URL, () => {
+        homeRequestCount += 1;
+        return homeRequestCount === 1
+          ? HttpResponse.json(HOME)
+          : new HttpResponse(null, { status: 500 });
+      }),
+      http.get(PROFILE_URL, () => HttpResponse.json(PROFILE)),
+    );
+    const queryClient = renderLeaguePage();
+    expect(await screen.findByText('아레나 4')).toBeInTheDocument();
+
+    await act(() => queryClient.refetchQueries({ type: 'active' }));
+
+    expect(homeRequestCount).toBe(2);
+    expect(screen.getByText('아레나 4')).toBeInTheDocument();
+    expect(screen.queryByText('리그 정보를 불러오지 못했어요.')).not.toBeInTheDocument();
+  });
+
+  it('다시 시도하는 동안 폴백을 유지하고 성공하면 아레나를 보여준다', async () => {
+    let homeRequestCount = 0;
+    let respondToRetry = () => {};
+    const retryResponded = new Promise<void>((resolve) => {
+      respondToRetry = resolve;
+    });
+    server.use(
+      http.get(HOME_URL, async () => {
+        homeRequestCount += 1;
+        if (homeRequestCount === 1) {
+          return new HttpResponse(null, { status: 500 });
+        }
+        await retryResponded;
+        return HttpResponse.json(HOME);
+      }),
+      http.get(PROFILE_URL, () => HttpResponse.json(PROFILE)),
+    );
+    renderLeaguePage();
+
+    await userEvent.click(await screen.findByRole('button', { name: '다시 시도' }));
+    await waitFor(() => expect(homeRequestCount).toBe(2));
+
+    expect(screen.getByRole('button', { name: /다시 시도/ })).toHaveAttribute('aria-busy', 'true');
+    expect(screen.queryByText('아레나 로딩')).not.toBeInTheDocument();
+
+    respondToRetry();
+    expect(await screen.findByText('아레나 4')).toBeInTheDocument();
+  });
+
   it('배경은 768px 이상에서 데스크톱 이미지로 바꾸고 어두운 덮개를 하나 깐다', () => {
     server.use(
       http.get(HOME_URL, () => HttpResponse.json(HOME)),

@@ -70,9 +70,33 @@ function LeagueContent() {
 
   const [hasClosedSeasonModal, setHasClosedSeasonModal] = useState(false);
 
-  // isPending은 성공한 데이터가 없을 때만 참이다. 재조회 중에는 기존 화면을 유지한다.
-  // 로딩 중엔 아레나와 같은 레이아웃의 스켈레톤을 깔아, 실제 콘텐츠 등장 시 레이아웃이 밀리지 않게(CLS) 한다.
-  if (profileQuery.isPending || homeQuery.isPending) {
+  const home = homeQuery.data;
+  const profile = profileQuery.data;
+  // 받아 둔 데이터가 있으면 재조회가 실패해도 화면을 유지한다. 데이터 없이 재시도하면 pending으로
+  // 돌아가 isError가 꺼지므로, 폴백을 유지하려고 실패 횟수로 판단한다.
+  const hasLoadError = [homeQuery, profileQuery].some(
+    (query) => query.data === undefined && query.errorUpdateCount > 0,
+  );
+
+  function handleRetry() {
+    return Promise.all([
+      homeQuery.refetch({ throwOnError: true }),
+      profileQuery.refetch({ throwOnError: true }),
+    ]);
+  }
+
+  function handleSeasonModalComplete() {
+    setHasClosedSeasonModal(true);
+  }
+
+  if (hasLoadError) {
+    return (
+      <LeagueMain>
+        <LeagueErrorFallback onRetry={handleRetry} />
+      </LeagueMain>
+    );
+  }
+  if (!home || !profile) {
     return (
       <LeagueMain>
         <div className="flex min-h-0 flex-1 flex-col">
@@ -81,29 +105,9 @@ function LeagueContent() {
       </LeagueMain>
     );
   }
-  if (profileQuery.isError || homeQuery.isError) {
-    return (
-      <LeagueMain>
-        <LeagueErrorFallback
-          onRetry={() =>
-            Promise.all([
-              homeQuery.refetch({ throwOnError: true }),
-              profileQuery.refetch({ throwOnError: true }),
-            ])
-          }
-        />
-      </LeagueMain>
-    );
-  }
 
-  const home = homeQuery.data;
-  const profile = profileQuery.data;
   const seasonPopup =
     home.containsPopup && !hasClosedSeasonModal ? home.lastSeasonPopupDto : undefined;
-
-  function handleSeasonModalComplete() {
-    setHasClosedSeasonModal(true);
-  }
 
   return (
     <LeagueMain>
