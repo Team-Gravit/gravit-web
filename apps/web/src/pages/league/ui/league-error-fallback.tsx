@@ -1,15 +1,20 @@
 import { useState } from 'react';
 
 import { Button } from '@/shared/ui/button';
+import { MIN_REFRESH_DURATION_MS } from '@/shared/ui/pull-to-refresh';
 import { toast } from '@/shared/ui/toast';
 
 import leagueLoadFailedMascot from './assets/league-load-failed-mascot.webp';
 
 const FAILURE_MESSAGE = '리그 정보를 불러오지 못했어요.';
-const RETRY_FAILURE_TOAST = '다시 시도에 실패했어요. 잠시 후 다시 시도해 주세요.';
+const RETRY_FAILURE_MESSAGE = '다시 시도에 실패했어요. 잠시 후 다시 시도해 주세요.';
+
+function wait(milliseconds: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, milliseconds));
+}
 
 export interface LeagueErrorFallbackProps {
-  /** 거부되면 실패로 보고 토스트를 띄운다. 리그 홈·프로필을 refetch({ throwOnError: true })로 다시 받는다. */
+  /** 거부되면 실패로 보고 토스트를 띄운다. */
   onRetry: () => Promise<unknown>;
 }
 
@@ -24,17 +29,24 @@ export function LeagueErrorFallback({ onRetry }: LeagueErrorFallbackProps) {
 
   async function handleRetry() {
     setIsRetrying(true);
+    // 응답이 빨라도 진행 표시가 깜빡이고 사라지지 않게 한다.
+    const minimumDuration = wait(MIN_REFRESH_DURATION_MS);
+
     try {
       await onRetry();
     } catch {
-      toast(RETRY_FAILURE_TOAST);
+      toast(RETRY_FAILURE_MESSAGE);
     } finally {
+      await minimumDuration;
       setIsRetrying(false);
     }
   }
 
   return (
-    <div className="mx-auto flex max-w-[400px] flex-1 flex-col items-center justify-center gap-4 px-4 text-center md:gap-6">
+    <div
+      role="alert"
+      className="mx-auto flex max-w-100 flex-1 flex-col items-center justify-center gap-4 px-4 text-center md:gap-6"
+    >
       <img src={leagueLoadFailedMascot} alt="" decoding="async" className="w-24 md:w-40" />
       <p className="text-headline2 text-text-2-w md:text-heading1">{FAILURE_MESSAGE}</p>
       <Button type="button" size="cta" isLoading={isRetrying} onClick={() => void handleRetry()}>
