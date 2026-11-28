@@ -4,13 +4,14 @@ import { useRefetchActiveQueries } from '@/shared/api';
 import { GradientCanvas, type GradientCanvasArt } from '@/shared/ui/gradient-canvas';
 import { PullToRefresh } from '@/shared/ui/pull-to-refresh';
 import { useLeagueHome, useMyLeagueProfile } from '@/entities/league';
-import { LeagueArena } from '@/widgets/league-arena';
+import { LeagueArena, LeagueArenaSkeleton } from '@/widgets/league-arena';
 import { LeagueSeasonModal } from '@/widgets/league-season-modal';
 
 import leagueBgDesktopAvif from './assets/league-bg-desktop.png?w=1280;1920&format=avif&quality=75&as=srcset';
 import leagueBgDesktopWebp from './assets/league-bg-desktop.png?w=1280;1920&format=webp&as=srcset';
 import leagueBgDesktopFallback from './assets/league-bg-desktop.png?w=1920&format=webp';
 import leagueBgMobile from './assets/league-bg-mobile.png?w=720&format=webp';
+import { LeagueErrorFallback } from './league-error-fallback';
 
 /*
   시안 그라데이션(LG-01)을 상자 기준 CSS로 옮긴 값이다.
@@ -69,27 +70,47 @@ function LeagueContent() {
 
   const [hasClosedSeasonModal, setHasClosedSeasonModal] = useState(false);
 
-  // isPending은 성공한 데이터가 없을 때만 참이다. 재조회 중에는 기존 화면을 유지한다.
-  if (profileQuery.isPending || homeQuery.isPending) {
-    return <StatusScreen>로딩중</StatusScreen>;
-  }
-  if (profileQuery.isError || homeQuery.isError) {
-    return <StatusScreen>에러 발생</StatusScreen>;
-  }
-
   const home = homeQuery.data;
   const profile = profileQuery.data;
-  const seasonPopup =
-    home.containsPopup && !hasClosedSeasonModal ? home.lastSeasonPopupDto : undefined;
+  // 받아 둔 데이터가 있으면 재조회가 실패해도 화면을 유지한다. 데이터 없이 재시도하면 pending으로
+  // 돌아가 isError가 꺼지므로, 폴백을 유지하려고 실패 횟수로 판단한다.
+  const hasLoadError = [homeQuery, profileQuery].some(
+    (query) => query.data === undefined && query.errorUpdateCount > 0,
+  );
+
+  function handleRetry() {
+    return Promise.all([
+      homeQuery.refetch({ throwOnError: true }),
+      profileQuery.refetch({ throwOnError: true }),
+    ]);
+  }
 
   function handleSeasonModalComplete() {
     setHasClosedSeasonModal(true);
   }
 
-  // overlay 헤더(투명)가 배경 위에 겹치되 아레나 콘텐츠는 가리지 않도록, 데스크톱에서 헤더 높이만큼
-  // 상단 여백을 둔다. 배경은 fixed 라 이 padding 에 영향받지 않고 헤더 뒤까지 full-bleed 유지된다.
+  if (hasLoadError) {
+    return (
+      <LeagueMain>
+        <LeagueErrorFallback onRetry={handleRetry} />
+      </LeagueMain>
+    );
+  }
+  if (!home || !profile) {
+    return (
+      <LeagueMain>
+        <div className="flex min-h-0 flex-1 flex-col">
+          <LeagueArenaSkeleton />
+        </div>
+      </LeagueMain>
+    );
+  }
+
+  const seasonPopup =
+    home.containsPopup && !hasClosedSeasonModal ? home.lastSeasonPopupDto : undefined;
+
   return (
-    <main className="relative flex min-h-0 w-full flex-1 flex-col overflow-hidden pt-(--safe-area-top) md:px-10 md:pb-[clamp(16px,8vh,64px)] md:pt-[calc(var(--desktop-header-height)+clamp(16px,10vh,100px))]">
+    <LeagueMain>
       <div className="flex min-h-0 flex-1 flex-col">
         <LeagueArena
           seasonName={home.currentSeason.nowSeason}
@@ -102,6 +123,20 @@ function LeagueContent() {
       {seasonPopup && (
         <LeagueSeasonModal popup={seasonPopup} onComplete={handleSeasonModalComplete} />
       )}
+    </LeagueMain>
+  );
+}
+
+/**
+ * 리그 메인 래퍼. 로딩·에러·정상이 같은 여백·박스를 공유해 상태 전환 시 레이아웃이 밀리지 않게(CLS) 한다.
+ *
+ * overlay 헤더(투명)가 배경 위에 겹치되 콘텐츠는 가리지 않도록, 데스크톱에서 헤더 높이만큼 상단 여백을
+ * 둔다. 배경은 fixed 라 이 padding 에 영향받지 않고 헤더 뒤까지 full-bleed 유지된다.
+ */
+function LeagueMain({ children }: { children: ReactNode }) {
+  return (
+    <main className="relative flex min-h-0 w-full flex-1 flex-col overflow-hidden pt-(--safe-area-top) md:px-10 md:pb-[clamp(16px,8vh,64px)] md:pt-[calc(var(--desktop-header-height)+clamp(16px,10vh,100px))]">
+      {children}
     </main>
   );
 }
@@ -118,14 +153,6 @@ function LeagueBackground() {
       />
       {/* 덮개는 넓은 화면 시안에만 있다(순수 검정 40%). */}
       <div aria-hidden className="absolute inset-0 hidden bg-(--primitive-gray-1100)/40 md:block" />
-    </div>
-  );
-}
-
-function StatusScreen({ children }: { children: ReactNode }) {
-  return (
-    <div className="flex w-full flex-1 items-center justify-center text-body1-normal text-text-1-w">
-      {children}
     </div>
   );
 }

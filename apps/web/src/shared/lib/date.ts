@@ -23,15 +23,21 @@ export const formatElapsedTime = (totalSeconds: number): string => {
 
 export const getRemainingTime = (targetTimeMs: number): string => {
   const diff = targetTimeMs - Date.now();
-  if (diff <= 0) return '00시간 00분 00초';
-
-  const hours = Math.floor(diff / (1000 * 60 * 60));
-  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
   const pad = (n: number) => n.toString().padStart(2, '0');
 
-  return `${pad(hours)}시간 ${pad(minutes)}분 ${pad(seconds)}초`;
+  if (diff <= 0) return `${pad(0)}일 ${pad(0)}시간 ${pad(0)}분 ${pad(0)}초`;
+
+  const DAY = 1000 * 60 * 60 * 24;
+  const HOUR = 1000 * 60 * 60;
+  const MINUTE = 1000 * 60;
+
+  const days = Math.floor(diff / DAY);
+  const hours = Math.floor((diff % DAY) / HOUR);
+  const minutes = Math.floor((diff % HOUR) / MINUTE);
+  const seconds = Math.floor((diff % MINUTE) / 1000);
+
+  return `${pad(days)}일 ${pad(hours)}시간 ${pad(minutes)}분 ${pad(seconds)}초`;
 };
 
 /**

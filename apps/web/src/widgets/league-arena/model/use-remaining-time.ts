@@ -4,7 +4,7 @@ import { getNextMonday, getRemainingTime } from '@/shared/lib/date';
 
 /** 다음 월요일 0시까지 남은 시간을 매초 갱신한다. */
 export function useRemainingTime(): string {
-  const [remaining, setRemaining] = useState('00시간 00분 00초');
+  const [remaining, setRemaining] = useState('00일 00시간 00분 00초');
 
   useEffect(() => {
     const seasonEnd = getNextMonday().getTime();

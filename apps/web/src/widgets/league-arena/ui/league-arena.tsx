@@ -57,7 +57,11 @@ export function LeagueArena({ seasonName, myLeagueId, myRank, myUserId }: League
         style={stageStyle}
       >
         <section className="flex shrink-0 flex-col items-center pt-10 pb-6 md:w-auto md:max-w-[731px] md:py-0">
-          <div ref={contentRef} className="flex flex-col items-center gap-6 md:gap-10">
+          {/* 좁은 화면에서 w-full이 없으면 캐러셀이 내용 폭만큼 늘어나 양끝 페이드가 화면 밖으로 나간다. */}
+          <div
+            ref={contentRef}
+            className="flex w-full flex-col items-center gap-6 md:w-auto md:gap-10"
+          >
             <SeasonTimer seasonName={seasonName} />
             <TierSelector
               tiers={tiers}
